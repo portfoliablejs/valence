@@ -1,0 +1,190 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Sizography" />
+
+# Sizography
+
+The Sizography system governs fixed structural dimensions across Valence. While Spatialography handles gaps, padding, and margins, Sizography establishes component height standards, icon bounding boxes, and container max-width constraints to guarantee predictable geometry across layouts.
+
+<br />
+
+## Height Tokens
+
+Component height tokens standardise form inputs, buttons, chips, and table row dimensions to ensure interactive controls align predictably on horizontal grids.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Token</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>XS Height</strong></td>
+      <td>`var(--size-height-xs)`</td>
+      <td>`24px`</td>
+      <td>Micro-controls, inline tags, compact badges.</td>
+    </tr>
+    <tr>
+      <td><strong>Small Height</strong></td>
+      <td>`var(--size-height-sm)`</td>
+      <td>`32px`</td>
+      <td>Compact buttons, dense table inputs, pagination controls.</td>
+    </tr>
+    <tr>
+      <td><strong>Medium Height</strong></td>
+      <td>`var(--size-height-md)`</td>
+      <td>`40px`</td>
+      <td>Default control height (standard buttons, form inputs, selects).</td>
+    </tr>
+    <tr>
+      <td><strong>Large Height</strong></td>
+      <td>`var(--size-height-lg)`</td>
+      <td>`48px`</td>
+      <td>Prominent CTA buttons, search inputs, mobile-friendly touch targets.</td>
+    </tr>
+    <tr>
+      <td><strong>XL Height</strong></td>
+      <td>`var(--size-height-xl)`</td>
+      <td>`56px`</td>
+      <td>Hero action controls, large modal action footers.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Icon Size Tokens
+
+Icon tokens specify explicit bounding-box dimensions for vector icons and avatars.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Token</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Small Icon</strong></td>
+      <td>`var(--size-icon-sm)`</td>
+      <td>`16px`</td>
+      <td>Inline text icons, micro-badges, dense list actions.</td>
+    </tr>
+    <tr>
+      <td><strong>Medium Icon</strong></td>
+      <td>`var(--size-icon-md)`</td>
+      <td>`20px`</td>
+      <td>Standard button icons, input status indicators.</td>
+    </tr>
+    <tr>
+      <td><strong>Large Icon</strong></td>
+      <td>`var(--size-icon-lg)`</td>
+      <td>`24px`</td>
+      <td>Default standalone icon size (navigation items, headers).</td>
+    </tr>
+    <tr>
+      <td><strong>XL Icon</strong></td>
+      <td>`var(--size-icon-xl)`</td>
+      <td>`32px`</td>
+      <td>Feature card illustrations, empty-state indicators.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Container Max-Width Tokens
+
+Container constraints define maximum surface widths to enforce readable line lengths and responsive content layouts.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Token</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>XS Max Width</strong></td>
+      <td>`var(--size-max-width-xs)`</td>
+      <td>`320px`</td>
+      <td>Popover menus, mobile drawers, narrow cards.</td>
+    </tr>
+    <tr>
+      <td><strong>SM Max Width</strong></td>
+      <td>`var(--size-max-width-sm)`</td>
+      <td>`480px`</td>
+      <td>Modal dialogs, authentication cards, focused forms.</td>
+    </tr>
+    <tr>
+      <td><strong>MD Max Width</strong></td>
+      <td>`var(--size-max-width-md)`</td>
+      <td>`768px`</td>
+      <td>Reading columns, documentation bodies, step wizards.</td>
+    </tr>
+    <tr>
+      <td><strong>LG Max Width</strong></td>
+      <td>`var(--size-max-width-lg)`</td>
+      <td>`1024px`</td>
+      <td>Standard page content containers, dashboard views.</td>
+    </tr>
+    <tr>
+      <td><strong>XL Max Width</strong></td>
+      <td>`var(--size-max-width-xl)`</td>
+      <td>`1280px`</td>
+      <td>Wide-screen layouts, data grid viewports.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Reference size tokens whenever declaring explicit widths or heights to guarantee visual uniformity across components.
+
+### Form & Control Sizing
+
+```css
+.input-standard {
+  height: var(--size-height-md);
+  max-width: var(--size-max-width-sm);
+}
+
+.button-hero {
+  height: var(--size-height-xl);
+}
+
+.button-hero ds-icon {
+  --icon-size: var(--size-icon-lg);
+}
+```
+
+## Layout Constraints
+```css 
+.article-container {
+  width: 100%;
+  max-width: var(--size-max-width-md);
+  margin-inline: auto;
+}
+
+.dialog-surface {
+  width: 100%;
+  max-width: var(--size-max-width-sm);
+}
+```
+
+## Best Practices
+- Touch Target Accessibility: Use a minimum control height of `--size-height-lg` (48px) or `--size-height-md` (40px) on mobile-first interactive elements to satisfy WCAG touch target recommendations. 
+- Heights vs. Min-Heights: Use height for fixed interactive controls (e.g., buttons, text inputs), but prefer min-height when applied to containers that may wrap text dynamically.
+- Separation of Concerns: Never substitute spacing variables (`--space-*`) for component dimensions; use `--size-*` tokens for explicit width/height constraints.

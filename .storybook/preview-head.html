@@ -1,0 +1,90 @@
+<!-- .storybook/preview-head.html -->
+<meta name="robots" content="noindex, nofollow" />
+<!-- 🎨 Colorblindness SVG Matrices -->
+<svg style="display: none;">
+  <defs>
+    <!-- Deuteranopia (Green Weakness) -->
+    <filter id="deuteranopia">
+      <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0  0.7, 0.3, 0, 0, 0  0, 0.3, 0.7, 0, 0  0, 0, 0, 1, 0"/>
+    </filter>
+    <!-- Protanopia (Red Weakness) -->
+    <filter id="protanopia">
+      <feColorMatrix type="matrix" values="0.56667, 0.43333, 0, 0, 0  0.55833, 0.44167, 0, 0, 0  0, 0.24167, 0.75833, 0, 0  0, 0, 0, 1, 0"/>
+    </filter>
+    <!-- Tritanopia (Blue Weakness) -->
+    <filter id="tritanopia">
+      <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0  0, 0.43333, 0.56667, 0, 0  0, 0.475, 0.525, 0, 0  0, 0, 0, 1, 0"/>
+    </filter>
+  </defs>
+</svg>
+
+<style>
+  /* 🌙 Universal Dark Mode Backgrounds */
+  html.a11y-dark-mode,
+  html.a11y-dark-mode body,
+  html.a11y-dark-mode .docs-story {
+    background-color: #101218 !important;
+  }
+
+  /* ⚡ Universal High Contrast Mode */
+  html.a11y-high-contrast,
+  html.a11y-high-contrast body,
+  html.a11y-high-contrast .docs-story {
+    background-color: #000000 !important;
+  }
+
+  /* 👁️ Simulated Forced Colors Mode */
+  html.a11y-forced-colors,
+  html.a11y-forced-colors body,
+  html.a11y-forced-colors .docs-story {
+    background-color: Canvas !important;
+    color: CanvasText !important;
+  }
+
+  /* 📢 Screen Reader Live Region Debugger */
+  html.a11y-show-live-regions [aria-live],
+  html.a11y-show-live-regions [role="alert"],
+  html.a11y-show-live-regions [role="status"] {
+    outline: 2px dashed #ff007f !important;
+    outline-offset: 4px;
+    position: relative;
+  }
+
+  html.a11y-show-live-regions [aria-live]::before {
+    content: "📢 ARIA-LIVE (" attr(aria-live) ")";
+    position: absolute;
+    top: -22px;
+    left: 0;
+    background: #ff007f;
+    color: #ffffff;
+    font-size: 10px;
+    padding: 2px 4px;
+    font-weight: bold;
+    border-radius: 2px;
+    z-index: 99999;
+  }
+
+  /* 👁️ Color Vision Deficiency Classes */
+  html.a11y-cb-deuteranopia { filter: url('#deuteranopia') !important; }
+  html.a11y-cb-protanopia    { filter: url('#protanopia') !important; }
+  html.a11y-cb-tritanopia    { filter: url('#tritanopia') !important; }
+  html.a11y-cb-achromatopsia { filter: grayscale(100%) !important; }
+  html.a11y-cb-blur          { filter: blur(2px) !important; }
+
+
+  /* High specificity targeting for Storybook Docs TOC */
+ /* 1. Target the full link text to set size and optional lowercase */
+html body .sbdocs-wrapper nav a[href^="#"],
+html body .sbdocs-wrapper [class*="toc"] a {
+  font-size: 13.5px !important;
+  line-height: 1.3 !important;
+  text-transform: lowercase; /* Forces the rest of the text to be lowercase */
+}
+
+/* 2. Target only the very first letter of the links to uppercase it */
+html body .sbdocs-wrapper nav a[href^="#"]::first-letter,
+html body .sbdocs-wrapper [class*="toc"] a::first-letter {
+  text-transform: uppercase !important;
+}
+
+</style>

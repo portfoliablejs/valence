@@ -1,0 +1,202 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as DividerStories from './Divider.stories';
+
+<Meta title="Atoms/Divider [v1.0.0]/Architecture"/>
+
+# `ds-divider`
+
+The `ds-divider` component is a **stateless / presentational** Atom designed to separate content blocks horizontally or vertically while handling semantic accessibility delegation and sub-atomic custom token overrides.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host application binds layout attributes (`orientation`, `aria-label`) or custom CSS property overrides onto the host element.
+* **Internal Delegation:** `ds-divider` delegates `aria-label` and `aria-orientation` attributes down to its internal Shadow DOM primitive (`role="separator"`) and scrubs `aria-label` from the host element to eliminate redundant ARIA warnings.
+* **Encapsulated Presentation:** Layout geometry, margin boundaries, and color transitions are encapsulated inside the Shadow DOM.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / Layout Container"]
+          direction TB
+          State["Layout Container / Page Shell"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-divider"]
+      end
+
+      State -->|"1. State In: orientation / aria-label"| Component
+      Component -->|"2. Render Output: Separator Rule"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-divider` component is a purely structural visual primitive and does not expose public slots.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Internal separator line primitive only; host child content is not rendered.</td>
+      <td>Renders structural rule primitive</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsDividerState {
+  orientation: 'horizontal' | 'vertical';
+  ariaLabel?: string;
+}
+
+export interface DsDividerSubAtomicHooks {
+  '--ds-divider-color'?: string;
+  '--ds-divider-thickness'?: string;
+  '--ds-divider-margin'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`orientation`</td>
+      <td>`orientation`</td>
+      <td>`'horizontal' | 'vertical'`</td>
+      <td>`'horizontal'`</td>
+      <td>Determines whether the separator rule renders horizontally or vertically.</td>
+    </tr>
+    <tr>
+      <td>`ariaLabel`</td>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Accessibility label delegated down to the internal primitive and scrubbed from the host tag.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>None</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>`ds-divider` is a static layout component and does not emit custom interaction events.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-divider-color`</td>
+      <td>`var(--color-surface-border)`</td>
+      <td>Overrides separator background line stroke color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-divider-thickness`</td>
+      <td>`var(--border-width-thin)`</td>
+      <td>Overrides separator rule thickness (height when horizontal, width when vertical).</td>
+    </tr>
+    <tr>
+      <td>`--ds-divider-margin`</td>
+      <td>`var(--space-md) 0`</td>
+      <td>Overrides outer spatial spacing margin bounds.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Role & ARIA Scrubbing:** The internal primitive carries `role="separator"`. Passing an `aria-label` to `<ds-divider>` delegates `aria-label` and `aria-orientation` directly to the internal `.divider-root` element and automatically purges `aria-label` from the host custom element tag.
+* **Global Accessibility Propagation:** Listens to class changes on `document.documentElement` via `MutationObserver` to sync accessibility modes onto host custom element attributes:
+  * `.a11y-dark-mode`: Adjusts rule line stroke contrast against dark surfaces.
+  * `.a11y-high-contrast`: Enforces strict binary black stroke bounds.
+  * `.a11y-forced-colors`: Maps system active `CanvasText` palette in Windows High Contrast Mode.
+  * `.a11y-reduce-motion`: Suppresses background color transition durations.
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-divider';
+
+// Horizontal Section Separator
+const horizontalDivider = document.createElement('ds-divider');
+horizontalDivider.setAttribute('orientation', 'horizontal');
+horizontalDivider.setAttribute('aria-label', 'Main section break');
+
+// Vertical Content Separator with Sub-Atomic Overrides
+const verticalDivider = document.createElement('ds-divider');
+verticalDivider.setAttribute('orientation', 'vertical');
+verticalDivider.style.setProperty('--ds-divider-color', 'var(--color-accent)');
+verticalDivider.style.setProperty('--ds-divider-thickness', '2px');
+
+document.body.appendChild(horizontalDivider);
+document.body.appendChild(verticalDivider);
+```

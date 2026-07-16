@@ -1,0 +1,202 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Formography" />
+
+# Formography
+
+The Formography system defines design standards, structural geometry, validation state behaviors, and accessibility requirements across Valence form controls (inputs, textareas, selects, checkboxes, radios, and switches).
+
+<br />
+
+## Form Control Sizing & Target Bounds
+
+Form elements leverage `Sizography` height tokens to align predictably on horizontal layout grids while meeting WCAG touch target recommendations.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Size Token</th>
+      <th style={{ textAlign: 'left' }}>Control Height</th>
+      <th style={{ textAlign: 'left' }}>Internal Padding</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>var(--size-height-sm)</code></td>
+      <td><code>32px</code></td>
+      <td><code>var(--space-xs) var(--space-sm)</code></td>
+      <td>Compact form layouts, inline table controls, search bars.</td>
+    </tr>
+    <tr>
+      <td><strong>Default: </strong><code>var(--size-height-md)</code></td>
+      <td><code>40px</code></td>
+      <td><code>var(--space-xs) var(--space-md)</code></td>
+      <td>Standard form inputs, select dropdowns, and text inputs.</td>
+    </tr>
+    <tr>
+      <td><code>var(--size-height-lg)</code></td>
+      <td><code>48px</code></td>
+      <td><code>var(--space-sm) var(--space-lg)</code></td>
+      <td>Prominent mobile-first inputs and search interfaces (WCAG AAA touch target).</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Validation & Feedback States
+
+Formography standardizes validation semantics across four structural states: **Default / Rest**, **Focus**, **Error / Invalid**, and **Success / Valid**.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>State</th>
+      <th style={{ textAlign: 'left' }}>Border & Focus Color</th>
+      <th style={{ textAlign: 'left' }}>Background / Icon Token</th>
+      <th style={{ textAlign: 'left' }}>Accessibility Requirement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Rest</strong></td>
+      <td><code>var(--color-gray-light)</code></td>
+      <td><code>var(--color-bg)</code></td>
+      <td>Label associated via <code>for</code> or <code>aria-labelledby</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Active / Focus</strong></td>
+      <td><code>var(--color-accent)</code></td>
+      <td><code>outline: 3px solid var(--color-accent)</code></td>
+      <td>Visible focus ring via <code>:focus-visible</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Invalid / Error</strong></td>
+      <td><code>var(--color-error)</code></td>
+      <td>Helper text in <code>var(--color-error)</code></td>
+      <td>Requires <code>aria-invalid="true"</code> and <code>aria-describedby="[error-id]"</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Valid / Success</strong></td>
+      <td><code>var(--color-success)</code></td>
+      <td>Optional checkmark icon</td>
+      <td>Communicates valid input criteria upon blur or submit.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Construct form inputs using sub-atomic border, sizing, and color tokens. Ensure label containers and helper messages maintain standard spatial hierarchy (`--space-xs` gaps).
+
+### Text Input CSS Implementation
+
+```css
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
+.input-control {
+  height: var(--size-height-md);
+  padding: 0 var(--space-md);
+  font-family: var(--font-family);
+  font-size: 16px;
+  color: var(--color-black);
+  background: var(--custom-bg, var(--color-bg));
+  border: var(--border-width-thin) var(--border-style-solid) var(--color-gray-light);
+  border-radius: var(--custom-radius, var(--radius-md));
+  transition: border-color var(--anim-fast) var(--ease-fluid),
+              box-shadow var(--anim-fast) var(--ease-fluid);
+}
+
+/* Active Focus State */
+.input-control:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(43, 113, 240, 0.2);
+}
+
+/* Invalid / Error State */
+.input-control[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.input-control[aria-invalid="true"]:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.2);
+}
+
+/* Disabled State */
+.input-control:disabled {
+  opacity: var(--opacity-disabled);
+  background: var(--color-card-bg);
+  cursor: not-allowed;
+}
+
+```
+
+## Accessible Form Anatomy
+
+Every interactive form control must maintain an explicit, accessible structure connecting labels, inputs, and feedback messages.
+
+```html
+<div class="form-field">
+  <!-- Explicit Label Binding -->
+  <label for="email-input" class="p2" style="font-weight: 600; color: var(--color-black);">
+    Email Address
+  </label>
+  
+  <!-- Native Primitive Control -->
+  <input 
+    id="email-input"
+    type="email" 
+    class="input-control" 
+    placeholder="user@valence.design"
+    aria-invalid="true"
+    aria-describedby="email-error"
+  />
+
+  <!-- Validation Feedback Message -->
+  <span id="email-error" class="p2" style="color: var(--color-error); font-size: 14px;">
+    Please enter a valid email address.
+  </span>
+</div>
+
+```
+
+## High Contrast & Dyslexia Mode Overrides
+
+In high-contrast mode, form controls rely on high-visibility solid borders (`--border-width-medium`) rather than subtle background fills.
+
+```css
+/* High Contrast Mode Overrides */
+:host([a11y-high-contrast]) .input-control {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: var(--border-width-medium) var(--border-style-solid) #FFFFFF !important;
+}
+
+:host([a11y-high-contrast]) .input-control:focus-visible {
+  outline: 4px solid #FFFFFF !important;
+  outline-offset: 2px;
+}
+
+/* Dyslexia Mode Overrides */
+:host([a11y-dyslexia]) .input-control {
+  font-family: "Comic Sans MS", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+}
+
+```
+
+## Best Practices
+
+* **Never Rely Solely on Color**: When communicating an invalid input state, pair `--color-error` borders with explanatory error text and an `aria-invalid="true"` attribute.
+* **Form Association**: Always link labels to input fields using `for="[id]"` or nested structural markup. Avoid orphan form controls.
+* **Helper Text Programmatic Association**: Always link helper or error messages to input fields using `aria-describedby="[message-id]"`.
+* **Keyboard Navigation & Traps**: Ensure form fields support standard `Tab` and `Shift+Tab` flows without trapping focus inside custom shadow DOM boundaries.

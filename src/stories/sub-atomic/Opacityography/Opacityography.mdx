@@ -1,0 +1,78 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Opacityography" />
+
+# Opacityography
+
+The Opacityography system regulates alpha transparency values to communicate interaction states, disabled conditions, and structural hierarchy.
+
+<br />
+
+## Opacity Tokens
+
+Opacity tokens standardise visual transparency across components, overlays, and interactive states.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Token</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Solid</strong></td>
+      <td>`var(--opacity-solid)`</td>
+      <td>`1`</td>
+      <td>Fully opaque elements and active content layers.</td>
+    </tr>
+    <tr>
+      <td><strong>High</strong></td>
+      <td>`var(--opacity-high)`</td>
+      <td>`0.85`</td>
+      <td>Prominent secondary content and high-visibility overlays.</td>
+    </tr>
+    <tr>
+      <td><strong>Medium</strong></td>
+      <td>`var(--opacity-medium)`</td>
+      <td>`0.6`</td>
+      <td>Muted body copy, passive icons, secondary UI elements.</td>
+    </tr>
+    <tr>
+      <td><strong>Low / Disabled</strong></td>
+      <td>`var(--opacity-disabled)`</td>
+      <td>`0.38`</td>
+      <td>Disabled interactive elements, non-actionable controls.</td>
+    </tr>
+    <tr>
+      <td><strong>Faint</strong></td>
+      <td>`var(--opacity-faint)`</td>
+      <td>`0.12`</td>
+      <td>Subtle hover fills, backdrop tints, active row highlights.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Apply opacity tokens for stateful component changes such as hover, active, or disabled modifiers.
+
+### CSS Example
+
+```css
+.button:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.table-row:hover {
+  background-color: rgba(0, 0, 0, var(--opacity-faint));
+}
+```
+## Best Practices
+- Contrast Maintenance: Avoid applying opacity below --opacity-medium (0.6) on primary text elements to preserve legibility and accessibility contrast standards.
+- Disabled State Standard: Maintain a uniform disabled state across all form controls and buttons by using --opacity-disabled (0.38).

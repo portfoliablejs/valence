@@ -1,0 +1,447 @@
+:host {
+  display: inline-block;
+  font-family: var(--font-family);
+  position: relative;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+:host([disabled]) {
+  cursor: not-allowed !important;
+}
+
+/* Component Layout Engine Variables */
+:host {
+  --_knob-size: var(--custom-knob-size, 26px);
+  --_track-width: var(--custom-width, 52px);
+  --_track-height: var(--custom-height, var(--size-height-sm));
+  --_knob-travel: calc(var(--_track-width) - var(--_knob-size) - 6px);
+}
+
+:host([style*="--dynamic-width"]) {
+  --_track-width: var(--dynamic-width);
+  --_knob-travel: var(--knob-travel);
+}
+
+.component-root {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: var(--_track-width);
+  height: var(--_track-height);
+  border-radius: var(--custom-radius, var(--radius-pill));
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: pan-y;
+  transition: width var(--anim-fast) var(--ease-fluid);
+}
+
+input[type="checkbox"] {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* --- LIGHT MODE TRACK & BORDERS --- */
+.track {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: inherit;
+  background-color: var(--custom-bg, var(--color-gray-xlight));
+  border: var(--custom-border-width, var(--border-width-thin)) 
+          var(--border-style-solid) 
+          var(--custom-border-color, var(--color-gray-light));
+  transition: background-color var(--anim-fast) var(--ease-standard),
+              border-color var(--anim-fast) var(--ease-standard);
+}
+
+.track::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--custom-checked-bg, var(--color-accent));
+  opacity: 0;
+  transition: opacity var(--anim-fast) var(--ease-standard);
+}
+
+input:checked ~ .track::before {
+  opacity: 1;
+}
+
+.component-root.has-text .track::before {
+  background-image: linear-gradient(
+    rgba(0, 0, 0, var(--opacity-faint, 0.12)), 
+    rgba(0, 0, 0, var(--opacity-faint, 0.12))
+  );
+  background-blend-mode: multiply;
+}
+
+/* --- TEXT LAYOUT LAYER --- */
+.track-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-white);
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: var(--z-base);
+  line-height: 1;
+}
+
+:host([a11y-large-text]) .track-label {
+  font-size: 16.25px;
+}
+
+.label-on {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  right: calc(var(--_knob-size) + 8px);
+  text-align: center;
+  transform: translateY(-50%) translateX(-4px);
+  opacity: 0;
+  transition: opacity var(--anim-fast) var(--ease-standard),
+              transform var(--anim-fast) var(--ease-standard);
+}
+
+.label-off {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--_knob-size) + 8px);
+  right: 8px;
+  text-align: center;
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
+  color: var(--color-text-secondary); /* Semantic high-contrast copy */
+  transition: opacity var(--anim-fast) var(--ease-standard),
+              transform var(--anim-fast) var(--ease-standard);
+}
+
+input:checked ~ .track .label-on {
+  opacity: 1;
+  color: var(--color-white);
+  transform: translateY(-50%) translateX(0);
+}
+
+input:checked ~ .track .label-off {
+  opacity: 0;
+  transform: translateY(-50%) translateX(4px);
+}
+
+/* --- MECHANICAL KNOB LAYER --- */
+.knob {
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  left: 3px;
+  width: var(--_knob-size);
+  height: var(--_knob-size);
+  background: var(--custom-knob-bg, var(--color-white));
+  border-radius: var(--radius-circle);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-above);
+  transform: translateY(-50%) translateX(0);
+  transition: transform var(--anim-fast) var(--anim-spring);
+}
+
+input:checked ~ .knob {
+  transform: translateY(-50%) translateX(var(--_knob-travel));
+}
+
+/* --- ICON ORIENTATION & LIGHT MODE COLOR --- */
+.icon-container {
+  width: 14px;
+  height: 14px;
+  color: var(--color-text-secondary); /* Balanced neutral tone in Light Mode */
+  opacity: 1;
+  transform: rotate(90deg); /* Horizontal '—' when unchecked */
+  transition: opacity var(--anim-fast) var(--ease-standard),
+              color var(--anim-fast) var(--ease-standard),
+              transform var(--anim-fast) var(--anim-spring);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-container svg { width: 100%; height: 100%; stroke-width: 3; }
+
+input:checked ~ .knob .icon-container {
+  opacity: 1;
+  color: var(--color-accent);
+  transform: rotate(0deg); /* Vertical '|' when checked */
+}
+
+:host([show-icon="false"]) .icon-container { display: none; }
+
+input:focus-visible ~ .track {
+  outline: var(--a11y-focus-outline, 3px solid var(--color-accent));
+  outline-offset: var(--a11y-focus-offset, 2px);
+}
+
+/* ==========================================================================
+   CSS DRAG INTERPOLATION ENGINE
+   ========================================================================== */
+
+.is-dragging {
+  --_p: var(--drag-progress, 0);
+  --_inv: calc(1 - var(--_p));
+  --_p-pct: calc(var(--_p) * 100%);
+}
+
+.is-dragging .knob,
+.is-dragging .track::before,
+.is-dragging .label-on,
+.is-dragging .label-off,
+.is-dragging .icon-container {
+  transition: none !important;
+}
+
+.is-dragging .track::before {
+  opacity: var(--_p) !important;
+}
+
+.is-dragging .icon-container {
+  opacity: 1 !important;
+  transform: rotate(calc(90deg - (var(--_p) * 90deg))) !important;
+}
+
+.is-dragging .label-on {
+  opacity: var(--_p) !important;
+  transform: translateY(-50%) translateX(calc(var(--_inv) * -4px)) !important;
+}
+
+.is-dragging .label-off {
+  opacity: var(--_inv) !important;
+  transform: translateY(-50%) translateX(calc(var(--_p) * 4px)) !important;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY OVERRIDES MATRIX
+   ========================================================================== */
+
+/* --- DISABLED STATE HARMONY --- */
+:host([disabled]) .component-root {
+  cursor: not-allowed !important;
+  opacity: var(--opacity-disabled);
+}
+
+:host([disabled]) .icon-container {
+  color: var(--color-text-muted) !important; /* Soft muted tone when disabled */
+}
+
+/* --- DARK MODE CONFIGURATION --- */
+:host([a11y-dark-mode]) .track { 
+  background-color: var(--color-surface); 
+  border-color: var(--color-surface-border); 
+}
+
+:host([a11y-dark-mode]) .label-off { 
+  color: var(--color-text-secondary); 
+}
+
+:host([a11y-dark-mode]) .knob { 
+  background: var(--color-gray-dark); 
+  border: 1px solid var(--color-surface-border);
+}
+
+:host([a11y-dark-mode]) input:checked ~ .knob { 
+  background: var(--color-white); 
+  border: none;
+}
+
+/* FIX: Crisp white icon on dark knob when unchecked in dark mode */
+:host([a11y-dark-mode]) .icon-container { 
+  color: var(--color-white) !important; 
+}
+
+:host([a11y-dark-mode]) input:checked ~ .knob .icon-container { 
+  color: var(--color-accent) !important; 
+}
+
+:host([a11y-dark-mode][disabled]) .icon-container {
+  color: var(--color-text-muted) !important;
+}
+
+:host([a11y-dark-mode]) .track::before { 
+  background-color: var(--custom-checked-bg, var(--color-accent)); 
+}
+
+:host([a11y-dark-mode]) .is-dragging .knob { 
+  background: color-mix(in srgb, var(--color-white) var(--_p-pct), var(--color-gray-dark)) !important; 
+}
+
+/* ==========================================================================
+   HIGH CONTRAST CONFIGURATION
+   ========================================================================== */
+
+:host([a11y-high-contrast]) .track {
+  background: #000000 !important;
+  border: var(--border-width-medium) var(--border-style-solid) #FFFFFF !important;
+}
+
+:host([a11y-high-contrast]) input:checked ~ .track::before {
+  background: var(--color-black) !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+:host([a11y-high-contrast]) .knob {
+  background: #000000 !important;
+  border: var(--border-width-medium) var(--border-style-solid) #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+:host([a11y-high-contrast]) input:checked ~ .knob {
+  background: #FFFFFF !important;
+  border: var(--border-width-medium) var(--border-style-solid) #000000 !important;
+}
+
+:host([a11y-high-contrast]) .label-off,
+:host([a11y-high-contrast]) .label-on,
+:host([a11y-high-contrast]) .icon-container {
+  color: #FFFFFF !important;
+}
+
+:host([a11y-high-contrast]) input:checked ~ .knob .icon-container {
+  color: #000000 !important;
+}
+
+:host([a11y-high-contrast]) .is-dragging .knob {
+  background: color-mix(in srgb, #FFFFFF var(--_p-pct), #000000) !important;
+  border-color: color-mix(in srgb, #000000 var(--_p-pct), #FFFFFF) !important;
+}
+
+:host([a11y-high-contrast]) .is-dragging .icon-container {
+  color: color-mix(in srgb, #000000 var(--_p-pct), #FFFFFF) !important;
+}
+
+/* ==========================================================================
+   FORCED COLORS MODE (System Palette Isolation)
+   ========================================================================== */
+
+:host([a11y-forced-colors]) .component-root {
+  forced-color-adjust: none !important;
+}
+
+:host([a11y-forced-colors]) .track,
+:host([a11y-forced-colors]) .knob {
+  background: Canvas !important;
+  border: var(--border-width-medium, 2px) var(--border-style-solid, solid) CanvasText !important;
+  box-shadow: none !important;
+}
+
+:host([a11y-forced-colors]) input:checked ~ .track::before {
+  background: Highlight !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+:host([a11y-forced-colors]) input:checked ~ .knob {
+  background: HighlightText !important;
+  border: var(--border-width-medium, 2px) var(--border-style-solid, solid) Highlight !important;
+}
+
+:host([a11y-forced-colors]) .label-off { color: CanvasText !important; }
+:host([a11y-forced-colors]) .label-on { color: HighlightText !important; }
+
+:host([a11y-forced-colors]) .icon-container { color: CanvasText !important; }
+:host([a11y-forced-colors]) input:checked ~ .knob .icon-container { color: Highlight !important; }
+
+:host([a11y-forced-colors][disabled]) .component-root,
+:host([a11y-forced-colors]) input:disabled ~ .track,
+:host([a11y-forced-colors]) input:disabled ~ .knob {
+  border-color: GrayText !important;
+  background: Canvas !important;
+}
+
+:host([a11y-forced-colors]) input:disabled ~ .track .label-off,
+:host([a11y-forced-colors]) input:disabled ~ .track .label-on,
+:host([a11y-forced-colors]) input:disabled ~ .knob .icon-container {
+  color: GrayText !important;
+}
+
+:host([a11y-forced-colors]) input:focus-visible ~ .track {
+  outline: 3px solid Highlight !important;
+  outline-offset: 2px !important;
+}
+
+@media (forced-colors: active) {
+  .component-root {
+    forced-color-adjust: none !important;
+  }
+
+  .track,
+  .knob {
+    background: Canvas !important;
+    border: var(--border-width-medium, 2px) var(--border-style-solid, solid) CanvasText !important;
+    box-shadow: none !important;
+  }
+
+  input:checked ~ .track::before {
+    background: Highlight !important;
+    background-image: none !important;
+    opacity: 1 !important;
+  }
+
+  input:checked ~ .knob {
+    background: HighlightText !important;
+    border: var(--border-width-medium, 2px) var(--border-style-solid, solid) Highlight !important;
+  }
+
+  .label-off { color: CanvasText !important; }
+  .label-on { color: HighlightText !important; }
+
+  .icon-container { color: CanvasText !important; }
+  input:checked ~ .knob .icon-container { color: Highlight !important; }
+
+  :host([disabled]) .component-root,
+  input:disabled ~ .track,
+  input:disabled ~ .knob {
+    border-color: GrayText !important;
+    background: Canvas !important;
+  }
+
+  input:disabled ~ .track .label-off,
+  input:disabled ~ .track .label-on,
+  input:disabled ~ .knob .icon-container {
+    color: GrayText !important;
+  }
+
+  input:focus-visible ~ .track {
+    outline: 3px solid Highlight !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* --- DYSLEXIA COMPACT FONT STACK --- */
+:host([a11y-dyslexia]) .track-label {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* --- BULLETPROOF ZERO-DURATION REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  .component-root, * {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+:host([a11y-reduce-motion]) .component-root,
+:host([a11y-reduce-motion]) * {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}

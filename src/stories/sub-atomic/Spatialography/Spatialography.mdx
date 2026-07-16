@@ -1,0 +1,162 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Spatialography" />
+
+# Spatialography
+
+The Spatialography system defines the core structural dimensions and visual layering for Valence. By using standardized tokens for spacing and z-index elevations, layout consistency and visual rhythm are guaranteed across all components.
+
+<br />
+
+## Spacing Scale Tokens
+
+Spacing tokens dictate margins, paddings, and layout gaps. Sticking strictly to the scale maintains rhythm and harmony across UI grids.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Token</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>XS</strong></td>
+      <td>`var(--space-xs)`</td>
+      <td>`4px`</td>
+      <td>Tight internal spacing (icon gaps, micro-badges).</td>
+    </tr>
+    <tr>
+      <td><strong>SM</strong></td>
+      <td>`var(--space-sm)`</td>
+      <td>`8px`</td>
+      <td>Compact padding (button content gaps, form control paddings).</td>
+    </tr>
+    <tr>
+      <td><strong>MD</strong></td>
+      <td>`var(--space-md)`</td>
+      <td>`12px`</td>
+      <td>Standard internal element padding and list gaps.</td>
+    </tr>
+    <tr>
+      <td><strong>LG</strong></td>
+      <td>`var(--space-lg)`</td>
+      <td>`16px`</td>
+      <td>Default container padding and card spacing.</td>
+    </tr>
+    <tr>
+      <td><strong>XL</strong></td>
+      <td>`var(--space-xl)`</td>
+      <td>`24px`</td>
+      <td>Section spacing and larger component padding.</td>
+    </tr>
+    <tr>
+      <td><strong>XXL</strong></td>
+      <td>`var(--space-xxl)`</td>
+      <td>`32px`</td>
+      <td>Major layout gaps, card groupings, and section headers.</td>
+    </tr>
+    <tr>
+      <td><strong>XXXL</strong></td>
+      <td>`var(--space-xxxl)`</td>
+      <td>`40px`</td>
+      <td>Large structural margins and component separations.</td>
+    </tr>
+    <tr>
+      <td><strong>XXXXL</strong></td>
+      <td>`var(--space-xxxxl)`</td>
+      <td>`80px`</td>
+      <td>Hero section margins and primary page dividers.</td>
+    </tr>
+    <tr>
+      <td><strong>XXXXXL</strong></td>
+      <td>`var(--space-xxxxxl)`</td>
+      <td>`100px`</td>
+      <td>Maximum spatial padding for landing page sections.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+
+## Z-Index Elevation Tokens
+
+Z-index tokens manage screen depth layering to avoid stacking context conflicts across the application.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Level</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Base Layer</strong></td>
+      <td>`var(--z-base)`</td>
+      <td>`10`</td>
+      <td>Default elevated elements above baseline page flow.</td>
+    </tr>
+    <tr>
+      <td><strong>Above</strong></td>
+      <td>`var(--z-above)`</td>
+      <td>`20`</td>
+      <td>Overlapping items, active card states, elevated headers.</td>
+    </tr>
+    <tr>
+      <td><strong>Dropdown</strong></td>
+      <td>`var(--z-dropdown)`</td>
+      <td>`50`</td>
+      <td>Context menus, select dropdowns, autocomplete options.</td>
+    </tr>
+    <tr>
+      <td><strong>Fixed</strong></td>
+      <td>`var(--z-fixed)`</td>
+      <td>`100`</td>
+      <td>Fixed navigation bars, persistent banners, sticky elements.</td>
+    </tr>
+    <tr>
+      <td><strong>Overlay</strong></td>
+      <td>`var(--z-overlay)`</td>
+      <td>`1000`</td>
+      <td>Backdrops, dimming layers behind modals and drawers.</td>
+    </tr>
+    <tr>
+      <td><strong>Modal</strong></td>
+      <td>`var(--z-modal)`</td>
+      <td>`2000`</td>
+      <td>Modal windows, dialogs, slide-over panels.</td>
+    </tr>
+    <tr>
+      <td><strong>Max</strong></td>
+      <td>`var(--z-max)`</td>
+      <td>`10000`</td>
+      <td>Global notifications, critical alerts, priority tooltips.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Always reference design variables directly when applying spacing, borders, or layer stacking. Do not hardcode arbitrary px values or manual z-indexes in custom styles.
+
+### Component Layout Implementation
+
+```css
+.card {
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  border-radius: var(--radius-md);
+  transition: all var(--speed-normal) var(--ease-fluid);
+}
+
+.card:hover {
+  z-index: var(--z-above);
+}

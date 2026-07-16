@@ -1,0 +1,26 @@
+:root {
+  /* Spacing Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+  --space-xxxl: 40px;
+  --space-xxxxl: 80px;
+  --space-xxxxxl: 100px;
+
+  /* Z-Index Scale */
+  --z-base: 10;
+  --z-above: 20;
+  --z-dropdown: 50;
+  --z-fixed: 100;
+  --z-overlay: 1000;
+  --z-modal: 2000;
+  --z-max: 10000;
+
+    /* Scales */
+  --btn-active-scale: 0.95; 
+  --btn-hover-scale: 1.02;  
+  --btn-hover-scale-lg: 1.05; 
+}

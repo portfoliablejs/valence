@@ -1,0 +1,170 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: var(--radius-circle, 50%);
+  
+  /* Sub-Atomic Style Hook Overrides with Design Token Fallbacks */
+  width: var(--custom-size, var(--size-icon-sm));
+  height: var(--custom-size, var(--size-icon-sm));
+  color: var(--custom-color, var(--color-accent));
+  transition: transform var(--anim-fast) var(--ease-fluid), opacity var(--anim-fast) var(--ease-fluid);
+}
+
+/* --- STATE 1 & 2: HOVER & ACTIVE / PRESSED STATES (Stateography) --- */
+:host(:hover:not([disabled])) {
+  transform: scale(var(--btn-hover-scale, 1.05));
+  opacity: var(--opacity-high, 0.85);
+}
+
+:host(:active:not([disabled])) {
+  transform: scale(var(--btn-active-scale, 0.95));
+  opacity: var(--opacity-solid, 1);
+}
+
+/* --- STATE 3: FOCUS & KEYBOARD FOCUS-VISIBLE --- */
+:host(:focus) {
+  outline: none;
+}
+
+:host(:focus-visible) {
+  outline: var(--a11y-focus-outline, 3px solid var(--color-accent));
+  outline-offset: var(--a11y-focus-offset, 2px);
+}
+
+/* --- STATE 4: DISABLED STATE --- */
+:host([disabled]) {
+  opacity: var(--opacity-disabled, 0.38);
+  cursor: not-allowed !important;
+}
+
+:host([disabled]:focus-visible) {
+  outline: none;
+}
+
+/* --- STATE 5: INVALID / VALIDATION ERROR STATE (Formography) --- */
+:host([invalid]),
+:host([aria-invalid="true"]) {
+  color: var(--color-error);
+}
+
+:host([invalid]:focus-visible),
+:host([aria-invalid="true"]:focus-visible) {
+  outline-color: var(--color-error);
+}
+
+.radio-root {
+  display: contents;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.radio-outer {
+  transition: stroke var(--anim-fast) var(--ease-standard);
+}
+
+.radio-inner {
+  opacity: 0;
+  transform-origin: center;
+  transform: scale(0);
+  
+  /* Centralized Choreography Transitions with Design Tokens */
+  transition: var(--component-transition, 
+              opacity var(--anim-fast) var(--ease-standard), 
+              transform var(--anim-normal) var(--anim-spring));
+}
+
+/* --- STATE 6: SELECTED STATE --- */
+:host([selected]) .radio-inner {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: DARK MODE OVERRIDES
+   ========================================================================== */
+
+:host([a11y-dark-mode]) {
+  color: var(--custom-color, var(--color-accent));
+}
+
+:host([a11y-dark-mode][invalid]),
+:host([a11y-dark-mode][aria-invalid="true"]) {
+  color: var(--color-error);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: HIGH CONTRAST & REDUCED MOTION OVERRIDES
+   ========================================================================== */
+
+:host([a11y-high-contrast]) {
+  color: var(--color-black) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  svg, * {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+:host([a11y-reduce-motion]) svg,
+:host([a11y-reduce-motion]) * {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: FORCED COLORS / WINDOWS HIGH CONTRAST MODE
+   ========================================================================== */
+
+/* 1. Attribute Reflected State (Storybook / Web Component state) */
+:host([a11y-forced-colors]) .radio-inner {
+  forced-color-adjust: none !important;
+  fill: Highlight !important;
+}
+
+:host([a11y-forced-colors]) .radio-outer {
+  forced-color-adjust: none !important;
+  stroke: CanvasText !important;
+}
+
+:host([a11y-forced-colors][selected]) .radio-outer {
+  stroke: Highlight !important;
+}
+
+:host([a11y-forced-colors][disabled]) .radio-outer,
+:host([a11y-forced-colors][disabled]) .radio-inner {
+  stroke: GrayText !important;
+  fill: GrayText !important;
+}
+
+/* 2. Native OS Media Query */
+@media (forced-colors: active) {
+  .radio-inner {
+    forced-color-adjust: none !important;
+    fill: Highlight !important;
+  }
+  .radio-outer {
+    forced-color-adjust: none !important;
+    stroke: CanvasText !important;
+  }
+  :host([selected]) .radio-outer {
+    stroke: Highlight !important;
+  }
+  :host([disabled]) .radio-outer,
+  :host([disabled]) .radio-inner {
+    stroke: GrayText !important;
+    fill: GrayText !important;
+  }
+}

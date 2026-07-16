@@ -1,0 +1,149 @@
+:host {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto;
+  width: max-content;
+  max-width: 100%;
+  z-index: var(--z-max, 10000);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-16px);
+  transition: var(--component-transition, 
+              opacity var(--anim-slow) var(--ease-fluid), 
+              transform var(--anim-slow) var(--ease-fluid), 
+              visibility var(--anim-slow) var(--ease-fluid));
+  font-family: var(--font-family);
+  box-sizing: border-box;
+}
+
+:host([visible="true"]) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.toast-container {
+  background: var(--custom-bg, var(--color-bg));
+  color: var(--custom-color, var(--color-text-primary));
+  border: var(--custom-border-width, var(--border-width-thin)) 
+          var(--border-style-solid) 
+          var(--custom-border-color, var(--color-card-border));
+  padding: var(--custom-padding, var(--space-xs) var(--space-md));
+  border-radius: var(--custom-radius, var(--radius-pill));
+  font-size: calc(13px * var(--font-scale-multiplier, 1));
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 36px; /* Guarantees consistent pill height across all stories */
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform var(--anim-fast) var(--ease-fluid);
+}
+
+/* Dynamic end-padding adjustments for pill geometry when edge buttons are hidden */
+.toast-container:has(.toast-close-btn:not([hidden])) {
+  padding-left: var(--space-xs, 4px);
+}
+
+.toast-container:has(.toast-close-btn[hidden]) {
+  padding-left: var(--space-lg, 16px);
+}
+
+.toast-container:has(.toast-never-btn:not([hidden])) {
+  padding-right: var(--space-md, 12px);
+}
+
+.toast-container:has(.toast-never-btn[hidden]) {
+  padding-right: var(--space-lg, 16px);
+}
+
+.toast-container:hover {
+  transform: translateY(-2px);
+}
+
+.toast-close-btn {
+  flex-shrink: 0;
+}
+
+.toast-close-btn[hidden],
+.toast-never-btn[hidden] {
+  display: none !important;
+}
+
+.toast-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.toast-never-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  opacity: var(--opacity-high);
+  transition: opacity var(--anim-fast) var(--ease-fluid);
+}
+
+.toast-never-btn:hover {
+  opacity: var(--opacity-solid, 1);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY OVERRIDES MATRIX (Universal Safari Shadow-Piercing)
+   ========================================================================== */
+
+/* Dark Mode */
+:host([a11y-dark-mode]) .toast-container {
+  background-color: var(--custom-bg, var(--color-card-bg));
+  color: var(--color-white);
+  border-color: var(--color-surface-border);
+}
+
+/* WCAG AAA High Contrast Mode (21:1 Ratio) */
+:host([a11y-high-contrast]) .toast-container {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: var(--border-width-medium) var(--border-style-solid) #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+/* Dyslexia Mode */
+:host([a11y-dyslexia]) .toast-container {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  :host, .toast-container, * {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    animation-duration: 0s !important;
+  }
+}
+
+:host([a11y-reduce-motion]),
+:host([a11y-reduce-motion]) .toast-container,
+:host([a11y-reduce-motion]) * {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+}
+
+/* Forced Colors / Windows High Contrast Mode */
+:host([a11y-forced-colors]) .toast-container {
+  forced-color-adjust: none !important;
+  background-color: Canvas !important;
+  color: CanvasText !important;
+  border: var(--border-width-thin) var(--border-style-solid) CanvasText !important;
+}
+
+@media (forced-colors: active) {
+  .toast-container {
+    forced-color-adjust: none !important;
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    border: var(--border-width-thin) var(--border-style-solid) CanvasText !important;
+  }
+}

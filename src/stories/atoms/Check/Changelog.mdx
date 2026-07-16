@@ -1,0 +1,26 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Check [v1.0.0]/Changelog"/>
+
+# Changelog
+<br />
+## [1.0.0] - 2026-07-16
+<br />
+### Initial Release
+
+### Added
+- **Initial Component Implementation:** First stable release of `<ds-check>` featuring:
+  - **Selection & Surface Containers:** Controlled `selected` state with smooth scale/opacity SVG stroke transitions, and optional `has-background` surface container framing.
+  - **Sub-Atomic Token Hooks:** Component-specific CSS custom property overrides for sizing, vector color, background container fill, and border ring color (`--ds-check-size`, `--ds-check-color`, `--ds-check-bg`, `--ds-check-border-color`).
+  - **Keyboard Navigation & Event Handlers:** Native `click` toggling alongside `Space`, `Spacebar`, and `Enter` keyboard trigger support.
+  - **Root Accessibility Observer (`_observeRootAccessibility`):** Integrated `MutationObserver` on `document.documentElement` to automatically sync global accessibility modes onto host custom element attributes.
+  - **WCAG AAA & Forced Colors Support:** High-contrast overrides, reduced-motion suppression, dark mode sync, and Windows Forced Colors Mode system palette mapping (`Highlight`, `GrayText`).
+- **Storybook CSF3 Integration:** Story controls in `Check.stories.js` featuring complete sub-atomic control knobs (`color`, `size`, `bg`, `borderColor`) and automated interaction testing via `play` functions.
+
+### Fixed
+- **Shadow DOM Layout Nodes:** Compressed inner HTML template string to eliminate ghost text nodes inside Shadow DOM layouts.
+- **Keyboard & Disabled Focus Handling:** Suppressed click/keydown interaction processing and automatically assigned `tabindex="-1"` when the `disabled` attribute is present.
+
+---
+
+*This changelog is specific to the `<ds-check>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

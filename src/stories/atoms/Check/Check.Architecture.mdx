@@ -1,0 +1,227 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as CheckStories from './Check.stories';
+
+<Meta title="Atoms/Check [v1.0.0]/Architecture"/>
+
+# `ds-check`
+
+The `ds-check` component is a **controlled / presentational** Atom designed to render vector graphic selection indicators with optional surface background containers, built-in keyboard/click toggling, and accessibility synchronization.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host application or parent component binds primitive attributes (`selected`, `has-background`, `disabled`, `aria-label`) to control rendering state.
+* **User Interactions:** Click and keyboard events (`Space`, `Enter`) dynamically toggle state and update internal accessibility attributes (`aria-checked`, `aria-disabled`).
+* **Encapsulated State:** Visual presentation and SVG animation choreography are encapsulated within the Shadow DOM.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / Parent Form"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-check"]
+      end
+
+      State -->|"1. State In: selected / disabled / has-background"| Component
+      Component -->|"2. Interaction Event: click / keydown"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-check` component is a self-contained visual primitive that encapsulates its vector graphics directly inside its Shadow DOM. It does not expose public slots, ensuring uniform geometric alignment, stroke thickness, and animation keyframes across all instances.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Internal vector graphics only; host text content is not rendered.</td>
+      <td>Renders internal SVG mark</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsCheckState {
+  selected: boolean;
+  hasBackground: boolean;
+  disabled: boolean;
+  ariaLabel?: string;
+}
+
+export interface DsCheckSubAtomicHooks {
+  '--ds-check-size'?: string;
+  '--ds-check-color'?: string;
+  '--ds-check-bg'?: string;
+  '--ds-check-border-color'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`selected`</td>
+      <td>`selected`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles active selection state and animated checkmark visibility.</td>
+    </tr>
+    <tr>
+      <td>`hasBackground`</td>
+      <td>`has-background`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Activates outer surface container background and structural border ring.</td>
+    </tr>
+    <tr>
+      <td>`disabled`</td>
+      <td>`disabled`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Suppresses user interactions, removes tab focus, and applies opacity token.</td>
+    </tr>
+    <tr>
+      <td>`ariaLabel`</td>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Accessibility label delegated to component role contract.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`click`</td>
+      <td>`true` / `true`</td>
+      <td>`MouseEvent`</td>
+      <td>Native click interaction toggles selection state when not disabled.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-check-size`</td>
+      <td>`var(--size-icon-sm)`</td>
+      <td>Overrides outer bounding box dimensions (`width` and `height`).</td>
+    </tr>
+    <tr>
+      <td>`--ds-check-color`</td>
+      <td>`var(--color-accent)`</td>
+      <td>Overrides checkmark SVG stroke vector color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-check-bg`</td>
+      <td>`var(--color-surface)`</td>
+      <td>Overrides background surface container fill when `has-background` is active.</td>
+    </tr>
+    <tr>
+      <td>`--ds-check-border-color`</td>
+      <td>`var(--color-gray-light)`</td>
+      <td>Overrides container border ring color when `has-background` is active.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Role Delegation:** Automatically initializes `role="checkbox"` on the host custom element.
+* **ARIA Attribute Sync:** Real-time updates sync `aria-checked` and `aria-disabled` based on host attribute changes.
+* **Keyboard Interaction:** Supports full keyboard navigation with `Tab` focusing (`tabindex="0"`) and trigger handling via `Space`, `Spacebar`, or `Enter` keys.
+* **Global Accessibility Propagation:** Integrates `_observeRootAccessibility` using a `MutationObserver` on `document.documentElement` to synchronize global accessibility flags:
+  * `.a11y-dark-mode`: Adjusts surface boundary contrast.
+  * `.a11y-high-contrast`: Enforces strict binary contrast overrides.
+  * `.a11y-forced-colors`: Maps system active `Highlight` and `GrayText` palettes for Windows High Contrast Mode.
+  * `.a11y-reduce-motion`: Completely suppresses transition durations and delays for reduced motion preferences.
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-check';
+
+const check = document.createElement('ds-check');
+check.setAttribute('selected', '');
+check.setAttribute('has-background', '');
+check.setAttribute('aria-label', 'Accept terms and conditions');
+
+// Apply sub-atomic style overrides via CSS custom properties
+check.style.setProperty('--ds-check-color', 'var(--color-success)');
+check.style.setProperty('--ds-check-size', '24px');
+
+check.addEventListener('click', () => {
+  console.log('Check toggled. Is selected:', check.hasAttribute('selected'));
+});
+
+document.body.appendChild(check);
+```

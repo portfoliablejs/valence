@@ -1,0 +1,84 @@
+:host {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+:host([orientation="vertical"]) {
+  display: inline-block;
+  width: auto;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.divider-root {
+  box-sizing: border-box;
+  
+  /* Consumes semantic token --color-card-border instead of primitive --color-gray-xlight */
+  background-color: var(--ds-divider-color, var(--color-surface-border));
+  height: var(--ds-divider-thickness, var(--border-width-thin));
+  width: 100%;
+  margin: var(--ds-divider-margin, var(--space-md) 0);
+  transition: background-color var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+}
+
+.divider-root.orientation-vertical {
+  width: var(--ds-divider-thickness, var(--border-width-thin));
+  height: 100%;
+  margin: var(--ds-divider-margin, 0 var(--space-md));
+  transition: background-color var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY OVERRIDES MATRIX (Universal Safari Shadow-Piercing)
+   ========================================================================== */
+
+/* --- DARK MODE CONFIGURATION --- */
+:host([a11y-dark-mode]) .divider-root {
+  background-color: var(--ds-divider-color, var(--color-card-border));
+}
+
+/* --- HIGH CONTRAST CONFIGURATION (WCAG AAA Compliance) --- */
+:host([a11y-high-contrast]) .divider-root {
+  background-color: var(--color-black) !important;
+  border: none !important;
+}
+
+/* --- DYSLEXIA COMPACT FONT STACK --- */
+:host([a11y-dyslexia]) .divider-root { }
+
+/* --- BULLETPROOF ZERO-DURATION REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  .divider-root, * {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+:host([a11y-reduce-motion]) .divider-root,
+:host([a11y-reduce-motion]) * {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: FORCED COLORS / WINDOWS HIGH CONTRAST MODE
+   ========================================================================== */
+
+/* 1. Attribute Reflected State (Storybook / DOM Toggle) */
+:host([a11y-forced-colors]) .divider-root {
+  forced-color-adjust: none !important;
+  background-color: CanvasText !important;
+}
+
+/* 2. Native OS Media Query */
+@media (forced-colors: active) {
+  .divider-root {
+    forced-color-adjust: none !important;
+    background-color: CanvasText !important;
+  }
+}

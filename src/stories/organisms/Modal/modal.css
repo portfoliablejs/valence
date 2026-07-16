@@ -1,0 +1,81 @@
+:host { display: block; }
+
+.glass-overlay {
+  position: fixed; 
+  top: 0; left: 0; right: 0; bottom: 0; 
+  background: var(--overlay-glass-bg, rgba(0, 0, 0, 0.1)); 
+  backdrop-filter: blur(var(--overlay-glass-blur, 6px)); 
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur, 6px));
+  z-index: var(--z-overlay, 1500); 
+  opacity: 0; 
+  pointer-events: none;
+  transition: opacity var(--anim-normal) var(--anim-ease);
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+:host([open="true"]) .glass-overlay { 
+  opacity: 1; 
+  pointer-events: auto; 
+}
+
+/* Storybook Inline Mode */
+:host([hide-backdrop="true"]) .glass-overlay {
+  position: relative;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  height: auto;
+  width: 100%;
+  padding: 20px;
+  opacity: 1; /* Keep container visible */
+  pointer-events: auto;
+}
+
+.a11y-modal {
+  background: var(--color-bg, #FFFFFF); 
+  width: 100%; 
+  max-width: 400px;
+  border-radius: var(--radius-md, 8px); 
+  padding: var(--space-md, 12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); 
+  
+  /* Closing State (Default) */
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: opacity var(--anim-normal) var(--anim-ease), transform var(--anim-normal) var(--anim-spring);
+  
+  font-family: var(--font-family, sans-serif); 
+  box-sizing: border-box;
+}
+
+/* Open State */
+:host([open="true"]) .a11y-modal { 
+  opacity: 1;
+  transform: translateY(0) scale(1); 
+}
+
+:host([hide-backdrop="true"]) .a11y-modal {
+  margin: 0 auto;
+}
+
+/* Ensure modal hides in Storybook when closed */
+:host([hide-backdrop="true"]:not([open="true"])) .a11y-modal {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+}
+
+.popup-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 4px 8px 4px; border-bottom: 1px solid var(--color-card-border, rgba(0,0,0,0.05));
+  margin-bottom: var(--space-sm, 8px);
+}
+
+.popup-title {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  color: var(--color-gray-med, #777777); letter-spacing: 0.05em;
+}
+
+.modal-content { display: flex; flex-direction: column; gap: 2px; }

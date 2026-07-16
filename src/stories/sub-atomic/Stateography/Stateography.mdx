@@ -1,0 +1,287 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Stateography" />
+
+# Stateography
+
+The Stateography system governs interactive behavior, visual state transitions, and accessibility attribute mapping across Valence components. Standardizing state representation ensures predictable user interactions, seamless Shadow DOM attribute reflection, and full compliance with WCAG AA/AAA guidelines.
+
+<br />
+
+## Interactive State Scale
+
+Valence components support six standardized interaction states to provide immediate visual feedback for user actions.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>State</th>
+      <th style={{ textAlign: 'left' }}>CSS Selector / Variable</th>
+      <th style={{ textAlign: 'left' }}>Visual Behavior / Token Fallback</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Rest (Default)</strong></td>
+      <td><code>:host</code> / baseline element</td>
+      <td>Default component tokens (e.g., <code>var(--color-black)</code>, <code>var(--opacity-solid)</code>).</td>
+      <td>Unengaged resting state of an interactive control.</td>
+    </tr>
+    <tr>
+      <td><strong>Hover</strong></td>
+      <td><code>:hover:not(:disabled)</code></td>
+      <td><code>var(--custom-hover-bg, rgba(0, 0, 0, var(--opacity-faint)))</code></td>
+      <td>Pointer cursor feedback when hovering over interactive targets.</td>
+    </tr>
+    <tr>
+      <td><strong>Active / Pressed</strong></td>
+      <td><code>:active:not(:disabled)</code></td>
+      <td><code>transform: scale(var(--btn-active-scale, 0.95))</code></td>
+      <td>Tactile push/press feedback during mouse or touch down events.</td>
+    </tr>
+    <tr>
+      <td><strong>Focus (Keyboard)</strong></td>
+      <td><code>:focus-visible</code></td>
+      <td>
+        <code>outline: var(--a11y-focus-outline, 3px solid var(--color-accent))</code><br />
+        <code>outline-offset: var(--a11y-focus-offset, 2px)</code>
+      </td>
+      <td>High-visibility focus indicator reserved exclusively for keyboard navigation.</td>
+    </tr>
+    <tr>
+      <td><strong>Disabled</strong></td>
+      <td><code>:disabled</code> / <code>:host([disabled])</code></td>
+      <td><code>opacity: var(--opacity-disabled, 0.38); cursor: not-allowed !important;</code></td>
+      <td>Non-actionable state suppressing interactive pointer actions while rendering <code>cursor: not-allowed</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Loading / Busy</strong></td>
+      <td><code>:host([loading])</code> / <code>[aria-busy="true"]</code></td>
+      <td>Spinner replacement or translucent mask; pointer interaction locked.</td>
+      <td>Asynchronous processing state awaiting server response or async completion.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Dark Mode & High Contrast Interactive States
+
+In addition to Light Mode defaults, components must explicitly declare accessible hover and active state transitions under dark and high-contrast environments to preserve visual contrast and affordance.
+
+### Dark Mode State Scale (`:host([a11y-dark-mode])`)
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Variant</th>
+      <th style={{ textAlign: 'left' }}>Rest State</th>
+      <th style={{ textAlign: 'left' }}>Hover State (<code>:hover:not(:disabled)</code>)</th>
+      <th style={{ textAlign: 'left' }}>Active State (<code>:active:not(:disabled)</code>)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Primary</strong></td>
+      <td><code>bg: var(--color-white)</code><br /><code>text: #101218</code></td>
+      <td><code>bg: var(--color-gray-xlight)</code></td>
+      <td><code>bg: var(--color-gray-light)</code></td>
+    </tr>
+    <tr>
+      <td><strong>Secondary</strong></td>
+      <td><code>bg: transparent</code><br /><code>border: var(--color-surface-border)</code></td>
+      <td><code>bg: rgba(255, 255, 255, 0.16)</code><br /><code>border: var(--color-white)</code></td>
+      <td><code>bg: rgba(255, 255, 255, 0.28)</code><br /><code>border: var(--color-white)</code></td>
+    </tr>
+    <tr>
+      <td><strong>Text / Icon</strong></td>
+      <td><code>text: var(--color-text-secondary)</code></td>
+      <td><code>bg: var(--color-overlay-light)</code><br /><code>text: var(--color-white)</code></td>
+      <td><code>bg: rgba(255, 255, 255, 0.22)</code><br /><code>text: var(--color-white)</code></td>
+    </tr>
+    <tr>
+      <td><strong>Floating</strong></td>
+      <td><code>bg: var(--color-player-bg)</code><br /><code>text: var(--color-white)</code></td>
+      <td><code>bg: #1C1C1E</code><br /><code>border: var(--color-white)</code></td>
+      <td><code>bg: #323232</code><br /><code>border: var(--color-white)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### High Contrast Mode State Scale (`:host([a11y-high-contrast])`)
+
+High Contrast Mode guarantees binary 21:1 WCAG AAA contrast ratio using solid fill inversions and explicit outline rings.
+
+```css
+/* High Contrast Primary State Colors (Solid Inversion) */
+:host([a11y-high-contrast]) .variant-primary {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border: var(--border-width-medium) var(--border-style-solid) #FFFFFF !important;
+  box-shadow: var(--shadow-none) !important;
+}
+:host([a11y-high-contrast]) .variant-primary:hover:not(:disabled) {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  outline: 2px solid #FFFFFF !important;
+  outline-offset: 1px;
+}
+:host([a11y-high-contrast]) .variant-primary:active:not(:disabled) {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  outline: 4px solid #FFFFFF !important;
+  outline-offset: 2px;
+}
+
+/* High Contrast Hover (Inverse Fill) */
+:host([a11y-high-contrast]) .variant-secondary:hover:not(:disabled),
+:host([a11y-high-contrast]) .variant-text:hover:not(:disabled),
+:host([a11y-high-contrast]) .variant-icon:hover:not(:disabled),
+:host([a11y-high-contrast]) .variant-floating:hover:not(:disabled) {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #FFFFFF !important;
+}
+
+/* High Contrast Disabled State */
+:host([a11y-high-contrast]) button:disabled,
+:host([a11y-high-contrast][disabled]) button {
+  opacity: 0.5 !important;
+  border-style: dashed !important;
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+  background: transparent !important;
+}
+
+```
+
+## Accessibility & ARIA State Mapping
+
+Interactive states must be reflected semantically to assistive technologies via standardized ARIA attributes and host-level DOM attributes.
+
+## Usage Guidelines
+
+Always construct Web Component stylesheets using state-aware design tokens and fallback variables. Ensure state changes incorporate choreography timing tokens.
+
+### Component CSS State Implementation
+
+```css
+/* Ensure the host tag itself displays cursor: not-allowed when disabled */
+:host([disabled]) {
+  cursor: not-allowed !important;
+}
+
+/* Base resting structure */
+button {
+  background: var(--custom-bg, var(--color-black));
+  transition: var(--component-transition, 
+              transform var(--anim-fast) var(--ease-fluid),
+              background-color var(--anim-fast) var(--ease-fluid),
+              opacity var(--anim-fast) var(--ease-fluid));
+}
+
+/* Hover state override */
+button:hover:not(:disabled) {
+  background-color: var(--custom-hover-bg, rgba(0, 0, 0, var(--opacity-faint)));
+}
+
+/* Active / Pressed state feedback */
+button:active:not(:disabled) {
+  transform: scale(var(--btn-active-scale, 0.95));
+  background-color: var(--custom-active-bg, rgba(0, 0, 0, 0.18));
+}
+
+/* Focus-visible ring */
+button:focus-visible {
+  outline: var(--a11y-focus-outline, 3px solid var(--color-accent));
+  outline-offset: var(--a11y-focus-offset, 2px);
+  border-radius: var(--radius-sm);
+}
+
+/* Disabled state */
+button:disabled,
+:host([disabled]) button {
+  opacity: var(--opacity-disabled, 0.38);
+  cursor: not-allowed !important;
+}
+
+
+```
+
+## Shadow DOM Attribute Reflection & State Synchronization
+
+Because pseudo-classes like `:host-context()` are unsupported in WebKit/Safari, Web Components must observe global document modifier classes and reflect them directly onto host state attributes.
+
+### JavaScript State Synchronization Pattern
+
+```javascript
+export class BaseComponent extends HTMLElement {
+  connectedCallback() {
+    this._observeRootAccessibility();
+    this.updateAttributes();
+  }
+
+  _observeRootAccessibility() {
+    const root = this.ownerDocument.documentElement;
+    const sync = () => {
+      this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
+      this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
+      this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
+    };
+
+    sync();
+    this._themeObserver = new MutationObserver(sync);
+    this._themeObserver.observe(root, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+  }
+
+  updateAttributes() {
+    const ariaLabel = this.getAttribute('aria-label');
+    const disabled = this.hasAttribute('disabled');
+
+    if (this.internalControl) {
+      this.internalControl.disabled = disabled;
+    }
+
+    // ARIA Label Delegation & Host Scrubbing Pattern
+    if (ariaLabel && this.internalControl) {
+      this.internalControl.setAttribute('aria-label', ariaLabel);
+      this.removeAttribute('aria-label'); // Scrub host to prevent duplicate or prohibited attributes
+    }
+  }
+}
+
+
+```
+
+## Sub-Atomic Property Overrides
+
+Stateography allows runtime hover and active customizations using sub-atomic variable overrides:
+
+```css
+.variant-interactive {
+  /* Dynamic hover and active background overrides with token fallbacks */
+  background-color: var(--custom-bg, var(--color-black));
+}
+
+.variant-interactive:hover:not(:disabled) {
+  background-color: var(--custom-hover-bg, var(--color-gray-dark));
+}
+
+.variant-interactive:active:not(:disabled) {
+  background-color: var(--custom-active-bg, var(--color-black));
+}
+
+
+```
+
+## Best Practices
+
+* **Explicit Focus Isolation**: Never use `:focus` alone for interactive outlines; rely on `:focus-visible` so mouse clicks do not trigger focus rings while preserving keyboard visibility.
+* **Disabled Cursor Preservation**: Avoid `pointer-events: none` on internal interactive primitives (`<button>`) so the browser can capture mouse hover and display `cursor: not-allowed !important;`. Native `disabled` attributes automatically prevent click and keypress execution.
+* **Host Scrubbing**: When accepting accessible labels on custom element host wrappers, delegate the attribute to the internal native primitive and scrub the host tag.
+* **Motion Suppression Compliance**: Ensure active scale transforms (e.g., `--btn-active-scale`) evaluate to `1` when `.a11y-reduce-motion` is active.

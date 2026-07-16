@@ -1,0 +1,36 @@
+/* src/stories/molecules/SliderDots/slider-dots.css */
+
+:host {
+  display: inline-block;
+}
+
+.slider-dots-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md, 12px);
+  background: var(--overlay-glass-bg, rgba(235, 235, 240, 0.6));
+  backdrop-filter: blur(var(--overlay-glass-blur, 12px));
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur, 12px));
+  padding: 14px var(--space-xl, 24px);
+  border-radius: var(--radius-pill, 100px);
+  border: 1px solid var(--color-card-border, rgba(0, 0, 0, 0.05));
+  transition: transform var(--speed-fast, 0.2s) ease;
+}
+
+.slider-dots-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md, 12px);
+  max-width: 300px;
+  overflow: hidden;
+  transition: max-width var(--speed-slow, 0.4s) ease, 
+              opacity var(--speed-normal, 0.3s) ease, 
+              margin var(--speed-slow, 0.4s) ease;
+}
+
+:host([search-expanded="true"]) .slider-dots-wrapper {
+  max-width: 0;
+  opacity: 0;
+  pointer-events: none;
+  margin-left: -12px;
+}

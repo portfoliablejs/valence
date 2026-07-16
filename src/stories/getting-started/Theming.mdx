@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Theming & Accessibility" />
+
+# Theming & Accessibility
+
+Valence is designed with theming and accessibility at its core. The entire system can adapt its appearance based on global classes applied to the `<html>` element.
+
+This allows the consuming application (`portfoliable`) to control the visual theme for all components from a single, central place.
+
+## Dark Mode
+
+To enable Dark Mode across all components, add the `a11y-dark-mode` class to the `<html>` tag. This will automatically activate the dark theme variants for all color tokens. Components will update their appearance without any additional configuration.
+
+```html
+<html class="a11y-dark-mode">
+  ...
+</html>
+```
+
+## High Contrast Mode
+For users who require higher contrast, add the `a11y-high-contrast` class to the `<html>` tag. This theme uses a pure black and white palette with enhanced borders to meet contrast requirements. It will automatically override Dark Mode if both are present.
+
+```html
+<html class="a11y-high-contrast">
+  ...
+</html>
+```
+
+## Large Text
+
+To increase the base font size across the application, add the `a11y-large-text` class. This applies a multiplier to foundational font sizes, making text more readable. Components that use rem or em units will scale accordingly.
+
+```html
+<html class="a11y-large-text">
+  ...
+</html>
+```
+
+### Other Accessibility Modes
+
+Valence also supports several other modes for enhanced accessibility:
+- `a11y-reduce-motion`: Disables all non-essential animations and transitions.
+- `a11y-dyslexia`: Applies a dyslexia-friendly font across all components and content.
+- `a11y-focus-mode`: Provides a highly visible, consistent focus ring on all interactive elements for keyboard users.
+
+## Implementation
+Your application's main controller should be responsible for toggling these classes on the `<html>` element based on user preferences stored in localStorage.

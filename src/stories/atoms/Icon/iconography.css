@@ -1,0 +1,67 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ds-icon-size, 24px);
+  height: var(--ds-icon-size, 24px);
+  color: inherit;
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: var(--ds-icon-fill, none);
+  stroke: var(--ds-icon-stroke, currentColor);
+  stroke-width: var(--ds-icon-stroke-width, 2);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: all var(--anim-fast, 0.2s) ease;
+}
+
+/* Specific overrides for filled icons */
+:host([name="play"]) svg,
+:host([name="pause"]) svg,
+:host([variant="fill"]) svg,
+:host([variant="filled"]) svg,
+:host([name$="-fill"]) svg,
+:host([name$="-filled"]) svg {
+  fill: var(--ds-icon-fill, currentColor);
+  stroke: var(--ds-icon-stroke, none);
+}
+
+/* RTL Icon Flipping Rules */
+:host([dir-rtl]):is(
+  [name="chevron-left"], [name="chevron-right"],
+  [name="arrow-left"], [name="arrow-right"], [name="arrow-left-long"],
+  [name="return"], [name="stop-return"],
+  [name="skip-next"], [name="skip-previous"],
+  [name="forward-5"], [name="forward-10"],
+  [name="backward-5"], [name="backward-10"],
+  [name="tab-nav-left"], [name="tab-nav-right"],
+  [name="external-link"],
+  [name="volume-on"], [name="volume-closed"], [name="volume-mute"], [name="volume-low"], [name="volume-medium"], [name="volume-high"]
+) svg {
+  transform: scaleX(-1);
+}
+
+/* ==========================================================================
+   FORCED COLORS MODE OVERRIDES
+   ========================================================================== */
+@media (forced-colors: active) {
+  :host {
+    color: inherit !important;
+  }
+
+  svg {
+    stroke: currentColor !important;
+    fill: none !important;
+    forced-color-adjust: auto;
+  }
+
+  :host([variant="fill"]) svg,
+  :host([variant="filled"]) svg {
+    fill: currentColor !important;
+    stroke: none !important;
+  }
+}

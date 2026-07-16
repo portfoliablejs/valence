@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Depthography" />
+
+# Depthography
+
+The Depthography system provides standardized backdrop blurs, surface layering, and glassmorphic elevation effects to establish depth across Valence components. Using structured translucency and blur tokens creates spatial hierarchy while maintaining contextual awareness of underlying content.
+
+<br />
+
+## Depth Tokens
+
+Depth tokens define atmospheric effects, translucency ratios, and backdrop blurs used to separate spatial layers.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Token Name</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Glass Background</strong></td>
+      <td>`var(--overlay-glass-bg)`</td>
+      <td>`rgba(0, 0, 0, 0.1)`</td>
+      <td>Base surface color for translucent elements, floating headers, and popovers.</td>
+    </tr>
+    <tr>
+      <td><strong>Glass Blur</strong></td>
+      <td>`var(--overlay-glass-blur)`</td>
+      <td>`6px`</td>
+      <td>Defines the backdrop blur intensity for depth-based separation.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Always reference depth design tokens via CSS variables or standard utility classes to maintain consistency across elevated UI elements.
+
+### Utility Class Implementation
+
+For standard layout structures, apply the `.foundation-glass` utility class directly to your container components.
+
+```css
+/* Global foundation glass utility */
+.foundation-glass {
+  background: var(--overlay-glass-bg);
+  backdrop-filter: blur(var(--overlay-glass-blur));
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur));
+}
+```
+
+### CSS Variable Implementation
+When crafting custom Web Components or scoped styles, combine the individual variables to match specific UI requirements.
+```css
+.sticky-header {
+  background: var(--overlay-glass-bg);
+  backdrop-filter: blur(var(--overlay-glass-blur));
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.floating-panel {
+  background: var(--overlay-glass-bg);
+  backdrop-filter: blur(var(--overlay-glass-blur));
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur));
+}
+```
+
+## Best Practices
+- **Layering & Hierarchy**: Limit glassmorphic surfaces to floating or overlay elements (e.g., sticky headers, modals, context menus) to prevent visual clutter and maintain visual hierarchy.
+- **Cross-Browser Compatibilit**: Always include `-webkit-backdrop-filter` alongside standard `backdrop-filter` to guarantee full support across Safari and older WebKit-based browsers.
+- **Readability & Contrast**: Ensure text overlaid on translucent background layers meets WCAG AA contrast standards regardless of dynamic content scrolling beneath the surface.

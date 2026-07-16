@@ -1,0 +1,302 @@
+/* ==========================================================================
+   1. HOST GEOMETRY
+   ========================================================================== */
+:host {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+:host([disabled]) {
+  cursor: not-allowed !important;
+}
+
+/* Variant: Video Player Top Viewport Mounting */
+:host([variant="top-bar"]) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: var(--z-fixed, 100);
+}
+
+:host([variant="top-bar"]) .seek-container {
+  width: 100%;
+  height: var(--size-height-lg, 48px);
+  padding: 0;
+  align-items: flex-start;
+}
+
+/* Extended 96px top-bar hit area into video viewport */
+:host([variant="top-bar"]) .seek-container::before {
+  top: 0;
+  bottom: -48px;
+}
+
+/* Top-Bar Variant Zero Radius Override for Track & Fill */
+:host([variant="top-bar"]) .seek-track,
+:host([variant="top-bar"]) .seek-fill {
+  height: 8px; /* Larger baseline height */
+  border-radius: 0 !important;
+  transition: height var(--anim-fast, 0.2s) var(--ease-fluid, ease),
+              background-color var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+}
+
+/* Ensure the Handle Knob remains round on Top-Bar Variant */
+:host([variant="top-bar"]) .seek-fill::after {
+  border-radius: var(--radius-circle, 50%) !important;
+}
+
+/* Prominent Hover & Click Expansion Animations for Top-Bar Variant */
+:host([variant="top-bar"]) .seek-container:hover .seek-track {
+  height: 16px;
+}
+
+:host([variant="top-bar"]) .seek-container.is-dragging .seek-track,
+:host([variant="top-bar"]) .seek-container:active .seek-track {
+  height: 20px;
+}
+
+:host([variant="top-bar"]) .seek-container:hover .seek-fill::after {
+  transform: translateY(-50%) scale(1.8);
+}
+
+:host([variant="top-bar"]) .seek-container.is-dragging .seek-fill::after,
+:host([variant="top-bar"]) .seek-container:active .seek-fill::after {
+  transform: translateY(-50%) scale(2.4);
+}
+
+/* Variant: Vertical Orientation (Volume Control & Mixers) */
+:host([variant="vertical"]) {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 180px;
+  width: var(--size-height-md, 40px);
+  box-sizing: border-box;
+}
+
+:host([variant="vertical"]) .seek-container {
+  width: var(--size-height-md, 40px);
+  height: 100%;
+  min-height: 180px;
+  padding: 0 var(--space-sm, 8px);
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: ns-resize;
+}
+
+:host([variant="vertical"]) .seek-container::before {
+  top: 0;
+  bottom: 0;
+  left: -16px;
+  right: -16px;
+}
+
+:host([variant="vertical"]) .seek-track {
+  width: var(--border-width-thick, 4px);
+  height: 100%;
+  transition: width var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+}
+
+:host([variant="vertical"]) .seek-fill {
+  width: 100%;
+  height: var(--progress-percent, 0%);
+  top: auto;
+  bottom: 0;
+  left: 0;
+}
+
+:host([variant="vertical"]) .seek-fill::after {
+  right: 50%;
+  top: 0;
+  transform: translate(50%, -50%) scale(0.85);
+}
+
+:host([variant="vertical"]) .seek-container:hover:not(.disabled) .seek-fill::after,
+:host([variant="vertical"]) .seek-container.is-dragging .seek-fill::after {
+  transform: translate(50%, -50%) scale(1.5);
+}
+
+/* ==========================================================================
+   2. BASE PRIMITIVE STRUCTURE
+   ========================================================================== */
+.seek-container {
+  position: relative;
+  width: 100%;
+  /* Expanded 40px height container creates a stable, comfortable hit target */
+  height: var(--size-height-md, 40px);
+  padding: var(--space-sm, 8px) 0;
+  display: flex;
+  align-items: center;
+  cursor: ew-resize;
+  touch-action: none;
+  box-sizing: border-box;
+}
+
+/* Generous Invisible Hit Area Extension (72px total vertical hover target) */
+.seek-container::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  bottom: -16px;
+  left: 0;
+  right: 0;
+  background: transparent;
+  z-index: 1;
+}
+
+.seek-track {
+  position: relative;
+  width: 100%;
+  height: var(--border-width-thick, 4px);
+  background: var(--custom-track-bg, var(--color-surface-border, rgba(0, 0, 0, 0.12)));
+  border-radius: var(--radius-pill, 100px);
+  overflow: visible;
+  transition: height var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+}
+
+.seek-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: var(--progress-percent, 0%);
+  background: var(--custom-fill-bg, var(--color-accent, #2B71F0));
+  border-radius: var(--radius-pill, 100px);
+  pointer-events: none;
+}
+
+/* --- RTL Visual Adjustments --- */
+:host([dir="rtl"]:not([variant="vertical"])) .seek-fill {
+  left: auto;
+  right: 0; /* Anchor the filled track to the right */
+}
+
+/* Draggable Knob Primitive */
+.seek-fill::after {
+  content: '';
+  position: absolute;
+  right: calc(-1 * (var(--space-sm, 8px) / 2));
+  top: 50%;
+  transform: translateY(-50%) scale(0.85);
+  width: var(--space-lg, 8px);
+  height: var(--space-lg, 8px);
+  background-color: var(--custom-knob-bg, var(--color-accent, #2B71F0));
+  border-radius: var(--radius-circle, 50%);
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.2));
+  transition: transform var(--anim-fast, 0.2s) var(--ease-fluid, ease),
+              background-color var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+  pointer-events: auto;
+}
+
+:host([dir="rtl"]:not([variant="vertical"])) .seek-fill::after {
+  right: auto;
+  left: calc(-1 * (var(--space-sm, 8px) / 2)); /* Move the handle knob anchor to the left edge of the fill */
+}
+
+/* ==========================================================================
+   3. INTERACTIVE STATES (STATEOGRAPHY)
+   ========================================================================== */
+.seek-container:hover:not(.disabled) .seek-fill::after,
+.seek-container.is-dragging .seek-fill::after {
+  transform: translateY(-50%) scale(1.15);
+}
+
+/* 1. Hide the massive default host outline so it doesn't wrap the outer box */
+:host(:focus-visible) {
+  outline: none !important;
+}
+
+/* 2. Project the focus ring exactly onto the internal container when focused (Matches Print 1) */
+:host(:focus-visible) .seek-container {
+  outline: var(--a11y-focus-outline, 3px solid var(--color-accent, #2B71F0));
+  outline-offset: var(--a11y-focus-offset, 2px);
+  border-radius: var(--radius-sm, 4px);
+}
+
+.seek-container.disabled {
+  opacity: var(--opacity-disabled, 0.38);
+  cursor: not-allowed !important;
+}
+
+/* ==========================================================================
+   4. LIGHT & DARK MODE VARIANT STYLES
+   ========================================================================== */
+:host([a11y-dark-mode]) .seek-track {
+  background: var(--custom-track-bg, rgba(255, 255, 255, 0.2));
+}
+
+:host([a11y-dark-mode]) .seek-fill {
+  background: var(--custom-fill-bg, var(--color-white, #FFFFFF));
+}
+
+:host([a11y-dark-mode]) .seek-fill::after {
+  background-color: var(--custom-knob-bg, var(--color-white, #FFFFFF));
+}
+
+/* ==========================================================================
+   5. ACCESSIBILITY OVERRIDES (HIGH CONTRAST & FORCED COLORS)
+   ========================================================================== */
+:host([a11y-high-contrast]) .seek-track {
+  /* Change from #FFFFFF to #000000 so the unplayed track is hollow/black */
+  background: #000000 !important;
+  border: var(--border-width-thin, 1px) var(--border-style-solid) #FFFFFF !important;
+}
+
+:host([a11y-high-contrast]) .seek-fill {
+  /* Keep this solid white so the played progress clearly stands out */
+  background: #FFFFFF !important;
+}
+
+:host([a11y-high-contrast]) .seek-fill::after {
+  background: #FFFFFF !important;
+  border: var(--border-width-medium, 2px) var(--border-style-solid, solid) #000000 !important;
+}
+
+/* Forced Colors Mode Overrides (Windows High Contrast Mode) */
+:host([a11y-forced-colors]) .seek-track {
+  /* Change background from CanvasText to Canvas */
+  background: Canvas !important;
+  border: var(--border-width-thin, 1px) var(--border-style-solid) CanvasText !important;
+}
+
+:host([a11y-forced-colors]) .seek-fill {
+  background: Highlight !important;
+}
+
+:host([a11y-forced-colors]) .seek-fill::after {
+  background: HighlightText !important;
+  border: var(--border-width-thin, 1px) var(--border-style-solid) Highlight !important;
+}
+
+@media (forced-colors: active) {
+  .seek-track {
+    background: CanvasText !important;
+    border: var(--border-width-thin, 1px) var(--border-style-solid, solid) CanvasText !important;
+  }
+  .seek-fill {
+    background: Highlight !important;
+  }
+  .seek-fill::after {
+    background: HighlightText !important;
+    border: var(--border-width-thin, 1px) var(--border-style-solid, solid) Highlight !important;
+  }
+}
+
+/* ==========================================================================
+   6. MOTION & DYSLEXIA SUPPRESSION
+   ========================================================================== */
+:host([a11y-reduce-motion]) .seek-container,
+:host([a11y-reduce-motion]) .seek-track {
+  transition: none !important;
+}
+
+:host([a11y-reduce-motion]) .seek-fill::after {
+  transition: none !important;
+  transform: translateY(-50%) !important; /* Only the knob needs the vertical centering */
+}

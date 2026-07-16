@@ -1,0 +1,248 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Contributing/Component Documentation" />
+
+# Component Documentation & Source Structure Standards
+
+This document defines the architectural guidelines, file organization rules, design token integration standards, and Storybook best practices required for documenting Valence design system components.
+
+<br />
+
+## 1. Anatomy of a Standard Component File Set
+
+Every Atomic design system component exists as a self-contained folder under its hierarchy (`Atoms`, `Molecules`, `Organisms`). Each component folder consists of three core files following a strict naming convention:
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>File Pattern</th>
+      <th style={{ textAlign: 'left' }}>Role & Responsibility</th>
+      <th style={{ textAlign: 'left' }}>Primary Standards Reference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>`[component-name].css`</code></td>
+      <td>Encapsulated Shadow DOM layout, variants, states, and accessibility themes.</td>
+      <td>Stateography, Chromography, Curvography, Accessibility CSS</td>
+    </tr>
+    <tr>
+      <td><code>`[ComponentName].js`</code></td>
+      <td>Web Component JavaScript class, attribute observed lifecycle, theme observer.</td>
+      <td>Web Component Architecture, ARIA Delegation</td>
+    </tr>
+    <tr>
+      <td><code>`[ComponentName].stories.js`</code></td>
+      <td>Storybook CSF3 configuration, Controls schema, and automated <code>play</code> tests.</td>
+      <td>Storybook Testing, Autodocs Configuration</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## 2. Stylesheet Structure Guidelines (`*.css`)
+
+Component stylesheets strictly consume sub-atomic design tokens to ensure full compliance across visual states, light mode, dark mode, high contrast mode, and color vision deficiency simulations.
+
+### Section Order & Organization
+Component stylesheets must organize rules into logical blocks using standardised section headers:
+
+1. **Host Geometry (`:host`, `:host([disabled])`)**: Define inline display, root positioning, and host-level disabled cursor states.
+2. **Base Primitive Structure**: Structural flex properties, resets, token transitions, focus indicators, and layout gaps.
+3. **Interactive States (Stateography)**: Standard `:focus`, `:focus-visible`, `:hover`, and `:disabled` rules.
+4. **Light Mode Variant Styles**: Visual definitions for default surface variants (`primary`, `secondary`, `text`, `icon`, `floating`).
+5. **Accessibility Overrides**: Dedicated attribute blocks for `:host([a11y-dark-mode])`, `:host([a11y-high-contrast])`, and `:host([a11y-forced-colors])` / `@media (forced-colors: active)`.
+6. **Typography, Motion & Vision Suppression**: Dyslexia mode overrides (`:host([a11y-dyslexia])`), Reduced Motion suppression blocks (`:host([a11y-reduce-motion])`), and Colorblindness matrix compatibility.
+
+### Key CSS Rules & Pitfalls
+* **Disabled States & Cursors**: Avoid placing `pointer-events: none` on internal focusable primitives (`<button>`, `<input>`) as it prevents browser hover detection and suppresses `cursor: not-allowed`. Rely on native `disabled` attributes alongside host cursor definitions:
+  <br />
+  ```css
+  :host([disabled]) {
+    cursor: not-allowed !important;
+  }
+  
+  button:disabled,
+  :host([disabled]) button {
+    opacity: var(--opacity-disabled, 0.38);
+    cursor: not-allowed !important;
+  }
+  ```
+
+  > Note: Declare attribute-reflected host selectors and native `@media` queries in separate blocks to avoid CSS parsing errors)*:
+
+  ```css
+  /* Forced Colors Mode Override Pattern */
+
+  /* 1. Attribute Reflected State (Storybook / DOM Toggle) */
+  :host([a11y-forced-colors]) .variant-primary {
+    forced-color-adjust: none !important;
+    background: Highlight !important;
+    color: HighlightText !important;
+    border: var(--border-width-thin) var(--border-style-solid) Highlight !important;
+  }
+
+  /* 2. Native OS Media Query */
+  @media (forced-colors: active) {
+    .variant-primary {
+      forced-color-adjust: none !important;
+      background: Highlight !important;
+      color: HighlightText !important;
+      border: var(--border-width-thin) var(--border-style-solid) Highlight !important;
+    }
+  }
+
+  ```
+
+Storybook provides global toolbar controls that attach root classes onto `document.documentElement`. These trigger real-time simulations for accessibility modes and visual debugging utilities:
+
+* **Theme & Visual Modes**: Dark mode (`.a11y-dark-mode`), High Contrast mode (`.a11y-high-contrast`), and Forced Colors mode (`.a11y-forced-colors`).
+* **Reading & Navigation Preferences**: Large Text (`.a11y-large-text`), Dyslexia font (`.a11y-dyslexia`), Reduced Motion (`.a11y-reduce-motion`), and High-Visibility Focus Rings (`.a11y-focus-mode`).
+* **Assistive Technology Debuggers**: Live Region Debugger (`.a11y-show-live-regions`) visually highlights `[aria-live]`, `[role="alert"]`, and `[role="status"]` elements with a dashed pink outline (`#ff007f`) and programmatic politeness badge to inspect dynamic screen reader announcements during audits.
+* **Vision Deficiency Simulators**: SVG color matrix transformation filters for Deuteranopia, Protanopia, Tritanopia, Achromatopsia, and Low Vision Blur.
+
+## 4. Web Component Implementation Guidelines (`*.js`)
+
+Web Components encapsulate Shadow DOM boundaries and observe global DOM mutations to pass root accessibility states down to shadow nodes.
+
+* **Dynamic Announcements & Live Regions**: Components that render dynamic status updates or notifications (such as toasts, alerts, or progress bars) must explicitly define `role="status"` / `aria-live="polite"` or `role="alert"` / `aria-live="assertive"` on their internal Shadow DOM wrapper:
+```javascript
+// For polite status updates (e.g., toast notification, search results count)
+<div class="toast-wrapper" role="status" aria-live="polite">
+  <slot></slot>
+</div>
+
+```
+
+
+
+### Component Class Template Requirements
+
+* **Observed Attributes**: Core state attributes must be explicitly declared in `static get observedAttributes()`:
+```javascript
+static get observedAttributes() {
+  return ['variant', 'aria-label', 'disabled', 'icon', 'icon-position'];
+}
+
+```
+
+
+* **Layout Slot Hygiene**: Template strings inside `constructor()` must be compressed to eliminate whitespace text nodes around slots and icons:
+```javascript
+constructor() {
+  super();
+  this.attachShadow({ mode: 'open' });
+  this.shadowRoot.innerHTML = `<style>${css}</style><button type="button"><ds-icon class="btn-icon" style="display: none;"></ds-icon><slot></slot></button>`;
+}
+
+```
+
+
+* **Accessibility Root Reflection Observer**: Web Components observe root `<html>` class changes via a `MutationObserver` to reflect boolean attributes onto the host element (including `a11y-forced-colors`), bypassing Safari's lack of `:host-context()` support:
+```javascript
+_observeRootAccessibility() {
+  const root = this.ownerDocument.documentElement;
+  const sync = () => {
+    this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
+    this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
+    this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
+    this.toggleAttribute('a11y-dyslexia', root.classList.contains('a11y-dyslexia'));
+    this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
+    this.toggleAttribute('a11y-focus-mode', root.classList.contains('a11y-focus-mode'));
+    this.toggleAttribute('a11y-forced-colors', root.classList.contains('a11y-forced-colors'));
+  };
+
+  sync();
+  this._themeObserver = new MutationObserver(sync);
+  this._themeObserver.observe(root, { attributes: true, attributeFilter: ['class'] });
+}
+
+```
+
+
+* **ARIA Delegation & Host Scrubbing**: Descriptive ARIA properties like `aria-label` applied to custom host elements must be delegated to the internal focusable control and scrubbed from the host wrapper tag to prevent `aria-prohibited-attr` validation errors:
+```javascript
+if (ariaLabel) {
+  this.buttonEl.setAttribute('aria-label', ariaLabel);
+  this.removeAttribute('aria-label');
+}
+
+```
+
+
+
+## 5. Storybook Configuration & Testing Standards (`*.stories.js`)
+
+Stories document component usage options, provide interactive Controls, and execute automated interaction testing.
+
+### Story Metadata & ArgTypes Layout
+
+* **Meta Configuration**: Enable `autodocs` and centered layout decorators.
+* **Categorized ArgTypes Schema**: Group Storybook controls into clear category and subcategory tables with a clear `description` for **every Story**:
+1. **Core & Variant Controls**: Variant selectors, label text, ARIA input strings, disabled toggles.
+2. **Sub-Atomic Props**: Dynamic CSS custom property overrides (`radius`, `backgroundColor`, `borderWidth`, `borderColor`).
+3. **Event Listeners**: Actions mapped to event triggers (like `onClick`).
+
+
+
+### Storybook Play Functions & Interaction Testing
+
+Interaction tests verify states, keyboard focus, ARIA attribute delegation, and tooltip triggers using `storybook/test` utilities:
+
+```javascript
+export const PrimaryButton = {
+  args: {
+    variant: 'primary',
+    label: 'Play Video',
+    hasIcon: true,
+    icon: 'play',
+    iconPosition: 'left',
+  },
+  play: async ({ canvasElement, step }) => {
+    const button = canvasElement.querySelector('ds-button');
+
+    await step('Hover button to verify interaction feedback', async () => {
+      await userEvent.hover(button);
+    });
+
+    await step('Verify keyboard focus capability', async () => {
+      const internalButton = button.shadowRoot.querySelector('button');
+      internalButton.focus();
+      expect(document.activeElement).toBe(button);
+    });
+
+    await step('Click primary action target', async () => {
+      await userEvent.click(button);
+    });
+  },
+};
+
+```
+
+## 6. Documentation Checklist for System Components
+
+When introducing or updating a design system component, ensure all mandatory checklist criteria are met:
+
+* [ ] **Styles (`*.css`)**:
+  * [ ] Consumes sub-atomic variables (`var(--color-*)`, `var(--space-*)`, `var(--radius-*)`).
+  * [ ] Implements `:focus-visible` with high-contrast accessibility focus rings.
+  * [ ] Declares dark mode (`:host([a11y-dark-mode])`) and 21:1 high contrast mode (`:host([a11y-high-contrast])`) state scales.
+  * [ ] Defines explicit system keywords (`Canvas`, `CanvasText`, `Highlight`) and `forced-color-adjust: none !important` under separate `:host([a11y-forced-colors])` and `@media (forced-colors: active)` blocks.
+  * [ ] Tested under vision deficiency simulator modes (Deuteranopia, Protanopia, Tritanopia, Achromatopsia).
+  * [ ] Preserves `cursor: not-allowed !important` on disabled states without hiding cursors.
+
+
+* [ ] **JavaScript (`*.js`)**:
+  * [ ] `observedAttributes` syncing configured.
+  * [ ] Shadow DOM HTML strings compressed onto a single line without extraneous whitespace.
+  * [ ] `MutationObserver` active on `document.documentElement` for cross-browser WebKit support.
+  * [ ] Reflects `a11y-forced-colors` attribute in `_observeRootAccessibility()`.
+  * [ ] `aria-label` delegated down to internal primitives and scrubbed from host tag.
+  * [ ] Defines `role="status"` (`aria-live="polite"`) or `role="alert"` (`aria-live="assertive"`) on dynamic status/notification wrappers.
+
+
+* [ ] **Storybook (`*.stories.js`)**:
+  * [ ] `tags: ['autodocs']` enabled.
+  * [ ] Sub-atomic control overrides configured.
+  * [ ] Automated `play` function tests cover hover, focus, and click steps.

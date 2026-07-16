@@ -1,0 +1,478 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Accessibility" />
+
+# Accessibility
+
+The Accessibility system provides global theme overrides, high-contrast tokens, typography adjustments, motion suppressions, and focus indicators across Valence. Applied as root-level modifier classes on the `<html>` element, these accessibility features ensure the platform remains inclusive, WCAG AA/AAA compliant, and adaptable to individual user preferences.
+
+<br />
+
+## Color & Contrast System
+
+To eliminate theme complexity and prevent color transition drift, theme overrides alter four core semantic roles (`--color-bg`, `--color-surface`, `--color-text-primary`, and `--color-surface-border`) rather than individual component primitives.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Modifier Class</th>
+      <th style={{ textAlign: 'left' }}>Overridden Tokens</th>
+      <th style={{ textAlign: 'left' }}>Values</th>
+      <th style={{ textAlign: 'left' }}>Compliance & Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.a11y-dark-mode</code></td>
+      <td>
+        <code>--color-bg</code><br />
+        <code>--color-surface</code><br />
+        <code>--color-text-primary</code><br />
+        <code>--color-text-secondary</code><br />
+        <code>--color-surface-border</code>
+      </td>
+      <td>
+        <code>#101218</code><br />
+        <code>#1C1C1E</code><br />
+        <code>#FFFFFF</code><br />
+        <code>#F5F5F5</code><br />
+        <code>rgba(255, 255, 255, 0.12)</code>
+      </td>
+      <td>WCAG AA compliant dark mode environment designed for low-light conditions and eye-strain reduction.</td>
+    </tr>
+    <tr>
+      <td><code>.a11y-high-contrast</code></td>
+      <td>
+        <code>--color-bg</code><br />
+        <code>--color-surface</code><br />
+        <code>--color-text-primary</code><br />
+        <code>--color-surface-border</code><br />
+        <code>--border-width-thin</code>
+      </td>
+      <td>
+        <code>#000000</code><br />
+        <code>#000000</code><br />
+        <code>#FFFFFF</code><br />
+        <code>#FFFFFF</code><br />
+        <code>2px</code>
+      </td>
+      <td>Maximum WCAG AAA binary contrast ratio (21:1) using solid white borders and black surfaces for low-vision users.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Typography & Reading Preferences
+
+Typography modifiers adjust scale multipliers and font families to aid users with dyslexia or low vision.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Modifier Class</th>
+      <th style={{ textAlign: 'left' }}>Target Elements</th>
+      <th style={{ textAlign: 'left' }}>Property Overrides</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.a11y-large-text</code></td>
+      <td><code>h1</code>, <code>h2</code>, <code>h3</code>, <code>.p1</code>, <code>.p2</code></td>
+      <td>
+        <code>font-size: 48px / 40px / 28px / 22px / 20px</code><br />
+        <code>--font-scale-multiplier: 1.25</code>
+      </td>
+      <td>Increases baseline typography hierarchy by 25% across heading and body levels for improved legibility.</td>
+    </tr>
+    <tr>
+      <td><code>.a11y-dyslexia</code></td>
+      <td><code>*</code> (All elements)</td>
+      <td>
+        <code>font-family: "Comic Sans MS", cursive, sans-serif</code><br />
+        <code>letter-spacing: 0.05em</code><br />
+        <code>word-spacing: 0.1em</code>
+      </td>
+      <td>Applies informal, heavily weighted letterforms and increased character/word spacing to assist dyslexic readers.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Motion & Focus States
+
+Motion and focus state modifiers allow users to suppress vestibulocochlear motion triggers and enforce high-visibility keyboard focus indicators.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Modifier Class</th>
+      <th style={{ textAlign: 'left' }}>CSS Variables / Properties</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.a11y-reduce-motion</code></td>
+      <td>
+        <code>--component-transition</code><br />
+        <code>--btn-active-scale</code>, <code>--btn-hover-scale</code><br />
+        <code>animation-duration</code>, <code>transition-duration</code><br />
+        <code>scroll-behavior</code>
+      </td>
+      <td>
+        <code>all 0s linear !important</code><br />
+        <code>1</code><br />
+        <code>0s !important</code><br />
+        <code>auto !important</code>
+      </td>
+      <td>Forces a 0-second duration on all keyframe animations, transitions, and smooth scrolling for motion sensitivity (preventing WebKit/Safari drop bugs).</td>
+    </tr>
+    <tr>
+      <td><code>.a11y-focus-mode</code></td>
+      <td>
+        <code>--a11y-focus-outline</code><br />
+        <code>--a11y-focus-offset</code><br />
+        <code>--preview-focus-outline</code>
+      </td>
+      <td>
+        <code>4px solid var(--color-accent)</code><br />
+        <code>4px</code><br />
+        <code>4px solid var(--color-accent)</code>
+      </td>
+      <td>Forces prominent 4px high-visibility focus rings on all interactive components during keyboard navigation.</td>
+    </tr>
+  </tbody>
+</table>
+
+> **Note**: `--preview-focus-outline` is strictly for previewing focus states inside Storybook iframe viewports.
+
+<br />
+
+### Screen Reader Live Region Debugging (`.a11y-show-live-regions`)
+
+Dynamic UI announcements (such as toast notifications, form validation summaries, and status updates) rely on `aria-live`, `role="alert"`, or `role="status"` to inform assistive technology users of page changes without shifting focus.
+
+Because live regions are non-visual by nature, enabling `.a11y-show-live-regions` in Storybook draws a **2px dashed pink outline** (`#ff007f`) around all live region containers and overlays a programmatic label showing the active politeness setting (`aria-live="polite"` vs `aria-live="assertive"`).
+
+```html
+<!-- Example rendered live region under debugger mode -->
+<div role="status" aria-live="polite" class="toast-container">
+  <!-- Highlighted with 2px dashed #ff007f outline and "📢 ARIA-LIVE (polite)" badge -->
+  Profile updated successfully.
+</div>
+``` 
+<br />
+
+## Usage Guidelines
+
+Accessibility modifier classes are applied directly to the root `<html>` node (`document.documentElement`). Multiple accessibility modifiers can be active simultaneously (e.g., combining `.a11y-dark-mode` with `.a11y-large-text` and `.a11y-reduce-motion`).
+
+### Toggling Accessibility Modes in JavaScript
+
+```javascript
+// Enable Dark Mode & Large Text Mode
+document.documentElement.classList.add('a11y-dark-mode', 'a11y-large-text');
+
+// Enable High-Visibility Focus Mode
+document.documentElement.classList.add('a11y-focus-mode');
+
+// Disable Reduced Motion
+document.documentElement.classList.remove('a11y-reduce-motion');
+
+```
+
+## Cross-Browser Web Component Support
+
+CSS pseudo-class `:host-context()` is unsupported in WebKit (Safari / iOS) and causes style rules to fail silently. To achieve universal compatibility across Chrome, Safari, and Firefox, Web Components observe accessibility classes on `document.documentElement` using a `MutationObserver` and reflect them down as boolean attributes onto host elements (`<ds-button a11y-dark-mode>`).
+
+> CSS within the Shadow DOM then targets standard `:host([a11y-*])` attribute selectors.
+
+### Synchronizing Root Accessibility to Host Attributes
+
+Web Components set up an observer to reflect root modifier classes across all six system states automatically:
+
+```javascript
+_observeRootAccessibility() {
+  const root = this.ownerDocument.documentElement;
+
+  const sync = () => {
+    this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
+    this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
+    this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
+    this.toggleAttribute('a11y-dyslexia', root.classList.contains('a11y-dyslexia'));
+    this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
+    this.toggleAttribute('a11y-focus-mode', root.classList.contains('a11y-focus-mode'));
+  };
+
+  sync(); // Initial execution on mount
+
+  this._themeObserver = new MutationObserver(sync);
+  this._themeObserver.observe(root, {
+    attributes: true,
+    attributeFilter: ['class'],
+  });
+}
+
+```
+
+### Targeting Accessibility States in Component CSS
+
+Target host attributes inside internal component stylesheets rather than using `:host-context()`:
+
+```css
+/* Dark mode primary button state transition */
+:host([a11y-dark-mode]) .variant-primary {
+  background: var(--custom-bg, var(--color-white));
+  color: var(--color-player-bg, #101218);
+}
+:host([a11y-dark-mode]) .variant-primary:hover:not(:disabled) {
+  background-color: var(--custom-hover-bg, var(--color-gray-xlight));
+}
+
+/* High Contrast mode interactive inversion on hover */
+:host([a11y-high-contrast]) .variant-secondary:hover:not(:disabled),
+:host([a11y-high-contrast]) .variant-floating:hover:not(:disabled) {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #FFFFFF !important;
+}
+
+/* Dyslexia mode typography overrides */
+:host([a11y-dyslexia]) button {
+  font-family: "Comic Sans MS", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+}
+```
+
+Target host attributes inside internal component stylesheets rather than using `:host-context()`:
+
+```css
+/* High Contrast floating surface override */
+:host([a11y-high-contrast]) .variant-floating {
+  background: transparent !important;
+  color: var(--color-black) !important;
+  border: var(--border-width-medium) var(--border-style-solid) var(--color-black) !important;
+  box-shadow: var(--shadow-none) !important;
+}
+
+/* Dyslexia mode typography overrides */
+:host([a11y-dyslexia]) button {
+  font-family: "Comic Sans MS", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+}
+
+```
+
+### Supporting Focus Tokens in Web Components
+
+```css
+button:focus-visible {
+  outline: var(--a11y-focus-outline, 3px solid var(--color-accent));
+  outline-offset: var(--a11y-focus-offset, 2px);
+}
+
+```
+
+### Supporting Reduced Motion in Custom Styles
+
+```css
+button {
+  transition: var(--component-transition, transform var(--anim-fast) var(--ease-fluid));
+}
+
+/* Reduced motion scale safety */
+button:hover {
+  transform: scale(var(--btn-hover-scale, 1.02));
+}
+
+```
+
+## ARIA Attribute Delegation & Host Scrubbing
+
+To prevent markup compliance violations (`aria-prohibited-attr`) on generic custom elements, components acting as structural wrappers for interactive native primitives must ingest and delegate accessibility properties.
+
+When a component receives an `aria-label` or similar descriptive property, it mirrors the value to its focusable internal shadow node and scrubs it from the host tag before rendering finishes:
+
+```javascript
+if (ariaLabel) {
+  this.buttonEl.setAttribute('aria-label', ariaLabel);
+  this.removeAttribute('aria-label'); // Keeps outer host markup compliant
+}
+
+```
+
+## Color Vision Deficiency & Low Vision Simulation
+
+The Storybook environment includes SVG color matrix transformation filters that allow designers and developers to verify visual contrast and state distinctions for users with color vision deficiencies.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Deficiency Mode</th>
+      <th style={{ textAlign: 'left' }}>Root Class</th>
+      <th style={{ textAlign: 'left' }}>Underlying SVG Filter / CSS</th>
+      <th style={{ textAlign: 'left' }}>Visual Impact & Audit Goal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Deuteranopia</strong></td>
+      <td><code>.a11y-cb-deuteranopia</code></td>
+      <td><code>filter: url('#deuteranopia')</code></td>
+      <td>Green weakness (~5% of males). Verifies red/green state indicators do not rely solely on hue.</td>
+    </tr>
+    <tr>
+      <td><strong>Protanopia</strong></td>
+      <td><code>.a11y-cb-protanopia</code></td>
+      <td><code>filter: url('#protanopia')</code></td>
+      <td>Red weakness (~2.5% of males). Ensures red alerts and error borders maintain luminance contrast.</td>
+    </tr>
+    <tr>
+      <td><strong>Tritanopia</strong></td>
+      <td><code>.a11y-cb-tritanopia</code></td>
+      <td><code>filter: url('#tritanopia')</code></td>
+      <td>Blue weakness (rare). Verifies blue accents and focus rings remain distinct from dark gray backgrounds.</td>
+    </tr>
+    <tr>
+      <td><strong>Achromatopsia</strong></td>
+      <td><code>.a11y-cb-achromatopsia</code></td>
+      <td><code>filter: grayscale(100%)</code></td>
+      <td>Total colorblindness. Tests that all state changes rely on iconography, shape, or text labels—never color alone.</td>
+    </tr>
+    <tr>
+      <td><strong>Low Vision / Blur</strong></td>
+      <td><code>.a11y-cb-blur</code></td>
+      <td><code>filter: blur(2px)</code></td>
+      <td>Simulates cataracts or low visual acuity. Verifies target size separation and structural clarity.</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+## Keyboard Interaction & Testing Best Practices
+
+When building custom Web Components that act as interactive widgets (`role="checkbox"`, `role="button"`):
+
+* **Single Source of Truth**: Prefer listening to `keydown` events to catch `Space` and `Enter` keypresses, calling `e.preventDefault()` to prevent standard page scrolling.
+* **Testing in Storybook**: When writing Storybook `play` functions for Web Components in iframe environments, prefer using `fireEvent.keyDown(component, { key: ' ' })` over `userEvent.keyboard(' ')`. This ensures the event reaches the element directly regardless of active window focus and avoids synthetic double-click event simulation.
+<br />
+
+## Windows Forced Colors Mode & High Contrast System Overrides
+
+When Forced Colors Mode (such as Windows High Contrast Mode) is enabled via OS settings or simulated in Storybook (`forcedColors: true`), the browser overrides custom author colors, background fills, and CSS custom properties with system palette colors (`Canvas`, `CanvasText`, `Highlight`, `ButtonText`, etc.).
+
+### System Color Keyword Mapping
+
+Components must maintain clear visual boundaries and text contrast under Forced Colors Mode without breaking when standard background colors are stripped.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>System Color Keyword</th>
+      <th style={{ textAlign: 'left' }}>Default Rendering</th>
+      <th style={{ textAlign: 'left' }}>Component Target Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Canvas</code></td>
+      <td>System background color (e.g., Pitch Black or Pure White)</td>
+      <td>Card, modal, and popover background fills.</td>
+    </tr>
+    <tr>
+      <td><code>CanvasText</code></td>
+      <td>System primary text color</td>
+      <td>Headings, body copy, and icons.</td>
+    </tr>
+    <tr>
+      <td><code>Highlight</code></td>
+      <td>System selected / active highlight color</td>
+      <td>Selected tab indicators, active states, and focus rings.</td>
+    </tr>
+    <tr>
+      <td><code>HighlightText</code></td>
+      <td>System text color rendered over Highlight background</td>
+      <td>Active button text and selected menu item copy.</td>
+    </tr>
+    <tr>
+      <td><code>ButtonText</code></td>
+      <td>System button text color</td>
+      <td>Interactive control labels.</td>
+    </tr>
+    <tr>
+      <td><code>GrayText</code></td>
+      <td>System disabled element text color</td>
+      <td>Disabled buttons, muted captions, and inactive form fields.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Common Causes of "Disappearing" Components
+
+If a component vanishes or loses its structure when Forced Colors Mode is toggled:
+
+1. **Missing Transparent Borders**: In Forced Colors Mode, background colors are flattened to `Canvas`. Elements like cards or input fields without a `border` property become invisible.
+   * **Fix**: Declare a transparent border on the default element state (`border: 1px solid transparent`). In forced colors mode, the system converts `transparent` borders to `CanvasText` borders automatically!
+2. **Icons relying on CSS Fill instead of `currentColor`**: SVGs using static hex codes vanish or clash against high-contrast canvases.
+   * **Fix**: Ensure SVG icons use `stroke: currentColor` or `fill: currentColor`.
+3. **Focus Rings using `box-shadow`**: Forced Colors Mode strips all `box-shadow` styles.
+   * **Fix**: Always use native `outline` or `:focus-visible` with `outline: 3px solid transparent` so the browser renders system focus indicators.
+
+<br />
+
+### Component CSS Pattern for Forced Colors Compatibility
+
+Add forced color rules to your Web Component stylesheets under `:host([a11y-forced-colors])` or `@media (forced-colors: active)`:
+
+```css
+/* 1. Base control structure (always include transparent borders) */
+.button,
+.card-container,
+.input-control {
+  border: var(--border-width-thin) var(--border-style-solid) transparent;
+}
+
+/* 2. Forced Colors Mode Overrides */
+:host([a11y-forced-colors]) .button,
+@media (forced-colors: active) {
+  /* Use system keywords so elements don't collapse into the canvas */
+  .card-container {
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    border-color: CanvasText !important;
+  }
+
+  .button-primary {
+    background-color: Highlight !important;
+    color: HighlightText !important;
+    border-color: Highlight !important;
+  }
+
+  .button:disabled,
+  :host([disabled]) .button {
+    color: GrayText !important;
+    border-color: GrayText !important;
+    opacity: 1 !important; /* Opacity can cause illegibility in high contrast */
+  }
+
+  /* Ensure focus rings remain visible when box-shadow is stripped */
+  .button:focus-visible {
+    outline: 3px solid Highlight !important;
+    outline-offset: 2px;
+  }
+}
+```
+## Best Practices
+
+* **Root Level Activation**: Always attach `a11y-*` classes to `document.documentElement` (`<html>`) so CSS custom variable cascading propagates reliably into all Shadow DOM and Light DOM trees.
+* **Cross-Browser Shadow DOM**: Avoid `:host-context()`. Use host attribute reflection (`:host([a11y-*])`) via `MutationObserver` for universal browser support (especially Safari).
+* **Focus Indicators**: Never set `outline: none` on focusable controls without providing a high-contrast fallback that honors `--a11y-focus-outline`.
+* **System Preference Syncing**: Wire runtime toggles to listen to native OS media queries like `(prefers-reduced-motion: reduce)` and `(prefers-color-scheme: dark)` as baseline defaults.

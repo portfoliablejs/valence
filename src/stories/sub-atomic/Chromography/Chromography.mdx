@@ -1,0 +1,116 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Chromography" />
+
+# Chromography
+
+The Chromography system forms the core visual foundation of Valence. It is a curated set of colors exposed as CSS Custom Properties (design tokens) to ensure strict consistency, accessibility, and theming capabilities across all components and applications.
+
+## Semantic Role Tokens (Theme Aware)
+
+These are the primary tokens components should consume. They automatically adjust across **Light Mode**, **Dark Mode**, and **High Contrast Mode** without breaking component-level logic.
+
+<ColorPalette>
+  <ColorItem 
+    title="Backgrounds & Surfaces" 
+    subtitle="Core UI canvas, container surfaces, and borders" 
+    colors={{ 
+      '--color-bg': '#FFFFFF', 
+      '--color-surface': '#F2F2F7', 
+      '--color-surface-border': 'rgba(0, 0, 0, 0.08)' 
+    }} 
+  />
+
+  <ColorItem 
+    title="Text & Foreground Content" 
+    subtitle="Primary headings, body text, and muted copy" 
+    colors={{ 
+      '--color-text-primary': '#000000', 
+      '--color-text-secondary': '#323232', 
+      '--color-text-muted': '#777777' 
+    }} 
+  />
+</ColorPalette>
+
+
+## Primitive Palette
+
+Immutable baseline colors used to build semantic roles and specialized states.
+
+<ColorPalette>
+  <ColorItem 
+    title="Base Primitives" 
+    subtitle="Static absolute black, white, and player canvas" 
+    colors={{ 
+      '--color-white': '#FFFFFF', 
+      '--color-black': '#000000', 
+      '--color-player-bg': '#101218' 
+    }} 
+  />
+  
+  <ColorItem 
+    title="Grayscale Scale" 
+    subtitle="Raw grayscale primitives" 
+    colors={{ 
+      '--color-gray-dark': '#323232', 
+      '--color-gray-med': '#777777', 
+      '--color-gray-light': '#B2B2B2', 
+      '--color-gray-xlight': '#D9D9D9' 
+    }} 
+  />
+  
+  <ColorItem 
+    title="Semantic Feedback & Accents" 
+    subtitle="Action triggers, states, and feedback indicators" 
+    colors={{ 
+      '--color-accent': '#2B71F0', 
+      '--color-success': '#34C759', 
+      '--color-error': '#FF3B30', 
+      '--color-error-alt': '#D73A49' 
+    }} 
+  />
+
+  <ColorItem 
+    title="Overlays & Glass" 
+    subtitle="Layering surfaces, backdrop blur accents, and modals" 
+    colors={{ 
+      '--color-overlay-dark': 'rgba(0, 0, 0, 0.85)', 
+      '--color-overlay-light': 'rgba(255, 255, 255, 0.1)', 
+      '--color-glass-bg': 'rgba(235, 235, 240, 0.6)' 
+    }} 
+  />
+</ColorPalette>
+
+
+## Usage Guidelines
+
+When implementing styles in Web Components or application stylesheets, **always reference semantic role variables directly** (`--color-text-primary`, `--color-surface`, `--color-bg`) rather than hardcoding primitive hex or RGB values.
+
+### Basic Implementation
+
+```css
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  color: var(--color-text-primary);
+}
+
+.button-primary {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
+}
+```
+
+## Sub-Atomic Property Overrides
+To allow one-off background color customizations (or Storybook control overrides) without breaking token encapsulation, components consume background tokens using fallback variables:
+```css
+.variant-primary {
+  /* Uses --custom-bg if defined; otherwise defaults to --color-text-primary */
+  background: var(--custom-bg, var(--color-text-primary));
+}
+```
+
+## Best Practices
+- Semantic Priority: Prefer --color-text-primary and --color-surface over hardcoded --color-black or --color-white to ensure automatic dark mode and high-contrast compliance.
+- Feedback Standards: Use --color-error and --color-success exclusively for feedback, validation, and status updates—never purely for decorative accenting.
+- Accessibility (Contrast): Text rendered over --color-bg or custom container backgrounds maintains a contrast ratio meeting WCAG 2.1/2.2 AA guidelines (4.5:1 ratio for normal body text, 3:1 for large text).

@@ -1,0 +1,21 @@
+:root {
+  /* Component Height Scale */
+  --size-height-xs: 24px;
+  --size-height-sm: 32px;
+  --size-height-md: 40px;
+  --size-height-lg: 48px;
+  --size-height-xl: 56px;
+
+  /* Icon Bounds Scale */
+  --size-icon-sm: 16px;
+  --size-icon-md: 20px;
+  --size-icon-lg: 24px;
+  --size-icon-xl: 32px;
+
+  /* Container & Surface Max-Width Constraints */
+  --size-max-width-xs: 320px;
+  --size-max-width-sm: 480px;
+  --size-max-width-md: 768px;
+  --size-max-width-lg: 1024px;
+  --size-max-width-xl: 1280px;
+}

@@ -1,0 +1,216 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Contributing/Component Architecture" />
+
+# Universal Component Architecture Documentation Standard
+
+This document defines the architectural specification and template for authoring component-level architecture files (`[ComponentName].Architecture.mdx`). Every component in the **Valence Design System**—regardless of its atomic tier—must include a dedicated architecture file alongside its `.js`, `.css`, and `.stories.js` files.
+
+---
+
+## Architectural Blueprint
+
+Architecture documentation bridges the gap between basic UI controls and full software integration. While standard Storybook stories (`.stories.js`) document visual states and argTypes, the `.Architecture.mdx` file details:
+
+* **Data Ownership & Flow:** Unidirectional data flow contracts (State In / Events Out).
+* **Composition & Slots:** Slot hierarchy, child constraints, and sub-component synergy.
+* **API Contracts:** Typed data schemas, custom event detail payloads, and CSS property hooks.
+* **Accessibility Engine Mechanics:** Host ARIA scrubbing, keyboard focus loops, and root class propagation.
+* **Host Application Wiring:** Concrete SPA integration examples.
+
+---
+
+## MDX Template
+
+Component authors can copy the Markdown template below when creating a new component architecture document.
+
+```mdx
+  import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+  import * as ComponentStories from './[ComponentName].stories';
+
+  <Meta title="[tier]s/[ComponentName]/Architecture"/>
+
+  # `ds-[component-name]`
+
+  The `ds-[component-name]` component is a **[stateless / controlled / composite]** 
+  [Atom / Molecule / Organism / Template] designed for 
+  [primary functional purpose in the application].
+
+  ---
+
+  ## Principles
+
+  ### Unidirectional Data Flow
+  The component strictly adheres to the **State In / Events Out** pattern:
+  * **State In (Attributes / Properties):** The host application binds primitive attributes or complex properties onto the host element.
+  * **Events Out (`ds-[component]-*`):** User interactions trigger custom DOM events containing immutable event detail payloads.
+  * **Encapsulated State:** The component never mutates external application state or history directly.
+
+  <mermaid-diagram chart={`
+    flowchart LR
+        subgraph Host["Host Application / App Shell"]
+            direction TB
+            State["State Manager / Router"]
+        end
+
+        subgraph WebComp["Valence Web Component"]
+            Component["<ds-[component-name]>"]
+        end
+
+        State -->|"1. State In<br/><code>.property = value</code>"| Component
+        Component -->|"2. Event Out<br/><code>ds-[component]-event</code>"| State
+
+        %% Styling
+        style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+        style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+        style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+        style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+  `} />
+
+  ## Slot Architecture
+
+  [Detail how default and named slots behave inside the Shadow DOM wrapper, including sub-component dependencies]
+
+  ### Slot Hierarchy Table
+
+  <table>
+    <thead>
+      <tr>
+        <th>Slot Name</th>
+        <th>Type / Allowed Children</th>
+        <th>Description</th>
+        <th>Fallback Behavior</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`default`</td>
+        <td>Text / HTML Subtree</td>
+        <td>Primary content area (e.g., button label, modal body)</td>
+        <td>Renders fallback text or remains empty</td>
+      </tr>
+      <tr>
+        <td>`[slot-name]`</td>
+        <td>`ds-[sub-component]`</td>
+        <td>Named slot target for modular component composition</td>
+        <td>Slot wrapper is collapsed if unassigned</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  ## Data Model
+
+    ```typescript
+    // Define key TypeScript interfaces for component properties or custom event payloads
+    export interface [Component]Data {
+      id: string;
+      label: string;
+      [key: string]: any;
+    }
+    
+
+  ## API Contract
+
+  ### Properties & Attributes
+
+  <table>
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Attribute</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`variant`</td>
+        <td>`variant`</td>
+        <td>`'primary' | 'secondary' | ...`</td>
+        <td>`'primary'`</td>
+        <td>Determines the visual styling variant.</td>
+      </tr>
+      <tr>
+        <td>`disabled`</td>
+        <td>`disabled`</td>
+        <td>`boolean`</td>
+        <td>`false`</td>
+        <td>Disables interactive states when set.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Emitted Custom Events
+
+  <table>
+    <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Bubbles / Composed</th>
+        <th>Detail Payload</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`ds-[component]-select`</td>
+        <td>`true` / `true`</td>
+        <td>`{ id: string, origin: HTMLElement }`</td>
+        <td>Emitted when a primary user selection action is triggered.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Sub-Atomic CSS Custom Property Hooks
+
+  <table>
+    <thead>
+      <tr>
+        <th>CSS Custom Property</th>
+        <th>Fallback Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`--*-radius`</td>
+        <td>`var(--radius-pill)`</td>
+        <td>Overrides corner radius geometry.</td>
+      </tr>
+      <tr>
+        <td>`--*-bg`</td>
+        <td>`var(--color-black)`</td>
+        <td>Overrides background surface fill color.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ## Accessibility & Host ARIA Delegation
+
+  * **ARIA Scrubbing:** Attribute delegation logic strips `aria-*` attributes applied to the outer host custom element tag and delegates them to the inner focusable primitive element.
+  * **Keyboard Navigation:** Native keyboard interactions supported (`Tab`, `Enter`, `Space`, `Escape`, Arrow Keys).
+  * **Global Accessibility Propagation:** Listens to class changes on `document.documentElement` via `MutationObserver` to sync accessibility modes:
+  * `.a11y-dark-mode`: Inverts contrast boundary scales.
+  * `.a11y-high-contrast`: Applies 21:1 binary contrast ratios.
+  * `.a11y-forced-colors`: Applies system active `Canvas` / `Highlight` palette maps.
+  * `.a11y-reduce-motion`: Suppresses CSS animation transitions.
+
+  ## Examples
+
+  ### Basic Integration Example
+
+  ```javascript
+    import 'valence/ds-[component-name]';
+
+    const element = document.createElement('ds-[component-name]');
+    element.setAttribute('variant', 'primary');
+
+    element.addEventListener('ds-[component]-select', (e) => {
+      console.log('Event received:', e.detail);
+    });
+
+    document.body.appendChild(element);
+  ```
+  ```

@@ -1,0 +1,151 @@
+:host {
+  display: inline-flex;
+  font-family: var(--font-family);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.slider-dot {
+  /* Sub-Atomic Style Hook Overrides with Design Token Fallbacks */
+  width: var(--custom-size, var(--size-icon-sm, 12px));
+  height: var(--custom-size, var(--size-icon-sm, 12px));
+  border-radius: var(--custom-radius, var(--radius-circle));
+  background-color: var(--custom-bg, var(--color-gray-xlight));
+  border: var(--custom-border-width, var(--border-width-none))
+          var(--border-style-solid)
+          var(--custom-border-color, transparent);
+  
+  padding: 0;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  /* Centralized Choreography Transitions */
+  transition: var(--component-transition,
+              background-color var(--anim-normal) var(--ease-standard),
+              transform var(--anim-fast) var(--anim-spring),
+              border-color var(--anim-fast) var(--ease-standard));
+}
+
+/* Active State */
+.slider-dot.active,
+:host([active="true"]) .slider-dot {
+  background-color: var(--custom-active-bg, var(--color-gray-dark));
+  transform: scale(var(--btn-hover-scale, 1.2));
+}
+
+/* Focus State for Accessibility */
+.slider-dot:focus-visible {
+  outline: var(--a11y-focus-outline, var(--border-width-medium) var(--border-style-solid) var(--color-accent));
+  outline-offset: var(--a11y-focus-offset, 2px);
+}
+
+/* Hover State */
+.slider-dot:hover {
+  background-color: var(--custom-hover-bg, var(--color-gray-med));
+}
+
+/* ==========================================================================
+   ACCESSIBILITY OVERRIDES MATRIX (Universal Safari Shadow-Piercing)
+   ========================================================================== */
+
+/* --- DARK MODE CONFIGURATION --- */
+:host([a11y-dark-mode]) .slider-dot {
+  /* Use a lower-contrast/semi-transparent token for inactive dot in dark mode */
+  background-color: var(--custom-bg, var(--color-gray-med)); 
+}
+
+:host([a11y-dark-mode]) .slider-dot.active,
+:host([a11y-dark-mode][active="true"]) .slider-dot {
+  background-color: var(--custom-active-bg, var(--color-white));
+}
+
+:host([a11y-dark-mode]) .slider-dot.active,
+:host([a11y-dark-mode][active="true"]) .slider-dot {
+  background-color: var(--custom-active-bg, var(--color-white));
+}
+
+/* --- HIGH CONTRAST CONFIGURATION (WCAG AAA Compliance) --- */
+:host([a11y-high-contrast]) .slider-dot {
+  background: transparent !important;
+  border: var(--border-width-medium) var(--border-style-solid) var(--color-black) !important;
+  color: var(--color-black) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+:host([a11y-high-contrast]) .slider-dot.active,
+:host([a11y-high-contrast][active="true"]) .slider-dot {
+  background: var(--color-black) !important;
+}
+
+/* --- DYSLEXIA COMPACT FONT STACK --- */
+:host([a11y-dyslexia]) .slider-dot {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+}
+
+/* --- BULLETPROOF ZERO-DURATION REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  .slider-dot, * {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+:host([a11y-reduce-motion]) .slider-dot,
+:host([a11y-reduce-motion]) * {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: FORCED COLORS / WINDOWS HIGH CONTRAST MODE
+   ========================================================================== */
+
+/* 1. Attribute Reflected State (Storybook / DOM Toggle) */
+:host([a11y-forced-colors]) .slider-dot {
+  forced-color-adjust: none !important;
+  background-color: CanvasText !important;
+  border: var(--border-width-thin) var(--border-style-solid) CanvasText !important;
+}
+
+:host([a11y-forced-colors]) .slider-dot.active,
+:host([a11y-forced-colors][active="true"]) .slider-dot {
+  forced-color-adjust: none !important;
+  background-color: Highlight !important;
+  border-color: Highlight !important;
+}
+
+:host([a11y-forced-colors]) .slider-dot:focus-visible {
+  outline: 3px solid Highlight !important;
+  outline-offset: 2px !important;
+}
+
+/* 2. Native OS Media Query */
+@media (forced-colors: active) {
+  .slider-dot {
+    forced-color-adjust: none !important;
+    background-color: CanvasText !important;
+    border: var(--border-width-thin) var(--border-style-solid) CanvasText !important;
+  }
+
+  .slider-dot.active,
+  :host([active="true"]) .slider-dot {
+    forced-color-adjust: none !important;
+    background-color: Highlight !important;
+    border-color: Highlight !important;
+  }
+
+  .slider-dot:focus-visible {
+    outline: 3px solid Highlight !important;
+    outline-offset: 2px !important;
+  }
+}

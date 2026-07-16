@@ -1,0 +1,54 @@
+:root {
+  /* Surface Elevation Variables */
+  --surface-canvas: var(--color-bg);
+  --surface-card: var(--color-card-bg);
+  --surface-raised: var(--color-bg);
+  --surface-overlay: var(--color-bg);
+  --surface-glass: var(--overlay-glass-bg);
+  --surface-modal: var(--color-bg);
+
+  /* Surface Shadow Mapping */
+  --surface-shadow-level-0: var(--shadow-none);
+  --surface-shadow-level-1: var(--shadow-sm);
+  --surface-shadow-level-2: var(--shadow-md);
+  --surface-shadow-level-3: var(--shadow-lg);
+  --surface-shadow-level-4: var(--shadow-md);
+  --surface-shadow-level-5: var(--shadow-xl);
+}
+
+/* Surface Utility Classes */
+.surface-canvas {
+  background-color: var(--surface-canvas);
+}
+
+.surface-card {
+  background-color: var(--surface-card);
+  border: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+  box-shadow: var(--surface-shadow-level-1);
+}
+
+.surface-raised {
+  background-color: var(--surface-raised);
+  border: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+  box-shadow: var(--surface-shadow-level-2);
+}
+
+.surface-overlay {
+  background-color: var(--surface-overlay);
+  box-shadow: var(--surface-shadow-level-3);
+  z-index: var(--z-dropdown);
+}
+
+.surface-glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(var(--overlay-glass-blur));
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur));
+  border-bottom: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+}
+
+.surface-modal {
+  background-color: var(--surface-modal);
+  box-shadow: var(--surface-shadow-level-5);
+  border-radius: var(--radius-lg);
+  z-index: var(--z-modal);
+}

@@ -1,0 +1,20 @@
+:root {
+  /* Fonts */
+  --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+/* Global Typography Resets (Applies to Light DOM) */
+body {
+  font-family: var(--font-family);
+  color: var(--color-black);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 { font-weight: 500; font-size: 38px; letter-spacing: -0.04em; line-height: 0.8; }
+h2 { font-weight: 600; font-size: 36px; letter-spacing: -0.02em; line-height: 1.0; }
+h3 { font-weight: 600; font-size: 20px; letter-spacing: -0.02em; line-height: 1.0; }
+h4 { font-weight: 250; font-size: 22px; letter-spacing: -0.04em; line-height: 0.8; color: var(--color-gray-med); }
+
+.p1 { font-weight: 400; font-size: 18px; letter-spacing: -0.02em; line-height: 1.1; }
+.p2 { font-weight: 300; font-size: 17px; letter-spacing: -0.02em; line-height: 0.8; color: var(--color-gray-med); }
