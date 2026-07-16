@@ -1,0 +1,7 @@
+import{i as e}from"./preload-helper-CT_b8DTk.js";var t,n=e((()=>{t=`:host{display:block}.summary-metric-card{border:none;border-left:2px solid var(--color-gray-xlight,#d9d9d9);font-family:var(--font-family,sans-serif);background-color:#0000;flex-direction:column;gap:0;padding:2px 0 2px 10px;display:flex}.metric-value{color:var(--color-black,#000);letter-spacing:0;font-size:13px;font-weight:600}.metric-label{color:var(--color-gray-med,#777);font-size:11px;font-weight:500;line-height:1.2}`})),r,i=e((()=>{n(),r=class extends HTMLElement{static get observedAttributes(){return[`value`,`label`]}constructor(){super(),this.attachShadow({mode:`open`}),this.shadowRoot.innerHTML=`
+      <style>${t}</style>
+      <div class="summary-metric-card" role="group" aria-roledescription="metric">
+        <span class="metric-value"></span>
+        <span class="metric-label"></span>
+      </div>
+    `}connectedCallback(){this.render()}attributeChangedCallback(e,t,n){t!==n&&this.render()}render(){let e=this.shadowRoot.querySelector(`.metric-value`),t=this.shadowRoot.querySelector(`.metric-label`);e.textContent=this.getAttribute(`value`)||`--`,t.textContent=this.getAttribute(`label`)||`Metric`,this.shadowRoot.querySelector(`.summary-metric-card`).setAttribute(`aria-label`,`${this.getAttribute(`value`)} ${this.getAttribute(`label`)}`)}},customElements.get(`ds-metric-card`)||customElements.define(`ds-metric-card`,r)}));export{i as t};

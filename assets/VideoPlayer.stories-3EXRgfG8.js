@@ -1,0 +1,29 @@
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{St as t,bt as n}from"./iframe-zK6jYJ-S.js";import{t as r}from"./Loader-DXCwR-Jp.js";import{t as i}from"./Subtitle-D9o3C4M1.js";import{t as a}from"./VideoControls-Wrcn_Uii.js";var o,s=e((()=>{o=`:host{background-color:var(--color-player-bg,#101218);width:100vw;height:100vh;z-index:var(--z-fixed,100);opacity:0;visibility:hidden;transition:opacity var(--anim-normal) ease, visibility var(--anim-normal) ease;justify-content:center;align-items:center;display:flex;position:fixed;top:0;left:0}:host([visible]){opacity:1;visibility:visible}.player-wrapper{height:85vh;max-height:800px;aspect-ratio:var(--device-aspect-ratio,1 / 2.03);position:relative}video{z-index:1;object-fit:cover;border-radius:10%;width:91%;height:92%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}.phone-frame-overlay{object-fit:contain;object-position:center;pointer-events:none;z-index:2;width:100%;height:100%;position:absolute;top:0;left:0}ds-video-controls{z-index:3;position:absolute;top:50%;right:-70px;transform:translateY(-50%)}`})),c,l=e((()=>{s(),a(),r(),i(),c=class extends HTMLElement{constructor(){super(),this.attachShadow({mode:`open`}),this.shadowRoot.innerHTML=`
+      <style>${o}</style>
+      <div class="player-wrapper">
+        <video id="main-video" playsinline preload="metadata"></video>
+        <img id="player-phone-frame" class="phone-frame-overlay" alt="Phone Frame">
+        <ds-loader visible="true"></ds-loader>
+        
+        <!-- The Subtitle Atom: Mounted inside the player wrapper -->
+        <div class="subtitle-layer" style="position: absolute; bottom: 80px; width: 100%; z-index: 50; display: none;">
+          <ds-subtitle visible="false"></ds-subtitle>
+        </div>
+        
+        <ds-video-controls></ds-video-controls>
+      </div>
+    `,this.video=this.shadowRoot.getElementById(`main-video`),this.controls=this.shadowRoot.querySelector(`ds-video-controls`),this.loader=this.shadowRoot.querySelector(`ds-loader`),this.subtitleLayer=this.shadowRoot.querySelector(`.subtitle-layer`),this.subtitle=this.shadowRoot.querySelector(`ds-subtitle`),this.frame=this.shadowRoot.getElementById(`player-phone-frame`),this._ccEnabled=!1,this.bindEvents()}set caseData(e){e&&(this._caseData=e,this.render())}play(){this.video.play().catch(e=>console.error(`Video play failed:`,e))}pause(){this.video.pause()}render(){if(!this._caseData)return;let e=window.currentLang||`en`,t=t=>t&&t[e]?t[e]:t&&t.en?t.en:``;this.video.src=t(this._caseData.videoSrc),this.frame.src=this._caseData.frameSrc,this._caseData.frameSrc?this.frame.style.display=`block`:this.frame.style.display=`none`;let n=this.video.querySelector(`track`);n&&n.remove();let r=t(this._caseData.vttSrc);if(r){let t=document.createElement(`track`);t.kind=`captions`,t.src=r,t.srclang=e,t.default=!1,this.video.appendChild(t),this._initSubtitleSync()}}_initSubtitleSync(){let e=()=>{let e=this.video.textTracks&&this.video.textTracks[0];return e?(e.mode=this._ccEnabled?`hidden`:`disabled`,this.subtitleLayer.style.display=this._ccEnabled?`block`:`none`,e.oncuechange=()=>{let t=e.activeCues&&e.activeCues[0];if(t&&e.mode===`hidden`){let e=t.text.replace(/<[^>]*>/g,``);this.subtitle.setAttribute(`text`,e),this.subtitle.setAttribute(`visible`,`true`)}else this.subtitle.setAttribute(`visible`,`false`)},!0):!1};if(!e()){let t=0,n=setInterval(()=>{(e()||t>3e3)&&clearInterval(n),t+=150},150)}}bindEvents(){this.video.addEventListener(`playing`,()=>{this.controls.setAttribute(`playing`,`true`),this.loader.setAttribute(`visible`,`false`)}),this.video.addEventListener(`pause`,()=>this.controls.setAttribute(`playing`,`false`)),this.video.addEventListener(`waiting`,()=>this.loader.setAttribute(`visible`,`true`)),this.video.addEventListener(`ended`,()=>this.dispatchEvent(new CustomEvent(`ds-video-ended`))),this.controls.addEventListener(`ds-video-action`,e=>{switch(e.detail.action){case`play-pause`:this.video.paused?this.play():this.pause();break;case`stop`:this.pause(),this.dispatchEvent(new CustomEvent(`ds-video-close`));break;case`cc`:this._ccEnabled=!this._ccEnabled;let e=this.video.textTracks&&this.video.textTracks[0];e&&(e.mode=this._ccEnabled?`hidden`:`disabled`,this.subtitleLayer.style.display=this._ccEnabled?`block`:`none`,this._ccEnabled||this.subtitle.setAttribute(`visible`,`false`)),this.controls.setAttribute(`cc-enabled`,this._ccEnabled?`true`:`false`);break}})}},customElements.get(`ds-video-player`)||customElements.define(`ds-video-player`,c)})),u,d,f,p,m;e((()=>{n(),l(),{fn:u}=__STORYBOOK_MODULE_TEST__,d={id:`holofante`,title:{en:`Agentic AI Design`},videoSrc:{en:`https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4`},frameSrc:`https://www.schimanko.dev/assets/frames/holofante.avif`},f={title:`Organisms/VideoPlayer`,tags:[`autodocs`],parameters:{layout:`fullscreen`},argTypes:{visible:{control:`boolean`}},args:{onClose:u(),onEnded:u()},render:e=>(setTimeout(()=>{let t=document.querySelector(`ds-video-player`);t&&(t.caseData=d,e.visible?t.play():t.pause())},0),t`
+      <div style="position: relative; height: 100vh; background: #333; display: flex; align-items: center; justify-content: center; color: #666; font-family: sans-serif;">
+        <p>Application content is behind the player...</p>
+        
+        <ds-video-player
+          ?visible="${e.visible}"
+          @ds-video-close="${e.onClose}"
+          @ds-video-ended="${e.onEnded}"
+        ></ds-video-player>
+      </div>
+    `)},p={args:{visible:!0}},p.parameters={...p.parameters,docs:{...p.parameters?.docs,source:{originalSource:`{
+  args: {
+    visible: true
+  }
+}`,...p.parameters?.docs?.source}}},m=[`Default`]}))();export{p as Default,m as __namedExportsOrder,f as default};
