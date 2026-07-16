@@ -1,0 +1,159 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: var(--radius-sm, 4px);
+  
+  /* Sub-Atomic Style Hook Overrides with Design Token Fallbacks */
+  width: var(--ds-check-size, var(--size-icon-sm));
+  height: var(--ds-check-size, var(--size-icon-sm));
+  color: var(--ds-check-color, var(--color-accent));
+  transition: transform var(--anim-fast) var(--ease-fluid), 
+              opacity var(--anim-fast) var(--ease-fluid),
+              background-color var(--anim-fast) var(--ease-fluid),
+              border-color var(--anim-fast) var(--ease-fluid);
+}
+
+/* --- BACKGROUND SURFACE STATE (has-background) --- */
+:host([has-background]) {
+  background: var(--ds-check-bg, var(--color-surface));
+  border: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--ds-check-border-color, var(--color-gray-light));
+  padding: 2px;
+}
+
+:host([has-background][selected]) {
+  background: var(--ds-check-bg, var(--color-accent));
+  border-color: var(--ds-check-color, var(--color-accent));
+  color: var(--color-white, #ffffff);
+}
+
+/* --- HOVER & ACTIVE INTERACTIONS --- */
+:host(:hover:not([disabled])) {
+  transform: scale(var(--btn-hover-scale, 1.05));
+  opacity: var(--opacity-high, 0.85);
+}
+
+:host(:active:not([disabled])) {
+  transform: scale(var(--btn-active-scale, 0.95));
+}
+
+/* --- FOCUS RINGS --- */
+:host(:focus) {
+  outline: none;
+}
+
+:host(:focus-visible) {
+  outline: var(--a11y-focus-outline, 3px solid var(--color-accent));
+  outline-offset: var(--a11y-focus-offset, 2px);
+}
+
+/* --- DISABLED STATE --- */
+:host([disabled]) {
+  opacity: var(--opacity-disabled, 0.38);
+  cursor: not-allowed !important;
+}
+
+:host([disabled]:focus-visible) {
+  outline: none;
+}
+
+.check-root {
+  display: contents;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.5);
+  pointer-events: none;
+  
+  /* Centralized Choreography Transitions with Design Tokens */
+  transition: var(--component-transition, 
+              opacity var(--anim-fast) var(--ease-standard), 
+              transform var(--anim-normal) var(--anim-spring));
+}
+
+:host([selected]) svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: DARK MODE OVERRIDES
+   ========================================================================== */
+
+:host([a11y-dark-mode]) {
+  color: var(--ds-check-color, var(--color-accent));
+}
+
+:host([a11y-dark-mode][has-background]) {
+  background: var(--ds-check-bg, var(--color-surface));
+  border-color: var(--color-surface-border);
+}
+
+:host([a11y-dark-mode][has-background][selected]) {
+  background: var(--ds-check-bg, var(--color-accent));
+  border-color: var(--color-accent);
+  color: var(--color-white, #ffffff);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY OVERRIDES MATRIX (Universal Safari Shadow-Piercing)
+   ========================================================================== */
+
+:host([a11y-high-contrast]) {
+  color: var(--color-black) !important;
+}
+
+:host([a11y-high-contrast][has-background]) {
+  background: var(--color-bg) !important;
+  border-color: var(--color-black) !important;
+}
+
+:host([a11y-high-contrast][has-background][selected]) {
+  background: var(--color-black) !important;
+  color: var(--color-bg) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  svg, * {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+:host([a11y-reduce-motion]) svg,
+:host([a11y-reduce-motion]) * {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: FORCED COLORS / WINDOWS HIGH CONTRAST MODE
+   ========================================================================== */
+
+:host([a11y-forced-colors]) svg {
+  forced-color-adjust: none !important;
+  stroke: Highlight !important;
+}
+
+:host([a11y-forced-colors][disabled]) svg {
+  stroke: GrayText !important;
+}
+
+@media (forced-colors: active) {
+  svg {
+    forced-color-adjust: none !important;
+    stroke: Highlight !important;
+  }
+  :host([disabled]) svg {
+    stroke: GrayText !important;
+  }
+}

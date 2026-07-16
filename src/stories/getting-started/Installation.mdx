@@ -1,0 +1,71 @@
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Installation & Usage" />
+
+# Installation & Usage
+
+Integrating Valence into your project is designed to be straightforward. As a package of native Web Components, although it was built specifically with the `portfoliable` open-source application in mind, it can be used in any HTML-based environment.
+
+## Installation
+
+First, add the Valence package to your project. If you are developing locally, you can use `npm link` or a local file path. For a published package, you would use:
+
+<Source code={`npm install valence-ds`} language="bash" />
+
+## Importing the Library
+
+To make the components available in your application, you need to import the main library entry point. This single import registers all the components and foundational styles.
+
+In your main JavaScript file (e.g., `main.js` or `App.js`):
+
+<Source code={`import 'valence-ds';`} language="js" />
+
+This will automatically load the necessary CSS design tokens and define all custom elements like `<ds-button>`, `<ds-header>`, etc., making them ready to use in your HTML.
+
+## Using a Component
+
+Once imported, you can use the components directly in your HTML like any standard element.
+
+For example, to use a button and an icon:
+
+<Source code={`
+<ds-button variant="primary" icon="play">
+  Play Video
+</ds-button>
+
+<ds-icon name="share" size="24"></ds-icon>
+`} language="html" />
+
+### Passing Data
+
+-   **Simple Data (Strings, Numbers):** Pass data using standard HTML attributes.
+    ```html
+    <ds-pill label="Repository" />
+    ```
+-   **Boolean States:** Use the presence or absence of an attribute to indicate a boolean `true` state.
+    ```html
+    <ds-toggle checked></ds-toggle>
+    ```
+-   **Complex Data (Arrays, Objects):** For complex data, it's best to set the data via a JavaScript property on the element.
+    ```js
+    const myHeader = document.querySelector('ds-header');
+    myHeader.menuItems = [
+      { id: 'case-1', label: 'First Case' },
+      { id: 'case-2', label: 'Second Case' }
+    ];
+    ```
+
+## Handling Events
+
+Valence components communicate with your application by dispatching standard `CustomEvent`. All events are prefixed with `ds-` for clarity.
+
+You can listen for these events using `addEventListener`:
+
+<Source code={`
+const modeToggle = document.querySelector('ds-mode-toggle');
+
+modeToggle.addEventListener('ds-mode-change', (event) => {
+  console.log('New mode selected:', event.detail.mode);
+  // Your application logic here...
+});
+`} language="js" />

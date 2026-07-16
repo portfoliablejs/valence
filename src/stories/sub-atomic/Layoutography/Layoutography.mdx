@@ -1,0 +1,213 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Layoutography" />
+
+# Layoutography
+
+The Layoutography system defines structural layout primitives, flow direction rules, grid alignments, and container constraints across Valence. By combining spatial scale tokens (`Spatialography`) and responsive breakpoints (`Gridography`), Layoutography provides standard architectural patterns for organizing UI components into cohesive views and composite molecules.
+
+<br />
+
+## Layout Primitives Overview
+
+Valence standardizes layout construction around four primary structural layout primitives.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Primitive</th>
+      <th style={{ textAlign: 'left' }}>Layout Pattern</th>
+      <th style={{ textAlign: 'left' }}>Primary Tokens</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Stack</strong></td>
+      <td>Vertical linear layout flow (flex-column)</td>
+      <td><code>gap: var(--space-*)</code></td>
+      <td>Form fields, card bodies, stacked content sections, sidebars.</td>
+    </tr>
+    <tr>
+      <td><strong>Cluster</strong></td>
+      <td>Horizontal wrapping flow (flex-row + wrap)</td>
+      <td><code>gap: var(--space-*)</code></td>
+      <td>Button groups, tag clouds, metadata chips, breadcrumbs.</td>
+    </tr>
+    <tr>
+      <td><strong>Grid</strong></td>
+      <td>Two-dimensional responsive column alignment</td>
+      <td><code>var(--grid-columns-*)</code>, <code>var(--grid-gutter)</code></td>
+      <td>Dashboard cards, media galleries, multi-column forms.</td>
+    </tr>
+    <tr>
+      <td><strong>Dock / Sticky Footer</strong></td>
+      <td>Fixed or persistent spatial anchoring</td>
+      <td><code>var(--z-fixed)</code>, <code>var(--size-height-*)</code></td>
+      <td>Fixed navigation bars, sticky action footers, media control bars.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Container Max-Width Constraints
+
+Layout containers use `Sizography` maximum width constraints to enforce readable line lengths and centered viewport bounds.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Container Class</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable Token</th>
+      <th style={{ textAlign: 'left' }}>Max Width</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.container-xs</code></td>
+      <td><code>var(--size-max-width-xs)</code></td>
+      <td><code>320px</code></td>
+      <td>Popover menus, mobile drawers, narrow cards.</td>
+    </tr>
+    <tr>
+      <td><code>.container-sm</code></td>
+      <td><code>var(--size-max-width-sm)</code></td>
+      <td><code>480px</code></td>
+      <td>Modal dialogs, authentication forms, focused cards.</td>
+    </tr>
+    <tr>
+      <td><code>.container-md</code></td>
+      <td><code>var(--size-max-width-md)</code></td>
+      <td><code>768px</code></td>
+      <td>Reading columns, case study content, step wizards.</td>
+    </tr>
+    <tr>
+      <td><code>.container-lg</code></td>
+      <td><code>var(--size-max-width-lg)</code></td>
+      <td><code>1024px</code></td>
+      <td>Standard application viewports and dashboard grids.</td>
+    </tr>
+    <tr>
+      <td><code>.container-xl</code></td>
+      <td><code>var(--size-max-width-xl)</code></td>
+      <td><code>1280px</code></td>
+      <td>Wide desktop views and full data grid screens.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines & CSS Implementations
+
+Always rely on standardized spatial variables (`--space-*`) and grid variables when constructing component or page layouts. Avoid arbitrary margin or padding pixel overrides.
+
+### 1. Vertical Stack Primitive (`.layout-stack`)
+
+```css
+.layout-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-md); /* Standard default stack gap */
+}
+
+.layout-stack-tight {
+  gap: var(--space-xs);
+}
+
+.layout-stack-loose {
+  gap: var(--space-xl);
+}
+
+```
+
+### 2. Horizontal Cluster Primitive (`.layout-cluster`)
+
+```css
+.layout-cluster {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.layout-cluster-between {
+  justify-content: space-between;
+}
+
+```
+
+### 3. Responsive Application Grid (`.layout-grid`)
+
+```css
+.layout-grid {
+  display: grid;
+  gap: var(--grid-gutter, 24px);
+  grid-template-columns: repeat(var(--grid-columns-mobile, 4), 1fr);
+  width: 100%;
+  max-width: var(--size-max-width-lg);
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .layout-grid {
+    grid-template-columns: repeat(var(--grid-columns-tablet, 8), 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout-grid {
+    grid-template-columns: repeat(var(--grid-columns-desktop, 12), 1fr);
+  }
+}
+
+```
+
+### 4. Dock / Sticky Header Primitive (`.layout-dock-header`)
+
+```css
+.layout-dock-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-fixed);
+  width: 100%;
+  background: var(--overlay-glass-bg);
+  backdrop-filter: blur(var(--overlay-glass-blur));
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur));
+  border-bottom: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+  padding: var(--space-sm) var(--space-lg);
+}
+
+```
+
+## Reduced Motion & Accessibility Overrides
+
+When reduced motion (`.a11y-reduce-motion`) or high contrast (`.a11y-high-contrast`) is active, layout transitions and glass backdrop blurs automatically adjust to prevent rendering bugs and preserve legibility.
+
+```css
+/* High Contrast Layout Surface Reset */
+:host([a11y-high-contrast]) .layout-dock-header {
+  background: var(--color-bg) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: var(--border-width-medium) var(--border-style-solid) var(--color-black) !important;
+}
+
+/* Reduced Motion Layout Alignment */
+:host([a11y-reduce-motion]) .layout-stack,
+:host([a11y-reduce-motion]) .layout-grid {
+  transition: none !important;
+}
+
+```
+
+## Best Practices
+
+* **Mobile-First Responsive Design**: Always declare default layout styles for mobile screens, using `min-width` media queries to expand layout columns as viewport width grows.
+* **Strict Spatial Gaps**: Use explicit `gap` properties (`var(--space-*)`) on Flexbox and Grid containers instead of applying directional `margin-bottom` or `margin-right` on child elements.
+* **Centering Containers**: Use `margin-inline: auto` combined with `--size-max-width-*` to center main page content columns cleanly across screens.
+* **Z-Index Layering Integrity**: Ensure fixed docks or floating toolbars reference standardized elevation variables (`var(--z-fixed)`, `var(--z-overlay)`) rather than hardcoded integer values.

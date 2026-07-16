@@ -1,0 +1,10 @@
+:root {
+  /* Opacity Tokens */
+  --opacity-solid: 1;
+  --opacity-high: 0.85;
+  --opacity-medium: 0.6;
+  --opacity-low: 0.38;
+  --opacity-faint: 0.12;
+  --opacity-disabled: 0.38;
+  --opacity-transparent: 0;
+}

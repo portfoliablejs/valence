@@ -1,0 +1,30 @@
+/* src/stories/organisms/Gallery/gallery.css */
+:host {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.gallery-container {
+    display: flex;
+    gap: 100px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    align-items: flex-end;
+    flex-grow: 1;
+    padding: 15vh 8vw 120px 8vw;
+    cursor: grab;
+    scrollbar-width: none;
+    will-change: transform;
+}
+
+.gallery-container::-webkit-scrollbar { display: none; }
+
+.gallery-container.dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+}
+
+::slotted(ds-gallery-item:first-child) {
+    margin-left: max(8vw, calc((100vw - 1440px) / 2));
+}

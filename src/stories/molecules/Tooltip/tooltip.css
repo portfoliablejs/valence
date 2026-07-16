@@ -1,0 +1,156 @@
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10000;
+  
+  /* Spatial orchestration constraints[cite: 1] */
+  --tooltip-gap: 12px; 
+  --tooltip-slide: -6px; 
+}
+
+.action-tooltip {
+  position: absolute;
+  background: var(--custom-bg, var(--color-overlay-dark));
+  backdrop-filter: blur(8px);
+  color: var(--color-white);
+  padding: 6px 10px;
+  border-radius: var(--custom-radius, var(--radius-md));
+  /* Include a transparent border by default so it converts cleanly in high-contrast[cite: 1] */
+  border: var(--custom-border-width, var(--border-width-thin, 1px)) 
+          var(--border-style-solid, solid) 
+          var(--custom-border-color, transparent);
+  font-family: var(--font-family);
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+  letter-spacing: 0.01em;
+  box-sizing: border-box;
+  font-size: calc(11px * var(--font-scale-multiplier, 1));
+  
+  transition: opacity var(--anim-fast) var(--ease-standard), 
+              transform var(--anim-fast) var(--ease-standard);
+  
+  /* Baseline Positioning Axis: Bottom Center */
+  top: calc(100% + var(--tooltip-gap));
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--tooltip-slide));
+}
+
+/* Visible State (Bottom Default) */
+:host([visible]) .action-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- POSITIONING VARIANT: TOP --- */
+:host([position="top"]) .action-tooltip {
+  top: auto;
+  bottom: calc(100% + var(--tooltip-gap));
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(var(--tooltip-slide) * -1));
+}
+:host([position="top"][visible]) .action-tooltip {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- POSITIONING VARIANT: LEFT --- */
+:host([position="left"]) .action-tooltip {
+  top: 50%;
+  left: auto;
+  right: calc(100% + var(--tooltip-gap));
+  transform: translateY(-50%) translateX(calc(var(--tooltip-slide) * -1));
+}
+:host([position="left"][visible]) .action-tooltip {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* --- POSITIONING VARIANT: RIGHT --- */
+:host([position="right"]) .action-tooltip {
+  top: 50%;
+  left: calc(100% + var(--tooltip-gap));
+  right: auto;
+  transform: translateY(-50%) translateX(var(--tooltip-slide));
+}
+:host([position="right"][visible]) .action-tooltip {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: REDUCED MOTION (BULLETPROOF)[cite: 1, 2]
+   ========================================================================== */
+:host([a11y-reduce-motion]) *,
+:host([a11y-reduce-motion]) *::before,
+:host([a11y-reduce-motion]) *::after {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: DYSLEXIA FONT[cite: 1, 2]
+   ========================================================================== */
+:host([a11y-dyslexia]) .action-tooltip {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: HIGH CONTRAST (WCAG AAA 21:1)[cite: 1, 2]
+   ========================================================================== */
+:host([a11y-high-contrast]) .action-tooltip {
+  background: var(--color-bg) !important;
+  backdrop-filter: none !important;
+  border: var(--border-width-medium) var(--border-style-solid) var(--color-black) !important;
+  color: var(--color-black) !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: DARK MODE[cite: 1, 2]
+   ========================================================================== */
+:host([a11y-dark-mode]) .action-tooltip {
+  background: var(--custom-bg, var(--color-card-bg, #2C2C2E));
+  border: var(--custom-border-width, var(--border-width-thin, 1px)) 
+          var(--border-style-solid, solid) 
+          var(--custom-border-color, rgba(255, 255, 255, 0.15));
+  color: var(--color-white);
+  box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.5));
+}
+
+/* ==========================================================================
+   DISABLED SUPPRESSION (Replaced buggy Safari :host-context)[cite: 1, 2]
+   ========================================================================== */
+:host([disabled]) .action-tooltip {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
+   WINDOWS FORCED COLORS OVERRIDES (Valence Double-Block Requirement)
+   ========================================================================== */
+:host([a11y-forced-colors]) .action-tooltip {
+  forced-color-adjust: none !important;
+  background-color: Canvas !important;
+  color: CanvasText !important;
+  border-color: CanvasText !important;
+}
+
+@media (forced-colors: active) {
+  .action-tooltip {
+    forced-color-adjust: none !important;
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    border-color: CanvasText !important;
+  }
+}

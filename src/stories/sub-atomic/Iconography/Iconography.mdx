@@ -1,0 +1,281 @@
+import { Meta, IconGallery, IconItem } from '@storybook/addon-docs/blocks';
+import { ICON_REGISTRY } from '../../atoms/Icon/Iconography';
+
+<Meta title="Sub-atomic/Iconography" />
+
+# Iconography
+
+The Iconography system provides visual clarity and wayfinding across the platform. Icons are exposed via the `<ds-icon>` Web Component and rendered directly from SVG vector paths using CSS Custom Properties for sizing and coloring.
+<br />
+
+## Icon Gallery by Category
+
+Every icon supports two core variants: **Outline** (default) and **Fill** (`variant="fill"`).
+
+export const MEDIA_ICONS = [
+  'play', 'pause', 'motion-play', 'skip-previous', 'skip-next',
+  'forward-5', 'forward-10', 'backward-5', 'backward-10',
+  'volume-mute', 'volume-low', 'volume-medium', 'volume-high',
+  'volume-on', 'volume-closed', 'subtitle-on', 'subtitle-closed',
+  'autoscroll', 'autoscroll-closed', 'fullscreen-enter', 'fullscreen-exit',
+  'repeat', 'shuffle', 'pip'
+];
+
+export const PLAYBACK_SPEED_ICONS = [
+  'playback-0-75x', 'playback-1x', 'playback-1-25x',
+  'playback-1-5x', 'playback-1-75x', 'playback-2x'
+];
+
+export const VIDEO_QUALITY_ICONS = [
+  'video-quality', 'hd', 'quality-auto', 'quality-240p',
+  'quality-360p', 'quality-480p', 'quality-720p',
+  'quality-1080p', 'quality-1440p', 'quality-2k', 'quality-4k'
+];
+
+export const NAVIGATION_ICONS = [
+  'tab-nav-left', 'tab-nav-right', 'chevron-left', 'chevron-right',
+  'chevron-up', 'chevron-down', 'arrow-left', 'arrow-right',
+  'arrow-left-long', 'return', 'stop-return', 'menu',
+  'more-horizontal', 'more-vertical', 'drag-handle', 'external-link'
+];
+
+export const SYSTEM_ACCESSIBILITY_ICONS = [
+  'search', 'close', 'check', 'check-circle', 'info',
+  'alert-circle', 'lock-closed', 'lock-open', 'eye-open',
+  'eye-closed', 'text-size', 'language', 'accessibility',
+  'high-contrast', 'sun', 'moon', 'settings', 'filter'
+];
+
+export const ACTION_ICONS = [
+  'plus', 'minus', 'edit', 'trash', 'copy', 'download',
+  'upload', 'bookmark', 'share', 'email', 'link', 'ask-ai'
+];
+
+export const USER_ACCOUNT_ICONS = [
+  'user', 'users', 'user-plus'
+];
+
+export const DATA_FILE_ICONS = [
+  'file', 'folder', 'image', 'paperclip'
+];
+
+export const SOCIAL_SHIELD_ICONS = [
+  'linkedin', 'x', 'facebook', 'flag-shield', 'pirate-shield'
+];
+
+### Media & Player Controls
+<IconGallery>
+  {MEDIA_ICONS.flatMap((iconName) => [
+    <IconItem key={`${iconName}-outline`} name={`${iconName} (outline)`}>
+      <ds-icon name={iconName} size="24" />
+    </IconItem>,
+    <IconItem key={`${iconName}-fill`} name={`${iconName} (fill)`}>
+      <ds-icon name={iconName} variant="fill" size="24" />
+    </IconItem>
+  ])}
+</IconGallery>
+
+### Playback Speed
+<IconGallery>
+  {PLAYBACK_SPEED_ICONS.flatMap((iconName) => [
+    <IconItem key={`${iconName}-outline`} name={`${iconName} (outline)`}>
+      <ds-icon name={iconName} size="24" />
+    </IconItem>,
+    <IconItem key={`${iconName}-fill`} name={`${iconName} (fill)`}>
+      <ds-icon name={iconName} variant="fill" size="24" />
+    </IconItem>
+  ])}
+</IconGallery>
+
+### Video Quality
+<IconGallery>
+  {VIDEO_QUALITY_ICONS.flatMap((iconName) => [
+    <IconItem key={`${iconName}-outline`} name={`${iconName} (outline)`}>
+      <ds-icon name={iconName} size="24" />
+    </IconItem>,
+    <IconItem key={`${iconName}-fill`} name={`${iconName} (fill)`}>
+      <ds-icon name={iconName} variant="fill" size="24" />
+    </IconItem>
+  ])}
+</IconGallery>
+
+### Navigation & Layout
+<IconGallery>
+  {NAVIGATION_ICONS.flatMap((iconName) => [
+    <IconItem key={`${iconName}-outline`} name={`${iconName} (outline)`}>
+      <ds-icon name={iconName} size="24" />
+    </IconItem>,
+    <IconItem key={`${iconName}-fill`} name={`${iconName} (fill)`}>
+      <ds-icon name={iconName} variant="fill" size="24" />
+    </IconItem>
+  ])}
+</IconGallery>
+
+### System & Accessibility
+<IconGallery>
+  {SYSTEM_ACCESSIBILITY_ICONS.flatMap((iconName) => [
+    <IconItem key={`${iconName}-outline`} name={`${iconName} (outline)`}>
+      <ds-icon name={iconName} size="24" />
+    </IconItem>,
+    <IconItem key={`${iconName}-fill`} name={`${iconName} (fill)`}>
+      <ds-icon name={iconName} variant="fill" size="24" />
+    </IconItem>
+  ])}
+</IconGallery>
+
+### Actions & Sharing
+<IconGallery>
+  {ACTION_ICONS.flatMap((iconName) => [
+    <IconItem key={`${iconName}-outline`} name={`${iconName} (outline)`}>
+      <ds-icon name={iconName} size="24" />
+    </IconItem>,
+    <IconItem key={`${iconName}-fill`} name={`${iconName} (fill)`}>
+      <ds-icon name={iconName} variant="fill" size="24" />
+    </IconItem>
+  ])}
+</IconGallery>
+
+### User & Account
+<IconGallery>
+  {USER_ACCOUNT_ICONS.flatMap((iconName) => [
+    <IconItem key={`${iconName}-outline`} name={`${iconName} (outline)`}>
+      <ds-icon name={iconName} size="24" />
+    </IconItem>,
+    <IconItem key={`${iconName}-fill`} name={`${iconName} (fill)`}>
+      <ds-icon name={iconName} variant="fill" size="24" />
+    </IconItem>
+  ])}
+</IconGallery>
+
+### Data & Files
+<IconGallery>
+  {DATA_FILE_ICONS.flatMap((iconName) => [
+    <IconItem key={`${iconName}-outline`} name={`${iconName} (outline)`}>
+      <ds-icon name={iconName} size="24" />
+    </IconItem>,
+    <IconItem key={`${iconName}-fill`} name={`${iconName} (fill)`}>
+      <ds-icon name={iconName} variant="fill" size="24" />
+    </IconItem>
+  ])}
+</IconGallery>
+
+### Social & Shields
+<IconGallery>
+  {SOCIAL_SHIELD_ICONS.flatMap((iconName) => [
+    <IconItem key={`${iconName}-outline`} name={`${iconName} (outline)`}>
+      <ds-icon name={iconName} size="24" />
+    </IconItem>,
+    <IconItem key={`${iconName}-fill`} name={`${iconName} (fill)`}>
+      <ds-icon name={iconName} variant="fill" size="24" />
+    </IconItem>
+  ])}
+</IconGallery>
+
+<br />
+
+## Standardized Variant Conventions
+
+Icon variant toggling is unified across the entire component library using standard attributes.
+
+* **On `<ds-icon>` directly:** Use `variant="fill"` or `variant="outline"`.
+* **On Parent Wrappers (`<ds-button>`, `<ds-item-row>`, etc.):** Use `icon-variant="fill"` or `icon-variant="outline"`.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Property / Attribute</th>
+      <th style={{ textAlign: 'left' }}>Target Element</th>
+      <th style={{ textAlign: 'left' }}>Accepted Values</th>
+      <th style={{ textAlign: 'left' }}>Default Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>variant</strong></td>
+      <td>`<ds-icon>`</td>
+      <td>`outline \| fill`</td>
+      <td>`outline`</td>
+    </tr>
+    <tr>
+      <td><strong>icon-variant</strong></td>
+      <td>`<ds-button>`, `<ds-item-row>`</td>
+      <td>`outline \| fill`</td>
+      <td>`outline`</td>
+    </tr>
+    <tr>
+      <td><strong>Size</strong></td>
+      <td>`--icon-size` / `size`</td>
+      <td>Pixels / Custom Unit</td>
+      <td>`24px`</td>
+    </tr>
+    <tr>
+      <td><strong>Fill Color</strong></td>
+      <td>`--icon-fill`</td>
+      <td>CSS Color Variable</td>
+      <td>`none` (or `currentColor` when filled)</td>
+    </tr>
+    <tr>
+      <td><strong>Stroke Color</strong></td>
+      <td>`--icon-stroke` / `color`</td>
+      <td>CSS Color Variable</td>
+      <td>`currentColor`</td>
+    </tr>
+    <tr>
+      <td><strong>Stroke Width</strong></td>
+      <td>`--icon-stroke-width`</td>
+      <td>Number</td>
+      <td>`2`</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Use the custom Web Component `<ds-icon>` directly in standard HTML, Web Components, or application templates.
+
+### Basic Implementation
+
+```html
+<!-- Standard Outlined Icon (Default) -->
+<ds-icon name="bookmark"></ds-icon>
+
+<!-- Solid Filled Icon -->
+<ds-icon name="bookmark" variant="fill"></ds-icon>
+
+<!-- Standardized Wrapper Configuration -->
+<ds-button icon="bookmark" icon-variant="fill">Save Item</ds-button>
+<ds-item-row icon="moon" icon-variant="fill" show-icon label="Dark Theme"></ds-item-row>
+
+<!-- Custom Sizing and Colors -->
+<ds-icon name="check" size="32" color="var(--color-success)"></ds-icon>
+
+<!-- Standardized Player Badges -->
+<ds-icon name="play"></ds-icon>
+<ds-icon name="play" variant="fill"></ds-icon>
+<ds-icon name="video-quality"></ds-icon>
+<ds-icon name="quality-1080p"></ds-icon>
+
+```
+
+## Styling with CSS
+
+```css
+.action-button ds-icon {
+  --icon-size: var(--size-icon-lg, 24px);
+  --icon-stroke-width: 1.5;
+  color: var(--color-accent);
+}
+
+.action-button:hover ds-icon {
+  color: var(--color-black);
+}
+
+```
+
+## Best Practices
+
+* **Accessibility**: Ensure standalone interactive icons (like close buttons) include an `aria-label` directly on the `<ds-button>` parent component, as `<ds-icon>` internally sets `aria-hidden="true"`.
+* **Inheritance**: Set color on the parent container to let icons inherit brand or feedback state colors automatically.
+* **Icon Sizing**: Stick to multiples of 4px or 8px (16px, 20px, 24px, 32px) to maintain grid pixel alignment.

@@ -1,0 +1,11 @@
+:root {
+  --overlay-glass-bg: rgba(0, 0, 0, 0.1);
+  --overlay-glass-blur: 6px;
+}
+
+/* Utility class for global usage if needed */
+.foundation-glass {
+  background: var(--overlay-glass-bg);
+  backdrop-filter: blur(var(--overlay-glass-blur));
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur));
+}

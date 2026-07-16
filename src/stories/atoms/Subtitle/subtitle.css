@@ -1,0 +1,132 @@
+:host {
+  display: block;
+  width: 100%;
+  pointer-events: auto;
+  font-family: var(--font-family);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.custom-subtitle {
+  margin: 0 auto;
+  text-align: center;
+  max-width: var(--size-max-width-md, 768px);
+  width: fit-content;
+  box-sizing: border-box;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  will-change: transform;
+
+  /* Sub-Atomic Style Hook Overrides with Design Token Fallbacks */
+  background-color: var(--custom-bg, var(--color-gray-dark));
+  color: var(--custom-color, var(--color-white));
+  font-family: var(--custom-font, var(--font-family));
+  padding: var(--custom-padding, var(--space-xs) var(--space-sm));
+  border-radius: var(--custom-radius, var(--radius-sm));
+  border: var(--custom-border-width, var(--border-width-none))
+          var(--border-style-solid)
+          var(--custom-border-color, transparent);
+
+  /* Dynamic Responsive Text Scaling Configuration */
+  font-size: calc(18px * var(--font-scale-multiplier, 1));
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+
+  opacity: var(--opacity-transparent);
+  visibility: hidden;
+
+  /* Centralized Choreography Transitions (Excludes transform for instant dragging) */
+  transition: opacity var(--anim-fast) var(--ease-standard),
+              visibility var(--anim-fast) var(--ease-standard);
+}
+
+.custom-subtitle:active,
+.custom-subtitle.dragging {
+  cursor: grabbing;
+  opacity: var(--opacity-high, 0.85);
+}
+
+/* Active Visible State */
+.custom-subtitle.visible,
+:host([visible="true"]) .custom-subtitle {
+  opacity: var(--opacity-solid);
+  visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .custom-subtitle {
+    max-width: 95vw;
+    width: 90%;
+    font-size: calc(16px * var(--font-scale-multiplier, 1));
+    padding: var(--custom-padding, var(--space-xs) var(--space-md));
+    line-height: 1.2;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY OVERRIDES MATRIX (Universal Safari Shadow-Piercing)
+   ========================================================================== */
+
+/* --- DARK MODE CONFIGURATION --- */
+:host([a11y-dark-mode]) .custom-subtitle {
+  background-color: var(--custom-bg, var(--color-player-bg));
+  color: var(--custom-color, var(--color-white));
+  border: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+}
+
+/* --- HIGH CONTRAST CONFIGURATION (WCAG AAA Compliance) --- */
+:host([a11y-high-contrast]) .custom-subtitle {
+  background: #FFFFFF !important;
+  border: var(--border-width-medium) var(--border-style-solid) #000000 !important;
+  color: #000000 !important; /* Explicit black text */
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+/* --- DYSLEXIA COMPACT FONT STACK --- */
+:host([a11y-dyslexia]) .custom-subtitle {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+}
+
+/* --- BULLETPROOF ZERO-DURATION REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  .custom-subtitle, * {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+:host([a11y-reduce-motion]) .custom-subtitle,
+:host([a11y-reduce-motion]) * {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: FORCED COLORS / WINDOWS HIGH CONTRAST MODE
+   ========================================================================== */
+
+/* 1. Attribute Reflected State (Storybook / DOM Toggle) */
+:host([a11y-forced-colors]) .custom-subtitle {
+  forced-color-adjust: none !important;
+  background-color: Canvas !important;
+  color: CanvasText !important;
+  border: var(--border-width-thin) var(--border-style-solid) CanvasText !important;
+}
+
+/* 2. Native OS Media Query */
+@media (forced-colors: active) {
+  .custom-subtitle {
+    forced-color-adjust: none !important;
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    border: var(--border-width-thin) var(--border-style-solid) CanvasText !important;
+  }
+}

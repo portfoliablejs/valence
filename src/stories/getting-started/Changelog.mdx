@@ -1,0 +1,47 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Changelog" />
+
+# Changelog
+
+All notable changes to the **Valence** design system will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+---
+
+## [Unreleased]
+
+### Added
+- **`<ds-gallery>` Organism:** New component to manage the home screen's horizontal gallery, encapsulating drag and wheel-scroll physics.
+- **`<ds-frame>` Atom:** New foundational component for displaying media within a device mockup (e.g., `iphone-17`) or a simple aspect-ratio container (e.g., `16:9`).
+- **`CONTRIBUTING.mdx`:** Added a comprehensive guide for new contributors to the Storybook documentation.
+
+### Changed
+- **Architectural Shift:** Re-classified `Summary` (formerly `AiSummary`), `ComboCard`, and `GalleryItem` from Organisms to Molecules to better align with Atomic Design principles.
+- **`<ds-toast>` (formerly `<ds-resume-toast>`):** Refactored the component to be universal, now accepting slotted content for broader use cases like tutorial prompts.
+- **`<ds-audio-player>`:** Enhanced with new controls for "Hide on Scroll" and "Auto-scroll" functionality, dispatching `ds-audio-hide-toggle` and `ds-audio-autoscroll-toggle` events.
+- **`<ds-gallery-item>`:** Simplified to use the new `<ds-frame>` component, removing all internal device-specific styling and logic.
+
+### Fixed
+- **Storybook Booleans:** Corrected the `render` function in `GalleryItem.stories.js` to properly handle boolean attributes, ensuring Storybook controls work as expected.
+- **Storybook Viewport:** Fixed an issue in `VideoPlayer.stories.js` where the preview iframe would collapse by wrapping the component in a container with a defined height.
+
+---
+
+## [1.0.0] - 2024-XX-XX
+
+<Subtitle>Initial Release</Subtitle>
+
+### Added
+- **Initial Component Library:** First stable release of all foundational atoms, molecules, and organisms, including:
+  - **Foundations:** Colors, Typography, Spacing, Animations, Overlays, Accessibility themes.
+  - **Atoms:** Button, Check, Divider, Icon, Kbd, Loader, Pill, Tab, Toggle, Tooltip.
+  - **Molecules:** AudioPlayer, Breadcrumb, ItemRow, MetricCard, SearchInput, VideoControls.
+  - **Organisms:** Header, Modal, VideoPlayer, CaseSlide.
+- **Storybook Documentation:** Initial setup of interactive documentation for all components.
+- **`portfoliable` Integration:** First successful integration with the `portfoliable` consumer application.
+
+---
+
+*This changelog serves as a high-level overview. For detailed changes, please refer to the commit history on our [GitHub repository](https://github.com/schimanko/valence).*

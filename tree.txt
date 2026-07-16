@@ -1,0 +1,702 @@
+src/stories/assets/mockups
+├── desktop
+│   ├── apple
+│   │   ├── Apple MacBook Air
+│   │   │   └── Device
+│   │   │       ├── Apple MacBook Air Gold.avif
+│   │   │       ├── Apple MacBook Air Silver.avif
+│   │   │       └── Apple MacBook Air Space Grey.avif
+│   │   ├── Apple MacBook Pro
+│   │   │   └── Device
+│   │   │       ├── Apple Macbook Pro 13 Silver.avif
+│   │   │       ├── Apple Macbook Pro 13 Space Grey.avif
+│   │   │       ├── Apple Macbook Pro 16 Silver.avif
+│   │   │       └── Apple Macbook Pro 16 Space Grey.avif
+│   │   ├── Apple Macbook
+│   │   │   └── Device
+│   │   │       ├── Apple-Macbook-Gold.avif
+│   │   │       └── Apple-Macbook-Space-Grey.avif
+│   │   ├── Apple Pro Display XDR
+│   │   │   └── Device
+│   │   │       └── Apple Pro Display XDR.avif
+│   │   ├── Apple Thunderbolt Display
+│   │   │   └── Device
+│   │   │       └── Apple Thunderbolt Display.avif
+│   │   ├── Apple iMac
+│   │   │   └── Device
+│   │   │       └── Apple iMac.avif
+│   │   ├── Apple iMac 24" 2021
+│   │   │   └── Device
+│   │   │       ├── Apple iMac 24" Blue.avif
+│   │   │       ├── Apple iMac 24" Green.avif
+│   │   │       ├── Apple iMac 24" Orange.avif
+│   │   │       ├── Apple iMac 24" Purple.avif
+│   │   │       ├── Apple iMac 24" Red.avif
+│   │   │       ├── Apple iMac 24" Silver.avif
+│   │   │       └── Apple iMac 24" Yellow.avif
+│   │   ├── Apple iMac Pro
+│   │   │   └── Device
+│   │   │       └── Apple iMac Pro.avif
+│   │   └── Apple iMac Retina
+│   │       └── Device
+│   │           └── Apple iMac Retina.avif
+│   └── dell
+│       ├── Dell UltraSharp HD 5K Monitor
+│       │   └── Device
+│       │       ├── Dell UltraSharp 5K Monitor 27 90deg.avif
+│       │       └── Dell UltraSharp 5K Monitor 27.avif
+│       └── Dell UltraSharp Monitor
+│           ├── 24 Inch
+│           │   └── Device
+│           │       ├── Dell UltraSharp 24 90deg.avif
+│           │       └── Dell UltraSharp 24.avif
+│           └── 27 Inch
+│               └── Device
+│                   ├── Dell UltraSharp 27 90deg.avif
+│                   └── Dell UltraSharp 27.avif
+├── mobile
+│   ├── apple
+│   │   ├── Apple iPhone 11
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 11 Black.avif
+│   │   │       ├── Apple iPhone 11 Green.avif
+│   │   │       ├── Apple iPhone 11 Purple.avif
+│   │   │       ├── Apple iPhone 11 Red.avif
+│   │   │       ├── Apple iPhone 11 White.avif
+│   │   │       └── Apple iPhone 11 Yellow.avif
+│   │   ├── Apple iPhone 11 Pro
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 11 Pro Gold.avif
+│   │   │       ├── Apple iPhone 11 Pro Midnight Green.avif
+│   │   │       ├── Apple iPhone 11 Pro Silver.avif
+│   │   │       └── Apple iPhone 11 Pro Space Grey.avif
+│   │   ├── Apple iPhone 11 Pro Max
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 11 Pro Max Gold.avif
+│   │   │       ├── Apple iPhone 11 Pro Max Midnight Green.avif
+│   │   │       ├── Apple iPhone 11 Pro Max Silver.avif
+│   │   │       └── Apple iPhone 11 Pro Max Space Grey.avif
+│   │   ├── Apple iPhone 12
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 12 Black.avif
+│   │   │       ├── Apple iPhone 12 Blue.avif
+│   │   │       ├── Apple iPhone 12 Green.avif
+│   │   │       ├── Apple iPhone 12 Red.avif
+│   │   │       └── Apple iPhone 12 White.avif
+│   │   ├── Apple iPhone 12 Mini
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 12 Mini Black.avif
+│   │   │       ├── Apple iPhone 12 Mini Blue.avif
+│   │   │       ├── Apple iPhone 12 Mini Green.avif
+│   │   │       ├── Apple iPhone 12 Mini Red.avif
+│   │   │       └── Apple iPhone 12 Mini White.avif
+│   │   ├── Apple iPhone 12 Pro
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 12 Pro Gold.avif
+│   │   │       ├── Apple iPhone 12 Pro Graphite.avif
+│   │   │       ├── Apple iPhone 12 Pro Pacific Blue.avif
+│   │   │       └── Apple iPhone 12 Pro Silver.avif
+│   │   ├── Apple iPhone 12 Pro Max
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 12 Pro Max Gold.avif
+│   │   │       ├── Apple iPhone 12 Pro Max Graphite.avif
+│   │   │       ├── Apple iPhone 12 Pro Max Pacific Blue.avif
+│   │   │       └── Apple iPhone 12 Pro Max Silver.avif
+│   │   ├── Apple iPhone 13
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 13 — Blue.avif
+│   │   │       ├── Apple iPhone 13 — Midnight.avif
+│   │   │       ├── Apple iPhone 13 — Pink.avif
+│   │   │       ├── Apple iPhone 13 — Red.avif
+│   │   │       └── Apple iPhone 13 — Starlight.avif
+│   │   ├── Apple iPhone 13 Mini
+│   │   │   └── Device
+│   │   │       ├── iPhone 13 Mini — Blue.avif
+│   │   │       ├── iPhone 13 Mini — Midnight.avif
+│   │   │       ├── iPhone 13 Mini — Pink.avif
+│   │   │       ├── iPhone 13 Mini — Red.avif
+│   │   │       └── iPhone 13 Mini — Starlight.avif
+│   │   ├── Apple iPhone 13 Pro
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 13 Pro — Gold.avif
+│   │   │       ├── Apple iPhone 13 Pro — Graphite.avif
+│   │   │       ├── Apple iPhone 13 Pro — Sierra Blue.avif
+│   │   │       └── Apple iPhone 13 Pro — Silver.avif
+│   │   ├── Apple iPhone 13 Pro Max
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 13 Pro Max — Gold.avif
+│   │   │       ├── Apple iPhone 13 Pro Max — Graphite.avif
+│   │   │       ├── Apple iPhone 13 Pro Max — Sierra Blue.avif
+│   │   │       └── Apple iPhone 13 Pro Max — Silver.avif
+│   │   ├── Apple iPhone 5c
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 5c Blue.avif
+│   │   │       ├── Apple iPhone 5c Green.avif
+│   │   │       ├── Apple iPhone 5c Red.avif
+│   │   │       ├── Apple iPhone 5c White.avif
+│   │   │       └── Apple iPhone 5c Yellow.avif
+│   │   ├── Apple iPhone 5s
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 5s Gold.avif
+│   │   │       ├── Apple iPhone 5s Silver.avif
+│   │   │       └── Apple iPhone 5s Space Gray.avif
+│   │   ├── Apple iPhone 6s
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 6s Gold.avif
+│   │   │       ├── Apple iPhone 6s Rose Gold.avif
+│   │   │       ├── Apple iPhone 6s Silver.avif
+│   │   │       └── Apple iPhone 6s Space Gray.avif
+│   │   ├── Apple iPhone 6s Plus
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 6s Plus Gold.avif
+│   │   │       ├── Apple iPhone 6s Plus Rose Gold.avif
+│   │   │       ├── Apple iPhone 6s Plus Silver.avif
+│   │   │       └── Apple iPhone 6s Plus Space Gray.avif
+│   │   ├── Apple iPhone 7
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 7 Gold.avif
+│   │   │       ├── Apple iPhone 7 Jet Black.avif
+│   │   │       ├── Apple iPhone 7 Matte Black.avif
+│   │   │       ├── Apple iPhone 7 Rose Gold.avif
+│   │   │       └── Apple iPhone 7 Silver.avif
+│   │   ├── Apple iPhone 7 Plus
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 7 Plus Gold.avif
+│   │   │       ├── Apple iPhone 7 Plus Jet Black.avif
+│   │   │       ├── Apple iPhone 7 Plus Matte Black.avif
+│   │   │       ├── Apple iPhone 7 Plus Rose Gold.avif
+│   │   │       └── Apple iPhone 7 Plus Silver.avif
+│   │   ├── Apple iPhone 8
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 8 Gold.avif
+│   │   │       ├── Apple iPhone 8 Silver.avif
+│   │   │       └── Apple iPhone 8 Space Grey.avif
+│   │   ├── Apple iPhone 8 Plus
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone 8 Plus Gold.avif
+│   │   │       ├── Apple iPhone 8 Plus Silver.avif
+│   │   │       └── Apple iPhone 8 Plus Space Grey.avif
+│   │   ├── Apple iPhone SE
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone SE Black.avif
+│   │   │       ├── Apple iPhone SE Red.avif
+│   │   │       └── Apple iPhone SE White.avif
+│   │   ├── Apple iPhone X
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone X Silver.avif
+│   │   │       └── Apple iPhone X Space Grey.avif
+│   │   ├── Apple iPhone XR
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone XR Blue.avif
+│   │   │       ├── Apple iPhone XR Coral.avif
+│   │   │       ├── Apple iPhone XR Red.avif
+│   │   │       ├── Apple iPhone XR Silver.avif
+│   │   │       ├── Apple iPhone XR Space Grey.avif
+│   │   │       └── Apple iPhone XR Yellow.avif
+│   │   ├── Apple iPhone XS
+│   │   │   └── Device
+│   │   │       ├── Apple iPhone XS Gold.avif
+│   │   │       ├── Apple iPhone XS Silver.avif
+│   │   │       └── Apple iPhone XS Space Grey.avif
+│   │   └── Apple iPhone XS Max
+│   │       └── Device
+│   │           ├── Apple iPhone XS Max Gold.avif
+│   │           ├── Apple iPhone XS Max Silver.avif
+│   │           └── Apple iPhone XS Max Space Grey.avif
+│   ├── google
+│   │   ├── Google Pixel
+│   │   │   └── Device
+│   │   │       ├── Google Pixel Quite Black.avif
+│   │   │       ├── Google Pixel Really Blue.avif
+│   │   │       └── Google Pixel Very Silver.avif
+│   │   ├── Google Pixel 2
+│   │   │   └── Device
+│   │   │       ├── Google PIxel 2 Kinda Blue.avif
+│   │   │       ├── Google Pixel 2 Clearly White.avif
+│   │   │       └── Google Pixel 2 Just Black.avif
+│   │   ├── Google Pixel 2 XL
+│   │   │   └── Device
+│   │   │       ├── Google Pixel 2 XL Black and White.avif
+│   │   │       └── Google Pixel 2 XL Just Black.avif
+│   │   ├── Google Pixel 3
+│   │   │   └── Device
+│   │   │       ├── Google Pixel 3 - Clearly White.avif
+│   │   │       ├── Google Pixel 3 - Just Black.avif
+│   │   │       └── Google Pixel 3 - Not Pink.avif
+│   │   ├── Google Pixel 3 XL
+│   │   │   └── Device
+│   │   │       ├── Google Pixel 3 XL - Clearly White.avif
+│   │   │       ├── Google Pixel 3 XL - Just Black.avif
+│   │   │       └── Google Pixel 3 XL - Not Pink.avif
+│   │   ├── Google Pixel 4
+│   │   │   └── Device
+│   │   │       ├── Google Pixel 4 Clearly White.avif
+│   │   │       ├── Google Pixel 4 Just Black.avif
+│   │   │       └── Google Pixel 4 Oh So Orange.avif
+│   │   ├── Google Pixel 4 XL
+│   │   │   └── Device
+│   │   │       ├── Google Pixel 4 XL Clearly White.avif
+│   │   │       ├── Google Pixel 4 XL Just Black.avif
+│   │   │       └── Google Pixel 4 XL Oh So Orange.avif
+│   │   ├── Google Pixel 5
+│   │   │   └── Device
+│   │   │       ├── Google Pixel 5 Just Black.avif
+│   │   │       └── Google Pixel 5 Sorta Sage.avif
+│   │   ├── Nexus 4
+│   │   │   └── Device
+│   │   │       └── Nexus 4.avif
+│   │   ├── Nexus 5X
+│   │   │   └── Device
+│   │   │       └── Nexus 5x.avif
+│   │   ├── Nexus 6P
+│   │   │   └── Device
+│   │   │       └── Nexus 6P.avif
+│   │   └── Nexus 9
+│   │       └── Device
+│   │           └── Nexus 9.avif
+│   ├── htcone
+│   │   └── HTC One A9
+│   │       └── Device
+│   │           ├── HTC One A9 Black.avif
+│   │           └── HTC One A9 White.avif
+│   ├── huawei
+│   │   └── Huawei P8
+│   │       └── Device
+│   │           ├── Huawei P8 Black.avif
+│   │           └── Huawei P8 White.avif
+│   ├── microsoft
+│   │   └── Microsoft Lumia 950
+│   │       └── Device
+│   │           ├── Microsoft Lumia 950 Black.avif
+│   │           └── Microsoft Lumia 950 White.avif
+│   ├── motorola
+│   │   ├── Motorola Moto E
+│   │   │   └── Device
+│   │   │       ├── Motorola Moto E Black.avif
+│   │   │       └── Motorola Moto E White.avif
+│   │   └── Motorola Moto G
+│   │       └── Device
+│   │           └── Motorola Moto G.avif
+│   ├── samsung
+│   │   ├── Samsung Galaxy Note 5
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy Note 5 Black.avif
+│   │   │       ├── Samsung Galaxy Note 5 Gold.avif
+│   │   │       ├── Samsung Galaxy Note 5 Pink.avif
+│   │   │       ├── Samsung Galaxy Note 5 Silver Titanium.avif
+│   │   │       └── Samsung Galaxy Note 5 White.avif
+│   │   ├── Samsung Galaxy Note10
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy Note10 Aura Black.avif
+│   │   │       ├── Samsung Galaxy Note10 Aura Glow.avif
+│   │   │       ├── Samsung Galaxy Note10 Aura Pink.avif
+│   │   │       ├── Samsung Galaxy Note10 Aura Red.avif
+│   │   │       └── Samsung Galaxy Note10 Aura White.avif
+│   │   ├── Samsung Galaxy Note10+
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy Note10+ Aura Black.avif
+│   │   │       ├── Samsung Galaxy Note10+ Aura Blue.avif
+│   │   │       ├── Samsung Galaxy Note10+ Aura Glow.avif
+│   │   │       └── Samsung Galaxy Note10+ Aura White.avif
+│   │   ├── Samsung Galaxy S Duos
+│   │   │   └── Device
+│   │   │       └── Samsung Galaxy S Duos.avif
+│   │   ├── Samsung Galaxy S10
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S10 Flamingo Pink.avif
+│   │   │       ├── Samsung Galaxy S10 Prism Black.avif
+│   │   │       ├── Samsung Galaxy S10 Prism Blue.avif
+│   │   │       ├── Samsung Galaxy S10 Prism Green.avif
+│   │   │       └── Samsung Galaxy S10 Prism White.avif
+│   │   ├── Samsung Galaxy S10+
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S10+ Ceramic White.avif
+│   │   │       ├── Samsung Galaxy S10+ Flamingo Pink.avif
+│   │   │       ├── Samsung Galaxy S10+ Prism Black.avif
+│   │   │       ├── Samsung Galaxy S10+ Prism Blue.avif
+│   │   │       ├── Samsung Galaxy S10+ Prism Green.avif
+│   │   │       └── Samsung Galaxy S10+ Prism White.avif
+│   │   ├── Samsung Galaxy S20
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S20 Cloud Blue.avif
+│   │   │       ├── Samsung Galaxy S20 Cloud Pink.avif
+│   │   │       └── Samsung Galaxy S20 Cosmic Gray.avif
+│   │   ├── Samsung Galaxy S20 Ultra
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S20 Utra Cosmic Black.avif
+│   │   │       └── Samsung Galaxy S20 Utra Cosmic Gray.avif
+│   │   ├── Samsung Galaxy S20+
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S20+ Cloud Blue.avif
+│   │   │       ├── Samsung Galaxy S20+ Cosmic Black.avif
+│   │   │       └── Samsung Galaxy S20+ Cosmic Gray.avif
+│   │   ├── Samsung Galaxy S21 5G
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S21 5G — Black.avif
+│   │   │       ├── Samsung Galaxy S21 5G — Pink.avif
+│   │   │       ├── Samsung Galaxy S21 5G — Violet.avif
+│   │   │       └── Samsung Galaxy S21 5G — White.avif
+│   │   ├── Samsung Galaxy S21 Ultra 5G
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S21 Ultra 5G — Black.avif
+│   │   │       └── Samsung Galaxy S21 Ultra 5G — Silver.avif
+│   │   ├── Samsung Galaxy S21+
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S21+ 5G — Black.avif
+│   │   │       ├── Samsung Galaxy S21+ 5G — Silver.avif
+│   │   │       └── Samsung Galaxy S21+ 5G — Violet.avif
+│   │   ├── Samsung Galaxy S3
+│   │   │   └── Device
+│   │   │       └── Samsung Galaxy S3.avif
+│   │   ├── Samsung Galaxy S5
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S5 Black.avif
+│   │   │       └── Samsung Galaxy S5 White.avif
+│   │   ├── Samsung Galaxy S7
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S7 Black.avif
+│   │   │       ├── Samsung Galaxy S7 Gold.avif
+│   │   │       ├── Samsung Galaxy S7 Silver.avif
+│   │   │       └── Samsung Galaxy S7 White.avif
+│   │   ├── Samsung Galaxy S8
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S8 Arctic Silver.avif
+│   │   │       ├── Samsung Galaxy S8 Coral Blue.avif
+│   │   │       ├── Samsung Galaxy S8 Maple Gold.avif
+│   │   │       ├── Samsung Galaxy S8 Midnight Black.avif
+│   │   │       └── Samsung Galaxy S8 Orchid Gray.avif
+│   │   ├── Samsung Galaxy S9
+│   │   │   └── Device
+│   │   │       ├── Samsung Galaxy S9 Burgundy Red.avif
+│   │   │       ├── Samsung Galaxy S9 Coral Blue.avif
+│   │   │       ├── Samsung Galaxy S9 Lilac Purple.avif
+│   │   │       ├── Samsung Galaxy S9 Midnight Black.avif
+│   │   │       ├── Samsung Galaxy S9 Sunrise Gold.avif
+│   │   │       └── Samsung Galaxy S9 Titanium Gray.avif
+│   │   └── Samsung Galaxy Y
+│   │       └── Device
+│   │           ├── Samsung Galaxy Y Black.avif
+│   │           └── Samsung Galaxy Y White.avif
+│   └── xiaomi
+│       └── Xiaomi Mi Mix Alpha
+│           └── Device
+│               ├── Xiaomi Mi Mix Alpha Back.avif
+│               ├── Xiaomi Mi Mix Alpha Front.avif
+│               └── Xiaomi Mi Mix Alpha Side.avif
+├── tablet
+│   ├── apple
+│   │   ├── Apple iPad
+│   │   │   └── Device
+│   │   │       ├── Apple iPad Gold.avif
+│   │   │       ├── Apple iPad Silver.avif
+│   │   │       └── Apple iPad Space Grey.avif
+│   │   ├── Apple iPad Air 2020
+│   │   │   └── Device
+│   │   │       ├── Apple iPad Air 2020 Green Landscape.avif
+│   │   │       ├── Apple iPad Air 2020 Green Portrait.avif
+│   │   │       ├── Apple iPad Air 2020 Rose Gold Landscape.avif
+│   │   │       ├── Apple iPad Air 2020 Rose Gold Portrait.avif
+│   │   │       ├── Apple iPad Air 2020 Silver Landscape.avif
+│   │   │       ├── Apple iPad Air 2020 Silver Portrait.avif
+│   │   │       ├── Apple iPad Air 2020 Sky Blue Landscape.avif
+│   │   │       ├── Apple iPad Air 2020 Sky Blue Portrait.avif
+│   │   │       ├── Apple iPad Air 2020 Space Gray Landscape.avif
+│   │   │       └── Apple iPad Air 2020 Space Gray Portrait.avif
+│   │   ├── Apple iPad Mini
+│   │   │   └── Device
+│   │   │       ├── Apple iPad Mini Gold.avif
+│   │   │       ├── Apple iPad Mini Silver.avif
+│   │   │       └── Apple iPad Mini Space Grey.avif
+│   │   └── Apple iPad Pro
+│   │       └── Device
+│   │           ├── Device with Pencil
+│   │           │   ├── Apple iPad Pro 11 Silver - Landscape.avif
+│   │           │   ├── Apple iPad Pro 11 Silver - Portrait.avif
+│   │           │   ├── Apple iPad Pro 11 Space Gray - Landscape.avif
+│   │           │   ├── Apple iPad Pro 11 Space Gray - Portrait.avif
+│   │           │   ├── Apple iPad Pro 13 Silver - Landscape.avif
+│   │           │   ├── Apple iPad Pro 13 Silver - Portrait.avif
+│   │           │   ├── Apple iPad Pro 13 Space Gray - Landscape.avif
+│   │           │   └── Apple iPad Pro 13 Space Gray - Portrait.avif
+│   │           └── Device without Pencil
+│   │               ├── Apple iPad Pro 11 Silver - Landscape.avif
+│   │               ├── Apple iPad Pro 11 Silver - Portrait.avif
+│   │               ├── Apple iPad Pro 11 Space Gray - Landscape.avif
+│   │               ├── Apple iPad Pro 11 Space Gray - Portrait.avif
+│   │               ├── Apple iPad Pro 13 Silver - Landscape.avif
+│   │               ├── Apple iPad Pro 13 Silver - Portrait.avif
+│   │               ├── Apple iPad Pro 13 Space Gray - Landscape.avif
+│   │               └── Apple iPad Pro 13 Space Gray - Portrait.avif
+│   ├── dell
+│   │   ├── Dell XPS 13
+│   │   │   └── Device
+│   │   │       └── Dell XPS 13.avif
+│   │   └── Dell XPS 15
+│   │       └── Device
+│   │           └── Dell XPS 15.avif
+│   ├── google
+│   │   └── Google Slate
+│   │       └── Device
+│   │           └── Google Pixel Slate.avif
+│   └── microsoft
+│       ├── Microsoft Surface 3
+│       │   └── Device
+│       │       └── Microsoft Surface Pro 3.avif
+│       ├── Microsoft Surface Book
+│       │   └── Device
+│       │       └── Microsoft Surface Book.avif
+│       ├── Microsoft Surface Pro 4
+│       │   └── Device
+│       │       └── Microsoft Surface Pro 4.avif
+│       └── Microsoft Surface Pro X
+│           └── Device
+│               ├── Surface Pro X Black.avif
+│               └── Surface Pro X Silver.avif
+├── television
+│   ├── samsung
+│   │   └── Samsung Frame
+│   │       └── Device
+│   │           ├── Samsung Frame - Beige with Studio Stand.avif
+│   │           ├── Samsung Frame - Beige without Stand.avif
+│   │           ├── Samsung Frame - Beige.avif
+│   │           ├── Samsung Frame - Black with Studio Stand.avif
+│   │           ├── Samsung Frame - Black without Stand.avif
+│   │           ├── Samsung Frame - Black.avif
+│   │           ├── Samsung Frame - Brown with Studio Stand.avif
+│   │           ├── Samsung Frame - Brown without Stand.avif
+│   │           ├── Samsung Frame - Brown.avif
+│   │           ├── Samsung Frame - White with Studio Stand.avif
+│   │           ├── Samsung Frame - White without Stand.avif
+│   │           └── Samsung Frame - White.avif
+│   └── sony
+│       └── Sony W850C
+│           └── Device
+│               └── Sony W850C.avif
+└── wearable
+    ├── apple
+    │   ├── Apple Watch
+    │   │   └── Device
+    │   │       ├── 38mm
+    │   │       │   └── Device Closed
+    │   │       │       ├── Apple Watch 38mm Black Steel + Black Closed.avif
+    │   │       │       ├── Apple Watch 38mm Gold + Black Leather Closed.avif
+    │   │       │       ├── Apple Watch 38mm Gold + Midnight Blue Closed.avif
+    │   │       │       ├── Apple Watch 38mm Rose Gold + Black Leather Closed.avif
+    │   │       │       ├── Apple Watch 38mm Rose Gold + Lavender Closed.avif
+    │   │       │       ├── Apple Watch 38mm Sport Aluminum + Blue Closed.avif
+    │   │       │       ├── Apple Watch 38mm Sport Aluminum + Fog Closed.avif
+    │   │       │       ├── Apple Watch 38mm Sport Aluminum + Green Closed.avif
+    │   │       │       ├── Apple Watch 38mm Sport Aluminum + Red Closed.avif
+    │   │       │       ├── Apple Watch 38mm Sport Aluminum + Walnut Closed.avif
+    │   │       │       ├── Apple Watch 38mm Sport Aluminum + White Closed.avif
+    │   │       │       ├── Apple Watch 38mm Sport Aluminum Gold + Antique White Closed.avif
+    │   │       │       ├── Apple Watch 38mm Sport Aluminum Rose Gold + Stone Closed.avif
+    │   │       │       ├── Apple Watch 38mm Sport Space Gray + Black Closed.avif
+    │   │       │       ├── Apple Watch 38mm Stainless Steel + Black Leather Closed.avif
+    │   │       │       └── Apple Watch 38mm Steel + White Closed.avif
+    │   │       └── 42mm
+    │   │           └── Device Closed
+    │   │               ├── Apple Watch 42mm Black Steel + Black Closed.avif
+    │   │               ├── Apple Watch 42mm Gold + Black Leather Closed.avif
+    │   │               ├── Apple Watch 42mm Gold + Midnight Blue Closed.avif
+    │   │               ├── Apple Watch 42mm Rose Gold + Black Leather Closed.avif
+    │   │               ├── Apple Watch 42mm Rose Gold + Lavender Closed.avif
+    │   │               ├── Apple Watch 42mm Sport Aluminum + Blue Closed.avif
+    │   │               ├── Apple Watch 42mm Sport Aluminum + Fog Closed.avif
+    │   │               ├── Apple Watch 42mm Sport Aluminum + Green Closed.avif
+    │   │               ├── Apple Watch 42mm Sport Aluminum + Red Closed.avif
+    │   │               ├── Apple Watch 42mm Sport Aluminum + Walnut Closed.avif
+    │   │               ├── Apple Watch 42mm Sport Aluminum + White Closed.avif
+    │   │               ├── Apple Watch 42mm Sport Aluminum Gold + Antique White Closed.avif
+    │   │               ├── Apple Watch 42mm Sport Aluminum Rose Gold + Stone Closed.avif
+    │   │               ├── Apple Watch 42mm Sport Space Gray + Black Closed.avif
+    │   │               ├── Apple Watch 42mm Stainless Steel + Black Leather Closed.avif
+    │   │               └── Apple Watch 42mm Steel + White Closed.avif
+    │   ├── Apple Watch 2
+    │   │   └── Device
+    │   │       ├── 38mm
+    │   │       │   └── Device Closed
+    │   │       │       ├── Apple Watch 38mm Black Steel + Black Closed.avif
+    │   │       │       ├── Apple Watch 38mm Edition Closed.avif
+    │   │       │       ├── Apple Watch 38mm Rose Gold Aluminum + Midnight Blue Closed.avif
+    │   │       │       ├── Apple Watch 38mm Silver Aluminum + Cocoa Closed.avif
+    │   │       │       ├── Apple Watch 38mm Silver Aluminum + Concrete Closed.avif
+    │   │       │       ├── Apple Watch 38mm Silver Aluminum + Flat Silver Volt Nike Closed.avif
+    │   │       │       ├── Apple Watch 38mm Silver Aluminum + Flat Silver White Nike Closed.avif
+    │   │       │       ├── Apple Watch 38mm Silver Aluminum + Ocean Blue Closed.avif
+    │   │       │       ├── Apple Watch 38mm Silver Aluminum + Red Closed.avif
+    │   │       │       ├── Apple Watch 38mm Silver Aluminum + Turquoise Closed.avif
+    │   │       │       ├── Apple Watch 38mm Silver Aluminum + White Closed.avif
+    │   │       │       ├── Apple Watch 38mm Silver Aluminum + Yellow Closed.avif
+    │   │       │       ├── Apple Watch 38mm Space Gray Aluminum + Black Closed.avif
+    │   │       │       ├── Apple Watch 38mm Space Gray Aluminum + Black Cool Gray Nike Closed.avif
+    │   │       │       ├── Apple Watch 38mm Space Gray Aluminum + Black Volt Nike Closed.avif
+    │   │       │       ├── Apple Watch 38mm Sport Aluminum + Walnut Closed.avif
+    │   │       │       └── Apple Watch 38mm Steel + White Closed.avif
+    │   │       └── 42mm
+    │   │           └── Device Closed
+    │   │               ├── Apple Watch 42mm Edition Closed.avif
+    │   │               ├── Apple Watch 42mm Gold Aluminum + Cocoa Closed.avif
+    │   │               ├── Apple Watch 42mm Rose Gold Aluminum + Midnight Blue Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + Concrete Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + Flat Silver Volt Nike Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + Flat Silver White Nike Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + Green Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + Light Pink Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + Ocean Blue Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + Pink Sand Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + Red Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + Turquoise Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + White Closed.avif
+    │   │               ├── Apple Watch 42mm Silver Aluminum + Yellow Closed.avif
+    │   │               ├── Apple Watch 42mm Space Black Steel + Black Closed.avif
+    │   │               ├── Apple Watch 42mm Space Gray Aluminum + Black Closed.avif
+    │   │               ├── Apple Watch 42mm Space Gray Aluminum + Black Cool Gray Nike Closed.avif
+    │   │               ├── Apple Watch 42mm Space Gray Aluminum + Black Volt Nike Closed.avif
+    │   │               └── Apple Watch 42mm Steel + White Closed.avif
+    │   ├── Apple Watch Series 5
+    │   │   └── Device
+    │   │       └── 44mm
+    │   │           └── Closed
+    │   │               ├── Apple Watch 44mm Gold Aluminum + Pink Sand Closed.avif
+    │   │               ├── Apple Watch 44mm Gold Stainless Steel + Stone Closed.avif
+    │   │               ├── Apple Watch 44mm Silver Aluminum + Clementine Closed.avif
+    │   │               ├── Apple Watch 44mm Space Black Stainless Steel + Alaskan Blue Closed.avif
+    │   │               ├── Apple Watch 44mm Space Black Titanium + Pine Green Closed.avif
+    │   │               ├── Apple Watch 44mm Space Grey Aluminum + Black Closed.avif
+    │   │               ├── Apple Watch 44mm Stainless Steel + Lemon Cream Closed.avif
+    │   │               ├── Apple Watch 44mm Titanium + Red Closed.avif
+    │   │               └── Apple Watch 44mm White Ceramic + White Closed.avif
+    │   └── Apple Watch Series 6
+    │       └── Device
+    │           ├── With Bands
+    │           │   ├── Cyprus Green Solo Loop
+    │           │   │   ├── 40mm
+    │           │   │   │   ├── Apple Watch 40mm Blue Aluminum Cyprus Green Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Dark Titanium Cyprus Green Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Gold Aluminum Cyprus Green Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Gold Stainless Steel Cyprus Green Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Graphite Stainless Steel Cyprus Green Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Light Titanium Cyprus Green Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Red Aluminum Cyprus Green Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Silver Aluminum Cyprus Green Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Silver Stainless Steel Cyprus Green Solo Loop.avif
+    │           │   │   │   └── Apple Watch 40mm Space Gray Aluminum Cyprus Green Solo Loop.avif
+    │           │   │   └── 44mm
+    │           │   │       ├── Apple Watch 44mm Blue Aluminum Cyprus Green Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Dark Titanium Cyprus Green Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Gold Aluminum Cyprus Green Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Gold Stainless Steel Cyprus Green Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Graphite Stainless Steel Cyprus Green Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Light Titanium Cyprus Green Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Red Aluminum Cyprus Green Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Silver Aluminum Cyprus Green Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Silver Stainless Steel Cyprus Green Solo Loop.avif
+    │           │   │       └── Apple Watch 44mm Space Gray Aluminum Cyprus Green Solo Loop.avif
+    │           │   ├── Ginger Solo Loop
+    │           │   │   ├── 40mm
+    │           │   │   │   ├── Apple Watch 40mm Blue Aluminum Ginger Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Dark Titanium Ginger Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Gold Aluminum Ginger Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Gold Stainless Steel Ginger Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Graphite Stainless Steel Ginger Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Light Titanium Ginger Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Red Aluminum Ginger Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Silver Aluminum Ginger Solo Loop.avif
+    │           │   │   │   ├── Apple Watch 40mm Silver Stainless Steel Ginger Solo Loop.avif
+    │           │   │   │   └── Apple Watch 40mm Space Gray Aluminum Ginger Solo Loop.avif
+    │           │   │   └── 44mm
+    │           │   │       ├── Apple Watch 44mm Blue Aluminum Ginger Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Dark Titanium Ginger Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Gold Aluminum Ginger Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Gold Stainless Steel Ginger Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Graphite Stainless Steel Ginger Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Light Titanium Ginger Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Red Aluminum Ginger Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Silver Aluminum Ginger Solo Loop.avif
+    │           │   │       ├── Apple Watch 44mm Silver Stainless Steel Ginger Solo Loop.avif
+    │           │   │       └── Apple Watch 44mm Space Gray Aluminum Ginger Solo Loop.avif
+    │           │   └── Pink Citrus Sport Closed
+    │           │       ├── 40mm
+    │           │       │   ├── Apple Watch 40mm Blue Aluminum Pink Citrus Sport.avif
+    │           │       │   ├── Apple Watch 40mm Dark Titanium Pink Citrus Sport.avif
+    │           │       │   ├── Apple Watch 40mm Gold Aluminum Pink Citrus Sport.avif
+    │           │       │   ├── Apple Watch 40mm Gold Stainless Steel Pink Citrus Sport.avif
+    │           │       │   ├── Apple Watch 40mm Graphite Stainless Steel Pink Citrus Sport.avif
+    │           │       │   ├── Apple Watch 40mm Light Titanium Pink Citrus Sport.avif
+    │           │       │   ├── Apple Watch 40mm Red Aluminum Pink Citrus Sport.avif
+    │           │       │   ├── Apple Watch 40mm Silver Aluminum Pink Citrus Sport.avif
+    │           │       │   ├── Apple Watch 40mm Silver Stainless Steel Pink Citrus Sport.avif
+    │           │       │   └── Apple Watch 40mm Space Gray Aluminum Pink Citrus Sport.avif
+    │           │       └── 44mm
+    │           │           ├── Apple Watch 44mm Blue Aluminum Pink Citrus Sport.avif
+    │           │           ├── Apple Watch 44mm Dark Titanium Pink Citrus Sport.avif
+    │           │           ├── Apple Watch 44mm Gold Aluminum Pink Citrus Sport.avif
+    │           │           ├── Apple Watch 44mm Gold Stainless Steel Pink Citrus Sport.avif
+    │           │           ├── Apple Watch 44mm Graphite Stainless Steel Pink Citrus Sport.avif
+    │           │           ├── Apple Watch 44mm Light Titanium Pink Citrus Sport.avif
+    │           │           ├── Apple Watch 44mm Red Aluminum Pink Citrus Sport.avif
+    │           │           ├── Apple Watch 44mm Silver Aluminum Pink Citrus Sport.avif
+    │           │           ├── Apple Watch 44mm Silver Stainless Steel Pink Citrus Sport.avif
+    │           │           └── Apple Watch 44mm Space Gray Aluminum Pink Citrus Sport.avif
+    │           └── Without Bands
+    │               ├── 40mm
+    │               │   ├── Apple Watch 40mm Blue Aluminum.avif
+    │               │   ├── Apple Watch 40mm Dark Titanium.avif
+    │               │   ├── Apple Watch 40mm Gold Aluminum.avif
+    │               │   ├── Apple Watch 40mm Gold Stainless Steel.avif
+    │               │   ├── Apple Watch 40mm Graphite Stainless Steel.avif
+    │               │   ├── Apple Watch 40mm Light Titanium.avif
+    │               │   ├── Apple Watch 40mm Red Aluminum.avif
+    │               │   ├── Apple Watch 40mm Silver Aluminum.avif
+    │               │   ├── Apple Watch 40mm Silver Stainless Steel.avif
+    │               │   └── Apple Watch 40mm Space Gray Aluminum.avif
+    │               └── 44mm
+    │                   ├── Apple Watch 44mm Blue Aluminum.avif
+    │                   ├── Apple Watch 44mm Dark Titanium.avif
+    │                   ├── Apple Watch 44mm Gold Aluminum.avif
+    │                   ├── Apple Watch 44mm Gold Stainless Steel.avif
+    │                   ├── Apple Watch 44mm Graphite Stainless Steel.avif
+    │                   ├── Apple Watch 44mm Light Titanium.avif
+    │                   ├── Apple Watch 44mm Red Aluminum.avif
+    │                   ├── Apple Watch 44mm Silver Aluminum.avif
+    │                   ├── Apple Watch 44mm Silver Stainless Steel.avif
+    │                   └── Apple Watch 44mm Space Gray Aluminum.avif
+    ├── motorola
+    │   └── Motorola Moto 360
+    │       ├── Device Closed
+    │       │   ├── Motorola Moto 360 Men Black + Black Closed.avif
+    │       │   ├── Motorola Moto 360 Men Black + Cognac Closed.avif
+    │       │   ├── Motorola Moto 360 Men Gold + Black Closed.avif
+    │       │   ├── Motorola Moto 360 Men Gold + Cognac Closed.avif
+    │       │   ├── Motorola Moto 360 Men Silver + Black Closed.avif
+    │       │   ├── Motorola Moto 360 Men Silver + Cognac Closed.avif
+    │       │   ├── Motorola Moto 360 Women Gold + Blush Closed.avif
+    │       │   ├── Motorola Moto 360 Women Gold + Stone Closed.avif
+    │       │   ├── Motorola Moto 360 Women Rose Gold + Blush Closed.avif
+    │       │   ├── Motorola Moto 360 Women Rose Gold + Stone Grey Closed.avif
+    │       │   ├── Motorola Moto 360 Women Silver + Blush Closed.avif
+    │       │   └── Motorola Moto 360 Women Silver + Stone Grey Closed.avif
+    │       └── Device Open
+    │           ├── Motorola Moto 360 Men Black + Black Open.avif
+    │           ├── Motorola Moto 360 Men Black + Cognac Open.avif
+    │           ├── Motorola Moto 360 Men Gold + Black Open.avif
+    │           ├── Motorola Moto 360 Men Gold + Cognac Open.avif
+    │           ├── Motorola Moto 360 Men Silver + Black Open.avif
+    │           ├── Motorola Moto 360 Men Silver + Cognac Open.avif
+    │           ├── Motorola Moto 360 Women Gold + Blush Open.avif
+    │           ├── Motorola Moto 360 Women Gold + Stone Open.avif
+    │           ├── Motorola Moto 360 Women Rose Gold + Blush Open.avif
+    │           ├── Motorola Moto 360 Women Rose Gold + Stone Grey Open.avif
+    │           ├── Motorola Moto 360 Women Silver + Blush Open.avif
+    │           └── Motorola Moto 360 Women Silver + Stone Grey Open.avif
+    └── sony
+        └── Sony SmartWatch 3
+            ├── Device Closed
+            │   ├── Sony SmartWatch 3 Black Closed.avif
+            │   └── Sony SmartWatch 3 White Closed.avif
+            └── Device Open
+                ├── Sony SmartWatch 3 Black Open.avif
+                └── Sony SmartWatch 3 White Open.avif
+
+235 directories, 465 files

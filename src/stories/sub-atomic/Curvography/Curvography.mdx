@@ -1,0 +1,104 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Curvography" />
+
+# Curvography
+
+The Curvography system defines standardized border-radius tokens across Valence. Regulating corner rounding soft-softens visual geometry, establishes structural hierarchy, and reinforces consistent tactile feedback for interactive UI components.
+
+<br />
+
+## Border Radii Tokens
+
+Border radius tokens control corner rounding to soften visual geometry and reinforce the visual feel of interactive elements.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Token Name</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Small Radius</strong></td>
+      <td>`var(--radius-sm)`</td>
+      <td>`4px`</td>
+      <td>Subtle corner rounding (checkboxes, tags, tooltips).</td>
+    </tr>
+    <tr>
+      <td><strong>Medium Radius</strong></td>
+      <td>`var(--radius-md)`</td>
+      <td>`8px`</td>
+      <td>Standard component rounding (inputs, small buttons, cards).</td>
+    </tr>
+    <tr>
+      <td><strong>Large Radius</strong></td>
+      <td>`var(--radius-lg)`</td>
+      <td>`16px`</td>
+      <td>Container components (modals, large cards, popovers).</td>
+    </tr>
+    <tr>
+      <td><strong>XL Radius</strong></td>
+      <td>`var(--radius-xl)`</td>
+      <td>`24px`</td>
+      <td>Distinctive layout containers and feature cards.</td>
+    </tr>
+    <tr>
+      <td><strong>Pill</strong></td>
+      <td>`var(--radius-pill)`</td>
+      <td>`100px`</td>
+      <td>Pill-shaped elements (badges, action buttons, toggle switches).</td>
+    </tr>
+    <tr>
+      <td><strong>Circle</strong></td>
+      <td>`var(--radius-circle)`</td>
+      <td>`50%`</td>
+      <td>Fully circular elements (avatars, round icon buttons, status dots).</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Apply border-radius tokens to ensure component geometry matches visual hierarchy. Do not hardcode static pixel values for corner rounding in scoped styles.
+
+### Component Implementation
+
+```css
+.button {
+  border-radius: var(--radius-md);
+}
+
+.modal-dialog {
+  border-radius: var(--radius-lg);
+}
+
+.status-badge {
+  border-radius: var(--radius-pill);
+}
+
+.user-avatar {
+  border-radius: var(--radius-circle);
+}
+```
+
+## Sub-Atomic Property Overrides
+
+Components accept `--custom-radius` overrides while preserving design token fallbacks:
+
+```css
+.button {
+  /* Uses --custom-radius if defined; defaults to design token */
+  border-radius: var(--custom-radius, var(--radius-pill));
+}
+```
+
+## Best Practices
+- **Nested Radii Hierarchy**: When nesting rounded containers inside one another, match or scale down inner radii (`--radius-sm` inside `--radius-md`) to avoid unnatural visual overlaps.
+- **Consistency across States**: Avoid altering `border-radius` dynamically on hover/active states unless explicitly designing morphing controls.
+- **Pill vs. Circle Usage**: Use `--radius-pill` for fluid width containers like buttons and tags; reserve `--radius-circle` exclusively for fixed 1:1 aspect ratio elements.

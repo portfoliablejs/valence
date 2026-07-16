@@ -1,0 +1,27 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Button [v1.0.0]/Changelog" />
+
+# Changelog
+<br />
+## [1.0.0] - 2026-07-16
+<br />
+### Initial Release
+
+### Added
+- **Initial Component Implementation:** First stable release of `<ds-button>` featuring:
+  - **Core Variants:** Base variants (`primary`, `secondary`, `text`, `icon`, `floating`) with custom hover and active scaling transforms.
+  - **Iconography Integration:** Nested `<ds-icon>` support with dynamic size scaling (`20px` for circular variants; `14px` for pill/inline variants), outline/fill variant controls (`icon-variant`), and right-side layout alignment (`icon-position="right"`).
+  - **Sub-Atomic Token Hooks:** Custom property overrides for radii, surface colors, borders, and interaction scales (`--btn-radius`, `--btn-bg`, `--btn-hover-bg`, `--btn-active-bg`, `--btn-border-width`, `--btn-border-color`, `--btn-hover-scale`, `--btn-active-scale`).
+  - **Root Accessibility Observer (`_observeRootAccessibility`):** Integrated `MutationObserver` on `document.documentElement` to automatically sync global accessibility modes onto host attributes.
+  - **WCAG AAA & Forced Colors Support:** Built-in high-contrast mode (21:1 binary contrast ratio), dyslexia typography overrides, reduced motion suppression, and native Windows Forced Colors Mode system palette mapping (`Highlight`, `Canvas`, `CanvasText`).
+- **Storybook CSF3 Integration:** Interactive story controls (`Button.stories.js`) and automated interaction `play` function tests using `storybook/test`.
+- **`portfoliable` Application Integration:** Deployed across case study readers, header controls, modal triggers, and video player overlays.
+
+### Fixed
+- **Host ARIA Delegation:** Automatically scrubs `aria-label` from the host custom element tag after delegating it down to the internal `<button>` primitive to eliminate `aria-prohibited-attr` validation warnings.
+- **Disabled Host Cursor:** Enforces `cursor: not-allowed` on the host element when disabled to prevent default pointer cursor hover states.
+
+---
+
+*This changelog is specific to the `<ds-button>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

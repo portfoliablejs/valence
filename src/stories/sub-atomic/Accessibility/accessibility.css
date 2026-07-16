@@ -1,0 +1,110 @@
+/* ==========================================================================
+   SIMPLIFIED DARK MODE
+   ========================================================================== */
+html.a11y-dark-mode {
+  --color-bg: var(--color-player-bg);
+  --color-surface: #1C1C1E;
+  --color-surface-border: rgba(255, 255, 255, 0.12);
+  
+  --color-black: #FFFFFF;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #F5F5F5;
+  --color-text-muted: #B2B2B2;
+  
+  --color-card-bg: var(--color-surface);
+  --color-card-border: var(--color-surface-border);
+  --color-kbd-border: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   WCAG AAA HIGH CONTRAST MODE (BINARY 21:1 CONTRAST)
+   ========================================================================== */
+html.a11y-high-contrast {
+  --color-bg: #000000;
+  --color-surface: #000000;
+  --color-surface-border: #FFFFFF;
+  
+  --color-black: #FFFFFF;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #FFFFFF;
+  --color-text-muted: #FFFFFF;
+  
+  --color-gray-dark: #FFFFFF;
+  --color-gray-med: #FFFFFF;
+  --color-gray-light: #FFFFFF;
+  
+  --color-card-bg: #000000;
+  --color-card-border: #FFFFFF;
+  --border-width-thin: 2px;
+  --border-width-medium: 3px;
+  
+  --color-kbd-border: #FFFFFF;
+  --color-tooltip-kbd-border: #FFFFFF;
+}
+
+/* ==========================================================================
+   FORCED COLORS / SYSTEM HIGH CONTRAST MODE
+   ========================================================================== */
+html.a11y-forced-colors {
+  /* Override custom colors with System CSS Keywords */
+  --color-bg: Canvas;
+  --color-surface: Canvas;
+  --color-text-primary: CanvasText;
+  --color-text-secondary: CanvasText;
+  --color-text-muted: GrayText;
+  
+  --color-card-bg: Canvas;
+  --color-card-border: CanvasText;
+  --color-surface-border: CanvasText;
+  --border-width-thin: 1px;
+  
+  --a11y-focus-outline: 3px solid Highlight;
+  --a11y-focus-offset: 2px;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY MODIFIERS
+   ========================================================================== */
+html.a11y-large-text {
+  --font-scale-multiplier: 1.25;
+}
+html.a11y-large-text h1 { font-size: 48px !important; }
+html.a11y-large-text h2 { font-size: 40px !important; }
+html.a11y-large-text h3 { font-size: 28px !important; }
+html.a11y-large-text .p1 { font-size: 22px !important; }
+html.a11y-large-text .p2 { font-size: 20px !important; }
+
+html.a11y-dyslexia * {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+}
+
+/* ==========================================================================
+   MOTION SUPPRESSION
+   ========================================================================== */
+html.a11y-reduce-motion {
+  --component-transition: all 0s linear !important; 
+  --btn-active-scale: 1; 
+  --btn-hover-scale: 1; 
+  --btn-hover-scale-lg: 1; 
+}
+
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after { 
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  scroll-behavior: auto !important; 
+}
+
+/* ==========================================================================
+   HIGH VISIBILITY FOCUS MODE
+   ========================================================================== */
+html.a11y-focus-mode {
+  --a11y-focus-outline: 4px solid var(--color-accent);
+  --a11y-focus-offset: 4px;
+  --preview-focus-outline: 4px solid var(--color-accent);
+}

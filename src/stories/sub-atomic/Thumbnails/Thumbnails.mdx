@@ -1,0 +1,221 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Thumbnails" />
+
+# Thumbnail
+
+The Thumbnail component (`<ds-thumbnail>`) is a framework-agnostic Web Component designed to showcase application screenshots, responsive designs, and portfolio projects inside physical device mockups (phones, laptops, tablets, wearables, and TVs).
+
+It uses a 2-layer Shadow DOM architecture combined with an automated canvas flood-fill mask generator that dynamically clips screen images to device bezels with subpixel precision.
+
+<br />
+
+## Architecture Overview
+
+`<ds-thumbnail>` maintains two independent visual layers inside its Shadow DOM:
+
+1. **Screen Cover Layer (`.screen-cover`, z-index: 1):** The background image provided via the `screen-image` attribute.
+2. **Device Frame Layer (`.device-image`, z-index: 2):** The physical device frame overlay (`.avif` asset from `DEVICE_CATALOG`).
+
+
+```
+
++------------------------------------------+
+|  .frame-container                        |
+|                                          |
+|  +------------------------------------+  |
+|  |  .device-image (Z-Index: 2)        |  |  <- Physical Bezel Overlay
+|  |  +------------------------------+  |  |
+|  |  |  .screen-cover (Z-Index: 1)  |  |  |  <- Clipped & Bounded Screenshot
+|  |  |  (Clipped by generated mask) |  |  |
+|  |  +------------------------------+  |  |
+|  +------------------------------------+  |
++------------------------------------------+
+
+```
+
+<br />
+
+## Attributes & Component API
+
+The `<ds-thumbnail>` component accepts the following attributes for frame selection, image binding, and state control:
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Attribute</th>
+      <th style={{ textAlign: 'left' }}>Type</th>
+      <th style={{ textAlign: 'left' }}>Default</th>
+      <th style={{ textAlign: 'left' }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>category</code></td>
+      <td><code>String</code></td>
+      <td><code>'mobile'</code></td>
+      <td>Device category from catalog (e.g., <code>mobile</code>, <code>desktop</code>, <code>tablet</code>, <code>wearable</code>, <code>television</code>).</td>
+    </tr>
+    <tr>
+      <td><code>brand</code></td>
+      <td><code>String</code></td>
+      <td>First brand in category</td>
+      <td>Brand ecosystem filter (e.g., <code>apple</code>, <code>samsung</code>, <code>google</code>).</td>
+    </tr>
+    <tr>
+      <td><code>model</code></td>
+      <td><code>String</code></td>
+      <td>First model in brand</td>
+      <td>Specific device model (e.g., <code>Apple iPhone 13</code>, <code>Apple MacBook Pro</code>).</td>
+    </tr>
+    <tr>
+      <td><code>color</code></td>
+      <td><code>String</code></td>
+      <td>First available color</td>
+      <td>Device body finish variant matching catalog assets (e.g., <code>Midnight</code>, <code>Space Grey</code>).</td>
+    </tr>
+    <tr>
+      <td><code>screen-image</code></td>
+      <td><code>URL String</code></td>
+      <td><code>''</code></td>
+      <td><strong>Mandatory.</strong> The project screenshot URL rendered inside the device display bounds.</td>
+    </tr>
+    <tr>
+      <td><code>custom-only</code></td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
+      <td>Cancels the device frame overlay entirely and presents unconstrained image card styling with shadows and radii.</td>
+    </tr>
+    <tr>
+      <td><code>max-height</code></td>
+      <td><code>CSS Dimension</code></td>
+      <td><code>'100%'</code></td>
+      <td>Constraint height setting `--custom-max-height` to prevent large desktop mockups from overflowing viewports.</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
+      <td>Reduces opacity (`var(--opacity-disabled)`) and locks pointer events (`cursor: not-allowed`).</td>
+    </tr>
+    <tr>
+      <td><code>aria-label</code></td>
+      <td><code>String</code></td>
+      <td><code>'Thumbnail Mockup'</code></td>
+      <td>Delegated accessibility label. Automatically scrubbed from host tag to prevent DOM compliance violations.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Dual-Performance Architecture (Editor vs. Production)
+
+To ensure high rendering speeds across live preview editors and hosted static portfolios, `<ds-thumbnail>` supports a hybrid execution pipeline:
+
+### 1. Dev / Editor Mode (Live Canvas Processing)
+* Runs the automated perimeter flood-fill algorithm in real time when swapping devices or colors.
+* Performs **2px mask dilation** into the inner bezel to eliminate subpixel anti-aliasing alpha gaps around curved corners and straight edges.
+* Generates lightweight, temporary memory Blob URLs via `URL.createObjectURL(blob)` instead of heavy Base64 strings to prevent main-thread memory spikes during editing sessions.
+
+### 2. Production Mode (Zero-Latency Manifest Lookup)
+* When building/exporting portfolios, a build script pre-calculates bounds and mask metadata into a `thumbnail-manifest.json`.
+* At runtime, `<ds-thumbnail>` checks `window.__THUMBNAIL_MANIFEST__` or `registerDeviceManifest()`.
+* **Result:** **0ms canvas execution time** on production page loads, bypassing canvas loops entirely.
+
+<br />
+
+## Sub-Atomic Property Overrides
+
+Components accept sub-atomic variable overrides for dynamic layout constraints and fallback styling:
+
+```css
+ds-thumbnail {
+  /* Override maximum dimensions */
+  --custom-max-width: 600px;
+  --custom-max-height: 400px;
+
+  /* Custom corner radius fallback when [custom-only] is active */
+  --custom-screen-radius: var(--radius-lg);
+}
+
+```
+
+## Implementation Examples
+
+### 1. Standard Mobile Device Framing
+
+```html
+<ds-thumbnail
+  category="mobile"
+  brand="apple"
+  model="Apple iPhone 13"
+  color="Midnight"
+  screen-image="[https://my-domain.com/assets/app-screenshot.png](https://my-domain.com/assets/app-screenshot.png)"
+  max-height="500px">
+</ds-thumbnail>
+
+```
+
+### 2. Desktop Mockup in Single Page Application (SPA)
+
+```html
+<ds-thumbnail
+  category="desktop"
+  brand="apple"
+  model="Apple MacBook Pro"
+  color="Space Grey"
+  screen-image="[https://my-domain.com/assets/dashboard.png](https://my-domain.com/assets/dashboard.png)"
+  max-height="400px">
+</ds-thumbnail>
+
+```
+
+### 3. Production Manifest Injection (Zero-Latency Load)
+
+```html
+<script type="module">
+  import { registerDeviceManifest } from './Thumbnail.js';
+
+  // Register pre-generated bounds at app startup
+  registerDeviceManifest({
+    "/src/stories/assets/mockups/mobile/apple/iPhone-13/Midnight.avif": {
+      bounds: { top: 11.2, left: 4.8, width: 90.4, height: 77.6 }
+    }
+  });
+</script>
+
+<ds-thumbnail
+  category="mobile"
+  model="Apple iPhone 13"
+  screen-image="/uploads/portfolio-screen.png">
+</ds-thumbnail>
+
+```
+
+### 4. Custom Image Only (Frame Cancellation)
+
+```html
+<ds-thumbnail
+  custom-only
+  screen-image="[https://my-domain.com/assets/design-preview.png](https://my-domain.com/assets/design-preview.png)"
+  max-height="350px">
+</ds-thumbnail>
+
+```
+
+## Accessibility & System Syncing
+
+`<ds-thumbnail>` integrates with platform-wide accessibility controls via root attribute syncing:
+
+* **High Contrast Mode (`:host([a11y-high-contrast])`):** Disables filters and blurs, enforcing clear high-visibility borders around the frame and screen cover.
+* **Forced Colors Mode (`@media (forced-colors: active)`):** Suppresses forced color adjustments on image layers to prevent browser canvas flattening from destroying screen artwork.
+* **Reduced Motion Mode (`:host([a11y-reduce-motion])`):** Suppresses CSS scale and transform transitions during state updates or view resizing.
+* **Focus States (`:focus-visible`):** Enforces high-visibility focus indicators (`var(--a11y-focus-outline)`) around active frames during keyboard navigation.
+
+## Best Practices
+
+* **Layer Preservation:** Never flatten screen images and device mockups into a single composite image file. Keeping them as separate DOM layers preserves crispness on 4K/Retina displays, enables GPU acceleration during view resizes, and maintains accessibility.
+* **Viewport Scaling:** Always pass a `max-height` attribute (or set `--custom-max-height`) on desktop and television mockups to prevent large assets from pushing adjacent content out of view.
+* **Build Optimization:** Pre-generate device bounds using `exportPortfolioDeviceManifest()` during static site builds to ensure instant page rendering on hosted production portfolios.
+* **Touch Target & Focus:** Ensure interactive thumbnails inside cards include explicit `aria-label` descriptors for screen readers.

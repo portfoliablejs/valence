@@ -1,0 +1,222 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as BreadcrumbStories from './Breadcrumb.stories';
+
+<Meta title="molecules/Breadcrumb/Architecture" />
+
+# Breadcrumb (`ds-breadcrumb`)
+
+The `ds-breadcrumb` component is a **stateless (controlled)** web component designed for top-level hierarchy navigation in Single Page Applications (SPAs). It renders breadcrumb stacks, provides return/back shortcuts, and supports item-level contextual popover menus for sibling navigation.
+
+## Architectural Principles
+<br />
+
+### Fully Controlled Data Flow
+The component strictly implements the **Unidirectional Data Flow** pattern:
+* **State In (`.items`):** The host application (Vite, React, Vue, or Vanilla SPA) manages navigation state and feeds the active crumb stack into the component via property binding.
+* **Events Out (`ds-breadcrumb-*`):** User interactions (clicking crumb buttons, pressing backspace, or selecting items from a contextual menu) dispatch custom DOM events containing full context payloads.
+* **No Internal State Mutation:** The component never truncates its own item stack, modifies history, or manipulates URL parameters internally.
+
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host SPA / App Shell"]
+          direction TB
+          Router["Router / State Owner"]
+      end
+
+      subgraph WebComp["Controlled Web Component"]
+          Breadcrumb["<ds-breadcrumb>"]
+      end
+
+      Router -->|"1. State In<br/><code>.items = [...]</code>"| Breadcrumb
+      Breadcrumb -->|"2. Event Out<br/><code>ds-breadcrumb-select</code>"| Router
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style Router fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Breadcrumb fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Data Model & Contextual Menu Rules
+
+### Item Object Schema
+
+```typescript
+interface BreadcrumbItem {
+  id: string;               // Unique route or item identifier
+  label: string;            // Text label displayed on the crumb button
+  hasMenu?: boolean;        // Explicit override for contextual menu visibility
+  menuItems?: MenuItem[];   // Custom dropdown items specific to this crumb
+}
+
+interface MenuItem {
+  id: string;               // Unique menu item selection identifier
+  label: string;            // Display label in the popover list
+}
+
+```
+
+### Contextual Menu Visibility Rules
+
+A contextual menu is rendered for a given crumb item **if and only if**:
+
+1. The item is **not** the root home item (`index > 0`).
+2. `hasMenu` is **`true`** (or omitted when menu options are supplied).
+3. Menu items are available (supplied via `item.menuItems` or global `breadcrumb.menuItems`).
+
+> **Rule:** Setting `hasMenu: false` on an item object **guarantees** that no contextual menu will render for that specific crumb, regardless of global component configuration.
+
+---
+
+## Component API
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`items`</td>
+      <td>—</td>
+      <td>`Array<BreadcrumbItem>`</td>
+      <td>`null`</td>
+      <td>Primary array of breadcrumb items defining the active stack.</td>
+    </tr>
+    <tr>
+      <td>`menuItems`</td>
+      <td>—</td>
+      <td>`Array<MenuItem>`</td>
+      <td>`null`</td>
+      <td>Fallback global menu options for items with `hasMenu: true`.</td>
+    </tr>
+    <tr>
+      <td>`visible`</td>
+      <td>`visible`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Toggles the component visibility and layout animation state.</td>
+    </tr>
+    <tr>
+      <td>`itemCount`</td>
+      <td>`item-count`</td>
+      <td>`number`</td>
+      <td>`3`</td>
+      <td>Fallback item count indicator when `.items` is omitted.</td>
+    </tr>
+    <tr>
+      <td>`currentLabel`</td>
+      <td>`current-label`</td>
+      <td>`string`</td>
+      <td>`'Item Title'`</td>
+      <td>Fallback label for the final crumb when `.items` is omitted.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-breadcrumb-select`</td>
+      <td>`true` / `true`</td>
+      <td>`{ id, label, index, item, selectedMenuItem? }`</td>
+      <td>Emitted when a crumb button or a contextual menu item is clicked.</td>
+    </tr>
+    <tr>
+      <td>`ds-breadcrumb-return`</td>
+      <td>`true` / `true`</td>
+      <td>`{ remainingCount, remainingItems, targetItem }`</td>
+      <td>Emitted when the back arrow button or `Backspace` key is triggered.</td>
+    </tr>
+    <tr>
+      <td>`ds-breadcrumb-home`</td>
+      <td>`true` / `true`</td>
+      <td>`{ id, item }`</td>
+      <td>Emitted when the root `Home` crumb button is clicked.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## SPA Integration Examples
+
+### Example A: Static View without Contextual Menu (e.g., "About")
+
+```javascript
+const breadcrumb = document.querySelector('ds-breadcrumb');
+
+// 2 items: Home -> About (Explicitly disables contextual menu)
+breadcrumb.items = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About Page', hasMenu: false }
+];
+
+```
+
+### Example B: Dynamic View with Sibling Contextual Navigation (e.g., "Case Studies")
+
+```javascript
+const breadcrumb = document.querySelector('ds-breadcrumb');
+
+// Dynamic case study stack with contextual menu enabled for switching sibling cases
+breadcrumb.items = [
+  { id: 'home', label: 'Home' },
+  { 
+    id: 'case-alpha', 
+    label: 'Case Study Alpha', 
+    hasMenu: true,
+    menuItems: [
+      { id: 'case-alpha', label: 'Case Study Alpha' },
+      { id: 'case-beta', label: 'Case Study Beta' },
+      { id: 'case-gamma', label: 'Case Study Gamma' }
+    ]
+  }
+];
+
+// Handle user navigation events in the host SPA
+breadcrumb.addEventListener('ds-breadcrumb-select', (e) => {
+  const { id } = e.detail;
+  router.navigate(`/cases/${id}`);
+});
+
+breadcrumb.addEventListener('ds-breadcrumb-return', () => {
+  router.navigate('/home');
+});
+
+breadcrumb.addEventListener('ds-breadcrumb-home', () => {
+  router.navigate('/home');
+});
+
+```
+
+---
+
+## Accessibility (a11y) Features
+
+* **Keyboard Focus Navigation:** Full arrow key navigation (`ArrowLeft` / `ArrowRight` between crumb buttons, `ArrowDown` to enter popover menus, and `Backspace` shortcut for return navigation).
+* **Root Mode Adaptability:** Listens to class mutations on `<html>` to adapt styling for accessibility settings:
+* `.a11y-dark-mode`: Adjusts separator and text contrast ratios.
+* `.a11y-high-contrast`: Enforces maximum luminosity boundaries.
+* `.a11y-reduce-motion`: Disables spring deceleration physics and slide transitions.
+* `.a11y-dyslexia`: Overrides typography stack with high-legibility letter spacing.

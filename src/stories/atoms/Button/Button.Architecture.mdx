@@ -1,0 +1,348 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta title="Atoms/Button [v1.0.0]/Architecture" />
+
+# `ds-button`
+
+The `ds-button` component is an **atomic, multi-use action primitive** in the Valence Design System. Within the `portfoliable` web application shell, it serves as a core action target across multiple views and composite molecules, such as primary call-to-actions in the Case Reader, external repository links, media controls in `ds-video-player`, and social share triggers.
+<br />
+
+## Principles
+<br />
+### Unidirectional Data Flow & State Synchronization
+The component follows a strict **State In / Events Out** lifecycle model:
+* **State In (Observed Attributes):** The component observes changes to core state attributes (`variant`, `aria-label`, `disabled`, `icon`, `icon-variant`, `icon-position`). When attributes mutate, `updateAttributes()` updates the internal Shadow DOM button element and the child `<ds-icon>` tag.
+* **Events Out (Native Interaction):** User interaction triggers standard `click` events emitted from the host.
+* **Encapsulation:** The component handles internal focus styling and ARIA delegation without exposing its inner Shadow DOM subtree.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / Composite Container"]
+          direction TB
+          App["App Shell / Molecule"]
+      end
+
+      subgraph WebComp["ds-button (Shadow DOM)"]
+          HostTag["&lt;ds-button&gt;"]
+          ButtonEl["&lt;button&gt;"]
+          IconEl["&lt;ds-icon&gt;"]
+          SlotEl["&lt;slot&gt;"]
+      end
+
+      subgraph Composite["ds-tooltip (Optional)"]
+          Tooltip["&lt;ds-tooltip&gt;"]
+      end
+
+      App -->|"1. State Attributes<br/><code>variant, icon, disabled</code>"| HostTag
+      HostTag -->|"2. Updates Attributes"| ButtonEl
+      HostTag -->|"3. Configures Size & Variant"| IconEl
+      HostTag -->|"4. Directs Label Content"| SlotEl
+      ButtonEl -->|"5. Emits Interaction Events"| App
+      HostTag -.->|"Hover / Focus Sync"| Tooltip
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style Composite fill:#f0fdf4,stroke:#22c55e,stroke-width:2px,color:#14532d
+      style HostTag fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style ButtonEl fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+      style IconEl fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+      style SlotEl fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+      style Tooltip fill:#ffffff,stroke:#86efac,color:#14532d
+`} />
+
+<br />
+## Slot Architecture
+
+### Internal Shadow DOM Structure
+The Shadow DOM template is intentionally compressed on a single line to prevent unwanted whitespace text nodes around slot projections:
+
+```html
+<style>${css}</style>
+<button type="button">
+  <ds-icon class="btn-icon" style="display: none;"></ds-icon>
+  <slot></slot>
+</button>
+```
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback / Variant Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>Text node, `<span>`</td>
+      <td>Primary textual button label injected by the host application.</td>
+      <td>Rendered in `primary`, `secondary`, and `text` variants. Ignored when `variant="icon"` or `variant="floating"`.</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+### Iconography & Tooltip Synergy
+1. **Child `<ds-icon>` Mechanics:** When the `icon` attribute is present, `ds-button` automatically displays the internal `<ds-icon>` component. It calculates icon sizing dynamically: circular variants (`icon` and `floating`) receive `size="20"`, while pill and text variants receive `size="14"`.
+2. **Icon Position Reversal:** Setting `icon-position="right"` sets flex direction to `row-reverse` on the internal button container.
+3. **Tooltip Composite Pattern:** When paired with `<ds-tooltip>`, hovering or focusing the button activates the tooltip's `visible` attribute to display helper text and keyboard shortcuts.
+<br />
+
+## API Contract
+
+### Observed Attributes & Properties
+<table>
+  <thead>
+    <tr>
+      <th>Property / Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`variant`</td>
+      <td>`'primary' | 'secondary' | 'text' | 'icon' | 'floating'`</td>
+      <td>`'primary'`</td>
+      <td>Determines visual presentation, geometry, and hover scaling behaviors.</td>
+    </tr>
+    <tr>
+      <td>`label`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Slotted textual content passed into default `<slot>`.</td>
+    </tr>
+    <tr>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`null`</td>
+      <td>Accessibility label delegated to internal `<button>` and scrubbed from host tag.</td>
+    </tr>
+    <tr>
+      <td>`disabled`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Disables interactivity, updates cursor to `not-allowed`, and lowers opacity.</td>
+    </tr>
+    <tr>
+      <td>`icon`</td>
+      <td>`string`</td>
+      <td>`null`</td>
+      <td>Name of the icon to render inside internal `<ds-icon>`.</td>
+    </tr>
+    <tr>
+      <td>`icon-variant`</td>
+      <td>`'outline' | 'fill'`</td>
+      <td>`'outline'`</td>
+      <td>Sets the icon rendering style (`fill` vs default outline).</td>
+    </tr>
+    <tr>
+      <td>`icon-position`</td>
+      <td>`'left' | 'right'`</td>
+      <td>`'left'`</td>
+      <td>Determines icon placement relative to slotted label text.</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+### Emitted Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Type</th>
+      <th>Bubbles / Composed</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`click`</td>
+      <td>`MouseEvent`</td>
+      <td>`true` / `true`</td>
+      <td>Native DOM click event dispatched when the user activates an enabled button.</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Variable</th>
+      <th>Fallback Token Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--btn-radius`</td>
+      <td>`var(--radius-pill)` or `var(--radius-circle)`</td>
+      <td>Overrides default button corner rounding.</td>
+    </tr>
+    <tr>
+      <td>`--btn-bg`</td>
+      <td>`var(--color-black)` or `transparent`</td>
+      <td>Overrides background surface fill color.</td>
+    </tr>
+    <tr>
+      <td>`--btn-hover-bg`</td>
+      <td>`var(--color-gray-dark)` or `rgba(0,0,0,0.12)`</td>
+      <td>Overrides hover state background fill.</td>
+    </tr>
+    <tr>
+      <td>`--btn-active-bg`</td>
+      <td>`var(--color-black)` or `rgba(0,0,0,0.18)`</td>
+      <td>Overrides active state background fill.</td>
+    </tr>
+    <tr>
+      <td>`--btn-border-width`</td>
+      <td>`var(--border-width-thin)` or `var(--border-width-medium)`</td>
+      <td>Overrides button border stroke width.</td>
+    </tr>
+    <tr>
+      <td>`--btn-border-color`</td>
+      <td>`var(--color-black)` or `var(--color-gray-light)`</td>
+      <td>Overrides button border color.</td>
+    </tr>
+    <tr>
+      <td>`--btn-hover-scale`</td>
+      <td>`1.02`</td>
+      <td>Hover state scale transform multiplier.</td>
+    </tr>
+    <tr>
+      <td>`--btn-active-scale`</td>
+      <td>`0.95`</td>
+      <td>Active click state scale transform multiplier.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## `a11y` Engine
+
+### 1. ARIA Delegation & Host Scrubbing
+When `aria-label` is applied to `<ds-button>` in HTML, `updateAttributes()` delegates the attribute down to the internal shadow `<button>` element and scrubs `aria-label` from the host tag. This prevents browser screen readers and automated accessibility checkers from reporting `aria-prohibited-attr` on non-interactive custom element wrappers.
+
+### 2. Root Mutation Observer (`_observeRootAccessibility`)
+During `connectedCallback()`, `ds-button` instantiates a `MutationObserver` on `document.documentElement`. It reflects root accessibility classes as host boolean attributes:
+
+<table>
+  <thead>
+    <tr>
+      <th>Root Class (`<html>`)</th>
+      <th>Reflected Host Attribute</th>
+      <th>CSS Styling Reaction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`.a11y-dark-mode`</td>
+      <td>`a11y-dark-mode`</td>
+      <td>Inverts surface tokens, using high-luminosity borders and dark player backgrounds.</td>
+    </tr>
+    <tr>
+      <td>`.a11y-high-contrast`</td>
+      <td>`a11y-high-contrast`</td>
+      <td>Forces binary 21:1 contrast ratios (`#000000` / `#FFFFFF`), bold weight (`700`), and outline rings.</td>
+    </tr>
+    <tr>
+      <td>`.a11y-forced-colors`</td>
+      <td>`a11y-forced-colors`</td>
+      <td>Applies system active theme variables (`Canvas`, `CanvasText`, `Highlight`, `HighlightText`) under `forced-color-adjust: none`.</td>
+    </tr>
+    <tr>
+      <td>`.a11y-dyslexia`</td>
+      <td>`a11y-dyslexia`</td>
+      <td>Replaces font family with Comic Sans and increases letter and word spacing.</td>
+    </tr>
+    <tr>
+      <td>`.a11y-reduce-motion`</td>
+      <td>`a11y-reduce-motion`</td>
+      <td>Forces transition and animation durations to `0s`.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Examples
+
+### Example A: Primary CTA Button (Case Reader View)
+Used inside the Case Reader to launch the primary video presentation:
+
+```javascript
+import 'valence/ds-button';
+
+const container = document.createElement('div');
+container.innerHTML = `
+  <ds-button 
+    variant="primary" 
+    icon="play" 
+    icon-position="left">
+    Play Video
+  </ds-button>
+`;
+
+const button = container.querySelector('ds-button');
+button.addEventListener('click', () => {
+  appShell.openVideoPlayer();
+});
+```
+
+### Example B: Floating Control Button with Keyboard Shortcut (Video Player)
+Used inside `ds-video-player` controls as an elevated overlay action:
+
+```javascript
+import 'valence/ds-button';
+import 'valence/ds-tooltip';
+
+const wrapper = document.createElement('div');
+wrapper.style.position = 'relative';
+
+wrapper.innerHTML = `
+  <ds-button 
+    variant="floating" 
+    icon="play" 
+    aria-label="Play Video">
+  </ds-button>
+
+  <ds-tooltip 
+    text="Play Video" 
+    position="top" 
+    show-kbd 
+    kbd-label="Esc">
+  </ds-tooltip>
+`;
+
+const btn = wrapper.querySelector('ds-button');
+const tooltip = wrapper.querySelector('ds-tooltip');
+
+btn.addEventListener('mouseenter', () => tooltip.setAttribute('visible', 'true'));
+btn.addEventListener('mouseleave', () => tooltip.removeAttribute('visible'));
+```
+
+### Example C: Icon-Only Action (Social Sharing)
+Used inside header toolbars and case cards to trigger share links:
+
+```javascript
+const shareBtn = document.createElement('ds-button');
+shareBtn.setAttribute('variant', 'icon');
+shareBtn.setAttribute('icon', 'share');
+shareBtn.setAttribute('aria-label', 'Share case study');
+
+shareBtn.addEventListener('click', async () => {
+  if (navigator.share) {
+    await navigator.share({ title: document.title, url: window.location.href });
+  }
+});
+```

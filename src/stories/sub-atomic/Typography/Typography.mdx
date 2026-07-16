@@ -1,0 +1,201 @@
+import { Meta, Typeset } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Typography" />
+
+# Typography
+
+The Typography system establishes standard font families, 
+scales, weights, and letter-spacing for the Valence platform. Consistent typographic hierarchy ensures readability, 
+structural flow, and visual balance across all interface text elements.
+
+<br />
+## Font Families
+
+Valence uses system font stacks for optimal performance, native feel, and legibility across all platforms. 
+Because browsers don't have to fetch external web fonts (like those from Google Fonts), you 
+eliminate extra HTTP requests and avoid text-rendering delays like FOUT (Flash of Unstyled Text).
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Type</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value Stack</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Sans-Serif (Primary)</strong></td>
+      <td>`var(--font-family)`</td>
+      <td>`-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif`</td>
+    </tr>
+    <tr>
+      <td><strong>Monospace</strong></td>
+      <td>`var(--font-mono)`</td>
+      <td>`"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Headings Scale
+
+Heading styles guide user scanning and define clear visual hierarchy.
+
+**Font Family:** `var(--font-family)`  
+**Sample:** *The quick brown fox jumps over the lazy dog*
+
+<Typeset
+  fontSizes={[
+    '38px',
+    '36px',
+    '20px',
+    '22px'
+  ]}
+  fontWeight={500}
+  sampleText="The quick brown fox jumps over the lazy dog"
+  fontFamily="var(--font-family)"
+/>
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Element</th>
+      <th style={{ textAlign: 'left' }}>Size</th>
+      <th style={{ textAlign: 'left' }}>Weight</th>
+      <th style={{ textAlign: 'left' }}>Line Height</th>
+      <th style={{ textAlign: 'left' }}>Letter Spacing</th>
+      <th style={{ textAlign: 'left' }}>Color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`<h1>`</td>
+      <td>`38px`</td>
+      <td>`500` (Medium)</td>
+      <td>`0.8`</td>
+      <td>`-0.04em`</td>
+      <td>Default / `--color-black`</td>
+    </tr>
+    <tr>
+      <td>`<h2>`</td>
+      <td>`36px`</td>
+      <td>`600` (Semi-Bold)</td>
+      <td>`1.0`</td>
+      <td>`-0.02em`</td>
+      <td>Default / `--color-black`</td>
+    </tr>
+    <tr>
+      <td>`<h3>`</td>
+      <td>`20px`</td>
+      <td>`600` (Semi-Bold)</td>
+      <td>`1.0`</td>
+      <td>`-0.02em`</td>
+      <td>Default / `--color-black`</td>
+    </tr>
+    <tr>
+      <td>`<h4>`</td>
+      <td>`22px`</td>
+      <td>`250` (Light)</td>
+      <td>`0.8`</td>
+      <td>`-0.04em`</td>
+      <td>`var(--color-gray-med)`</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Body & Paragraph Scale
+
+Paragraph tokens handle core body copy, descriptions, and supporting information.
+
+**Font Family:** `var(--font-family)`  
+**Sample:** *Lio started his career as a Graphic Designer, and fell in love with the intersection of design and technology.*
+
+<Typeset
+  fontSizes={[
+    '18px',
+    '17px'
+  ]}
+  fontWeight={400}
+  sampleText="Lio started his career as a Graphic Designer, and fell in love with the intersection of design and technology."
+  fontFamily="var(--font-family)"
+/>
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Class</th>
+      <th style={{ textAlign: 'left' }}>Size</th>
+      <th style={{ textAlign: 'left' }}>Weight</th>
+      <th style={{ textAlign: 'left' }}>Line Height</th>
+      <th style={{ textAlign: 'left' }}>Letter Spacing</th>
+      <th style={{ textAlign: 'left' }}>Color / Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`.p1`</td>
+      <td>`18px`</td>
+      <td>`400` (Regular)</td>
+      <td>`1.1`</td>
+      <td>`-0.02em`</td>
+      <td>Primary body text, lead paragraphs, card summaries.</td>
+    </tr>
+    <tr>
+      <td>`.p2`</td>
+      <td>`17px`</td>
+      <td>`300` (Light)</td>
+      <td>`0.8`</td>
+      <td>`-0.02em`</td>
+      <td>Secondary description text (`var(--color-gray-med)`).</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Typography resets are automatically applied to the Light DOM `body` tag. Use standard semantic HTML elements (`<h1>` - `<h4>`) or structural classes (`.p1`, `.p2`) when building Web Components.
+
+### Basic Implementation
+
+```html
+<h1>Main Dashboard Header</h1>
+<h2>Section Title</h2>
+<h3>Sub-section Header</h3>
+<h4 style="color: var(--color-gray-med);">Supporting Subtitle</h4>
+
+<p class="p1">
+  Lio started his career as a Graphic Designer, and fell in love with the intersection of design and technology.
+</p>
+
+<p class="p2">
+  He holds a NN/g UX Certification, a postgrad degree in User Experience, and is currently pursuing a Master's in Computer Science at BSU with a focus on HCI.
+</p>
+```
+
+## CSS Variable Usage
+```css
+.custom-title {
+  font-family: var(--font-family);
+  font-size: 38px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.8;
+}
+
+.code-snippet {
+  font-family: var(--font-mono);
+}
+```
+
+## Best Practices
+- Semantic Hierarchy: Maintain logical heading depth (`<h1>` down to `<h4>`). Avoid skipping heading levels solely for visual sizing.
+- Font Rendering: WebKit antialiasing (`-webkit-font-smoothing: antialiased`) is applied globally to maintain clean vector rendering across high-DPI and Retina displays.
+- Color Contrast: Standard heading text renders against `--color-black`. For muted subtitles (`h4`, `.p2`), verify contrast compliance against light and dark background surfaces.
+
+> **Note**: Differences in character widths and glyph sizing across various operating systems can affect how text flows, making complex, pixel-perfect designs harder to maintain.

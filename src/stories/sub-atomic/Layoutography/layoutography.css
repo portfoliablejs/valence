@@ -1,0 +1,71 @@
+/* Container Max-Width Utilities */
+.container-xs { width: 100%; max-width: var(--size-max-width-xs); margin-inline: auto; }
+.container-sm { width: 100%; max-width: var(--size-max-width-sm); margin-inline: auto; }
+.container-md { width: 100%; max-width: var(--size-max-width-md); margin-inline: auto; }
+.container-lg { width: 100%; max-width: var(--size-max-width-lg); margin-inline: auto; }
+.container-xl { width: 100%; max-width: var(--size-max-width-xl); margin-inline: auto; }
+
+/* Primitive 1: Stack Layout (Vertical Flex) */
+.layout-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-md);
+}
+.layout-stack-tight { gap: var(--space-xs); }
+.layout-stack-loose { gap: var(--space-xl); }
+
+/* Primitive 2: Cluster Layout (Horizontal Wrapping Flex) */
+.layout-cluster {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.layout-cluster-between { justify-content: space-between; }
+.layout-cluster-end { justify-content: flex-end; }
+
+/* Primitive 3: Responsive Application Grid */
+.layout-grid {
+  display: grid;
+  gap: var(--grid-gutter, 24px);
+  grid-template-columns: repeat(var(--grid-columns-mobile, 4), 1fr);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .layout-grid {
+    grid-template-columns: repeat(var(--grid-columns-tablet, 8), 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout-grid {
+    grid-template-columns: repeat(var(--grid-columns-desktop, 12), 1fr);
+  }
+}
+
+/* Primitive 4: Dock & Fixed Containers */
+.layout-dock-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-fixed);
+  width: 100%;
+  background: var(--overlay-glass-bg);
+  backdrop-filter: blur(var(--overlay-glass-blur));
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur));
+  border-bottom: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+  padding: var(--space-sm) var(--space-lg);
+}
+
+.layout-dock-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  background: var(--color-bg);
+  border-top: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+  padding: var(--space-md) var(--space-lg);
+}

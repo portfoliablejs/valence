@@ -1,0 +1,94 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Gridography" />
+
+# Gridography
+
+The Gridography system establishes responsive screen breakpoints, column counts, and layout gutters across screen sizes.
+
+<br />
+
+## Breakpoint Tokens
+
+Breakpoint tokens define standard media query thresholds for fluid, multi-device layouts.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Breakpoint</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Target Device / Viewport</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Mobile Small (XS)</strong></td>
+      <td>`var(--breakpoint-xs)`</td>
+      <td>`320px`</td>
+      <td>Compact smartphone viewports.</td>
+    </tr>
+    <tr>
+      <td><strong>Mobile Large (SM)</strong></td>
+      <td>`var(--breakpoint-sm)`</td>
+      <td>`640px`</td>
+      <td>Large mobile devices in portrait or landscape.</td>
+    </tr>
+    <tr>
+      <td><strong>Tablet (MD)</strong></td>
+      <td>`var(--breakpoint-md)`</td>
+      <td>`768px`</td>
+      <td>Tablets and small portrait screens.</td>
+    </tr>
+    <tr>
+      <td><strong>Laptop (LG)</strong></td>
+      <td>`var(--breakpoint-lg)`</td>
+      <td>`1024px`</td>
+      <td>Standard laptop viewports and landscape tablets.</td>
+    </tr>
+    <tr>
+      <td><strong>Desktop (XL)</strong></td>
+      <td>`var(--breakpoint-xl)`</td>
+      <td>`1280px`</td>
+      <td>High-resolution desktop displays.</td>
+    </tr>
+    <tr>
+      <td><strong>Wide Desktop (XXL)</strong></td>
+      <td>`var(--breakpoint-xxl)`</td>
+      <td>`1536px`</td>
+      <td>Ultra-wide monitors and large desktop layouts.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Use grid column variables and standard media query targets to structure responsive application layouts.
+
+### CSS Example
+
+```css
+.layout-grid {
+  display: grid;
+  gap: var(--grid-gutter);
+  grid-template-columns: repeat(var(--grid-columns-mobile), 1fr);
+}
+
+@media (min-width: 768px) {
+  .layout-grid {
+    grid-template-columns: repeat(var(--grid-columns-tablet), 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout-grid {
+    grid-template-columns: repeat(var(--grid-columns-desktop), 1fr);
+  }
+}
+```
+
+## Best Practices
+- Mobile-First Queries: Always write baseline styles for small screens, using min-width media queries to scale layouts up as screen width increases.
+- Consistent Gutters: Stick to --grid-gutter (24px) for grid element spacing to ensure consistent rhythm across screens.

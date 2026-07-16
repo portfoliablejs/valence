@@ -1,0 +1,123 @@
+/* src/stories/molecules/GalleryItem/gallery-item.css */
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.case-thumb-wrapper {
+  flex: 0 0 auto;
+  height: var(--device-h-gallery, 55vh); 
+  max-height: min(700px, 100vh - 200px);
+  position: relative;
+  transition: transform var(--speed-slow, 0.4s) cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  display: block;
+  border-radius: var(--radius-lg); /* Default radius for non-device frames */
+  overflow: hidden;
+}
+
+.case-thumb-wrapper:hover {
+  transform: scale(1.02) translateY(-4px);
+}
+
+.case-thumb-wrapper:active {
+  transform: scale(0.98);
+}
+
+.case-thumb-wrapper:focus-visible {
+  outline: 4px solid var(--color-accent, #2B71F0);
+  outline-offset: 4px;
+}
+
+.case-thumb-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover; /* Changed to cover to fill the aspect ratio box */
+  object-position: center;
+  z-index: 10;
+  pointer-events: none;
+  transition: filter var(--speed-normal, 0.3s) ease;
+}
+
+.locked-thumb-img {
+  filter: blur(10px);
+}
+
+.gallery-item-meta {
+  width: 100%;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+  padding: 0;
+  box-sizing: border-box;
+  margin-top: 12px;
+}
+
+.gallery-item-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.gallery-item-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.gallery-item-title {
+  font-family: var(--font-family, sans-serif);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-black, #000000);
+  text-align: center;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gallery-read-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-family, sans-serif);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-gray-med, #777777);
+}
+
+.gallery-item-shortdesc {
+  font-family: var(--font-family, sans-serif);
+  font-size: 14px;
+  color: var(--color-gray-med, #777777);
+  line-height: 1.4;
+  text-align: center;
+  margin: 4px 0 0 0;
+  font-weight: 400;
+}
+
+.locked-shortdesc {
+  opacity: 0;
+}
+
+.gallery-item-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}

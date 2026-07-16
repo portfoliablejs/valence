@@ -1,0 +1,177 @@
+/* ==========================================================================
+   1. Host Geometry, Animations & Surface Container
+   ========================================================================== */
+:host {
+  display: inline-block;
+  box-sizing: border-box;
+  font-family: var(--font-family, sans-serif);
+  z-index: var(--z-dropdown, 50);
+  transition: display var(--anim-fast, 0.2s) allow-discrete;
+}
+
+:host(:not([open])) {
+  display: none;
+}
+
+.menu-card {
+  box-sizing: border-box;
+  width: var(--custom-width, 260px);
+  min-width: var(--custom-min-width, 220px);
+  background: var(--custom-bg, var(--color-bg, #ffffff));
+  border: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--color-surface-border, rgba(0, 0, 0, 0.08));
+  border-radius: var(--custom-radius, var(--radius-lg, 16px));
+  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+  padding: var(--space-md, 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  transform-origin: top center;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity var(--anim-fast, 0.2s) var(--ease-fluid, ease),
+              transform var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+}
+
+:host(:not([open])) .menu-card {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.96);
+  pointer-events: none;
+}
+
+@starting-style {
+  :host([open]) .menu-card {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+}
+
+/* ==========================================================================
+   2. Header, Subcategory & Title Section
+   ========================================================================== */
+.menu-header,
+.subcategory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-xs, 4px) var(--space-sm, 8px);
+  margin-bottom: var(--space-xs, 4px);
+  /* Prevent text selection */
+  -webkit-user-select: none; /* Safari / older WebKit */
+  user-select: none;         /* Standard */
+}
+
+.subcategory-header {
+  margin-top: var(--space-sm, 8px);
+}
+
+/* Updated text color to var(--color-text-secondary, #323232) to meet WCAG AA contrast standards */
+.menu-title,
+.subcategory-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary, var(--color-gray-dark, #323232));
+  margin: 0;
+  /* Ensures title text specifically cannot be highlighted */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.close-btn {
+  margin-left: auto;
+}
+
+/* ==========================================================================
+   3. Content Container, Subcategories & Item Rows
+   ========================================================================== */
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+  width: 100%;
+}
+
+.menu-content ds-divider {
+  display: block;
+  width: 100%;
+  margin: var(--space-xs, 4px) 0;
+}
+
+.menu-content ds-item-row {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  --control-flex: 0 0 auto;
+  --control-max-width: fit-content;
+  --toggle-width: 36px;
+  --toggle-height: 20px;
+}
+
+/* ==========================================================================
+   4. Accessibility & Theme Overrides
+   ========================================================================== */
+:host([a11y-dark-mode]) .menu-card {
+  background: #1c1c1e;
+  border-color: var(--color-surface-border, rgba(255, 255, 255, 0.12));
+  --color-surface: rgba(255, 255, 255, 0.12);
+}
+
+:host([a11y-dark-mode]) .menu-title,
+:host([a11y-dark-mode]) .subcategory-title {
+  color: var(--color-text-secondary, #f5f5f5);
+}
+
+:host([a11y-high-contrast]) .menu-card {
+  background: #000000 !important;
+  border: var(--border-width-medium, 3px) var(--border-style-solid, solid) #ffffff !important;
+  box-shadow: none !important;
+}
+
+:host([a11y-high-contrast]) .menu-title,
+:host([a11y-high-contrast]) .subcategory-title {
+  color: #ffffff !important;
+}
+
+/* Windows Forced Colors System Overrides */
+:host([a11y-forced-colors]) .menu-card {
+  forced-color-adjust: none !important;
+  background: Canvas !important;
+  color: CanvasText !important;
+  border: var(--border-width-thin, 1px) var(--border-style-solid, solid) CanvasText !important;
+}
+
+:host([a11y-forced-colors]) .menu-title,
+:host([a11y-forced-colors]) .subcategory-title {
+  forced-color-adjust: none !important;
+  color: CanvasText !important;
+}
+
+@media (forced-colors: active) {
+  .menu-card {
+    forced-color-adjust: none !important;
+    background: Canvas !important;
+    color: CanvasText !important;
+    border: var(--border-width-thin, 1px) var(--border-style-solid, solid) CanvasText !important;
+  }
+
+  .menu-title,
+  .subcategory-title {
+    forced-color-adjust: none !important;
+    color: CanvasText !important;
+  }
+}
+
+:host([a11y-dyslexia]) .menu-title,
+:host([a11y-dyslexia]) .subcategory-title {
+  font-family: "Comic Sans MS", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+}
+
+:host([a11y-reduce-motion]),
+:host([a11y-reduce-motion]) .menu-card {
+  transition: none !important;
+  transform: none !important;
+}

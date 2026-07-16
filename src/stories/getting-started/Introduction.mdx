@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Introduction" />
+
+# Introduction to Valence
+
+Welcome to Valence, the Design System powering `portfoliable`, the open-source portfolio builder for designers, developers, creatives and companies around the world.
+
+Valence is a comprehensive library of reusable, accessible, and themeable Web Components built with a "native-first" philosophy. It is designed to provide the building blocks for creating beautiful, consistent, and high-performance portfolio applications. 
+
+## Core Principles
+
+Our system is built upon a few core principles that guide every component and decision:
+
+### Atomic Design
+
+Valence is structured using **Atomic Design** methodology. This means our components are organized by complexity, from the smallest, indivisible "atoms" to larger, composite "organisms".
+
+-   **Sub-atoms:** The core design tokens—colors, typography, spacing—that define the visual language.
+-   **Atoms:** The basic building blocks of our UI (e.g., Button, Icon, Pill). They are not useful on their own.
+-   **Molecules:** Simple groups of atoms functioning together as a unit (e.g., Search Input, which combines a button and an input field).
+-   **Organisms:** Complex UI components composed of molecules and atoms (e.g., Header, Gallery, Case Slide).
+-   **Templates:** Page-level objects that place organisms into a layout. *(Handled by the consumer application, `portfoliable`)*.
+
+This structure ensures scalability, maintainability, and a clear mental model for developers.
+
+### Encapsulated & Native
+
+Every component is a **native Web Component** with its styles and logic fully encapsulated within the Shadow DOM. This means:
+
+-   **No Style Conflicts:** Component styles will never leak out and interfere with your application's styles, and vice-versa.
+-   **Framework Agnostic:** While built with vanilla JavaScript, these components can be used in any framework (React, Vue, Svelte) or no framework at all.
+-   **Future-Proof:** By building on web standards, we ensure long-term stability and performance.
+
+### Accessibility First
+
+Accessibility is not an afterthought; it is a core requirement. Every component is designed and built to meet **WCAG 2.1 AA** standards. This includes:
+
+-   **Semantic HTML:** Using the correct elements for the job.
+-   **WAI-ARIA Roles:** Providing appropriate roles and states for screen readers.
+-   **Keyboard Navigation:** Ensuring every interactive element is fully operable with a keyboard.
+-   **Theming for A11y:** Built-in support for high-contrast, reduced-motion, and large-text modes.
+
+## How to Use This Documentation
+
+This Documentation, built in Storybook, is your interactive guide to the Valence Design System. Each component has its own "Docs" and "Canvas" tabs:
+
+-   **Docs:** Detailed documentation explaining the component's purpose, API, and best practices.
+-   **Canvas:** An interactive playground where you can manipulate component properties (`props` or `attributes`) and see the results in real-time.
+
+Use the sidebar to navigate through the Sub-atoms, Atoms, Molecules, and Organisms.

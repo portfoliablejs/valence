@@ -1,0 +1,94 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Borderography"/>
+
+# Borderography
+
+The Borderography system defines standardized border widths and line styles across components. Paired with Curvography (border radii), it completes the structural framing of Valence interfaces.
+
+<br />
+
+## Border Width & Style Tokens
+
+Border tokens manage outlines, structural dividers, focus rings, and card encasements.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Token</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Thin Border</strong></td>
+      <td>`var(--border-width-thin)`</td>
+      <td>`1px`</td>
+      <td>Standard card outlines, table borders, input fields, dividers.</td>
+    </tr>
+    <tr>
+      <td><strong>Medium Border</strong></td>
+      <td>`var(--border-width-medium)`</td>
+      <td>`2px`</td>
+      <td>Selected states, tab highlights, active input rings.</td>
+    </tr>
+    <tr>
+      <td><strong>Thick Border</strong></td>
+      <td>`var(--border-width-thick)`</td>
+      <td>`4px`</td>
+      <td>Accessibility focus rings, prominent status banners.</td>
+    </tr>
+    <tr>
+      <td><strong>Solid Style</strong></td>
+      <td>`var(--border-style-solid)`</td>
+      <td>`solid`</td>
+      <td>Default border rendering across standard UI elements.</td>
+    </tr>
+    <tr>
+      <td><strong>Dashed Style</strong></td>
+      <td>`var(--border-style-dashed)`</td>
+      <td>`dashed`</td>
+      <td>File upload drop zones, placeholder containers.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Use standard border shorthand or explicit border variables when constructing component styles.
+
+### CSS Example
+
+```css
+.card {
+  border: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+}
+
+.dropzone {
+  border: var(--border-width-medium) var(--border-style-dashed) var(--color-gray-med);
+}
+
+.button:focus-visible {
+  outline: var(--border-width-thick) var(--border-style-solid) var(--color-accent);
+}
+```
+
+## Sub-Atomic Property Overrides
+
+For dynamic border customization in molecules or story controls, components reference custom border variables before defaulting to design tokens:
+
+```css
+.card {
+  border: var(--custom-border-width, var(--border-width-thin)) 
+          var(--border-style-solid) 
+          var(--custom-border-color, var(--color-card-border));
+}
+````
+
+## Best Practices
+- Explicit Thickness: Always use --border-width-thin (1px) for internal dividing lines and structural cards to keep UI geometry sharp and clean.
+- Focus Rings: Standardize active accessibility focus indicators around --border-width-thick (4px) for clear keyboard visibility.

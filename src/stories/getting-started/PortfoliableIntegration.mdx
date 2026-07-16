@@ -1,0 +1,263 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="getting-started/Portfoliable Integration" />
+
+# Portfoliable Application Integration Guide
+
+The `portfoliable` application is an open-source, web-native portfolio builder designed as a single-page Web Component shell (`AppShell`). It dynamically consumes, orchestrates, and renders templates from the **Valence Design System** (`ds-*` Web Components).
+
+This document serves as the primary integration guide explaining how the host application interacts with Valence components, passes data through shadow boundaries, manages global accessibility cascades, and handles runtime state transitions.
+
+<br />
+
+## 1. Application Architecture & Component Shell
+
+The application entrypoint (`src/main.js`) mounts the root Web Component (`<app-shell>`) directly into the DOM viewport. `AppShell` encapsulated inside `src/App.js` maintains application state and renders Valence components into dedicated view containers (`#view-home`, `#view-case`, `#view-about`).
+
+<mermaid-diagram chart={`
+  flowchart TD
+      subgraph Entry ["DOM Mountpoint (main.js)"]
+          AppShell["&lt;app-shell&gt; (AppShell Class)"]
+      end
+
+      subgraph Shell ["App Shell Shadow DOM Boundary"]
+          Header["&lt;ds-header id='app-header'&gt;"]
+          Main["&lt;main&gt; Viewport Container"]
+          Toast["&lt;ds-toast id='app-toast'&gt;"]
+          ModalContainer["#modal-container"]
+          VideoPlayer["&lt;ds-video-player id='video-player'&gt;"]
+      end
+
+      subgraph Views ["Dynamic View Containers"]
+          HomeView["#view-home (&lt;ds-gallery&gt;)"]
+          CaseView["#view-case (#case-slider-container)"]
+      end
+
+      subgraph Components ["Valence Component Instances"]
+          GalleryItem["&lt;ds-gallery-item&gt;"]
+          CaseSlide["&lt;ds-case-slide&gt;"]
+          Modals["&lt;ds-modal&gt; / &lt;ds-item-row&gt;"]
+      end
+
+      AppShell --> Header
+      AppShell --> Main
+      AppShell --> Toast
+      AppShell --> ModalContainer
+      AppShell --> VideoPlayer
+
+      Main --> HomeView
+      Main --> CaseView
+
+      HomeView --> GalleryItem
+      CaseView --> CaseSlide
+      ModalContainer --> Modals
+
+      %% Styling
+      style Entry fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style Shell fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style Views fill:#f0fdf4,stroke:#22c55e,stroke-width:2px,color:#14532d
+      style Components fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+`} />
+
+---
+
+## 2. Component Consumption Model
+
+The `portfoliable` shell communicates with Valence custom elements using three primary web standards:
+
+### A. Primitive HTML Attributes
+Application state values are passed downstream by setting standard HTML attributes on custom elements during rendering cycles:
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Attribute</th>
+      <th>Type / Values</th>
+      <th>Application Source State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&lt;ds-header&gt;</code></td>
+      <td><code>view</code></td>
+      <td><code>'home' | 'case' | 'about'</code></td>
+      <td><code>this.state.currentView</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;ds-header&gt;</code></td>
+      <td><code>current-label</code></td>
+      <td><code>string</code></td>
+      <td>Active case title from <code>portfolioCases</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;ds-gallery-item&gt;</code></td>
+      <td><code>title</code>, <code>short-desc</code>, <code>read-time</code>, <code>thumb-src</code></td>
+      <td><code>string</code></td>
+      <td>Localized case metadata resolved via <code>this.getLang()</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;ds-gallery-item&gt;</code></td>
+      <td><code>device</code></td>
+      <td><code>'iphone-17' | 'iphone-12' | 'apple-watch'</code></td>
+      <td><code>caseData.deviceClass</code></td>
+    </tr>
+    <tr>
+      <td><code>&lt;ds-gallery-item&gt;</code></td>
+      <td><code>has-video</code>, <code>has-repo</code>, <code>has-live</code></td>
+      <td><code>'true' | 'false'</code></td>
+      <td>Boolean presence of URLs or video assets in case schema</td>
+    </tr>
+    <tr>
+      <td><code>&lt;ds-case-slide&gt;</code></td>
+      <td><code>title</code>, <code>year</code>, <code>thumb-src</code>, <code>device</code></td>
+      <td><code>string</code></td>
+      <td>Case study attributes mapped for slide layout</td>
+    </tr>
+    <tr>
+      <td><code>&lt;ds-toast&gt;</code></td>
+      <td><code>visible</code></td>
+      <td><code>'true' | 'false'</code></td>
+      <td><code>this.state.toast.visible</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### B. Shadow DOM Slot Injection
+For complex, formatted content (such as rich case study bodies, code snippets, or inline telemetry cards), `AppShell` injects HTML subtrees directly into component `<slot>` targets:
+
+```javascript
+// Example: Injecting rich localized HTML into <ds-case-slide> slot
+const slide = document.createElement('ds-case-slide');
+slide.dataset.caseId = caseData.id;
+slide.setAttribute('title', this.getLang(caseData.title));
+
+// Choose executive vs recruiter content based on app state
+const descContent = this.state.isRecruiterMode ? caseData.descRecruiter : caseData.desc;
+
+// Slot injection target
+slide.innerHTML = `<div slot="description">${this.getLang(descContent)}</div>`;
+
+```
+
+### C. Upstream Custom Events (`ds-*`)
+
+User actions inside Valence components dispatch custom DOM events prefixed with `ds-`. `AppShell` listens to these events on its shadow root to mutate global application state:
+
+---
+
+## 3. Internationalization (`i18n`) Pipeline
+
+Multilingual support is managed via a lightweight `i18n.js` module and localized data schemas in `data.js`.
+
+### Multilingual Data Definition Schema
+
+Case study records define string attributes using a two-locale dictionary helper:
+
+```javascript
+// src/data.js
+const i18n = (en, pt) => ({ en, pt });
+
+export const holofante = {
+  id: "holofante",
+  title: i18n("Agentic AI Design", "Design de IA Agêntica"),
+  shortDesc: i18n("DesignOps automation cuts delivery latency by 70%.", "Automação de DesignOps reduz a latência de entrega em 70%."),
+  readTime: i18n("3 min", "3 min"),
+  // ...
+};
+
+```
+
+### Runtime Translation Resolution
+
+When rendering Valence components, `AppShell` invokes `this.getLang(property)` to evaluate the user's active locale (`window.currentLang`):
+
+```javascript
+// Language resolution helper inside AppShell
+getLang(prop) {
+  if (prop && prop[this.state.lang]) {
+    return prop[this.state.lang];
+  }
+  return (prop && prop['en']) ? prop['en'] : prop;
+}
+
+```
+
+---
+
+## 4. Dual-Persona Content Injection (Executive vs. Recruiter)
+
+To serve both executive hiring managers and technical recruiters, `portfoliable` dynamically mutates the content slotted into `<ds-case-slide>` based on `this.state.isRecruiterMode`:
+
+```
+┌──────────────────────────────────────────────────────────────────────────┐
+│                             ds-header                                    │
+│  [Executive Mode] <----------------------------------> [Recruiter Mode]  │
+└────────────────────────────────────┬─────────────────────────────────────┘
+                                     │
+                             ds-mode-change
+                                     │
+                                     v
+                       AppShell.setState({ isRecruiterMode })
+                                     │
+            ┌────────────────────────┴────────────────────────┐
+            ▼                                                 ▼
+   [Executive View: desc]                          [Recruiter View: descRecruiter]
+   - Business Impact Metrics                       - System Architecture Flowcharts
+   - User Experience Storytelling                  - Client Runtime Memory Models
+   - High-contrast Asset Cards                     - Async Telemetry & Code Snippets
+
+```
+
+When switching modes, `AppShell` clears and re-populates the `#case-slider-container` children, swapping the slotted HTML template passed into `<ds-case-slide>` without altering component wrapper attributes.
+
+---
+
+## 5. Global Accessibility (`a11y`) Propagation Engine
+
+Accessibility settings configured inside `<ds-modal id="a11y-modal">` are stored in `localStorage` and synchronized across the entire DOM root.
+
+### State Mutation & Class Cascade
+
+When a user toggles an accessibility setting, `_handleA11yChange()` mutates `this.state.a11y` and calls `applyA11ySettings()`:
+
+```javascript
+// Reflects a11y preferences onto document.documentElement as root classes
+applyA11ySettings() {
+  const htmlEl = document.documentElement;
+  const settings = this.state.a11y;
+  
+  Object.entries(settings).forEach(([key, value]) => {
+    // Converts camelCase to kebab-case (e.g. darkMode -> a11y-dark-mode)
+    const className = `a11y-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+    htmlEl.classList.toggle(className, value);
+  });
+}
+
+```
+
+### Valence Component Shadow DOM Observation
+
+Every Valence Web Component executes `_observeRootAccessibility()` during `connectedCallback()`. A `MutationObserver` monitors `document.documentElement` for class changes and reflects boolean attributes onto the component host tag:
+
+```javascript
+// Inside every Valence component class (e.g., Button.js, Header.js)
+_observeRootAccessibility() {
+  const root = this.ownerDocument.documentElement;
+  const sync = () => {
+    this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
+    this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
+    this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
+    this.toggleAttribute('a11y-dyslexia', root.classList.contains('a11y-dyslexia'));
+    this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
+    this.toggleAttribute('a11y-forced-colors', root.classList.contains('a11y-forced-colors'));
+  };
+
+  sync();
+  this._themeObserver = new MutationObserver(sync);
+  this._themeObserver.observe(root, { attributes: true, attributeFilter: ['class'] });
+}
+
+```
+
+This decoupled observer pattern ensures that all active design system components update their visual styling instantly without requiring full-page re-renders or main-thread state cycles.

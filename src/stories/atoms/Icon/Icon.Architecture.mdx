@@ -1,0 +1,224 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as IconStories from './Icon.stories';
+
+<Meta title="Atoms/Icon [v1.0.0]/Architecture"/>
+
+# `ds-icon`
+
+The `ds-icon` component is a **stateless / presentational** Atom designed to render vector graphics from a standardized system iconography registry, supporting outlined and filled variants, automatic RTL flipping, and high-contrast system overrides.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host application binds primitive attributes (`name`, `variant`, `size`, `color`) or sub-atomic custom CSS property overrides onto the host element.
+* **Registry Resolution:** `ds-icon` queries `ICON_REGISTRY` using the `name` attribute and renders the matching outline or fill SVG path markup inside the Shadow DOM.
+* **Encapsulated Presentation:** SVG viewbox scaling, stroke geometry, and theme mode overrides are encapsulated inside the Shadow DOM.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / Parent Component"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-icon"]
+      end
+
+      State -->|"1. State In: name / variant / size / color"| Component
+      Component -->|"2. Render Output: Scalable SVG Graphic"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-icon` component is a self-contained presentational primitive and does not expose public slots.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Internal vector SVG path markup only; host text or DOM children are not rendered.</td>
+      <td>Renders registered SVG vector path</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsIconState {
+  name: string;
+  variant?: 'outline' | 'fill';
+  size?: number;
+  color?: string;
+}
+
+export interface DsIconSubAtomicHooks {
+  '--ds-icon-size'?: string;
+  '--ds-icon-stroke-width'?: string;
+  '--ds-icon-fill'?: string;
+  '--ds-icon-stroke'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`name`</td>
+      <td>`name`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Selects the icon vector path geometry from `ICON_REGISTRY`.</td>
+    </tr>
+    <tr>
+      <td>`variant`</td>
+      <td>`variant`</td>
+      <td>`'outline' \| 'fill'`</td>
+      <td>`'outline'`</td>
+      <td>Toggles between stroked outline paths and solid filled geometry.</td>
+    </tr>
+    <tr>
+      <td>`size`</td>
+      <td>`size`</td>
+      <td>`number`</td>
+      <td>`24`</td>
+      <td>Bounding box dimension in pixels (maps to `--ds-icon-size`).</td>
+    </tr>
+    <tr>
+      <td>`color`</td>
+      <td>`color`</td>
+      <td>`string`</td>
+      <td>`'currentColor'`</td>
+      <td>Sets direct text color on the host element for CSS inheritance.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>None</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td>`ds-icon` is a presentational vector atom and does not emit custom interaction events.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-icon-size`</td>
+      <td>`24px`</td>
+      <td>Overrides outer bounding box width and height dimensions.</td>
+    </tr>
+    <tr>
+      <td>`--ds-icon-stroke-width`</td>
+      <td>`2`</td>
+      <td>Overrides SVG stroke vector weight.</td>
+    </tr>
+    <tr>
+      <td>`--ds-icon-fill`</td>
+      <td>`none` / `currentColor`</td>
+      <td>Overrides vector interior fill state depending on active variant.</td>
+    </tr>
+    <tr>
+      <td>`--ds-icon-stroke`</td>
+      <td>`currentColor` / `none`</td>
+      <td>Overrides vector outline stroke color depending on active variant.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Decorative SVGs:** The internal `<svg>` primitive always renders with `aria-hidden="true"` to prevent screen readers from announcing decorative graphics.
+* **Directional RTL Mirroring:** Listens to `dir="rtl"` on `document.documentElement` via `MutationObserver` and applies `[dir-rtl]` to mirror directional icons (e.g., chevrons, arrows, volume, and playback controls) along the X-axis using `transform: scaleX(-1)`.
+* **Global Accessibility Propagation:** Observes `document.documentElement` class changes to handle high contrast and forced color modes:
+  * `.a11y-high-contrast`: Forces vector stroke to inherit `currentColor` and strips background fills.
+  * `.a11y-forced-colors`: Complies with OS-level Forced Colors Mode by mapping strokes to `currentColor` and filled variants to `CanvasText`.
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/Iconography.js';
+
+// Search Icon (Outline)
+const searchIcon = document.createElement('ds-icon');
+searchIcon.setAttribute('name', 'search');
+searchIcon.setAttribute('size', '24');
+
+// Bookmark Icon (Filled Variant with Sub-Atomic Overrides)
+const bookmarkIcon = document.createElement('ds-icon');
+bookmarkIcon.setAttribute('name', 'bookmark');
+bookmarkIcon.setAttribute('variant', 'fill');
+bookmarkIcon.style.setProperty('--ds-icon-size', '32px');
+bookmarkIcon.style.setProperty('--ds-icon-stroke-width', '1.5');
+
+document.body.appendChild(searchIcon);
+document.body.appendChild(bookmarkIcon);
+```

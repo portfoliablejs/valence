@@ -1,0 +1,169 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Surfaceography" />
+
+# Elevations & Surfaces
+
+The Elevation system (also referred to as Surfaceography) defines spatial depth, surface hierarchy, and elevation layers across Valence interfaces. By pairing background surfaces with `Shadowgraphy` (box-shadows), `Depthography` (glass blurs), and `Spatialography` (z-index tokens), components maintain clear tactile separation and visual context across different visual layers.
+
+<br />
+
+## Surface Elevation Levels
+
+Valence components occupy six discrete elevation levels. Standardizing surface tokens ensures consistent depth perception and predictable stacking contexts across applications.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Elevation Level</th>
+      <th style={{ textAlign: 'left' }}>Surface Token</th>
+      <th style={{ textAlign: 'left' }}>Shadow Token</th>
+      <th style={{ textAlign: 'left' }}>Z-Index Token</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Level 0 (Canvas)</strong></td>
+      <td><code>var(--color-bg)</code></td>
+      <td><code>var(--shadow-none)</code></td>
+      <td><code>auto</code></td>
+      <td>Baseline application viewport canvas and primary page layout background.</td>
+    </tr>
+    <tr>
+      <td><strong>Level 1 (Card / Surface)</strong></td>
+      <td><code>var(--color-card-bg)</code></td>
+      <td><code>var(--shadow-sm)</code></td>
+      <td><code>var(--z-base)</code></td>
+      <td>Embedded cards, table rows, static containers, and content blocks.</td>
+    </tr>
+    <tr>
+      <td><strong>Level 2 (Raised / Floating)</strong></td>
+      <td><code>var(--color-bg)</code></td>
+      <td><code>var(--shadow-md)</code></td>
+      <td><code>var(--z-above)</code></td>
+      <td>Interactive floating action buttons, elevated cards on hover, and active tiles.</td>
+    </tr>
+    <tr>
+      <td><strong>Level 3 (Overlay / Dropdown)</strong></td>
+      <td><code>var(--color-bg)</code></td>
+      <td><code>var(--shadow-lg)</code></td>
+      <td><code>var(--z-dropdown)</code></td>
+      <td>Context menus, select dropdowns, autocomplete panels, and tooltips.</td>
+    </tr>
+    <tr>
+      <td><strong>Level 4 (Sticky / Fixed)</strong></td>
+      <td><code>var(--overlay-glass-bg)</code></td>
+      <td><code>var(--shadow-md)</code></td>
+      <td><code>var(--z-fixed)</code></td>
+      <td>Sticky navigation headers, persistent bottom action bars, and floating toolbars.</td>
+    </tr>
+    <tr>
+      <td><strong>Level 5 (Modal / Dialog)</strong></td>
+      <td><code>var(--color-bg)</code></td>
+      <td><code>var(--shadow-xl)</code></td>
+      <td><code>var(--z-modal)</code></td>
+      <td>High-priority dialogs, modal windows, alert overlays, and slide-over drawers.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Glassmorphic vs. Solid Surfaces
+
+Elevations combine traditional shadow drop-shadows with backdrop blurs depending on surface opacity and atmospheric depth needs.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Surface Style</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable Combination</th>
+      <th style={{ textAlign: 'left' }}>Best For</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Solid Surface</strong></td>
+      <td>
+        <code>background: var(--color-bg);</code><br />
+        <code>box-shadow: var(--shadow-md);</code>
+      </td>
+      <td>Standard dialogs, popovers, and opaque content cards where content below should be fully masked.</td>
+    </tr>
+    <tr>
+      <td><strong>Glass Surface</strong></td>
+      <td>
+        <code>background: var(--overlay-glass-bg);</code><br />
+        <code>backdrop-filter: blur(var(--overlay-glass-blur));</code><br />
+        <code>-webkit-backdrop-filter: blur(var(--overlay-glass-blur));</code>
+      </td>
+      <td>Floating headers, persistent navigation bars, and contextual controls that maintain underlying scroll awareness.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+## Usage Guidelines
+
+Always reference existing sub-atomic tokens (`--shadow-*`, `--z-*`, `--color-*`) when declaring surface elevations. Do not introduce arbitrary box-shadow, blur, or z-index values in component stylesheets.
+
+### Solid Surface Implementation
+
+```css
+.card-elevated {
+  background: var(--custom-bg, var(--color-card-bg));
+  border: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--anim-fast) var(--ease-fluid),
+              transform var(--anim-fast) var(--ease-fluid);
+}
+
+.card-elevated:hover {
+  z-index: var(--z-above);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+```
+
+### Glassmorphic Elevated Floating Surface Implementation
+
+```css
+.floating-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-fixed);
+  background: var(--overlay-glass-bg);
+  backdrop-filter: blur(var(--overlay-glass-blur));
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur));
+  border-bottom: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+  box-shadow: var(--shadow-sm);
+}
+
+```
+
+## High Contrast & Accessibility Overrides
+
+Under high-contrast accessibility mode (`.a11y-high-contrast`), subtle elevation shadows and glass blurs are suppressed in favor of explicit high-visibility borders to ensure clear structural separation.
+
+```css
+/* High Contrast surface elevation override */
+:host([a11y-high-contrast]) .card-elevated,
+:host([a11y-high-contrast]) .floating-toolbar {
+  background: var(--color-bg) !important;
+  box-shadow: var(--shadow-none) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: var(--border-width-medium) var(--border-style-solid) var(--color-black) !important;
+}
+
+```
+
+## Best Practices
+
+* **Light Source Direction**: All elevation shadows adhere to a top-down virtual light source for visual coherence across stacked components.
+* **Z-Index Discipline**: Never set manual integer `z-index` values (e.g., `z-index: 9999`). Always map surface depth directly to `--z-*` tokens (`var(--z-dropdown)`, `var(--z-modal)`).
+* **High-Contrast Fallbacks**: Always strip subtle box-shadows (`--shadow-none`) and apply explicit borders (`--border-width-medium`) when `:host([a11y-high-contrast])` is active.
+* **Performance Awareness**: Use translucent glass surfaces (`backdrop-filter`) sparingly on persistent or large structural elements to maintain fast rendering performance on low-power devices.

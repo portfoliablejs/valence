@@ -1,0 +1,322 @@
+import { Meta, Controls } from '@storybook/addon-docs/blocks';
+
+<Meta title="Sub-atomic/Choreography" />
+
+# Choreography
+
+The Choreography system provides standardized easing curves and timing values to bring fluid, responsive motion to Valence components. Using consistent motion principles ensures transitions feel purposeful, deliberate, and delightful across the entire platform.
+
+<br />
+
+## Easing Tokens
+
+Easing functions dictate standard acceleration and deceleration curves for regular UI transitions.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Curve</th>
+      <th style={{ textAlign: 'left' }}>Token</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Description / Best For</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Standard Ease</strong></td>
+      <td>`var(--ease-standard)`</td>
+      <td>`ease`</td>
+      <td>Default CSS transition curve. Good for simple state changes.</td>
+    </tr>
+    <tr>
+      <td><strong>Fluid Ease</strong></td>
+      <td>`var(--ease-fluid)`</td>
+      <td>`cubic-bezier(0.16, 1, 0.3, 1)`</td>
+      <td>Starts fast and gently decelerates toward the end position. Ideal for modals, panels, and primary transitions.</td>
+    </tr>
+  </tbody>
+</table>
+*Hover over the cards to compare standard vs. fluid deceleration curves:*
+
+<div style={{ display: 'flex', gap: '16px', margin: '20px 0', flexWrap: 'wrap' }}>
+  <div 
+    style={{
+      padding: '20px 24px',
+      background: '#f4f6f8',
+      borderRadius: '8px',
+      border: '1px solid #e1e4e8',
+      cursor: 'pointer',
+      width: '200px',
+      transition: 'transform var(--anim-normal) var(--ease-standard)',
+    }}
+    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
+    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+  >
+    <strong style={{ fontSize: '14px' }}>Standard Ease</strong>
+    <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#666' }}><code>var(--ease-standard)</code></p>
+  </div>
+
+  <div 
+    style={{
+      padding: '20px 24px',
+      background: '#f4f6f8',
+      borderRadius: '8px',
+      border: '1px solid #e1e4e8',
+      cursor: 'pointer',
+      width: '200px',
+      transition: 'transform var(--anim-normal) var(--ease-fluid)',
+    }}
+    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-8px)'}
+    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+  >
+    <strong style={{ fontSize: '14px' }}>Fluid Ease</strong>
+    <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#666' }}><code>var(--ease-fluid)</code></p>
+  </div>
+</div>
+
+<br />
+
+## Physics & Motion Tokens
+
+Physics curves mimic real-world mechanical behaviors or continuous motion.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Type</th>
+      <th style={{ textAlign: 'left' }}>Token</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Description / Best For</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Spring Physics</strong></td>
+      <td>`var(--anim-spring)`</td>
+      <td>`cubic-bezier(0.34, 1.56, 0.64, 1)`</td>
+      <td>A bouncy, overshooting curve mimicking natural physics. Great for micro-interactions and toggles.</td>
+    </tr>
+    <tr>
+      <td><strong>Linear</strong></td>
+      <td>`var(--anim-linear)`</td>
+      <td>`linear`</td>
+      <td>Constant speed throughout without acceleration. Continuous looping animations (e.g., loading spinners).</td>
+    </tr>
+  </tbody>
+</table>
+
+*Hover over the Spring card or watch the Linear spinner:*
+
+<style>{`
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+`}</style>
+
+<div style={{ display: 'flex', gap: '16px', margin: '20px 0', alignItems: 'stretch', flexWrap: 'wrap' }}>
+  {/* Spring Card */}
+  <div 
+    style={{
+      padding: '16px 20px',
+      background: '#f4f6f8',
+      borderRadius: '8px',
+      border: '1px solid #e1e4e8',
+      cursor: 'pointer',
+      width: '200px',
+      height: '84px',
+      boxSizing: 'border-box',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyCenter: 'center',
+      transition: 'transform var(--anim-fast) var(--anim-spring)',
+    }}
+    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+  >
+    <strong style={{ fontSize: '14px' }}>Spring Bounce</strong>
+    <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#666' }}><code>var(--anim-spring)</code></p>
+  </div>
+
+  {/* Linear Spinner Card */}
+  <div 
+    style={{
+      padding: '16px 20px',
+      background: '#f4f6f8',
+      borderRadius: '8px',
+      border: '1px solid #e1e4e8',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '12px',
+      width: '200px',
+      height: '84px',
+      boxSizing: 'border-box',
+    }}
+  >
+    <div 
+      style={{
+        width: '20px',
+        height: '20px',
+        minWidth: '20px',
+        border: '3px solid #ccc',
+        borderTopColor: '#0052cc',
+        borderRadius: '50%',
+        animation: 'spin 1s var(--anim-linear) infinite',
+      }} 
+    />
+    <div>
+      <strong style={{ fontSize: '14px', display: 'block', lineHeight: '1.2' }}>Linear</strong>
+      <span style={{ fontSize: '12px', color: '#666' }}>Continuous loop</span>
+    </div>
+  </div>
+</div>
+
+
+
+<br />
+
+## Duration Tokens
+
+Duration tokens control the speed and timeframe of an animation from start to finish. Pair these values with easing curves to keep interface timing predictable.
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left' }}>Token</th>
+      <th style={{ textAlign: 'left' }}>CSS Variable</th>
+      <th style={{ textAlign: 'left' }}>Value</th>
+      <th style={{ textAlign: 'left' }}>Usage Guidelines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Fast Speed</strong></td>
+      <td>`var(--anim-fast)`</td>
+      <td>`0.2s`</td>
+      <td>Immediate micro-interactions (hover states, active feedback, tooltips).</td>
+    </tr>
+    <tr>
+      <td><strong>Normal Speed</strong></td>
+      <td>`var(--anim-normal)`</td>
+      <td>`0.3s`</td>
+      <td>Standard UI state transitions (dropdowns, accordions, toast notifications).</td>
+    </tr>
+    <tr>
+      <td><strong>Slow Speed</strong></td>
+      <td>`var(--anim-slow)`</td>
+      <td>`0.4s`</td>
+      <td>Large layout shifts (panel slides, modal entrances, page transitions).</td>
+    </tr>
+  </tbody>
+</table>
+
+
+*Hover over each card to feel the speed difference (`0.2s` vs `0.3s` vs `0.4s`):*
+
+<div style={{ display: 'flex', gap: '16px', margin: '20px 0', flexWrap: 'wrap' }}>
+  <div 
+    style={{
+      padding: '20px 24px',
+      background: '#f4f6f8',
+      borderRadius: '8px',
+      border: '1px solid #e1e4e8',
+      cursor: 'pointer',
+      width: '160px',
+      transition: 'transform var(--anim-fast) var(--ease-fluid)',
+    }}
+    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
+    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+  >
+    <strong style={{ fontSize: '14px' }}>Fast Speed</strong>
+    <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#666' }}><code>0.2s</code></p>
+  </div>
+
+  <div 
+    style={{
+      padding: '20px 24px',
+      background: '#f4f6f8',
+      borderRadius: '8px',
+      border: '1px solid #e1e4e8',
+      cursor: 'pointer',
+      width: '160px',
+      transition: 'transform var(--anim-normal) var(--ease-fluid)',
+    }}
+    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
+    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+  >
+    <strong style={{ fontSize: '14px' }}>Normal Speed</strong>
+    <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#666' }}><code>0.3s</code></p>
+  </div>
+
+  <div 
+    style={{
+      padding: '20px 24px',
+      background: '#f4f6f8',
+      borderRadius: '8px',
+      border: '1px solid #e1e4e8',
+      cursor: 'pointer',
+      width: '160px',
+      transition: 'transform var(--anim-slow) var(--ease-fluid)',
+    }}
+    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-6px)'}
+    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+  >
+    <strong style={{ fontSize: '14px' }}>Slow Speed</strong>
+    <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#666' }}><code>0.4s</code></p>
+  </div>
+</div>
+
+<br />
+
+## Usage Guidelines
+
+Always combine choreography tokens in standard CSS `transition` or `animation` shorthand properties. Do not hardcode custom `cubic-bezier` curves or timing values in individual components.
+
+### CSS Example
+
+```css
+.card {
+  /* Transition transform property using standard duration and fluid easing */
+  transition: transform var(--anim-normal) var(--ease-fluid);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.button-toggle {
+  /* Use spring physics for interactive feedback */
+  transition: transform var(--anim-fast) var(--anim-spring);
+}
+```
+
+## Keyframe Animation Example
+
+```css
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  animation: spin var(--anim-slow) var(--anim-linear) infinite;
+}
+```
+
+## Reduced Motion Integration
+
+When `.a11y-reduce-motion` is active on `document.documentElement`, all choreography timing tokens and scale transformations automatically reset to instant values to prevent vestibular triggers:
+
+* `--component-transition` evaluates to `all 0s linear !important`
+* `--btn-active-scale`, `--btn-hover-scale`, and `--btn-hover-scale-lg` evaluate to `1`
+* Global `transition-duration` and `animation-duration` are forced to `0s` (This bulletproofs the UI against Safari/WebKit bugs that fail to parse `transition: none`).
+
+This ensures interactive components respect user accessibility preferences automatically without requiring custom `@media (prefers-reduced-motion)` blocks in every single component.
+
+## Best Practices
+Purposeful Motion: Avoid animating elements unnecessarily. Every transition should communicate a state change or visual hierarchy shift to the user.
+Accessibility (html.a11y-reduce-motion): Respect user accessibility settings by disabling or simplifying movement when reduced motion is requested.

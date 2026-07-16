@@ -1,0 +1,45 @@
+/* src/stories/organisms/Header/header.css */
+
+/* ==========================================================================
+    HOST STYLES
+========================================================================== */
+:host {
+  display: block;
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0;
+  padding: 0 40px;
+  z-index: var(--z-overlay, 1000);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+    CONTAINER & LAYOUT
+========================================================================== */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+    COMPONENT STYLES (DS-BREADCRUMB, DS-MODE-TOGGLE)
+========================================================================== */
+ds-breadcrumb {
+  margin-left: var(--space-lg, 16px);
+}
+
+/* ==========================================================================
+    STATE STYLES
+========================================================================== */
+#home-btn[hidden] {
+  display: none;
+}
