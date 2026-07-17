@@ -1,17 +1,19 @@
 {
-  "name": "valence",
+  "name": "@portfoliablejs/valence",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
   "main": "src/main.js",
   "exports": {
     ".": "./src/main.js"
   },
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
+    "generate:exports": "node scripts/generate-exports.js",
+    "prebuild": "npm run generate:exports",
     "build-storybook": "storybook build",
     "deploy-storybook": "storybook build && gh-pages -d storybook-static"
   },
@@ -24,7 +26,6 @@
     "@vitest/coverage-v8": "^4.1.10",
     "gh-pages": "^6.3.0",
     "glob": "^13.0.6",
-    "lit": "^3.3.3",
     "mermaid": "^11.16.0",
     "playwright": "^1.61.1",
     "react": "^19.2.7",
@@ -36,6 +37,7 @@
     "vitest": "^4.1.10"
   },
   "dependencies": {
+    "lit": "^3.3.3",
     "@storybook/icons": "^2.1.0"
   }
 }
