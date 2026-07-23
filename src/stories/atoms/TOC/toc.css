@@ -1,0 +1,138 @@
+/* ==========================================================================
+   1. HOST GEOMETRY & RIGHT-CENTERED SCREEN STACKING
+   ========================================================================== */
+:host {
+  display: block;
+  /* Viewport right-centered defaults + CSS variable override hooks */
+  position: var(--ds-toc-position, fixed);
+  top: var(--ds-toc-top, 50%);
+  right: var(--ds-toc-right, var(--space-xl, 24px));
+  bottom: var(--ds-toc-bottom, auto);
+  left: var(--ds-toc-left, auto);
+  transform: var(--ds-toc-transform, translateY(-50%));
+  
+  z-index: var(--z-dropdown, 50);
+  width: fit-content;
+  margin: 0;
+}
+
+.toc-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   2. CLOSED STATE: THIN APPLE-LIKE MINIMAP STRIP WITH EXPANDED SPACING
+   ========================================================================== */
+.minimap-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--ds-toc-line-gap, 16px);
+  padding: var(--space-xs, 4px);
+  cursor: pointer;
+  user-select: none;
+  transition: opacity var(--anim-fast, 0.2s) var(--ease-fluid);
+}
+
+.minimap-line {
+  height: var(--ds-toc-line-height, 1.5px);
+  background-color: var(--ds-toc-line-color, var(--color-gray-xlight, #D9D9D9));
+  border-radius: var(--radius-pill, 100px);
+  transition: width var(--anim-fast, 0.2s) var(--ease-fluid),
+              background-color var(--anim-fast, 0.2s) var(--ease-fluid),
+              height var(--anim-fast, 0.2s) var(--ease-fluid);
+}
+
+/* Apple Minimap Level Width Allocations */
+.minimap-line[data-level="1"] { width: 26px; }
+.minimap-line[data-level="2"] { width: 18px; }
+.minimap-line[data-level="3"] { width: 12px; }
+.minimap-line[data-level="4"] { width: 8px; }
+
+/* Active Minimap Line */
+.minimap-line.active {
+  height: 2px;
+  background-color: var(--ds-toc-line-active-color, var(--color-black, #000000));
+}
+
+/* Fade minimap when TOC menu is opened */
+.toc-wrapper:hover .minimap-strip,
+:host([opened]) .minimap-strip {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   3. OPENED STATE: CONTEXTUAL MENU OVERLAY (CENTERED RIGHT ALIGNMENT)
+   ========================================================================== */
+.toc-menu {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.98);
+  transition: opacity var(--anim-fast, 0.2s) var(--ease-fluid),
+              transform var(--anim-fast, 0.2s) var(--ease-fluid),
+              visibility var(--anim-fast, 0.2s) var(--ease-fluid);
+  z-index: var(--z-dropdown, 50);
+
+  /* Keeps WebKit compositor layer prepped in VRAM to prevent scrollbar freezes on reveal */
+  will-change: opacity, transform;
+
+  /* Delegate max-height & internal scroll mechanics to ds-contextual-menu */
+  --ds-contextual-menu-max-height: var(--ds-toc-max-height, min(380px, 70vh));
+  --ds-contextual-menu-scroll-max-height: var(--ds-toc-max-height, min(380px, 70vh));
+}
+
+.toc-wrapper:hover .toc-menu,
+:host([opened]) .toc-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+/* ==========================================================================
+   4. ACCESSIBILITY MODIFIERS
+   ========================================================================== */
+:host([a11y-dark-mode]) .minimap-line {
+  background-color: var(--color-gray-dark, #323232);
+}
+
+:host([a11y-dark-mode]) .minimap-line.active {
+  background-color: var(--color-white, #FFFFFF);
+}
+
+:host([a11y-high-contrast]) .minimap-line {
+  background-color: #FFFFFF !important;
+  height: 2.5px !important;
+}
+
+:host([a11y-reduce-motion]) .minimap-line,
+:host([a11y-reduce-motion]) .minimap-strip,
+:host([a11y-reduce-motion]) .toc-menu {
+  transition: none !important;
+  transform: none !important;
+}
+
+/* ==========================================================================
+   5. FORCED COLORS MODE (STRICT SEPARATED BLOCKS)
+   ========================================================================== */
+
+/* Block 1: Attribute Reflected State */
+:host([a11y-forced-colors]) .minimap-line {
+  background-color: CanvasText !important;
+}
+
+/* Block 2: Native OS Media Query */
+@media (forced-colors: active) {
+  .minimap-line {
+    background-color: CanvasText !important;
+  }
+}

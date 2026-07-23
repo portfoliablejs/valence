@@ -5,7 +5,7 @@ import { expect, userEvent, fireEvent } from 'storybook/test';
 import './Radio';
 
 export default {
-  title: 'Atoms/Radio',
+  title: 'Atoms/Radio [v1.0.0]',
   component: 'ds-radio',
   tags: ['autodocs'],
   parameters: {
@@ -58,21 +58,21 @@ export default {
     // --- SUB-ATOMIC PROPS ---
     color: {
       name: 'color',
-      description: 'Sub-atomic modifier overriding default SVG stroke and fill vector colors.',
+      description: 'Sub-atomic modifier overriding default SVG stroke and fill vector colors (--ds-radio-color).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--color-accent)' } },
     },
     size: {
       name: 'size',
-      description: 'Sub-atomic modifier overriding outer bounding box dimensions.',
+      description: 'Sub-atomic modifier overriding outer bounding box dimensions (--ds-radio-size).',
       control: 'text',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--size-icon-sm)' } },
     },
   },
   render: (args) => {
     const customStyles = [
-      args.color ? `--custom-color: ${args.color};` : '',
-      args.size ? `--custom-size: ${args.size};` : ''
+      args.color ? `--ds-radio-color: ${args.color};` : '',
+      args.size ? `--ds-radio-size: ${args.size};` : ''
     ].join(' ').trim();
 
     return html`

@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { expect, userEvent } from 'storybook/test';
 import './AudioPlayer.js';
 
@@ -7,7 +8,7 @@ import './AudioPlayer.js';
  * speed variations, volume controls, and viewport auto-scrolling synchronization.
  */
 export default {
-  title: 'Molecules/Audio Player',
+  title: 'Molecules/Audio Player [v1.0.0]',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -61,6 +62,86 @@ export default {
       table: { category: 'Behavior' },
     },
 
+    // --- LOCALIZATION ARGTYPES ---
+    labelReader: {
+      name: 'label-reader',
+      control: 'text',
+      description: 'Text string for the header category label.',
+      table: { category: 'Localization' },
+    },
+    labelPlay: {
+      name: 'label-play',
+      control: 'text',
+      description: 'Accessibility and tooltip label when playback is paused.',
+      table: { category: 'Localization' },
+    },
+    labelPause: {
+      name: 'label-pause',
+      control: 'text',
+      description: 'Accessibility and tooltip label when playback is active.',
+      table: { category: 'Localization' },
+    },
+    labelMute: {
+      name: 'label-mute',
+      control: 'text',
+      description: 'Accessibility and tooltip label when volume is active.',
+      table: { category: 'Localization' },
+    },
+    labelUnmute: {
+      name: 'label-unmute',
+      control: 'text',
+      description: 'Accessibility and tooltip label when volume is muted.',
+      table: { category: 'Localization' },
+    },
+    labelSpeed: {
+      name: 'label-speed',
+      control: 'text',
+      description: 'Text prefix used for speed selector tooltips.',
+      table: { category: 'Localization' },
+    },
+    labelHide: {
+      name: 'label-hide',
+      control: 'text',
+      description: 'Aria and tooltip description when hide-on-scroll is inactive.',
+      table: { category: 'Localization' },
+    },
+    labelShow: {
+      name: 'label-show',
+      control: 'text',
+      description: 'Aria and tooltip description when hide-on-scroll is active.',
+      table: { category: 'Localization' },
+    },
+    labelAutoscrollOn: {
+      name: 'label-autoscroll-on',
+      control: 'text',
+      description: 'Aria and tooltip description when auto-scroll is inactive.',
+      table: { category: 'Localization' },
+    },
+    labelAutoscrollOff: {
+      name: 'label-autoscroll-off',
+      control: 'text',
+      description: 'Aria and tooltip description when auto-scroll is active.',
+      table: { category: 'Localization' },
+    },
+    labelVolume: {
+      name: 'label-volume',
+      control: 'text',
+      description: 'Tooltip text prefix for the volume slider control.',
+      table: { category: 'Localization' },
+    },
+    labelVolumeLevel: {
+      name: 'label-volume-level',
+      control: 'text',
+      description: 'Accessibility label delegated into the volume slider container.',
+      table: { category: 'Localization' },
+    },
+    labelAudioPos: {
+      name: 'label-audio-pos',
+      control: 'text',
+      description: 'Accessibility label delegated into the main playback seek-bar slider.',
+      table: { category: 'Localization' },
+    },
+
     onPlayToggle: { action: 'ds-audio-play-toggle', table: { category: 'Events' } },
     onSeek: { action: 'ds-audio-seek', table: { category: 'Events' } },
     onVolumeChange: { action: 'ds-audio-volume-change', table: { category: 'Events' } },
@@ -94,6 +175,19 @@ export default {
         muted="${args.muted}"
         hide-on-scroll="${args['hide-on-scroll']}"
         auto-scroll="${args['auto-scroll']}"
+        label-reader="${ifDefined(args.labelReader)}"
+        label-play="${ifDefined(args.labelPlay)}"
+        label-pause="${ifDefined(args.labelPause)}"
+        label-mute="${ifDefined(args.labelMute)}"
+        label-unmute="${ifDefined(args.labelUnmute)}"
+        label-speed="${ifDefined(args.labelSpeed)}"
+        label-hide="${ifDefined(args.labelHide)}"
+        label-show="${ifDefined(args.labelShow)}"
+        label-autoscroll-on="${ifDefined(args.labelAutoscrollOn)}"
+        label-autoscroll-off="${ifDefined(args.labelAutoscrollOff)}"
+        label-volume="${ifDefined(args.labelVolume)}"
+        label-volume-level="${ifDefined(args.labelVolumeLevel)}"
+        label-audio-pos="${ifDefined(args.labelAudioPos)}"
         @ds-audio-play-toggle="${args.onPlayToggle}"
         @ds-audio-seek="${(e) => args.onSeek(e.detail)}"
         @ds-audio-volume-change="${(e) => args.onVolumeChange(e.detail)}"

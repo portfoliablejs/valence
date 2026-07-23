@@ -5,7 +5,7 @@ import { DEVICE_CATALOG } from './Thumbnail.js';
 import './Thumbnail.js';
 
 export default {
-  title: 'Atoms/Thumbnail',
+  title: 'Atoms/Thumbnail [v1.1.0]',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',

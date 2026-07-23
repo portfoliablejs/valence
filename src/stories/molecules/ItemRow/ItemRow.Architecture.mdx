@@ -1,0 +1,271 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Item Row [v1.0.0]/Architecture" />
+
+# `ds-item-row`
+
+The `ds-item-row` component is an interactive, presentational **controlled** Molecule designed to render uniform, highly accessible list rows, settings items, and navigation blocks. It aggregates custom leading `ds-icon` and trailing `ds-kbd` Atoms on the left/center, while housing configurable form `ds-toggle`, `ds-check`, or `ds-radio` Controls on the right.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host application binds styling variables, keyboard modifiers, and active form states (`label`, `icon`, `show-icon`, `control`, `active`, `selected`, `disabled`) downstream.
+* **Events Out (`ds-row-click`):** Captures mouse clicks or spacebar/enter strokes across the container surface, toggling attributes depending on active right-side controls, and dispatches unified event payloads.
+
+<mermaid-diagram chart={`
+  flowchart TD
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["ds-item-row (Shadow DOM Composition)"]
+          Component["ds-item-row"]
+          IconAtom["ds-icon (Leading)"]
+          KbdAtom["ds-kbd (Center)"]
+          ControlContainer["Control Container"]
+          ActiveControl["ds-toggle / ds-check / ds-radio"]
+      end
+
+      State -->|"1. State In: label / icon / control / active / selected"| Component
+      Component -->|"2. Directs Leading Icon"| IconAtom
+      Component -->|"3. Directs Keyboard Info"| KbdAtom
+      Component -->|"4. Appends Form Widget"| ControlContainer
+      ControlContainer -->|"5. Syncs Widget States"| ActiveControl
+
+      Component -->|"6. Event Out: ds-row-click"| State
+      ActiveControl -->|"6. Change Interceptor: ds-row-click"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+      style IconAtom fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style KbdAtom fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style ControlContainer fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style ActiveControl fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-item-row` component encapsulates its content structure inside Shadow DOM blocks, keeping the layout compact and aligned. No public slots are projected to ensure that nested label truncation and control columns behave uniformly.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Encapsulated layout primitives only; host elements are not projected.</td>
+      <td>Renders leading icons, labels, shortcuts, and custom interactive form controls.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export type DsItemRowControlType = 'toggle' | 'check' | 'radio' | 'none';
+
+export interface DsItemRowState {
+  label: string;
+  showIcon?: boolean;
+  icon?: string;
+  iconVariant?: 'outline' | 'fill';
+  showKbd?: boolean;
+  kbd?: string;
+  kbdVariant?: 'default' | 'inverted';
+  kbdShowPlus?: boolean;
+  kbdKey?: string;
+  control?: DsItemRowControlType;
+  checkHasBackground?: boolean;
+  active?: boolean;
+  selected?: boolean;
+  disabled?: boolean;
+  toggleTextOn?: string;
+  toggleTextOff?: string;
+}
+
+export interface DsItemRowSubAtomicHooks {
+  '--ds-icon-size'?: string;
+  '--ds-toggle-width'?: string;
+  '--ds-toggle-height'?: string;
+  '--ds-toggle-knob-size'?: string;
+  '--ds-check-size'?: string;
+  '--ds-radio-size'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`label`</td>
+      <td>`label`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Primary text string rendered as the left aligned label.</td>
+    </tr>
+    <tr>
+      <td>`showIcon`</td>
+      <td>`show-icon`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles visibility of the left leading icon.</td>
+    </tr>
+    <tr>
+      <td>`icon`</td>
+      <td>`icon`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Registry identifier passed downstream to the nested `ds-icon` component.</td>
+    </tr>
+    <tr>
+      <td>`iconVariant`</td>
+      <td>`icon-variant`</td>
+      <td>`'outline' | 'fill'`</td>
+      <td>`'outline'`</td>
+      <td>Vector rendering variant passed to the leading `ds-icon`.</td>
+    </tr>
+    <tr>
+      <td>`showKbd`</td>
+      <td>`show-kbd`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles rendering of the keyboard shortcut `ds-kbd` component.</td>
+    </tr>
+    <tr>
+      <td>`kbd`</td>
+      <td>`kbd`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Primary modifier shortcut key passed downstream to `ds-kbd`.</td>
+    </tr>
+    <tr>
+      <td>`control`</td>
+      <td>`control`</td>
+      <td>`'toggle' | 'check' | 'radio' | 'none'`</td>
+      <td>`'none'`</td>
+      <td>Determines whether a form switch, checkbox, or radio button mounts on the right.</td>
+    </tr>
+    <tr>
+      <td>`active`</td>
+      <td>`active`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggle state of the row when `control="toggle"` is active.</td>
+    </tr>
+    <tr>
+      <td>`selected`</td>
+      <td>`selected`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Selection state of the row when `control="check"` or `control="radio"` is active.</td>
+    </tr>
+    <tr>
+      <td>`disabled`</td>
+      <td>`disabled`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Blocks all mouse/touch interactions, strips keyboard focus, and disables child controls.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-row-click`</td>
+      <td>`true` / `true`</td>
+      <td>`{ control: string, active: boolean, selected: boolean, label: string }`</td>
+      <td>Dispatched when the row container is clicked or activated via key binds. Passes current state upstream.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+This composite molecule overrides sub-atomic variables on nested components to ensure proportional scaling inside navigation cards:
+* `ds-toggle`: overrides track size and knob size using `--ds-toggle-width: 44px`, `--ds-toggle-height: 24px`, and `--ds-toggle-knob-size: 18px`.
+* `ds-check`: overrides bounding box size using `--ds-check-size: 20px`.
+* `ds-radio`: overrides bounding box size using `--ds-radio-size: 20px`.
+* `ds-icon`: overrides leading icon size using `--ds-icon-size: var(--size-icon-md, 20px)`.
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Aria Roles & Traversal:** When `control="none"`, delegates `role="button"` and `tabindex="0"` to the row container for focus-visible navigation. When form controls are active, the row is treated as a passive grouping, delegating focus directly into nested `ds-toggle`, `ds-check`, or `ds-radio` elements.
+* **ARIA Host Scrubbing:** Automatically purges Light DOM `aria-label` tags and applies them downstream directly onto focusable primitives.
+* **Global Access Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags:
+  * `.a11y-dark-mode`: Adjusts default hover background contrast boundaries.
+  * `.a11y-high-contrast`: Enforces strict AAA border separators.
+  * `.a11y-dyslexia`: Overrides row label typefaces with Comic Sans MS.
+  * `.a11y-reduce-motion`: Forces immediate 0ms hover backgrounds.
+  * `.a11y-forced-colors`: Employs Windows active system colors (`Canvas`, `Highlight`, and `HighlightText`).
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-item-row';
+
+const row = document.createElement('ds-item-row');
+row.setAttribute('label', 'Enable Subtitles');
+row.setAttribute('show-icon', '');
+row.setAttribute('icon', 'language');
+row.setAttribute('control', 'toggle');
+row.setAttribute('active', 'true');
+row.setAttribute('toggle-text-on', 'ON');
+row.setAttribute('toggle-text-off', 'OFF');
+
+row.addEventListener('ds-row-click', (e) => {
+  console.log('Row clicked! Form switch status:', e.detail.active);
+});
+
+document.body.appendChild(row);
+```

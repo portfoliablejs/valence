@@ -1,0 +1,71 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Case Navigator [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-21
+
+<br />
+
+### Initial Release & Accessibility Compliance
+
+The stable debut of the case study navigation molecule (`ds-case-navigator`) featuring inline search expansion, keyboard shortcuts, and autocomplete filtering.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-case-navigator`</td>
+      <td>Initial stable release of the case study navigator component with autocomplete dropdown and global keyboard shortcut binding.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`CaseNavigator.js`</td>
+      <td>Renamed non-standard `aria-label-*` attributes to `search-aria-label`, `prev-aria-label`, and `next-aria-label` to eliminate `aria-valid-attr` CI test failures.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`CaseNavigator.js`</td>
+      <td>Refactored autocomplete menu container to scrub `role="listbox"` and `aria-label` when hidden, resolving `aria-prohibited-attr` validation errors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`CaseNavigator.stories.js`</td>
+      <td>Updated ArgTypes controls, story args, and play functions to reflect valid accessibility attribute naming conventions.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured passive root observer syncing dark mode, high contrast, large text, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Case Navigator Molecule:** Created `<ds-case-navigator>` designed for single-page portfolio shells and case study viewports.
+- **Autocomplete Popup Engine:** Integrated dynamic result highlighting with keyboard arrow navigation and text mark highlighting.
+- **Global Keyboard Shortcut Mapping:** Configured global key listeners supporting custom search expansion and navigation keys.
+- **Storybook Workspace:** Configured complete interactive Controls, automated interaction play tests, and CSF3 stories inside `CaseNavigator.stories.js`.
+
+### Fixed
+- **Strict ARIA Validation:** Standardized host attribute names to eliminate W3C compliance warnings across automated CI audit runs.
+
+---
+
+*This changelog is specific to the `<ds-case-navigator>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

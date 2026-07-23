@@ -1,0 +1,67 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Toggle [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational binary and text toggle switch (`ds-toggle`) featuring hardware-accelerated pointer drag tracking, dynamic text label width adjustments, and root class accessibility observing.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-toggle`</td>
+      <td>Initial stable component release with compressed shadow DOM markup layouts.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-toggle`</td>
+      <td>Integrated 1:1 pointer clientX drag calculation logic with custom drag-progress properties.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Sets up passive HTML class observer syncing visual settings.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`Toggle.stories.js` & `toggle.css`</td>
+      <td>Remapped custom style parameters to standardized `--ds-toggle-*` design tokens instead of generic `--custom-*` variables.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Pill Switch Atom:** Created `<ds-toggle>` serving as a binary toggle button.
+- **Hardware-Accelerated Drag Tracking:** Interactive pointerdown/pointermove/pointerup event listeners enabling smooth sliding knob translations.
+- **Root Class Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags.
+- **Thematic Overrides:** Bound track size, knob size, border radius, background, checked background, border-width, border-color, and knob-bg variables to `--ds-toggle-*` custom properties.
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `Toggle.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Synchronized Storybook override controllers to output precise `--ds-toggle-checked-bg` custom styles.
+
+---
+
+*This changelog is specific to the `<ds-toggle>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

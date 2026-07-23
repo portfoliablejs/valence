@@ -1,0 +1,237 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Subtitle [v1.0.0]/Architecture" />
+
+# `ds-subtitle`
+
+The `ds-subtitle` component is an interactive, presentational **controlled** Atom designed for overlay media captions and real-time screen reader announcements. It supports free pointer-dragging repositioning, incorporates CSS-driven fade animations, and implements polite ARIA announcements.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host shell binds properties (`text`, `visible`, `aria-label`) to render caption strings and trigger visibility transitions.
+* **Events Out:** Captures mouse/pointer events inside the custom element to support free drag coordinate mapping, dispatching tracking events (`ds-subtitle-dragstart`, `ds-subtitle-dragend`) upstream.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-subtitle"]
+      end
+
+      State -->|"1. State In: text / visible / aria-label"| Component
+      Component -->|"2. Event Out: ds-subtitle-dragstart / ds-subtitle-dragend"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-subtitle` component can consume WebVTT cue text via standard light DOM slots when no explicit `text` attribute is provided, fallback-rendering subtitle structures dynamically.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>Text / Inline HTML</td>
+      <td>WebVTT cue content projected dynamically if `text` attribute is omitted.</td>
+      <td>Renders empty and collapses subtitle overlay geometry.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsSubtitleState {
+  text?: string;
+  visible: boolean;
+  ariaLabel?: string;
+}
+
+export interface DsSubtitleSubAtomicHooks {
+  '--ds-subtitle-font'?: string;
+  '--ds-subtitle-padding'?: string;
+  '--ds-subtitle-bg'?: string;
+  '--ds-subtitle-color'?: string;
+  '--ds-subtitle-radius'?: string;
+  '--ds-subtitle-border-width'?: string;
+  '--ds-subtitle-border-color'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`text`</td>
+      <td>`text`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>The caption string content to be displayed in the overlay bounds.</td>
+    </tr>
+    <tr>
+      <td>`visible`</td>
+      <td>`visible`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles display visible states. Triggers internal transition classes.</td>
+    </tr>
+    <tr>
+      <td>`ariaLabel`</td>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Accessible caption label delegated down for screen readers.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-subtitle-dragstart`</td>
+      <td>`true` / `true`</td>
+      <td>`{ x: number, y: number }`</td>
+      <td>Emitted when the user grabs and initiates pointer-drag repositioning.</td>
+    </tr>
+    <tr>
+      <td>`ds-subtitle-dragend`</td>
+      <td>`true` / `true`</td>
+      <td>`{ x: number, y: number }`</td>
+      <td>Emitted when users release pointer dragging across the viewport.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-subtitle-font`</td>
+      <td>`var(--font-family)`</td>
+      <td>Overrides typeface family.</td>
+    </tr>
+    <tr>
+      <td>`--ds-subtitle-padding`</td>
+      <td>`var(--space-xs) var(--space-sm)`</td>
+      <td>Overrides internal caption container padding margins.</td>
+    </tr>
+    <tr>
+      <td>`--ds-subtitle-bg`</td>
+      <td>`var(--color-gray-dark)` / `var(--color-player-bg)`</td>
+      <td>Overrides caption container background fill colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-subtitle-color`</td>
+      <td>`var(--color-white)`</td>
+      <td>Overrides text foreground paint colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-subtitle-radius`</td>
+      <td>`var(--radius-sm)`</td>
+      <td>Overrides corner curvature dimensions.</td>
+    </tr>
+    <tr>
+      <td>`--ds-subtitle-border-width`</td>
+      <td>`var(--border-width-none)` / `var(--border-width-thin)`</td>
+      <td>Overrides outer boundary border thickness.</td>
+    </tr>
+    <tr>
+      <td>`--ds-subtitle-border-color`</td>
+      <td>`transparent` / `var(--color-card-border)`</td>
+      <td>Overrides outer bounding frame outline colors.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Aria Role Contract:** Incorporates `aria-live="polite"` directly on internal subtitle wrappers, prompting screen readers to immediately capture VTT cue updates without breaking page context.
+* **ARIA Host Scrubbing:** Automatically scrubs the Light DOM host attribute `aria-label` and delegates it down to the internal text container.
+* **Global Accessibility Propagation:** Integrates `_observeRootAccessibility` to sync viewport visual preferences:
+  * `.a11y-dark-mode`: Shifts background colors to dark media player HUD tokens.
+  * `.a11y-high-contrast`: Enforces strict AAA binary contrast ratios (thick black borders with solid white backgrounds).
+  * `.a11y-dyslexia`: Forces Comic Sans MS fonts for dyslexia accommodations.
+  * `.a11y-reduce-motion`: Forces instant 0ms visibility transitions.
+  * `.a11y-forced-colors`: Employs Windows active system colors (`Canvas` and `CanvasText`).
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-subtitle';
+
+const subtitle = document.createElement('ds-subtitle');
+subtitle.setAttribute('text', 'Hello, and welcome to this case study!');
+subtitle.setAttribute('visible', 'true');
+subtitle.setAttribute('aria-label', 'English captions');
+
+// Clean sub-atomic overrides
+subtitle.style.setProperty('--ds-subtitle-bg', 'rgba(0, 0, 0, 0.85)');
+subtitle.style.setProperty('--ds-subtitle-color', 'yellow');
+
+document.body.appendChild(subtitle);
+```

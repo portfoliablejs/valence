@@ -72,11 +72,11 @@ button:focus-visible {
 
 /* Hover Scale Feedback for Interactive Buttons */
 button:hover:not(:disabled) {
-  transform: scale(var(--btn-hover-scale, 1.02));
+  transform: scale(var(--ds-button-hover-scale, 1.02));
 }
 
 button:active:not(:disabled) {
-  transform: scale(var(--btn-active-scale, 0.95));
+  transform: scale(var(--ds-button-active-scale, 0.95));
 }
 
 /* DISABLED STATE */
@@ -92,39 +92,39 @@ button:disabled,
 
 /* Primary Hover & Active */
 .variant-primary:hover:not(:disabled) {
-  background-color: var(--btn-hover-bg, var(--color-gray-dark));
+  background-color: var(--ds-button-hover-bg, var(--color-gray-dark));
 }
 .variant-primary:active:not(:disabled) {
-  background-color: var(--btn-active-bg, var(--color-black));
+  background-color: var(--ds-button-active-bg, var(--color-black));
 }
 
 /* Secondary Hover & Active */
 .variant-secondary:hover:not(:disabled) {
-  background-color: var(--btn-hover-bg, rgba(0, 0, 0, var(--opacity-faint, 0.12)));
+  background-color: var(--ds-button-hover-bg, rgba(0, 0, 0, var(--opacity-faint, 0.12)));
 }
 .variant-secondary:active:not(:disabled) {
-  background-color: var(--btn-active-bg, rgba(0, 0, 0, 0.18));
+  background-color: var(--ds-button-active-bg, rgba(0, 0, 0, 0.18));
 }
 
 /* Text & Icon Variant Hover & Active */
 .variant-text:hover:not(:disabled),
 .variant-icon:hover:not(:disabled) {
-  background-color: var(--btn-hover-bg, rgba(0, 0, 0, var(--opacity-faint, 0.12)));
+  background-color: var(--ds-button-hover-bg, rgba(0, 0, 0, var(--opacity-faint, 0.12)));
   color: var(--color-text-primary, var(--color-black));
 }
 .variant-text:active:not(:disabled),
 .variant-icon:active:not(:disabled) {
-  background-color: var(--btn-active-bg, rgba(0, 0, 0, 0.18));
+  background-color: var(--ds-button-active-bg, rgba(0, 0, 0, 0.18));
 }
 
 /* Floating Variant Hover & Active */
 .variant-floating:hover:not(:disabled) {
   box-shadow: var(--shadow-lg);
-  background-color: var(--btn-hover-bg, var(--color-surface, var(--color-card-bg)));
+  background-color: var(--ds-button-hover-bg, var(--color-surface, var(--color-card-bg)));
 }
 .variant-floating:active:not(:disabled) {
   box-shadow: var(--shadow-sm);
-  background-color: var(--btn-active-bg, rgba(0, 0, 0, 0.18));
+  background-color: var(--ds-button-active-bg, rgba(0, 0, 0, 0.18));
 }
 
 /* ==========================================================================
@@ -134,7 +134,7 @@ button:disabled,
 .variant-secondary {
   min-height: var(--size-height-sm);
   height: auto;
-  border-radius: var(--btn-radius, var(--radius-pill));
+  border-radius: var(--ds-button-radius, var(--radius-pill));
   font-weight: 600;
   letter-spacing: -0.01em;
   padding: var(--space-xs) var(--space-lg);
@@ -153,18 +153,18 @@ button:disabled,
 }
 
 .variant-primary {
-  background: var(--btn-bg, var(--color-text-primary, var(--color-black)));
+  background: var(--ds-button-bg, var(--color-text-primary, var(--color-black)));
   color: var(--color-bg);
-  border: var(--btn-border-width, var(--border-width-thin)) 
+  border: var(--ds-button-border-width, var(--border-width-thin)) 
           var(--border-style-solid) 
-          var(--btn-border-color, var(--color-text-primary, var(--color-black)));
+          var(--ds-button-border-color, var(--color-text-primary, var(--color-black)));
 }
 
 .variant-secondary {
-  background: var(--btn-bg, transparent);
-  border: var(--btn-border-width, var(--border-width-medium)) 
+  background: var(--ds-button-bg, transparent);
+  border: var(--ds-button-border-width, var(--border-width-medium)) 
           var(--border-style-solid) 
-          var(--btn-border-color, var(--color-gray-light));
+          var(--ds-button-border-color, var(--color-gray-light));
   color: var(--color-text-secondary, var(--color-gray-dark));
 }
 
@@ -174,12 +174,12 @@ button:disabled,
 .variant-text {
   min-height: var(--size-height-sm);
   height: auto;
-  border-radius: var(--btn-radius, var(--radius-pill));
+  border-radius: var(--ds-button-radius, var(--radius-pill));
   font-weight: 500;
-  background: var(--btn-bg, transparent);
-  border: var(--btn-border-width, var(--border-width-none)) 
+  background: var(--ds-button-bg, transparent);
+  border: var(--ds-button-border-width, var(--border-width-none)) 
           var(--border-style-solid) 
-          var(--btn-border-color, transparent);
+          var(--ds-button-border-color, transparent);
   color: var(--color-text-secondary, var(--color-gray-dark));
   padding: var(--space-xs) var(--space-sm);
 }
@@ -201,11 +201,11 @@ button:disabled,
   width: var(--size-height-sm);
   height: var(--size-height-sm);
   padding: 0;
-  border-radius: var(--btn-radius, var(--radius-circle));
-  background: var(--btn-bg, transparent);
-  border: var(--btn-border-width, var(--border-width-none)) 
+  border-radius: var(--ds-button-radius, var(--radius-circle));
+  background: var(--ds-button-bg, transparent);
+  border: var(--ds-button-border-width, var(--border-width-none)) 
           var(--border-style-solid) 
-          var(--btn-border-color, transparent);
+          var(--ds-button-border-color, transparent);
   color: var(--color-text-muted, var(--color-gray-med));
 }
 
@@ -213,11 +213,11 @@ button:disabled,
   width: var(--size-height-md);
   height: var(--size-height-md);
   padding: 0;
-  border-radius: var(--btn-radius, var(--radius-circle));
-  background: var(--btn-bg, var(--color-bg));
-  border: var(--btn-border-width, var(--border-width-medium)) 
+  border-radius: var(--ds-button-radius, var(--radius-circle));
+  background: var(--ds-button-bg, var(--color-bg));
+  border: var(--ds-button-border-width, var(--border-width-medium)) 
           var(--border-style-solid) 
-          var(--btn-border-color, var(--color-surface-border, var(--color-card-border)));
+          var(--ds-button-border-color, var(--color-surface-border, var(--color-card-border)));
   box-shadow: var(--shadow-md);
   color: var(--color-text-primary, var(--color-black));
 }
@@ -228,31 +228,31 @@ button:disabled,
 
 /* Dark Mode Primary State Colors */
 :host([a11y-dark-mode]) .variant-primary {
-  background: var(--btn-bg, var(--color-white));
+  background: var(--ds-button-bg, var(--color-white));
   color: var(--color-player-bg, #101218);
-  border-color: var(--btn-border-color, var(--color-white));
+  border-color: var(--ds-button-border-color, var(--color-white));
 }
 :host([a11y-dark-mode]) .variant-primary:hover:not(:disabled) {
-  background-color: var(--btn-hover-bg, var(--color-gray-xlight, #D9D9D9));
+  background-color: var(--ds-button-hover-bg, var(--color-gray-xlight, #D9D9D9));
   border-color: var(--color-gray-xlight, #D9D9D9);
 }
 :host([a11y-dark-mode]) .variant-primary:active:not(:disabled) {
-  background-color: var(--btn-active-bg, var(--color-gray-light, #B2B2B2));
+  background-color: var(--ds-button-active-bg, var(--color-gray-light, #B2B2B2));
   border-color: var(--color-gray-light, #B2B2B2);
 }
 
 /* Dark Mode Secondary State Colors */
 :host([a11y-dark-mode]) .variant-secondary {
-  background: var(--btn-bg, transparent);
+  background: var(--ds-button-bg, transparent);
   color: var(--color-white);
-  border-color: var(--btn-border-color, var(--color-surface-border, rgba(255, 255, 255, 0.2)));
+  border-color: var(--ds-button-border-color, var(--color-surface-border, rgba(255, 255, 255, 0.2)));
 }
 :host([a11y-dark-mode]) .variant-secondary:hover:not(:disabled) {
-  background-color: var(--btn-hover-bg, rgba(255, 255, 255, 0.16));
+  background-color: var(--ds-button-hover-bg, rgba(255, 255, 255, 0.16));
   border-color: var(--color-white);
 }
 :host([a11y-dark-mode]) .variant-secondary:active:not(:disabled) {
-  background-color: var(--btn-active-bg, rgba(255, 255, 255, 0.28));
+  background-color: var(--ds-button-active-bg, rgba(255, 255, 255, 0.28));
   border-color: var(--color-white);
 }
 
@@ -263,28 +263,28 @@ button:disabled,
 }
 :host([a11y-dark-mode]) .variant-text:hover:not(:disabled),
 :host([a11y-dark-mode]) .variant-icon:hover:not(:disabled) {
-  background-color: var(--btn-hover-bg, var(--color-overlay-light, rgba(255, 255, 255, 0.1))); 
+  background-color: var(--ds-button-hover-bg, var(--color-overlay-light, rgba(255, 255, 255, 0.1))); 
   color: var(--color-white);
 }
 :host([a11y-dark-mode]) .variant-text:active:not(:disabled),
 :host([a11y-dark-mode]) .variant-icon:active:not(:disabled) {
-  background-color: var(--btn-active-bg, rgba(255, 255, 255, 0.22)); 
+  background-color: var(--ds-button-active-bg, rgba(255, 255, 255, 0.22)); 
   color: var(--color-white);
 }
 
 /* Dark Mode Floating State Colors */
 :host([a11y-dark-mode]) .variant-floating {
-  background: var(--btn-bg, var(--color-player-bg, #101218)) !important;
+  background: var(--ds-button-bg, var(--color-player-bg, #101218)) !important;
   color: var(--color-white) !important;          
   border: var(--border-width-medium) var(--border-style-solid) var(--color-surface-border, rgba(255, 255, 255, 0.2)) !important;
   box-shadow: var(--shadow-none) !important;
 }
 :host([a11y-dark-mode]) .variant-floating:hover:not(:disabled) {
-  background-color: var(--btn-hover-bg, #1C1C1E) !important;
+  background-color: var(--ds-button-hover-bg, #1C1C1E) !important;
   border-color: var(--color-white) !important;
 }
 :host([a11y-dark-mode]) .variant-floating:active:not(:disabled) {
-  background-color: var(--btn-active-bg, #323232) !important;
+  background-color: var(--ds-button-active-bg, #323232) !important;
   border-color: var(--color-white) !important;
 }
 

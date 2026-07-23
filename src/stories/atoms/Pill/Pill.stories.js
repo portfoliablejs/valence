@@ -15,7 +15,7 @@ import './Pill';
  * - **Accessibility**: Native Shadow DOM ARIA delegation with root-level class syncing for dark mode, high contrast (WCAG AAA), and dyslexia font stacks.
  */
 export default {
-  title: 'Atoms/Pill',
+  title: 'Atoms/Pill [v1.0.0]',
   component: 'ds-pill',
   tags: ['autodocs'],
   parameters: {
@@ -96,31 +96,31 @@ When configured with \`variant="telemetry"\`, it can automatically read and upda
       table: { category: 'Component: Core', defaultValue: { summary: 'var(--color-success)' } },
     },
 
-    // --- SUB-ATOMIC DESIGN TOKEN OVERRIDES ---
+    // --- SUB-ATOMIC PROPS ---
     radius: {
       name: 'radius',
-      description: 'Sub-atomic modifier overriding corner bounding geometry variables (`--custom-radius`).',
+      description: 'Sub-atomic modifier overriding corner bounding geometry variables (`--ds-pill-radius`).',
       control: 'text',
-      table: { category: 'Sub-Atomic Overrides', defaultValue: { summary: 'var(--radius-pill)' } },
+      table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--radius-pill)' } },
     },
     backgroundColor: {
       name: 'backgroundColor',
-      description: 'Sub-atomic modifier overriding default backdrop shading (`--custom-bg`).',
+      description: 'Sub-atomic modifier overriding default backdrop shading (`--ds-pill-bg`).',
       control: 'color',
-      table: { category: 'Sub-Atomic Overrides' },
+      table: { category: 'SUB-ATOMIC PROPS' },
     },
     textColor: {
       name: 'textColor',
-      description: 'Sub-atomic modifier overriding default text color (`--custom-color`).',
+      description: 'Sub-atomic modifier overriding default text color (`--ds-pill-color`).',
       control: 'color',
-      table: { category: 'Sub-Atomic Overrides' },
+      table: { category: 'SUB-ATOMIC PROPS' },
     },
   },
   render: (args) => {
     const customStyles = [
-      args.radius ? `--custom-radius: ${args.radius};` : '',
-      args.backgroundColor ? `--custom-bg: ${args.backgroundColor};` : '',
-      args.textColor ? `--custom-color: ${args.textColor};` : '',
+      args.radius ? `--ds-pill-radius: ${args.radius};` : '',
+      args.backgroundColor ? `--ds-pill-bg: ${args.backgroundColor};` : '',
+      args.textColor ? `--ds-pill-color: ${args.textColor};` : '',
     ].join(' ').trim();
 
     return html`
@@ -454,7 +454,7 @@ export const SubAtomicOverrides = {
   parameters: {
     docs: {
       description: {
-        story: 'Illustrates sub-atomic design token overrides via inline CSS variables (`--custom-bg`, `--custom-color`, `--custom-radius`).',
+        story: 'Illustrates sub-atomic design token overrides via inline CSS variables (`--ds-pill-bg`, `--ds-pill-color`, `--ds-pill-radius`).',
       },
     },
   },
@@ -470,9 +470,9 @@ export const SubAtomicOverrides = {
 
     await step('Verify inline custom CSS tokens exist on host element', async () => {
       const style = component.getAttribute('style');
-      expect(style).toContain('--custom-bg: #5856D6');
-      expect(style).toContain('--custom-color: #FFFFFF');
-      expect(style).toContain('--custom-radius: 4px');
+      expect(style).toContain('--ds-pill-bg: #5856D6');
+      expect(style).toContain('--ds-pill-color: #FFFFFF');
+      expect(style).toContain('--ds-pill-radius: 4px');
     });
   },
 };

@@ -1,0 +1,67 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Radio [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational vector radio selection badge (`ds-radio`) featuring spring-physics animations, full keyboard tab focusing, invalid state flags, and root observer accessibility syncing.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-radio`</td>
+      <td>Initial stable component registering with compressed shadow template bounds.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-radio`</td>
+      <td>Spring-physics hover scale, active compression transitions, and :focus-visible indicators.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Integrates root class changes to reflect global visual and reading settings downstream.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`Radio.stories.js`</td>
+      <td>Remapped custom inline overrides to standard `--ds-radio-*` custom CSS hooks instead of the generic `--custom-*` variables.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Interactive Radio Atom:** Created `<ds-radio>` acting as a form choice indicator with spring-physics transitions.
+- **Form Integration States:** Equipped with observed `selected`, `disabled`, and `invalid` attributes that sync with native `aria-*` tags in real-time.
+- **Root Class Syncing:** MutationObserver on HTML root elements reflects accessibility states as host boolean flags for styling.
+- **Thematic Overrides:** Bound bounding container size and stroke/fill colors to `--ds-radio-size` and `--ds-radio-color` hooks.
+- **Storybook Workspace:** Authored interactive controls and CSF3 story parameters in `Radio.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Modified Storybook custom style pipelines to write precise `--ds-radio-size` and `--ds-radio-color` tokens rather than generic variables.
+
+---
+
+*This changelog is specific to the `<ds-radio>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

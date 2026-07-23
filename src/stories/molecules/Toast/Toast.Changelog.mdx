@@ -1,0 +1,71 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Toast [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational dynamic notification toast component (`ds-toast`) featuring configurable text buttons, dynamic padding alignments, and localized translation parameters.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-toast`</td>
+      <td>Initial stable release of custom notification pill component with animated visibility parameters.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-toast`</td>
+      <td>Exposed observed attributes `label-close` and `label-never-show` to support complete localized translations.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured passive root observer syncing dark mode, high contrast, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`toast.css`</td>
+      <td>Remapped custom style parameters to standardized `--ds-toast-*` design tokens instead of generic `--custom-*` variables.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`Toast.stories.js`</td>
+      <td>Suffix-aligned storybook title and updated sub-atomic controllers to bind to standard variables inside templates.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Overlay Notification Molecule:** Created `<ds-toast>` serving as a floating contextual information overlay.
+- **Robust i18n Compatibility:** Removed all hardcoded text strings in favor of configurable localization attributes with English as fallback.
+- **Thematic Overrides:** Bound container background, text color, border radius, border-width, border-color, and padding dimensions to standard `--ds-toast-*` properties.
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `Toast.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Synchronized Storybook override controllers to output precise `--ds-toast-*` custom styles.
+
+---
+
+*This changelog is specific to the `<ds-toast>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

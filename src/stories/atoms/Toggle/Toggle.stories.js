@@ -8,7 +8,7 @@ import './Toggle.js';
  * enlarge font size (A/A+), and has `show-icon` for Accessibility.
  */
 export default {
-  title: 'Atoms/Toggle',
+  title: 'Atoms/Toggle [v1.0.0]',
   component: 'ds-toggle',
   tags: ['autodocs'],
   parameters: { layout: 'centered' },
@@ -75,17 +75,17 @@ export default {
       table: { category: 'Events' },
     },
 
-    // --- SUB-ATOMIC OVERRIDES ---
+    // --- SUB-ATOMIC PROPS ---
     toggleCheckedColor: {
       name: 'checkedBackgroundColor',
-      description: 'Sub-atomic modifier overriding the active state track fill.',
+      description: 'Sub-atomic modifier overriding the active state track fill (--ds-toggle-checked-bg).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS' },
     },
   },
   render: (args) => {
     const customStyles = [
-      args.toggleCheckedColor ? `--custom-checked-bg: ${args.toggleCheckedColor};` : ''
+      args.toggleCheckedColor ? `--ds-toggle-checked-bg: ${args.toggleCheckedColor};` : ''
     ].join(' ').trim();
 
     return html`

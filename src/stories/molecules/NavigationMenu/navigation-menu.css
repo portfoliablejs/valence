@@ -1,0 +1,145 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  overflow: visible;
+}
+
+.navigation-menu {
+  display: inline-flex;
+  align-items: center;
+  height: var(--size-height-sm);
+  gap: var(--ds-navigation-menu-gap, var(--space-sm));
+  font-family: var(--font-family, inherit);
+  overflow: visible;
+}
+
+.menu-group {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  gap: var(--space-sm);
+}
+
+.menu-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+}
+
+.menu-item ds-contextual-menu {
+  position: absolute;
+  top: calc(100% + var(--space-sm));
+  right: 0;
+  left: auto;
+  transform: none;
+  z-index: var(--z-dropdown, 50);
+}
+
+.menu-item-language ds-contextual-menu {
+  --ds-contextual-menu-width: var(--ds-navigation-contextual-width, 260px);
+}
+
+.menu-item-accessibility ds-contextual-menu {
+  --ds-contextual-menu-width: var(--ds-navigation-contextual-width, 260px);
+}
+
+:host([language-menu-open]) .language-tooltip {
+  display: none;
+}
+
+:host([accessibility-menu-open]) .accessibility-tooltip {
+  display: none;
+}
+
+.menu-actions ds-button {
+  --color-text-muted: var(--ds-navigation-icon-color, var(--color-gray-dark));
+  --ds-button-hover-bg: var(--ds-navigation-icon-hover-bg, rgba(0, 0, 0, 0.08));
+  --ds-button-active-bg: var(--ds-navigation-icon-active-bg, rgba(0, 0, 0, 0.14));
+}
+
+.menu-divider {
+  display: inline-flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+.menu-divider ds-divider {
+  height: 100%;
+  --ds-divider-margin: 0 var(--space-sm);
+}
+
+.avatar-button {
+  width: var(--size-height-sm);
+  height: var(--size-height-sm);
+  min-width: var(--size-height-sm);
+  min-height: var(--size-height-sm);
+  border: var(--border-width-thin) var(--border-style-solid) var(--ds-navigation-avatar-border, var(--color-surface-border));
+  border-radius: var(--radius-circle);
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background: var(--ds-navigation-avatar-bg, var(--color-bg));
+  color: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform var(--anim-fast, 0.2s) var(--ease-fluid, ease), border-color var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+}
+
+.avatar-button:hover:not(:disabled) {
+  transform: scale(var(--ds-button-hover-scale, 1.02));
+  border-color: var(--ds-navigation-avatar-border-hover, var(--color-gray-light));
+}
+
+.avatar-button:active:not(:disabled) {
+  transform: scale(var(--ds-button-active-scale, 0.95));
+}
+
+.avatar-button:focus-visible {
+  outline: var(--a11y-focus-outline, 3px solid var(--color-accent));
+  outline-offset: var(--a11y-focus-offset, 2px);
+}
+
+.avatar-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-button:disabled,
+:host([disabled]) .avatar-button {
+  opacity: var(--opacity-disabled, 0.38);
+  cursor: not-allowed;
+}
+
+:host([a11y-dark-mode]) .avatar-button {
+  border-color: var(--ds-navigation-avatar-border, rgba(255, 255, 255, 0.24));
+  background: var(--ds-navigation-avatar-bg, var(--color-player-bg, #101218));
+}
+
+:host([a11y-high-contrast]) .avatar-button {
+  border-color: var(--color-black) !important;
+}
+
+:host([a11y-forced-colors]) .avatar-button {
+  forced-color-adjust: none;
+  border-color: CanvasText !important;
+  background: Canvas !important;
+}
+
+@media (forced-colors: active) {
+  .avatar-button {
+    forced-color-adjust: none;
+    border-color: CanvasText !important;
+    background: Canvas !important;
+  }
+}
+
+:host([a11y-reduce-motion]) .avatar-button,
+:host([a11y-reduce-motion]) * {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}

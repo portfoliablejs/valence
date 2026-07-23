@@ -8,7 +8,7 @@ import './Tooltip';
  * to display helpful descriptive text and keyboard shortcut hints.
  */
 export default {
-  title: 'Molecules/Tooltip',
+  title: 'Molecules/Tooltip [v1.0.0]',
   component: 'ds-tooltip',
   tags: ['autodocs'],
   parameters: {
@@ -69,21 +69,23 @@ export default {
       options: ['bottom', 'top', 'left', 'right'],
       table: { category: 'Core & Variant Controls', defaultValue: { summary: 'bottom' } },
     },
+
+    // --- SUB-ATOMIC PROPS ---
     radius: {
       name: 'radius',
       control: 'text',
-      table: { category: 'Sub-Atomic Props', defaultValue: { summary: 'var(--radius-md)' } },
+      table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--radius-md)' } },
     },
     backgroundColor: {
       name: 'backgroundColor',
       control: 'color',
-      table: { category: 'Sub-Atomic Props', defaultValue: { summary: 'var(--color-overlay-dark)' } },
+      table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--color-overlay-dark)' } },
     },
   },
   render: (args) => {
     const dynamicStyles = [
-      args.radius ? `--custom-radius: ${args.radius};` : '',
-      args.backgroundColor ? `--custom-bg: ${args.backgroundColor};` : ''
+      args.radius ? `--ds-tooltip-radius: ${args.radius};` : '',
+      args.backgroundColor ? `--ds-tooltip-bg: ${args.backgroundColor};` : ''
     ].join(' ').trim();
 
     return html`

@@ -1,0 +1,120 @@
+/* ==========================================================================
+   1. HOST GEOMETRY & CONTAINER
+   ========================================================================== */
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: var(--color-bg, #ffffff);
+  color: var(--color-text-primary, #000000);
+  contain: layout paint style;
+}
+
+:host([disabled]) {
+  cursor: not-allowed !important;
+}
+
+/* ==========================================================================
+   2. BASE LAYOUT & REDUCED THUMBNAIL SIZING
+   ========================================================================== */
+.case-reader-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl, 24px);
+  max-width: var(--size-max-width-xl, 1280px);
+  margin: 0 auto;
+  padding: var(--space-lg, 16px);
+  box-sizing: border-box;
+}
+
+.hero-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  will-change: transform, opacity;
+  transition: transform var(--anim-slow, 0.4s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1)),
+              opacity var(--anim-slow, 0.4s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+/* Reduced size of Thumbnail by 30% */
+.hero-column ds-thumbnail {
+  width: 100%;
+  --ds-thumbnail-max-height: calc((100vh - 120px) * 0.70);
+  --ds-thumbnail-max-width: 336px;
+}
+
+.article-column {
+  width: 100%;
+  min-width: 0;
+  will-change: transform;
+  transition: transform var(--anim-slow, 0.4s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+/* ==========================================================================
+   3. DESKTOP STICKY LAYOUT & SCROLL TRANSLATION
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .case-reader-container {
+    /* Adjusted grid column width from 480px to 336px (-30% scale reduction) */
+    grid-template-columns: 336px 1fr;
+    align-items: start;
+    gap: var(--space-xxl, 32px);
+    padding: var(--space-xl, 24px) var(--space-xxl, 32px);
+  }
+
+  .hero-column {
+    position: sticky;
+    top: var(--space-xl, 24px);
+  }
+
+  /* Scroll position translation logic */
+  :host([scrolled]) .hero-column {
+    transform: translateX(-120%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  :host([scrolled]) .article-column {
+    /* Shifts reading column to center viewport alignment (-168px offset + half gap) */
+    transform: translateX(calc(-168px - (var(--space-xxl, 32px) / 2)));
+  }
+}
+
+/* ==========================================================================
+   4. ACCESSIBILITY OVERRIDES (DARK MODE, HIGH CONTRAST & FORCED COLORS)
+   ========================================================================== */
+:host([a11y-dark-mode]) {
+  background-color: var(--color-player-bg, #101218);
+  color: var(--color-text-primary, #ffffff);
+}
+
+:host([a11y-high-contrast]) {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+:host([a11y-forced-colors]) {
+  forced-color-adjust: none !important;
+  background-color: Canvas !important;
+  color: CanvasText !important;
+}
+
+@media (forced-colors: active) {
+  :host {
+    forced-color-adjust: none !important;
+    background-color: Canvas !important;
+    color: CanvasText !important;
+  }
+}
+
+/* ==========================================================================
+   5. MOTION SUPPRESSION
+   ========================================================================== */
+:host([a11y-reduce-motion]) .hero-column,
+:host([a11y-reduce-motion]) .article-column {
+  transition: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+}

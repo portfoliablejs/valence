@@ -1,28 +1,6 @@
-import mermaid from 'mermaid';
 import '../src/style.css';
-
-// --- 1. Mermaid Web Component Setup (No JSX / Pure Vanilla JS) ---
-mermaid.initialize({ startOnLoad: false, theme: 'default' });
-
-class MermaidDiagram extends HTMLElement {
-  async connectedCallback() {
-    // Read from chart attribute first, fallback to textContent
-    const rawChart = this.getAttribute('chart') || this.textContent.trim();
-    if (!rawChart) return;
-
-    const id = `mermaid-${Math.random().toString(36).substring(2, 9)}`;
-    try {
-      const { svg } = await mermaid.render(id, rawChart);
-      this.innerHTML = svg;
-    } catch (error) {
-      console.error('Mermaid rendering failed:', error);
-    }
-  }
-}
-
-if (!customElements.get('mermaid-diagram')) {
-  customElements.define('mermaid-diagram', MermaidDiagram);
-}
+import '../src/stories/sub-atomic/Mermaid/MermaidDiagram.js';
+import '../src/index.js';
 
 /**
  * Storybook decorator to apply accessibility, theme, and text direction rules globally.

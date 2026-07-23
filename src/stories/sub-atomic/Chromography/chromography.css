@@ -40,5 +40,5 @@
   
   /* Backward Compatibility Alias */
   --color-card-bg: var(--color-surface);
-  --color-card-border: var(--color-surface-border);
+  --color-card-border: rgba(0, 0, 0, 0.062);
 }

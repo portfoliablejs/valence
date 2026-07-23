@@ -1,0 +1,71 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Tooltip [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational descriptive overlay tooltip component (`ds-tooltip`) featuring automatic parent sibling anchoring, custom shortcut combinations with `ds-kbd`, and complete root visual contrast syncing.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-tooltip`</td>
+      <td>Initial stable release of custom overlay tooltip with top, bottom, left, right placement orientations.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-tooltip`</td>
+      <td>Passive preceding sibling or parent Light DOM tracking to trigger show/hide transitions on mouse hover or element focus.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured passive root observer syncing dark mode, high contrast, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`tooltip.css`</td>
+      <td>Remapped custom style parameters to standardized `--ds-tooltip-*` design tokens instead of generic `--custom-*` variables.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`Tooltip.stories.js`</td>
+      <td>Suffix-aligned storybook title and updated sub-atomic controllers to bind to standard variables inside templates.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Overlay Tooltip Molecule:** Created `<ds-tooltip>` serving as a floating contextual information overlay.
+- **Auto-Anchoring Mechanics:** Passive hover/focus event listeners bound directly to parent triggers or preceding siblings.
+- **Thematic Overrides:** Bound container background, border radius, border-width, and border-color to standard `--ds-tooltip-*` properties.
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `Tooltip.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Synchronized Storybook override controllers to output precise `--ds-tooltip-*` custom styles.
+
+---
+
+*This changelog is specific to the `<ds-tooltip>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

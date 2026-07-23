@@ -1,0 +1,34 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Metric Card [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-21
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational metric card component (`ds-metric-card`) featuring summary stat layouts, semantic color variants, directional trends, density scaling, and complete accessibility controls.
+
+<br />
+
+### Added
+- **Presentational Metric Atom:** Created `<ds-metric-card>` for displaying KPI values, directional trends, and supporting labels.
+- **Semantic Color Variants:** Added support for `variant="default | success | accent | warning | error"` mapping to sub-atomic feedback color tokens.
+- **Surface Treatments & Density Scales:** Added `treatment="border-left | surface | minimal"` and `size="sm | md | lg"` for flexible grid layout placement.
+- **Structured Units & Trends:** Added `prefix`, `suffix`, and `trend="up | down | neutral"` for directional indicator arrows and structured typography alignment.
+- **Iconography Integration:** Added optional `icon="..."` attribute rendering a 14px `<ds-icon>` alongside the label.
+- **Root Class Syncing:** Configured passive `MutationObserver` on `document.documentElement` reflecting global setting cascades (`a11y-dark-mode`, `a11y-high-contrast`, `a11y-large-text`, etc.) downstream as host element boolean attributes.
+
+### Fixed
+- **Sub-Atomic Token Hooks:** Refactored generic variables in `metric-card.css` to adhere to the `--ds-metric-card-*` layout standard (`--ds-metric-card-border-color`, `--ds-metric-card-bg`, `--ds-metric-card-padding`, `--ds-metric-card-value-color`, `--ds-metric-card-label-color`).
+- **Template Hygiene:** Compressed Shadow DOM template literal string onto a single line to eliminate unwanted whitespace nodes inside component layouts.
+- **Storybook Workspace Cleanup:** Configured isolated CSF3 stories for every individual property and variant without layout canvas wrapper tags.
+
+---
+
+*This changelog is specific to the `<ds-metric-card>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

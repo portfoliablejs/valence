@@ -1,0 +1,243 @@
+/* ==========================================================================
+   MERMAID DIAGRAM SUB-ATOMIC TOKEN & ACCESSIBILITY OVERRIDES
+   ========================================================================== */
+
+mermaid-diagram {
+  display: block;
+  width: 100%;
+  margin: var(--space-xl, 24px) 0;
+  overflow-x: auto;
+}
+
+mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   1. LIGHT MODE DEFAULT TOKEN MAPPING
+   -------------------------------------------------------------------------- */
+mermaid-diagram .node rect,
+mermaid-diagram .node circle,
+mermaid-diagram .node polygon,
+mermaid-diagram .node path,
+mermaid-diagram .actor {
+  fill: var(--color-surface, #F2F2F7) !important;
+  stroke: var(--color-surface-border, rgba(0, 0, 0, 0.15)) !important;
+  stroke-width: var(--border-width-thin, 1px) !important;
+}
+
+mermaid-diagram .cluster rect {
+  fill: var(--color-bg, #FFFFFF) !important;
+  stroke: var(--color-surface-border, rgba(0, 0, 0, 0.15)) !important;
+}
+
+/* Prevent SVG container bounding boxes from clipping text edges */
+mermaid-diagram .node foreignObject {
+  overflow: visible !important;
+}
+
+mermaid-diagram .node foreignObject div {
+  padding: 0 0px;
+  white-space: nowrap;
+}
+
+mermaid-diagram .label text,
+mermaid-diagram .node foreignObject,
+mermaid-diagram .actor text,
+mermaid-diagram .messageText,
+mermaid-diagram .labelText,
+mermaid-diagram text {
+  fill: var(--color-text-primary, #000000) !important;
+  color: var(--color-text-primary, #000000) !important;
+}
+
+mermaid-diagram .edgePath .path,
+mermaid-diagram .flowchart-link {
+  stroke: var(--color-text-secondary, #323232) !important;
+  stroke-width: 1.5px !important;
+}
+
+mermaid-diagram .marker,
+mermaid-diagram marker path {
+  fill: var(--color-text-secondary, #323232) !important;
+  stroke: var(--color-text-secondary, #323232) !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. DARK MODE OVERRIDES (.a11y-dark-mode & ds-article[a11y-dark-mode])
+   -------------------------------------------------------------------------- */
+html.a11y-dark-mode mermaid-diagram .node rect,
+html.a11y-dark-mode mermaid-diagram .node circle,
+html.a11y-dark-mode mermaid-diagram .node polygon,
+html.a11y-dark-mode mermaid-diagram .node path,
+html.a11y-dark-mode mermaid-diagram .actor,
+:host([a11y-dark-mode]) mermaid-diagram .node rect,
+ds-article[a11y-dark-mode] mermaid-diagram .node rect {
+  fill: var(--color-surface, #1C1C1E) !important;
+  stroke: var(--color-surface-border, rgba(255, 255, 255, 0.12)) !important;
+}
+
+html.a11y-dark-mode mermaid-diagram .cluster rect,
+:host([a11y-dark-mode]) mermaid-diagram .cluster rect,
+ds-article[a11y-dark-mode] mermaid-diagram .cluster rect {
+  fill: var(--color-player-bg, #101218) !important;
+  stroke: var(--color-surface-border, rgba(255, 255, 255, 0.12)) !important;
+}
+
+html.a11y-dark-mode mermaid-diagram .label text,
+html.a11y-dark-mode mermaid-diagram .node foreignObject,
+html.a11y-dark-mode mermaid-diagram .actor text,
+html.a11y-dark-mode mermaid-diagram .messageText,
+html.a11y-dark-mode mermaid-diagram .labelText,
+html.a11y-dark-mode mermaid-diagram text,
+:host([a11y-dark-mode]) mermaid-diagram text,
+ds-article[a11y-dark-mode] mermaid-diagram text {
+  fill: var(--color-white, #FFFFFF) !important;
+  color: var(--color-white, #FFFFFF) !important;
+}
+
+html.a11y-dark-mode mermaid-diagram .edgePath .path,
+html.a11y-dark-mode mermaid-diagram .flowchart-link,
+:host([a11y-dark-mode]) mermaid-diagram .edgePath .path,
+ds-article[a11y-dark-mode] mermaid-diagram .edgePath .path {
+  stroke: var(--color-text-muted, #B2B2B2) !important;
+}
+
+html.a11y-dark-mode mermaid-diagram .marker,
+html.a11y-dark-mode mermaid-diagram marker path,
+:host([a11y-dark-mode]) mermaid-diagram .marker,
+ds-article[a11y-dark-mode] mermaid-diagram .marker {
+  fill: var(--color-text-muted, #B2B2B2) !important;
+  stroke: var(--color-text-muted, #B2B2B2) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. HIGH CONTRAST MODE OVERRIDES (BINARY 21:1 CONTRAST)
+   -------------------------------------------------------------------------- */
+html.a11y-high-contrast mermaid-diagram .node rect,
+html.a11y-high-contrast mermaid-diagram .node circle,
+html.a11y-high-contrast mermaid-diagram .node polygon,
+html.a11y-high-contrast mermaid-diagram .node path,
+html.a11y-high-contrast mermaid-diagram .cluster rect,
+html.a11y-high-contrast mermaid-diagram .actor,
+:host([a11y-high-contrast]) mermaid-diagram .node rect,
+ds-article[a11y-high-contrast] mermaid-diagram .node rect {
+  fill: #000000 !important;
+  stroke: #FFFFFF !important;
+  stroke-width: 2px !important;
+}
+
+html.a11y-high-contrast mermaid-diagram .label text,
+html.a11y-high-contrast mermaid-diagram .node foreignObject,
+html.a11y-high-contrast mermaid-diagram text,
+:host([a11y-high-contrast]) mermaid-diagram text,
+ds-article[a11y-high-contrast] mermaid-diagram text {
+  fill: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+
+html.a11y-high-contrast mermaid-diagram .edgePath .path,
+html.a11y-high-contrast mermaid-diagram .flowchart-link,
+:host([a11y-high-contrast]) mermaid-diagram .edgePath .path,
+ds-article[a11y-high-contrast] mermaid-diagram .edgePath .path {
+  stroke: #FFFFFF !important;
+  stroke-width: 2px !important;
+}
+
+html.a11y-high-contrast mermaid-diagram .marker,
+html.a11y-high-contrast mermaid-diagram marker path,
+:host([a11y-high-contrast]) mermaid-diagram .marker,
+ds-article[a11y-high-contrast] mermaid-diagram .marker {
+  fill: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. FORCED COLORS MODE (HIGHEST PRIORITY OVERRIDE)
+   -------------------------------------------------------------------------- */
+
+/* Standard Forced Colors Matchers */
+html.a11y-forced-colors mermaid-diagram .node rect,
+html.a11y-forced-colors mermaid-diagram .node circle,
+html.a11y-forced-colors mermaid-diagram .node polygon,
+html.a11y-forced-colors mermaid-diagram .node path,
+html.a11y-forced-colors mermaid-diagram .cluster rect,
+html.a11y-forced-colors mermaid-diagram .actor,
+:host([a11y-forced-colors]) mermaid-diagram .node rect,
+ds-article[a11y-forced-colors] mermaid-diagram .node rect,
+/* 👈 COMPOUND SPECIFICITY GUARDS (Wins even if Dark/Contrast classes stay attached) */
+html.a11y-forced-colors.a11y-dark-mode mermaid-diagram .node rect,
+html.a11y-forced-colors.a11y-high-contrast mermaid-diagram .node rect,
+:host([a11y-forced-colors][a11y-dark-mode]) mermaid-diagram .node rect,
+:host([a11y-forced-colors][a11y-high-contrast]) mermaid-diagram .node rect,
+ds-article[a11y-forced-colors][a11y-dark-mode] mermaid-diagram .node rect,
+ds-article[a11y-forced-colors][a11y-high-contrast] mermaid-diagram .node rect {
+  forced-color-adjust: none !important;
+  fill: Canvas !important;
+  stroke: CanvasText !important;
+  stroke-width: 1.5px !important;
+}
+
+html.a11y-forced-colors mermaid-diagram text,
+html.a11y-forced-colors mermaid-diagram .node foreignObject,
+:host([a11y-forced-colors]) mermaid-diagram text,
+ds-article[a11y-forced-colors] mermaid-diagram text,
+/* 👈 COMPOUND SPECIFICITY GUARDS FOR TEXT */
+html.a11y-forced-colors.a11y-dark-mode mermaid-diagram text,
+html.a11y-forced-colors.a11y-high-contrast mermaid-diagram text,
+:host([a11y-forced-colors][a11y-dark-mode]) mermaid-diagram text,
+:host([a11y-forced-colors][a11y-high-contrast]) mermaid-diagram text,
+ds-article[a11y-forced-colors][a11y-dark-mode] mermaid-diagram text,
+ds-article[a11y-forced-colors][a11y-high-contrast] mermaid-diagram text {
+  forced-color-adjust: none !important;
+  fill: CanvasText !important;
+  color: CanvasText !important;
+}
+
+html.a11y-forced-colors mermaid-diagram .edgePath .path,
+html.a11y-forced-colors mermaid-diagram .flowchart-link,
+html.a11y-forced-colors mermaid-diagram .marker,
+html.a11y-forced-colors mermaid-diagram marker path,
+:host([a11y-forced-colors]) mermaid-diagram .edgePath .path,
+ds-article[a11y-forced-colors] mermaid-diagram .edgePath .path,
+/* 👈 COMPOUND SPECIFICITY GUARDS FOR EDGES/ARROWS */
+html.a11y-forced-colors.a11y-dark-mode mermaid-diagram .edgePath .path,
+html.a11y-forced-colors.a11y-high-contrast mermaid-diagram .edgePath .path,
+:host([a11y-forced-colors][a11y-dark-mode]) mermaid-diagram .edgePath .path,
+:host([a11y-forced-colors][a11y-high-contrast]) mermaid-diagram .edgePath .path {
+  forced-color-adjust: none !important;
+  stroke: CanvasText !important;
+  fill: CanvasText !important;
+}
+
+/* Native OS Forced Colors Override (Always wins at the browser engine level) */
+@media (forced-colors: active) {
+  mermaid-diagram .node rect,
+  mermaid-diagram .node circle,
+  mermaid-diagram .node polygon,
+  mermaid-diagram .node path,
+  mermaid-diagram .cluster rect,
+  mermaid-diagram .actor {
+    forced-color-adjust: none !important;
+    fill: Canvas !important;
+    stroke: CanvasText !important;
+    stroke-width: 1.5px !important;
+  }
+
+  mermaid-diagram text,
+  mermaid-diagram .node foreignObject {
+    forced-color-adjust: none !important;
+    fill: CanvasText !important;
+    color: CanvasText !important;
+  }
+
+  mermaid-diagram .edgePath .path,
+  mermaid-diagram .flowchart-link,
+  mermaid-diagram .marker,
+  mermaid-diagram marker path {
+    forced-color-adjust: none !important;
+    stroke: CanvasText !important;
+    fill: CanvasText !important;
+  }
+}

@@ -1,0 +1,74 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Organisms/Gallery [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-23
+
+<br />
+
+### Minimal Motion Engine Prop
+
+This release makes the gallery motion profile configurable through an `engine` prop while preserving the current minimal tuning as the default. The gallery keeps its restrained, minimalistic interaction model, but the motion contract is now explicit and reusable.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Changed`</td>
+      <td>`Gallery.js`</td>
+      <td>Exposed gallery motion tuning as an `engine` property/attribute with a default value of `minimal`.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`Gallery.js`</td>
+      <td>Read drag follow, overscroll, and edge-return timing from the selected motion engine instead of inline constants.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`Gallery.stories.js`</td>
+      <td>Added the `engine` story arg so Storybook mirrors the public gallery API.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`Gallery.Architecture.mdx` / `Gallery.Changelog.mdx`</td>
+      <td>Added component architecture and changelog documentation for the gallery organism.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`a11y-reduce-motion`</td>
+      <td>Gallery now mirrors the global reduced-motion preference and suppresses shrink/transition motion when the mode is active.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Changed
+- **Motion Contract:** The gallery now derives drag behavior from a named motion engine instead of fixed inline tuning values.
+- **Default Preset:** The `minimal` engine remains the default so the gallery keeps its restrained feel out of the box.
+- **Storybook Surface:** Story controls now include the motion engine prop alongside item count and gap spacing.
+
+### Added
+- **Architecture Documentation:** Added a component architecture document covering state flow, API contract, accessibility, and host integration.
+- **Changelog Documentation:** Added release notes for the gallery organism so future motion updates can be tracked in one place.
+
+### Fixed
+- **Reduced Motion Compliance:** Added a no-motion path that disables the gallery's shrink animation and animated edge-return behavior when `.a11y-reduce-motion` is active.
+
+---
+
+*This changelog is specific to the `<ds-gallery>` component. For design system global releases, refer to the main Getting Started changelog.*

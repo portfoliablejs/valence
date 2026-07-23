@@ -1,11 +1,10 @@
 import { html } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
-import { expect, fn, userEvent } from 'storybook/test';
+import { expect, fn } from 'storybook/test';
 import { useArgs } from 'storybook/preview-api';
 import './Breadcrumb.js';
 
 export default {
-  title: 'Molecules/Breadcrumb',
+  title: 'Molecules/Breadcrumb [v1.0.0]',
   component: 'ds-breadcrumb',
   tags: ['autodocs'],
   parameters: {
@@ -17,11 +16,36 @@ export default {
     },
   },
   argTypes: {
+    // Control Isolation Contract: Lock core state variables
+    items: {
+      name: 'items',
+      control: false,
+      description: 'Array of breadcrumb items defining the active stack.',
+      table: { category: 'Core' },
+    },
+    menuItems: {
+      name: 'menuItems',
+      control: false,
+      description: 'Global fallback array of contextual menu items.',
+      table: { category: 'Core' },
+    },
+    itemCount: {
+      name: 'itemCount',
+      control: false,
+      description: 'Fallback item count indicator when items is omitted.',
+      table: { category: 'Core' },
+    },
+    currentLabel: {
+      name: 'currentLabel',
+      control: false,
+      description: 'Fallback label for the final crumb when items is omitted.',
+      table: { category: 'Core' },
+    },
     visible: {
       name: 'visible',
       control: 'boolean',
       description: 'Toggles breadcrumb visibility state.',
-      table: { category: 'Core Controls', defaultValue: { summary: 'true' } },
+      table: { category: 'Core', defaultValue: { summary: 'true' } },
     },
     onHomeClick: {
       action: 'ds-breadcrumb-home',
@@ -38,6 +62,31 @@ export default {
       description: 'Event emitted when a crumb or contextual menu item is selected.',
       table: { category: 'Events' },
     },
+    // Sub-Atomic Token Props
+    '--ds-breadcrumb-gap': {
+      name: '--ds-breadcrumb-gap',
+      control: 'text',
+      description: 'Overrides horizontal spacing gap between crumb items.',
+      table: { category: 'SUB-ATOMIC PROPS' },
+    },
+    '--ds-breadcrumb-separator-color': {
+      name: '--ds-breadcrumb-separator-color',
+      control: 'color',
+      description: 'Overrides separator icon color.',
+      table: { category: 'SUB-ATOMIC PROPS' },
+    },
+    '--ds-breadcrumb-item-opacity': {
+      name: '--ds-breadcrumb-item-opacity',
+      control: 'text',
+      description: 'Overrides non-hovered crumb item opacity.',
+      table: { category: 'SUB-ATOMIC PROPS' },
+    },
+    '--ds-breadcrumb-menu-width': {
+      name: '--ds-breadcrumb-menu-width',
+      control: 'text',
+      description: 'Overrides width of contextual menu popover.',
+      table: { category: 'SUB-ATOMIC PROPS' },
+    },
   },
   args: {
     visible: true,
@@ -51,10 +100,23 @@ export default {
     const handleSelect = (e) => {
       args.onSelect(e.detail);
       const currentItems = items || args.items;
+
       if (Array.isArray(currentItems) && e.detail.index !== undefined) {
-        // Slice items up to the clicked crumb index to simulate SPA routing
-        const sliced = currentItems.slice(0, e.detail.index + 1);
-        updateArgs({ items: sliced });
+        const { index, id, label } = e.detail;
+
+        const updatedItems = currentItems.slice(0, index + 1).map((item, idx) => {
+          if (idx === index) {
+            return {
+              ...item,
+              id: id,
+              label: label,
+              menuItems: item.menuItems || args.menuItems
+            };
+          }
+          return item;
+        });
+
+        updateArgs({ items: updatedItems });
       }
     };
 
@@ -74,9 +136,18 @@ export default {
       }
     };
 
+    // Sub-atomic style assembly pipeline
+    const styleString = [
+      args['--ds-breadcrumb-gap'] ? `--ds-breadcrumb-gap: ${args['--ds-breadcrumb-gap']};` : '',
+      args['--ds-breadcrumb-separator-color'] ? `--ds-breadcrumb-separator-color: ${args['--ds-breadcrumb-separator-color']};` : '',
+      args['--ds-breadcrumb-item-opacity'] ? `--ds-breadcrumb-item-opacity: ${args['--ds-breadcrumb-item-opacity']};` : '',
+      args['--ds-breadcrumb-menu-width'] ? `--ds-breadcrumb-menu-width: ${args['--ds-breadcrumb-menu-width']};` : '',
+    ].filter(Boolean).join(' ');
+
     return html`
       <div style="padding: 150px 50px; background: var(--color-bg, #ffffff); display: flex; justify-content: center;">
         <ds-breadcrumb 
+          style=${styleString}
           .items=${items || args.items}
           .menuItems=${args.menuItems}
           visible=${args.visible ? 'true' : 'false'}
@@ -86,18 +157,15 @@ export default {
         </ds-breadcrumb>
       </div>
     `;
-  },
+  }
 };
 
-/**
- * Default story showing a 3-item breadcrumb stack with a middle contextual menu
- */
 export const Default3Items = {
   args: {
     items: [
       { id: 'home', label: 'Home', hasMenu: false },
       { id: 'category', label: 'Category', hasMenu: true },
-      { id: 'current', label: 'Item Title', hasMenu: false },
+      { id: 'current', label: 'Item Title', hasMenu: true },
     ],
     menuItems: [
       { id: 'opt-1', label: 'Option 1' },
@@ -107,9 +175,6 @@ export const Default3Items = {
   },
 };
 
-/**
- * 2-Item Breadcrumb with NO contextual menu (e.g. Home - About)
- */
 export const TwoItemsWithoutMenu = {
   args: {
     items: [
@@ -119,9 +184,6 @@ export const TwoItemsWithoutMenu = {
   },
 };
 
-/**
- * 2-Item Breadcrumb WITH contextual menu (e.g. Home - Case Study A)
- */
 export const TwoItemsWithMenu = {
   args: {
     items: [

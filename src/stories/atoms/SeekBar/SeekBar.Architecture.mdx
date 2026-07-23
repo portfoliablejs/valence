@@ -1,0 +1,245 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Seek Bar [v1.0.0]/Architecture" />
+
+# `ds-seek-bar`
+
+The `ds-seek-bar` component is an interactive, highly accessible **controlled** Atom slider designed for media timelines, volume controllers, and custom playback mixers. It is backed by a mouse-tracking `ds-tooltip` molecule, incorporates spring-physics animations, and supports right-to-left layout orientations.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host binds properties (`percent`, `variant`, `disabled`, `show-tooltip`, `tooltip-text`, `show-kbd`, `kbd-label`, `aria-label`) downstream to configure timeline positions, track variants, or customize tooltip indicators.
+* **Events Out (`ds-seek`):** Dispatch custom events containing the current percent calculation when users drag, touch, or click along the active container bounds.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-seek-bar"]
+      end
+
+      State -->|"1. State In: percent / variant / disabled"| Component
+      Component -->|"2. Event Out: ds-seek"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-seek-bar` component is structurally sealed, wrapping its tracks, fills, handle knobs, and floating tooltip elements directly inside its Shadow DOM boundaries. No public slot targets are exposed to ensure robust click-target calculations.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Encapsulated layout primitives only; host elements are not projected.</td>
+      <td>Renders sliding progress fills, handle knobs, and nested tooltip.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsSeekBarState {
+  percent: number;
+  variant: 'default' | 'top-bar' | 'vertical';
+  disabled: boolean;
+  showTooltip: boolean;
+  tooltipText?: string;
+  showKbd?: boolean;
+  kbdLabel?: string;
+  ariaLabel?: string;
+}
+
+export interface DsSeekBarSubAtomicHooks {
+  '--ds-seek-bar-track-bg'?: string;
+  '--ds-seek-bar-fill-bg'?: string;
+  '--ds-seek-bar-knob-bg'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`percent`</td>
+      <td>`percent`</td>
+      <td>`number`</td>
+      <td>`0`</td>
+      <td>Active progression value (from 0 to 100). Sets `aria-valuenow`.</td>
+    </tr>
+    <tr>
+      <td>`variant`</td>
+      <td>`variant`</td>
+      <td>`'default' | 'top-bar' | 'vertical'`</td>
+      <td>`'default'`</td>
+      <td>Configures embedded inline, full-width top-viewport, or vertical slider geometries.</td>
+    </tr>
+    <tr>
+      <td>`disabled`</td>
+      <td>`disabled`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Suppresses touch, mouse, and keyboard events, hides the tooltip, and sets `aria-disabled`.</td>
+    </tr>
+    <tr>
+      <td>`showTooltip`</td>
+      <td>`show-tooltip`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Controls rendering of the floating tracking tooltip.</td>
+    </tr>
+    <tr>
+      <td>`tooltipText`</td>
+      <td>`tooltip-text`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Custom text prefix or override rendered inside the floating tooltip.</td>
+    </tr>
+    <tr>
+      <td>`showKbd`</td>
+      <td>`show-kbd`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles shortcut key indicator inside the hover tooltip.</td>
+    </tr>
+    <tr>
+      <td>`kbdLabel`</td>
+      <td>`kbd-label`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Shortcut label passed downstream to tooltip `ds-kbd` atoms.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-seek`</td>
+      <td>`true` / `true`</td>
+      <td>`{ percent: number }`</td>
+      <td>Emitted continuously in real-time when the user is dragging, touching, or keying slider inputs.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-seek-bar-track-bg`</td>
+      <td>`rgba(0, 0, 0, 0.12)` / `rgba(255, 255, 255, 0.2)`</td>
+      <td>Overrides background color of the unfilled timeline track.</td>
+    </tr>
+    <tr>
+      <td>`--ds-seek-bar-fill-bg`</td>
+      <td>`var(--color-accent)` / `var(--color-white)`</td>
+      <td>Overrides background color of the completed track fill.</td>
+    </tr>
+    <tr>
+      <td>`--ds-seek-bar-knob-bg`</td>
+      <td>`var(--color-accent)` / `var(--color-white)`</td>
+      <td>Overrides background color of the draggable handle knob.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Aria Role Contract:** Delegates `role="slider"`, `aria-valuemin="0"`, and `aria-valuemax="100"` to the internal sliding container.
+* **Keyboard Navigation:** Fully supports `ArrowRight`, `ArrowUp` (increment), `ArrowLeft`, `ArrowDown` (decrement), `PageUp` (+10%), `PageDown` (-10%), `Home` (0%), and `End` (100%) interactions.
+* **Bi-directional Support:** Automatically tracks root-level `dir="rtl"` mutations on `document.documentElement` to invert dragging orientations and key translations.
+* **Global Access Syncing:** Employs a `MutationObserver` to toggle accessibility classes as boolean host attributes:
+  * `.a11y-dark-mode`: Adjusts default track contrast boundaries.
+  * `.a11y-high-contrast`: Enforces strict binary tracks and bordered knobs.
+  * `.a11y-reduce-motion`: Disables track expansion transitions.
+  * `.a11y-forced-colors`: Employs Windows active system colors (`Highlight` for fills; `HighlightText` for knobs; `CanvasText` for tracks).
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-seek-bar';
+
+const seek = document.createElement('ds-seek-bar');
+seek.setAttribute('percent', '35');
+seek.setAttribute('aria-label', 'Timeline seeker');
+seek.setAttribute('show-kbd', '');
+seek.setAttribute('kbd-label', 'Space');
+
+// Custom design token overrides
+seek.style.setProperty('--ds-seek-bar-track-bg', 'rgba(255, 255, 255, 0.1)');
+seek.style.setProperty('--ds-seek-bar-fill-bg', 'var(--color-success)');
+
+seek.addEventListener('ds-seek', (e) => {
+  console.log('User seeking to:', e.detail.percent);
+});
+
+document.body.appendChild(seek);
+```

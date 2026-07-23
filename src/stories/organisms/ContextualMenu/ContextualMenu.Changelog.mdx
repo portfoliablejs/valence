@@ -1,0 +1,98 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Organisms/Contextual Menu [v1.1.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.1.0] - 2026-07-22
+
+<br />
+
+### WebKit Scroll Engine Isolation & Safari Tab Switch Fix
+
+Architecturally decoupled the scrolling engine from the flexbox layout container inside the Shadow DOM to resolve macOS Safari / WebKit composite layer bugs where native overlay scrollbars bled through and custom scroll thumbs froze upon switching browser tabs or hiding/showing popovers.
+
+<br />
+
+### Refactored
+- **Viewport Engine Decoupling:** Introduced a block-level `.menu-scroll-viewport` container inside the Shadow DOM to handle `overflow-y` and scrollbar rendering, completely isolating scroll mechanics from the inner `.menu-content` flexbox layout.
+- **Unconditional WebKit Styling:** Applied `::-webkit-scrollbar` pseudo-element rules unconditionally (without `@supports` feature queries) to force WebKit in Safari 17+ to opt out of native `NSScroller` overlay tracks completely.
+* **Documentation Refactor:** Updated `ContextualMenu.Architecture.mdx` to document the block-level viewport scroll isolation, WebKit overlay scrollbar re-binding strategy, and new sub-atomic CSS custom property hooks (`--ds-contextual-menu-max-height`, `--ds-contextual-menu-scroll-max-height`, `--ds-contextual-menu-scrollbar-color`).
+
+### Fixed
+- **Safari Tab-Switch & Reveal Scrollbar Freeze:** Added `_forceScrollbarRebind()`, executing a temporary `overflowY` reset (`hidden` $\rightarrow$ layout flush $\rightarrow$ `auto`) triggered on `visibilitychange` tab focus and `open` attribute changes. This cleanly destroys phantom native overlay tracks without destroying DOM trees or duplicating GPU VRAM layers.
+- **Lenis Smooth-Scroll Conflict:** Added `data-lenis-prevent` attributes and bound `wheel` event `stopPropagation()` to `.menu-scroll-viewport`, stopping parent smooth-scroll engines from hijacking internal menu scroll events.
+- **Box-Shadow Preservation:** Guaranteed host and card `box-shadow` values remain completely unclipped while constraining internal vertical scroll heights.
+
+### Added
+- **Max Height Sub-Atomic Token:** Bound `max-height` attribute to `--ds-contextual-menu-max-height` and `--ds-contextual-menu-scroll-max-height`, allowing parent components (such as `ds-toc`) to dynamically cap popover menu heights.
+- **Storybook Overflow Testing:** Added `ScrollableOverflowMenu` story with automated play steps testing vertical scroll mechanics and layer stability.
+
+---
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational settings contextual popover menu organism (`ds-contextual-menu`) featuring dynamic item generation, hierarchical category divider syncs, and comprehensive accessibility coverage.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-contextual-menu`</td>
+      <td>Initial stable release of the popover menu card organism.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-contextual-menu`</td>
+      <td>Configured dynamic, programmatic `items` mapping with automated subcategory sections and divider insertions.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured passive root observer syncing dark mode, high contrast, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`contextual-menu.css`</td>
+      <td>Remapped custom style parameters to standardized `--ds-contextual-menu-*` design tokens instead of generic `--custom-*` variables.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`ContextualMenu.stories.js`</td>
+      <td>Suffix-aligned storybook title and updated sub-atomic controllers to bind to standard variables inside templates.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Interactive Popover Organism:** Created `<ds-contextual-menu>` aggregating nested setting rows and horizontal divider atoms.
+- **Robust Role Mapping:** Assigned spec-compliant `role="menu"` on cards, `role="presentation"` on layout headers, and `role="menuitem"` or `role="menuitemcheckbox"`/`role="menuitemradio"` on nested setting rows to meet strict WCAG standards.
+- **Root Context Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags.
+- **Thematic Overrides:** Bound menu card width, min-width, background, and corner rounded radius variables to standard `--ds-contextual-menu-*` properties.
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `ContextualMenu.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Synchronized Storybook override controllers to output precise `--ds-contextual-menu-*` custom styles.
+
+---
+
+*This changelog is specific to the `<ds-contextual-menu>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

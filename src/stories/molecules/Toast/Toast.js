@@ -3,7 +3,7 @@ import '../../atoms/Button/Button.js';
 
 export class Toast extends HTMLElement {
   static get observedAttributes() {
-    return ['visible', 'aria-label', 'case-title', 'show-close', 'show-never-show'];
+    return ['visible', 'aria-label', 'case-title', 'show-close', 'show-never-show', 'label-never-show', 'label-close'];
   }
 
   constructor() {
@@ -111,16 +111,20 @@ export class Toast extends HTMLElement {
     const caseTitle = this.getAttribute('case-title');
     const showClose = this.hasAttribute('show-close') && this.getAttribute('show-close') !== 'false';
     const showNeverShow = this.hasAttribute('show-never-show') && this.getAttribute('show-never-show') !== 'false';
+    const labelNeverShow = this.getAttribute('label-never-show') || 'Never show this again';
+    const labelClose = this.getAttribute('label-close') || 'Close notification';
 
     if (caseTitle && this.textEl) {
       this.textEl.textContent = caseTitle;
     }
 
     if (this.closeBtnEl) {
+      this.closeBtnEl.setAttribute('aria-label', labelClose);
       this.closeBtnEl.toggleAttribute('hidden', !showClose);
     }
 
     if (this.neverBtnEl) {
+      this.neverBtnEl.textContent = labelNeverShow;
       this.neverBtnEl.toggleAttribute('hidden', !showNeverShow);
     }
 

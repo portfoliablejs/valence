@@ -182,7 +182,7 @@ export class DsToggle extends HTMLElement {
     this.labelOn.style.cssText = '';
     this.labelOff.style.cssText = '';
 
-    const knobSize = parseInt(getComputedStyle(this).getPropertyValue('--custom-knob-size') || '26', 10);
+    const knobSize = parseInt(getComputedStyle(this).getPropertyValue('--ds-toggle-knob-size') || '26', 10);
     const paddingBuffer = 20; 
     const totalW = knobSize + maxTextW + paddingBuffer;
 

@@ -158,40 +158,40 @@ export default {
       table: { category: 'Tooltip', subcategory: 'Sub-Atomic Props', defaultValue: { summary: 'var(--color-overlay-dark)' } },
     },
 
-    // --- 3. SUB-ATOMIC PROPS ---
+    // --- SUB-ATOMIC PROPS ---
     radius: {
       name: 'radius',
-      description: 'Define a custom border-radius override (--btn-radius).',
+      description: 'Define a custom border-radius override (--ds-button-radius).',
       control: 'text',
       table: { category: 'SUB-ATOMIC PROPS' },
     },
     backgroundColor: {
       name: 'backgroundColor',
-      description: 'Override default background color (--btn-bg).',
+      description: 'Override default background color (--ds-button-bg).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS' },
     },
     borderWidth: {
       name: 'borderWidth',
-      description: 'CSS value for border width (--btn-border-width).',
+      description: 'CSS value for border width (--ds-button-border-width).',
       control: 'text',
       table: { category: 'SUB-ATOMIC PROPS' },
     },
     borderColor: {
       name: 'borderColor',
-      description: 'CSS value for border color (--btn-border-color).',
+      description: 'CSS value for border color (--ds-button-border-color).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS' },
     },
     hoverBackgroundColor: {
       name: 'hoverBackgroundColor',
-      description: 'Override hover state background color (--btn-hover-bg).',
+      description: 'Override hover state background color (--ds-button-hover-bg).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS' },
     },
     activeBackgroundColor: {
       name: 'activeBackgroundColor',
-      description: 'Override active state background color (--btn-active-bg).',
+      description: 'Override active state background color (--ds-button-active-bg).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS' },
     },
@@ -209,12 +209,12 @@ export default {
   },
   render: (args) => {
     const buttonStyles = [
-      args.radius ? `--btn-radius: ${args.radius};` : '',
-      args.backgroundColor ? `--btn-bg: ${args.backgroundColor};` : '',
-      args.borderWidth ? `--btn-border-width: ${args.borderWidth};` : '',
-      args.borderColor ? `--btn-border-color: ${args.borderColor};` : '',
-      args.hoverBackgroundColor ? `--btn-hover-bg: ${args.hoverBackgroundColor};` : '',
-      args.activeBackgroundColor ? `--btn-active-bg: ${args.activeBackgroundColor};` : ''
+      args.radius ? `--ds-button-radius: ${args.radius};` : '',
+      args.backgroundColor ? `--ds-button-bg: ${args.backgroundColor};` : '',
+      args.borderWidth ? `--ds-button-border-width: ${args.borderWidth};` : '',
+      args.borderColor ? `--ds-button-border-color: ${args.borderColor};` : '',
+      args.hoverBackgroundColor ? `--ds-button-hover-bg: ${args.hoverBackgroundColor};` : '',
+      args.activeBackgroundColor ? `--ds-button-active-bg: ${args.activeBackgroundColor};` : ''
     ].join(' ').trim();
 
     const tooltipStyles = [

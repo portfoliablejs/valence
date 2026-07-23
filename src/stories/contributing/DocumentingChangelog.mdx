@@ -1,0 +1,162 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Contributing/Documenting: Changelog" />
+
+# Changelog Documentation Standards
+
+This document defines the orientation and structure for authoring component changelog documents in Valence. Changelogs should help designers, developers, and contributors understand what changed, why it changed, and how it affects the component.
+
+<br />
+
+## 1. Purpose of a Changelog
+
+Every component with a stable public surface area should have a dedicated changelog document alongside its Storybook documentation. Changelogs are intended to:
+
+- record release milestones and notable updates;
+- summarize user-facing changes in clear language;
+- support design system maintainers during audits and reviews;
+- provide a consistent history for future contributors.
+
+<br />
+
+## 2. File Placement & Naming
+
+Changelog files should follow the component's storybook location and use a predictable naming pattern:
+
+- File pattern: `[ComponentName].Changelog.mdx`
+- Storybook title pattern: `[Tier]/[ComponentName] [vX.Y.Z]/Changelog`
+
+Example:
+
+- [src/stories/molecules/Breadcrumb/Breadcrumb.Changelog.mdx](src/stories/molecules/Breadcrumb/Breadcrumb.Changelog.mdx)
+- [src/stories/molecules/CaseNavigator/CaseNavigator.Changelog.mdx](src/stories/molecules/CaseNavigator/CaseNavigator.Changelog.mdx)
+
+<br />
+
+## 3. Required Structure
+
+A changelog should be concise, scannable, and structured around release intent.
+
+### Recommended Sections
+
+1. **Version Header**
+   - Use a heading such as `## [1.0.0] - YYYY-MM-DD`.
+   - Include the release date.
+
+2. **Release Summary**
+   - Open with a short paragraph describing the release theme.
+   - Highlight whether the release is an initial release, a stabilization pass, or a fix-focused update.
+
+3. **Summary of Changes**
+   - Use a table when the changelog includes several distinct updates.
+   - Columns should be: Classification, Scope / Context, Description.
+
+4. **Added / Fixed / Changed / Removed**
+   - Group related updates under clear headings.
+   - Keep bullets short and direct.
+
+5. **Reference Note**
+   - If relevant, link back to the global changelog for cross-system release context.
+
+<br />
+
+## 4. Writing Guidelines
+
+### Tone
+
+- Use clear, neutral, and release-oriented language.
+- Prefer plain English over internal jargon.
+- Focus on outcome and impact rather than implementation detail alone.
+
+### Classification
+
+Use standard labels consistently:
+
+- `Added` for new capabilities or features
+- `Fixed` for bug fixes and compliance corrections
+- `Changed` for behavior or API adjustments
+- `Removed` for deprecated or retired functionality
+
+### Scope
+
+Mention the affected component, file, or subsystem when useful. Examples:
+
+- `ds-button`
+- `CaseNavigator.js`
+- `_observeRootAccessibility`
+
+### Avoid
+
+- vague statements without context;
+- duplicate bullets that repeat the same point;
+- overly verbose implementation notes unless they matter to the user.
+
+<br />
+
+## 5. MDX Template
+
+Use the template below as a starting point for new component changelog documents.
+
+```mdx
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/[ComponentName] [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - YYYY-MM-DD
+
+<br />
+
+### Initial Release
+
+A short summary of the component release and its key purpose.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Added</td>
+      <td>ds-[component-name]</td>
+      <td>Added the initial stable release of the component.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Feature Name:** Added a new capability or experience.
+
+### Fixed
+- **Issue Name:** Resolved a bug, validation issue, or accessibility concern.
+
+---
+
+*This changelog is specific to the component. For design system global releases, refer to the main Getting Started changelog.*
+```
+
+<br />
+
+## 6. Checklist for a Complete Changelog
+
+Before publishing or merging a changelog, confirm that it:
+
+- [ ] uses a clear version heading and date;
+- [ ] explains the release purpose in one short summary;
+- [ ] groups changes under consistent classifications;
+- [ ] mentions impacted component or scope clearly;
+- [ ] avoids unresolved or placeholder wording;
+- [ ] remains readable for both contributors and downstream consumers.

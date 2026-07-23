@@ -1,0 +1,82 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Navigation Menu [v1.1.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.1.0] - 2026-07-23
+
+<br />
+
+### Stabilization and Interaction Alignment
+
+This release stabilizes ds-navigation-menu contextual interactions, aligns language/accessibility menus with existing organism behavior, and improves Storybook coverage with more reliable interaction tests.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Changed</td>
+      <td>NavigationMenu.js</td>
+      <td>Language menu items now use check controls without embedded KBD shortcuts.</td>
+    </tr>
+    <tr>
+      <td>Fixed</td>
+      <td>NavigationMenu.js</td>
+      <td>Removed hardcoded check color override so contextual check visuals follow original component styling.</td>
+    </tr>
+    <tr>
+      <td>Changed</td>
+      <td>navigation-menu.css</td>
+      <td>Unified both contextual menus to shared 260px width and preserved below-right alignment.</td>
+    </tr>
+    <tr>
+      <td>Changed</td>
+      <td>NavigationMenu.stories.js</td>
+      <td>Resized preview container to fit component context and added per-story documentation descriptions.</td>
+    </tr>
+    <tr>
+      <td>Fixed</td>
+      <td>NavigationMenu.stories.js</td>
+      <td>Interaction tests now click internal ItemRow action targets in shadow DOM, fixing false expectation failures.</td>
+    </tr>
+    <tr>
+      <td>Added</td>
+      <td>NavigationMenu.Architecture.mdx</td>
+      <td>Introduced architecture documentation for data flow, API contracts, events, and integration guidance.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+
+- Architecture documentation for ds-navigation-menu.
+- Story-level docs descriptions for each navigation menu story.
+
+### Changed
+
+- Language contextual menu item metadata now omits KBD shortcut hints.
+- Story preview sizing adjusted for a tighter, component-fit presentation.
+
+### Fixed
+
+- Removed hardcoded check color styling override.
+- Corrected Storybook play interactions by targeting ItemRow internal action nodes.
+
+---
+
+This changelog is specific to ds-navigation-menu. For system-wide changes, refer to the global design system release documentation.

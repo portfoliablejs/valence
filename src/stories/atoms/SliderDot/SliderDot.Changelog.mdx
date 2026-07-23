@@ -1,0 +1,67 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Slider Dot [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational pagination indicator (`ds-slider-dot`) featuring native button integration, high-contrast layouts, custom interaction click events, and root class accessibility syncing.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-slider-dot`</td>
+      <td>Initial stable component registration with compressed shadow layouts and native button element integration.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-slider-dot`</td>
+      <td>Fires standardized cross-boundary `ds-dot-click` event on click interactions.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Integrates root class observer syncing dark mode, high contrast, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`SliderDot.stories.js`</td>
+      <td>Remapped custom style overrides in Storybook config to write precise `--ds-slider-dot-*` tokens instead of generic `--custom-*` variables.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Interactive Pagination Atom:** Created `<ds-slider-dot>` as a stateless, controlled pagination button.
+- **Robust Accessibility:** Features keyboard tab paths, spacebar trigger listeners, aria-current reflections, and proper light DOM aria-label scrubbing.
+- **Root Preference Synchronization:** MutationObserver on document roots reflects global setting cascades downstream as boolean host flags.
+- **Thematic Overrides:** Bound diameter dimensions, border-radius, background fill, active background, and hover background color tokens to the standardized `--ds-slider-dot-*` naming layout.
+- **Storybook Workspace:** Authored interactive controls and CSF3 story parameters in `SliderDot.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Synchronized Storybook override controllers to output precise `--ds-slider-dot-size`, `--ds-slider-dot-bg`, and `--ds-slider-dot-active-bg` custom styles.
+
+---
+
+*This changelog is specific to the `<ds-slider-dot>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

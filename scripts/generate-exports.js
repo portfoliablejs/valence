@@ -11,7 +11,7 @@ const CATEGORIES = [
   { label: 'Organisms', folder: 'organisms' },
 ];
 
-let content = `// src/main.js in the 'valence' project\n\n// Import the foundational styles so they are bundled with the package\nimport './stories/sub-atomic/index.css';\n\n`;
+let content = `// src/main.js in the 'valence' project\n\n// Import the foundational styles so they are bundled with the package\nimport './style.css';\n\n`;
 
 CATEGORIES.forEach(({ label, folder }) => {
   const categoryDir = path.join(STORIES_DIR, folder);
@@ -29,7 +29,7 @@ CATEGORIES.forEach(({ label, folder }) => {
 
     // Pick up component .js files, ignoring .stories.js
     const jsFiles = files.filter(
-      (file) => file.endsWith('.js') && !file.endsWith('.stories.js')
+      (file) => file.endsWith('.js') && !file.endsWith('.stories.js') && !file.endsWith('.generated.js')
     );
 
     jsFiles.forEach((file) => {

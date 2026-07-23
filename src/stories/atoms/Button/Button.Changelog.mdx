@@ -3,24 +3,70 @@ import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
 <Meta title="Atoms/Button [v1.0.0]/Changelog" />
 
 # Changelog
+
 <br />
+
 ## [1.0.0] - 2026-07-16
+
 <br />
+
 ### Initial Release
 
+The stable debut of the presentational button component (`ds-button`) featuring support for nesting icons, custom tooltips, multiple stylistic form factor variants, and active root accessibility syncs.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-button`</td>
+      <td>Initial release of five baseline styling variants (`primary`, `secondary`, `text`, `icon`, `floating`) with custom viewport transforms.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-button`</td>
+      <td>Integrated support for nesting `<ds-icon>` structures with dynamic size mappings based on active variants.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured passive root observer reflecting visual preferences downstream onto host attributes.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`ds-button`</td>
+      <td>Scrubbed the Light DOM host attribute `aria-label` after delegating it down into internal button primitives to prevent prohibit validations.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`Button.stories.js`</td>
+      <td>Standardized sub-atomic style overrides to bind to `--ds-button-*` CSS token hooks rather than `--btn-*` variables.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
 ### Added
-- **Initial Component Implementation:** First stable release of `<ds-button>` featuring:
-  - **Core Variants:** Base variants (`primary`, `secondary`, `text`, `icon`, `floating`) with custom hover and active scaling transforms.
-  - **Iconography Integration:** Nested `<ds-icon>` support with dynamic size scaling (`20px` for circular variants; `14px` for pill/inline variants), outline/fill variant controls (`icon-variant`), and right-side layout alignment (`icon-position="right"`).
-  - **Sub-Atomic Token Hooks:** Custom property overrides for radii, surface colors, borders, and interaction scales (`--btn-radius`, `--btn-bg`, `--btn-hover-bg`, `--btn-active-bg`, `--btn-border-width`, `--btn-border-color`, `--btn-hover-scale`, `--btn-active-scale`).
-  - **Root Accessibility Observer (`_observeRootAccessibility`):** Integrated `MutationObserver` on `document.documentElement` to automatically sync global accessibility modes onto host attributes.
-  - **WCAG AAA & Forced Colors Support:** Built-in high-contrast mode (21:1 binary contrast ratio), dyslexia typography overrides, reduced motion suppression, and native Windows Forced Colors Mode system palette mapping (`Highlight`, `Canvas`, `CanvasText`).
-- **Storybook CSF3 Integration:** Interactive story controls (`Button.stories.js`) and automated interaction `play` function tests using `storybook/test`.
-- **`portfoliable` Application Integration:** Deployed across case study readers, header controls, modal triggers, and video player overlays.
+- **Core Variants:** Introduced `<ds-button>` built specifically with five functional variant structures (`primary`, `secondary`, `text`, `icon`, `floating`).
+- **Iconography Synergy:** Auto-calculates icon dimensions based on active variant templates and reverses directions when `icon-position="right"` is active.
+- **Root Class Syncing:** Built-in `MutationObserver` on the HTML root reflects global settings onto host element attributes.
+- **Thematic Overrides:** Bound border-radius, background, hover backdrop, active backdrop, borders, and viewport scales to standard `--ds-button-*` properties.
+- **Storybook Workspace:** Authored interactive Controls and automated CSF3 story play-tests inside `Button.stories.js`.
 
 ### Fixed
-- **Host ARIA Delegation:** Automatically scrubs `aria-label` from the host custom element tag after delegating it down to the internal `<button>` primitive to eliminate `aria-prohibited-attr` validation warnings.
-- **Disabled Host Cursor:** Enforces `cursor: not-allowed` on the host element when disabled to prevent default pointer cursor hover states.
+- **Host ARIA Delegation:** Clears light DOM `aria-label` custom attributes on host custom elements after delegating them to focusable internal buttons.
+- **Disabled Host Cursor:** Enforces `cursor: not-allowed` on the host wrapper element when disabled is mapped.
 
 ---
 

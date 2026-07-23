@@ -1,0 +1,279 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Thumbnail [v1.1.0]/Architecture" />
+
+# `ds-thumbnail`
+
+The `ds-thumbnail` component is a presentational **controlled / dynamic** Atom designed to render realistic device frame mockups (mobiles, tablets, desktops, and wearables) while embedding a screenshot image beneath native hardware bezels. It now uses a **manifest-first geometry pipeline** (precomputed bounds, corner radius, and edge bleed) for production performance, with an idle-time runtime fallback analyzer only when manifest data is missing.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host shell binds properties (`category`, `brand`, `model`, `color`, `screen-image`, `custom-only`, `max-height`, `disabled`) downstream to configure device mockups, inject screen graphics, or toggle bezel cancellations.
+* **Geometry Resolution Engine:** The component resolves screen geometry from prebuilt `thumbnail-manifest.generated.js` entries keyed by source mockup paths. Each entry provides: bounds (`top/left/width/height`), optional `maskUrl`, inferred `screenRadius`, and anti-fringe `edgeBleed`.
+* **Runtime Fallback (Lightweight):** If a manifest entry is incomplete, the component performs a capped-resolution alpha scan in idle time (`requestIdleCallback`) and caches results per device URL to avoid repeated work.
+* **Events Out:** As a passive visual mockup card, this component emits no customized event streams and does not manage action-oriented form values.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-thumbnail"]
+      end
+
+      State -->|"1. State In: category / brand / model / screen-image"| Component
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-thumbnail` component is fully sealed, managing nested image covers, background overlays, and device assets directly within its Shadow DOM boundary to maintain precise coordinates and scale dimensions.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Encapsulated layout primitives only; host elements are not projected.</td>
+      <td>Renders device frames and nested screenshot covers in the Shadow DOM.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsThumbnailState {
+  category: 'mobile' | 'desktop' | 'tablet' | 'television' | 'wearable';
+  brand: string;
+  model: string;
+  color: string;
+  screenImage: string;
+  deviceSrc?: string;
+  customOnly: boolean;
+  maxHeight?: string;
+  disabled: boolean;
+  ariaLabel?: string;
+}
+
+export interface DsThumbnailSubAtomicHooks {
+  '--ds-thumbnail-max-height'?: string;
+  '--ds-thumbnail-screen-radius'?: string;
+}
+
+export interface DsThumbnailManifestEntry {
+  bounds: { top: number; left: number; width: number; height: number };
+  screenRadius?: string;
+  maskUrl?: string;
+  edgeBleed?: { x: number; y: number };
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`category`</td>
+      <td>`category`</td>
+      <td>`string`</td>
+      <td>`'mobile'`</td>
+      <td>Hardware form factor classification (e.g., `'mobile'`, `'desktop'`).</td>
+    </tr>
+    <tr>
+      <td>`brand`</td>
+      <td>`brand`</td>
+      <td>`string`</td>
+      <td>`'apple'`</td>
+      <td>Ecosystem filter used to filter model options.</td>
+    </tr>
+    <tr>
+      <td>`model`</td>
+      <td>`model`</td>
+      <td>`string`</td>
+      <td>`'Apple iPhone 13'`</td>
+      <td>Specific device frame asset matching the file tree.</td>
+    </tr>
+    <tr>
+      <td>`color`</td>
+      <td>`color`</td>
+      <td>`string`</td>
+      <td>`'Midnight'`</td>
+      <td>Hardware bezel body color scheme.</td>
+    </tr>
+    <tr>
+      <td>`screenImage`</td>
+      <td>`screen-image`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Mandatory screenshot image mapped beneath the transparent screen bezel windows.</td>
+    </tr>
+    <tr>
+      <td>`deviceSrc`</td>
+      <td>`device-src`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Optional direct frame URL override that bypasses category/brand/model/color catalog resolution.</td>
+    </tr>
+    <tr>
+      <td>`customOnly`</td>
+      <td>`custom-only`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles bezel rendering, letting the screen screenshot image render unconstrained.</td>
+    </tr>
+    <tr>
+      <td>`maxHeight`</td>
+      <td>`max-height`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Constraint height limit mapping to `--ds-thumbnail-max-height`.</td>
+    </tr>
+    <tr>
+      <td>`disabled`</td>
+      <td>`disabled`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Marks the focus shell as non-interactive (`aria-disabled=true`, removes tabindex).</td>
+    </tr>
+    <tr>
+      <td>`ariaLabel`</td>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`'Thumbnail Mockup'`</td>
+      <td>Delegated to inner focusable container and device image alt metadata.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`None`</td>
+      <td>`None`</td>
+      <td>`None`</td>
+      <td>This component is strictly presentational and does not emit custom events.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-thumbnail-max-width`</td>
+      <td>`N/A`</td>
+      <td>Deprecated in implementation; width is intrinsic to the selected frame asset and container layout.</td>
+    </tr>
+    <tr>
+      <td>`--ds-thumbnail-max-height`</td>
+      <td>`100%`</td>
+      <td>Overrides maximum container height limits.</td>
+    </tr>
+    <tr>
+      <td>`--ds-thumbnail-screen-radius`</td>
+      <td>`8px` / `var(--radius-md)`</td>
+      <td>Overrides screenshot clipping corners to match physical hardware curves.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Aria Role Contract:** Assigns `tabindex="0"` on the focusable frame container. Alt descriptions applied to custom elements are delegated down as image descriptions.
+* **Global Access Syncing:** Integrates `_observeRootAccessibility` to monitor HTML document root class settings:
+  * `.a11y-dark-mode`: Propagates host accessibility state.
+  * `.a11y-high-contrast`: Removes visual filters and preserves readability.
+  * `.a11y-reduce-motion`: Disables transitions.
+  * `.a11y-forced-colors`: Applies forced-color-safe behavior.
+
+---
+
+## Performance Notes
+
+* **Primary Path:** Build-time manifest entries are loaded synchronously from `thumbnail-manifest.generated.js` with no canvas work during render.
+* **Fallback Path:** Runtime alpha analysis runs only when entries are absent/incomplete and is memoized by device URL.
+* **Render Safety:** Async geometry updates are sequence-guarded to prevent stale async writes during rapid attribute changes.
+* **Edge Refinement:** `edgeBleed` expands computed bounds slightly to hide white seams caused by semi-transparent anti-aliased bezel edges.
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-thumbnail';
+
+const thumb = document.createElement('ds-thumbnail');
+thumb.setAttribute('category', 'mobile');
+thumb.setAttribute('brand', 'apple');
+thumb.setAttribute('model', 'Apple iPhone 13');
+thumb.setAttribute('color', 'Midnight');
+thumb.setAttribute('screen-image', 'https://my-app.com/assets/screenshot.png');
+
+// Clean sub-atomic overrides
+thumb.style.setProperty('--ds-thumbnail-max-height', '450px');
+thumb.style.setProperty('--ds-thumbnail-screen-radius', '12px');
+
+document.body.appendChild(thumb);
+```

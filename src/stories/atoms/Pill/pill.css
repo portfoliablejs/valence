@@ -15,16 +15,16 @@
 
   /* Dynamic Responsive Text Scaling Configuration */
   font-size: calc(11px * var(--font-scale-multiplier, 1));
-  font-family: var(--custom-font, var(--font-family));
+  font-family: var(--ds-pill-font, var(--font-family));
 
   /* Sub-Atomic Style Hook Overrides with Design Token Fallbacks */
-  padding: var(--custom-padding, var(--space-xs) var(--space-sm));
-  background-color: var(--custom-bg, var(--color-card-bg));
-  border: var(--custom-border-width, var(--border-width-thin))
+  padding: var(--ds-pill-padding, var(--space-xs) var(--space-sm));
+  background-color: var(--ds-pill-bg, var(--color-card-bg));
+  border: var(--ds-pill-border-width, var(--border-width-thin))
           var(--border-style-solid)
-          var(--custom-border-color, var(--color-card-border));
-  color: var(--custom-color, var(--color-gray-dark));
-  border-radius: var(--custom-radius, var(--radius-pill));
+          var(--ds-pill-border-color, var(--color-card-border));
+  color: var(--ds-pill-color, var(--color-gray-dark));
+  border-radius: var(--ds-pill-radius, var(--radius-pill));
 
   /* Centralized Choreography Transitions */
   transition: var(--component-transition,
@@ -36,39 +36,39 @@
 /* Variant: Default (Gallery Pill) */
 .variant-default {
   font-size: calc(10px * var(--font-scale-multiplier, 1));
-  padding: var(--custom-padding, clamp(2px, 0.4vh, 3px) clamp(6px, 0.8vw, 10px));
+  padding: var(--ds-pill-padding, clamp(2px, 0.4vh, 3px) clamp(6px, 0.8vw, 10px));
   font-weight: 600;
-  background-color: var(--custom-bg, var(--color-card-bg));
-  border: var(--custom-border-width, var(--border-width-thin))
+  background-color: var(--ds-pill-bg, var(--color-card-bg));
+  border: var(--ds-pill-border-width, var(--border-width-thin))
           var(--border-style-solid)
-          var(--custom-border-color, var(--color-card-border));
-  color: var(--custom-color, var(--color-gray-dark));
-  border-radius: var(--custom-radius, var(--radius-pill));
+          var(--ds-pill-border-color, var(--color-card-border));
+  color: var(--ds-pill-color, var(--color-gray-dark));
+  border-radius: var(--ds-pill-radius, var(--radius-pill));
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 /* Variant: Telemetry (Dark Overlay Pill) */
 .variant-telemetry {
-  background-color: var(--custom-bg, var(--color-overlay-dark));
+  background-color: var(--ds-pill-bg, var(--color-overlay-dark));
   backdrop-filter: blur(var(--overlay-glass-blur, 8px));
   -webkit-backdrop-filter: blur(var(--overlay-glass-blur, 8px));
-  color: var(--custom-color, var(--color-white));
+  color: var(--ds-pill-color, var(--color-white));
   font-size: calc(11px * var(--font-scale-multiplier, 1));
   font-weight: 600;
-  font-family: var(--custom-font, var(--font-mono));
-  padding: var(--custom-padding, var(--space-xs) var(--space-md));
-  border-radius: var(--custom-radius, var(--radius-pill));
-  border: var(--custom-border-width, var(--border-width-thin))
+  font-family: var(--ds-pill-font, var(--font-mono));
+  padding: var(--ds-pill-padding, var(--space-xs) var(--space-md));
+  border-radius: var(--ds-pill-radius, var(--radius-pill));
+  border: var(--ds-pill-border-width, var(--border-width-thin))
           var(--border-style-solid)
-          var(--custom-border-color, var(--color-overlay-light));
+          var(--ds-pill-border-color, var(--color-overlay-light));
 }
 
 /* Pulse Dot for Telemetry */
 .pulse-dot {
   width: 6px;
   height: 6px;
-  background-color: var(--custom-pulse-color, var(--color-success));
+  background-color: var(--ds-pill-pulse-color, var(--color-success));
   border-radius: var(--radius-circle);
   animation: telemetryPulse 1.5s var(--anim-linear) infinite;
   flex-shrink: 0;
@@ -87,8 +87,8 @@
 
 /* --- DARK MODE CONFIGURATION --- */
 :host([a11y-dark-mode]) .pill {
-  background-color: var(--custom-bg, var(--color-card-bg));
-  border-color: var(--custom-border-color, var(--color-card-border));
+  background-color: var(--ds-pill-bg, var(--color-card-bg));
+  border-color: var(--ds-pill-border-color, var(--color-card-border));
   color: var(--color-white);
 }
 

@@ -6,11 +6,11 @@ kbd {
   font-family: var(--font-family);
   
   /* Sub-atomic Property Overrides with Semantic Token Fallbacks */
-  background: var(--custom-bg, var(--color-surface));
-  border: var(--custom-border-width, var(--border-width-thin)) 
+  background: var(--ds-kbd-bg, var(--color-surface));
+  border: var(--ds-kbd-border-width, var(--border-width-thin)) 
           var(--border-style-solid) 
-          var(--custom-border-color, var(--color-kbd-border));
-  border-radius: var(--custom-radius, var(--radius-sm));
+          var(--ds-kbd-border-color, var(--color-kbd-border));
+  border-radius: var(--ds-kbd-radius, var(--radius-sm));
   
   /* Layout Constraints */
   padding: 3px 6px;
@@ -34,15 +34,15 @@ kbd {
 
 /* --- DARK MODE CONFIGURATION --- */
 :host([a11y-dark-mode]) kbd {
-  background: var(--custom-bg, var(--color-card-bg));
-  border-color: var(--custom-border-color, var(--color-kbd-border));
+  background: var(--ds-kbd-bg, var(--color-card-bg));
+  border-color: var(--ds-kbd-border-color, var(--color-kbd-border));
   color: var(--color-text-primary) !important; /* Fixed: Resolves dark mode contrast failure */
 }
 
 /* Inverted variant for dark tooltips */
 :host([variant="inverted"]) kbd {
-  background: var(--custom-bg, var(--color-overlay-light));
-  border-color: var(--custom-border-color, var(--color-tooltip-kbd-border));
+  background: var(--ds-kbd-bg, var(--color-overlay-light));
+  border-color: var(--ds-kbd-border-color, var(--color-tooltip-kbd-border));
   color: var(--color-white); 
 }
 

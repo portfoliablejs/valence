@@ -154,7 +154,7 @@
   position: relative;
   width: 100%;
   height: var(--border-width-thick, 4px);
-  background: var(--custom-track-bg, var(--color-surface-border, rgba(0, 0, 0, 0.12)));
+  background: var(--ds-seek-bar-track-bg, var(--color-surface-border, rgba(0, 0, 0, 0.12)));
   border-radius: var(--radius-pill, 100px);
   overflow: visible;
   transition: height var(--anim-fast, 0.2s) var(--ease-fluid, ease);
@@ -166,7 +166,7 @@
   top: 0;
   height: 100%;
   width: var(--progress-percent, 0%);
-  background: var(--custom-fill-bg, var(--color-accent, #2B71F0));
+  background: var(--ds-seek-bar-fill-bg, var(--color-accent, #2B71F0));
   border-radius: var(--radius-pill, 100px);
   pointer-events: none;
 }
@@ -186,7 +186,7 @@
   transform: translateY(-50%) scale(0.85);
   width: var(--space-lg, 8px);
   height: var(--space-lg, 8px);
-  background-color: var(--custom-knob-bg, var(--color-accent, #2B71F0));
+  background-color: var(--ds-seek-bar-knob-bg, var(--color-accent, #2B71F0));
   border-radius: var(--radius-circle, 50%);
   box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.2));
   transition: transform var(--anim-fast, 0.2s) var(--ease-fluid, ease),
@@ -228,15 +228,15 @@
    4. LIGHT & DARK MODE VARIANT STYLES
    ========================================================================== */
 :host([a11y-dark-mode]) .seek-track {
-  background: var(--custom-track-bg, rgba(255, 255, 255, 0.2));
+  background: var(--ds-seek-bar-track-bg, rgba(255, 255, 255, 0.2));
 }
 
 :host([a11y-dark-mode]) .seek-fill {
-  background: var(--custom-fill-bg, var(--color-white, #FFFFFF));
+  background: var(--ds-seek-bar-fill-bg, var(--color-white, #FFFFFF));
 }
 
 :host([a11y-dark-mode]) .seek-fill::after {
-  background-color: var(--custom-knob-bg, var(--color-white, #FFFFFF));
+  background-color: var(--ds-seek-bar-knob-bg, var(--color-white, #FFFFFF));
 }
 
 /* ==========================================================================

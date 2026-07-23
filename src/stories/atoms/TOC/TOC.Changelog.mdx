@@ -1,0 +1,84 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/TOC [v1.1.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.1.0] - 2026-07-22
+
+<br />
+
+### WebKit Layer Isolation & CONTENTS Header Standard
+
+Synchronized `ds-toc` with the `ds-contextual-menu` v1.1.0 scrollbar refactor. Updated default popover title headers to `'CONTENTS'`, linked sub-atomic height tokens to inner scroll viewports, and resolved WebKit layer freeze bugs when opening the minimap overlay.
+
+<br />
+
+### Refactored
+- **Default Header Title:** Configured `updateAttributes()` to default `title-text` to `'CONTENTS'`, ensuring popover menus render clear header titles unless explicitly overridden.
+- **Height Token Mapping:** Linked `--ds-toc-max-height` to both `--ds-contextual-menu-max-height` and `--ds-contextual-menu-scroll-max-height` inside `toc.css`, ensuring long lists clip properly at custom viewport boundaries.
+
+### Fixed
+- **Safari Layer Freeze on Reveal:** Added `will-change: opacity, transform` to `.toc-menu` and attached a micro-layout flush (`void offsetHeight`) inside `attributeChangedCallback` when `opened` switches to `true`, forcing WebKit to re-bind nested scrollbar composite layers cleanly.
+
+### Added
+- **13-Item Overflow Testing:** Updated standard mock heading pools to 13 default items and introduced the `ThirteenItemsOverflow` story with automated play interaction tests.
+
+---
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the Table of Contents Atom (`ds-toc`) featuring an Apple-like minimap strip, automatic DOM heading scanning (`<h1>`–`<h4>`), `IntersectionObserver` section tracking, and contextual popover menu integration.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-toc`</td>
+      <td>Initial stable release of the Table of Contents navigation atom.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`scanHeadings()`</td>
+      <td>Configured automated query scanning for page heading tags with auto-generated anchor IDs.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_setupIntersectionObserver()`</td>
+      <td>Bound dynamic scroll observer to highlight active minimap lines and menu options.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured passive root accessibility observer syncing dark, high contrast, reduce motion, and Forced Colors modes.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Apple-like Minimap Strip:** Created proportional thin bar indicators mapped to document heading depth levels.
+- **Contextual Overlay Integration:** Integrated nested `<ds-contextual-menu>` with smooth section scrolling and "Scroll to top" triggers.
+- **Storybook Workspace:** Configured story suite with interactive Controls, active heading states, and automated `play` tests.
+
+---
+
+*This changelog is specific to the `<ds-toc>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

@@ -7,13 +7,13 @@
 
 .slider-dot {
   /* Sub-Atomic Style Hook Overrides with Design Token Fallbacks */
-  width: var(--custom-size, var(--size-icon-sm, 12px));
-  height: var(--custom-size, var(--size-icon-sm, 12px));
-  border-radius: var(--custom-radius, var(--radius-circle));
-  background-color: var(--custom-bg, var(--color-gray-xlight));
-  border: var(--custom-border-width, var(--border-width-none))
+  width: var(--ds-slider-dot-size, var(--size-icon-sm, 12px));
+  height: var(--ds-slider-dot-size, var(--size-icon-sm, 12px));
+  border-radius: var(--ds-slider-dot-radius, var(--radius-circle));
+  background-color: var(--ds-slider-dot-bg, var(--color-gray-xlight));
+  border: var(--ds-slider-dot-border-width, var(--border-width-none))
           var(--border-style-solid)
-          var(--custom-border-color, transparent);
+          var(--ds-slider-dot-border-color, transparent);
   
   padding: 0;
   margin: 0;
@@ -32,7 +32,7 @@
 /* Active State */
 .slider-dot.active,
 :host([active="true"]) .slider-dot {
-  background-color: var(--custom-active-bg, var(--color-gray-dark));
+  background-color: var(--ds-slider-dot-active-bg, var(--color-gray-dark));
   transform: scale(var(--btn-hover-scale, 1.2));
 }
 
@@ -44,7 +44,7 @@
 
 /* Hover State */
 .slider-dot:hover {
-  background-color: var(--custom-hover-bg, var(--color-gray-med));
+  background-color: var(--ds-slider-dot-hover-bg, var(--color-gray-med));
 }
 
 /* ==========================================================================
@@ -54,17 +54,12 @@
 /* --- DARK MODE CONFIGURATION --- */
 :host([a11y-dark-mode]) .slider-dot {
   /* Use a lower-contrast/semi-transparent token for inactive dot in dark mode */
-  background-color: var(--custom-bg, var(--color-gray-med)); 
+  background-color: var(--ds-slider-dot-bg, var(--color-gray-med)); 
 }
 
 :host([a11y-dark-mode]) .slider-dot.active,
 :host([a11y-dark-mode][active="true"]) .slider-dot {
-  background-color: var(--custom-active-bg, var(--color-white));
-}
-
-:host([a11y-dark-mode]) .slider-dot.active,
-:host([a11y-dark-mode][active="true"]) .slider-dot {
-  background-color: var(--custom-active-bg, var(--color-white));
+  background-color: var(--ds-slider-dot-active-bg, var(--color-white));
 }
 
 /* --- HIGH CONTRAST CONFIGURATION (WCAG AAA Compliance) --- */

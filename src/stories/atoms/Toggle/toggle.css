@@ -13,9 +13,9 @@
 
 /* Component Layout Engine Variables */
 :host {
-  --_knob-size: var(--custom-knob-size, 26px);
-  --_track-width: var(--custom-width, 52px);
-  --_track-height: var(--custom-height, var(--size-height-sm));
+  --_knob-size: var(--ds-toggle-knob-size, 26px);
+  --_track-width: var(--ds-toggle-width, 52px);
+  --_track-height: var(--ds-toggle-height, var(--size-height-sm));
   --_knob-travel: calc(var(--_track-width) - var(--_knob-size) - 6px);
 }
 
@@ -32,7 +32,7 @@
   box-sizing: border-box;
   width: var(--_track-width);
   height: var(--_track-height);
-  border-radius: var(--custom-radius, var(--radius-pill));
+  border-radius: var(--ds-toggle-radius, var(--radius-pill));
   -webkit-user-select: none;
   user-select: none;
   touch-action: pan-y;
@@ -51,10 +51,10 @@ input[type="checkbox"] {
   box-sizing: border-box;
   overflow: hidden;
   border-radius: inherit;
-  background-color: var(--custom-bg, var(--color-gray-xlight));
-  border: var(--custom-border-width, var(--border-width-thin)) 
+  background-color: var(--ds-toggle-bg, var(--color-gray-xlight));
+  border: var(--ds-toggle-border-width, var(--border-width-thin)) 
           var(--border-style-solid) 
-          var(--custom-border-color, var(--color-gray-light));
+          var(--ds-toggle-border-color, var(--color-gray-light));
   transition: background-color var(--anim-fast) var(--ease-standard),
               border-color var(--anim-fast) var(--ease-standard);
 }
@@ -64,7 +64,7 @@ input[type="checkbox"] {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-color: var(--custom-checked-bg, var(--color-accent));
+  background-color: var(--ds-toggle-checked-bg, var(--color-accent));
   opacity: 0;
   transition: opacity var(--anim-fast) var(--ease-standard);
 }
@@ -142,7 +142,7 @@ input:checked ~ .track .label-off {
   left: 3px;
   width: var(--_knob-size);
   height: var(--_knob-size);
-  background: var(--custom-knob-bg, var(--color-white));
+  background: var(--ds-toggle-knob-bg, var(--color-white));
   border-radius: var(--radius-circle);
   box-shadow: var(--shadow-sm);
   display: flex;
@@ -272,7 +272,7 @@ input:focus-visible ~ .track {
 }
 
 :host([a11y-dark-mode]) .track::before { 
-  background-color: var(--custom-checked-bg, var(--color-accent)); 
+  background-color: var(--ds-toggle-checked-bg, var(--color-accent)); 
 }
 
 :host([a11y-dark-mode]) .is-dragging .knob { 

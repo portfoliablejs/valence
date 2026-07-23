@@ -1,0 +1,195 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Organisms/Header/Architecture" />
+
+# `ds-header`
+
+The `ds-header` component is a **stateless (presentational)** Organism designed to compose top-level application navigation chrome. It places a controlled `ds-breadcrumb` region on the far left and a `ds-navigation-menu` region on the far right while preserving a strict **State In / Events Out** contract for the host application.
+
+---
+
+## Principles
+
+### Dumb Composition Boundary
+The component strictly adheres to the **Unidirectional Data Flow** paradigm:
+* **State In (Attributes / Properties):** The host app binds breadcrumb arrays, visibility flags, and navigation-menu presentational attributes onto `<ds-header>`.
+* **Events Out (Child Events Forwarded):** The organism does not create domain state of its own. Instead, it allows child events such as `ds-breadcrumb-select` and `ds-navigation-menu-language-select` to bubble outward unchanged.
+* **No Smart App Logic:** Routing, locale changes, accessibility preference persistence, and profile actions remain fully external to the component.
+
+### Fixed Edge Alignment
+The visual contract is intentionally rigid:
+* **Left Anchor:** The breadcrumb region expands from the far left edge of the header content row.
+* **Right Anchor:** The navigation menu remains pinned to the far right edge through flex layout and auto margin separation.
+* **Viewport Shell:** The host element and internal shell stretch to the full viewport width, making the organism suitable for app-level framing rather than inline card use.
+
+<mermaid-diagram chart={`
+flowchart LR
+    Host["Host SPA / Smart App"] -->|bind props| Header["ds-header"]
+    Header --> Breadcrumb["ds-breadcrumb"]
+    Header --> Nav["ds-navigation-menu"]
+    Breadcrumb -->|bubble events| Host
+    Nav -->|bubble events| Host
+
+    style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+    style Header fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+    style Breadcrumb fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+    style Nav fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Internal Composition
+
+### Structural Regions
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Rendered Element</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`header-shell`</td>
+      <td>`<header>`</td>
+      <td>Full-width semantic landmark container delegating the host ARIA label.</td>
+    </tr>
+    <tr>
+      <td>`breadcrumb-region`</td>
+      <td>`<ds-breadcrumb>`</td>
+      <td>Flexible left-aligned region that can be hidden through `show-breadcrumb="false"`.</td>
+    </tr>
+    <tr>
+      <td>`navigation-region`</td>
+      <td>`<ds-navigation-menu>`</td>
+      <td>Right-aligned action group that remains mounted and receives pass-through attributes from the host element.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property / Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`breadcrumbItems`</td>
+      <td>`Array`</td>
+      <td>`null`</td>
+      <td>Controlled breadcrumb item stack forwarded to the composed `ds-breadcrumb` instance.</td>
+    </tr>
+    <tr>
+      <td>`breadcrumbMenuItems`</td>
+      <td>`Array`</td>
+      <td>`null`</td>
+      <td>Optional fallback menu options array forwarded to the breadcrumb molecule.</td>
+    </tr>
+    <tr>
+      <td>`show-breadcrumb`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Mounts or hides the left breadcrumb region without changing navigation behavior.</td>
+    </tr>
+    <tr>
+      <td>`show-language-menu`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Controls visibility of the language action inside the composed navigation menu.</td>
+    </tr>
+    <tr>
+      <td>`avatar-src`, `avatar-alt`, tooltip and aria-label props</td>
+      <td>`string` / `boolean`</td>
+      <td>Inherited from child molecule defaults</td>
+      <td>Presentational pass-through API forwarded directly to `ds-navigation-menu`.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Source</th>
+      <th>Bubbles / Composed</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-breadcrumb-home`</td>
+      <td>`ds-breadcrumb`</td>
+      <td>`true` / `true`</td>
+      <td>Signals that the root breadcrumb item was activated.</td>
+    </tr>
+    <tr>
+      <td>`ds-breadcrumb-return`</td>
+      <td>`ds-breadcrumb`</td>
+      <td>`true` / `true`</td>
+      <td>Signals a step-back breadcrumb action.</td>
+    </tr>
+    <tr>
+      <td>`ds-breadcrumb-select`</td>
+      <td>`ds-breadcrumb`</td>
+      <td>`true` / `true`</td>
+      <td>Signals selection of a breadcrumb item or contextual option.</td>
+    </tr>
+    <tr>
+      <td>`ds-navigation-menu-*`</td>
+      <td>`ds-navigation-menu`</td>
+      <td>`true` / `true`</td>
+      <td>Pass-through navigation events for language, accessibility, about, and option selection interactions.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-header-gap`</td>
+      <td>`var(--space-lg, 16px)`</td>
+      <td>Overrides the spacing between the left and right header regions.</td>
+    </tr>
+    <tr>
+      <td>`--ds-header-min-height`</td>
+      <td>`var(--size-height-sm, 44px)`</td>
+      <td>Overrides the minimum height of the header row.</td>
+    </tr>
+    <tr>
+      <td>`--ds-header-padding`</td>
+      <td>`24px 28px`</td>
+      <td>Overrides the internal viewport-edge padding applied to the full-width header shell.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Semantics
+
+* **Semantic Landmark:** The organism renders an internal `<header>` element and delegates `aria-label` from the host for top-level navigation context.
+* **Child Accessibility Preservation:** Accessibility mechanics remain owned by `ds-breadcrumb` and `ds-navigation-menu`, allowing those molecules to preserve their own tooltip, keyboard, and contextual menu semantics.
+* **Visibility Without State Loss:** Optional regions are hidden through presentational toggles rather than destructive mutation of application state, keeping host control explicit and reversible.

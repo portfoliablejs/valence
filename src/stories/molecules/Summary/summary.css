@@ -1,17 +1,36 @@
+/* ==========================================================================
+   1. HOST GEOMETRY
+   ========================================================================== */
 :host {
   display: block;
+  width: 100%;
 }
 
+/* ==========================================================================
+   2. BASE PRIMITIVE STRUCTURE
+   ========================================================================== */
 .summary-block {
-  background-color: var(--color-card-bg, #F2F2F7);
-  border: 1px solid var(--color-card-border, rgba(0,0,0,0.05));
-  border-radius: var(--radius-md, 8px);
-  padding: var(--space-lg, 16px) 20px;
-  margin: var(--space-xl, 24px) 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm, 8px);
+  padding: var(--ds-summary-padding, var(--space-md, 12px) var(--space-lg, 16px));
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: var(--ds-summary-radius, var(--radius-md, 8px));
+  background: var(--ds-summary-bg, var(--overlay-glass-bg, rgba(235, 235, 240, 0.6)));
+  border: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--ds-summary-border-color, var(--color-card-border, rgba(0, 0, 0, 0.062)));
+  backdrop-filter: blur(var(--overlay-glass-blur, 12px));
+  -webkit-backdrop-filter: blur(var(--overlay-glass-blur, 12px));
   font-family: var(--font-family, sans-serif);
+  
+  transition: 
+    background-color var(--anim-normal, 0.3s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1)),
+    border-color var(--anim-normal, 0.3s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1)),
+    border-radius var(--anim-normal, 0.3s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1)),
+    padding var(--anim-normal, 0.3s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1)),
+    gap var(--anim-normal, 0.3s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1)),
+    box-shadow var(--anim-normal, 0.3s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
 .summary-header {
@@ -22,12 +41,12 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--color-accent, #2B71F0);
+  color: var(--ds-summary-header-color, var(--color-accent, #2B71F0));
 }
 
 .summary-text {
   font-size: 15px;
-  color: var(--color-black, #000000);
+  color: var(--ds-summary-text-color, var(--color-black, #000000));
   line-height: 1.5;
   margin: 0;
   min-height: 45px;
@@ -62,14 +81,102 @@
   display: grid;
 }
 
-/* The metric cards themselves handle their own fade-in via CSS, but we trigger it by adding a class */
+:host([show-metrics="false"]) .summary-metrics-grid {
+  display: none !important;
+}
+
 ::slotted(ds-metric-card) {
   opacity: 0;
   transform: translateY(4px);
-  transition: opacity var(--speed-normal, 0.3s) ease, transform var(--speed-normal, 0.3s) ease;
+  transition: opacity var(--anim-normal, 0.3s) ease, transform var(--anim-normal, 0.3s) ease;
 }
 
 ::slotted(ds-metric-card.show) {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ==========================================================================
+   3. LIGHT MODE VARIANT STYLES
+   ========================================================================== */
+.summary-block {
+  background: var(--ds-summary-bg, var(--color-surface, #F2F2F7));
+  color: var(--ds-summary-text-color, var(--color-text-primary, #000000));
+}
+
+/* ==========================================================================
+   4. ACCESSIBILITY OVERRIDES
+   ========================================================================== */
+:host([a11y-dark-mode]) .summary-block {
+  background: var(--ds-summary-bg, var(--color-surface, #1C1C1E)) !important;
+  border-color: var(--ds-summary-border-color, var(--color-surface-border, rgba(255, 255, 255, 0.12))) !important;
+  color: var(--ds-summary-text-color, var(--color-text-primary, #FFFFFF)) !important;
+}
+
+:host([a11y-dark-mode]) .summary-text {
+  color: var(--ds-summary-text-color, var(--color-text-primary, #FFFFFF)) !important;
+}
+
+:host([a11y-high-contrast]) .summary-block {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: var(--border-width-medium, 2px) var(--border-style-solid, solid) #FFFFFF !important;
+  box-shadow: var(--shadow-none, none) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+:host([a11y-high-contrast]) .summary-header,
+:host([a11y-high-contrast]) .summary-text {
+  color: #FFFFFF !important;
+}
+
+/* Simulated Forced Colors */
+:host([a11y-forced-colors]) .summary-block {
+  forced-color-adjust: none !important;
+  background-color: Canvas !important;
+  color: CanvasText !important;
+  border: var(--border-width-thin, 1px) var(--border-style-solid, solid) CanvasText !important;
+}
+
+:host([a11y-forced-colors]) .summary-header,
+:host([a11y-forced-colors]) .summary-text {
+  color: CanvasText !important;
+}
+
+/* Native Forced Colors Media Query */
+@media (forced-colors: active) {
+  .summary-block {
+    forced-color-adjust: none !important;
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    border: var(--border-width-thin, 1px) var(--border-style-solid, solid) CanvasText !important;
+  }
+
+  .summary-header,
+  .summary-text {
+    color: CanvasText !important;
+  }
+}
+
+/* ==========================================================================
+   5. TYPOGRAPHY, MOTION & VISION SUPPRESSION
+   ========================================================================== */
+:host([a11y-large-text]) .summary-text {
+  font-size: 18px !important;
+}
+
+:host([a11y-large-text]) .summary-header {
+  font-size: 13px !important;
+}
+
+:host([a11y-dyslexia]) .summary-block {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+}
+
+:host([a11y-reduce-motion]) .summary-block,
+:host([a11y-reduce-motion]) ::slotted(ds-metric-card) {
+  transition: none !important;
+  transform: none !important;
 }
