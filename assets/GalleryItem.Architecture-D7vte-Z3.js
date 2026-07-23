@@ -1,0 +1,71 @@
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{E as t,l as n,m as r}from"./blocks-CqftkxY0.js";import{a as i}from"./chunk-W22LQPXL-DcocAtLX.js";import{t as a}from"./mdx-react-shim-BIjp612k.js";function o(e){let r={code:`code`,h1:`h1`,h2:`h2`,h3:`h3`,hr:`hr`,li:`li`,p:`p`,pre:`pre`,strong:`strong`,ul:`ul`,...t(),...e.components};return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(n,{title:`Molecules/Gallery Item [v1.2.0]/Architecture`}),`
+`,(0,c.jsx)(r.h1,{id:`ds-gallery-item`,children:(0,c.jsx)(r.code,{children:`ds-gallery-item`})}),`
+`,(0,c.jsxs)(r.p,{children:[`The `,(0,c.jsx)(r.code,{children:`ds-gallery-item`}),` component is a presentational Molecule that composes a clickable preview thumbnail (`,(0,c.jsx)(r.code,{children:`ds-thumbnail`}),`), metadata text, and optional action pills for portfolio and case study catalogs.`]}),`
+`,(0,c.jsx)(r.hr,{}),`
+`,(0,c.jsx)(r.h2,{id:`principles`,children:`Principles`}),`
+`,(0,c.jsx)(r.h3,{id:`unidirectional-data-flow`,children:`Unidirectional Data Flow`}),`
+`,(0,c.jsxs)(r.p,{children:[`The component follows the `,(0,c.jsx)(r.strong,{children:`State In / Events Out`}),` pattern:`]}),`
+`,(0,c.jsxs)(r.ul,{children:[`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`State In (Attributes):`}),` Host applications provide title, short description, read time, thumbnail source, thumbnail frame selectors (`,(0,c.jsx)(r.code,{children:`thumb-category`}),`, `,(0,c.jsx)(r.code,{children:`thumb-brand`}),`, `,(0,c.jsx)(r.code,{children:`thumb-model`}),`, `,(0,c.jsx)(r.code,{children:`thumb-color`}),`, optional `,(0,c.jsx)(r.code,{children:`thumb-device-src`}),`), frame ratio, and state flags (`,(0,c.jsx)(r.code,{children:`is-protected`}),`, `,(0,c.jsx)(r.code,{children:`is-unlocked`}),`, `,(0,c.jsx)(r.code,{children:`has-video`}),`, `,(0,c.jsx)(r.code,{children:`has-repo`}),`, `,(0,c.jsx)(r.code,{children:`has-live`}),`).`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsxs)(r.strong,{children:[`Events Out (`,(0,c.jsx)(r.code,{children:`ds-case-select`}),`):`]}),` The thumbnail activation surface dispatches selection intent via a bubbling/composed CustomEvent.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Derived Presentation State:`}),` Lock/unlock visuals and pill visibility are derived from host-provided booleans only.`]}),`
+`]}),`
+`,(0,c.jsx)(`mermaid-diagram`,{chart:`
+flowchart LR
+    subgraph Host["Host Application / Router"]
+        State["Current Case State"]
+    end
+
+    subgraph WebComp["Valence Molecule"]
+        Card["ds-gallery-item"]
+    end
+
+    State -->|"1. State In
+ title, short-desc, thumb-src, thumb-model, flags"| Card
+    Card -->|"2. Event Out
+ ds-case-select"| State
+
+    style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+    style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+    style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+    style Card fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`}),`
+`,(0,c.jsx)(r.hr,{}),`
+`,(0,c.jsx)(r.h2,{id:`slot-architecture`,children:`Slot Architecture`}),`
+`,(0,c.jsxs)(r.p,{children:[(0,c.jsx)(r.code,{children:`ds-gallery-item`}),` is a sealed Shadow DOM component. It does not expose slots and controls all child composition internally.`]}),`
+`,(0,c.jsx)(r.h3,{id:`slot-hierarchy-table`,children:`Slot Hierarchy Table`}),`
+`,(0,c.jsxs)(`table`,{children:[(0,c.jsx)(`thead`,{children:(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`th`,{children:`Slot Name`}),(0,c.jsx)(`th`,{children:`Type / Allowed Children`}),(0,c.jsx)(`th`,{children:`Description`}),(0,c.jsx)(`th`,{children:`Fallback Behavior`})]})}),(0,c.jsx)(`tbody`,{children:(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`default`})}),(0,c.jsx)(`td`,{children:`None`}),(0,c.jsxs)(`td`,{children:[`Internal composition only (`,(0,c.jsx)(r.code,{children:`ds-thumbnail`}),`, title row, read-time, pills).`]}),(0,c.jsx)(`td`,{children:`Renders an internal fallback title and empty metadata when attributes are omitted.`})]})})]}),`
+`,(0,c.jsx)(r.hr,{}),`
+`,(0,c.jsx)(r.h2,{id:`api-contract`,children:`API Contract`}),`
+`,(0,c.jsx)(r.h3,{id:`properties--attributes`,children:`Properties & Attributes`}),`
+`,(0,c.jsxs)(`table`,{children:[(0,c.jsx)(`thead`,{children:(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`th`,{children:`Property`}),(0,c.jsx)(`th`,{children:`Attribute`}),(0,c.jsx)(`th`,{children:`Type`}),(0,c.jsx)(`th`,{children:`Default`}),(0,c.jsx)(`th`,{children:`Description`})]})}),(0,c.jsxs)(`tbody`,{children:[(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`title`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`title`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`string`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`'Case Title'`})}),(0,c.jsx)(`td`,{children:`Primary card heading for the case item.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`shortDesc`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`short-desc`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`string`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`''`})}),(0,c.jsx)(`td`,{children:`Secondary descriptive text beneath the heading.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`readTime`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`read-time`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`string`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`''`})}),(0,c.jsx)(`td`,{children:`Optional reading/viewing duration label.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumbSrc`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumb-src`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`string`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`''`})}),(0,c.jsxs)(`td`,{children:[`Image URL fed into child `,(0,c.jsx)(r.code,{children:`ds-thumbnail`}),` via `,(0,c.jsx)(r.code,{children:`screen-image`}),`.`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`aspectRatio`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`aspect-ratio`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`string`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`'9:19.5'`})}),(0,c.jsxs)(`td`,{children:[`Frame ratio applied to the thumbnail wrapper (for example `,(0,c.jsx)(r.code,{children:`1:1`}),`, `,(0,c.jsx)(r.code,{children:`16:9`}),`).`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumbCategory`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumb-category`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`string`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`'mobile'`})}),(0,c.jsxs)(`td`,{children:[`Category passed to child `,(0,c.jsx)(r.code,{children:`ds-thumbnail`}),` catalog selection.`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumbBrand`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumb-brand`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`string`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`'apple'`})}),(0,c.jsxs)(`td`,{children:[`Brand passed to child `,(0,c.jsx)(r.code,{children:`ds-thumbnail`}),` catalog selection.`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumbModel`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumb-model`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`string`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`'Apple iPhone 12'`})}),(0,c.jsxs)(`td`,{children:[`Model passed to child `,(0,c.jsx)(r.code,{children:`ds-thumbnail`}),` catalog selection.`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumbColor`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumb-color`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`string`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`'Black'`})}),(0,c.jsxs)(`td`,{children:[`Color variant passed to child `,(0,c.jsx)(r.code,{children:`ds-thumbnail`}),` catalog selection.`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumbDeviceSrc`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`thumb-device-src`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`string`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`''`})}),(0,c.jsxs)(`td`,{children:[`Optional direct frame URL override for `,(0,c.jsx)(r.code,{children:`ds-thumbnail`}),` (`,(0,c.jsx)(r.code,{children:`device-src`}),`).`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`isProtected`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`is-protected`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`boolean`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`false`})}),(0,c.jsx)(`td`,{children:`Enables lock icon rendering and protected state behavior.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`isUnlocked`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`is-unlocked`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`boolean`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`false`})}),(0,c.jsxs)(`td`,{children:[`When paired with `,(0,c.jsx)(r.code,{children:`is-protected`}),`, toggles lock-open state and normal text visibility.`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`hasVideo`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`has-video`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`boolean`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`false`})}),(0,c.jsx)(`td`,{children:`Shows localized video/pitch pill when unlocked.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`hasRepo`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`has-repo`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`boolean`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`false`})}),(0,c.jsx)(`td`,{children:`Shows localized repository pill when unlocked.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`hasLive`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`has-live`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`boolean`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`false`})}),(0,c.jsx)(`td`,{children:`Shows localized live demo pill when unlocked.`})]})]})]}),`
+`,(0,c.jsx)(r.h3,{id:`emitted-custom-events`,children:`Emitted Custom Events`}),`
+`,(0,c.jsxs)(`table`,{children:[(0,c.jsx)(`thead`,{children:(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`th`,{children:`Event Name`}),(0,c.jsx)(`th`,{children:`Bubbles / Composed`}),(0,c.jsx)(`th`,{children:`Detail Payload`}),(0,c.jsx)(`th`,{children:`Description`})]})}),(0,c.jsx)(`tbody`,{children:(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`ds-case-select`})}),(0,c.jsxs)(`td`,{children:[(0,c.jsx)(r.code,{children:`true`}),` / `,(0,c.jsx)(r.code,{children:`true`})]}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`{}`})}),(0,c.jsx)(`td`,{children:`Emitted when the user activates the thumbnail surface via click, Enter, or Space.`})]})})]}),`
+`,(0,c.jsx)(r.h3,{id:`sub-atomic-css-custom-property-hooks`,children:`Sub-Atomic CSS Custom Property Hooks`}),`
+`,(0,c.jsxs)(`table`,{children:[(0,c.jsx)(`thead`,{children:(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`th`,{children:`CSS Custom Property`}),(0,c.jsx)(`th`,{children:`Fallback Default`}),(0,c.jsx)(`th`,{children:`Description`})]})}),(0,c.jsxs)(`tbody`,{children:[(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`--device-h-gallery`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`55vh`})}),(0,c.jsx)(`td`,{children:`Controls rendered thumbnail height.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`--ds-thumbnail-screen-radius`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`var(--radius-lg)`})}),(0,c.jsx)(`td`,{children:`Controls corner radius of the thumbnail image surface.`})]})]})]}),`
+`,(0,c.jsx)(r.hr,{}),`
+`,(0,c.jsx)(r.h2,{id:`accessibility--interaction`,children:`Accessibility & Interaction`}),`
+`,(0,c.jsxs)(r.ul,{children:[`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Keyboard Activation:`}),` Selection surface supports `,(0,c.jsx)(r.code,{children:`Enter`}),` and `,(0,c.jsx)(r.code,{children:`Space`}),` key activation.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Focusable Surface:`}),` Thumbnail host is exposed with `,(0,c.jsx)(r.code,{children:`tabindex="0"`}),` and `,(0,c.jsx)(r.code,{children:`role="button"`}),`.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Protected State Redaction:`}),` Locked cards hide read time, blur the thumbnail surface, and replace title/description text.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Semantic Indicator:`}),` Protected cards display lock-open / lock-closed iconography to communicate current availability.`]}),`
+`]}),`
+`,(0,c.jsx)(r.hr,{}),`
+`,(0,c.jsx)(r.h2,{id:`integration-example`,children:`Integration Example`}),`
+`,(0,c.jsx)(r.pre,{children:(0,c.jsx)(r.code,{className:`language-javascript`,children:`import 'valence/src/stories/molecules/GalleryItem/GalleryItem.js';
+
+const card = document.createElement('ds-gallery-item');
+card.setAttribute('title', 'Agentic AI Design');
+card.setAttribute('short-desc', 'Exploration of orchestration and UX.');
+card.setAttribute('thumb-src', '/holofante.avif');
+card.setAttribute('thumb-model', 'Apple iPhone 12');
+card.setAttribute('thumb-color', 'Black');
+card.setAttribute('read-time', '3 min');
+card.setAttribute('has-video', '');
+card.addEventListener('ds-case-select', () => {
+  console.log('Open case details');
+});
+
+document.body.appendChild(card);
+`})})]})}function s(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,c.jsx)(n,{...e,children:(0,c.jsx)(o,{...e})}):o(e)}var c;e((()=>{c=i(),a(),r()}))();export{s as default};

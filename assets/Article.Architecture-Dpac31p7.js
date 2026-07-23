@@ -1,0 +1,68 @@
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{E as t,l as n,m as r}from"./blocks-CqftkxY0.js";import{a as i}from"./chunk-W22LQPXL-DcocAtLX.js";import{t as a}from"./mdx-react-shim-BIjp612k.js";import{t as o}from"./Article.stories-zqYe3Epp.js";function s(e){let r={code:`code`,h1:`h1`,h2:`h2`,h3:`h3`,hr:`hr`,li:`li`,p:`p`,strong:`strong`,ul:`ul`,...t(),...e.components};return(0,l.jsxs)(l.Fragment,{children:[(0,l.jsx)(n,{title:`Organisms/Article/Architecture`}),`
+`,(0,l.jsx)(r.h1,{id:`ds-article`,children:(0,l.jsx)(r.code,{children:`ds-article`})}),`
+`,(0,l.jsxs)(r.p,{children:[`The `,(0,l.jsx)(r.code,{children:`ds-article`}),` component is a `,(0,l.jsx)(r.strong,{children:`stateless (presentational)`}),` Organism designed to orchestrate the layout logic for long-form reading experiences. It provides rigid bounds and toggleable structural zones for typography, metadata, action buttons, summaries, media players, and floating navigation docks.`]}),`
+`,(0,l.jsx)(r.hr,{}),`
+`,(0,l.jsx)(r.h2,{id:`principles`,children:`Principles`}),`
+`,(0,l.jsx)(r.h3,{id:`unidirectional-data-flow--layout-management`,children:`Unidirectional Data Flow & Layout Management`}),`
+`,(0,l.jsxs)(r.p,{children:[`The component strictly adheres to the `,(0,l.jsx)(r.strong,{children:`Unidirectional Data Flow`}),` paradigm:`]}),`
+`,(0,l.jsxs)(r.ul,{children:[`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.strong,{children:`State In (Attributes & Slots):`}),` The host application binds strings for the header/actions and projects complex Web Components (`,(0,l.jsx)(r.code,{children:`ds-summary`}),`, `,(0,l.jsx)(r.code,{children:`ds-audio-player`}),`, `,(0,l.jsx)(r.code,{children:`ds-case-navigator`}),`) through named `,(0,l.jsx)(r.code,{children:`<slot>`}),` channels.`]}),`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsxs)(r.strong,{children:[`Events Out (`,(0,l.jsx)(r.code,{children:`ds-article-*`}),`):`]}),` Action buttons and social share icons emit standardized custom events up to the router/shell to handle link routing and native share API triggers.`]}),`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.strong,{children:`Typographic Inheritance:`}),` Body copy passed into the default slot relies natively on Light DOM inheritance for `,(0,l.jsx)(r.code,{children:`<p>`}),`, `,(0,l.jsx)(r.code,{children:`<h3>`}),`, and `,(0,l.jsx)(r.code,{children:`<code>`}),` tags mapping directly to global sub-atomic typographic scale definitions.`]}),`
+`]}),`
+`,(0,l.jsx)(r.h3,{id:`scroll-transition-engine-thumbnail-retraction`,children:`Scroll Transition Engine (Thumbnail Retraction)`}),`
+`,(0,l.jsxs)(r.p,{children:[`The reading layout uses a `,(0,l.jsx)(r.strong,{children:`continuous progress-driven transition`}),` instead of a binary threshold snap:`]}),`
+`,(0,l.jsxs)(r.ul,{children:[`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.strong,{children:`Progress Source:`}),` Scroll position is normalized and eased in JavaScript, then written as `,(0,l.jsx)(r.code,{children:`--ds-article-thumbnail-progress`}),`.`]}),`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.strong,{children:`Smooth Interpolation:`}),` The grid thumbnail column width, inter-column gap, thumbnail opacity/offset, and content column offset are interpolated from that single progress variable.`]}),`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.strong,{children:`Bidirectional Consistency:`}),` The same interpolation path is used for scroll-down and scroll-up, so expansion and retraction feel symmetrical.`]}),`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.strong,{children:`Body Stability:`}),` Article body children no longer scale/fade during this transition, preventing perceived paragraph "bouncing" while preserving the thumbnail motion effect.`]}),`
+`]}),`
+`,(0,l.jsx)(`mermaid-diagram`,{chart:`
+flowchart LR
+    subgraph Host["Host SPA / App Shell"]
+        direction TB
+        Data["Markdown Parser / Article Data"]
+    end
+
+    subgraph WebComp["Layout Organism"]
+        Article["ds-article"]
+        Summary["slot='summary'"]
+        Body["slot='default'"]
+    end
+
+    Data -->|"1. Map Props & Inject HTML"| Article
+    Article -->|"2. Event Out<br/>ds-article-share"| Host
+
+    %% Styling
+    style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+    style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+    style Data fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+    style Article fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`}),`
+`,(0,l.jsx)(r.hr,{}),`
+`,(0,l.jsx)(r.h2,{id:`slot-architecture`,children:`Slot Architecture`}),`
+`,(0,l.jsxs)(r.p,{children:[`The `,(0,l.jsx)(r.code,{children:`ds-article`}),` encapsulates its header grid in the Shadow DOM while relying on four distinct slots to map the article body.`]}),`
+`,(0,l.jsx)(r.h3,{id:`slot-hierarchy-table`,children:`Slot Hierarchy Table`}),`
+`,(0,l.jsxs)(`table`,{children:[(0,l.jsx)(`thead`,{children:(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`th`,{children:`Slot Name`}),(0,l.jsx)(`th`,{children:`Type / Allowed Children`}),(0,l.jsx)(`th`,{children:`Description`}),(0,l.jsx)(`th`,{children:`Fallback Behavior`})]})}),(0,l.jsxs)(`tbody`,{children:[(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`summary`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`ds-summary`})}),(0,l.jsx)(`td`,{children:`Designated projection zone for the case study KPI summary block.`}),(0,l.jsx)(`td`,{children:`Section height collapses if omitted.`})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`player`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`ds-audio-player`})}),(0,l.jsx)(`td`,{children:`Designated projection zone for the integrated audio reader.`}),(0,l.jsx)(`td`,{children:`Section height collapses if omitted.`})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`default`})}),(0,l.jsx)(`td`,{children:`HTML / Markdown Elements`}),(0,l.jsxs)(`td`,{children:[`Primary reading column for article body text (`,(0,l.jsx)(r.code,{children:`<p>`}),`, `,(0,l.jsx)(r.code,{children:`<h3>`}),`, `,(0,l.jsx)(r.code,{children:`<blockquote>`}),`, `,(0,l.jsx)(r.code,{children:`<code>`}),`, `,(0,l.jsx)(r.code,{children:`<ul>`}),`). Automatically styled by internal `,(0,l.jsx)(r.code,{children:`::slotted()`}),` rules.`]}),(0,l.jsx)(`td`,{children:`Empty content zone.`})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`navigator`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`ds-case-navigator`})}),(0,l.jsxs)(`td`,{children:[`Projects into a fixed `,(0,l.jsx)(r.code,{children:`z-index: 100`}),` container floating at the bottom center of the viewport.`]}),(0,l.jsx)(`td`,{children:`Leaves the fixed container empty and invisible.`})]})]})]}),`
+`,(0,l.jsx)(r.hr,{}),`
+`,(0,l.jsx)(r.h2,{id:`api-contract`,children:`API Contract`}),`
+`,(0,l.jsx)(r.h3,{id:`properties--attributes`,children:`Properties & Attributes`}),`
+`,(0,l.jsxs)(`table`,{children:[(0,l.jsx)(`thead`,{children:(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`th`,{children:`Property`}),(0,l.jsx)(`th`,{children:`Type`}),(0,l.jsx)(`th`,{children:`Default`}),(0,l.jsx)(`th`,{children:`Description`})]})}),(0,l.jsxs)(`tbody`,{children:[(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`kicker`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`string`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`''`})}),(0,l.jsxs)(`td`,{children:[`Super-title category or date stamp (e.g., `,(0,l.jsx)(r.code,{children:`2026 • R&D LAB`}),`).`]})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`title-text`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`string`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`''`})}),(0,l.jsxs)(`td`,{children:[`Main article `,(0,l.jsx)(r.code,{children:`H1`}),` title text.`]})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`primary-label`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`string`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`'Primary'`})}),(0,l.jsx)(`td`,{children:`Text label for the main action button.`})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`primary-icon`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`string`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`null`})}),(0,l.jsx)(`td`,{children:`Icon rendered inside the primary action button.`})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`secondary1-label`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`string`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`'Secondary'`})}),(0,l.jsx)(`td`,{children:`Text label for the first secondary action button.`})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsxs)(`td`,{children:[(0,l.jsx)(r.code,{children:`show-*`}),` flags`]}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`boolean`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`true`})}),(0,l.jsxs)(`td`,{children:[`Comprehensive toggles to mount/unmount layout blocks programmatically (`,(0,l.jsx)(r.code,{children:`show-social-x`}),`, `,(0,l.jsx)(r.code,{children:`show-action-primary`}),`, `,(0,l.jsx)(r.code,{children:`show-navigator`}),`, etc.).`]})]})]})]}),`
+`,(0,l.jsx)(r.h3,{id:`emitted-custom-events`,children:`Emitted Custom Events`}),`
+`,(0,l.jsxs)(`table`,{children:[(0,l.jsx)(`thead`,{children:(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`th`,{children:`Event Name`}),(0,l.jsx)(`th`,{children:`Bubbles / Composed`}),(0,l.jsx)(`th`,{children:`Detail Payload`}),(0,l.jsx)(`th`,{children:`Description`})]})}),(0,l.jsxs)(`tbody`,{children:[(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`ds-article-action`})}),(0,l.jsxs)(`td`,{children:[(0,l.jsx)(r.code,{children:`true`}),` / `,(0,l.jsx)(r.code,{children:`true`})]}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`{ action: 'primary' \\| 'secondary1' \\| 'secondary2' }`})}),(0,l.jsx)(`td`,{children:`Emitted when any of the core header actions are clicked.`})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`ds-article-share`})}),(0,l.jsxs)(`td`,{children:[(0,l.jsx)(r.code,{children:`true`}),` / `,(0,l.jsx)(r.code,{children:`true`})]}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`{ platform: 'native' \\| 'linkedin' \\| 'x' \\| 'facebook' }`})}),(0,l.jsx)(`td`,{children:`Emitted when a social media icon button is clicked next to the title.`})]})]})]}),`
+`,(0,l.jsx)(r.h3,{id:`sub-atomic-css-custom-property-hooks`,children:`Sub-Atomic CSS Custom Property Hooks`}),`
+`,(0,l.jsxs)(`table`,{children:[(0,l.jsx)(`thead`,{children:(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`th`,{children:`CSS Custom Property`}),(0,l.jsx)(`th`,{children:`Fallback Default`}),(0,l.jsx)(`th`,{children:`Description`})]})}),(0,l.jsxs)(`tbody`,{children:[(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`--ds-article-max-width`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`var(--size-max-width-md, 768px)`})}),(0,l.jsx)(`td`,{children:`Overrides the centered reading column constraint boundary.`})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`--ds-article-title-color`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`var(--color-black, #000000)`})}),(0,l.jsxs)(`td`,{children:[`Overrides the `,(0,l.jsx)(r.code,{children:`H1`}),` article title ink color.`]})]}),(0,l.jsxs)(`tr`,{children:[(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`--ds-article-social-color`})}),(0,l.jsx)(`td`,{children:(0,l.jsx)(r.code,{children:`var(--color-gray-med, #777777)`})}),(0,l.jsx)(`td`,{children:`Overrides the default outline color for social sharing icons.`})]})]})]}),`
+`,(0,l.jsx)(r.hr,{}),`
+`,(0,l.jsx)(r.h2,{id:`accessibility--host-aria-delegation`,children:`Accessibility & Host ARIA Delegation`}),`
+`,(0,l.jsxs)(r.ul,{children:[`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.strong,{children:`Tooltips & KBD:`}),` Action buttons pair natively with `,(0,l.jsx)(r.code,{children:`ds-tooltip`}),` primitives. The primary action tooltip explicitly registers `,(0,l.jsx)(r.code,{children:`kbd-label="Enter"`}),` indicating its global keyboard shortcut.`]}),`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.strong,{children:`Global Accessibility Propagation:`}),` Listens to class changes on `,(0,l.jsx)(r.code,{children:`document.documentElement`}),` via `,(0,l.jsx)(r.code,{children:`MutationObserver`}),` to sync accessibility modes:`,`
+`,(0,l.jsxs)(r.ul,{children:[`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.code,{children:`.a11y-dark-mode`}),`: Inverts title typography, mutes secondary labels, and adjusts all `,(0,l.jsx)(r.code,{children:`::slotted()`}),` Markdown elements (`,(0,l.jsx)(r.code,{children:`<blockquote>`}),`, `,(0,l.jsx)(r.code,{children:`<pre>`}),`) to dark backgrounds.`]}),`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.code,{children:`.a11y-high-contrast`}),`: Enforces `,(0,l.jsx)(r.code,{children:`#FFFFFF`}),` solid fills and borders on all header text arrays and slotted content.`]}),`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.code,{children:`.a11y-large-text`}),`: Scales the article title by a 1.25x multiplier.`]}),`
+`,(0,l.jsxs)(r.li,{children:[(0,l.jsx)(r.code,{children:`.a11y-dyslexia`}),`: Re-renders the entire article structure using the high-legibility font stack.`]}),`
+`]}),`
+`]}),`
+`]})]})}function c(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,l.jsx)(n,{...e,children:(0,l.jsx)(s,{...e})}):s(e)}var l;e((()=>{l=i(),a(),r(),o()}))();export{c as default};

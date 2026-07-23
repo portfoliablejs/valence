@@ -1,0 +1,25 @@
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{E as t,l as n,m as r}from"./blocks-CqftkxY0.js";import{a as i}from"./chunk-W22LQPXL-DcocAtLX.js";import{t as a}from"./mdx-react-shim-BIjp612k.js";function o(e){let r={a:`a`,code:`code`,em:`em`,h1:`h1`,h2:`h2`,h3:`h3`,hr:`hr`,li:`li`,p:`p`,strong:`strong`,ul:`ul`,...t(),...e.components};return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(n,{title:`Atoms/Slider Dot [v1.0.0]/Changelog`}),`
+`,(0,c.jsx)(r.h1,{id:`changelog`,children:`Changelog`}),`
+`,(0,c.jsx)(`br`,{}),`
+`,(0,c.jsx)(r.h2,{id:`100---2026-07-20`,children:`[1.0.0] - 2026-07-20`}),`
+`,(0,c.jsx)(`br`,{}),`
+`,(0,c.jsx)(r.h3,{id:`initial-release`,children:`Initial Release`}),`
+`,(0,c.jsxs)(r.p,{children:[`The stable debut of the presentational pagination indicator (`,(0,c.jsx)(r.code,{children:`ds-slider-dot`}),`) featuring native button integration, high-contrast layouts, custom interaction click events, and root class accessibility syncing.`]}),`
+`,(0,c.jsx)(`br`,{}),`
+`,(0,c.jsx)(r.h3,{id:`summary-of-changes`,children:`Summary of Changes`}),`
+`,(0,c.jsxs)(`table`,{children:[(0,c.jsx)(`thead`,{children:(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`th`,{children:`Classification`}),(0,c.jsx)(`th`,{children:`Scope / Context`}),(0,c.jsx)(`th`,{children:`Description`})]})}),(0,c.jsxs)(`tbody`,{children:[(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`Added`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`ds-slider-dot`})}),(0,c.jsx)(`td`,{children:`Initial stable component registration with compressed shadow layouts and native button element integration.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`Added`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`ds-slider-dot`})}),(0,c.jsxs)(`td`,{children:[`Fires standardized cross-boundary `,(0,c.jsx)(r.code,{children:`ds-dot-click`}),` event on click interactions.`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`Added`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`_observeRootAccessibility`})}),(0,c.jsx)(`td`,{children:`Integrates root class observer syncing dark mode, high contrast, dyslexia, reduce-motion, and Windows Forced Colors.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`Fixed`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`SliderDot.stories.js`})}),(0,c.jsxs)(`td`,{children:[`Remapped custom style overrides in Storybook config to write precise `,(0,c.jsx)(r.code,{children:`--ds-slider-dot-*`}),` tokens instead of generic `,(0,c.jsx)(r.code,{children:`--custom-*`}),` variables.`]})]})]})]}),`
+`,(0,c.jsx)(`br`,{}),`
+`,(0,c.jsx)(r.h3,{id:`added`,children:`Added`}),`
+`,(0,c.jsxs)(r.ul,{children:[`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Interactive Pagination Atom:`}),` Created `,(0,c.jsx)(r.code,{children:`<ds-slider-dot>`}),` as a stateless, controlled pagination button.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Robust Accessibility:`}),` Features keyboard tab paths, spacebar trigger listeners, aria-current reflections, and proper light DOM aria-label scrubbing.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Root Preference Synchronization:`}),` MutationObserver on document roots reflects global setting cascades downstream as boolean host flags.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Thematic Overrides:`}),` Bound diameter dimensions, border-radius, background fill, active background, and hover background color tokens to the standardized `,(0,c.jsx)(r.code,{children:`--ds-slider-dot-*`}),` naming layout.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Storybook Workspace:`}),` Authored interactive controls and CSF3 story parameters in `,(0,c.jsx)(r.code,{children:`SliderDot.stories.js`}),`.`]}),`
+`]}),`
+`,(0,c.jsx)(r.h3,{id:`fixed`,children:`Fixed`}),`
+`,(0,c.jsxs)(r.ul,{children:[`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Sub-Atomic Story Mapping:`}),` Synchronized Storybook override controllers to output precise `,(0,c.jsx)(r.code,{children:`--ds-slider-dot-size`}),`, `,(0,c.jsx)(r.code,{children:`--ds-slider-dot-bg`}),`, and `,(0,c.jsx)(r.code,{children:`--ds-slider-dot-active-bg`}),` custom styles.`]}),`
+`]}),`
+`,(0,c.jsx)(r.hr,{}),`
+`,(0,c.jsx)(r.p,{children:(0,c.jsxs)(r.em,{children:[`This changelog is specific to the `,(0,c.jsx)(r.code,{children:`<ds-slider-dot>`}),` component. For design system global releases, refer to the main `,(0,c.jsx)(r.a,{href:`?path=/docs/getting-started-changelog--docs`,children:`Getting Started/Changelog`}),`.`]})})]})}function s(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,c.jsx)(n,{...e,children:(0,c.jsx)(o,{...e})}):o(e)}var c;e((()=>{c=i(),a(),r()}))();export{s as default};

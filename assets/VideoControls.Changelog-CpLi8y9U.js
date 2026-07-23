@@ -1,0 +1,25 @@
+import{i as e}from"./preload-helper-CT_b8DTk.js";import{E as t,l as n,m as r}from"./blocks-CqftkxY0.js";import{a as i}from"./chunk-W22LQPXL-DcocAtLX.js";import{t as a}from"./mdx-react-shim-BIjp612k.js";function o(e){let r={a:`a`,code:`code`,em:`em`,h1:`h1`,h2:`h2`,h3:`h3`,hr:`hr`,li:`li`,p:`p`,strong:`strong`,ul:`ul`,...t(),...e.components};return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(n,{title:`Molecules/Video Controls [v1.0.0]/Changelog`}),`
+`,(0,c.jsx)(r.h1,{id:`changelog`,children:`Changelog`}),`
+`,(0,c.jsx)(`br`,{}),`
+`,(0,c.jsx)(r.h2,{id:`100---2026-07-20`,children:`[1.0.0] - 2026-07-20`}),`
+`,(0,c.jsx)(`br`,{}),`
+`,(0,c.jsx)(r.h3,{id:`initial-release`,children:`Initial Release`}),`
+`,(0,c.jsxs)(r.p,{children:[`The stable debut of the presentational video player control bar molecule (`,(0,c.jsx)(r.code,{children:`ds-video-controls`}),`) featuring custom floating button integrations, customizable speed rates, and full localization support.`]}),`
+`,(0,c.jsx)(`br`,{}),`
+`,(0,c.jsx)(r.h3,{id:`summary-of-changes`,children:`Summary of Changes`}),`
+`,(0,c.jsxs)(`table`,{children:[(0,c.jsx)(`thead`,{children:(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`th`,{children:`Classification`}),(0,c.jsx)(`th`,{children:`Scope / Context`}),(0,c.jsx)(`th`,{children:`Description`})]})}),(0,c.jsxs)(`tbody`,{children:[(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`Added`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`ds-video-controls`})}),(0,c.jsx)(`td`,{children:`Initial stable release of the video player controls region molecule.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`Added`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`ds-video-controls`})}),(0,c.jsxs)(`td`,{children:[`Fully refactored the layout markup to consume standard `,(0,c.jsx)(r.code,{children:`<ds-button variant="floating">`}),` atoms instead of legacy raw buttons with custom inline SVGs.`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`Added`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`ds-video-controls`})}),(0,c.jsxs)(`td`,{children:[`Exposed observable attributes `,(0,c.jsx)(r.code,{children:`label-play`}),`, `,(0,c.jsx)(r.code,{children:`label-cc-on`}),`, etc., to allow translations inside tooltips and aria tags, adhering to the "Zero i18n" standard.`]})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`Added`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`_observeRootAccessibility`})}),(0,c.jsx)(`td`,{children:`Configured passive root observer syncing dark mode, high contrast, dyslexia, reduce-motion, and Windows Forced Colors.`})]}),(0,c.jsxs)(`tr`,{children:[(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`Fixed`})}),(0,c.jsx)(`td`,{children:(0,c.jsx)(r.code,{children:`video-controls.css`})}),(0,c.jsx)(`td`,{children:`Purged all legacy button, typography, and SVG CSS rules, delegating focus rings and hover scale parameters into child design system primitives.`})]})]})]}),`
+`,(0,c.jsx)(`br`,{}),`
+`,(0,c.jsx)(r.h3,{id:`added`,children:`Added`}),`
+`,(0,c.jsxs)(r.ul,{children:[`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Interactive Control Molecule:`}),` Created `,(0,c.jsx)(r.code,{children:`<ds-video-controls>`}),` aggregating custom button and tooltip atoms.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Dumb Component Conformance:`}),` Released of localized attribute translations for play, mute, speed, captions, and stop options.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Root Context Synchronization:`}),` MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Thematic Overrides:`}),` Bound mobile backdrop backgrounds, outlines, and drop shadows to `,(0,c.jsx)(r.code,{children:`--ds-video-controls-*`}),` properties.`]}),`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Storybook Workspace:`}),` Configured complete interactive Controls and detailed CSF3 stories inside `,(0,c.jsx)(r.code,{children:`VideoControls.stories.js`}),`.`]}),`
+`]}),`
+`,(0,c.jsx)(r.h3,{id:`fixed`,children:`Fixed`}),`
+`,(0,c.jsxs)(r.ul,{children:[`
+`,(0,c.jsxs)(r.li,{children:[(0,c.jsx)(r.strong,{children:`Style Purging:`}),` Deleted all legacy layout, SVG, and typography CSS, allowing children to inherit design variables effortlessly.`]}),`
+`]}),`
+`,(0,c.jsx)(r.hr,{}),`
+`,(0,c.jsx)(r.p,{children:(0,c.jsxs)(r.em,{children:[`This changelog is specific to the `,(0,c.jsx)(r.code,{children:`<ds-video-controls>`}),` component. For design system global releases, refer to the main `,(0,c.jsx)(r.a,{href:`?path=/docs/getting-started-changelog--docs`,children:`Getting Started/Changelog`}),`.`]})})]})}function s(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,c.jsx)(n,{...e,children:(0,c.jsx)(o,{...e})}):o(e)}var c;e((()=>{c=i(),a(),r()}))();export{s as default};
