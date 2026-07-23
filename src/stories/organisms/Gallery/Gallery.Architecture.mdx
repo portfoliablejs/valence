@@ -1,0 +1,181 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Organisms/Gallery [v1.0.0]/Architecture" />
+
+# `ds-gallery`
+
+The `ds-gallery` organism is a controlled horizontal case-study strip that composes `ds-gallery-item` molecules and keeps drag motion, keyboard focus, and layout orchestration inside the Shadow DOM.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component follows the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** Host applications provide `item-count`, `engine`, an optional `items` array, and the gallery gap through `--gallery-item-gap`.
+* **Events Out (`ds-case-select`):** Child gallery items emit selection intent through a bubbling, composed custom event that reaches the gallery host.
+* **Derived Presentation State:** Drag offset, focus index, and the `is-dragging` host state are derived entirely from local interaction state.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Router"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["<ds-gallery>"]
+      end
+
+      State -->|"1. State In\n item-count, engine, items, --gallery-item-gap"| Component
+      Component -->|"2. Event Out\n ds-case-select"| State
+
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+`ds-gallery` uses a sealed Shadow DOM wrapper. It does not expose any public slots and creates its `ds-gallery-item` children internally.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>All gallery cards are generated internally as `ds-gallery-item` children.</td>
+      <td>Renders the default or provided gallery data set when `items` is omitted.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`itemCount`</td>
+      <td>`item-count`</td>
+      <td>`number`</td>
+      <td>`5`</td>
+      <td>Controls how many generated gallery cards are rendered.</td>
+    </tr>
+    <tr>
+      <td>`engine`</td>
+      <td>`engine`</td>
+      <td>`string`</td>
+      <td>`'minimal'`</td>
+      <td>Selects the motion preset used for drag follow, overscroll, and edge-return timing.</td>
+    </tr>
+    <tr>
+      <td>`a11y-reduce-motion`</td>
+      <td>`a11y-reduce-motion`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Mirrors the global reduced-motion preference and disables gallery scale/transition motion.</td>
+    </tr>
+    <tr>
+      <td>`items`</td>
+      <td>n/a</td>
+      <td>`Array<object> \| null`</td>
+      <td>`null`</td>
+      <td>Optional item source override used instead of the default gallery data set.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-case-select`</td>
+      <td>`true` / `true`</td>
+      <td>`{}`</td>
+      <td>Surfaced when a nested `ds-gallery-item` is activated by click, Enter, or Space.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--gallery-item-gap`</td>
+      <td>`clamp(32px, 4vw, 72px)`</td>
+      <td>Controls horizontal spacing between gallery items.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host Integration
+
+* **Keyboard Navigation:** The gallery viewport is focusable and supports Arrow Left / Right, Home, End, Enter, and Space.
+* **Pointer Experience:** The viewport uses `touch-action: pan-y` so horizontal drag can be handled by the component without blocking vertical page scrolling.
+* **Host State Reflection:** The gallery toggles `is-dragging` on the host and viewport during pointer interaction so the whole component can animate as a unit.
+* **Reduced Motion Compliance:** When the root document carries `.a11y-reduce-motion`, the gallery reflects that state to the host, removes scale/transition animations, and uses a non-animated release path.
+* **Focus Delegation:** Keyboard selection moves focus into the active `ds-gallery-item` thumbnail surface without leaving the gallery context.
+
+---
+
+## Integration Example
+
+```javascript
+import 'valence/src/stories/organisms/Gallery/Gallery.js';
+
+const gallery = document.createElement('ds-gallery');
+gallery.engine = 'minimal';
+gallery.itemCount = 5;
+gallery.style.setProperty('--gallery-item-gap', '100px');
+
+gallery.addEventListener('ds-case-select', () => {
+  console.log('Open the selected case study');
+});
+
+document.body.appendChild(gallery);
+```

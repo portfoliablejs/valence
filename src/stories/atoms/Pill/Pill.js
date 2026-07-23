@@ -81,9 +81,9 @@ export class Pill extends HTMLElement {
     }
 
     if (pulseColor) {
-      this.pulseEl.style.setProperty('--custom-pulse-color', pulseColor);
+      this.pulseEl.style.setProperty('--ds-pill-pulse-color', pulseColor);
     } else {
-      this.pulseEl.style.removeProperty('--custom-pulse-color');
+      this.pulseEl.style.removeProperty('--ds-pill-pulse-color');
     }
 
     if (label && label.trim() !== '') {
@@ -307,7 +307,7 @@ export class Pill extends HTMLElement {
     }
     this._setAriaLabel(text);
     if (pulseColor && this.pulseEl) {
-      this.pulseEl.style.setProperty('--custom-pulse-color', pulseColor);
+      this.pulseEl.style.setProperty('--ds-pill-pulse-color', pulseColor);
     }
   }
 

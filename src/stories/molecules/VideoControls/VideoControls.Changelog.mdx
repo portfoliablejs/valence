@@ -1,0 +1,72 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Video Controls [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational video player control bar molecule (`ds-video-controls`) featuring custom floating button integrations, customizable speed rates, and full localization support.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-video-controls`</td>
+      <td>Initial stable release of the video player controls region molecule.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-video-controls`</td>
+      <td>Fully refactored the layout markup to consume standard `<ds-button variant="floating">` atoms instead of legacy raw buttons with custom inline SVGs.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-video-controls`</td>
+      <td>Exposed observable attributes `label-play`, `label-cc-on`, etc., to allow translations inside tooltips and aria tags, adhering to the "Zero i18n" standard.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured passive root observer syncing dark mode, high contrast, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`video-controls.css`</td>
+      <td>Purged all legacy button, typography, and SVG CSS rules, delegating focus rings and hover scale parameters into child design system primitives.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Interactive Control Molecule:** Created `<ds-video-controls>` aggregating custom button and tooltip atoms.
+- **Dumb Component Conformance:** Released of localized attribute translations for play, mute, speed, captions, and stop options.
+- **Root Context Synchronization:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags.
+- **Thematic Overrides:** Bound mobile backdrop backgrounds, outlines, and drop shadows to `--ds-video-controls-*` properties.
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `VideoControls.stories.js`.
+
+### Fixed
+- **Style Purging:** Deleted all legacy layout, SVG, and typography CSS, allowing children to inherit design variables effortlessly.
+
+---
+
+*This changelog is specific to the `<ds-video-controls>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

@@ -2,48 +2,66 @@
    1. Host Geometry, Animations & Surface Container
    ========================================================================== */
 :host {
-  display: inline-block;
+  display: block;
   box-sizing: border-box;
   font-family: var(--font-family, sans-serif);
   z-index: var(--z-dropdown, 50);
-  transition: display var(--anim-fast, 0.2s) allow-discrete;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--anim-fast, 0.2s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1)),
+              visibility 0s linear var(--anim-fast, 0.2s);
+  
+  /* Cap host max-height so outer wrapper doesn't spawn a scrollbar */
+  max-height: var(--ds-contextual-menu-max-height, none);
 }
 
 :host(:not([open])) {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+:host([open]) {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
 }
 
 .menu-card {
   box-sizing: border-box;
-  width: var(--custom-width, 260px);
-  min-width: var(--custom-min-width, 220px);
-  background: var(--custom-bg, var(--color-bg, #ffffff));
+  width: var(--ds-contextual-menu-width, 260px);
+  min-width: var(--ds-contextual-menu-min-width, 220px);
+  
+  max-height: var(--ds-contextual-menu-max-height, 100%);
+  height: 100%;
+  
+  background: var(--ds-contextual-menu-bg, var(--color-bg, #ffffff));
   border: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--color-surface-border, rgba(0, 0, 0, 0.08));
-  border-radius: var(--custom-radius, var(--radius-lg, 16px));
+  border-radius: var(--ds-contextual-menu-radius, var(--radius-lg, 16px));
   box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
   padding: var(--space-md, 12px);
   display: flex;
   flex-direction: column;
   gap: 0;
+  overflow: hidden; /* Clips internal overflow; box-shadow remains intact outside */
 
-  transform-origin: top center;
+  transform-origin: top right;
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  transition: opacity var(--anim-fast, 0.2s) var(--ease-fluid, ease),
+              transform var(--anim-normal, 0.3s) var(--anim-spring, cubic-bezier(0.34, 1.56, 0.64, 1));
+}
+
+:host([open]) .menu-card {
   opacity: 1;
   transform: translateY(0) scale(1);
-  transition: opacity var(--anim-fast, 0.2s) var(--ease-fluid, ease),
-              transform var(--anim-fast, 0.2s) var(--ease-fluid, ease);
 }
 
 :host(:not([open])) .menu-card {
   opacity: 0;
-  transform: translateY(-8px) scale(0.96);
-  pointer-events: none;
-}
-
-@starting-style {
-  :host([open]) .menu-card {
-    opacity: 0;
-    transform: translateY(-8px) scale(0.96);
-  }
+  transform: translateY(-6px) scale(0.98);
 }
 
 /* ==========================================================================
@@ -56,16 +74,15 @@
   justify-content: space-between;
   padding: var(--space-xs, 4px) var(--space-sm, 8px);
   margin-bottom: var(--space-xs, 4px);
-  /* Prevent text selection */
-  -webkit-user-select: none; /* Safari / older WebKit */
-  user-select: none;         /* Standard */
+  flex-shrink: 0;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .subcategory-header {
   margin-top: var(--space-sm, 8px);
 }
 
-/* Updated text color to var(--color-text-secondary, #323232) to meet WCAG AA contrast standards */
 .menu-title,
 .subcategory-title {
   font-size: 11px;
@@ -74,7 +91,6 @@
   text-transform: uppercase;
   color: var(--color-text-secondary, var(--color-gray-dark, #323232));
   margin: 0;
-  /* Ensures title text specifically cannot be highlighted */
   -webkit-user-select: none;
   user-select: none;
 }
@@ -84,9 +100,63 @@
 }
 
 /* ==========================================================================
-   3. Content Container, Subcategories & Item Rows
+   3. Content Container, Subcategories & Item Rows (Scrollable Engine)
    ========================================================================== */
+
+/* Block-Level Scroll Viewport */
+.menu-scroll-viewport {
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+
+  overflow-y: hidden;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+
+  padding-right: 2px;
+  color-scheme: light;
+
+  /* Standard Scrollbar Properties for Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-contextual-menu-scrollbar-color, #D9D9D9) transparent;
+}
+
+.menu-scroll-viewport.is-scrollable {
+  overflow-y: auto;
+  max-height: var(--ds-contextual-menu-scroll-max-height, 320px);
+}
+
+/* WebKit Custom Scrollbar Rules (UNCONDITIONAL) 
+   Forces modern Safari to drop the native OS overlay and use the RenderScrollbar engine */
+.menu-scroll-viewport::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
+}
+
+.menu-scroll-viewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menu-scroll-viewport::-webkit-scrollbar-thumb {
+  background-color: var(--ds-contextual-menu-scrollbar-color, #D9D9D9);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-clip: content-box;
+}
+
+.menu-scroll-viewport::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-gray-med, #777777);
+}
+
+.menu-scroll-viewport::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Flex Layout Container (Pure layout node) */
 .menu-content {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -106,8 +176,8 @@
   box-sizing: border-box;
   --control-flex: 0 0 auto;
   --control-max-width: fit-content;
-  --toggle-width: 36px;
-  --toggle-height: 20px;
+  --ds-toggle-width: 36px;
+  --ds-toggle-height: 20px;
 }
 
 /* ==========================================================================
@@ -122,6 +192,15 @@
 :host([a11y-dark-mode]) .menu-title,
 :host([a11y-dark-mode]) .subcategory-title {
   color: var(--color-text-secondary, #f5f5f5);
+}
+
+:host([a11y-dark-mode]) .menu-scroll-viewport {
+  color-scheme: dark;
+}
+
+/* Unconditional override for dark mode thumbs */
+:host([a11y-dark-mode]) .menu-scroll-viewport::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 :host([a11y-high-contrast]) .menu-card {
@@ -170,7 +249,6 @@
   letter-spacing: 0.05em !important;
 }
 
-:host([a11y-reduce-motion]),
 :host([a11y-reduce-motion]) .menu-card {
   transition: none !important;
   transform: none !important;

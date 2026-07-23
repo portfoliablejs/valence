@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Organisms/Header/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-23
+
+<br />
+
+### Initial Release
+
+The stable debut of the `ds-header` layout organism. This component establishes a full-width presentational header shell that composes `ds-breadcrumb` and `ds-navigation-menu` into a single app-level chrome surface while preserving a strict dumb-component contract.
+
+<br />
+
+### Added
+- **Viewport-Width Header Shell:** Created `<ds-header>` as a full-width organism that stretches across the viewport and maintains explicit left/right edge anchoring for its composed regions.
+- **Molecule Composition Contract:** Integrated `ds-breadcrumb` on the far left and `ds-navigation-menu` on the far right using a rigid flex layout intended for smart-app page framing.
+- **Presentational Visibility Toggles:** Added `show-breadcrumb` and `show-language-menu` booleans so the host application can suppress optional UI regions without introducing smart behavior into the component itself.
+- **Navigation Attribute Forwarding:** Implemented pass-through forwarding for avatar, tooltip, keyboard shortcut, aria-label, and disabled-state props into the child navigation menu.
+- **Storybook Coverage:** Added `Complete`, `NoBreadcrumb`, and `NoLanguageMenu` stories with explicit descriptions validating alignment and optional-region behavior.
+
+### Fixed
+- **Export Surface Completion:** Filled the missing `src/stories/organisms/Header/Header.js` module expected by the package entry export map.
+- **Contextual Menu Canvas Clipping:** Increased the Header story canvas height and bottom breathing room so the navigation menu popovers can open without being visually cut off in the preview.
+
+---
+
+*This changelog is specific to the `<ds-header>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

@@ -1,0 +1,45 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Organisms/Article/Changelog" />
+
+# Changelog
+
+<br />
+
+## [Unreleased] - 2026-07-23
+
+<br />
+
+### Changed
+- **Scroll Transition Model:** Reworked the thumbnail retraction interaction from a binary threshold/class toggle into a smooth, progress-driven scroll transition. Thumbnail width, opacity, position, and layout gap now interpolate continuously for both scroll-down and scroll-up.
+- **Transition Feel:** Introduced eased progress updates to make the retraction/expansion motion read as a single fluid interaction rather than a snap between open/retracted states.
+
+### Fixed
+- **Body Content Bounce:** Removed scroll-linked transform/opacity effects from article body children so paragraph and content items no longer appear to bounce while the thumbnail retracts/returns.
+
+<br />
+
+## [1.0.0] - 2026-07-21
+
+<br />
+
+### Initial Release
+
+The stable debut of the `ds-article` layout organism. This component standardizes the presentation shell for long-form case studies, integrating headers, granular sharing mechanics, AI summaries, audio readers, bottom case navigators, and parsed markdown body content into a single unified DOM block.
+
+<br />
+
+### Added
+- **Layout Shell Engine:** Created `<ds-article>` to orchestrate complex reading layouts dynamically via slot projection (`summary`, `player`, `navigator`, `default`).
+- **Action & Social Tooltips:** Integrated pre-wired `ds-button` and `ds-tooltip` structures into the Shadow DOM header. Added bottom-aligned tooltips to social icons and a KBD-enabled tooltip for the primary action button.
+- **Comprehensive Visibility Toggles:** Implemented a granular suite of `show-*` boolean attributes allowing the host application to conditionally hide or display any specific social icon (`show-social-linkedin`), action button, or slot container block without altering the DOM tree.
+- **Root Class Syncing:** Configured passive `MutationObserver` on `document.documentElement` reflecting global setting cascades (`a11y-dark-mode`, `a11y-high-contrast`, `a11y-large-text`, etc.) downstream as host element boolean attributes.
+
+### Fixed
+- **Markdown Light DOM Resolution:** Engineered exhaustive `::slotted()` rules within `article.css` ensuring slotted `<ul>`, `<ol>`, `<blockquote>`, `<pre>`, `<code>`, and `<table>` elements gracefully inherit global typography resets and appropriate vertical rhythm geometry natively from the host app without requiring deep Shadow DOM CSS penetrations.
+- **Sub-Atomic Token Hooks:** Established strictly prefixed structural variables (`--ds-article-max-width`, `--ds-article-title-color`, `--ds-article-social-color`) conforming to architecture standards.
+- **Dumb Component Architecture:** Replaced hard-coded data dependencies with declarative properties. The component now accepts flat Markdown/HTML via the default slot, totally decoupling it from internal application payload parsers or `data.js`.
+
+---
+
+*This changelog is specific to the `<ds-article>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

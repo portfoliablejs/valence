@@ -1,45 +1,48 @@
-/* src/stories/organisms/Header/header.css */
-
-/* ==========================================================================
-    HOST STYLES
-========================================================================== */
 :host {
   display: block;
-  position: fixed;
-  top: 30px;
-  left: 0;
-  right: 0;
-  padding: 0 40px;
-  z-index: var(--z-overlay, 1000);
-  pointer-events: none;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
-/* ==========================================================================
-    CONTAINER & LAYOUT
-========================================================================== */
-.header-container {
+.header-shell {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.header-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: var(--ds-header-gap, var(--space-lg, 16px));
+  width: 100%;
+  min-height: var(--ds-header-min-height, var(--size-height-sm, 44px));
+  padding: var(--ds-header-padding, 24px 28px);
+  box-sizing: border-box;
+  overflow: visible;
 }
 
-.header-left, .header-right {
+.breadcrumb-region {
   display: flex;
   align-items: center;
-  gap: var(--space-sm, 8px);
-  pointer-events: auto;
+  justify-content: flex-start;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: visible;
 }
 
-/* ==========================================================================
-    COMPONENT STYLES (DS-BREADCRUMB, DS-MODE-TOGGLE)
-========================================================================== */
-ds-breadcrumb {
-  margin-left: var(--space-lg, 16px);
+.navigation-region {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  margin-left: auto;
+  overflow: visible;
 }
 
-/* ==========================================================================
-    STATE STYLES
-========================================================================== */
-#home-btn[hidden] {
+.breadcrumb-region[hidden] {
   display: none;
 }

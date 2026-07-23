@@ -1,0 +1,222 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as BreadcrumbStories from './Breadcrumb.stories';
+
+<Meta title="Molecules/Breadcrumb [v1.0.0]/Architecture"/>
+
+# `ds-breadcrumb`
+
+The `ds-breadcrumb` component is a **stateless (controlled)** Molecule designed for top-level hierarchy navigation in Single Page Applications (SPAs)[cite: 5]. It renders breadcrumb stacks, provides return/back shortcuts, and supports item-level contextual popover menus for sibling navigation[cite: 5].
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly implements the **Unidirectional Data Flow** pattern[cite: 5]:
+* **State In (`.items`):** The host application manages navigation state and feeds the active crumb stack into the component via property binding[cite: 5].
+* **Events Out (`ds-breadcrumb-*`):** User interactions (clicking crumb buttons, pressing backspace, or selecting items from a contextual menu) dispatch custom DOM events containing full context payloads[cite: 5].
+* **No Internal State Mutation:** The component never truncates its own item stack, modifies history, or manipulates URL parameters internally[cite: 5].
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host SPA / App Shell"]
+          direction TB
+          Router["Router / State Owner"]
+      end
+
+      subgraph WebComp["Controlled Web Component"]
+          Breadcrumb["ds-breadcrumb"]
+      end
+
+      Router -->|"1. State In<br/>.items = [...]"| Breadcrumb
+      Breadcrumb -->|"2. Event Out<br/>ds-breadcrumb-select"| Router
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style Router fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Breadcrumb fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-breadcrumb` component seals its Shadow DOM bounds, dynamically constructing and nesting return buttons, item wrappers, separators, and popover menus inside its shadow root navigation container[cite: 5].
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Projects no content. Crumb structure and contextual popover menus are fully encapsulated in the Shadow DOM.</td>
+      <td>Renders standard breadcrumb items bound via `.items` property or fallback attributes.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model & Contextual Menu Rules
+
+### Item Object Schema
+
+```typescript
+export interface BreadcrumbItem {
+  id: string;               // Unique route or item identifier
+  label: string;            // Text label displayed on the crumb button
+  hasMenu?: boolean;        // Explicit override for contextual menu visibility
+  menuItems?: MenuItem[];   // Custom dropdown items specific to this crumb
+  menuHeader?: string;      // Presentational header label for popover
+  subcategoryTitle?: string;// Presentational category title
+}
+
+export interface MenuItem {
+  id: string;               // Unique menu item selection identifier
+  label: string;            // Display label in the popover list
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`items`</td>
+      <td>—</td>
+      <td>`Array<BreadcrumbItem>`</td>
+      <td>`null`</td>
+      <td>Primary array of breadcrumb items defining the active stack.</td>
+    </tr>
+    <tr>
+      <td>`menuItems`</td>
+      <td>—</td>
+      <td>`Array<MenuItem>`</td>
+      <td>`null`</td>
+      <td>Fallback global menu options for items with `hasMenu: true`.</td>
+    </tr>
+    <tr>
+      <td>`visible`</td>
+      <td>`visible`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Toggles the component visibility and layout animation state.</td>
+    </tr>
+    <tr>
+      <td>`itemCount`</td>
+      <td>`item-count`</td>
+      <td>`number`</td>
+      <td>`3`</td>
+      <td>Fallback item count indicator when `.items` is omitted.</td>
+    </tr>
+    <tr>
+      <td>`currentLabel`</td>
+      <td>`current-label`</td>
+      <td>`string`</td>
+      <td>`'Item Title'`</td>
+      <td>Fallback label for the final crumb when `.items` is omitted.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-breadcrumb-select`</td>
+      <td>`true` / `true`</td>
+      <td>`{ id, label, index, item, selectedMenuItem? }`</td>
+      <td>Emitted when a crumb button or a contextual menu item is clicked.</td>
+    </tr>
+    <tr>
+      <td>`ds-breadcrumb-return`</td>
+      <td>`true` / `true`</td>
+      <td>`{ remainingCount, remainingItems, targetItem }`</td>
+      <td>Emitted when the back arrow button or `Backspace` key is triggered.</td>
+    </tr>
+    <tr>
+      <td>`ds-breadcrumb-home`</td>
+      <td>`true` / `true`</td>
+      <td>`{ id, item }`</td>
+      <td>Emitted when the root `Home` crumb button is clicked.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-breadcrumb-gap`</td>
+      <td>`var(--space-xs, 4px)`</td>
+      <td>Overrides horizontal spacing gap between crumb items and return button.</td>
+    </tr>
+    <tr>
+      <td>`--ds-breadcrumb-separator-color`</td>
+      <td>`var(--color-text-muted, #777777)`</td>
+      <td>Overrides separator icon and text colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-breadcrumb-item-opacity`</td>
+      <td>`var(--opacity-medium, 0.6)`</td>
+      <td>Overrides default opacity of non-hovered crumb items.</td>
+    </tr>
+    <tr>
+      <td>`--ds-breadcrumb-menu-width`</td>
+      <td>`260px`</td>
+      <td>Overrides contextual menu popover width.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **ARIA Scrubbing:** Purges host-level `aria-label` attributes and delegates them downstream onto the internal Shadow DOM `<nav>` container[cite: 5].
+* **Keyboard Navigation:** Full arrow key navigation (`ArrowLeft` / `ArrowRight` between crumb buttons, `ArrowDown` to enter popover menus, and `Backspace` shortcut for return navigation)[cite: 5].
+* **Global Accessibility Propagation:** Listens to class changes on `document.documentElement` via `MutationObserver` to sync accessibility modes[cite: 5]:
+  * `.a11y-dark-mode`: Adjusts separator and text contrast ratios[cite: 5].
+  * `.a11y-high-contrast`: Enforces maximum luminosity boundaries[cite: 5].
+  * `.a11y-reduce-motion`: Disables spring deceleration physics and slide transitions[cite: 5].
+  * `.a11y-dyslexia`: Overrides typography stack with high-legibility letter spacing[cite: 5].

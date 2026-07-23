@@ -1,0 +1,179 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Navigation Menu [v1.1.0]/Architecture" />
+
+# ds-navigation-menu
+
+The ds-navigation-menu component is a controlled molecule for compact top-bar navigation actions. It composes icon buttons, tooltips, and contextual menus to expose language and accessibility controls while emitting semantic events to the host app.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+
+State In / Events Out contract:
+
+- State In: Host attributes configure labels, tooltip content, avatar source, disabled state, and accessibility labeling.
+- Events Out: Interaction emits immutable custom events for menu triggers and item selection.
+- Encapsulated State: Internal menu open state and menu item toggles are managed in-component and reported outward.
+
+<mermaid-diagram chart={`
+  flowchart LR
+    Host["Host App"] -->|"Attributes / Props"| Nav["&lt;ds-navigation-menu&gt;"]
+    Nav -->|"ds-navigation-menu-language"| Host
+    Nav -->|"ds-navigation-menu-accessibility"| Host
+    Nav -->|"ds-navigation-menu-about"| Host
+    Nav -->|"ds-navigation-menu-language-select"| Host
+    Nav -->|"ds-navigation-menu-accessibility-select"| Host
+`} />
+
+## Composition
+
+The component has no slots. It composes existing system components inside its Shadow DOM:
+
+- ds-button (icon variant, fill icons)
+- ds-divider (vertical separator)
+- ds-tooltip (button helper labels + kbd hints)
+- ds-contextual-menu (language and accessibility menus)
+
+### Internal Structure
+
+1. Left profile group: circular avatar button + about tooltip.
+2. Vertical separator: ds-divider orientation="vertical".
+3. Right action group:
+- Language icon button + tooltip + contextual menu.
+- Accessibility icon button + tooltip + contextual menu.
+
+## Data Model
+
+```typescript
+export interface NavigationMenuLanguageItem {
+  id: string;
+  label: string;
+  control: 'check';
+  selected: boolean;
+  showIcon?: boolean;
+  checkHasBackground?: boolean;
+  category?: 'main';
+}
+
+export interface NavigationMenuAccessibilityItem {
+  id: string;
+  label: string;
+  icon: string;
+  control: 'toggle' | 'check';
+  active?: boolean;
+  selected?: boolean;
+  showIcon?: boolean;
+  showKbd?: boolean;
+  kbd?: string;
+  kbdShowPlus?: boolean;
+  kbdKey?: string;
+  category?: 'main' | 'subcategory';
+}
+```
+
+## API Contract
+
+### Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>language-tooltip</td><td>string</td><td>Language</td><td>Language button tooltip text.</td></tr>
+    <tr><td>language-kbd-label</td><td>string</td><td>Ctrl</td><td>Language button tooltip primary key label.</td></tr>
+    <tr><td>language-kbd-key</td><td>string</td><td>L</td><td>Language button tooltip secondary key.</td></tr>
+    <tr><td>language-kbd-show-plus</td><td>boolean attr</td><td>true</td><td>Shows plus operator in language tooltip.</td></tr>
+    <tr><td>language-aria-label</td><td>string</td><td>Language</td><td>ARIA label for language button.</td></tr>
+    <tr><td>accessibility-tooltip</td><td>string</td><td>Accessibility</td><td>Accessibility button tooltip text.</td></tr>
+    <tr><td>accessibility-kbd-label</td><td>string</td><td>Ctrl</td><td>Accessibility button tooltip primary key label.</td></tr>
+    <tr><td>accessibility-kbd-key</td><td>string</td><td>A</td><td>Accessibility button tooltip secondary key.</td></tr>
+    <tr><td>accessibility-kbd-show-plus</td><td>boolean attr</td><td>true</td><td>Shows plus operator in accessibility tooltip.</td></tr>
+    <tr><td>accessibility-aria-label</td><td>string</td><td>Accessibility</td><td>ARIA label for accessibility button.</td></tr>
+    <tr><td>about-tooltip</td><td>string</td><td>About</td><td>About tooltip text.</td></tr>
+    <tr><td>about-kbd-label</td><td>string</td><td>Ctrl</td><td>About tooltip primary key label.</td></tr>
+    <tr><td>about-kbd-key</td><td>string</td><td>I</td><td>About tooltip secondary key.</td></tr>
+    <tr><td>about-kbd-show-plus</td><td>boolean attr</td><td>true</td><td>Shows plus operator in about tooltip.</td></tr>
+    <tr><td>about-aria-label</td><td>string</td><td>About</td><td>ARIA label for avatar button.</td></tr>
+    <tr><td>avatar-src</td><td>string</td><td>https://thispersondoesnotexist.com/random-person.jpeg</td><td>Avatar image source.</td></tr>
+    <tr><td>avatar-alt</td><td>string</td><td>Profile face</td><td>Avatar image alt text.</td></tr>
+    <tr><td>disabled</td><td>boolean attr</td><td>false</td><td>Disables all menu triggers and avatar action.</td></tr>
+  </tbody>
+</table>
+
+### Emitted Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ds-navigation-menu-language</td><td>true / true</td><td>-</td><td>Language icon button clicked.</td></tr>
+    <tr><td>ds-navigation-menu-accessibility</td><td>true / true</td><td>-</td><td>Accessibility icon button clicked.</td></tr>
+    <tr><td>ds-navigation-menu-about</td><td>true / true</td><td>-</td><td>Avatar button clicked.</td></tr>
+    <tr><td>ds-navigation-menu-language-select</td><td>true / true</td><td><code>{'{ id, item }'}</code></td><td>Language menu item selected.</td></tr>
+    <tr><td>ds-navigation-menu-accessibility-select</td><td>true / true</td><td><code>{'{ id, item, items }'}</code></td><td>Accessibility item toggled/selected.</td></tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>Custom Property</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>--ds-navigation-menu-gap</td><td>var(--space-sm)</td><td>Horizontal spacing between groups.</td></tr>
+    <tr><td>--ds-navigation-contextual-width</td><td>260px</td><td>Shared width for both contextual menus.</td></tr>
+    <tr><td>--ds-navigation-icon-color</td><td>var(--color-gray-dark)</td><td>Icon button foreground tone.</td></tr>
+    <tr><td>--ds-navigation-icon-hover-bg</td><td>rgba(0, 0, 0, 0.08)</td><td>Icon button hover surface.</td></tr>
+    <tr><td>--ds-navigation-icon-active-bg</td><td>rgba(0, 0, 0, 0.14)</td><td>Icon button active surface.</td></tr>
+    <tr><td>--ds-navigation-avatar-border</td><td>var(--color-surface-border)</td><td>Avatar border color.</td></tr>
+    <tr><td>--ds-navigation-avatar-border-hover</td><td>var(--color-gray-light)</td><td>Avatar hover border color.</td></tr>
+    <tr><td>--ds-navigation-avatar-bg</td><td>var(--color-bg)</td><td>Avatar background fill.</td></tr>
+  </tbody>
+</table>
+
+## Accessibility
+
+- ARIA labels are delegated to focusable internal controls.
+- Menu tooltips are suppressed while corresponding contextual menu is open.
+- Accessibility classes are reflected from document.documentElement via MutationObserver.
+- Forced colors, high contrast, reduced motion, and dyslexia mode are supported by host-reflected attributes.
+
+## Integration Example
+
+```javascript
+import 'valence/ds-navigation-menu';
+
+const nav = document.createElement('ds-navigation-menu');
+nav.setAttribute('language-tooltip', 'Idioma');
+nav.setAttribute('accessibility-tooltip', 'Acessibilidade');
+
+nav.addEventListener('ds-navigation-menu-language-select', (e) => {
+  console.log('Language:', e.detail.id);
+});
+
+nav.addEventListener('ds-navigation-menu-accessibility-select', (e) => {
+  console.log('Accessibility update:', e.detail);
+});
+
+document.body.appendChild(nav);
+```

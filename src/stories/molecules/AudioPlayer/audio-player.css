@@ -19,7 +19,7 @@
   box-sizing: border-box;
   border-radius: var(--radius-md, 8px);
   background: var(--overlay-glass-bg, rgba(235, 235, 240, 0.6));
-  border: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--color-surface-border, rgba(0, 0, 0, 0.08));
+  border: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--color-card-border, rgba(0, 0, 0, 0.062));
   backdrop-filter: blur(var(--overlay-glass-blur, 12px));
   -webkit-backdrop-filter: blur(var(--overlay-glass-blur, 12px));
   font-family: var(--font-family, sans-serif);
@@ -36,7 +36,7 @@
 }
 
 .case-audio-player ds-button {
-  --icon-size: var(--size-icon-md, 20px); 
+  --ds-button-size: var(--size-icon-md, 20px); 
 }
 
 /* Vertical ds-divider Host Sizing Overrides */
@@ -44,7 +44,7 @@ ds-divider {
   height: 16px;
   flex-shrink: 0;
   align-self: center;
-  --custom-margin: 0;
+  --ds-divider-margin: 0;
 }
 
 /* Collapsing header container */
@@ -141,9 +141,9 @@ ds-tooltip {
 /* Neutral Gray Volume slider mapping to exact ds-seek-bar sub-atomic tokens */
 .volume-seek {
   width: 72px;
-  --custom-fill-bg: var(--color-gray-med, #777777); 
-  --custom-knob-bg: var(--color-gray-dark, #323232); 
-  --custom-track-bg: var(--color-surface-border, rgba(0,0,0,0.08));
+  --ds-seek-bar-fill-bg: var(--color-gray-med, #777777); 
+  --ds-seek-bar-knob-bg: var(--color-gray-dark, #323232); 
+  --ds-seek-bar-track-bg: var(--color-surface-border, rgba(0,0,0,0.08));
 }
 
 
@@ -194,9 +194,9 @@ ds-tooltip {
 }
 
 :host([a11y-dark-mode]) .volume-seek {
-  --custom-fill-bg: var(--color-gray-light, #B2B2B2) !important;
-  --custom-knob-bg: var(--color-white, #FFFFFF) !important;
-  --custom-track-bg: rgba(255, 255, 255, 0.16) !important;
+  --ds-seek-bar-fill-bg: var(--color-gray-light, #B2B2B2) !important;
+  --ds-seek-bar-knob-bg: var(--color-white, #FFFFFF) !important;
+  --ds-seek-bar-track-bg: rgba(255, 255, 255, 0.16) !important;
 }
 
 :host([a11y-dark-mode]) .audio-time-label {

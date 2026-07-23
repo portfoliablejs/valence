@@ -1,0 +1,260 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Video Controls [v1.0.0]/Architecture" />
+
+# `ds-video-controls`
+
+The `ds-video-controls` component is an interactive **controlled** Molecule designed to render quality, highly accessible playback buttons for floating, compact overlay video systems. It aggregates custom `ds-button` Atoms (configured as `variant="floating"` and `icon-variant="fill"` switches) and nested `ds-tooltip` cues.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host binds attributes (`playing`, `muted`, `cc-enabled`, `speed`, `label-*`) downstream to swap control icons, toggle active highlighting, and configure translations.
+* **Events Out (`ds-video-action`):** Selecting any control switch fires a unified custom event payload indicating the selected action name (`'play-pause'`, `'mute'`, `'cc'`, `'speed'`, or `'stop'`) upstream for video state management.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["ds-video-controls (Shadow DOM Composition)"]
+          Component["ds-video-controls"]
+          CcBtn["ds-button (CC)"]
+          MuteBtn["ds-button (Mute)"]
+          SpeedBtn["ds-button (Speed)"]
+          PlayBtn["ds-button (Play)"]
+          StopBtn["ds-button (Stop)"]
+      end
+
+      State -->|"1. State In: playing / muted / cc-enabled / speed / labels"| Component
+      Component -->|"2. Render Icons"| CcBtn
+      Component -->|"2. Render Icons"| MuteBtn
+      Component -->|"2. Render Icons"| SpeedBtn
+      Component -->|"2. Render Icons"| PlayBtn
+      Component -->|"2. Render Icons"| StopBtn
+      
+      CcBtn -->|"3. Event Out: ds-video-action { action: 'cc' }"| State
+      MuteBtn -->|"3. Event Out: ds-video-action { action: 'mute' }"| State
+      SpeedBtn -->|"3. Event Out: ds-video-action { action: 'speed' }"| State
+      PlayBtn -->|"3. Event Out: ds-video-action { action: 'play-pause' }"| State
+      StopBtn -->|"3. Event Out: ds-video-action { action: 'stop' }"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+      style CcBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style MuteBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style SpeedBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style PlayBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style StopBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-video-controls` component seals its internal layouts completely, nesting all button and tooltip structures directly within its Shadow DOM boundaries. No public slot targets are exposed.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Projects no content. Control buttons are fully encapsulated.</td>
+      <td>Renders standard captions, mute, speed, play, and return buttons.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsVideoControlsState {
+  playing: boolean;
+  muted: boolean;
+  ccEnabled: boolean;
+  speed: '0.75X' | '1X' | '1.25X' | '1.5X' | '1.75X' | '2X';
+}
+
+export interface DsVideoControlsLabels {
+  'label-play'?: string;
+  'label-pause'?: string;
+  'label-cc-on'?: string;
+  'label-cc-off'?: string;
+  'label-mute'?: string;
+  'label-unmute'?: string;
+  'label-speed'?: string;
+  'label-return'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`playing`</td>
+      <td>`playing`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Sets play/pause visualization state.</td>
+    </tr>
+    <tr>
+      <td>`muted`</td>
+      <td>`muted`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Sets active volume mute visualization state.</td>
+    </tr>
+    <tr>
+      <td>`ccEnabled`</td>
+      <td>`cc-enabled`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Sets active captions (CC) highlighting visualization state.</td>
+    </tr>
+    <tr>
+      <td>`speed`</td>
+      <td>`speed`</td>
+      <td>`string`</td>
+      <td>`'1X'`</td>
+      <td>Configures active speed rate gauge (`'0.75X'`, `'1X'`, etc.).</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-video-action`</td>
+      <td>`true` / `true`</td>
+      <td>`{ action: DsVideoControlsAction }`</td>
+      <td>Dispatched when users select any button trigger on the toolbar, passing action keywords upstream.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+This composite molecule overrides sub-atomic properties on child `ds-button` elements to ensure unified sizes:
+* `ds-button`: Overridden to use `variant="floating"` and `icon-variant="fill"` to guarantee round, compact clickable targets.
+
+Additional mobile-responsive layout custom overrides:
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-video-controls-bg`</td>
+      <td>`var(--color-player-bg)`</td>
+      <td>Overrides background color on mobile views.</td>
+    </tr>
+    <tr>
+      <td>`--ds-video-controls-border-width`</td>
+      <td>`var(--border-width-thin)`</td>
+      <td>Overrides container border thickness on mobile views.</td>
+    </tr>
+    <tr>
+      <td>`--ds-video-controls-border-color`</td>
+      <td>`var(--color-bg)`</td>
+      <td>Overrides container border line color on mobile views.</td>
+    </tr>
+    <tr>
+      <td>`--ds-video-controls-radius`</td>
+      <td>`50px`</td>
+      <td>Overrides container border corner rounding on mobile views.</td>
+    </tr>
+    <tr>
+      <td>`--ds-video-controls-shadow`</td>
+      <td>`0 10px 30px rgba(0,0,0,0.15)`</td>
+      <td>Overrides container drop shadows.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Button Delegation:** Replaces legacy markup with compliant `<ds-button>` wrappers, enabling native keyboard focus loops, hover scaling, and keyboard triggers.
+* **Screen Reader Isolation:** Employs nested tooltip descriptions with keyboard shortcuts (`show-kbd="true"` and `kbd-label`). Screen readers are instructed to ignore background decorative graphics.
+* **Zero i18n Localization:** Supports complete multi-language overrides by exposing custom `label-[control]` attributes (e.g., `label-play`, `label-cc-on`) directly.
+* **Global Access Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags:
+  * `.a11y-dark-mode`: Swaps container background to matching dark player HUD tokens.
+  * `.a11y-high-contrast`: Enforces strict AAA monochrome borders and outlines.
+  * `.a11y-dyslexia`: Adjusts tooltip typeface families.
+  * `.a11y-reduce-motion`: Disables hovering scale transitions.
+  * `.a11y-forced-colors`: Employs active Windows system color maps.
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-video-controls';
+
+const controls = document.createElement('ds-video-controls');
+controls.setAttribute('playing', 'true');
+controls.setAttribute('cc-enabled', 'true');
+controls.setAttribute('speed', '1.5X');
+
+// Customized translations
+controls.setAttribute('label-play', 'Iniciar');
+controls.setAttribute('label-pause', 'Pausar');
+
+controls.addEventListener('ds-video-action', (e) => {
+  console.log('Action selected:', e.detail.action);
+});
+
+document.body.appendChild(controls);
+```

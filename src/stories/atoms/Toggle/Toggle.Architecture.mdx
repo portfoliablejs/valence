@@ -1,0 +1,272 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Toggle [v1.0.0]/Architecture" />
+
+# `ds-toggle`
+
+The `ds-toggle` component is an interactive, presentational **controlled** Atom switch designed for binary selection, view toggles, and accessibility switches. It features hardware-accelerated pointer drag tracking, dynamic text label width adjustments, and root class accessibility observer syncs.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host binds attributes (`checked`, `disabled`, `show-icon`, `text-on`, `text-off`, `aria-label`) downstream to toggle toggle checks, block interactions, or render textual cues.
+* **Events Out (`ds-toggle-change`):** Fires a custom event indicating when selection states change via drags, swipes, or keyboard focus interactions.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-toggle"]
+      end
+
+      State -->|"1. State In: checked / disabled / text-on"| Component
+      Component -->|"2. Event Out: ds-toggle-change"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-toggle` component is closed, exposing a default `<slot>` only to project native fallbacks. All visual tracks, fills, text label overlays, and sliders are nested cleanly within its Shadow DOM boundary.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Projected inline DOM elements are hidden; styling is fully encapsulated.</td>
+      <td>Renders sliding mechanical tracks, label containers, and knob icons.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsToggleState {
+  checked: boolean;
+  disabled: boolean;
+  showIcon: boolean;
+  textOn?: string;
+  textOff?: string;
+  ariaLabel?: string;
+}
+
+export interface DsToggleSubAtomicHooks {
+  '--ds-toggle-knob-size'?: string;
+  '--ds-toggle-width'?: string;
+  '--ds-toggle-height'?: string;
+  '--ds-toggle-radius'?: string;
+  '--ds-toggle-bg'?: string;
+  '--ds-toggle-border-width'?: string;
+  '--ds-toggle-border-color'?: string;
+  '--ds-toggle-checked-bg'?: string;
+  '--ds-toggle-knob-bg'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`checked`</td>
+      <td>`checked`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles active binary state. Syncs with nested input checkbox.</td>
+    </tr>
+    <tr>
+      <td>`disabled`</td>
+      <td>`disabled`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Disables pointer drag, click triggers, and keyboard focus paths.</td>
+    </tr>
+    <tr>
+      <td>`showIcon`</td>
+      <td>`show-icon`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Toggles visual line/tick state indicators inside the mechanical sliding knob.</td>
+    </tr>
+    <tr>
+      <td>`textOn`</td>
+      <td>`text-on`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Explicit label text mapped to the active checked track zone.</td>
+    </tr>
+    <tr>
+      <td>`textOff`</td>
+      <td>`text-off`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Explicit label text mapped to the passive unchecked track zone.</td>
+    </tr>
+    <tr>
+      <td>`ariaLabel`</td>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Accessible tag description mapped to hidden switch checkbox element.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-toggle-change`</td>
+      <td>`true` / `true`</td>
+      <td>`{ checked: boolean }`</td>
+      <td>Dispatched when states are flipped via clicks, touch gestures, or keyboard switches.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-toggle-knob-size`</td>
+      <td>`26px`</td>
+      <td>Overrides circular sliding knob diameter.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toggle-width`</td>
+      <td>`52px`</td>
+      <td>Overrides track boundary horizontal width.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toggle-height`</td>
+      <td>`var(--size-height-sm)`</td>
+      <td>Overrides track boundary vertical height.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toggle-radius`</td>
+      <td>`var(--radius-pill)`</td>
+      <td>Overrides track container corner border-radius.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toggle-bg`</td>
+      <td>`var(--color-gray-xlight)` / `var(--color-surface)`</td>
+      <td>Overrides unchecked track background color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toggle-border-width`</td>
+      <td>`var(--border-width-thin)`</td>
+      <td>Overrides track outline frame stroke thickness.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toggle-border-color`</td>
+      <td>`var(--color-gray-light)` / `var(--color-surface-border)`</td>
+      <td>Overrides track outline frame boundary colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toggle-checked-bg`</td>
+      <td>`var(--color-accent)`</td>
+      <td>Overrides checked track background fills.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toggle-knob-bg`</td>
+      <td>`var(--color-white)` / `var(--color-gray-dark)`</td>
+      <td>Overrides sliding knob background fill colors.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Focus & Role Contracts:** Places a hidden `<input type="checkbox" role="switch">` inside the Shadow DOM to delegate screen reader announcements and support focus flows.
+* **ARIA Host Scrubbing:** Automatically purges Light DOM `aria-label` custom attributes on the host custom element and projects them down to the focusable checkbox.
+* **Global Access Syncing:** Uses a `MutationObserver` on the HTML root element to capture visual preferences:
+  * `.a11y-dark-mode`: Adjusts default track contrast and shifts unchecked knobs to dark grays.
+  * `.a11y-high-contrast`: Enforces clear AAA solid black tracks and bordered white knobs.
+  * `.a11y-dyslexia`: Overrides track label typefaces with Comic Sans MS.
+  * `.a11y-reduce-motion`: Forces immediate 0ms snappings and halts pointer drag tracking.
+  * `.a11y-forced-colors`: Employs Windows active system colors (`Canvas`, `Highlight`, `HighlightText`, `GrayText`).
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-toggle';
+
+const toggle = document.createElement('ds-toggle');
+toggle.setAttribute('text-on', 'ON');
+toggle.setAttribute('text-off', 'OFF');
+toggle.setAttribute('checked', '');
+toggle.setAttribute('aria-label', 'System audio toggle');
+
+// Clean sub-atomic overrides
+toggle.style.setProperty('--ds-toggle-radius', '2px');
+toggle.style.setProperty('--ds-toggle-checked-bg', 'var(--color-success)');
+
+toggle.addEventListener('ds-toggle-change', (e) => {
+  console.log('Toggle flipped! Checked status:', e.detail.checked);
+});
+
+document.body.appendChild(toggle);
+```

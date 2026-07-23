@@ -1,0 +1,207 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as MetricCardStories from './MetricCard.stories';
+
+<Meta title="Atoms/Metric Card [v1.0.0]/Architecture"/>
+
+# `ds-metric-card`
+
+The `ds-metric-card` component is a **stateless (presentational)** Atom designed for displaying metric figures, key performance indicators (KPIs), directional trends, and summary statistics across portfolio case studies and dashboard cards.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **Unidirectional Data Flow** pattern:
+* **State In (`value`, `label`, `prefix`, `suffix`, `variant`, `treatment`, `size`, `trend`, `icon`):** The host application binds primitive attributes downstream onto the host element tag.
+* **Passive Presentation:** The component contains zero business logic, performs no internal calculations, and renders strictly what is passed downstream.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host SPA / App Shell"]
+          direction TB
+          State["App State / Case Study Data"]
+      end
+
+      subgraph WebComp["Presentational Web Component"]
+          MetricCard["ds-metric-card"]
+      end
+
+      State -->|"1. State In<br/>value = '18', label = 'Days', variant = 'success'"| MetricCard
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style MetricCard fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-metric-card` component seals its Shadow DOM bounds, rendering values, prefix/suffix units, and icons directly into internal text containers.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Projects no slot content. Metric structure is fully managed via observed attributes.</td>
+      <td>Renders `--` and `Metric` when attributes are unassigned.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`value`</td>
+      <td>`value`</td>
+      <td>`string`</td>
+      <td>`'--'`</td>
+      <td>Primary metric value or statistic string displayed in bold copy.</td>
+    </tr>
+    <tr>
+      <td>`label`</td>
+      <td>`label`</td>
+      <td>`string`</td>
+      <td>`'Metric'`</td>
+      <td>Supporting label text displayed beneath the primary value.</td>
+    </tr>
+    <tr>
+      <td>`prefix`</td>
+      <td>`prefix`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Unit symbol placed directly before the primary value (e.g., `$`, `+`).</td>
+    </tr>
+    <tr>
+      <td>`suffix`</td>
+      <td>`suffix`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Unit symbol placed directly after the primary value (e.g., `%`, `h+`).</td>
+    </tr>
+    <tr>
+      <td>`variant`</td>
+      <td>`variant`</td>
+      <td>`'default' \| 'success' \| 'accent' \| 'warning' \| 'error'`</td>
+      <td>`'default'`</td>
+      <td>Semantic accent color theme for borders and trend indicators.</td>
+    </tr>
+    <tr>
+      <td>`treatment`</td>
+      <td>`treatment`</td>
+      <td>`'border-left' \| 'surface' \| 'minimal'`</td>
+      <td>`'border-left'`</td>
+      <td>Framing style determining left border presence and surface background fill.</td>
+    </tr>
+    <tr>
+      <td>`size`</td>
+      <td>`size`</td>
+      <td>`'sm' \| 'md' \| 'lg'`</td>
+      <td>`'md'`</td>
+      <td>Density scale controlling font sizing and container padding.</td>
+    </tr>
+    <tr>
+      <td>`trend`</td>
+      <td>`trend`</td>
+      <td>`'up' \| 'down' \| 'neutral'`</td>
+      <td>`null`</td>
+      <td>Renders a directional arrow icon next to the primary metric value.</td>
+    </tr>
+    <tr>
+      <td>`icon`</td>
+      <td>`icon`</td>
+      <td>`string`</td>
+      <td>`null`</td>
+      <td>Optional sub-atomic `<ds-icon>` name rendered beside the label.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-metric-card-border-color`</td>
+      <td>`var(--color-gray-xlight, #D9D9D9)`</td>
+      <td>Overrides left border indicator color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-metric-card-bg`</td>
+      <td>`transparent`</td>
+      <td>Overrides card surface background fill.</td>
+    </tr>
+    <tr>
+      <td>`--ds-metric-card-padding`</td>
+      <td>`2px 0 2px 10px`</td>
+      <td>Overrides internal card container padding.</td>
+    </tr>
+    <tr>
+      <td>`--ds-metric-card-value-color`</td>
+      <td>`var(--color-black, #000000)`</td>
+      <td>Overrides metric value font color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-metric-card-label-color`</td>
+      <td>`var(--color-gray-med, #777777)`</td>
+      <td>Overrides metric label font color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-metric-card-value-size`</td>
+      <td>`13px`</td>
+      <td>Overrides metric value font size.</td>
+    </tr>
+    <tr>
+      <td>`--ds-metric-card-label-size`</td>
+      <td>`11px`</td>
+      <td>Overrides metric label font size.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **ARIA Scrubbing:** Reads explicit `aria-label` or auto-generates composite accessible reading labels (`${prefix}${value}${suffix} ${label}`) and delegates them to the inner Shadow DOM container.
+* **Global Accessibility Propagation:** Listens to class changes on `document.documentElement` via `MutationObserver` to sync accessibility modes:
+  * `.a11y-dark-mode`: Adjusts border, background, and text contrast levels.
+  * `.a11y-high-contrast`: Enforces thick 3px white border indicators.
+  * `.a11y-large-text`: Scales metric value and label font sizes.
+  * `.a11y-dyslexia`: Applies high-legibility letter spacing and font stacks.

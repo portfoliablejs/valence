@@ -17,7 +17,20 @@ export class AudioPlayer extends HTMLElement {
       'auto-scroll',
       'volume',
       'muted',
-      'variant'
+      'variant',
+      'label-reader',
+      'label-play',
+      'label-pause',
+      'label-mute',
+      'label-unmute',
+      'label-speed',
+      'label-hide',
+      'label-show',
+      'label-autoscroll-on',
+      'label-autoscroll-off',
+      'label-volume',
+      'label-volume-level',
+      'label-audio-pos'
     ];
   }
 
@@ -27,7 +40,7 @@ export class AudioPlayer extends HTMLElement {
     this.isDraggingVolume = false;
 
     // Compressed HTML template string prevents ghost text nodes inside Shadow DOM layouts
-    this.shadowRoot.innerHTML = `<style>${css}</style><div class="case-audio-player" tabindex="0" role="region" aria-label="Audio Player"><div class="audio-player-header"><span>Reader</span></div><div class="audio-player-controls-row"><div class="tooltip-wrapper"><ds-button tabindex="0" variant="icon" class="play-btn" icon="play-fill" aria-label="Play"></ds-button><ds-tooltip class="play-tooltip" text="Play" show-kbd="" kbd-label="⇧ Shift" kbd-show-plus="" kbd-key="p" position="top"></ds-tooltip></div><ds-seek-bar class="audio-seek" percent="0" show-tooltip="false" aria-label="Audio position"></ds-seek-bar><span class="audio-time-label">0:00 / 0:00</span><ds-divider orientation="vertical"></ds-divider><div class="volume-container"><div class="tooltip-wrapper"><ds-button tabindex="0" variant="icon" class="volume-btn" icon="volume-on" aria-label="Mute sound"></ds-button><ds-tooltip class="volume-tooltip" text="Mute" show-kbd="" kbd-label="⇧ Shift" kbd-show-plus="" kbd-key="m" position="top"></ds-tooltip></div><div class="volume-seek-wrapper tooltip-wrapper"><ds-seek-bar class="volume-seek" percent="100" show-tooltip="false" aria-label="Volume level"></ds-seek-bar><ds-tooltip class="volume-seek-tooltip" text="Volume" position="top"></ds-tooltip></div></div><ds-divider orientation="vertical"></ds-divider><div class="tooltip-wrapper"><ds-button tabindex="0" variant="icon" class="speed-btn" icon="playback-1x" aria-label="Playback speed"></ds-button><ds-tooltip class="speed-tooltip" text="Speed" show-kbd="" kbd-label="⇧ Shift" kbd-show-plus="" kbd-key="s" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button tabindex="0" variant="icon" class="hide-btn" icon="eye-open" aria-label="Hide while scrolling"></ds-button><ds-tooltip class="hide-tooltip" text="Hide while scrolling" show-kbd="" kbd-label="⇧ Shift" kbd-show-plus="" kbd-key="h" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button tabindex="0" variant="icon" class="autoscroll-btn" icon="autoscroll" aria-label="Auto-scroll with audio"></ds-button><ds-tooltip class="autoscroll-tooltip" text="Auto-scroll with audio" show-kbd="" kbd-label="⇧ Shift" kbd-show-plus="" kbd-key="a" position="top"></ds-tooltip></div></div></div>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><div class="case-audio-player" tabindex="0" role="region" aria-label="Audio Player"><div class="audio-player-header"><span class="header-label">Reader</span></div><div class="audio-player-controls-row"><div class="tooltip-wrapper"><ds-button tabindex="0" variant="icon" class="play-btn" icon="play-fill" aria-label="Play"></ds-button><ds-tooltip class="play-tooltip" text="Play" show-kbd="" kbd-label="⇧ Shift" kbd-show-plus="" kbd-key="p" position="top"></ds-tooltip></div><ds-seek-bar class="audio-seek" percent="0" show-tooltip="false" aria-label="Audio position"></ds-seek-bar><span class="audio-time-label">0:00 / 0:00</span><ds-divider orientation="vertical"></ds-divider><div class="volume-container"><div class="tooltip-wrapper"><ds-button tabindex="0" variant="icon" class="volume-btn" icon="volume-on" aria-label="Mute sound"></ds-button><ds-tooltip class="volume-tooltip" text="Mute" show-kbd="" kbd-label="⇧ Shift" kbd-show-plus="" kbd-key="m" position="top"></ds-tooltip></div><div class="volume-seek-wrapper tooltip-wrapper"><ds-seek-bar class="volume-seek" percent="100" show-tooltip="false" aria-label="Volume level"></ds-seek-bar><ds-tooltip class="volume-seek-tooltip" text="Volume" position="top"></ds-tooltip></div></div><ds-divider orientation="vertical"></ds-divider><div class="tooltip-wrapper"><ds-button tabindex="0" variant="icon" class="speed-btn" icon="playback-1x" aria-label="Playback speed"></ds-button><ds-tooltip class="speed-tooltip" text="Speed" show-kbd="" kbd-label="⇧ Shift" kbd-show-plus="" kbd-key="s" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button tabindex="0" variant="icon" class="hide-btn" icon="eye-open" aria-label="Hide while scrolling"></ds-button><ds-tooltip class="hide-tooltip" text="Hide while scrolling" show-kbd="" kbd-label="⇧ Shift" kbd-show-plus="" kbd-key="h" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button tabindex="0" variant="icon" class="autoscroll-btn" icon="autoscroll" aria-label="Auto-scroll with audio"></ds-button><ds-tooltip class="autoscroll-tooltip" text="Auto-scroll with audio" show-kbd="" kbd-label="⇧ Shift" kbd-show-plus="" kbd-key="a" position="top"></ds-tooltip></div></div></div>`;
 
     this.playBtn = this.shadowRoot.querySelector('.play-btn');
     this.playTooltip = this.shadowRoot.querySelector('.play-tooltip');
@@ -134,6 +147,7 @@ export class AudioPlayer extends HTMLElement {
   }
 
   connectedCallback() {
+    this.headerLabel = this.shadowRoot.querySelector('.header-label');
     this._observeRootAccessibility();
     this.addEventListener('keydown', this._onKeyDown);
     window.addEventListener('mouseup', this._onWindowMouseUp);
@@ -290,7 +304,27 @@ export class AudioPlayer extends HTMLElement {
     const hideOnScroll = this.getAttribute('hide-on-scroll') === 'true';
     const autoScroll = this.getAttribute('auto-scroll') === 'true';
     const isMuted = this.getAttribute('muted') === 'true';
-    
+
+    // Fetch localizable strings
+    const labelReader = this.getAttribute('label-reader') || 'Reader';
+    const labelPlay = this.getAttribute('label-play') || 'Play';
+    const labelPause = this.getAttribute('label-pause') || 'Pause';
+    const labelMute = this.getAttribute('label-mute') || 'Mute';
+    const labelUnmute = this.getAttribute('label-unmute') || 'Unmute';
+    const labelSpeed = this.getAttribute('label-speed') || 'Speed';
+    const labelHide = this.getAttribute('label-hide') || 'Hide while scrolling';
+    const labelShow = this.getAttribute('label-show') || 'Show while scrolling';
+    const labelAutoscrollOn = this.getAttribute('label-autoscroll-on') || 'Auto-scroll with audio';
+    const labelAutoscrollOff = this.getAttribute('label-autoscroll-off') || 'Disable auto-scroll';
+    const labelVolume = this.getAttribute('label-volume') || 'Volume';
+    const labelVolumeLevel = this.getAttribute('label-volume-level') || 'Volume level';
+    const labelAudioPos = this.getAttribute('label-audio-pos') || 'Audio position';
+
+    // Header label
+    if (this.headerLabel) {
+      this.headerLabel.textContent = labelReader;
+    }
+
     let rawVolume = parseFloat(this.getAttribute('volume'));
     if (isNaN(rawVolume)) rawVolume = 100;
     const effectiveVolume = isMuted ? 0 : rawVolume;
@@ -298,14 +332,16 @@ export class AudioPlayer extends HTMLElement {
     const progress = duration > 0 ? (time / duration) * 100 : 0;
 
     // Play/Pause
+    const activePlayLabel = isPlaying ? labelPause : labelPlay;
     this.playBtn.setAttribute('icon', isPlaying ? 'pause-fill' : 'play-fill');
-    this.playBtn.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
+    this.playBtn.setAttribute('aria-label', activePlayLabel);
     if (this.playTooltip) {
-      this.playTooltip.setAttribute('text', isPlaying ? 'Pause' : 'Play');
+      this.playTooltip.setAttribute('text', activePlayLabel);
     }
 
     // Audio Position
     this.audioSeekBar.setAttribute('percent', progress.toString());
+    this.audioSeekBar.setAttribute('aria-label', labelAudioPos);
     this.timeLabel.textContent = `${this.formatTime(time)} / ${this.formatTime(duration)}`;
 
     // Volume Dynamic Iconography
@@ -314,32 +350,42 @@ export class AudioPlayer extends HTMLElement {
     else if (effectiveVolume < 33) volumeIcon = 'volume-low';
     else if (effectiveVolume < 67) volumeIcon = 'volume-medium';
 
-    const muteLabel = (isMuted || effectiveVolume === 0) ? 'Unmute' : 'Mute';
+    const activeMuteLabel = (isMuted || effectiveVolume === 0) ? labelUnmute : labelMute;
     this.volumeBtn.setAttribute('icon', volumeIcon);
-    this.volumeBtn.setAttribute('aria-label', muteLabel);
+    this.volumeBtn.setAttribute('aria-label', activeMuteLabel);
     if (this.volumeTooltip) {
-      this.volumeTooltip.setAttribute('text', muteLabel);
+      this.volumeTooltip.setAttribute('text', activeMuteLabel);
     }
     this.volumeSeekBar.setAttribute('percent', effectiveVolume.toString());
+    this.volumeSeekBar.setAttribute('aria-label', labelVolumeLevel);
+    
+    const volSeekTooltip = this.shadowRoot.querySelector('.volume-seek-tooltip');
+    if (volSeekTooltip) {
+      volSeekTooltip.setAttribute('text', labelVolume);
+    }
 
     // Speed Control
     this.speedBtn.setAttribute('icon', this._getSpeedIcon(speed));
-    this.speedBtn.setAttribute('aria-label', `Playback speed ${speed}`);
+    this.speedBtn.setAttribute('aria-label', `${labelSpeed} ${speed}`);
     if (this.speedTooltip) {
-      this.speedTooltip.setAttribute('text', `Speed (${speed})`);
+      this.speedTooltip.setAttribute('text', `${labelSpeed} (${speed})`);
     }
 
     // Scroll States
     this.hideBtn.setAttribute('icon', hideOnScroll ? 'eye-closed' : 'eye-open');
     this.hideBtn.classList.toggle('is-active', hideOnScroll);
+    const activeHideLabel = hideOnScroll ? labelShow : labelHide;
+    this.hideBtn.setAttribute('aria-label', activeHideLabel);
     if (this.hideTooltip) {
-      this.hideTooltip.setAttribute('text', hideOnScroll ? 'Show while scrolling' : 'Hide while scrolling');
+      this.hideTooltip.setAttribute('text', activeHideLabel);
     }
 
     this.autoscrollBtn.setAttribute('icon', autoScroll ? 'autoscroll' : 'autoscroll-closed');
     this.autoscrollBtn.classList.toggle('is-active', autoScroll);
+    const activeAutoscrollLabel = autoScroll ? labelAutoscrollOff : labelAutoscrollOn;
+    this.autoscrollBtn.setAttribute('aria-label', activeAutoscrollLabel);
     if (this.autoscrollTooltip) {
-      this.autoscrollTooltip.setAttribute('text', autoScroll ? 'Disable auto-scroll' : 'Auto-scroll with audio');
+      this.autoscrollTooltip.setAttribute('text', activeAutoscrollLabel);
     }
   }
 }

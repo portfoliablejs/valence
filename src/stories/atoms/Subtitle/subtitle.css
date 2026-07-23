@@ -19,14 +19,14 @@
   will-change: transform;
 
   /* Sub-Atomic Style Hook Overrides with Design Token Fallbacks */
-  background-color: var(--custom-bg, var(--color-gray-dark));
-  color: var(--custom-color, var(--color-white));
-  font-family: var(--custom-font, var(--font-family));
-  padding: var(--custom-padding, var(--space-xs) var(--space-sm));
-  border-radius: var(--custom-radius, var(--radius-sm));
-  border: var(--custom-border-width, var(--border-width-none))
+  background-color: var(--ds-subtitle-bg, var(--color-gray-dark));
+  color: var(--ds-subtitle-color, var(--color-white));
+  font-family: var(--ds-subtitle-font, var(--font-family));
+  padding: var(--ds-subtitle-padding, var(--space-xs) var(--space-sm));
+  border-radius: var(--ds-subtitle-radius, var(--radius-sm));
+  border: var(--ds-subtitle-border-width, var(--border-width-none))
           var(--border-style-solid)
-          var(--custom-border-color, transparent);
+          var(--ds-subtitle-border-color, transparent);
 
   /* Dynamic Responsive Text Scaling Configuration */
   font-size: calc(18px * var(--font-scale-multiplier, 1));
@@ -59,7 +59,7 @@
     max-width: 95vw;
     width: 90%;
     font-size: calc(16px * var(--font-scale-multiplier, 1));
-    padding: var(--custom-padding, var(--space-xs) var(--space-md));
+    padding: var(--ds-subtitle-padding, var(--space-xs) var(--space-md));
     line-height: 1.2;
   }
 }
@@ -70,9 +70,9 @@
 
 /* --- DARK MODE CONFIGURATION --- */
 :host([a11y-dark-mode]) .custom-subtitle {
-  background-color: var(--custom-bg, var(--color-player-bg));
-  color: var(--custom-color, var(--color-white));
-  border: var(--border-width-thin) var(--border-style-solid) var(--color-card-border);
+  background-color: var(--ds-subtitle-bg, var(--color-player-bg));
+  color: var(--ds-subtitle-color, var(--color-white));
+  border: var(--ds-subtitle-border-width, var(--border-width-thin)) var(--border-style-solid) var(--color-card-border);
 }
 
 /* --- HIGH CONTRAST CONFIGURATION (WCAG AAA Compliance) --- */

@@ -1,0 +1,181 @@
+/* ==========================================================================
+   1. HOST GEOMETRY & VARIANTS
+   ========================================================================== */
+:host {
+  display: block;
+}
+
+/* ==========================================================================
+   2. BASE STRUCTURE & SUB-ATOMIC HOOKS
+   ========================================================================== */
+.summary-metric-card {
+  box-sizing: border-box;
+  background-color: var(--ds-metric-card-bg, transparent);
+  border: none;
+  border-left: var(--border-width-medium, 2px) var(--border-style-solid, solid) var(--ds-metric-card-border-color, var(--color-gray-xlight, #D9D9D9));
+  padding: var(--ds-metric-card-padding, 2px 0 2px 10px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-metric-card-gap, 2px);
+  font-family: var(--font-family, sans-serif);
+  border-radius: var(--ds-metric-card-radius, 0px);
+  transition: border-color var(--anim-fast, 0.2s) var(--ease-fluid, ease),
+              background-color var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+}
+
+.value-container {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.metric-value {
+  font-size: var(--ds-metric-card-value-size, 13px);
+  font-weight: 600;
+  color: var(--ds-metric-card-value-color, var(--color-black, #000000));
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.metric-prefix,
+.metric-suffix {
+  font-size: calc(var(--ds-metric-card-value-size, 13px) * 0.85);
+  font-weight: 500;
+  color: var(--ds-metric-card-value-color, var(--color-black, #000000));
+  opacity: 0.85;
+}
+
+.trend-icon {
+  margin-right: 2px;
+  align-self: center;
+  color: var(--ds-metric-card-border-color, var(--color-black, #000000));
+}
+
+.label-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.label-icon {
+  color: var(--ds-metric-card-label-color, var(--color-gray-med, #777777));
+}
+
+.metric-label {
+  font-size: var(--ds-metric-card-label-size, 11px);
+  color: var(--ds-metric-card-label-color, var(--color-gray-med, #777777));
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   3. SEMANTIC VARIANTS (:host([variant="..."]))
+   ========================================================================== */
+:host([variant="success"]) {
+  --ds-metric-card-border-color: var(--color-success, #34C759);
+}
+
+:host([variant="accent"]) {
+  --ds-metric-card-border-color: var(--color-accent, #2B71F0);
+}
+
+:host([variant="warning"]) {
+  --ds-metric-card-border-color: #FF9500;
+}
+
+:host([variant="error"]) {
+  --ds-metric-card-border-color: var(--color-error, #FF3B30);
+}
+
+/* ==========================================================================
+   4. SURFACE TREATMENTS (:host([treatment="..."]))
+   ========================================================================== */
+:host([treatment="surface"]) .summary-metric-card {
+  --ds-metric-card-bg: var(--color-surface, #F2F2F7);
+  --ds-metric-card-padding: 10px 14px;
+  --ds-metric-card-radius: var(--radius-md, 8px);
+}
+
+:host([treatment="minimal"]) .summary-metric-card {
+  border-left: none;
+  --ds-metric-card-padding: 0px;
+}
+
+/* ==========================================================================
+   5. SIZE DENSITY SCALES (:host([size="..."]))
+   ========================================================================== */
+:host([size="sm"]) {
+  --ds-metric-card-value-size: 11px;
+  --ds-metric-card-label-size: 10px;
+  --ds-metric-card-padding: 1px 0 1px 6px;
+}
+
+:host([size="lg"]) {
+  --ds-metric-card-value-size: 24px;
+  --ds-metric-card-label-size: 13px;
+  --ds-metric-card-padding: 4px 0 4px 14px;
+}
+
+:host([size="lg"][treatment="surface"]) .summary-metric-card {
+  --ds-metric-card-padding: 16px 20px;
+}
+
+/* ==========================================================================
+   6. ACCESSIBILITY MODE OVERRIDES
+   ========================================================================== */
+:host([a11y-dark-mode]) .summary-metric-card {
+  --ds-metric-card-value-color: var(--color-white, #FFFFFF);
+  --ds-metric-card-label-color: var(--color-text-muted, #B2B2B2);
+  --ds-metric-card-border-color: var(--color-surface-border, rgba(255, 255, 255, 0.12));
+}
+
+:host([a11y-dark-mode][variant="success"]) { --ds-metric-card-border-color: #30D158; }
+:host([a11y-dark-mode][variant="accent"]) { --ds-metric-card-border-color: #0A84FF; }
+:host([a11y-dark-mode][variant="error"]) { --ds-metric-card-border-color: #FF453A; }
+
+:host([a11y-dark-mode][treatment="surface"]) .summary-metric-card {
+  --ds-metric-card-bg: var(--color-surface, #1C1C1E);
+}
+
+:host([a11y-high-contrast]) .summary-metric-card {
+  border-left: var(--border-width-thick, 3px) solid #FFFFFF !important;
+}
+
+:host([a11y-high-contrast]) .metric-value,
+:host([a11y-high-contrast]) .metric-label,
+:host([a11y-high-contrast]) .metric-prefix,
+:host([a11y-high-contrast]) .metric-suffix {
+  color: #FFFFFF !important;
+}
+
+:host([a11y-forced-colors]) .summary-metric-card {
+  forced-color-adjust: none !important;
+  border-left-color: CanvasText !important;
+}
+
+:host([a11y-forced-colors]) .metric-value,
+:host([a11y-forced-colors]) .metric-label {
+  forced-color-adjust: none !important;
+  color: CanvasText !important;
+}
+
+@media (forced-colors: active) {
+  .summary-metric-card {
+    forced-color-adjust: none !important;
+    border-left-color: CanvasText !important;
+  }
+  .metric-value,
+  .metric-label {
+    forced-color-adjust: none !important;
+    color: CanvasText !important;
+  }
+}
+
+:host([a11y-large-text][size="sm"]) { --ds-metric-card-value-size: 14px; --ds-metric-card-label-size: 12px; }
+:host([a11y-large-text]) { --ds-metric-card-value-size: 16px; --ds-metric-card-label-size: 14px; }
+:host([a11y-large-text][size="lg"]) { --ds-metric-card-value-size: 30px; --ds-metric-card-label-size: 16px; }
+
+:host([a11y-dyslexia]) .summary-metric-card {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+}

@@ -2,9 +2,9 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Getting Started/Disclaimers" />
 
-# Legal & Brand Rights Protection Disclaimer
+# Legal, Brand & Software Rights Protection Disclaimer
 
-This document outlines the intellectual property rights, trademark ownerships, and non-affiliation statements regarding the physical hardware frames, device mockups, and brand designations rendered within the `<ds-thumbnail>` component and associated device catalogs.
+This document outlines the intellectual property rights, trademark ownerships, third-party software licensing, and non-affiliation statements regarding physical hardware frames, device mockups, brand designations, and open-source libraries integrated within the design system.
 
 ---
 
@@ -97,7 +97,54 @@ Below are explicit trademark acknowledgments for all supported hardware ecosyste
 
 ---
 
-## 4. Guidelines for Portfolio Builders & End Users
+## 4. Open-Source Software & Third-Party Dependencies
+
+This design system integrates independent open-source libraries and public infrastructure services to power visual diagramming, syntax highlighting, smooth interaction mechanics, documentation generation, and domain routing:
+
+<table style={{ width: '100%', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: 'left', width: '18%' }}>Service / Library</th>
+      <th style={{ textAlign: 'left', width: '18%' }}>License</th>
+      <th style={{ textAlign: 'left', width: '27%' }}>Author / Maintainer</th>
+      <th style={{ textAlign: 'left', width: '37%' }}>Functional Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>JS.ORG</strong></td>
+      <td><code>Community / Open Source</code></td>
+      <td>Stefan Ledin & JS.ORG Community</td>
+      <td>Provides dedicated custom domain name resolution and sub-domain allocation (<code>*.js.org</code>) for open-source JavaScript projects and design system documentation hosting.</td>
+    </tr>
+    <tr>
+      <td><strong>Storybook</strong></td>
+      <td><code>MIT License</code></td>
+      <td>OpenJS Foundation / Chromatic & Contributors</td>
+      <td>Drives isolated component previewing, automated accessibility auditing, visual regression testing, and interactive documentation generation.</td>
+    </tr>
+    <tr>
+      <td><strong>Mermaid.js</strong></td>
+      <td><code>MIT License</code></td>
+      <td>Knut Sveidqvist & Contributors</td>
+      <td>Powers the <code>&lt;mermaid-diagram&gt;</code> web component for dynamic chart and architecture diagram rendering inside documentation and case study articles.</td>
+    </tr>
+    <tr>
+      <td><strong>Lenis</strong></td>
+      <td><code>MIT License</code></td>
+      <td>Darkroom Engineering</td>
+      <td>Drives smooth mouse wheel momentum scrolling and inertial motion physics across desktop viewports.</td>
+    </tr>
+    <tr>
+      <td><strong>Prism.js</strong></td>
+      <td><code>MIT License</code></td>
+      <td>Lea Verou & Contributors</td>
+      <td>Provides lightweight, real-time code syntax tokenization and syntax highlighting within the <code>ds-article</code> reading shell.</td>
+    </tr>
+  </tbody>
+</table>
+
+## 5. Guidelines for Portfolio Builders & End Users
 
 When using this component inside an open-source portfolio builder, Web application, or exported static site:
 

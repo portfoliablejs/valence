@@ -1,0 +1,73 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Check [v1.0.0]/Changelog"/>
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-16
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational selection indicator component (`ds-check`) featuring optional background container framing, smooth scale/opacity SVG transitions, and full keyboard navigation.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-check`</td>
+      <td>Initial stable release of custom checkbox icon component with vector animation paths.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-check`</td>
+      <td>Support for the `has-background` attribute to render framing border containers.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Integrates root class observer syncing dark mode, contrast, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`ds-check`</td>
+      <td>Compressed inner HTML template strings to completely eliminate whitespace text nodes inside Shadow DOM boundaries.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`ds-check`</td>
+      <td>Disabled focus and keyboard click suppression logic to ignore all interaction event triggers when `disabled` is active.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Selection Indicator Atom:** Created `<ds-check>` serving as an animated vector completion checkmark.
+- **Surface Containers:** Smooth scale-opacity check transitions with optional background framing when `has-background` is active.
+- **Root Class Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags.
+- **Thematic Overrides:** Bound outer dimensions, stroke vector color, background container fill, and border ring colors to the standard `--ds-check-*` naming layout.
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `Check.stories.js`.
+
+### Fixed
+- **Shadow DOM Layout Nodes:** Compressed inner Shadow DOM HTML templates on single lines to resolve ghost whitespace layout nodes.
+- **Keyboard & Disabled Focus Handling:** Suppressed keyboard spacebar/enter triggers and automatically assigned `tabindex="-1"` when the `disabled` attribute is present.
+
+---
+
+*This changelog is specific to the `<ds-check>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

@@ -1,0 +1,216 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Loader [v1.0.0]/Architecture" />
+
+# `ds-loader`
+
+The `ds-loader` component is a **presentational** Atom designed to render a circular loading spinner with robust accessibility support, semantic layout overrides, and full synchronization with application state shells.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host application binds primitive attributes (`visible`, `aria-label`, `size`) to control rendering states and dimensions.
+* **Events Out:** As a presentational indicator, the component is completely stateless and passive, emitting no action-oriented custom events. It relies entirely on screen-reader polite announcers inside its Shadow DOM boundaries.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-loader"]
+      end
+
+      State -->|"1. State In: visible / aria-label / size"| Component
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-loader` component is a self-contained visual indicator that completely encapsulates its spinning graphics. It does not expose public slot targets to ensure strict uniformity across visual layout environments.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Internal circular vectors only; host content is not projected.</td>
+      <td>Renders standard loading spinner graphics inside the shadow root.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsLoaderState {
+  visible: boolean;
+  ariaLabel: string;
+  size?: string;
+}
+
+export interface DsLoaderSubAtomicHooks {
+  '--ds-loader-size'?: string;
+  '--ds-loader-bg'?: string;
+  '--ds-loader-radius'?: string;
+  '--ds-loader-color'?: string;
+  '--ds-loader-shadow'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`visible`</td>
+      <td>`visible`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Toggles the structural opacity, pointer-events, and visibility states.</td>
+    </tr>
+    <tr>
+      <td>`ariaLabel`</td>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`'Loading'`</td>
+      <td>The accessible text read aloud by screen readers. Automatically delegated down.</td>
+    </tr>
+    <tr>
+      <td>`size`</td>
+      <td>`size`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Optional layout size override. Maps directly to `--loader-size` token.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`None`</td>
+      <td>`None`</td>
+      <td>`None`</td>
+      <td>This component is strictly presentational and does not emit custom events.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-loader-size`</td>
+      <td>`var(--size-height-lg)`</td>
+      <td>Overrides the outer bounding box dimensions of the spinner.</td>
+    </tr>
+    <tr>
+      <td>`--ds-loader-bg`</td>
+      <td>`var(--color-bg)` / `var(--color-card-bg)`</td>
+      <td>Overrides the circular backdrop surface background color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-loader-radius`</td>
+      <td>`var(--radius-circle)`</td>
+      <td>Overrides the outer container's boundary border-radius.</td>
+    </tr>
+    <tr>
+      <td>`--ds-loader-color`</td>
+      <td>`var(--color-text-primary)`</td>
+      <td>Overrides the active rotating vector stroke foreground color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-loader-shadow`</td>
+      <td>`var(--shadow-md)`</td>
+      <td>Overrides outer backdrop boundary box-shadow dimensions.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Polite Announcements:** Employs an internal `role="status"` and `aria-live="polite"` element wrapper so assistive screen-reader software cleanly triggers updates during buffering.
+* **ARIA Host Scrubbing:** Automatically scrubs the Light DOM host attribute `aria-label` and delegates it into the internal Shadow DOM node, eliminating light validation warnings.
+* **Global Accessibility Propagation:** Integrates `_observeRootAccessibility` to monitor class modifications on the document root element:
+  * `.a11y-dark-mode`: Swaps backdrop shadows and base contrast maps.
+  * `.a11y-high-contrast`: Installs forced binary boundaries and high-contrast borders.
+  * `.a11y-reduce-motion`: Instantly disables rotation keyframe transitions.
+  * `.a11y-forced-colors`: Overrides stroke vectors using active Windows system palette bindings (`CanvasText`).
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-loader';
+
+const loader = document.createElement('ds-loader');
+loader.setAttribute('visible', 'true');
+loader.setAttribute('aria-label', 'Video study resources are buffering...');
+
+// Clean custom property style overrides
+loader.style.setProperty('--ds-loader-bg', 'var(--color-surface-card)');
+loader.style.setProperty('--ds-loader-color', 'var(--color-accent-blue)');
+
+document.body.appendChild(loader);
+```

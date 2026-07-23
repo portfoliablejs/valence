@@ -7,22 +7,22 @@
   pointer-events: none;
   z-index: 10000;
   
-  /* Spatial orchestration constraints[cite: 1] */
+  /* Spatial orchestration constraints */
   --tooltip-gap: 12px; 
   --tooltip-slide: -6px; 
 }
 
 .action-tooltip {
   position: absolute;
-  background: var(--custom-bg, var(--color-overlay-dark));
+  background: var(--ds-tooltip-bg, var(--color-overlay-dark));
   backdrop-filter: blur(8px);
   color: var(--color-white);
   padding: 6px 10px;
-  border-radius: var(--custom-radius, var(--radius-md));
-  /* Include a transparent border by default so it converts cleanly in high-contrast[cite: 1] */
-  border: var(--custom-border-width, var(--border-width-thin, 1px)) 
+  border-radius: var(--ds-tooltip-radius, var(--radius-md));
+  /* Include a transparent border by default so it converts cleanly in high-contrast */
+  border: var(--ds-tooltip-border-width, var(--border-width-thin, 1px)) 
           var(--border-style-solid, solid) 
-          var(--custom-border-color, transparent);
+          var(--ds-tooltip-border-color, transparent);
   font-family: var(--font-family);
   font-weight: 500;
   white-space: nowrap;
@@ -82,8 +82,20 @@
   transform: translateY(-50%) translateX(0);
 }
 
+/* --- POSITIONING VARIANT: BOTTOM-RIGHT --- */
+:host([position="bottom-right"]) .action-tooltip {
+  top: calc(100% + var(--tooltip-gap));
+  left: auto;
+  right: 0;
+  transform: translateY(var(--tooltip-slide));
+}
+
+:host([position="bottom-right"][visible]) .action-tooltip {
+  transform: translateY(0);
+}
+
 /* ==========================================================================
-   ACCESSIBILITY: REDUCED MOTION (BULLETPROOF)[cite: 1, 2]
+   ACCESSIBILITY: REDUCED MOTION (BULLETPROOF)
    ========================================================================== */
 :host([a11y-reduce-motion]) *,
 :host([a11y-reduce-motion]) *::before,
@@ -95,7 +107,7 @@
 }
 
 /* ==========================================================================
-   ACCESSIBILITY: DYSLEXIA FONT[cite: 1, 2]
+   ACCESSIBILITY: DYSLEXIA FONT
    ========================================================================== */
 :host([a11y-dyslexia]) .action-tooltip {
   font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
@@ -104,7 +116,7 @@
 }
 
 /* ==========================================================================
-   ACCESSIBILITY: HIGH CONTRAST (WCAG AAA 21:1)[cite: 1, 2]
+   ACCESSIBILITY: HIGH CONTRAST (WCAG AAA 21:1)
    ========================================================================== */
 :host([a11y-high-contrast]) .action-tooltip {
   background: var(--color-bg) !important;
@@ -115,19 +127,19 @@
 }
 
 /* ==========================================================================
-   ACCESSIBILITY: DARK MODE[cite: 1, 2]
+   ACCESSIBILITY: DARK MODE
    ========================================================================== */
 :host([a11y-dark-mode]) .action-tooltip {
-  background: var(--custom-bg, var(--color-card-bg, #2C2C2E));
-  border: var(--custom-border-width, var(--border-width-thin, 1px)) 
+  background: var(--ds-tooltip-bg, var(--color-card-bg, #2C2C2E));
+  border: var(--ds-tooltip-border-width, var(--border-width-thin, 1px)) 
           var(--border-style-solid, solid) 
-          var(--custom-border-color, rgba(255, 255, 255, 0.15));
+          var(--ds-tooltip-border-color, rgba(255, 255, 255, 0.15));
   color: var(--color-white);
   box-shadow: var(--shadow-lg, 0 4px 12px rgba(0,0,0,0.5));
 }
 
 /* ==========================================================================
-   DISABLED SUPPRESSION (Replaced buggy Safari :host-context)[cite: 1, 2]
+   DISABLED SUPPRESSION (Replaced buggy Safari :host-context)
    ========================================================================== */
 :host([disabled]) .action-tooltip {
   display: none !important;

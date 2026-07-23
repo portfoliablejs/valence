@@ -1,0 +1,34 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Summary/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational summary molecule (`ds-summary`) featuring audio-player glassmorphic styling, localizable text attributes, typing animations, controllable metric grid toggles, and full Storybook metrics integration.
+
+<br />
+
+### Added
+- **Presentational Summary Molecule:** Created `<ds-summary>` composing slotted `ds-metric-card` children.
+- **Glassmorphic Audio-Player Styling:** Aligned container borders, padding, radii, and backdrop filters with `audio-player.css` design token specifications.
+- **Header Label & Icon Clean Up:** Removed AI icon in favor of clean typographic header defaulting to `"Summary"`.
+- **Metrics Toggle Prop:** Added `show-metrics` boolean attribute allowing host applications to turn the slotted metric cards grid on and off.
+- **Full Storybook Metrics Control Integration:** Exposed controls for all slotted `ds-metric-card` props directly inside the Storybook controls panel.
+- **Upstream Completion Event:** Added `ds-summary-complete` CustomEvent payload emitted when typing animation finishes.
+- **Root Class Syncing:** Configured passive `MutationObserver` on `document.documentElement` reflecting global setting cascades (`a11y-dark-mode`, `a11y-high-contrast`, `a11y-large-text`, etc.) downstream as host element boolean attributes.
+
+### Fixed
+- **Sub-Atomic Token Hooks:** Refactored generic variables in `summary.css` to adhere to the `--ds-summary-*` layout standard (`--ds-summary-bg`, `--ds-summary-border-color`, `--ds-summary-header-color`, `--ds-summary-text-color`, `--ds-summary-padding`).
+- **Preview Canvas Clean Up:** Removed canvas prewire wrapper tags from Storybook stories so `<ds-summary>` renders directly inside iframe viewports.
+
+---
+
+*This changelog is specific to the `<ds-summary>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

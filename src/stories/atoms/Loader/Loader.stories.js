@@ -7,7 +7,7 @@ import './Loader';
  * Global component definition detail descriptions mapping clean architectural APIs down to layout layers.
  */
 export default {
-  title: 'Atoms/Loader',
+  title: 'Atoms/Loader [v1.0.0]',
   component: 'ds-loader',
   tags: ['autodocs'],
   parameters: {
@@ -67,8 +67,8 @@ export default {
   },
   render: (args) => {
     const customStyles = [
-      args.backgroundColor ? `--custom-bg: ${args.backgroundColor};` : '',
-      args.iconColor ? `--custom-color: ${args.iconColor};` : ''
+      args.backgroundColor ? `--ds-loader-bg: ${args.backgroundColor};` : '',
+      args.iconColor ? `--ds-loader-color: ${args.iconColor};` : ''
     ].join(' ').trim();
 
     return html`

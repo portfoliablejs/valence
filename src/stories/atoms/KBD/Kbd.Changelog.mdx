@@ -1,0 +1,72 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/KBD [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational keyboard indicator (`ds-kbd`) featuring streamlined theme integration, complete custom property hooks, and comprehensive accessibility coverage.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-kbd`</td>
+      <td>Initial presentational keyboard element class with inline template compression.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-kbd`</td>
+      <td>Support for the `show-plus` and `key` attributes to automatically construct trailing multi-key sequences inside the Shadow DOM boundary.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-kbd`</td>
+      <td>Flexible CSS Custom Property mapping for layout control, including radius, background, border-width, and border-color hooks.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured passive root observer syncing dark mode, high contrast, dyslexia, reduce-motion, and Windows Forced Colors settings.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`Kbd.stories.js`</td>
+      <td>Corrected Storybook sub-atomic property mappings to bind to the standard `--ds-kbd-*` design token custom hooks instead of the generic `--custom-*` overrides.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Initial Presentational Component:** Introduced `<ds-kbd>` built specifically as a stateless, controlled presentational atom.
+- **Shortcut Combinations:** Integrated `show-plus` and `key` attributes to conditionally append combination syntax with the `+` character directly within shadow boundaries.
+- **Root Accessibility Syncing:** Built-in `MutationObserver` on `document.documentElement` to reflect global visual states onto host attributes (`a11y-dark-mode`, `a11y-high-contrast`, `a11y-dyslexia`, `a11y-reduce-motion`, `a11y-forced-colors`).
+- **Thematic Override Hooks:** Standardized variables for backdrop surfaces, radii, and border strokes using the `--ds-kbd-*` naming layout.
+- **Storybook Integration:** Created interactive controls and CSF3 story parameters inside `Kbd.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Resolved broken style mappings in the Storybook render pipeline by binding props to the exact `--ds-kbd-radius`, `--ds-kbd-bg`, `--ds-kbd-border-width`, and `--ds-kbd-border-color` custom hooks.
+
+---
+
+*This changelog is specific to the `<ds-kbd>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

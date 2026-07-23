@@ -1,30 +1,67 @@
-@import './stories/sub-atomic/chromography/chromography.css';
-@import './stories/sub-atomic/typography/typography.css';
-@import './stories/sub-atomic/spatialography/spatialography.css';
-@import './stories/sub-atomic/accessibility/accessibility.css';
-@import './stories/sub-atomic/depthography/depthography.css';
-@import './stories/sub-atomic/curvography/curvography.css';
-@import './stories/sub-atomic/choreography/choreography.css';
-@import './stories/sub-atomic/sizography/sizography.css';
-@import './stories/sub-atomic/shadowgraphy/shadowgraphy.css';
-@import './stories/sub-atomic/gridography/gridography.css';
-@import './stories/sub-atomic/opacityography/opacityography.css';
-@import './stories/sub-atomic/borderography/borderography.css';
-@import './stories/sub-atomic/surfaceography/surfaceography.css';
-@import './stories/sub-atomic/formography/formography.css';
-@import './stories/sub-atomic/layoutography/layoutography.css';
+/* Fixed PascalCase Paths */
+@import './stories/sub-atomic/Chromography/chromography.css';
+@import './stories/sub-atomic/Typography/typography.css';
+@import './stories/sub-atomic/Spatialography/spatialography.css';
+@import './stories/sub-atomic/Accessibility/accessibility.css';
+@import './stories/sub-atomic/Depthography/depthography.css';
+@import './stories/sub-atomic/Curvography/curvography.css';
+@import './stories/sub-atomic/Choreography/choreography.css';
+@import './stories/sub-atomic/Sizography/sizography.css';
+@import './stories/sub-atomic/Shadowgraphy/shadowgraphy.css';
+@import './stories/sub-atomic/Gridography/gridography.css';
+@import './stories/sub-atomic/Opacityography/opacityography.css';
+@import './stories/sub-atomic/Borderography/borderography.css';
+@import './stories/sub-atomic/Surfaceography/surfaceography.css';
+@import './stories/sub-atomic/Formography/formography.css';
+@import './stories/sub-atomic/Layoutography/layoutography.css';
+@import './stories/sub-atomic/Mermaid/mermaid.css';
 
-
-
-
+/* ==========================================================================
+   GLOBAL RESETS & UNANIMOUS TEXT SELECTION LOCK
+   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
+  /* Prevents text highlighting across all Light & Shadow DOM elements */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
+/* Allow text selection specifically inside code blocks and form inputs */
+input, textarea, pre, code, [contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 
 body {
   margin: 0;
   background-color: var(--color-bg);
   color: var(--color-black);
   -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   UNIVERSAL SMOOTH SCROLLING & SCROLLBAR SUPPRESSION
+   ========================================================================== */
+html, body, #root, #storybook-root, .sb-show-main, main {
+  scroll-behavior: smooth;
+  
+  /* Remove scrollbars across Firefox & IE/Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Remove scrollbars across WebKit (Chrome, Safari, Edge) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar,
+#storybook-root::-webkit-scrollbar,
+.sb-show-main::-webkit-scrollbar,
+main::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }

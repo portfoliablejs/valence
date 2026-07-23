@@ -1,0 +1,294 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ComponentStories from './CaseNavigator.stories';
+
+<Meta title="Molecules/Case Navigator [v1.0.0]/Architecture"/>
+
+# `ds-case-navigator`
+
+The `ds-case-navigator` component is a **composite** Molecule designed for sequential case study navigation, inline autocomplete search filtering, and global keyboard shortcut orchestration.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host application binds current index position, total case count, search queries, and localized label maps.
+* **Events Out (`ds-*`):** Navigation triggers dispatch custom DOM events (`ds-case-select`, `ds-case-prev`, `ds-case-next`, `ds-search-input`, `ds-search-select`) containing immutable detail payloads.
+* **Encapsulated State:** The component maintains internal highlight index positioning for autocomplete filtering without mutating host router state directly.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Router"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["<ds-case-navigator>"]
+      end
+
+      State -->|"1. State In<br/><code>current-index, value</code>"| Component
+      Component -->|"2. Event Out<br/><code>ds-case-select, ds-search-select</code>"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+## Slot Architecture
+
+The `ds-case-navigator` component encapsulates Shadow DOM child components (`ds-button`, `ds-divider`, `ds-tooltip`) to construct a self-contained action bar.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Encapsulated layout molecule; internal structure is completely managed via component attributes and properties.</td>
+      <td>Renders standard search bar, vertical divider, and previous/next action buttons.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Data Model
+
+```typescript
+export interface CaseNavigatorItem {
+  id: string;
+  title: string;
+  snippet?: string;
+}
+
+export interface CaseNavigatorEventDetail {
+  index?: number;
+  value?: string;
+  item?: CaseNavigatorItem;
+  id?: string;
+}
+```
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`currentIndex`</td>
+      <td>`current-index`</td>
+      <td>`number`</td>
+      <td>`0`</td>
+      <td>Zero-based index of the currently active case study.</td>
+    </tr>
+    <tr>
+      <td>`totalCases`</td>
+      <td>`total-cases`</td>
+      <td>`number`</td>
+      <td>`1`</td>
+      <td>Total number of available case studies.</td>
+    </tr>
+    <tr>
+      <td>`searchExpanded`</td>
+      <td>`search-expanded`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles the expanded state of the collapsible inline search field.</td>
+    </tr>
+    <tr>
+      <td>`disabled`</td>
+      <td>`disabled`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Disables all interactive controls and keyboard triggers.</td>
+    </tr>
+    <tr>
+      <td>`value`</td>
+      <td>`value`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Query string bound to the inline search text input.</td>
+    </tr>
+    <tr>
+      <td>`placeholder`</td>
+      <td>`placeholder`</td>
+      <td>`string`</td>
+      <td>`'Search cases...'`</td>
+      <td>Localized placeholder displayed inside the search input.</td>
+    </tr>
+    <tr>
+      <td>`labelPrev`</td>
+      <td>`label-prev`</td>
+      <td>`string`</td>
+      <td>`'Previous'`</td>
+      <td>Text label displayed on the Previous action button.</td>
+    </tr>
+    <tr>
+      <td>`labelNext`</td>
+      <td>`label-next`</td>
+      <td>`string`</td>
+      <td>`'Next'`</td>
+      <td>Text label displayed on the Next action button.</td>
+    </tr>
+    <tr>
+      <td>`searchAriaLabel`</td>
+      <td>`search-aria-label`</td>
+      <td>`string`</td>
+      <td>`'Search cases'`</td>
+      <td>Accessible label assigned to search controls (avoids `aria-valid-attr` violations).</td>
+    </tr>
+    <tr>
+      <td>`prevAriaLabel`</td>
+      <td>`prev-aria-label`</td>
+      <td>`string`</td>
+      <td>`'Previous case'`</td>
+      <td>Accessible label assigned to the Previous navigation button.</td>
+    </tr>
+    <tr>
+      <td>`nextAriaLabel`</td>
+      <td>`next-aria-label`</td>
+      <td>`string`</td>
+      <td>`'Next case'`</td>
+      <td>Accessible label assigned to the Next navigation button.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-case-select`</td>
+      <td>`true` / `true`</td>
+      <td>`{ index: number }`</td>
+      <td>Emitted when either Previous or Next navigation actions are executed.</td>
+    </tr>
+    <tr>
+      <td>`ds-case-prev`</td>
+      <td>`true` / `true`</td>
+      <td>`{ index: number }`</td>
+      <td>Emitted specifically when the Previous case action is triggered.</td>
+    </tr>
+    <tr>
+      <td>`ds-case-next`</td>
+      <td>`true` / `true`</td>
+      <td>`{ index: number }`</td>
+      <td>Emitted specifically when the Next case action is triggered.</td>
+    </tr>
+    <tr>
+      <td>`ds-search-input`</td>
+      <td>`true` / `true`</td>
+      <td>`{ value: string }`</td>
+      <td>Emitted when the search query input changes.</td>
+    </tr>
+    <tr>
+      <td>`ds-search-select`</td>
+      <td>`true` / `true`</td>
+      <td>`{ item: CaseNavigatorItem, id: string }`</td>
+      <td>Emitted when an item from the autocomplete dropdown menu is selected.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-case-navigator-bg`</td>
+      <td>`var(--color-surface)`</td>
+      <td>Overrides main container background fill.</td>
+    </tr>
+    <tr>
+      <td>`--ds-case-navigator-menu-bg`</td>
+      <td>`var(--color-surface)`</td>
+      <td>Overrides autocomplete floating menu background fill.</td>
+    </tr>
+    <tr>
+      <td>`--ds-case-navigator-radius`</td>
+      <td>`var(--radius-pill)`</td>
+      <td>Overrides outer container corner radius geometry.</td>
+    </tr>
+    <tr>
+      <td>`--ds-case-navigator-border-color`</td>
+      <td>`var(--color-surface-border)`</td>
+      <td>Overrides container border outline color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-case-navigator-padding`</td>
+      <td>`var(--space-xs) var(--space-md)`</td>
+      <td>Overrides internal padding dimensions.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Accessibility & Host ARIA Delegation
+
+* **ARIA Scrubbing & Valid Attribute Names:** Generic `aria-label` on host elements is scrubbed and delegated to internal controls. Custom accessibility label props use valid attribute names (`search-aria-label`, `prev-aria-label`, `next-aria-label`) to comply with strict W3C validation.
+* **Dynamic Role Management:** The autocomplete container dynamically attaches `role="listbox"` and `aria-label="Search suggestions"` only when option items are present, preventing `aria-prohibited-attr` and `aria-required-children` failures when hidden.
+* **Keyboard Navigation:** Full support for `Space` and `Enter` execution on buttons. Global shortcut listeners manage single-key (`S`, `X`, `←`, `→`) and multi-key combinations (`Cmd+F`, `Cmd+←`, `Cmd+→`).
+* **Global Accessibility Propagation:** Listens to class changes on `document.documentElement` via `MutationObserver` to sync accessibility modes (`.a11y-dark-mode`, `.a11y-high-contrast`, `.a11y-large-text`, `.a11y-dyslexia`, `.a11y-reduce-motion`, `.a11y-forced-colors`).
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-case-navigator';
+
+const navigator = document.createElement('ds-case-navigator');
+navigator.setAttribute('current-index', '0');
+navigator.setAttribute('total-cases', '5');
+
+navigator.results = [
+  { id: 'case-1', title: 'Agentic AI Design', snippet: 'DesignOps automation cuts delivery latency...' },
+  { id: 'case-2', title: 'Design System Architecture', snippet: 'Universal web component design tokens...' }
+];
+
+navigator.addEventListener('ds-case-select', (e) => {
+  console.log('Navigated to case index:', e.detail.index);
+});
+
+navigator.addEventListener('ds-search-select', (e) => {
+  console.log('Selected search result:', e.detail.item);
+});
+
+document.body.appendChild(navigator);
+```

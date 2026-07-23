@@ -7,7 +7,7 @@ import './Kbd';
  * Global component definition detail descriptions mapping clean architectural APIs down to layout layers.
  */
 export default {
-  title: 'Atoms/Keyboard Icon',
+  title: 'Atoms/KBD [v1.0.0]',
   component: 'ds-kbd',
   tags: ['autodocs'],
   parameters: {
@@ -90,10 +90,10 @@ export default {
   render: (args) => {
     // Map Sub-Atomic Override Properties cleanly without polluting component markup structures
     const customStyles = [
-      args.radius ? `--custom-radius: ${args.radius};` : '',
-      args.backgroundColor ? `--custom-bg: ${args.backgroundColor};` : '',
-      args.borderWidth ? `--custom-border-width: ${args.borderWidth};` : '',
-      args.borderColor ? `--custom-border-color: ${args.borderColor};` : ''
+      args.radius ? `--ds-kbd-radius: ${args.radius};` : '',
+      args.backgroundColor ? `--ds-kbd-bg: ${args.backgroundColor};` : '',
+      args.borderWidth ? `--ds-kbd-border-width: ${args.borderWidth};` : '',
+      args.borderColor ? `--ds-kbd-border-color: ${args.borderColor};` : ''
     ].join(' ').trim();
 
     return html`

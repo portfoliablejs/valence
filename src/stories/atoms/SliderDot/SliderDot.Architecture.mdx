@@ -1,0 +1,215 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Slider Dot [v1.0.0]/Architecture" />
+
+# `ds-slider-dot`
+
+The `ds-slider-dot` component is a **presentational / controlled** Atom designed to render compact pagination dots. It is fully accessible, utilizes native `<button>` primitives inside its Shadow DOM boundaries, and triggers unified custom events when clicked.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host binds attributes (`active`, `aria-label`) to toggle active scales or provide accessible text strings.
+* **Events Out (`ds-dot-click`):** Dispatches standard customized events when user interactions click and trigger a slide transition.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-slider-dot"]
+      end
+
+      State -->|"1. State In: active / aria-label"| Component
+      Component -->|"2. Event Out: ds-dot-click"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-slider-dot` component completely seals its Shadow DOM bounds and projects no light DOM content to preserve uniform spacing, layout alignment, and hit targets inside carousel containers.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Encapsulated button primitive only; host text is not rendered.</td>
+      <td>Renders standard round pagination button graphics.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsSliderDotState {
+  active: boolean;
+  ariaLabel: string;
+}
+
+export interface DsSliderDotSubAtomicHooks {
+  '--ds-slider-dot-size'?: string;
+  '--ds-slider-dot-radius'?: string;
+  '--ds-slider-dot-bg'?: string;
+  '--ds-slider-dot-border-width'?: string;
+  '--ds-slider-dot-border-color'?: string;
+  '--ds-slider-dot-active-bg'?: string;
+  '--ds-slider-dot-hover-bg'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`active`</td>
+      <td>`active`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles active scale-up styling. Automatically maps to `aria-current`.</td>
+    </tr>
+    <tr>
+      <td>`ariaLabel`</td>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`'Go to slide'`</td>
+      <td>Accessible description delegated into internal button elements.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-dot-click`</td>
+      <td>`true` / `true`</td>
+      <td>`{ active: boolean }`</td>
+      <td>Dispatched when users click the pagination button, signaling a page index swap.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-slider-dot-size`</td>
+      <td>`var(--size-icon-sm)`</td>
+      <td>Overrides diameter width and height geometries.</td>
+    </tr>
+    <tr>
+      <td>`--ds-slider-dot-radius`</td>
+      <td>`var(--radius-circle)`</td>
+      <td>Overrides circular border bounding radius.</td>
+    </tr>
+    <tr>
+      <td>`--ds-slider-dot-bg`</td>
+      <td>`var(--color-gray-xlight)` / `var(--color-gray-med)`</td>
+      <td>Overrides standard backdrop container colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-slider-dot-active-bg`</td>
+      <td>`var(--color-gray-dark)` / `var(--color-white)`</td>
+      <td>Overrides backdrop colors when active is mapped.</td>
+    </tr>
+    <tr>
+      <td>`--ds-slider-dot-hover-bg`</td>
+      <td>`var(--color-gray-med)`</td>
+      <td>Overrides backdrop colors during mouse hover interactions.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Button Delegation:** Uses an internal `<button type="button">` to support native keyboard focus paths, spacebar trigger activation, and correct user flows.
+* **ARIA Host Scrubbing:** Automatically scrubs standard Light DOM `aria-label` attributes applied to host nodes and delegates them down to the focusable button.
+* **Global Access Syncing:** Leverages `_observeRootAccessibility` to track HTML root class adjustments:
+  * `.a11y-dark-mode`: Shifts inactive dots to higher contrast gray palettes.
+  * `.a11y-high-contrast`: Enforces clear borders and filled circles for AAA compliance.
+  * `.a11y-reduce-motion`: Disables spring-scaling transitions.
+  * `.a11y-forced-colors`: Overrides backgrounds via system `CanvasText` (inactive) and `Highlight` (active).
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-slider-dot';
+
+const dot = document.createElement('ds-slider-dot');
+dot.setAttribute('active', 'true');
+dot.setAttribute('aria-label', 'Go to slide 4');
+
+// Clean sub-atomic overrides
+dot.style.setProperty('--ds-slider-dot-size', '16px');
+dot.style.setProperty('--ds-slider-dot-active-bg', 'var(--color-success)');
+
+dot.addEventListener('ds-dot-click', (e) => {
+  console.log('Slide dot clicked! Active state:', e.detail.active);
+});
+
+document.body.appendChild(dot);
+```

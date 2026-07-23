@@ -1,0 +1,72 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Audio Player [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational audio player component (`ds-audio-player`) featuring horizontal and vertical layout formats, advanced localizable labels, and complete accessibility controls.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-audio-player`</td>
+      <td>Initial stable release of the aggregated media controller component.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-audio-player`</td>
+      <td>Support for localizing all UI text, screen-reader labels, and tooltips via direct attribute bindings (`label-reader`, `label-play`, etc.).</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured passive root observer reflecting visual preferences downstream onto host attributes.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`audio-player.css`</td>
+      <td>Remapped custom style overrides for child `ds-seek-bar` and `ds-divider` primitives to reference standard sub-atomic token standardizations.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`AudioPlayer.stories.js`</td>
+      <td>Suffix-aligned storybook title and injected controls mapping translation tags cleanly into render templates.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Aggregated Media Controller:** Created `<ds-audio-player>` composing `ds-button`, `ds-seek-bar`, `ds-divider`, and `ds-tooltip` Atoms.
+- **Zero i18n Localization standard:** Exposed observed attributes (`label-reader`, `label-play`, `label-pause`, `label-mute`, `label-unmute`, `label-speed`, `label-hide`, `label-show`, `label-autoscroll-on`, `label-autoscroll-off`, `label-volume`, `label-volume-level`, `label-audio-pos`) to map translations easily downstream.
+- **Root Class Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags.
+- **Keyboard Shortcuts:** Keyboard hotkey listeners supporting seeking (Left/Right Arrows), volume adjustments (Up/Down Arrows), and playback play toggling (Enter/Space).
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `AudioPlayer.stories.js`.
+
+### Fixed
+- **Sub-Atomic Hook Renaming:** Corrected overrides mapping to nested elements inside `audio-player.css` to target standard `--ds-seek-bar-*` and `--ds-divider-*` token structures.
+
+---
+
+*This changelog is specific to the `<ds-audio-player>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

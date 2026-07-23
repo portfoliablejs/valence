@@ -3,20 +3,66 @@ import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
 <Meta title="Atoms/Icon [v1.0.0]/Changelog"/>
 
 # Changelog
+
 <br />
+
 ## [1.0.0] - 2026-07-16
+
 <br />
+
 ### Initial Release
 
+The stable debut of the presentational vector iconography component (`ds-icon`) featuring comprehensive media controls, outline/fill vector variants, automatic RTL directionality flipping, and forced color overrides.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-icon`</td>
+      <td>Initial stable release of custom SVG vector icon component with robust form factor variants.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-icon`</td>
+      <td>Support for dynamic outline-to-fill variant switching and RTL horizontal scaleX mirroring.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootContext`</td>
+      <td>Configured passive root observer syncing dark mode, high contrast, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`ds-icon`</td>
+      <td>Enforced `aria-hidden="true"` on internal SVG elements to completely eliminate unwanted screen-reader announcements on decorative nodes.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`ds-icon`</td>
+      <td>Assigned `color: inherit` directly to host container elements for effortless parent color inheritance.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
 ### Added
-- **Initial Component Implementation:** First stable release of `<ds-icon>` featuring:
-  - **System Icon Registry:** Unified `ICON_REGISTRY` offering comprehensive media controls, volume gauges, navigation chevrons, user actions, quality badges, and system utility icons.
-  - **Variant Controls:** Dual-mode vector path support for `outline` and `fill` variants.
-  - **Directional RTL Mirroring:** Automatic horizontal flipping (`transform: scaleX(-1)`) for navigation and directional icons when `dir="rtl"` is detected on the root document.
-  - **Sub-Atomic Token Hooks:** Component-specific CSS custom property overrides for sizing, stroke weight, fill, and stroke color (`--ds-icon-size`, `--ds-icon-stroke-width`, `--ds-icon-fill`, `--ds-icon-stroke`).
-  - **Root Context Observer (`_observeRootContext`):** Integrated `MutationObserver` listening to root document attribute and class changes to synchronize RTL directionality, high contrast, and forced colors.
-  - **WCAG AAA & Forced Colors Support:** Complete Windows Forced Colors Mode compatibility utilizing system `CanvasText` and `currentColor` mappings.
-- **Storybook CSF3 Integration:** Story controls in `Icon.stories.js` featuring range controls for stroke weight and size, variant selectors, and container color inheritance validation.
+- **Unified Icon Registry:** Introduced `<ds-icon>` built specifically with outline/fill variants, and a comprehensive central `ICON_REGISTRY` covering media playback, volume, and navigation keys.
+- **Directional Mirroring:** Built-in X-axis scale flipping `transform: scaleX(-1)` automatically triggered when `dir="rtl"` is mutated on the HTML root element.
+- **Root Context Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags.
+- **Thematic Overrides:** Bound bounding box dimensions, stroke weight, fill color, and outline colors to standard `--ds-icon-*` variables.
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `Icon.stories.js`.
 
 ### Fixed
 - **Screen Reader Announce Prevention:** Enforces `aria-hidden="true"` on inner SVG elements to guarantee decorative presentational isolation.

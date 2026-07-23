@@ -7,7 +7,7 @@ import './SeekBar.js';
  * Features an integrated `ds-tooltip` molecule that tracks cursor movement across an expanded hit area to present real-time progress percentages.
  */
 export default {
-  title: 'Atoms/Seek Bar',
+  title: 'Atoms/Seek Bar [v1.0.0]',
   tags: ['autodocs'],
   parameters: {
     layout: 'padded',
@@ -78,25 +78,25 @@ export default {
     },
 
     /* ------------------------------------------------------------------
-       3. Sub-Atomic Props (Design Token Overrides)
+       3. SUB-ATOMIC PROPS (Design Token Overrides)
        ------------------------------------------------------------------ */
     customTrackBg: {
-      name: '--custom-track-bg',
+      name: '--ds-seek-bar-track-bg',
       control: { type: 'color' },
       description: 'Sub-atomic custom property override for unfilled track background.',
-      table: { category: 'Sub-Atomic Props' },
+      table: { category: 'SUB-ATOMIC PROPS' },
     },
     customFillBg: {
-      name: '--custom-fill-bg',
+      name: '--ds-seek-bar-fill-bg',
       control: { type: 'color' },
       description: 'Sub-atomic custom property override for active progress fill.',
-      table: { category: 'Sub-Atomic Props' },
+      table: { category: 'SUB-ATOMIC PROPS' },
     },
     customKnobBg: {
-      name: '--custom-knob-bg',
+      name: '--ds-seek-bar-knob-bg',
       control: { type: 'color' },
       description: 'Sub-atomic custom property override for draggable handle knob.',
-      table: { category: 'Sub-Atomic Props' },
+      table: { category: 'SUB-ATOMIC PROPS' },
     },
 
     /* ------------------------------------------------------------------
@@ -118,9 +118,9 @@ export default {
   },
   render: (args) => {
     const styleString = [
-      args.customTrackBg ? `--custom-track-bg: ${args.customTrackBg};` : '',
-      args.customFillBg ? `--custom-fill-bg: ${args.customFillBg};` : '',
-      args.customKnobBg ? `--custom-knob-bg: ${args.customKnobBg};` : '',
+      args.customTrackBg ? `--ds-seek-bar-track-bg: ${args.customTrackBg};` : '',
+      args.customFillBg ? `--ds-seek-bar-fill-bg: ${args.customFillBg};` : '',
+      args.customKnobBg ? `--ds-seek-bar-knob-bg: ${args.customKnobBg};` : '',
       args.variant === 'vertical' ? 'height: 200px;' : '',
     ]
       .join(' ')

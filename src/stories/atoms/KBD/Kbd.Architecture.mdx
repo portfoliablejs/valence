@@ -1,0 +1,211 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/KBD [v1.0.0]/Architecture" />
+
+# `ds-kbd`
+
+The `ds-kbd` component is a **presentational** Atom designed to render keyboard shortcuts, key combinations, and modifier cues within tooltips, command palettes, and inline text documentation.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host application binds modifier key labels through slot boundaries, and secondary key values through attributes (`variant`, `key`, `show-plus`) to configure combination display behavior.
+* **Events Out:** As a purely passive presentational component, `ds-kbd` does not register external input bindings, trigger action-oriented events, or capture focus states.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-kbd"]
+      end
+
+      State -->|"1. State In: variant / key / show-plus"| Component
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-kbd` component accepts standard text-based modifier labels or graphic glyphs in its default slot. When configured as a multi-key shortcut via the `show-plus` attribute, the internal layout engine appends a non-translatable `+` operator and an alphanumeric trailing key structure directly into the Shadow DOM container.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>Text / HTML Subtree</td>
+      <td>Primary keyboard key label (e.g., `⌥ Option`, `Ctrl`).</td>
+      <td>Remains empty and collapses inline geometry.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsKbdState {
+  variant: 'default' | 'inverted';
+  showPlus: boolean;
+  key?: string;
+}
+
+export interface DsKbdSubAtomicHooks {
+  '--ds-kbd-bg'?: string;
+  '--ds-kbd-border-width'?: string;
+  '--ds-kbd-border-color'?: string;
+  '--ds-kbd-radius'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`variant`</td>
+      <td>`variant`</td>
+      <td>`'default' | 'inverted'`</td>
+      <td>`'default'`</td>
+      <td>The visual rendering mode. Use `inverted` for high-contrast dark container overlays.</td>
+    </tr>
+    <tr>
+      <td>`showPlus`</td>
+      <td>`show-plus`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Activates trailing modifier layout configurations for multi-key shortcuts.</td>
+    </tr>
+    <tr>
+      <td>`key`</td>
+      <td>`key`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Alphanumeric character to display in multi-key combination chains.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`None`</td>
+      <td>`None`</td>
+      <td>`None`</td>
+      <td>This component is strictly presentational and does not emit custom events.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-kbd-bg`</td>
+      <td>`var(--color-surface)` / `var(--color-card-bg)`</td>
+      <td>Overrides background surface container backdrop colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-kbd-border-width`</td>
+      <td>`var(--border-width-thin)`</td>
+      <td>Overrides outer boundary stroke frame thickness.</td>
+    </tr>
+    <tr>
+      <td>`--ds-kbd-border-color`</td>
+      <td>`var(--color-kbd-border)`</td>
+      <td>Overrides outer border boundary edge colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-kbd-radius`</td>
+      <td>`var(--radius-sm)`</td>
+      <td>Overrides layout corner border radius geometry.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **ARIA Semantics:** Uses passive host wrapper tags containing semantic `<kbd>` structures inside the Shadow DOM boundary for proper screen reader translation.
+* **Global Accessibility Propagation:** Listens to class changes on `document.documentElement` using a `MutationObserver` to sync accessibility modes across the shadow boundary:
+  * `.a11y-dark-mode`: Adjusts backdrop contrast scales.
+  * `.a11y-high-contrast`: Installs binary `#000000` / `#FFFFFF` WCAG AAA boundaries.
+  * `.a11y-dyslexia`: Enforces dyslexia-friendly typeface mappings and spacing.
+  * `.a11y-forced-colors`: Applies system active `Canvas` and `CanvasText` palettes for Windows High Contrast Mode.
+  * `.a11y-reduce-motion`: Forces standard zero-duration animation transitions.
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-kbd';
+
+const kbd = document.createElement('ds-kbd');
+kbd.textContent = '⌥ Option';
+kbd.setAttribute('show-plus', '');
+kbd.setAttribute('key', 'P');
+
+// Overriding default style tokens cleanly
+kbd.style.setProperty('--ds-kbd-radius', '4px');
+kbd.style.setProperty('--ds-kbd-bg', 'var(--color-gray-xlight)');
+
+document.body.appendChild(kbd);
+```

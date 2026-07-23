@@ -1,0 +1,296 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Organisms/Contextual Menu [v1.1.0]/Architecture" />
+
+# `ds-contextual-menu`
+
+The `ds-contextual-menu` component is an interactive, presentational **controlled** Organism designed to render floating action popovers, settings panels, or navigation menus. It dynamically instantiates, configures, and projects child `<ds-item-row>` Molecules, handling hierarchical category dividers, keyboard focus traps, and root class accessibility observer syncs.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host binds configuration properties (`open`, `header-text`, `hide-header`, `hide-close`, `show-subcategory`, `subcategory-title`, `aria-label`) and an array of `items` data objects downstream to build lists and toggle visibility states.
+* **Events Out:** User clicks on the close button trigger a `ds-close` event, while click interactions on any nested item rows emit a consolidated `ds-select` event with current state details.
+
+<mermaid-diagram chart={`
+  flowchart TD
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["ds-contextual-menu (Shadow DOM Composition)"]
+          Component["ds-contextual-menu"]
+          CloseBtn["ds-button (Close)"]
+          ItemRow["ds-item-row (Repeated)"]
+          Divider["ds-divider (Horizontal)"]
+      end
+
+      State -->|"1. State In: open / items / show-subcategory / titles"| Component
+      Component -->|"2. Updates Visibility"| CloseBtn
+      Component -->|"3. Instantiates & Binds Items"| ItemRow
+      Component -->|"4. Appends Dividers"| Divider
+      
+      CloseBtn -->|"5. Event Out: ds-close"| State
+      ItemRow -->|"6. Propagates Action: ds-select"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+      style CloseBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style ItemRow fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Divider fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-contextual-menu` component completely seals its Shadow DOM bounds. To prevent WebKit compositor bugs on macOS Safari, scrolling overflow is structurally isolated inside a block-level `.menu-scroll-viewport` container, while child item rows and dividers are rendered inside a nested `.menu-content` flexbox layout. No public slots are projected.
+
+## Data Model
+
+```typescript
+export interface DsContextualMenuItem {
+  id: string;
+  label: string;
+  icon?: string;
+  showIcon?: boolean;
+  iconVariant?: 'outline' | 'fill';
+  showKbd?: boolean;
+  kbd?: string;
+  kbdVariant?: 'default' | 'inverted';
+  kbdShowPlus?: boolean;
+  kbdKey?: string;
+  control?: 'toggle' | 'check' | 'radio' | 'none';
+  checkHasBackground?: boolean;
+  active?: boolean;
+  selected?: boolean;
+  disabled?: boolean;
+  toggleTextOn?: string;
+  toggleTextOff?: string;
+  category: 'main' | 'subcategory';
+}
+
+export interface DsContextualMenuState {
+  items: DsContextualMenuItem[];
+  open: boolean;
+  headerText?: string;
+  hideHeader: boolean;
+  hideClose: boolean;
+  showSubcategory: boolean;
+  subcategoryTitle: string;
+  ariaLabel?: string;
+}
+
+export interface DsContextualMenuSubAtomicHooks {
+  '--ds-contextual-menu-width'?: string;
+  '--ds-contextual-menu-min-width'?: string;
+  '--ds-contextual-menu-bg'?: string;
+  '--ds-contextual-menu-radius'?: string;
+  '--ds-contextual-menu-max-height'?: string;
+  '--ds-contextual-menu-scroll-max-height'?: string;
+  '--ds-contextual-menu-scrollbar-color'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`items`</td>
+      <td>N/A</td>
+      <td>`DsContextualMenuItem[]`</td>
+      <td>`[]`</td>
+      <td>Programmatic array of row items configuration data. Re-renders on update.</td>
+    </tr>
+    <tr>
+      <td>`open`</td>
+      <td>`open`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles popover visible entry/exit translate and scale animation states.</td>
+    </tr>
+    <tr>
+      <td>`headerText`</td>
+      <td>`header-text`</td>
+      <td>`string`</td>
+      <td>`'ACTIONS'`</td>
+      <td>Title string displayed inside the top header text bar.</td>
+    </tr>
+    <tr>
+      <td>`hideHeader`</td>
+      <td>`hide-header`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Hides the top header text bar entirely.</td>
+    </tr>
+    <tr>
+      <td>`hideClose`</td>
+      <td>`hide-close`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Hides the top-right close icon button.</td>
+    </tr>
+    <tr>
+      <td>`showSubcategory`</td>
+      <td>`show-subcategory`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles display of the secondary subcategory preferences section.</td>
+    </tr>
+    <tr>
+      <td>`subcategoryTitle`</td>
+      <td>`subcategory-title`</td>
+      <td>`string`</td>
+      <td>`'PREFERENCES'`</td>
+      <td>Title string displayed inside the secondary subcategory header.</td>
+    </tr>
+    <tr>
+      <td>`ariaLabel`</td>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Accessible tag description delegated down into the menu card.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-close`</td>
+      <td>`true` / `true`</td>
+      <td>`None`</td>
+      <td>Dispatched when the top close icon button is clicked, signaling a popover dismissal.</td>
+    </tr>
+    <tr>
+      <td>`ds-select`</td>
+      <td>`true` / `true`</td>
+      <td>`{ id: string, control: string, active: boolean, selected: boolean, label: string }`</td>
+      <td>Dispatched when any item row option triggers, passing updated state values upstream.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-contextual-menu-width`</td>
+      <td>`260px`</td>
+      <td>Overrides menu card width limits.</td>
+    </tr>
+    <tr>
+      <td>`--ds-contextual-menu-min-width`</td>
+      <td>`220px`</td>
+      <td>Overrides menu card minimum width constraints.</td>
+    </tr>
+    <tr>
+      <td>`--ds-contextual-menu-bg`</td>
+      <td>`var(--color-bg)` / `var(--color-card-bg)`</td>
+      <td>Overrides backdrop surface background colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-contextual-menu-radius`</td>
+      <td>`var(--radius-lg)`</td>
+      <td>Overrides backdrop corner rounded boundaries.</td>
+    </tr>
+    <tr>
+      <td>`--ds-contextual-menu-max-height`</td>
+      <td>`none`</td>
+      <td>Caps overall host custom element max height.</td>
+    </tr>
+    <tr>
+      <td>`--ds-contextual-menu-scroll-max-height`</td>
+      <td>`320px`</td>
+      <td>Caps vertical scrolling height limit for item list viewports.</td>
+    </tr>
+    <tr>
+      <td>`--ds-contextual-menu-scrollbar-color`</td>
+      <td>`#D9D9D9`</td>
+      <td>Overrides custom scrollbar thumb fill colors.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Aria Role Contract:** Assigns `role="menu"` on the container card, and applies `role="presentation"` to intermediate dividers and headers. Each generated list row is assigned `role="menuitem"`, `role="menuitemcheckbox"`, or `role="menuitemradio"` based on its form control parameters to strictly comply with WCAG standards.
+* **ARIA Host Scrubbing:** Automatically purges Light DOM `aria-label` custom attributes on the host custom element and projects them down onto the container.
+* **Disable Highlighting:** Applies native `user-select: none` across header titles to prevent unwanted text selections during clicks.
+* **Global Access Syncing:** Uses a `MutationObserver` on the HTML root element to capture visual preferences:
+  * `.a11y-dark-mode`: Swaps container background to matching dark player HUD tokens and redefines `--color-surface` locally.
+  * `.a11y-high-contrast`: Enforces strict AAA monochrome borders and outlines.
+  * `.a11y-dyslexia`: Overrides tooltip typeface families.
+  * `.a11y-reduce-motion`: Disables entering translations and scale transitions.
+  * `.a11y-forced-colors`: Employs active Windows system color maps (`Canvas` and `CanvasText`).
+* **Scroll Engine & WebKit Layer Isolation:** Attaches `data-lenis-prevent` and an explicit `wheel` listener to `.menu-scroll-viewport` to isolate smooth-scroll libraries (such as Lenis) from popover scrolling. Listens to `visibilitychange` and `open` state transitions to execute `_forceScrollbarRebind()`, safely resetting `overflowY` (`hidden` -> reflow -> `auto`) to destroy native WebKit overlay scrollbars without creating GPU texture ghosts or frozen thumb snapshots.
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-contextual-menu';
+
+const menu = document.createElement('ds-contextual-menu');
+menu.setAttribute('header-text', 'ACCESSIBILITY');
+menu.setAttribute('show-subcategory', '');
+menu.setAttribute('open', '');
+
+menu.items = [
+  { id: 'text-size', label: 'Large Text', icon: 'text-size', control: 'none', category: 'main' },
+  { id: 'dark-mode', label: 'Dark Theme', icon: 'moon', control: 'toggle', active: true, category: 'subcategory' }
+];
+
+// Clean sub-atomic overrides
+menu.style.setProperty('--ds-contextual-menu-width', '320px');
+menu.style.setProperty('--ds-contextual-menu-radius', '8px');
+
+menu.addEventListener('ds-select', (e) => {
+  console.log('Option chosen:', e.detail.id, 'Active:', e.detail.active);
+});
+
+document.body.appendChild(menu);
+```

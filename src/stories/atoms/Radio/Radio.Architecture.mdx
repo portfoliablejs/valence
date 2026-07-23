@@ -1,0 +1,204 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Radio [v1.0.0]/Architecture" />
+
+# `ds-radio`
+
+The `ds-radio` component is an interactive, presentational **controlled** Atom designed to render minimalist circular vector selection choices. It incorporates spring-physics hover/active transitions, full keyboard trigger listeners, validation fault styling, and root-level accessibility syncing.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host shell binds attributes (`selected`, `disabled`, `invalid`, `aria-label`) to toggle selection marks, suppress focus paths, or apply error indicators.
+* **Events Out:** Captures user clicks or standard form interaction keys (`Space`, `Enter`) to internally toggle selection attributes and delegates native events upstream.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-radio"]
+      end
+
+      State -->|"1. State In: selected / disabled / invalid"| Component
+      Component -->|"2. Event Out: click / keydown"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-radio` component encapsulates its high-contrast SVG path indicators directly within its Shadow DOM boundary and does not support projected slot content to preserve spatial layout alignment.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Encapsulated SVG paths only; host elements are not projected.</td>
+      <td>Renders circular radio outline and scaling indicator dot.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsRadioState {
+  selected: boolean;
+  disabled: boolean;
+  invalid: boolean;
+  ariaLabel?: string;
+}
+
+export interface DsRadioSubAtomicHooks {
+  '--ds-radio-size'?: string;
+  '--ds-radio-color'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`selected`</td>
+      <td>`selected`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles selection state and animates the inner scale dot. Reflects to `aria-checked`.</td>
+    </tr>
+    <tr>
+      <td>`disabled`</td>
+      <td>`disabled`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Disables interactive states, strips keyboard focus, and reflects to `aria-disabled`.</td>
+    </tr>
+    <tr>
+      <td>`invalid`</td>
+      <td>`invalid`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Triggers failure states using error token values. Reflects to `aria-invalid`.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`click`</td>
+      <td>`true` / `true`</td>
+      <td>`MouseEvent`</td>
+      <td>Native click events fired when the custom element is hovered and triggered.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-radio-size`</td>
+      <td>`var(--size-icon-sm)`</td>
+      <td>Overrides outer bounding box height and width parameters.</td>
+    </tr>
+    <tr>
+      <td>`--ds-radio-color`</td>
+      <td>`var(--color-accent)`</td>
+      <td>Overrides active circle outlines and centering dot fill colors.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Aria Role Contract:** Assigns `role="radio"` and sets `tabindex="0"` on the custom element wrapper to comply with form control navigation specs.
+* **Keyboard Navigation:** Full support for `Space` and `Enter` key presses.
+* **Global Access Propagation:** Monitors the document root utilizing a `MutationObserver` to reflect accessibility class settings onto host attributes:
+  * `.a11y-dark-mode`: Calibrates core colors for appropriate dark contrast.
+  * `.a11y-high-contrast`: Enforces strict binary styling boundaries.
+  * `.a11y-reduce-motion`: Disables centering scale animations.
+  * `.a11y-forced-colors`: Employs Windows active system colors (`Highlight` for selected marks; `GrayText` for disabled elements).
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-radio';
+
+const radio = document.createElement('ds-radio');
+radio.setAttribute('selected', '');
+radio.setAttribute('aria-label', 'Select primary theme layout');
+
+// Clean sub-atomic overrides
+radio.style.setProperty('--ds-radio-size', '20px');
+radio.style.setProperty('--ds-radio-color', 'var(--color-success)');
+
+radio.addEventListener('click', () => {
+  console.log('Radio clicked. Selected status:', radio.hasAttribute('selected'));
+});
+
+document.body.appendChild(radio);
+```

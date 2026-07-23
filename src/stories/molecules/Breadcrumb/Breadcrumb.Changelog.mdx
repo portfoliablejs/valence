@@ -1,0 +1,30 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Breadcrumb [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational breadcrumb navigation molecule (`ds-breadcrumb`) featuring controlled crumb stacks, keyboard shortcuts, contextual sibling menus, and complete accessibility controls.
+
+
+### Added
+- **Controlled Breadcrumb Navigation:** Created `<ds-breadcrumb>` composing `ds-button`, `ds-tooltip`, `ds-icon`, and `ds-contextual-menu` primitives.
+- **Upstream Event Delegation:** Emits `ds-breadcrumb-select`, `ds-breadcrumb-return`, and `ds-breadcrumb-home` custom DOM events with detailed payloads.
+- **Root Class Syncing:** `MutationObserver` on document root reflects global setting cascades (`a11y-dark-mode`, `a11y-high-contrast`, `a11y-reduce-motion`, etc.) downstream as host element boolean attributes.
+- **Keyboard Navigation:** Supported arrow key navigation (`ArrowLeft` / `ArrowRight` between crumbs, `ArrowDown` to enter popovers, and `Backspace` for return shortcuts).
+
+### Fixed
+- **Dumb Component Enforcement:** Removed hardcoded domain-specific strings (`Other cases`, `PREFERENCES`) in favor of presentational property defaults (`menuHeader`, `subcategoryTitle`).
+- **Sub-Atomic Token Hooks:** Refactored CSS overrides to use the prefixed standard (`--ds-breadcrumb-gap`, `--ds-breadcrumb-separator-color`, `--ds-breadcrumb-item-opacity`, `--ds-breadcrumb-menu-width`).
+
+---
+
+*This changelog is specific to the `<ds-breadcrumb>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

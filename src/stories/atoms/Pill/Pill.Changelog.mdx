@@ -1,0 +1,72 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Pill [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational metadata badge and auto-updating device telemetry pill (`ds-pill`) featuring live Web API polling, dark HUD glasses, and root class accessibility observing.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-pill`</td>
+      <td>Initial release of categories tag component with conditional slot and attribute text projections.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-pill`</td>
+      <td>Designed an integrated client-side telemetry engine covering 8 distinct browser metrics (`rtt`, `network-type`, `downlink`, `online-status`, `fps`, `viewport`, `memory`, `battery`).</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-pill`</td>
+      <td>Support for custom pulsing dots and precise sub-atomic token custom overrides.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured dynamic viewport observer mapping dark mode, contrast, dyslexia, reduce-motion, and Windows Forced Colors settings.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`Pill.stories.js`</td>
+      <td>Re-bound inline custom styles in Storybook templates to reference standardized `--ds-pill-*` properties instead of generic `--custom-*` hooks.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Telemetry-Enabled Pill Atom:** Created `<ds-pill>` serving as a hybrid design system tag badge and client-side device diagnostic HUD.
+- **Dynamic Web API Polling:** Configured listeners tracking online state, page render FPS, connection bandwidth, physical battery, and viewport dimensions.
+- **Global Theme Reflection:** Set up `MutationObserver` on `document.documentElement` to reflect root preferences downstream as host element boolean flags.
+- **Thematic Override Hooks:** Mapped border-radius, container padding, background borders, typography, and status dot fill variables to the standard `--ds-pill-*` naming layout.
+- **Storybook Integration:** Built comprehensive interactive Controls and detailed CSF3 stories inside `Pill.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Synchronized Storybook override controllers to output precise `--ds-pill-radius`, `--ds-pill-bg`, and `--ds-pill-color` custom styles.
+
+---
+
+*This changelog is specific to the `<ds-pill>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

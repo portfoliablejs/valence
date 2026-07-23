@@ -7,7 +7,7 @@ import './Tab';
  * Global component definition detail descriptions mapping clean architectural APIs down to layout layers.
  */
 export default {
-  title: 'Atoms/Tab',
+  title: 'Atoms/Tab [v1.0.0]',
   component: 'ds-tab',
   tags: ['autodocs'],
   parameters: {
@@ -62,22 +62,22 @@ export default {
       table: { category: 'Component: Core' },
     },
 
-    // --- SUB-ATOMIC OVERRIDES ---
+    // --- SUB-ATOMIC PROPS ---
     radius: {
       name: 'radius',
-      description: 'Sub-atomic modifier overriding corner bounding geometry variables.',
+      description: 'Sub-atomic modifier overriding corner bounding geometry variables (--ds-tab-radius).',
       control: 'text',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--radius-md)' } },
     },
     textColor: {
       name: 'textColor',
-      description: 'Sub-atomic modifier overriding default baseline tab text color.',
+      description: 'Sub-atomic modifier overriding default baseline tab text color (--ds-tab-color).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--color-text-secondary)' } },
     },
     activeColor: {
       name: 'activeColor',
-      description: 'Sub-atomic modifier overriding active state background shading.',
+      description: 'Sub-atomic modifier overriding active state background shading (--ds-tab-active-bg).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--color-black)' } },
     },
@@ -88,9 +88,9 @@ export default {
   render: (args) => {
     // Map Sub-Atomic Override Properties cleanly without polluting component markup structures
     const customStyles = [
-      args.radius ? `--custom-radius: ${args.radius};` : '',
-      args.textColor ? `--custom-color: ${args.textColor};` : '',
-      args.activeColor ? `--custom-active-bg: ${args.activeColor};` : ''
+      args.radius ? `--ds-tab-radius: ${args.radius};` : '',
+      args.textColor ? `--ds-tab-color: ${args.textColor};` : '',
+      args.activeColor ? `--ds-tab-active-bg: ${args.activeColor};` : ''
     ].join(' ').trim();
 
     return html`

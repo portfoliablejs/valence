@@ -1,0 +1,142 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Gallery Item [v1.2.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.2.0] - 2026-07-23
+
+<br />
+
+### Thumbnail Frame Controls & iPhone 12 Defaults
+
+This release removes the forced `custom-only` thumbnail mode in `ds-gallery-item`, exposes full frame-selector props, and organizes Storybook controls into clear categories with iPhone 12 defaults.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Changed`</td>
+      <td>`GalleryItem.js`</td>
+      <td>Removed forced `custom-only` from child `ds-thumbnail` and enabled full frame rendering mode by default.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`GalleryItem.js`</td>
+      <td>Added thumbnail passthrough attributes: `thumb-category`, `thumb-brand`, `thumb-model`, `thumb-color`, and optional `thumb-device-src`.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`GalleryItem.stories.js`</td>
+      <td>Exposed thumbnail frame controls in story args and grouped controls by category (Content, Thumbnail Frame, Layout, State, Pills).</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`GalleryItem.stories.js`</td>
+      <td>Set default frame values to Apple iPhone 12 (mobile/apple/Apple iPhone 12/Black).</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Thumbnail Frame Props:** Story + component now expose device frame selection inputs for catalog-driven rendering.
+
+### Changed
+- **Default Device:** Updated default framed thumbnail presentation to Apple iPhone 12.
+- **Story Controls Taxonomy:** Reorganized controls into distinct contributor-friendly groups.
+
+---
+
+<br />
+
+## [1.1.0] - 2026-07-23
+
+<br />
+
+### Thumbnail Composition Update
+
+This release updates `ds-gallery-item` to compose the shared `ds-thumbnail` atom instead of rendering a local image wrapper, and adds dedicated architecture/changelog documentation for maintainers.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Changed`</td>
+      <td>`GalleryItem.js`</td>
+      <td>Replaced local thumbnail wrapper/image composition with `ds-thumbnail` (`custom-only`) as the render surface.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`gallery-item.css`</td>
+      <td>Updated thumbnail styles to target the `ds-thumbnail` host and preserve hover, focus, and active interaction feedback.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`locked visuals`</td>
+      <td>Locked-state blur is now applied to the shared thumbnail host consistently with protected-card behavior.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`component docs`</td>
+      <td>Added architecture and changelog MDX coverage for `ds-gallery-item` to align with Valence molecule documentation standards.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Architecture Documentation:** Introduced `GalleryItem.Architecture.mdx` covering API, event contract, interaction model, and CSS hooks.
+- **Changelog Coverage:** Added component-level release notes with scoped, classified updates.
+
+### Changed
+- **Thumbnail Surface:** Gallery cards now pass `thumb-src` into `ds-thumbnail` via `screen-image` and preserve ratio/height constraints.
+- **Interaction Layer:** Existing click/keyboard select behavior remains on the same gallery thumbnail surface semantics.
+
+### Fixed
+- **Shared Thumbnail Consistency:** Gallery items now rely on the design system's thumbnail atom for image rendering behavior rather than duplicating local image mechanics.
+
+---
+
+## [1.0.0] - 2026-07-21
+
+<br />
+
+### Initial Release
+
+Initial release of the `ds-gallery-item` molecule for case study card previews, lock-state redaction, and optional metadata pills.
+
+<br />
+
+### Added
+- **Gallery Item Molecule:** Added `<ds-gallery-item>` with title, short description, read-time, lock icon, and pills support.
+- **Selection Event:** Added `ds-case-select` custom event for host-level case navigation.
+- **Protected State Support:** Added `is-protected` and `is-unlocked` behavior for locked/unlocked rendering.
+
+---
+
+*This changelog is specific to the `<ds-gallery-item>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

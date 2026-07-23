@@ -8,7 +8,7 @@ import './ItemRow';
  * keyboard shortcut indicators, and interactive right-aligned controls (toggle, check, or radio).
  */
 export default {
-  title: 'Molecules/ItemRow',
+  title: 'Molecules/Item Row [v1.0.0]',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -145,21 +145,21 @@ export default {
       table: { category: 'Component: Control Variants' }
     },
 
-    // --- SUB-ATOMIC OVERRIDES ---
+    // --- SUB-ATOMIC PROPS ---
     colorCheck: {
       control: 'color',
-      description: 'Sub-atomic modifier overriding checkmark vector color.',
-      table: { category: 'Sub-Atomic Overrides' }
+      description: 'Sub-atomic modifier overriding checkmark vector color (--ds-check-color).',
+      table: { category: 'SUB-ATOMIC PROPS' }
     },
     colorRadio: {
       control: 'color',
-      description: 'Sub-atomic modifier overriding radio vector stroke/fill color.',
-      table: { category: 'Sub-Atomic Overrides' }
+      description: 'Sub-atomic modifier overriding radio vector stroke/fill color (--ds-radio-color).',
+      table: { category: 'SUB-ATOMIC PROPS' }
     },
     colorToggleActive: {
       control: 'color',
-      description: 'Sub-atomic modifier overriding active toggle track background.',
-      table: { category: 'Sub-Atomic Overrides' }
+      description: 'Sub-atomic modifier overriding active toggle track background (--ds-toggle-checked-bg).',
+      table: { category: 'SUB-ATOMIC PROPS' }
     },
 
     // --- EVENTS ---
@@ -190,8 +190,9 @@ export default {
   },
   render: (args) => {
     const customStyles = [
-      args.colorCheck || args.colorRadio ? `--custom-color: ${args.colorCheck || args.colorRadio};` : '',
-      args.colorToggleActive ? `--custom-checked-bg: ${args.colorToggleActive};` : ''
+      args.colorCheck ? `--ds-check-color: ${args.colorCheck};` : '',
+      args.colorRadio ? `--ds-radio-color: ${args.colorRadio};` : '',
+      args.colorToggleActive ? `--ds-toggle-checked-bg: ${args.colorToggleActive};` : ''
     ].join(' ').trim();
 
     return html`

@@ -12,11 +12,12 @@ export class Breadcrumb extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this._menuItems = null; // Default global menu items
+    this._menuItems = null;
     this._items = null;
 
     this._onKeyDown = this._onKeyDown.bind(this);
 
+    // Compressed template string prevents ghost text nodes inside Shadow DOM layouts
     this.shadowRoot.innerHTML = `<style>${css}</style><nav class="top-breadcrumb" aria-label="Breadcrumb"></nav>`;
   }
 
@@ -182,7 +183,6 @@ export class Breadcrumb extends HTMLElement {
     const remainingCrumbs = crumbs.slice(0, -1);
     const targetItem = remainingCrumbs[remainingCrumbs.length - 1];
 
-    // Dumb component: emits event only. SPA handles actual route/state changes.
     this.dispatchEvent(new CustomEvent('ds-breadcrumb-return', {
       detail: { 
         remainingCount: remainingCrumbs.length,
@@ -198,7 +198,6 @@ export class Breadcrumb extends HTMLElement {
     const crumbs = this._getEffectiveCrumbs();
     const homeCrumb = crumbs[0] || { id: 'home', label: 'Home' };
 
-    // Dumb component: emits event only. SPA handles actual route/state changes.
     this.dispatchEvent(new CustomEvent('ds-breadcrumb-home', {
       detail: { id: homeCrumb.id || 'home', item: homeCrumb },
       bubbles: true,
@@ -209,6 +208,7 @@ export class Breadcrumb extends HTMLElement {
   render() {
     if (!this.navEl) return;
 
+    // ARIA Delegation & Host Scrubbing Pattern
     const ariaLabel = this.getAttribute('aria-label');
     if (ariaLabel) {
       this.navEl.setAttribute('aria-label', ariaLabel);
@@ -228,7 +228,6 @@ export class Breadcrumb extends HTMLElement {
     this.style.display = '';
     this.navEl.innerHTML = '';
 
-    // Return Button (arrow-left outline)
     const returnWrapper = document.createElement('div');
     returnWrapper.className = 'crumb-return-wrapper';
 
@@ -251,23 +250,13 @@ export class Breadcrumb extends HTMLElement {
     returnWrapper.appendChild(returnTooltip);
     this.navEl.appendChild(returnWrapper);
 
-    const defaultMenu = [
-      { id: 'opt-1', label: 'Option 1' },
-      { id: 'opt-2', label: 'Option 2' },
-      { id: 'opt-3', label: 'Option 3' }
-    ];
-
     crumbs.forEach((crumb, index) => {
       const labelText = typeof crumb === 'string' ? crumb : (crumb.label || '');
       const crumbId = typeof crumb === 'string' ? crumb : (crumb.id || labelText);
 
-      // --- CONTEXTUAL MENU VISIBILITY RULE ---
-      // 1. Home (index 0) never has a contextual menu.
-      // 2. If crumb.hasMenu is explicitly boolean, use that boolean.
-      // 3. Otherwise, show menu if item-level or global menu items exist.
       const itemMenuItems = typeof crumb === 'object' && Array.isArray(crumb.menuItems) 
         ? crumb.menuItems 
-        : (Array.isArray(this._menuItems) ? this._menuItems : defaultMenu);
+        : (Array.isArray(this._menuItems) ? this._menuItems : []);
 
       let shouldShowMenu = false;
       if (index > 0) {
@@ -307,7 +296,6 @@ export class Breadcrumb extends HTMLElement {
         itemBtn.textContent = labelText;
         
         itemBtn.addEventListener('click', () => {
-          // Dumb component: notify parent SPA which crumb was clicked
           this.dispatchEvent(new CustomEvent('ds-breadcrumb-select', {
             detail: { id: crumbId, index, label: labelText, item: crumb },
             bubbles: true,
@@ -321,12 +309,15 @@ export class Breadcrumb extends HTMLElement {
           const menu = document.createElement('ds-contextual-menu');
           menu.setAttribute('open', '');
           
-          const headerText = index === 1 ? 'Other cases' : 'Other presentations';
+          // Pure presentational fallbacks driven by properties passed downstream
+          const headerText = crumb.menuHeader || 'Options';
+          const subcategoryTitle = crumb.subcategoryTitle || 'SELECT';
+
           menu.setAttribute('header-text', headerText);
           menu.setAttribute('aria-label', 'Contextual Actions Menu');
-          menu.setAttribute('subcategory-title', 'PREFERENCES');
+          menu.setAttribute('subcategory-title', subcategoryTitle);
           menu.setAttribute('hide-close', '');
-          menu.setAttribute('style', '--custom-width: 260px;');
+          menu.setAttribute('style', '--ds-contextual-menu-width: var(--ds-breadcrumb-menu-width, 260px);');
 
           menu.items = itemMenuItems.map((menuItem, menuIdx) => ({
             id: menuItem.id || `item-${menuIdx}`,
@@ -362,7 +353,6 @@ export class Breadcrumb extends HTMLElement {
             const selectedMenuItem = itemMenuItems.find(i => (i.id || i) === e.detail.id) || e.detail;
             const newLabel = selectedMenuItem.label || selectedMenuItem.id || selectedMenuItem;
 
-            // Dumb component: emit selection event with context for parent SPA to handle routing
             this.dispatchEvent(new CustomEvent('ds-breadcrumb-select', {
               detail: { 
                 id: e.detail.id, 

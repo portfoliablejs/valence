@@ -1,0 +1,111 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/TOC [v1.1.0]/Architecture" />
+
+# `ds-toc`
+
+The `ds-toc` component is a **controlled** Atom designed to render an Apple-like document minimap strip that expands into a floating navigation overlay (`ds-contextual-menu`). It automatically scans document heading elements (`<h1>`–`4>`), monitors scrolling via `IntersectionObserver`, highlights active content sections, and provides smooth programmatic scroll navigation.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host binds `opened`, `title-text`, `target-selector`, `max-height`, `aria-label`, or programmatically injects an array of `items` heading objects downstream.
+* **Events Out:** Selecting a section heading dispatches a composed `ds-toc-select` custom event with heading metadata. Selecting the "Scroll to top" option dispatches `ds-toc-scroll-top`.
+
+<mermaid-diagram chart={`
+  flowchart TD
+      subgraph Host["Host Application / Document Page"]
+          direction TB
+          Headings["DOM Headings (h1 - h4)"]
+          App["App Controller / Viewport"]
+      end
+
+      subgraph WebComp["ds-toc (Shadow DOM Boundary)"]
+          TocComp["ds-toc"]
+          Minimap["Minimap Strip (.minimap-strip)"]
+          MenuOverlay["ds-contextual-menu (.toc-menu)"]
+      end
+
+      Headings -->|"1. Scanned by target-selector"| TocComp
+      App -->|"2. State In: opened / items / title-text"| TocComp
+      TocComp -->|"3. Renders Apple-style Lines"| Minimap
+      TocComp -->|"4. Maps Headings to Option Rows"| MenuOverlay
+
+      MenuOverlay -->|"5. Emits ds-toc-select / ds-toc-scroll-top"| App
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style Headings fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style App fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style TocComp fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+      style Minimap fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style MenuOverlay fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-toc` component completely encapsulates its internal DOM structure. It projects no public `<slot>` elements to ensure the Apple-style minimap strip and popover menu maintain strict positioning alignment and padding rules.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Encapsulated internal layout. Renders `.minimap-strip` lines and nested `<ds-contextual-menu>`.</td>
+      <td>Generates empty minimap and menu until headings are scanned or `items` are injected.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsTocHeadingItem {
+  id: string;
+  label: string;
+  text?: string;
+  level: 1 | 2 | 3 | 4;
+  active?: boolean;
+  selected?: boolean;
+}
+
+export interface DsTocState {
+  items: DsTocHeadingItem[];
+  opened: boolean;
+  targetSelector: string;
+  titleText: string;
+  maxHeight: string;
+  ariaLabel?: string;
+}
+
+export interface DsTocSubAtomicHooks {
+  '--ds-toc-position'?: string;
+  '--ds-toc-top'?: string;
+  '--ds-toc-right'?: string;
+  '--ds-toc-bottom'?: string;
+  '--ds-toc-left'?: string;
+  '--ds-toc-transform'?: string;
+  '--ds-toc-max-height'?: string;
+  '--ds-toc-line-color'?: string;
+  '--ds-toc-line-active-color'?: string;
+  '--ds-toc-line-height'?: string;
+  '--ds-toc-line-gap'?: string;
+}

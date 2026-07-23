@@ -1,0 +1,215 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ArticleStories from './Article.stories';
+
+<Meta title="Organisms/Article/Architecture" />
+
+# `ds-article`
+
+The `ds-article` component is a **stateless (presentational)** Organism designed to orchestrate the layout logic for long-form reading experiences. It provides rigid bounds and toggleable structural zones for typography, metadata, action buttons, summaries, media players, and floating navigation docks.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow & Layout Management
+The component strictly adheres to the **Unidirectional Data Flow** paradigm:
+* **State In (Attributes & Slots):** The host application binds strings for the header/actions and projects complex Web Components (`ds-summary`, `ds-audio-player`, `ds-case-navigator`) through named `<slot>` channels.
+* **Events Out (`ds-article-*`):** Action buttons and social share icons emit standardized custom events up to the router/shell to handle link routing and native share API triggers.
+* **Typographic Inheritance:** Body copy passed into the default slot relies natively on Light DOM inheritance for `<p>`, `<h3>`, and `<code>` tags mapping directly to global sub-atomic typographic scale definitions.
+
+### Scroll Transition Engine (Thumbnail Retraction)
+The reading layout uses a **continuous progress-driven transition** instead of a binary threshold snap:
+* **Progress Source:** Scroll position is normalized and eased in JavaScript, then written as `--ds-article-thumbnail-progress`.
+* **Smooth Interpolation:** The grid thumbnail column width, inter-column gap, thumbnail opacity/offset, and content column offset are interpolated from that single progress variable.
+* **Bidirectional Consistency:** The same interpolation path is used for scroll-down and scroll-up, so expansion and retraction feel symmetrical.
+* **Body Stability:** Article body children no longer scale/fade during this transition, preventing perceived paragraph "bouncing" while preserving the thumbnail motion effect.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host SPA / App Shell"]
+          direction TB
+          Data["Markdown Parser / Article Data"]
+      end
+
+      subgraph WebComp["Layout Organism"]
+          Article["ds-article"]
+          Summary["slot='summary'"]
+          Body["slot='default'"]
+      end
+
+      Data -->|"1. Map Props & Inject HTML"| Article
+      Article -->|"2. Event Out<br/>ds-article-share"| Host
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style Data fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Article fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-article` encapsulates its header grid in the Shadow DOM while relying on four distinct slots to map the article body.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`summary`</td>
+      <td>`ds-summary`</td>
+      <td>Designated projection zone for the case study KPI summary block.</td>
+      <td>Section height collapses if omitted.</td>
+    </tr>
+    <tr>
+      <td>`player`</td>
+      <td>`ds-audio-player`</td>
+      <td>Designated projection zone for the integrated audio reader.</td>
+      <td>Section height collapses if omitted.</td>
+    </tr>
+    <tr>
+      <td>`default`</td>
+      <td>HTML / Markdown Elements</td>
+      <td>Primary reading column for article body text (`<p>`, `<h3>`, `<blockquote>`, `<code>`, `<ul>`). Automatically styled by internal `::slotted()` rules.</td>
+      <td>Empty content zone.</td>
+    </tr>
+    <tr>
+      <td>`navigator`</td>
+      <td>`ds-case-navigator`</td>
+      <td>Projects into a fixed `z-index: 100` container floating at the bottom center of the viewport.</td>
+      <td>Leaves the fixed container empty and invisible.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`kicker`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Super-title category or date stamp (e.g., `2026 • R&D LAB`).</td>
+    </tr>
+    <tr>
+      <td>`title-text`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Main article `H1` title text.</td>
+    </tr>
+    <tr>
+      <td>`primary-label`</td>
+      <td>`string`</td>
+      <td>`'Primary'`</td>
+      <td>Text label for the main action button.</td>
+    </tr>
+    <tr>
+      <td>`primary-icon`</td>
+      <td>`string`</td>
+      <td>`null`</td>
+      <td>Icon rendered inside the primary action button.</td>
+    </tr>
+    <tr>
+      <td>`secondary1-label`</td>
+      <td>`string`</td>
+      <td>`'Secondary'`</td>
+      <td>Text label for the first secondary action button.</td>
+    </tr>
+    <tr>
+      <td>`show-*` flags</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Comprehensive toggles to mount/unmount layout blocks programmatically (`show-social-x`, `show-action-primary`, `show-navigator`, etc.).</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-article-action`</td>
+      <td>`true` / `true`</td>
+      <td>`{ action: 'primary' \| 'secondary1' \| 'secondary2' }`</td>
+      <td>Emitted when any of the core header actions are clicked.</td>
+    </tr>
+    <tr>
+      <td>`ds-article-share`</td>
+      <td>`true` / `true`</td>
+      <td>`{ platform: 'native' \| 'linkedin' \| 'x' \| 'facebook' }`</td>
+      <td>Emitted when a social media icon button is clicked next to the title.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-article-max-width`</td>
+      <td>`var(--size-max-width-md, 768px)`</td>
+      <td>Overrides the centered reading column constraint boundary.</td>
+    </tr>
+    <tr>
+      <td>`--ds-article-title-color`</td>
+      <td>`var(--color-black, #000000)`</td>
+      <td>Overrides the `H1` article title ink color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-article-social-color`</td>
+      <td>`var(--color-gray-med, #777777)`</td>
+      <td>Overrides the default outline color for social sharing icons.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Tooltips & KBD:** Action buttons pair natively with `ds-tooltip` primitives. The primary action tooltip explicitly registers `kbd-label="Enter"` indicating its global keyboard shortcut.
+* **Global Accessibility Propagation:** Listens to class changes on `document.documentElement` via `MutationObserver` to sync accessibility modes:
+  * `.a11y-dark-mode`: Inverts title typography, mutes secondary labels, and adjusts all `::slotted()` Markdown elements (`<blockquote>`, `<pre>`) to dark backgrounds.
+  * `.a11y-high-contrast`: Enforces `#FFFFFF` solid fills and borders on all header text arrays and slotted content.
+  * `.a11y-large-text`: Scales the article title by a 1.25x multiplier.
+  * `.a11y-dyslexia`: Re-renders the entire article structure using the high-legibility font stack.

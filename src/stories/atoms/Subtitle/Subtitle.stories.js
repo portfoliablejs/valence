@@ -7,7 +7,7 @@ import './Subtitle';
  * Global component definition detail descriptions mapping clean architectural APIs down to layout layers.
  */
 export default {
-  title: 'Atoms/Subtitle',
+  title: 'Atoms/Subtitle [v1.0.0]',
   component: 'ds-subtitle',
   tags: ['autodocs'],
   parameters: {
@@ -54,19 +54,19 @@ export default {
     // --- SUB-ATOMIC PROPS ---
     radius: {
       name: 'radius',
-      description: 'Sub-atomic modifier overriding corner bounding geometry variables.',
+      description: 'Sub-atomic modifier overriding corner bounding geometry variables (--ds-subtitle-radius).',
       control: 'text',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--radius-sm)' } },
     },
     backgroundColor: {
       name: 'backgroundColor',
-      description: 'Sub-atomic modifier overriding default backdrop pattern shading.',
+      description: 'Sub-atomic modifier overriding default backdrop pattern shading (--ds-subtitle-bg).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--color-gray-dark)' } },
     },
     textColor: {
       name: 'textColor',
-      description: 'Sub-atomic modifier overriding default text color.',
+      description: 'Sub-atomic modifier overriding default text color (--ds-subtitle-color).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--color-white)' } },
     },
@@ -97,9 +97,9 @@ export default {
   },
   render: (args) => {
     const customStyles = [
-      args.radius ? `--custom-radius: ${args.radius};` : '',
-      args.backgroundColor ? `--custom-bg: ${args.backgroundColor};` : '',
-      args.textColor ? `--custom-color: ${args.textColor};` : ''
+      args.radius ? `--ds-subtitle-radius: ${args.radius};` : '',
+      args.backgroundColor ? `--ds-subtitle-bg: ${args.backgroundColor};` : '',
+      args.textColor ? `--ds-subtitle-color: ${args.textColor};` : ''
     ].join(' ').trim();
 
     return html`

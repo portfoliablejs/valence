@@ -1,0 +1,264 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Gallery Item [v1.2.0]/Architecture" />
+
+# `ds-gallery-item`
+
+The `ds-gallery-item` component is a presentational Molecule that composes a clickable preview thumbnail (`ds-thumbnail`), metadata text, and optional action pills for portfolio and case study catalogs.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component follows the **State In / Events Out** pattern:
+* **State In (Attributes):** Host applications provide title, short description, read time, thumbnail source, thumbnail frame selectors (`thumb-category`, `thumb-brand`, `thumb-model`, `thumb-color`, optional `thumb-device-src`), frame ratio, and state flags (`is-protected`, `is-unlocked`, `has-video`, `has-repo`, `has-live`).
+* **Events Out (`ds-case-select`):** The thumbnail activation surface dispatches selection intent via a bubbling/composed CustomEvent.
+* **Derived Presentation State:** Lock/unlock visuals and pill visibility are derived from host-provided booleans only.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / Router"]
+          State["Current Case State"]
+      end
+
+      subgraph WebComp["Valence Molecule"]
+          Card["ds-gallery-item"]
+      end
+
+      State -->|"1. State In\n title, short-desc, thumb-src, thumb-model, flags"| Card
+      Card -->|"2. Event Out\n ds-case-select"| State
+
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Card fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+`ds-gallery-item` is a sealed Shadow DOM component. It does not expose slots and controls all child composition internally.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Internal composition only (`ds-thumbnail`, title row, read-time, pills).</td>
+      <td>Renders an internal fallback title and empty metadata when attributes are omitted.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`title`</td>
+      <td>`title`</td>
+      <td>`string`</td>
+      <td>`'Case Title'`</td>
+      <td>Primary card heading for the case item.</td>
+    </tr>
+    <tr>
+      <td>`shortDesc`</td>
+      <td>`short-desc`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Secondary descriptive text beneath the heading.</td>
+    </tr>
+    <tr>
+      <td>`readTime`</td>
+      <td>`read-time`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Optional reading/viewing duration label.</td>
+    </tr>
+    <tr>
+      <td>`thumbSrc`</td>
+      <td>`thumb-src`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Image URL fed into child `ds-thumbnail` via `screen-image`.</td>
+    </tr>
+    <tr>
+      <td>`aspectRatio`</td>
+      <td>`aspect-ratio`</td>
+      <td>`string`</td>
+      <td>`'9:19.5'`</td>
+      <td>Frame ratio applied to the thumbnail wrapper (for example `1:1`, `16:9`).</td>
+    </tr>
+    <tr>
+      <td>`thumbCategory`</td>
+      <td>`thumb-category`</td>
+      <td>`string`</td>
+      <td>`'mobile'`</td>
+      <td>Category passed to child `ds-thumbnail` catalog selection.</td>
+    </tr>
+    <tr>
+      <td>`thumbBrand`</td>
+      <td>`thumb-brand`</td>
+      <td>`string`</td>
+      <td>`'apple'`</td>
+      <td>Brand passed to child `ds-thumbnail` catalog selection.</td>
+    </tr>
+    <tr>
+      <td>`thumbModel`</td>
+      <td>`thumb-model`</td>
+      <td>`string`</td>
+      <td>`'Apple iPhone 12'`</td>
+      <td>Model passed to child `ds-thumbnail` catalog selection.</td>
+    </tr>
+    <tr>
+      <td>`thumbColor`</td>
+      <td>`thumb-color`</td>
+      <td>`string`</td>
+      <td>`'Black'`</td>
+      <td>Color variant passed to child `ds-thumbnail` catalog selection.</td>
+    </tr>
+    <tr>
+      <td>`thumbDeviceSrc`</td>
+      <td>`thumb-device-src`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Optional direct frame URL override for `ds-thumbnail` (`device-src`).</td>
+    </tr>
+    <tr>
+      <td>`isProtected`</td>
+      <td>`is-protected`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Enables lock icon rendering and protected state behavior.</td>
+    </tr>
+    <tr>
+      <td>`isUnlocked`</td>
+      <td>`is-unlocked`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>When paired with `is-protected`, toggles lock-open state and normal text visibility.</td>
+    </tr>
+    <tr>
+      <td>`hasVideo`</td>
+      <td>`has-video`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Shows localized video/pitch pill when unlocked.</td>
+    </tr>
+    <tr>
+      <td>`hasRepo`</td>
+      <td>`has-repo`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Shows localized repository pill when unlocked.</td>
+    </tr>
+    <tr>
+      <td>`hasLive`</td>
+      <td>`has-live`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Shows localized live demo pill when unlocked.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-case-select`</td>
+      <td>`true` / `true`</td>
+      <td>`{}`</td>
+      <td>Emitted when the user activates the thumbnail surface via click, Enter, or Space.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--device-h-gallery`</td>
+      <td>`55vh`</td>
+      <td>Controls rendered thumbnail height.</td>
+    </tr>
+    <tr>
+      <td>`--ds-thumbnail-screen-radius`</td>
+      <td>`var(--radius-lg)`</td>
+      <td>Controls corner radius of the thumbnail image surface.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Interaction
+
+* **Keyboard Activation:** Selection surface supports `Enter` and `Space` key activation.
+* **Focusable Surface:** Thumbnail host is exposed with `tabindex="0"` and `role="button"`.
+* **Protected State Redaction:** Locked cards hide read time, blur the thumbnail surface, and replace title/description text.
+* **Semantic Indicator:** Protected cards display lock-open / lock-closed iconography to communicate current availability.
+
+---
+
+## Integration Example
+
+```javascript
+import 'valence/src/stories/molecules/GalleryItem/GalleryItem.js';
+
+const card = document.createElement('ds-gallery-item');
+card.setAttribute('title', 'Agentic AI Design');
+card.setAttribute('short-desc', 'Exploration of orchestration and UX.');
+card.setAttribute('thumb-src', '/holofante.avif');
+card.setAttribute('thumb-model', 'Apple iPhone 12');
+card.setAttribute('thumb-color', 'Black');
+card.setAttribute('read-time', '3 min');
+card.setAttribute('has-video', '');
+card.addEventListener('ds-case-select', () => {
+  console.log('Open case details');
+});
+
+document.body.appendChild(card);
+```

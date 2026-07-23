@@ -23,13 +23,13 @@
 }
 
 .toast-container {
-  background: var(--custom-bg, var(--color-bg));
-  color: var(--custom-color, var(--color-text-primary));
-  border: var(--custom-border-width, var(--border-width-thin)) 
+  background: var(--ds-toast-bg, var(--color-bg));
+  color: var(--ds-toast-color, var(--color-text-primary));
+  border: var(--ds-toast-border-width, var(--border-width-thin)) 
           var(--border-style-solid) 
-          var(--custom-border-color, var(--color-card-border));
-  padding: var(--custom-padding, var(--space-xs) var(--space-md));
-  border-radius: var(--custom-radius, var(--radius-pill));
+          var(--ds-toast-border-color, var(--color-card-border));
+  padding: var(--ds-toast-padding, var(--space-xs) var(--space-md));
+  border-radius: var(--ds-toast-radius, var(--radius-pill));
   font-size: calc(13px * var(--font-scale-multiplier, 1));
   font-weight: 500;
   box-shadow: var(--shadow-lg);
@@ -94,7 +94,7 @@
 
 /* Dark Mode */
 :host([a11y-dark-mode]) .toast-container {
-  background-color: var(--custom-bg, var(--color-card-bg));
+  background-color: var(--ds-toast-bg, var(--color-card-bg));
   color: var(--color-white);
   border-color: var(--color-surface-border);
 }

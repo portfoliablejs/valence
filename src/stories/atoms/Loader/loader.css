@@ -14,12 +14,12 @@
   box-sizing: border-box;
 
   /* Consumes semantic tokens --color-bg and --color-text-primary instead of primitives */
-  width: var(--custom-size, var(--loader-size, var(--size-height-lg)));
-  height: var(--custom-size, var(--loader-size, var(--size-height-lg)));
-  background-color: var(--custom-bg, var(--color-bg));
-  border-radius: var(--custom-radius, var(--radius-circle));
-  color: var(--custom-color, var(--color-text-primary));
-  box-shadow: var(--custom-shadow, var(--shadow-md));
+  width: var(--ds-loader-size, var(--loader-size, var(--size-height-lg)));
+  height: var(--ds-loader-size, var(--loader-size, var(--size-height-lg)));
+  background-color: var(--ds-loader-bg, var(--color-bg));
+  border-radius: var(--ds-loader-radius, var(--radius-circle));
+  color: var(--ds-loader-color, var(--color-text-primary));
+  box-shadow: var(--ds-loader-shadow, var(--shadow-md));
 
   pointer-events: none;
   opacity: var(--opacity-solid);
@@ -37,8 +37,8 @@
 }
 
 .spinner {
-  width: calc(var(--custom-size, var(--loader-size, var(--size-height-lg))) / 2);
-  height: calc(var(--custom-size, var(--loader-size, var(--size-height-lg))) / 2);
+  width: calc(var(--ds-loader-size, var(--loader-size, var(--size-height-lg))) / 2);
+  height: calc(var(--ds-loader-size, var(--loader-size, var(--size-height-lg))) / 2);
   animation: rotate 1s var(--anim-linear) infinite;
 }
 
@@ -59,7 +59,7 @@
 
 /* --- DARK MODE CONFIGURATION --- */
 :host([a11y-dark-mode]) .video-loader {
-  background-color: var(--custom-bg, var(--color-card-bg));
+  background-color: var(--ds-loader-bg, var(--color-card-bg));
   color: var(--color-text-primary);
   box-shadow: var(--shadow-lg);
 }

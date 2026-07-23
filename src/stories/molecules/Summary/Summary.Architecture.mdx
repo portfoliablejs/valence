@@ -1,0 +1,186 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SummaryStories from './Summary.stories';
+
+<Meta title="Molecules/Summary/Architecture" />
+
+# `ds-summary`
+
+The `ds-summary` component is a **stateless (presentational)** Molecule designed for rendering summaries, executive briefs, and key case study findings using glassmorphic audio-player container styles and controllable slotted metric grids.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly implements the **Unidirectional Data Flow** pattern:
+* **State In (`text`, `active`, `label-header`, `show-metrics`):** The host application binds primitive text and active state attributes downstream onto the host element.
+* **Events Out (`ds-summary-complete`):** Emits a custom DOM event when the dynamic typing sequence finishes rendering text and reveals slotted metric cards.
+* **Passive Presentation:** The component contains zero business logic and relies on direct attribute bindings for localizable header labels.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host SPA / App Shell"]
+          direction TB
+          State["App State / i18n Pipeline"]
+      end
+
+      subgraph WebComp["Presentational Web Component"]
+          Summary["ds-summary"]
+      end
+
+      State -->|"1. State In<br/>text = '...', active = true, show-metrics = true"| Summary
+      Summary -->|"2. Event Out<br/>ds-summary-complete"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Summary fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-summary` component provides a default `<slot>` channel inside a two-column CSS grid to project `ds-metric-card` child atoms.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>`ds-metric-card`</td>
+      <td>Projects summary KPI cards into a 2-column grid beneath the primary text body.</td>
+      <td>Collapses grid wrapper if no metric cards are slotted or if `show-metrics="false"`.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`text`</td>
+      <td>`text`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Primary summary body copy rendered inside the block.</td>
+    </tr>
+    <tr>
+      <td>`active`</td>
+      <td>`active`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>When set to `true`, triggers the thinking dots and typing animation sequence.</td>
+    </tr>
+    <tr>
+      <td>`labelHeader`</td>
+      <td>`label-header`</td>
+      <td>`string`</td>
+      <td>`'Summary'`</td>
+      <td>Localizable header title displayed at the top of the block.</td>
+    </tr>
+    <tr>
+      <td>`showMetrics`</td>
+      <td>`show-metrics`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Toggles visibility of the slotted metric cards grid.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-summary-complete`</td>
+      <td>`true` / `true`</td>
+      <td>`{ text: string }`</td>
+      <td>Emitted when the dynamic typing animation finishes and reveals slotted metric cards.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-summary-bg`</td>
+      <td>`var(--overlay-glass-bg, rgba(235, 235, 240, 0.6))`</td>
+      <td>Overrides background container surface color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-summary-border-color`</td>
+      <td>`var(--color-surface-border, rgba(0, 0, 0, 0.08))`</td>
+      <td>Overrides summary block border color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-summary-header-color`</td>
+      <td>`var(--color-accent, #2B71F0)`</td>
+      <td>Overrides header label font color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-summary-text-color`</td>
+      <td>`var(--color-black, #000000)`</td>
+      <td>Overrides summary body copy font color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-summary-padding`</td>
+      <td>`12px 16px`</td>
+      <td>Overrides internal container padding.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **ARIA Scrubbing:** Purges host-level `aria-label` attributes and delegates them downstream onto the internal Shadow DOM summary container.
+* **Live Regions:** Renders `aria-live="polite"` on the summary text container to inform screen readers as dynamic typing updates finish.
+* **Global Accessibility Propagation:** Listens to class changes on `document.documentElement` via `MutationObserver` to sync accessibility modes:
+  * `.a11y-dark-mode`: Adjusts glass container, border, and text contrast levels.
+  * `.a11y-high-contrast`: Enforces solid black background and 2px solid white borders.
+  * `.a11y-large-text`: Scales body copy font size to 18px and header to 13px.
+  * `.a11y-dyslexia`: Applies high-legibility letter spacing and font stacks.

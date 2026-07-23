@@ -1,77 +1,151 @@
-// src/stories/organisms/Header/Header.js (Corrected)
-
 import css from './header.css?inline';
 import '../../molecules/Breadcrumb/Breadcrumb.js';
-import '../../atoms/Button/Button.js';
-import '../../atoms/Divider/Divider.js';
+import '../../molecules/NavigationMenu/NavigationMenu.js';
+
+const NAVIGATION_MENU_ATTRIBUTES = [
+  'language-tooltip',
+  'language-kbd-label',
+  'language-kbd-key',
+  'language-kbd-show-plus',
+  'language-aria-label',
+  'accessibility-tooltip',
+  'accessibility-kbd-label',
+  'accessibility-kbd-key',
+  'accessibility-kbd-show-plus',
+  'accessibility-aria-label',
+  'about-tooltip',
+  'about-kbd-label',
+  'about-kbd-key',
+  'about-kbd-show-plus',
+  'about-aria-label',
+  'avatar-src',
+  'avatar-alt',
+  'disabled'
+];
 
 export class Header extends HTMLElement {
-  // --- Tell the browser which attributes to watch for changes ---
   static get observedAttributes() {
-    return ['view', 'current-label'];
+    return ['aria-label', 'show-breadcrumb', 'show-language-menu', ...NAVIGATION_MENU_ATTRIBUTES];
   }
 
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
+    this._breadcrumbItems = null;
+    this._breadcrumbMenuItems = null;
+
     this.shadowRoot.innerHTML = `
       <style>${css}</style>
-      <header class="header-container">
-        <div class="header-left">
-          <ds-button variant="floating" icon="return" aria-label="Go Back" id="home-btn"></ds-button>
-          <ds-breadcrumb id="breadcrumb"></ds-breadcrumb>
-        </div>
-        <div class="header-right">
-          <ds-mode-toggle id="mode-toggle"></ds-mode-toggle>
-          <ds-divider></ds-divider>
-          <ds-button variant="icon" icon="accessibility" aria-label="Accessibility" id="a11y-btn"></ds-button>
-          <ds-button variant="icon" icon="language" aria-label="Language" id="lang-btn"></ds-button>
+      <header class="header-shell" aria-label="Header">
+        <div class="header-content">
+          <div class="breadcrumb-region">
+            <ds-breadcrumb></ds-breadcrumb>
+          </div>
+          <div class="navigation-region">
+            <ds-navigation-menu></ds-navigation-menu>
+          </div>
         </div>
       </header>
     `;
-    this.bindEvents();
   }
 
-  // --- When an observed attribute changes, this function is called ---
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue !== newValue) {
-      this.render();
-    }
-  }
-  
   connectedCallback() {
+    this.headerEl = this.shadowRoot.querySelector('.header-shell');
+    this.breadcrumbRegion = this.shadowRoot.querySelector('.breadcrumb-region');
+    this.navigationRegion = this.shadowRoot.querySelector('.navigation-region');
+    this.breadcrumbEl = this.shadowRoot.querySelector('ds-breadcrumb');
+    this.navigationEl = this.shadowRoot.querySelector('ds-navigation-menu');
     this.render();
   }
 
-  // --- This component now manages its own internals ---
-  render() {
-    const view = this.getAttribute('view') || 'home';
-    const currentLabel = this.getAttribute('current-label') || '';
-
-    const homeBtn = this.shadowRoot.getElementById('home-btn');
-    const breadcrumb = this.shadowRoot.getElementById('breadcrumb');
-
-    if (view === 'home') {
-      homeBtn.hidden = true;
-      breadcrumb.setAttribute('visible', 'false');
-    } else {
-      homeBtn.hidden = false;
-      breadcrumb.setAttribute('visible', 'true');
-      breadcrumb.setAttribute('current-label', currentLabel);
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue === newValue) return;
+    if (this.headerEl) {
+      this.render();
     }
   }
 
-  bindEvents() {
-    // --- This logic remains the same, dispatching events outwards ---
-    const dispatch = (eventName) => this.dispatchEvent(new CustomEvent(eventName, { bubbles: true, composed: true }));
-    
-    this.shadowRoot.getElementById('home-btn').addEventListener('click', () => dispatch('ds-home-click'));
-    this.shadowRoot.getElementById('a11y-btn').addEventListener('click', () => dispatch('ds-a11y-click'));
-    this.shadowRoot.getElementById('lang-btn').addEventListener('click', () => dispatch('ds-lang-click'));
-    this.shadowRoot.getElementById('mode-toggle').addEventListener('ds-mode-change', (e) => {
-        this.dispatchEvent(new CustomEvent('ds-mode-change', { detail: e.detail, bubbles: true, composed: true }));
+  get breadcrumbItems() {
+    return this._breadcrumbItems;
+  }
+
+  set breadcrumbItems(items) {
+    this._breadcrumbItems = Array.isArray(items) ? items : null;
+    this.render();
+  }
+
+  get breadcrumbMenuItems() {
+    return this._breadcrumbMenuItems;
+  }
+
+  set breadcrumbMenuItems(items) {
+    this._breadcrumbMenuItems = Array.isArray(items) ? items : null;
+    this.render();
+  }
+
+  get showBreadcrumb() {
+    return this.getAttribute('show-breadcrumb') !== 'false';
+  }
+
+  set showBreadcrumb(value) {
+    this.setAttribute('show-breadcrumb', value ? 'true' : 'false');
+  }
+
+  get showLanguageMenu() {
+    return this.getAttribute('show-language-menu') !== 'false';
+  }
+
+  set showLanguageMenu(value) {
+    this.setAttribute('show-language-menu', value ? 'true' : 'false');
+  }
+
+  _forwardNavigationAttributes() {
+    NAVIGATION_MENU_ATTRIBUTES.forEach((attributeName) => {
+      if (this.hasAttribute(attributeName)) {
+        this.navigationEl.setAttribute(attributeName, this.getAttribute(attributeName) || '');
+      } else {
+        this.navigationEl.removeAttribute(attributeName);
+      }
     });
-    this.shadowRoot.getElementById('breadcrumb').addEventListener('ds-breadcrumb-home', () => dispatch('ds-home-click'));
+  }
+
+  _syncLanguageVisibility() {
+    const showLanguageMenu = this.showLanguageMenu;
+    const navigationShadow = this.navigationEl.shadowRoot;
+
+    if (!navigationShadow) return;
+
+    const languageItem = navigationShadow.querySelector('.menu-item-language');
+    const languageMenu = navigationShadow.querySelector('.language-menu');
+
+    if (languageItem) {
+      languageItem.style.display = showLanguageMenu ? '' : 'none';
+    }
+
+    if (!showLanguageMenu && languageMenu) {
+      languageMenu.removeAttribute('open');
+    }
+  }
+
+  render() {
+    if (!this.headerEl) return;
+
+    this.headerEl.setAttribute('aria-label', this.getAttribute('aria-label') || 'Header');
+
+    this.breadcrumbRegion.hidden = !this.showBreadcrumb;
+    this.breadcrumbEl.visible = this.showBreadcrumb;
+
+    if (Array.isArray(this._breadcrumbItems)) {
+      this.breadcrumbEl.items = this._breadcrumbItems;
+    }
+
+    this.breadcrumbEl.menuItems = this._breadcrumbMenuItems;
+
+    this._forwardNavigationAttributes();
+    this._syncLanguageVisibility();
   }
 }
-if (!customElements.get('ds-header')) customElements.define('ds-header', Header);
+
+if (!customElements.get('ds-header')) {
+  customElements.define('ds-header', Header);
+}

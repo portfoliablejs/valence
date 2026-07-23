@@ -1,0 +1,1324 @@
+/* ==========================================================================
+   1. HOST GEOMETRY
+   ========================================================================== */
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* ==========================================================================
+   2. BASE PRIMITIVE STRUCTURE
+   ========================================================================== */
+.ds-article {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--ds-article-max-width, 1120px);
+  margin: 0 auto;
+  font-family: var(--font-family, sans-serif);
+  padding: var(--ds-article-padding, var(--space-xl, 24px) 0);
+  position: relative;
+}
+
+/* ==========================================================================
+   3. FLOATING TABLE OF CONTENTS (STATIONED TOP RIGHT)
+   ========================================================================== */
+   
+  /* handled by the component */ 
+
+
+/* ==========================================================================
+   4. HEADER & TITLE ROW
+   ========================================================================== */
+.article-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-article-header-gap, var(--space-md, 12px));
+  margin-bottom: var(--space-xl, 24px);
+}
+
+.kicker-text {
+  font-size: var(--ds-article-kicker-size, 13px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ds-article-kicker-color, var(--color-gray-med, #777777));
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md, 12px);
+  flex-wrap: wrap;
+}
+
+.article-title {
+  font-size: var(--ds-article-title-size, 38px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--ds-article-title-color, var(--color-black, #000000));
+  margin: 0;
+}
+
+.social-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs, 4px);
+}
+
+.social-actions ds-button {
+  --ds-button-size: 32px;
+  color: var(--ds-article-social-color, var(--color-gray-med, #777777));
+}
+
+/* ==========================================================================
+   5. ACTION BUTTONS & TOOLTIPS
+   ========================================================================== */
+.main-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+  margin-top: var(--space-xs, 4px);
+}
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ds-tooltip {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   6. SLOTTED LAYOUT CONTAINERS
+   ========================================================================== */
+.article-body-layout {
+  --ds-article-thumbnail-progress: 0;
+  --ds-article-thumbnail-current-width: calc((1 - var(--ds-article-thumbnail-progress, 0)) * var(--ds-article-thumbnail-width, min(360px, 24vw)));
+  --ds-article-layout-gap-open: var(--ds-article-layout-gap, 80px);
+  --ds-article-layout-gap-closed: var(--ds-article-hidden-layout-gap, 24px);
+  display: grid;
+  grid-template-columns: var(--ds-article-thumbnail-current-width) minmax(0, 1fr);
+  gap: calc(var(--ds-article-layout-gap-closed) + (1 - var(--ds-article-thumbnail-progress, 0)) * (var(--ds-article-layout-gap-open) - var(--ds-article-layout-gap-closed)));
+  overflow: visible;
+  position: relative;
+  align-items: start;
+}
+
+.thumbnail-column {
+  grid-column: 1;
+  position: relative;
+  z-index: 2;
+  width: var(--ds-article-thumbnail-current-width);
+  min-width: 0;
+  height: var(--ds-article-thumbnail-height, min(70vh, 680px));
+  max-height: 680px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  opacity: calc(1 - var(--ds-article-thumbnail-progress, 0));
+  transform: translateX(calc(var(--ds-article-thumbnail-progress, 0) * -1 * (var(--ds-article-thumbnail-width, min(360px, 24vw)) + var(--ds-article-layout-gap-open) + 40px)));
+  overflow: hidden;
+  transition: opacity 120ms linear;
+}
+
+.thumbnail-column.thumbnail-hidden {
+  pointer-events: none;
+}
+
+.article-body-layout.thumbnail-retracted {
+  justify-content: center;
+  align-items: stretch;
+}
+
+.content-column {
+  grid-column: 2;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  transform: translateX(calc(var(--ds-article-thumbnail-progress, 0) * -16px));
+  transition: transform 120ms linear;
+}
+
+.thumbnail-column ::slotted(*) {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-height: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.article-body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--ds-article-body-gap, 16px) + var(--ds-article-thumbnail-progress, 0) * 10px);
+  color: var(--color-text-primary, #000000);
+  transition: gap 240ms ease;
+}
+
+.article-body > * {
+  transition: none;
+}
+
+.article-summary-container {
+  margin-bottom: var(--ds-article-section-gap, var(--space-lg, 16px));
+}
+
+.article-player-container {
+  margin-bottom: var(--ds-article-section-gap, var(--space-xl, 24px));
+}
+
+@media (max-width: 860px) {
+  .article-body-layout {
+    flex-direction: column;
+  }
+
+  .thumbnail-column {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    margin-bottom: var(--space-lg, 16px);
+  }
+
+  .thumbnail-column ::slotted(*) {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+  }
+}
+
+/* ==========================================================================
+   7. CASE NAVIGATOR (FLOATING DOCK)
+   ========================================================================== */
+.article-navigator {
+  position: fixed;
+  bottom: var(--space-xl, 24px);
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed, 100);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.navigator-container {
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   8. MARKDOWN INJECTION (COMPLETE COMMONMARK & GFM SPEC)
+   ========================================================================== */
+
+/* Headings with smooth scroll alignment gap */
+::slotted(h1),
+::slotted(h2),
+::slotted(h3),
+::slotted(h4),
+::slotted(h5),
+::slotted(h6),
+ds-article h1,
+ds-article h2,
+ds-article h3,
+ds-article h4,
+ds-article h5,
+ds-article h6 {
+  font-family: var(--font-family);
+  margin-top: var(--space-xxl, 32px);
+  margin-bottom: var(--space-md, 12px);
+  scroll-margin-top: 100px;
+}
+
+::slotted(h1),
+ds-article h1 {
+  font-weight: 550 !important;
+  font-size: 28px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.0 !important;
+  color: var(--color-black) !important;
+}
+
+::slotted(h2),
+ds-article h2 {
+  font-weight: 550 !important;
+  font-size: 27px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.0 !important;
+  color: var(--color-black) !important;
+}
+
+::slotted(h3),
+ds-article h3 {
+  font-weight: 550 !important;
+  font-size: 26px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.0 !important;
+  color: var(--color-black) !important;
+  margin-top: var(--space-xl, 24px) !important;
+}
+
+::slotted(h4),
+ds-article h4 {
+  font-weight: 550 !important;
+  font-size: 25px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.0 !important;
+  color: var(--color-black) !important;
+}
+
+::slotted(h5),
+ds-article h5 {
+  font-weight: 550 !important;
+  font-size: 24px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.0 !important;
+  color: var(--color-gray-dark) !important;
+}
+
+::slotted(h6),
+ds-article h6 {
+  font-weight: 540 !important;
+  font-size: 23px !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.0 !important;
+  color: var(--color-gray-dark) !important;
+}
+
+::slotted(h1:first-child),
+::slotted(h2:first-child),
+::slotted(h3:first-child),
+ds-article h1:first-child,
+ds-article h2:first-child,
+ds-article h3:first-child {
+  margin-top: 0;
+}
+
+/* Paragraphs */
+::slotted(p),
+ds-article p {
+  font-weight: 470;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  color: var(--color-black);
+  margin-top: 0;
+  margin-bottom: var(--space-lg, 16px);
+}
+
+::slotted(p.p2),
+::slotted(p.subtext),
+ds-article p.p2,
+ds-article p.subtext {
+  font-weight: 450;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  color: var(--color-gray-med);
+}
+
+::slotted(p.p3),
+ds-article p.p3 {
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  color: var(--color-gray-dark);
+}
+
+/* Inline Formatting */
+ds-article strong,
+ds-article b {
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+ds-article em,
+ds-article i {
+  font-style: italic;
+}
+
+ds-article del,
+ds-article s {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+ds-article ins {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+}
+
+ds-article mark {
+  background-color: rgba(255, 212, 59, 0.35);
+  color: inherit;
+  padding: 0.1em 0.3em;
+  border-radius: 2px;
+}
+
+ds-article sub,
+ds-article sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+ds-article sup {
+  top: -0.5em;
+}
+
+ds-article sub {
+  bottom: -0.25em;
+}
+
+ds-article abbr[title] {
+  border-bottom: 1px dotted var(--color-gray-med);
+  cursor: help;
+  text-decoration: none;
+}
+
+/* Links */
+::slotted(a),
+ds-article a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color var(--speed-fast) var(--ease-standard);
+}
+
+::slotted(a:hover),
+ds-article a:hover {
+  color: var(--color-black);
+}
+
+/* Standard & Task Lists */
+::slotted(ul),
+::slotted(ol),
+ds-article ul,
+ds-article ol {
+  font-weight: 470;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  color: var(--color-black);
+  margin-top: 0;
+  margin-bottom: var(--space-xl, 24px);
+}
+
+ds-article ul>li,
+ds-article ol>li {
+  margin-top: var(--space-sm, 8px);
+  margin-bottom: var(--space-sm, 8px);
+}
+
+ds-article ul>li::marker {
+  color: var(--color-gray-med);
+}
+
+/* GFM Task List Checkboxes */
+ds-article ul.contains-task-list,
+ds-article ul.task-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+ds-article li.task-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: var(--space-sm, 8px);
+  margin-bottom: var(--space-sm, 8px);
+}
+
+ds-article li.task-list-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border: 1.5px solid var(--color-gray-med, #777777);
+  border-radius: var(--radius-sm, 4px);
+  background-color: var(--color-bg, #FFFFFF);
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: background-color var(--anim-fast, 0.2s) ease, border-color var(--anim-fast, 0.2s) ease;
+}
+
+ds-article li.task-list-item input[type="checkbox"]::before {
+  content: "";
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid #FFFFFF;
+  border-bottom: 2px solid #FFFFFF;
+  transform: rotate(-45deg) translate(1px, -1px);
+  opacity: 0;
+  transition: opacity var(--anim-fast, 0.2s) ease;
+}
+
+ds-article li.task-list-item input[type="checkbox"]:checked {
+  background-color: var(--color-black, #000000);
+  border-color: var(--color-black, #000000);
+}
+
+ds-article li.task-list-item input[type="checkbox"]:checked::before {
+  opacity: 1;
+}
+
+ds-article li.task-list-item input[type="checkbox"]:disabled {
+  cursor: default;
+  opacity: 1 !important;
+}
+
+/* Definition Lists (<dl>, <dt>, <dd>) - Fixed Text Contrast */
+ds-article dl {
+  margin: var(--space-lg, 16px) 0;
+}
+
+ds-article dt {
+  font-weight: 600;
+  color: var(--color-text-primary, #000000);
+  margin-top: var(--space-md, 12px);
+}
+
+ds-article dd {
+  margin-left: var(--space-xl, 24px);
+  color: var(--color-text-secondary, #323232);
+  margin-bottom: var(--space-sm, 8px);
+}
+
+/* Blockquotes & Nested Blockquotes */
+::slotted(blockquote),
+ds-article blockquote {
+  margin: var(--space-xl, 24px) 0;
+  padding: var(--space-md, 12px) var(--space-lg, 16px);
+  background-color: var(--color-card-bg);
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-weight: 300;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  color: var(--color-gray-dark);
+}
+
+ds-article blockquote>p:last-child {
+  margin-bottom: 0;
+}
+
+ds-article blockquote blockquote {
+  margin: var(--space-md, 12px) 0;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Collapsible Accordions (<details> & <summary>) */
+ds-article details {
+  margin: var(--space-lg, 16px) 0;
+  padding: var(--space-md, 12px) var(--space-lg, 16px);
+  background-color: var(--color-surface, #F2F2F7);
+  border: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--color-card-border, rgba(0, 0, 0, 0.12));
+  border-radius: var(--radius-md, 8px);
+}
+
+ds-article details summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--color-text-primary, #000000);
+  outline: none;
+  user-select: none;
+}
+
+ds-article details[open] summary {
+  margin-bottom: var(--space-md, 12px);
+  border-bottom: 1px solid var(--color-card-border, rgba(0, 0, 0, 0.12));
+  padding-bottom: var(--space-xs, 4px);
+}
+
+/* Footnotes Section */
+ds-article a.footnote-ref,
+ds-article .footnote-backref {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0 2px;
+}
+
+ds-article section.footnotes {
+  margin-top: var(--space-xxxl, 40px);
+  padding-top: var(--space-lg, 16px);
+  border-top: 1px solid var(--color-card-border, rgba(0, 0, 0, 0.12));
+  font-size: 14px;
+  color: var(--color-gray-dark);
+}
+
+/* Dividers */
+::slotted(hr),
+ds-article hr {
+  border: none;
+  height: 1px;
+  background-color: var(--color-card-border);
+  margin: var(--space-xxxl, 40px) 0;
+}
+
+/* ==========================================================================
+   NOTION-STYLE CODE BLOCKS & WRAPPING (NO HORIZONTAL SCROLL)
+   ========================================================================== */
+
+::slotted(pre),
+.article-body pre,
+ds-article pre {
+  position: relative !important;
+  margin: var(--space-xl, 24px) 0 !important;
+  padding: var(--space-xl, 24px) var(--space-xl, 24px) var(--space-lg, 16px) !important;
+  background-color: var(--color-surface, #F2F2F7) !important;
+  border: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--color-card-border, rgba(0, 0, 0, 0.12)) !important;
+  border-radius: var(--radius-md, 8px) !important;
+  font-family: var(--font-mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: var(--color-text-primary, #37352F) !important;
+  tab-size: 2 !important;
+
+  /* Force line wrapping to eliminate horizontal scrolling */
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  overflow-x: hidden !important;
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.03)) !important;
+  
+  /* Prevent code selection */
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+ds-article pre .code-lang-badge {
+  position: absolute !important;
+  top: 10px !important;
+  right: 12px !important;
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, sans-serif) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--color-gray-med, #777777) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  padding: 2px 8px !important;
+  border-radius: var(--radius-sm, 4px) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+.article-body pre code,
+ds-article pre code {
+  all: unset !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  background: none !important;
+  padding: 0 !important;
+  border: none !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  display: block !important;
+  
+  /* Prevent code selection */
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+ds-article p code,
+ds-article li code,
+ds-article td code,
+ds-article th code,
+ds-article span code {
+  font-family: var(--font-mono, "SFMono-Regular", Consolas, monospace) !important;
+  font-size: 0.85em !important;
+  padding: 0.2em 0.4em !important;
+  border-radius: var(--radius-sm, 4px) !important;
+  color: #EB5757 !important;
+  background-color: rgba(135, 131, 120, 0.15) !important;
+  white-space: nowrap !important;
+  
+  /* Prevent code selection */
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+::slotted(kbd),
+.article-body kbd,
+ds-article kbd,
+ds-article p kbd,
+ds-article li kbd {
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, sans-serif) !important;
+  font-size: 0.75em !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  padding: 3px 5px !important;
+  margin: 0 2px !important;
+  color: var(--color-black, #37352F) !important;
+  background-color: #F7F6F3 !important;
+  border: 1px solid rgba(15, 15, 15, 0.15) !important;
+  border-radius: 3px !important;
+  box-shadow: inset 0 -1px 0 rgba(15, 15, 15, 0.15), 0 1px 1px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ==========================================================================
+   PRISM SYNTAX TOKEN COLORS (LIGHT MODE DEFAULT)
+   ========================================================================== */
+
+ds-article pre .token.comment,
+ds-article pre .token.prolog,
+ds-article pre .token.doctype,
+ds-article pre .token.cdata {
+  color: #777777 !important;
+  font-style: italic !important;
+}
+
+ds-article pre .token.keyword,
+ds-article pre .token.atrule,
+ds-article pre .token.macro,
+ds-article pre .token.directive-hash {
+  color: #D73A49 !important;
+  font-weight: 600 !important;
+}
+
+ds-article pre .token.function,
+ds-article pre .token.function-name,
+ds-article pre .token.method {
+  color: #6F42C1 !important;
+}
+
+ds-article pre .token.string,
+ds-article pre .token.char,
+ds-article pre .token.attr-value,
+ds-article pre .token.regex {
+  color: #032F62 !important;
+}
+
+ds-article pre .token.number,
+ds-article pre .token.boolean,
+ds-article pre .token.constant {
+  color: #005CC5 !important;
+}
+
+ds-article pre .token.class-name,
+ds-article pre .token.builtin,
+ds-article pre .token.type,
+ds-article pre .token.namespace {
+  color: #22863A !important;
+  font-weight: 500 !important;
+}
+
+ds-article pre .token.tag,
+ds-article pre .token.selector {
+  color: #22863A !important;
+}
+
+ds-article pre .token.attr-name,
+ds-article pre .token.property,
+ds-article pre .token.variable,
+ds-article pre .token.parameter,
+ds-article pre .token.symbol {
+  color: #E36209 !important;
+}
+
+ds-article pre .token.operator,
+ds-article pre .token.entity,
+ds-article pre .token.url {
+  color: #D9381E !important;
+}
+
+ds-article pre .token.punctuation {
+  color: #37352F !important;
+}
+
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+
+::slotted(table),
+ds-article table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  margin: var(--space-xl, 24px) 0 !important;
+  font-weight: 470;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  text-align: left !important;
+  background-color: var(--color-bg, #FFFFFF) !important;
+  border: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--color-card-border, rgba(0, 0, 0, 0.15)) !important;
+  border-radius: var(--radius-md, 8px) !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05)) !important;
+}
+
+ds-article table th,
+ds-article table td {
+  padding: var(--space-md, 12px) var(--space-lg, 16px) !important;
+  border-bottom: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--color-card-border, rgba(0, 0, 0, 0.15)) !important;
+  color: var(--color-text-primary, #000000) !important;
+  vertical-align: middle !important;
+}
+
+ds-article table th {
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  background-color: var(--color-surface, #F2F2F7) !important;
+  color: var(--color-text-primary, #000000) !important;
+  border-bottom: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--color-card-border, rgba(0, 0, 0, 0.15)) !important;
+}
+
+ds-article table tbody tr:hover {
+  background-color: rgba(0, 0, 0, var(--opacity-faint, 0.04)) !important;
+}
+
+ds-article table tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Media */
+::slotted(img),
+::slotted(video),
+ds-article img,
+ds-article video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: var(--space-xl, 24px) 0;
+}
+
+::slotted(figure),
+ds-article figure {
+  margin: var(--space-xl, 24px) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ds-article figure img {
+  margin: 0;
+}
+
+ds-article figure figcaption {
+  margin-top: var(--space-lg, 16px);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0em;
+  line-height: 1.0;
+  color: var(--color-gray-med);
+  text-align: center;
+}
+
+/* ==========================================================================
+   SMOOTH SCROLLING & ACCESSIBILITY GUARD
+   ========================================================================== */
+
+:host {
+  scroll-behavior: smooth;
+}
+
+.ds-article {
+  scroll-behavior: smooth;
+}
+
+:host([a11y-reduce-motion]),
+:host([a11y-reduce-motion]) .ds-article {
+  scroll-behavior: auto !important;
+}
+
+/* ==========================================================================
+   DARK MODE OVERRIDES (HIGH CONTRAST & ACCESSIBLE TOKEN PALETTE)
+   ========================================================================== */
+
+:host([a11y-dark-mode]) .article-title,
+ds-article[a11y-dark-mode] .article-title {
+  color: var(--color-white, #FFFFFF);
+}
+
+:host([a11y-dark-mode]) .kicker-text,
+:host([a11y-dark-mode]) .social-actions ds-button,
+ds-article[a11y-dark-mode] .kicker-text {
+  color: var(--color-text-muted, #B2B2B2);
+}
+
+:host([a11y-dark-mode]) ::slotted(h1),
+:host([a11y-dark-mode]) ::slotted(h2),
+:host([a11y-dark-mode]) ::slotted(h3),
+:host([a11y-dark-mode]) ::slotted(h4),
+:host([a11y-dark-mode]) ::slotted(h5),
+:host([a11y-dark-mode]) ::slotted(p),
+:host([a11y-dark-mode]) ::slotted(ul),
+:host([a11y-dark-mode]) ::slotted(ol),
+html.a11y-dark-mode ds-article h1,
+html.a11y-dark-mode ds-article h2,
+html.a11y-dark-mode ds-article h3,
+html.a11y-dark-mode ds-article h4,
+html.a11y-dark-mode ds-article h5,
+html.a11y-dark-mode ds-article p,
+html.a11y-dark-mode ds-article ul,
+html.a11y-dark-mode ds-article ol,
+html.a11y-dark-mode ds-article dt,
+html.a11y-dark-mode ds-article details summary,
+ds-article[a11y-dark-mode] h1,
+ds-article[a11y-dark-mode] h2,
+ds-article[a11y-dark-mode] h3,
+ds-article[a11y-dark-mode] h4,
+ds-article[a11y-dark-mode] h5,
+ds-article[a11y-dark-mode] p,
+ds-article[a11y-dark-mode] dt,
+ds-article[a11y-dark-mode] details summary {
+  color: var(--color-white, #FFFFFF) !important;
+}
+
+/* Fix <dd> Definition Text Contrast in Dark Mode */
+:host([a11y-dark-mode]) dd,
+ds-article[a11y-dark-mode] dd,
+html.a11y-dark-mode ds-article dd {
+  color: var(--color-text-secondary, #F5F5F5) !important;
+}
+
+:host([a11y-dark-mode]) ::slotted(blockquote),
+html.a11y-dark-mode ds-article blockquote,
+ds-article[a11y-dark-mode] blockquote,
+html.a11y-dark-mode ds-article details,
+ds-article[a11y-dark-mode] details {
+  background-color: var(--color-surface, #1C1C1E) !important;
+  color: var(--color-text-secondary, #F5F5F5) !important;
+}
+
+:host([a11y-dark-mode]) ::slotted(pre),
+html.a11y-dark-mode ds-article pre,
+ds-article[a11y-dark-mode] pre {
+  background-color: var(--color-surface, #1C1C1E) !important;
+  border-color: var(--color-surface-border, rgba(255, 255, 255, 0.12)) !important;
+  color: var(--color-text-primary, #F5F5F5) !important;
+}
+
+:host([a11y-dark-mode]) pre .code-lang-badge,
+html.a11y-dark-mode ds-article pre .code-lang-badge,
+ds-article[a11y-dark-mode] pre .code-lang-badge {
+  color: var(--color-text-muted, #B2B2B2) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Dark Mode Task List Checkboxes */
+:host([a11y-dark-mode]) input[type="checkbox"],
+ds-article[a11y-dark-mode] li.task-list-item input[type="checkbox"],
+html.a11y-dark-mode ds-article li.task-list-item input[type="checkbox"] {
+  border-color: var(--color-gray-light, #B2B2B2) !important;
+  background-color: var(--color-surface, #1C1C1E) !important;
+}
+
+:host([a11y-dark-mode]) input[type="checkbox"]:checked,
+ds-article[a11y-dark-mode] li.task-list-item input[type="checkbox"]:checked,
+html.a11y-dark-mode ds-article li.task-list-item input[type="checkbox"]:checked {
+  background-color: var(--color-white, #FFFFFF) !important;
+  border-color: var(--color-white, #FFFFFF) !important;
+}
+
+:host([a11y-dark-mode]) input[type="checkbox"]:checked::before,
+ds-article[a11y-dark-mode] li.task-list-item input[type="checkbox"]:checked::before,
+html.a11y-dark-mode ds-article li.task-list-item input[type="checkbox"]:checked::before {
+  border-color: var(--color-player-bg, #101218) !important;
+}
+
+/* Dark Mode Prism Token Colors (High Contrast) */
+:host([a11y-dark-mode]) pre .token.punctuation,
+ds-article[a11y-dark-mode] pre .token.punctuation,
+html.a11y-dark-mode ds-article pre .token.punctuation,
+:host([a11y-dark-mode]) pre .token.operator,
+ds-article[a11y-dark-mode] pre .token.operator,
+html.a11y-dark-mode ds-article pre .token.operator {
+  color: #D4D4D4 !important;
+  /* Bright Light Gray for Brackets/Semicolons */
+}
+
+:host([a11y-dark-mode]) pre .token.comment,
+ds-article[a11y-dark-mode] pre .token.comment,
+html.a11y-dark-mode ds-article pre .token.comment {
+  color: #8B949E !important;
+  /* Soft Gray Comments */
+}
+
+:host([a11y-dark-mode]) pre .token.keyword,
+ds-article[a11y-dark-mode] pre .token.keyword,
+html.a11y-dark-mode ds-article pre .token.keyword,
+:host([a11y-dark-mode]) pre .token.macro,
+ds-article[a11y-dark-mode] pre .token.macro,
+html.a11y-dark-mode ds-article pre .token.macro {
+  color: #FF7B72 !important;
+  /* Vibrant Coral Pink */
+}
+
+:host([a11y-dark-mode]) pre .token.function,
+ds-article[a11y-dark-mode] pre .token.function,
+html.a11y-dark-mode ds-article pre .token.function {
+  color: #D2A8FF !important;
+  /* Vibrant Lavender Purple */
+}
+
+:host([a11y-dark-mode]) pre .token.string,
+ds-article[a11y-dark-mode] pre .token.string,
+html.a11y-dark-mode ds-article pre .token.string,
+:host([a11y-dark-mode]) pre .token.regex,
+ds-article[a11y-dark-mode] pre .token.regex,
+html.a11y-dark-mode ds-article pre .token.regex {
+  color: #A5D6FF !important;
+  /* Vibrant Light Sky Blue */
+}
+
+:host([a11y-dark-mode]) pre .token.number,
+ds-article[a11y-dark-mode] pre .token.number,
+html.a11y-dark-mode ds-article pre .token.number,
+:host([a11y-dark-mode]) pre .token.boolean,
+ds-article[a11y-dark-mode] pre .token.boolean,
+html.a11y-dark-mode ds-article pre .token.boolean {
+  color: #79C0FF !important;
+  /* Bright Cyan Blue */
+}
+
+:host([a11y-dark-mode]) pre .token.class-name,
+ds-article[a11y-dark-mode] pre .token.class-name,
+html.a11y-dark-mode ds-article pre .token.class-name,
+:host([a11y-dark-mode]) pre .token.builtin,
+ds-article[a11y-dark-mode] pre .token.builtin,
+html.a11y-dark-mode ds-article pre .token.builtin {
+  color: #7EE787 !important;
+  /* Bright Mint Green */
+}
+
+:host([a11y-dark-mode]) pre .token.property,
+ds-article[a11y-dark-mode] pre .token.property,
+html.a11y-dark-mode ds-article pre .token.property,
+:host([a11y-dark-mode]) pre .token.attr-name,
+ds-article[a11y-dark-mode] pre .token.attr-name,
+html.a11y-dark-mode ds-article pre .token.attr-name,
+:host([a11y-dark-mode]) pre .token.variable,
+ds-article[a11y-dark-mode] pre .token.variable,
+html.a11y-dark-mode ds-article pre .token.variable {
+  color: #FFA657 !important;
+  /* Bright Light Orange */
+}
+
+/* Dark Mode Tables */
+html.a11y-dark-mode ds-article table th,
+ds-article[a11y-dark-mode] table th {
+  background-color: var(--color-surface, #1C1C1E) !important;
+  color: var(--color-white, #FFFFFF) !important;
+}
+
+html.a11y-dark-mode ds-article table tbody tr:hover,
+ds-article[a11y-dark-mode] table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* KBD dark mode */
+:host([a11y-dark-mode]) ::slotted(kbd),
+html.a11y-dark-mode ds-article kbd,
+ds-article[a11y-dark-mode] kbd,
+ds-article[a11y-dark-mode] p kbd,
+ds-article[a11y-dark-mode] li kbd {
+  color: var(--color-white, #FFFFFF) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2), 0 1px 1px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ==========================================================================
+   HIGH CONTRAST MODE (BINARY 21:1 CONTRAST)
+   ========================================================================== */
+
+:host([a11y-high-contrast]) .article-title,
+:host([a11y-high-contrast]) .kicker-text,
+ds-article[a11y-high-contrast] .article-title,
+ds-article[a11y-high-contrast] .kicker-text {
+  color: #FFFFFF !important;
+}
+
+:host([a11y-high-contrast]) ::slotted(p),
+html.a11y-high-contrast ds-article p,
+html.a11y-high-contrast ds-article ul,
+html.a11y-high-contrast ds-article ol,
+html.a11y-high-contrast ds-article blockquote,
+html.a11y-high-contrast ds-article table th,
+html.a11y-high-contrast ds-article table td,
+html.a11y-high-contrast ds-article details,
+html.a11y-high-contrast ds-article dt,
+html.a11y-high-contrast ds-article dd,
+ds-article[a11y-high-contrast] p,
+ds-article[a11y-high-contrast] ul,
+ds-article[a11y-high-contrast] ol,
+ds-article[a11y-high-contrast] blockquote,
+ds-article[a11y-high-contrast] table th,
+ds-article[a11y-high-contrast] table td,
+ds-article[a11y-high-contrast] details,
+ds-article[a11y-high-contrast] dt,
+ds-article[a11y-high-contrast] dd {
+  color: #FFFFFF !important;
+  background-color: transparent !important;
+  border-color: #FFFFFF !important;
+}
+
+/* All Syntax Tokens Forced Pure White in High Contrast Mode */
+:host([a11y-high-contrast]) pre .token,
+ds-article[a11y-high-contrast] pre .token,
+html.a11y-high-contrast ds-article pre .token {
+  color: #FFFFFF !important;
+  background: transparent !important;
+}
+
+:host([a11y-high-contrast]) input[type="checkbox"],
+ds-article[a11y-high-contrast] li.task-list-item input[type="checkbox"],
+html.a11y-high-contrast ds-article li.task-list-item input[type="checkbox"] {
+  border: 2px solid #FFFFFF !important;
+  background-color: #000000 !important;
+}
+
+:host([a11y-high-contrast]) input[type="checkbox"]:checked,
+ds-article[a11y-high-contrast] li.task-list-item input[type="checkbox"]:checked,
+html.a11y-high-contrast ds-article li.task-list-item input[type="checkbox"]:checked {
+  background-color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+
+:host([a11y-high-contrast]) input[type="checkbox"]:checked::before,
+ds-article[a11y-high-contrast] li.task-list-item input[type="checkbox"]:checked::before,
+html.a11y-high-contrast ds-article li.task-list-item input[type="checkbox"]:checked::before {
+  border-color: #000000 !important;
+}
+
+/* KBD high contrast */
+:host([a11y-high-contrast]) ::slotted(kbd),
+html.a11y-high-contrast ds-article kbd,
+ds-article[a11y-high-contrast] kbd,
+ds-article[a11y-high-contrast] p kbd,
+ds-article[a11y-high-contrast] li kbd {
+  color: #FFFFFF !important;
+  background-color: #000000 !important;
+  border: 2px solid #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   LARGE TEXT OVERRIDES
+   ========================================================================== */
+
+:host([a11y-large-text]) .article-title {
+  font-size: calc(var(--ds-article-title-size, 38px) * 1.25) !important;
+}
+
+:host([a11y-large-text]) .kicker-text { 
+  font-size: calc(var(--ds-article-kicker-size, 11px) * 1.25) !important; 
+}
+
+:host([a11y-dyslexia]) .ds-article {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+}
+
+:host([a11y-reduce-motion]) * {
+  transition: none !important;
+  transform: none !important;
+}
+
+/* ==========================================================================
+   FORCED COLORS MODE (SYNTHETIC ATTRIBUTE OVERRIDE WITH COMPOUND GUARDS)
+   ========================================================================== */
+
+:host([a11y-forced-colors]) .article-title,
+:host([a11y-forced-colors]) .kicker-text,
+ds-article[a11y-forced-colors] .article-title,
+ds-article[a11y-forced-colors] .kicker-text,
+:host([a11y-forced-colors][a11y-dark-mode]) .article-title,
+:host([a11y-forced-colors][a11y-dark-mode]) .kicker-text,
+ds-article[a11y-forced-colors][a11y-dark-mode] .article-title,
+ds-article[a11y-forced-colors][a11y-dark-mode] .kicker-text,
+:host([a11y-forced-colors][a11y-high-contrast]) .article-title,
+:host([a11y-forced-colors][a11y-high-contrast]) .kicker-text,
+ds-article[a11y-forced-colors][a11y-high-contrast] .article-title,
+ds-article[a11y-forced-colors][a11y-high-contrast] .kicker-text {
+  forced-color-adjust: none !important;
+  color: CanvasText !important;
+}
+
+:host([a11y-forced-colors]) ::slotted(pre),
+:host([a11y-forced-colors]) .article-body pre,
+ds-article[a11y-forced-colors] pre,
+ds-article[a11y-forced-colors] table,
+ds-article[a11y-forced-colors] details,
+ds-article[a11y-forced-colors] blockquote,
+:host([a11y-forced-colors][a11y-dark-mode]) ::slotted(pre),
+:host([a11y-forced-colors][a11y-dark-mode]) .article-body pre,
+ds-article[a11y-forced-colors][a11y-dark-mode] pre,
+ds-article[a11y-forced-colors][a11y-dark-mode] table,
+ds-article[a11y-forced-colors][a11y-dark-mode] details,
+ds-article[a11y-forced-colors][a11y-dark-mode] blockquote,
+:host([a11y-forced-colors][a11y-high-contrast]) ::slotted(pre),
+:host([a11y-forced-colors][a11y-high-contrast]) .article-body pre,
+ds-article[a11y-forced-colors][a11y-high-contrast] pre,
+ds-article[a11y-forced-colors][a11y-high-contrast] table,
+ds-article[a11y-forced-colors][a11y-high-contrast] details,
+ds-article[a11y-forced-colors][a11y-high-contrast] blockquote {
+  background-color: Canvas !important;
+  color: CanvasText !important;
+  border: 1px solid CanvasText !important;
+  box-shadow: none !important;
+}
+
+ds-article[a11y-forced-colors] pre .code-lang-badge,
+ds-article[a11y-forced-colors][a11y-dark-mode] pre .code-lang-badge,
+ds-article[a11y-forced-colors][a11y-high-contrast] pre .code-lang-badge {
+  background-color: Canvas !important;
+  color: CanvasText !important;
+  border: 1px solid CanvasText !important;
+}
+
+ds-article[a11y-forced-colors] pre .token,
+ds-article[a11y-forced-colors][a11y-dark-mode] pre .token,
+ds-article[a11y-forced-colors][a11y-high-contrast] pre .token {
+  color: CanvasText !important;
+  background: transparent !important;
+  forced-color-adjust: auto !important;
+}
+
+ds-article[a11y-forced-colors] p code,
+ds-article[a11y-forced-colors] li code,
+ds-article[a11y-forced-colors] td code,
+ds-article[a11y-forced-colors] th code,
+ds-article[a11y-forced-colors] span code,
+ds-article[a11y-forced-colors] kbd,
+ds-article[a11y-forced-colors][a11y-dark-mode] p code,
+ds-article[a11y-forced-colors][a11y-dark-mode] li code,
+ds-article[a11y-forced-colors][a11y-dark-mode] td code,
+ds-article[a11y-forced-colors][a11y-dark-mode] th code,
+ds-article[a11y-forced-colors][a11y-dark-mode] span code,
+ds-article[a11y-forced-colors][a11y-dark-mode] kbd,
+ds-article[a11y-forced-colors][a11y-high-contrast] p code,
+ds-article[a11y-forced-colors][a11y-high-contrast] li code,
+ds-article[a11y-forced-colors][a11y-high-contrast] td code,
+ds-article[a11y-forced-colors][a11y-high-contrast] th code,
+ds-article[a11y-forced-colors][a11y-high-contrast] span code,
+ds-article[a11y-forced-colors][a11y-high-contrast] kbd {
+  background-color: Canvas !important;
+  color: CanvasText !important;
+  border: 1px solid CanvasText !important;
+}
+
+ds-article[a11y-forced-colors] table th,
+ds-article[a11y-forced-colors] table td,
+ds-article[a11y-forced-colors][a11y-dark-mode] table th,
+ds-article[a11y-forced-colors][a11y-dark-mode] table td,
+ds-article[a11y-forced-colors][a11y-high-contrast] table th,
+ds-article[a11y-forced-colors][a11y-high-contrast] table td {
+  color: CanvasText !important;
+  border-color: CanvasText !important;
+  background-color: Canvas !important;
+}
+
+ds-article[a11y-forced-colors] li.task-list-item input[type="checkbox"],
+ds-article[a11y-forced-colors][a11y-dark-mode] li.task-list-item input[type="checkbox"],
+ds-article[a11y-forced-colors][a11y-high-contrast] li.task-list-item input[type="checkbox"] {
+  border: 2px solid CanvasText !important;
+  background-color: Canvas !important;
+}
+
+ds-article[a11y-forced-colors] li.task-list-item input[type="checkbox"]:checked,
+ds-article[a11y-forced-colors][a11y-dark-mode] li.task-list-item input[type="checkbox"]:checked,
+ds-article[a11y-forced-colors][a11y-high-contrast] li.task-list-item input[type="checkbox"]:checked {
+  background-color: Highlight !important;
+  border-color: Highlight !important;
+}
+
+ds-article[a11y-forced-colors] li.task-list-item input[type="checkbox"]:checked::before,
+ds-article[a11y-forced-colors][a11y-dark-mode] li.task-list-item input[type="checkbox"]:checked::before,
+ds-article[a11y-forced-colors][a11y-high-contrast] li.task-list-item input[type="checkbox"]:checked::before {
+  border-color: HighlightText !important;
+}
+
+/* ==========================================================================
+   NATIVE OS FORCED COLORS MEDIA QUERY
+   ========================================================================== */
+
+@media (forced-colors: active) {
+
+  .article-title,
+  .kicker-text {
+    forced-color-adjust: none !important;
+    color: CanvasText !important;
+  }
+
+  ::slotted(pre),
+  .article-body pre,
+  ds-article pre,
+  ::slotted(table),
+  ds-article table,
+  ds-article details,
+  ds-article blockquote {
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    border: 1px solid CanvasText !important;
+    box-shadow: none !important;
+  }
+
+  ds-article pre .code-lang-badge {
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    border: 1px solid CanvasText !important;
+  }
+
+  ds-article pre .token {
+    color: CanvasText !important;
+    background: transparent !important;
+    forced-color-adjust: auto !important;
+  }
+
+  ds-article p code,
+  ds-article li code,
+  ds-article td code,
+  ds-article th code,
+  ds-article span code,
+  ds-article kbd {
+    background-color: Canvas !important;
+    color: CanvasText !important;
+    border: 1px solid CanvasText !important;
+  }
+
+  ds-article table th,
+  ds-article table td {
+    color: CanvasText !important;
+    border-color: CanvasText !important;
+    background-color: Canvas !important;
+  }
+
+  ds-article li.task-list-item input[type="checkbox"] {
+    border: 2px solid CanvasText !important;
+    background-color: Canvas !important;
+  }
+
+  ds-article li.task-list-item input[type="checkbox"]:checked {
+    background-color: Highlight !important;
+    border-color: Highlight !important;
+  }
+
+  ds-article li.task-list-item input[type="checkbox"]:checked::before {
+    border-color: HighlightText !important;
+  }
+}

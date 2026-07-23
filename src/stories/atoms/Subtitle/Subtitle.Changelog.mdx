@@ -1,0 +1,66 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Subtitle [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational caption overlay component (`ds-subtitle`) featuring interactive pointer-based viewport dragging, polite screen reader captions, and responsive CSS scale modifiers.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-subtitle`</td>
+      <td>Initial release of caption display overlay with text and visible attribute observations.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-subtitle`</td>
+      <td>Integrated pointer-drag calculations that trigger `ds-subtitle-dragstart` and `ds-subtitle-dragend` custom event streams.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Sets up passive HTML class observer syncing viewport preferences downstream.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`Subtitle.stories.js`</td>
+      <td>Remapped inline style properties in Storybook configuration to standard `--ds-subtitle-*` design tokens instead of generic `--custom-*` hooks.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Caption Overlay Atom:** Created `<ds-subtitle>` acting as a media caption HUD.
+- **Pointer Dragging repositioning:** Built-in pointerdown/pointermove/pointerup handlers supporting custom drag triggers.
+- **Thematic Overrides:** Standardized backdrop colors, font stacks, container padding, corner radii, and outline widths under `--ds-subtitle-*` layouts.
+- **Storybook Workspace:** Configured comprehensive CSF3 stories and automated interactions inside `Subtitle.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Synced Storybook template controls to pass accurate `--ds-subtitle-*` style overrides.
+
+---
+
+*This changelog is specific to the `<ds-subtitle>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

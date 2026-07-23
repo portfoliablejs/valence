@@ -7,9 +7,9 @@
   border-radius: var(--radius-circle, 50%);
   
   /* Sub-Atomic Style Hook Overrides with Design Token Fallbacks */
-  width: var(--custom-size, var(--size-icon-sm));
-  height: var(--custom-size, var(--size-icon-sm));
-  color: var(--custom-color, var(--color-accent));
+  width: var(--ds-radio-size, var(--size-icon-sm));
+  height: var(--ds-radio-size, var(--size-icon-sm));
+  color: var(--ds-radio-color, var(--color-accent));
   transition: transform var(--anim-fast) var(--ease-fluid), opacity var(--anim-fast) var(--ease-fluid);
 }
 
@@ -91,7 +91,7 @@ svg {
    ========================================================================== */
 
 :host([a11y-dark-mode]) {
-  color: var(--custom-color, var(--color-accent));
+  color: var(--ds-radio-color, var(--color-accent));
 }
 
 :host([a11y-dark-mode][invalid]),

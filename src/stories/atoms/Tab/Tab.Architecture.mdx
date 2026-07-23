@@ -1,0 +1,255 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Tab [v1.0.0]/Architecture" />
+
+# `ds-tab`
+
+The `ds-tab` component is an interactive, presentational **controlled** Atom designed to render tab triggers inside tablist widgets. It includes native key event hooks, supports dual slot/attribute label configuration, handles disabled states, and implements root class accessibility observer syncs.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host binds attributes (`label`, `active`, `disabled`, `aria-label`) to render label contents, toggle selection highlights, or block interaction events.
+* **Events Out (`ds-tab-click`):** Captures mouse clicks to dispatch unified cross-boundary events indicating which tab index has been focused and triggered.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-tab"]
+      end
+
+      State -->|"1. State In: label / active / disabled"| Component
+      Component -->|"2. Event Out: ds-tab-click"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-tab` component exposes its default slot to receive raw strings or HTML tags for visual layout labels. When a direct `label` attribute is defined on the host custom element, it completely overrides the projected slot contents.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>Text / HTML Subtree</td>
+      <td>Primary text or icon label projected inside the tab button wrapper.</td>
+      <td>Falls back to the `label` attribute or remains empty.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsTabState {
+  label?: string;
+  active: boolean;
+  disabled: boolean;
+  ariaLabel?: string;
+}
+
+export interface DsTabSubAtomicHooks {
+  '--ds-tab-bg'?: string;
+  '--ds-tab-color'?: string;
+  '--ds-tab-font'?: string;
+  '--ds-tab-padding'?: string;
+  '--ds-tab-radius'?: string;
+  '--ds-tab-hover-color'?: string;
+  '--ds-tab-hover-bg'?: string;
+  '--ds-tab-active-color'?: string;
+  '--ds-tab-active-bg'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`label`</td>
+      <td>`label`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Custom text string mapped to button content. Overrides slot projections.</td>
+    </tr>
+    <tr>
+      <td>`active`</td>
+      <td>`active`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles active visualization. Sets `aria-selected` and forces `tabindex="0"`.</td>
+    </tr>
+    <tr>
+      <td>`disabled`</td>
+      <td>`disabled`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Disables clicks, strips focus maps, and sets `aria-disabled`.</td>
+    </tr>
+    <tr>
+      <td>`ariaLabel`</td>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Accessible tag description delegated down into internal buttons.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-tab-click`</td>
+      <td>`true` / `true`</td>
+      <td>`{ active: boolean, label: string }`</td>
+      <td>Fires on user click interactions, passing current states upstream.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-tab-bg`</td>
+      <td>`transparent`</td>
+      <td>Overrides baseline tab container background color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-tab-color`</td>
+      <td>`var(--color-text-secondary)`</td>
+      <td>Overrides baseline label text color.</td>
+    </tr>
+    <tr>
+      <td>`--ds-tab-font`</td>
+      <td>`var(--font-family)`</td>
+      <td>Overrides label text font family.</td>
+    </tr>
+    <tr>
+      <td>`--ds-tab-padding`</td>
+      <td>`var(--space-xs) var(--space-md)`</td>
+      <td>Overrides baseline container margins.</td>
+    </tr>
+    <tr>
+      <td>`--ds-tab-radius`</td>
+      <td>`var(--radius-md)`</td>
+      <td>Overrides boundary corner radius curves.</td>
+    </tr>
+    <tr>
+      <td>`--ds-tab-hover-color`</td>
+      <td>`var(--color-black)`</td>
+      <td>Overrides text color when hovered.</td>
+    </tr>
+    <tr>
+      <td>`--ds-tab-hover-bg`</td>
+      <td>`var(--color-gray-xlight)`</td>
+      <td>Overrides background color when hovered.</td>
+    </tr>
+    <tr>
+      <td>`--ds-tab-active-color`</td>
+      <td>`var(--color-white)`</td>
+      <td>Overrides active text foreground colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-tab-active-bg`</td>
+      <td>`var(--color-black)`</td>
+      <td>Overrides active backdrop background colors.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Semantics & Focusing:** Employs an internal `<button>` with `role="tab"` to handle focus paths correctly. Tab index is set to `0` (active) and `-1` (inactive) for standard keyboard focus flows.
+* **ARIA Host Scrubbing:** Automatically purges Light DOM `aria-label` tags and projects them cleanly onto the focusable button.
+* **Global Access Syncing:** Uses a `MutationObserver` on the HTML root to synchronize visual settings:
+  * `.a11y-dark-mode`: Swaps inactive font palettes and maps active containers to pure white.
+  * `.a11y-high-contrast`: Enforces clear AAA solid fills with inverted text.
+  * `.a11y-dyslexia`: Forces Comic Sans MS font overrides.
+  * `.a11y-reduce-motion`: Disables transitions.
+  * `.a11y-forced-colors`: Overrides backgrounds via system `Canvas` and selected fills via `Highlight`.
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-tab';
+
+const tab = document.createElement('ds-tab');
+tab.setAttribute('label', 'Analytics HUD');
+tab.setAttribute('active', 'true');
+tab.setAttribute('aria-label', 'View system statistics');
+
+// Clean sub-atomic overrides
+tab.style.setProperty('--ds-tab-radius', '4px');
+tab.style.setProperty('--ds-tab-active-bg', 'var(--color-success)');
+
+tab.addEventListener('ds-tab-click', (e) => {
+  console.log('Tab selected. Value:', e.detail.label);
+});
+
+document.body.appendChild(tab);
+```

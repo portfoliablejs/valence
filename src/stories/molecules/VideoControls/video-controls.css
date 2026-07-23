@@ -1,60 +1,70 @@
+/* Baseline host configurations focus purely on the parent layout shell */
 :host {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--space-md);
+  border: var(--border-width-thin) var(--border-style-solid) transparent;
 }
 
+/* Responsive Mobile Layout Conformance Block */
 @media (max-width: 768px) {
   :host {
     flex-direction: row;
-    background-color: var(--color-player-bg, #101218);
-    border: 1px solid var(--color-bg, #FFFFFF);
-    border-radius: 50px;
-    padding: 10px var(--space-xl, 24px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background-color: var(--ds-video-controls-bg, var(--color-player-bg));
+    border: var(--ds-video-controls-border-width, var(--border-width-thin)) 
+            var(--border-style-solid) 
+            var(--ds-video-controls-border-color, var(--color-white));
+    border-radius: var(--ds-video-controls-radius, var(--radius-pill));
+    padding: var(--space-sm) var(--space-xl);
+    box-shadow: var(--ds-video-controls-shadow, var(--shadow-lg));
+  }
+
+  /* Suppress tooltip presentation on small viewports to eliminate touch screen tap-to-hover stickiness */
+  ds-tooltip {
+    display: none !important;
   }
 }
 
-.icon-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  width: 33px;
-  height: 33px;
-  padding: 0;
-  border-radius: 50%;
+.video-controls-container {
+  display: contents;
+}
+
+.tooltip-wrapper {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-gray-med, #777777);
 }
 
-.icon-btn:focus-visible {
-  outline: 3px solid var(--color-accent, #2B71F0);
-  outline-offset: 2px;
+/* Base structural scaling dimensions override for circular child controls */
+ds-button {
+  --ds-button-size: 33px;
+  --ds-button-radius: var(--radius-circle);
+  display: inline-flex;
 }
 
-.icon-btn:hover circle[fill="white"] {
-  fill: var(--color-gray-xlight, #D9D9D9);
+/* ==========================================================================
+   CONTAINER BAR ACCESSIBILITY (Child controls rely on internal atom CSS rules)
+   ========================================================================= */
+
+/* High Contrast Mode (Container-level AAA framing resets) */
+:host([a11y-high-contrast]) {
+  background-color: #000000 !important;
+  box-shadow: var(--shadow-none) !important;
+  border: var(--border-width-medium) var(--border-style-solid) #FFFFFF !important;
 }
 
-.icon-btn:active {
-  transform: scale(0.95);
+/* Forced Colors Mode (Container-level system keyword mappings) */
+:host([a11y-forced-colors]) {
+  forced-color-adjust: none !important;
+  background-color: Canvas !important;
+  border-color: CanvasText !important;
 }
 
-.speed-text {
-  font-family: var(--font-family, sans-serif);
-  font-size: 12px;
-  font-weight: bold;
-  fill: var(--color-black, #000000);
+@media (forced-colors: active) {
+  :host {
+    forced-color-adjust: none !important;
+    background-color: Canvas !important;
+    border-color: CanvasText !important;
+  }
 }
-
-.cc-text {
-  font-family: var(--font-family, sans-serif);
-  font-size: 10px;
-  font-weight: bold;
-}
-
-.cc-text.filled { fill: var(--color-black, #000000); }
-.cc-text.outlined { fill: var(--color-white, #FFFFFF); }

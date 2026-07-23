@@ -3,22 +3,70 @@ import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
 <Meta title="Atoms/Divider [v1.0.0]/Changelog"/>
 
 # Changelog
+
 <br />
+
 ## [1.0.0] - 2026-07-16
+
 <br />
+
 ### Initial Release
 
+The stable debut of the presentational content divider component (`ds-divider`) featuring support for horizontal and vertical layouts, customizable thicknesses and colors, and active root accessibility syncs.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-divider`</td>
+      <td>Initial stable release of custom layout separator component.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-divider`</td>
+      <td>Support for both `horizontal` and `vertical` layout axes with standard flexible container sizing.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Integrates root class observer syncing dark mode, contrast, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`ds-divider`</td>
+      <td>Automatically scrubs `aria-label` from host custom elements after delegating it directly to focusable inner separator primitives.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`ds-divider`</td>
+      <td>Compressed template HTML on single line to completely eliminate whitespace layout gaps inside Shadow DOM.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
 ### Added
-- **Initial Component Implementation:** First stable release of `<ds-divider>` featuring:
-  - **Structural Orientations:** Support for both `horizontal` and `vertical` layout axes with standard flexible container sizing.
-  - **Sub-Atomic Token Hooks:** Component-specific CSS custom property overrides for stroke color, rule thickness, and spatial margins (`--ds-divider-color`, `--ds-divider-thickness`, `--ds-divider-margin`).
-  - **Root Accessibility Observer (`_observeRootAccessibility`):** Integrated `MutationObserver` on `document.documentElement` to automatically sync global accessibility modes onto host custom element attributes.
-  - **WCAG AAA & Forced Colors Support:** High-contrast overrides, reduced motion suppression, dark mode contrast mapping, and Windows Forced Colors Mode system palette mapping (`CanvasText`).
-- **Storybook CSF3 Integration:** Story controls in `Divider.stories.js` featuring sub-atomic knobs (`color`, `thickness`, `margin`) and automated interaction testing via `play` functions validating host attribute scrubbing and internal ARIA propagation.
+- **Structural Divider Atom:** Created `<ds-divider>` designed for separating layout blocks.
+- **Bi-directional Support:** Dynamically delegates `aria-orientation` and `aria-label` downstream to role="separator" nodes.
+- **Root preference Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags.
+- **Thematic Overrides:** Bound separator line color, thickness, and spatial margins to `--ds-divider-color`, `--ds-divider-thickness`, and `--ds-divider-margin`.
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `Divider.stories.js`.
 
 ### Fixed
-- **Host ARIA Delegation & Infinite Reflection Guard:** Automatically scrubs `aria-label` from the host custom element tag after delegating it to the inner `.divider-root` primitive, with a guard in `attributeChangedCallback` preventing infinite loop reflections when `aria-label` is removed.
-- **Shadow DOM Layout Nodes:** Compressed inner HTML template string into a single line to eliminate anonymous whitespace text nodes in Shadow DOM layouts.
+- **Host ARIA Delegation & Infinite Guard:** Installs safe `attributeChangedCallback` blocks preventing infinite recursion when purging Light DOM host attributes.
+- **Shadow DOM Layout Nodes:** Compressed inner Shadow DOM HTML templates on single lines to resolve ghost whitespace layout nodes.
 
 ---
 

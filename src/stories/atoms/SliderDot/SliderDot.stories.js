@@ -7,7 +7,7 @@ import './SliderDot';
  * An interactive pagination dot used to navigate between slides.
  */
 export default {
-  title: 'Atoms/Slider Dot',
+  title: 'Atoms/Slider Dot [v1.0.0]',
   component: 'ds-slider-dot',
   tags: ['autodocs'],
   parameters: {
@@ -52,19 +52,19 @@ export default {
     // --- SUB-ATOMIC PROPS ---
     size: {
       name: 'size',
-      description: 'Sub-atomic modifier overriding default diameter geometry.',
+      description: 'Sub-atomic modifier overriding default diameter geometry (--ds-slider-dot-size).',
       control: 'text',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: '12px' } },
     },
     backgroundColor: {
       name: 'backgroundColor',
-      description: 'Sub-atomic modifier overriding default baseline background color.',
+      description: 'Sub-atomic modifier overriding default baseline background color (--ds-slider-dot-bg).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--color-gray-xlight)' } },
     },
     activeColor: {
       name: 'activeColor',
-      description: 'Sub-atomic modifier overriding active state background color.',
+      description: 'Sub-atomic modifier overriding active state background color (--ds-slider-dot-active-bg).',
       control: 'color',
       table: { category: 'SUB-ATOMIC PROPS', defaultValue: { summary: 'var(--color-gray-dark)' } },
     },
@@ -86,9 +86,9 @@ export default {
   render: (args) => {
     // Map Sub-Atomic Override Properties cleanly without polluting component markup structures
     const customStyles = [
-      args.size ? `--custom-size: ${args.size};` : '',
-      args.backgroundColor ? `--custom-bg: ${args.backgroundColor};` : '',
-      args.activeColor ? `--custom-active-bg: ${args.activeColor};` : ''
+      args.size ? `--ds-slider-dot-size: ${args.size};` : '',
+      args.backgroundColor ? `--ds-slider-dot-bg: ${args.backgroundColor};` : '',
+      args.activeColor ? `--ds-slider-dot-active-bg: ${args.activeColor};` : ''
     ].join(' ').trim();
 
     return html`

@@ -4,7 +4,7 @@ import { expect, fn, userEvent } from 'storybook/test';
 import './Toast';
 
 export default {
-  title: 'Molecules/Toast',
+  title: 'Molecules/Toast [v1.0.0]',
   component: 'ds-toast',
   tags: ['autodocs'],
   parameters: {
@@ -55,18 +55,32 @@ export default {
       table: { category: 'Component: Core', defaultValue: { summary: 'Resume case reader' } },
     },
 
-    // --- SUB-ATOMIC OVERRIDES ---
+    // --- LOCALIZATION ARGTYPES ---
+    labelNeverShow: {
+      name: 'label-never-show',
+      control: 'text',
+      description: 'Localization text string for the right never-show-again button.',
+      table: { category: 'Localization' },
+    },
+    labelClose: {
+      name: 'label-close',
+      control: 'text',
+      description: 'Localization text string for the left close button accessibility aria-label.',
+      table: { category: 'Localization' },
+    },
+
+    // --- SUB-ATOMIC PROPS ---
     backgroundColor: {
       name: 'backgroundColor',
-      description: 'Sub-atomic modifier overriding default surface background.',
+      description: 'Sub-atomic modifier overriding default surface background (--ds-toast-bg).',
       control: 'color',
-      table: { category: 'Sub-Atomic Overrides' },
+      table: { category: 'SUB-ATOMIC PROPS' },
     },
     textColor: {
       name: 'textColor',
-      description: 'Sub-atomic modifier overriding default text color.',
+      description: 'Sub-atomic modifier overriding default text color (--ds-toast-color).',
       control: 'color',
-      table: { category: 'Sub-Atomic Overrides' },
+      table: { category: 'SUB-ATOMIC PROPS' },
     },
 
     // --- EVENTS ---
@@ -96,8 +110,8 @@ export default {
   },
   render: (args) => {
     const customStyles = [
-      args.backgroundColor ? `--custom-bg: ${args.backgroundColor};` : '',
-      args.textColor ? `--custom-color: ${args.textColor};` : ''
+      args.backgroundColor ? `--ds-toast-bg: ${args.backgroundColor};` : '',
+      args.textColor ? `--ds-toast-color: ${args.textColor};` : ''
     ].join(' ').trim();
 
     return html`
@@ -106,6 +120,8 @@ export default {
         case-title=${ifDefined(args.caseTitle)}
         ?show-close=${args.showClose}
         ?show-never-show=${args.showNeverShow}
+        label-never-show=${ifDefined(args.labelNeverShow)}
+        label-close=${ifDefined(args.labelClose)}
         aria-label=${ifDefined(args.ariaLabel)}
         style=${ifDefined(customStyles || undefined)}
         @ds-toast-click=${args.onToastClick}

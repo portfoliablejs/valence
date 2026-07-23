@@ -1,0 +1,272 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Toast [v1.0.0]/Architecture" />
+
+# `ds-toast`
+
+The `ds-toast` component is an interactive, presentational **controlled** Molecule designed to render floating system notification banners and status updates. It includes optional left "Close" `ds-button` actions, optional right "Never show this again" text buttons, complete accessibility syncing, and robust localizable attribute controls.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host binds attributes (`visible`, `case-title`, `show-close`, `show-never-show`, `aria-label`, `label-*`) downstream to trigger entry/exit slide animations, inject message strings, and configure translation labels.
+* **Events Out:** User clicks on the toast body, the close button, or the never-show button emit customized event streams prefixed with `ds-toast-` upstream.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["ds-toast (Shadow DOM Composition)"]
+          Component["ds-toast"]
+          CloseBtn["ds-button (Close)"]
+          NeverBtn["ds-button (Never)"]
+      end
+
+      State -->|"1. State In: visible / case-title / labels"| Component
+      Component -->|"2. Event Out: ds-toast-click"| State
+      CloseBtn -->|"3. Event Out: ds-toast-close"| State
+      NeverBtn -->|"4. Event Out: ds-toast-never-show"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+      style CloseBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style NeverBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-toast` component can receive custom formatted HTML structures or text nodes inside its default slot if the `case-title` attribute is omitted, fallback-projecting content.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>Text / Inline HTML</td>
+      <td>Primary notification text projected if `case-title` attribute is omitted.</td>
+      <td>Renders empty and collapses text block dimensions.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsToastState {
+  visible: boolean;
+  caseTitle?: string;
+  showClose: boolean;
+  showNeverShow: boolean;
+  ariaLabel?: string;
+  labelNeverShow?: string;
+  labelClose?: string;
+}
+
+export interface DsToastSubAtomicHooks {
+  '--ds-toast-bg'?: string;
+  '--ds-toast-color'?: string;
+  '--ds-toast-border-width'?: string;
+  '--ds-toast-border-color'?: string;
+  '--ds-toast-padding'?: string;
+  '--ds-toast-radius'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`visible`</td>
+      <td>`visible`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Controls the visible entry/exit translate and opacity animation states.</td>
+    </tr>
+    <tr>
+      <td>`caseTitle`</td>
+      <td>`case-title`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Primary text string rendered inside the notification container.</td>
+    </tr>
+    <tr>
+      <td>`showClose`</td>
+      <td>`show-close`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Toggles display of the left close icon button.</td>
+    </tr>
+    <tr>
+      <td>`showNeverShow`</td>
+      <td>`show-never-show`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Toggles display of the right "Never show this again" text button.</td>
+    </tr>
+    <tr>
+      <td>`labelNeverShow`</td>
+      <td>`label-never-show`</td>
+      <td>`string`</td>
+      <td>`'Never show this again'`</td>
+      <td>Overriding localization string for the right text button.</td>
+    </tr>
+    <tr>
+      <td>`labelClose`</td>
+      <td>`label-close`</td>
+      <td>`string`</td>
+      <td>`'Close notification'`</td>
+      <td>Overriding localization string for the left close button aria-label.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-toast-click`</td>
+      <td>`true` / `true`</td>
+      <td>`{ visible: boolean }`</td>
+      <td>Dispatched when users click on the main toast container.</td>
+    </tr>
+    <tr>
+      <td>`ds-toast-close`</td>
+      <td>`true` / `true`</td>
+      <td>`None`</td>
+      <td>Dispatched when users click the left close button, closing the overlay.</td>
+    </tr>
+    <tr>
+      <td>`ds-toast-never-show`</td>
+      <td>`true` / `true`</td>
+      <td>`None`</td>
+      <td>Dispatched when users select the right never-show trigger, setting permanent client blocks.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-toast-bg`</td>
+      <td>`var(--color-bg)` / `var(--color-card-bg)`</td>
+      <td>Overrides backdrop surface background colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toast-color`</td>
+      <td>`var(--color-text-primary)` / `var(--color-white)`</td>
+      <td>Overrides text and button foreground colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toast-border-width`</td>
+      <td>`var(--border-width-thin)`</td>
+      <td>Overrides outer boundary stroke frame thickness.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toast-border-color`</td>
+      <td>`var(--color-card-border)` / `var(--color-surface-border)`</td>
+      <td>Overrides bounding frame border line colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toast-padding`</td>
+      <td>`var(--space-xs) var(--space-md)`</td>
+      <td>Overrides internal container padding margins.</td>
+    </tr>
+    <tr>
+      <td>`--ds-toast-radius`</td>
+      <td>`var(--radius-pill)`</td>
+      <td>Overrides corner curvature bounds.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Polite Announcements:** Employs an internal `role="status"` and `aria-live="polite"` element wrapper so assistive screen-reader software cleanly triggers notification announcements without interrupting user focus.
+* **ARIA Host Scrubbing:** Automatically purges Light DOM `aria-label` custom attributes on host custom elements and projects them down onto the focusable checkbox.
+* **Global Access Syncing:** Uses a `MutationObserver` on the HTML root element to capture visual preferences:
+  * `.a11y-dark-mode`: Adjusts default track contrast and shifts unchecked knobs to dark grays.
+  * `.a11y-high-contrast`: Enforces strict AAA binary layouts (solid black backdrops with bordered white outlines).
+  * `.a11y-dyslexia`: Overrides track label typefaces with Comic Sans MS.
+  * `.a11y-reduce-motion`: Forces immediate 0ms entry/exit translations.
+  * `.a11y-forced-colors`: Employs Windows active system colors (`Canvas` and `CanvasText`).
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-toast';
+
+const toast = document.createElement('ds-toast');
+toast.setAttribute('case-title', 'Resume reading: Agentic AI Design Study');
+toast.setAttribute('show-close', 'true');
+toast.setAttribute('show-never-show', 'true');
+
+// Binding custom translations
+toast.setAttribute('label-never-show', 'Não mostrar novamente');
+toast.setAttribute('label-close', 'Fechar notificação');
+
+toast.addEventListener('ds-toast-never-show', () => {
+  localStorage.setItem('block-agentic-study-toast', 'true');
+});
+
+document.body.appendChild(toast);
+```

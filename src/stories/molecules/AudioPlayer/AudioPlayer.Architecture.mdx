@@ -1,0 +1,299 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Audio Player [v1.0.0]/Architecture" />
+
+# `ds-audio-player`
+
+The `ds-audio-player` component is an interactive **controlled** Molecule designed to manage audio reading tracks, speed variations, volume settings, and synchronized viewport auto-scrolling. It orchestrates nested custom `ds-button`, `ds-seek-bar`, `ds-divider`, and `ds-tooltip` Atoms, implementing dynamic pointer-drag and keyboard-traversal controls.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host shell binds properties (`playing`, `time`, `duration`, `speed`, `hide-on-scroll`, `auto-scroll`, `volume`, `muted`, `variant`) and customized translation tags (`label-*`) to direct the player layout state.
+* **Events Out:** User interactions with buttons or sliders emit clean customized event streams prefixed with `ds-audio-` carrying immutable detail payloads upstream.
+
+<mermaid-diagram chart={`
+  flowchart TD
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["ds-audio-player (Shadow DOM Composition)"]
+          Component["ds-audio-player"]
+          PlayBtn["ds-button (Play)"]
+          SeekSlider["ds-seek-bar (Progress)"]
+          VolSlider["ds-seek-bar (Volume)"]
+          SpeedBtn["ds-button (Speed)"]
+      end
+
+      State -->|"1. State In: playing / time / speed / labels"| Component
+      Component -->|"2. Render State Updates"| PlayBtn
+      Component -->|"2. Render State Updates"| SeekSlider
+      Component -->|"2. Render State Updates"| VolSlider
+      Component -->|"2. Render State Updates"| SpeedBtn
+      
+      PlayBtn -->|"3. User Click: ds-audio-play-toggle"| State
+      SeekSlider -->|"3. User Seek: ds-audio-seek"| State
+      VolSlider -->|"3. User Volume: ds-audio-volume-change"| State
+      SpeedBtn -->|"3. User Click: ds-audio-speed-cycle"| State
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+      style PlayBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style SeekSlider fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style VolSlider fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style SpeedBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-audio-player` component is structurally sealed, wrapping its interactive controls directly inside its Shadow DOM boundaries. No public slot targets are exposed to guarantee consistent control-row alignment and click behaviors.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>None</td>
+      <td>Projects no content. Control buttons and timelines are fully encapsulated.</td>
+      <td>Renders standard play/pause buttons, seek-bar slides, and floating tooltips.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export interface DsAudioPlayerState {
+  playing: boolean;
+  time: number;
+  duration: number;
+  speed: '0.75X' | '1X' | '1.25X' | '1.5X' | '1.75X' | '2X';
+  hideOnScroll: boolean;
+  autoScroll: boolean;
+  volume: number;
+  muted: boolean;
+  variant: 'default' | 'scrolled';
+}
+
+export interface DsAudioPlayerLabels {
+  'label-reader'?: string;
+  'label-play'?: string;
+  'label-pause'?: string;
+  'label-mute'?: string;
+  'label-unmute'?: string;
+  'label-speed'?: string;
+  'label-hide'?: string;
+  'label-show'?: string;
+  'label-autoscroll-on'?: string;
+  'label-autoscroll-off'?: string;
+  'label-volume'?: string;
+  'label-volume-level'?: string;
+  'label-audio-pos'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`playing`</td>
+      <td>`playing`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles the active playback rendering state.</td>
+    </tr>
+    <tr>
+      <td>`time`</td>
+      <td>`time`</td>
+      <td>`number`</td>
+      <td>`0`</td>
+      <td>Current playback progression location in seconds.</td>
+    </tr>
+    <tr>
+      <td>`duration`</td>
+      <td>`duration`</td>
+      <td>`number`</td>
+      <td>`0`</td>
+      <td>Total length duration of the audio reading track in seconds.</td>
+    </tr>
+    <tr>
+      <td>`speed`</td>
+      <td>`speed`</td>
+      <td>`string`</td>
+      <td>`'1X'`</td>
+      <td>Selects playback velocity multipliers (`'0.75X'`, `'1X'`, `'1.25X'`, etc.).</td>
+    </tr>
+    <tr>
+      <td>`hideOnScroll`</td>
+      <td>`hide-on-scroll`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>When enabled, instructs host wrappers to slide out of view during page scrolls.</td>
+    </tr>
+    <tr>
+      <td>`autoScroll`</td>
+      <td>`auto-scroll`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Enables auto-scrolling synchronization across text content panels.</td>
+    </tr>
+    <tr>
+      <td>`volume`</td>
+      <td>`volume`</td>
+      <td>`number`</td>
+      <td>`100`</td>
+      <td>Active volume percentage (from 0 to 100).</td>
+    </tr>
+    <tr>
+      <td>`muted`</td>
+      <td>`muted`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Mutes/unmutes active output. Forces volume seek percent to 0 when true.</td>
+    </tr>
+    <tr>
+      <td>`variant`</td>
+      <td>`variant`</td>
+      <td>`'default' \| 'scrolled'`</td>
+      <td>`'default'`</td>
+      <td>Toggles standard full-width panels vs compact scrolled floating pill swappers.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-audio-play-toggle`</td>
+      <td>`true` / `true`</td>
+      <td>`{ playing: boolean }`</td>
+      <td>Emitted when users trigger play/pause clicks or spacebar strokes.</td>
+    </tr>
+    <tr>
+      <td>`ds-audio-mute-toggle`</td>
+      <td>`true` / `true`</td>
+      <td>`{ muted: boolean }`</td>
+      <td>Emitted when users toggle active volume mutes.</td>
+    </tr>
+    <tr>
+      <td>`ds-audio-speed-cycle`</td>
+      <td>`true` / `true`</td>
+      <td>`{ speed: string }`</td>
+      <td>Emitted when users cycle playback velocity selections.</td>
+    </tr>
+    <tr>
+      <td>`ds-audio-hide-toggle`</td>
+      <td>`true` / `true`</td>
+      <td>`{ hideOnScroll: boolean }`</td>
+      <td>Emitted when users toggle scroll hide constraints.</td>
+    </tr>
+    <tr>
+      <td>`ds-audio-autoscroll-toggle`</td>
+      <td>`true` / `true`</td>
+      <td>`{ autoScroll: boolean }`</td>
+      <td>Emitted when users toggle auto-scrolling view anchors.</td>
+    </tr>
+    <tr>
+      <td>`ds-audio-seek`</td>
+      <td>`true` / `true`</td>
+      <td>`{ percent: number }`</td>
+      <td>Emitted continuously when dragging, touching, or keying main timeline slides.</td>
+    </tr>
+    <tr>
+      <td>`ds-audio-volume-change`</td>
+      <td>`true` / `true`</td>
+      <td>`{ volume: number }`</td>
+      <td>Emitted continuously when adjusting volume slides.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+This composite molecule encapsulates nested Atom sub-atomic overrides to align colors and spacing parameters:
+- `ds-divider` margin: `--ds-divider-margin` is overridden to `0`.
+- `ds-seek-bar` colors: `--ds-seek-bar-fill-bg`, `--ds-seek-bar-knob-bg`, and `--ds-seek-bar-track-bg` are cleanly set on `.volume-seek` elements.
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Screen Reader Announcement:** Assigns `role="region"` and `aria-label="Audio Player"` on the container, managing aria-live elements for timeline progression.
+* **Keyboard Hotkeys:** Focus on the entire component activates arrow-key hotkey navigation (`ArrowRight` / `ArrowLeft` seek relative seconds; `ArrowUp` / `ArrowDown` increments volume parameters). Native button controls support standard focus paths and `Enter` / `Space` executions.
+* **Zero i18n Localization:** Fully translates screen-reader announcers, tooltips, and play descriptions by binding `label-[control]` attributes downstream.
+* **Global Access Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags:
+  * `.a11y-dark-mode`: Shifts background elements to dark gray player HUD tokens.
+  * `.a11y-high-contrast`: Enforces strict AAA borders and monochrome layouts.
+  * `.a11y-dyslexia`: Forces Comic Sans MS fonts.
+  * `.a11y-reduce-motion`: Disables volume expand transitions and snatches layout coordinates instantly.
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-audio-player';
+
+const player = document.createElement('ds-audio-player');
+player.setAttribute('time', '45');
+player.setAttribute('duration', '180');
+player.setAttribute('volume', '75');
+
+// Binding custom translations
+player.setAttribute('label-reader', 'Leitor de Áudio');
+player.setAttribute('label-play', 'Iniciar');
+player.setAttribute('label-pause', 'Pausar');
+
+player.addEventListener('ds-audio-play-toggle', (e) => {
+  console.log('Player toggled. Is playing:', e.detail.playing);
+});
+
+document.body.appendChild(player);
+```

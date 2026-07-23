@@ -1,0 +1,72 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Molecules/Item Row [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational settings list row component (`ds-item-row`) featuring nesting triggers for leading icons, shortcuts, and custom settings inputs (toggles, checks, and radios).
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-item-row`</td>
+      <td>Initial stable release of custom settings row component supporting multiple trailing control widgets.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-item-row`</td>
+      <td>Support for rendering dynamic leading `ds-icon` and trailing `ds-kbd` shortcuts.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Configured passive root observer syncing dark mode, high contrast, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`item-row.css`</td>
+      <td>Remapped custom style overrides for child `ds-toggle`, `ds-check`, and `ds-radio` control widgets to target standard sub-atomic token custom hooks.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`ItemRow.stories.js`</td>
+      <td>Suffix-aligned Storybook title and corrected sub-atomic style template variables inside stories.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Settings Row Molecule:** Created `<ds-item-row>` built specifically for list navigations and dashboard popovers.
+- **Form Widget Syncing:** Observed settings automatically instantiate, configure, and project child interactive components inside right-aligned slots.
+- **Root Context Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags.
+- **Thematic Overrides:** Bound child width, height, and knob variables to strict sub-atomic properties.
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `ItemRow.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Synchronized Storybook override controllers to output precise `--ds-check-color`, `--ds-radio-color`, and `--ds-toggle-checked-bg` custom styles.
+
+---
+
+*This changelog is specific to the `<ds-item-row>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

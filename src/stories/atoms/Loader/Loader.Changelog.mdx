@@ -1,0 +1,66 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Loader [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational loading indicator spinner (`ds-loader`) featuring responsive CSS transitions, complete custom property hooks, and advanced aria-label scrubbing.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-loader`</td>
+      <td>Initial stable implementation of the SVG buffering spinner.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-loader`</td>
+      <td>Flexible CSS Custom Property mapping for layout control, including sizing, background, border-radius, stroke color, and shadow overrides.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Integrates passive root class observer syncing dark mode, high contrast, dyslexia, reduce-motion, and forced-colors states.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`Loader.stories.js`</td>
+      <td>Refactored Storybook sub-atomic property mappings to bind to standardized `--ds-loader-*` design token custom hooks instead of the generic `--custom-*` overrides.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Circular Loader Atom:** Introduced `<ds-loader>` as a stateless, presentational spinner built for buffering or resource loading transitions.
+- **Root Accessibility Syncing:** Built-in `MutationObserver` automatically synchronizes viewport visual preferences directly onto host attributes.
+- **Thematic Style Customizations:** Bound border-radius, background backdrop, rotating spinner stroke color, and box-shadow variables to the standardized `--ds-loader-*` naming layout.
+- **Storybook Integration:** Created interactive controls and CSF3 story parameters inside `Loader.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Resolved broken style mappings in the Storybook render pipeline by binding props to the exact `--ds-loader-radius`, `--ds-loader-bg`, `--ds-loader-color`, and `--ds-loader-shadow` custom hooks.
+
+---
+
+*This changelog is specific to the `<ds-loader>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

@@ -16,11 +16,11 @@
   margin: 0;
 
   /* Sub-Atomic Style Hook Overrides with Design Token Fallbacks */
-  background-color: var(--custom-bg, transparent);
-  color: var(--custom-color, var(--color-text-secondary, #323232));
-  font-family: var(--custom-font, var(--font-family));
-  padding: var(--custom-padding, var(--space-xs) var(--space-md));
-  border-radius: var(--custom-radius, var(--radius-md));
+  background-color: var(--ds-tab-bg, transparent);
+  color: var(--ds-tab-color, var(--color-text-secondary, #323232));
+  font-family: var(--ds-tab-font, var(--font-family));
+  padding: var(--ds-tab-padding, var(--space-xs) var(--space-md));
+  border-radius: var(--ds-tab-radius, var(--radius-md));
 
   /* Dynamic Responsive Text Scaling Configuration */
   font-size: calc(12px * var(--font-scale-multiplier, 1));
@@ -37,15 +37,15 @@
 
 /* Hover state only applies when enabled */
 .combo-tab:hover:not(:disabled):not([aria-disabled="true"]) {
-  color: var(--custom-hover-color, var(--color-black));
-  background-color: var(--custom-hover-bg, var(--color-gray-xlight));
+  color: var(--ds-tab-hover-color, var(--color-black));
+  background-color: var(--ds-tab-hover-bg, var(--color-gray-xlight));
 }
 
 /* Active State */
 .combo-tab.active,
 :host([active="true"]) .combo-tab {
-  color: var(--custom-active-color, var(--color-white));
-  background-color: var(--custom-active-bg, var(--color-black));
+  color: var(--ds-tab-active-color, var(--color-white));
+  background-color: var(--ds-tab-active-bg, var(--color-black));
 }
 
 /* Focus State for Accessibility */
@@ -74,7 +74,7 @@
 
 /* --- DARK MODE CONFIGURATION --- */
 :host([a11y-dark-mode]) .combo-tab {
-  color: var(--custom-color, var(--color-text-secondary, #F5F5F5));
+  color: var(--ds-tab-color, var(--color-text-secondary, #F5F5F5));
 }
 
 :host([a11y-dark-mode]) .combo-tab:hover:not(:disabled):not([aria-disabled="true"]) {

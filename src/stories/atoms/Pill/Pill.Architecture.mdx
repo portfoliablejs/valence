@@ -1,0 +1,270 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Pill [v1.0.0]/Architecture" />
+
+# `ds-pill`
+
+The `ds-pill` component is a **controlled / presentational** Atom designed to render compact information tag badges, categories, or real-time auto-refreshing device and browser network telemetry diagnostics.
+
+---
+
+## Principles
+
+### Unidirectional Data Flow
+The component strictly adheres to the **State In / Events Out** pattern:
+* **State In (Attributes / Properties):** The host binds attributes (`variant`, `label`, `show-pulse`, `pulse-color`, `telemetry-type`, `aria-label`) to alter design variant presentation, override static tags, or select live telemetry tracking targets.
+* **Passive Browser Interception:** When `variant="telemetry"` is mapped, the component subscribes directly to low-overhead browser diagnostic APIs (e.g., Performance API, Network Information, resizing loops, or Battery Level state events) to update internal text nodes.
+* **Events Out:** As a passive category tag, this component emits no action-oriented events and does not register native form focus states.
+
+<mermaid-diagram chart={`
+  flowchart LR
+      subgraph Host["Host Application / App Shell"]
+          direction TB
+          State["State Manager / Component Host"]
+      end
+
+      subgraph WebComp["Valence Web Component"]
+          Component["ds-pill"]
+      end
+
+      State -->|"1. State In: variant / label / show-pulse / telemetry-type"| Component
+
+      %% Styling
+      style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+      style WebComp fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+      style State fill:#ffffff,stroke:#cbd5e1,color:#0f172a
+      style Component fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Slot Architecture
+
+The `ds-pill` component projects light DOM text nodes inside its default slot layout. However, if a static `label` attribute is specified or if the telemetry variant triggers dynamic updates, the default slot contents are suppressed in favor of state-driven overrides.
+
+### Slot Hierarchy Table
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Type / Allowed Children</th>
+      <th>Description</th>
+      <th>Fallback Behavior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`default`</td>
+      <td>Text / Inline HTML</td>
+      <td>Fallback text category descriptor displayed when no explicit attributes are configured.</td>
+      <td>Remains empty and collapses label wrapper geometry.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Data Model
+
+```typescript
+export type DsPillTelemetryMetric = 
+  | 'rtt' 
+  | 'network-type' 
+  | 'downlink' 
+  | 'online-status' 
+  | 'fps' 
+  | 'viewport' 
+  | 'memory' 
+  | 'battery';
+
+export interface DsPillState {
+  variant: 'default' | 'telemetry';
+  label?: string;
+  showPulse: boolean;
+  pulseColor?: string;
+  telemetryType?: DsPillTelemetryMetric;
+  ariaLabel?: string;
+}
+
+export interface DsPillSubAtomicHooks {
+  '--ds-pill-font'?: string;
+  '--ds-pill-padding'?: string;
+  '--ds-pill-bg'?: string;
+  '--ds-pill-border-width'?: string;
+  '--ds-pill-border-color'?: string;
+  '--ds-pill-color'?: string;
+  '--ds-pill-radius'?: string;
+  '--ds-pill-pulse-color'?: string;
+}
+```
+
+---
+
+## API Contract
+
+### Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`variant`</td>
+      <td>`variant`</td>
+      <td>`'default' | 'telemetry'`</td>
+      <td>`'default'`</td>
+      <td>Configures basic presentation badge mode vs dark telemetry HUD styles.</td>
+    </tr>
+    <tr>
+      <td>`label`</td>
+      <td>`label`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Immutable text string mapping. Overrides slot projections.</td>
+    </tr>
+    <tr>
+      <td>`showPulse`</td>
+      <td>`show-pulse`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Toggles display of the pulsing status indicator dot.</td>
+    </tr>
+    <tr>
+      <td>`pulseColor`</td>
+      <td>`pulse-color`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Overrides the status dot background-color fill.</td>
+    </tr>
+    <tr>
+      <td>`telemetryType`</td>
+      <td>`telemetry-type`</td>
+      <td>`string`</td>
+      <td>`'rtt'`</td>
+      <td>Selects dynamic browser Web API data stream for automatic text rendering.</td>
+    </tr>
+    <tr>
+      <td>`ariaLabel`</td>
+      <td>`aria-label`</td>
+      <td>`string`</td>
+      <td>`undefined`</td>
+      <td>Directly mapped to status announcers for screen readers.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Bubbles / Composed</th>
+      <th>Detail Payload</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`None`</td>
+      <td>`None`</td>
+      <td>`None`</td>
+      <td>This component is strictly presentational and does not emit custom events.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Custom Property Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--ds-pill-font`</td>
+      <td>`var(--font-family)` / `var(--font-mono)`</td>
+      <td>Overrides typeface families inside label elements.</td>
+    </tr>
+    <tr>
+      <td>`--ds-pill-padding`</td>
+      <td>`var(--space-xs) var(--space-sm)`</td>
+      <td>Overrides internal spacing gaps.</td>
+    </tr>
+    <tr>
+      <td>`--ds-pill-bg`</td>
+      <td>`var(--color-card-bg)` / `var(--color-overlay-dark)`</td>
+      <td>Overrides structural badge container background fills.</td>
+    </tr>
+    <tr>
+      <td>`--ds-pill-border-width`</td>
+      <td>`var(--border-width-thin)`</td>
+      <td>Overrides outline boundary border frame strokes.</td>
+    </tr>
+    <tr>
+      <td>`--ds-pill-border-color`</td>
+      <td>`var(--color-card-border)` / `var(--color-overlay-light)`</td>
+      <td>Overrides bounding frame border line colors.</td>
+    </tr>
+    <tr>
+      <td>`--ds-pill-color`</td>
+      <td>`var(--color-gray-dark)` / `var(--color-white)`</td>
+      <td>Overrides label text foreground paint values.</td>
+    </tr>
+    <tr>
+      <td>`--ds-pill-radius`</td>
+      <td>`var(--radius-pill)`</td>
+      <td>Overrides corner layout curvature parameters.</td>
+    </tr>
+    <tr>
+      <td>`--ds-pill-pulse-color`</td>
+      <td>`var(--color-success)`</td>
+      <td>Overrides animated live status indicator dot background paint.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Host ARIA Delegation
+
+* **Screen Reader Announcement:** Leverages `role="status"` on the custom element wrapper to prompt screen readers to gracefully read telemetry updates without seizing user focus.
+* **Internal State Observer:** Monitors `document.documentElement` class adjustments through a `MutationObserver` to sync accessibility modes instantly:
+  * `.a11y-dark-mode`: Enhances background contrast ratios.
+  * `.a11y-high-contrast`: Maps pure black backdrops and thick white boundaries.
+  * `.a11y-dyslexia`: Forces dyslexia-accessible typefaces.
+  * `.a11y-reduce-motion`: Halts animated status pulsing loops.
+  * `.a11y-forced-colors`: Employs high-contrast active system system colors (`Canvas`, `CanvasText`).
+
+---
+
+## Examples
+
+### Basic Integration Example
+
+```javascript
+import 'valence/ds-pill';
+
+const pill = document.createElement('ds-pill');
+pill.setAttribute('variant', 'telemetry');
+pill.setAttribute('telemetry-type', 'fps');
+pill.setAttribute('show-pulse', '');
+
+// Clean custom property style overrides
+pill.style.setProperty('--ds-pill-radius', '2px');
+pill.style.setProperty('--ds-pill-bg', 'rgba(0, 0, 0, 0.95)');
+
+document.body.appendChild(pill);
+```

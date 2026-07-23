@@ -11,10 +11,13 @@ export class DsContextualMenu extends HTMLElement {
       'header-text',
       'open',
       'aria-label',
+      'semantic-role',
       'hide-close',
       'hide-header',
       'show-subcategory',
       'subcategory-title',
+      'max-height',
+      'show-scrollbar'
     ];
   }
 
@@ -23,63 +26,17 @@ export class DsContextualMenu extends HTMLElement {
     this.attachShadow({ mode: 'open' });
 
     this._boundHandleClose = this._handleClose.bind(this);
+    this._boundHandleVisibilityChange = this._handleVisibilityChange.bind(this);
 
     this._items = [
-      { 
-        id: 'autoscroll', 
-        label: 'Auto-scroll from here', 
-        icon: 'autoscroll', 
-        showIcon: true,
-        showKbd: true, 
-        kbd: '⌥', 
-        kbdShowPlus: true, 
-        kbdKey: 'A',
-        control: 'none',
-        category: 'main'
-      },
-      { 
-        id: 'copy-link', 
-        label: 'Copy link', 
-        icon: 'link', 
-        showIcon: true,
-        showKbd: true, 
-        kbd: '⌘', 
-        kbdShowPlus: true, 
-        kbdKey: 'C',
-        control: 'none',
-        category: 'main'
-      },
-      { 
-        id: 'email-lio', 
-        label: 'Email Lio', 
-        icon: 'email', 
-        showIcon: true,
-        control: 'none',
-        category: 'main'
-      },
-      { 
-        id: 'dark-mode', 
-        label: 'Dark Theme', 
-        icon: 'moon', 
-        showIcon: true,
-        control: 'toggle', 
-        active: false,
-        category: 'subcategory'
-      },
-      { 
-        id: 'notifications', 
-        label: 'Enable Alerts', 
-        icon: 'flag-shield', 
-        showIcon: true,
-        control: 'check', 
-        selected: true, 
-        checkHasBackground: true,
-        category: 'subcategory'
-      }
+      { id: 'autoscroll', label: 'Auto-scroll from here', icon: 'autoscroll', showIcon: true, showKbd: true, kbd: '⌥', kbdShowPlus: true, kbdKey: 'A', control: 'none', category: 'main' },
+      { id: 'copy-link', label: 'Copy link', icon: 'link', showIcon: true, showKbd: true, kbd: '⌘', kbdShowPlus: true, kbdKey: 'C', control: 'none', category: 'main' },
+      { id: 'email-lio', label: 'Email Lio', icon: 'email', showIcon: true, control: 'none', category: 'main' },
+      { id: 'dark-mode', label: 'Dark Theme', icon: 'moon', showIcon: true, control: 'toggle', active: false, category: 'subcategory' },
+      { id: 'notifications', label: 'Enable Alerts', icon: 'flag-shield', showIcon: true, control: 'check', selected: true, checkHasBackground: true, category: 'subcategory' }
     ];
 
-    // Added role="presentation" to non-menuitem wrappers to comply with WCAG role="menu" standards
-    this.shadowRoot.innerHTML = `<style>${css}</style><div class="menu-card" role="menu" aria-orientation="vertical"><div class="menu-header" role="presentation"><span class="menu-title">ACTIONS</span><ds-button class="close-btn" variant="icon" icon="close" aria-label="Close menu"></ds-button></div><div class="menu-content" role="presentation"></div></div>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><div class="menu-card" role="group"><div class="menu-header" role="presentation"><span class="menu-title">ACTIONS</span><ds-button class="close-btn" variant="icon" icon="close" aria-label="Close menu"></ds-button></div><div class="menu-scroll-viewport" data-lenis-prevent><div class="menu-content" role="presentation"></div></div></div>`;
   }
 
   get items() {
@@ -90,6 +47,19 @@ export class DsContextualMenu extends HTMLElement {
     if (Array.isArray(value)) {
       this._items = value;
       this.renderMenu();
+    }
+  }
+
+  get showScrollbar() {
+    if (!this.hasAttribute('show-scrollbar')) return undefined;
+    return this.getAttribute('show-scrollbar') !== 'false';
+  }
+
+  set showScrollbar(value) {
+    if (value === undefined || value === null) {
+      this.removeAttribute('show-scrollbar');
+    } else {
+      this.setAttribute('show-scrollbar', String(Boolean(value)));
     }
   }
 
@@ -139,16 +109,39 @@ export class DsContextualMenu extends HTMLElement {
     this.renderMenu();
   }
 
+  get maxHeight() {
+    return this.getAttribute('max-height');
+  }
+
+  set maxHeight(value) {
+    if (value) {
+      this.setAttribute('max-height', value);
+    } else {
+      this.removeAttribute('max-height');
+    }
+  }
+
   connectedCallback() {
+    this.setAttribute('data-lenis-prevent', '');
+
     this.menuCard = this.shadowRoot.querySelector('.menu-card');
     this.headerEl = this.shadowRoot.querySelector('.menu-header');
     this.titleEl = this.shadowRoot.querySelector('.menu-title');
     this.closeBtn = this.shadowRoot.querySelector('.close-btn');
+    this.scrollViewport = this.shadowRoot.querySelector('.menu-scroll-viewport');
     this.contentEl = this.shadowRoot.querySelector('.menu-content');
+
+    if (this.scrollViewport) {
+      this.scrollViewport.addEventListener('wheel', (e) => {
+        e.stopPropagation();
+      }, { passive: true });
+    }
 
     if (this.closeBtn) {
       this.closeBtn.addEventListener('click', this._boundHandleClose);
     }
+
+    document.addEventListener('visibilitychange', this._boundHandleVisibilityChange);
 
     this.renderMenu();
     this.updateAttributes();
@@ -162,12 +155,44 @@ export class DsContextualMenu extends HTMLElement {
     if (this.closeBtn) {
       this.closeBtn.removeEventListener('click', this._boundHandleClose);
     }
+    document.removeEventListener('visibilitychange', this._boundHandleVisibilityChange);
+  }
+
+  /**
+   * Safely rebuilds the WebKit scroll engine without triggering GPU layer ghosting.
+   * Toggling `overflowY` avoids `display: none` layout destruction caches.
+   */
+  _forceScrollbarRebind() {
+    if (!this.scrollViewport || !this.scrollViewport.classList.contains('is-scrollable')) return;
+    
+    // Switch to hidden to destroy the native macOS phantom overlay
+    this.scrollViewport.style.overflowY = 'hidden';
+    
+    // Micro layout flush 
+    void this.scrollViewport.offsetHeight;
+    
+    // Clear inline style to let .is-scrollable class restore overflow-y: auto
+    this.scrollViewport.style.overflowY = '';
+  }
+
+  _handleVisibilityChange() {
+    if (document.visibilityState === 'visible') {
+      this._forceScrollbarRebind();
+    }
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue !== newValue) {
       if (name === 'show-subcategory' || name === 'subcategory-title') {
         this.renderMenu();
+      } else if (name === 'show-scrollbar') {
+        this._updateScrollState();
+      } else if (name === 'open') {
+        this.updateAttributes();
+        if (this.open) {
+          // Re-bind when the host element becomes visible again
+          this._forceScrollbarRebind();
+        }
       } else {
         this.updateAttributes();
       }
@@ -194,9 +219,32 @@ export class DsContextualMenu extends HTMLElement {
     });
   }
 
+  _updateScrollState() {
+    if (!this.scrollViewport) return;
+
+    let shouldScroll = false;
+
+    if (this.hasAttribute('show-scrollbar')) {
+      shouldScroll = this.getAttribute('show-scrollbar') !== 'false';
+    } else {
+      const itemCount = Array.isArray(this._items) ? this._items.length : 0;
+      shouldScroll = itemCount > 10;
+    }
+
+    this.scrollViewport.classList.toggle('is-scrollable', shouldScroll);
+  }
+
   updateAttributes() {
     const headerTextAttr = this.getAttribute('header-text') || this.getAttribute('title');
     const ariaLabel = this.getAttribute('aria-label');
+    const maxHeight = this.getAttribute('max-height');
+    const semanticRole = this.getAttribute('semantic-role') || 'group';
+
+    if (maxHeight) {
+      this.style.setProperty('--ds-contextual-menu-max-height', maxHeight);
+    } else {
+      this.style.removeProperty('--ds-contextual-menu-max-height');
+    }
 
     if (headerTextAttr !== null && this.titleEl) {
       this.titleEl.textContent = headerTextAttr || 'ACTIONS';
@@ -213,14 +261,25 @@ export class DsContextualMenu extends HTMLElement {
       this.removeAttribute('aria-label');
     }
 
+    if (this.menuCard) {
+      this.menuCard.setAttribute('role', semanticRole);
+      if (semanticRole === 'menu') {
+        this.menuCard.setAttribute('aria-orientation', 'vertical');
+      } else {
+        this.menuCard.removeAttribute('aria-orientation');
+      }
+    }
+
     if (this.closeBtn) {
       this.closeBtn.style.display = this.hasAttribute('hide-close') ? 'none' : '';
     }
+
+    this._updateScrollState();
   }
 
   _handleClose(e) {
     if (e) e.stopPropagation();
-    this.open = false; 
+    this.open = false;
     this.dispatchEvent(
       new CustomEvent('ds-close', {
         bubbles: true,
@@ -242,20 +301,17 @@ export class DsContextualMenu extends HTMLElement {
   _createItemRow(opt, index) {
     const itemRow = document.createElement('ds-item-row');
 
-    // Assign specific ARIA roles to satisfy role="menu" child requirements
-    if (opt.control === 'check' || opt.control === 'toggle') {
-      itemRow.setAttribute('role', 'menuitemcheckbox');
-    } else if (opt.control === 'radio') {
-      itemRow.setAttribute('role', 'menuitemradio');
-    } else {
+    // Rows that contain interactive controls should not expose menuitem* roles on the host.
+    // This avoids invalid nested interactive semantics and aria-checked requirements.
+    if (!opt.control || opt.control === 'none') {
       itemRow.setAttribute('role', 'menuitem');
+    } else {
+      itemRow.setAttribute('role', 'presentation');
     }
 
     if (opt.label) itemRow.setAttribute('label', opt.label);
     if (opt.icon) itemRow.setAttribute('icon', opt.icon);
     if (opt.showIcon !== false && opt.icon) itemRow.setAttribute('show-icon', '');
-    
-    // Add this line to map the prop into the shadow DOM correctly
     if (opt.iconVariant) itemRow.setAttribute('icon-variant', opt.iconVariant);
 
     if (opt.kbd) itemRow.setAttribute('kbd', opt.kbd);
@@ -285,7 +341,10 @@ export class DsContextualMenu extends HTMLElement {
     if (!this.contentEl) return;
     this.contentEl.innerHTML = '';
 
-    if (!Array.isArray(this._items) || this._items.length === 0) return;
+    if (!Array.isArray(this._items) || this._items.length === 0) {
+      this._updateScrollState();
+      return;
+    }
 
     const isSubcategoryEnabled = this.showSubcategory;
 
@@ -327,6 +386,8 @@ export class DsContextualMenu extends HTMLElement {
         );
       });
     }
+
+    this._updateScrollState();
   }
 }
 

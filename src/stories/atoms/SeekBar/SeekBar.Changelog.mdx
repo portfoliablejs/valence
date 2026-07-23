@@ -1,0 +1,67 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Seek Bar [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational media timeline seek-bar slider (`ds-seek-bar`) featuring custom tooltips, RTL support, keyboard navigation keys, and accessibility syncing.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-seek-bar`</td>
+      <td>Initial stable component registration with compressed shadow layouts and mouse-tracking tooltip capabilities.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-seek-bar`</td>
+      <td>Custom keyboard slider key listeners (`Arrows`, `PageUp`/`PageDown`, `Home`, `End`) and bi-directional RTL text checking.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Integrates root class observer syncing dark mode, contrast, dyslexia, reduce-motion, and Windows Forced Colors.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`SeekBar.stories.js`</td>
+      <td>Remapped Storybook custom style pipelines to write standard `--ds-seek-bar-*` token overrides instead of the generic `--custom-*` hooks.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Timeline Slider Atom:** Created `<ds-seek-bar>` designed for media players and volume mixers.
+- **Bi-directional Support:** Dynamically tracks root-level `dir` attribute and adjusts dragging calculations and key navigation offsets.
+- **Root Preference Observing:** Built-in `MutationObserver` on the HTML document root reflects global settings as host element boolean flags.
+- **Thematic Override Hooks:** Bound track background, fill progress, and handle knob colors to `--ds-seek-bar-track-bg`, `--ds-seek-bar-fill-bg`, and `--ds-seek-bar-knob-bg`.
+- **Storybook Workspace:** Built comprehensive interactive Controls and detailed CSF3 stories inside `SeekBar.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Synchronized Storybook override controllers to output precise `--ds-seek-bar-*` custom styles.
+
+---
+
+*This changelog is specific to the `<ds-seek-bar>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

@@ -1,0 +1,133 @@
+import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Thumbnail [v1.1.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.1.0] - 2026-07-23
+
+<br />
+
+### Performance & Fidelity Update
+
+This release moves `ds-thumbnail` to a manifest-first geometry pipeline for smoother rendering in animation-heavy layouts, while refining inner-corner fitting and anti-fringe edge handling for rounded hardware bezels.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`build pipeline`</td>
+      <td>Introduced `scripts/generate-thumbnail-manifest.js` to precompute per-device bounds, `screenRadius`, and `edgeBleed` into `thumbnail-manifest.generated.js`.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`Thumbnail.js`</td>
+      <td>Switched to manifest-first geometry resolution using stable source-path keys with URL/name fallback lookup compatibility.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`runtime geometry fallback`</td>
+      <td>Kept alpha analyzer as a lightweight idle-time fallback only when manifest data is missing or incomplete.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`thumbnail edge quality`</td>
+      <td>Added anti-fringe `edgeBleed` application to reduce white seams on semi-transparent alpha edges.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`rounded screen fitting`</td>
+      <td>Refined corner detection heuristics for round inner bezels, improving fit on Apple-style devices.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Manifest Generator:** New build step to precompute screen window geometry from AVIF alpha data.
+- **Precomputed Manifest Import:** Thumbnail now loads generated manifest data by default.
+- **Prebuild Hook:** `prebuild` now runs manifest generation before export generation.
+
+### Changed
+- **Render Path:** Production renders now rely on precomputed geometry, removing the heavy runtime path in normal cases.
+- **Manifest Lookup:** Uses source-path keyed entries with URL/base-name fallback for resilience.
+
+### Fixed
+- **Alpha Edge Fringing:** Slight edge expansion closes visible white borders around inner bezels.
+- **Inner Radius Fidelity:** Radius inference tuned for better rounded-corner matches.
+
+---
+
+## [1.0.0] - 2026-07-20
+
+<br />
+
+### Initial Release
+
+The stable debut of the presentational hardware bezel mockup frame and clipping screen thumbnail (`ds-thumbnail`) featuring automated canvas-driven masking, unconstrained flat fallback options, and root class accessibility syncing.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-thumbnail`</td>
+      <td>Initial stable release of mockup frame wrapper with globed AVIF asset matching.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-thumbnail`</td>
+      <td>Designed an integrated runtime Auto-Masking canvas flood-fill engine to clip screen screenshots to hardware boundaries.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`_observeRootAccessibility`</td>
+      <td>Sets up dynamic document root class observer syncing visual settings.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`Thumbnail.js` & `thumbnail.css`</td>
+      <td>Remapped custom style parameters to standardized `--ds-thumbnail-*` design tokens instead of generic `--custom-*` variables.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Device Frame Mockup Atom:** Created `<ds-thumbnail>` serving as a high-fidelity hardware bezel.
+- **Dynamic Auto-Masking Engine:** Built-in dev canvas scanner calculating transparent pixel fields and deploying CSS mask properties.
+- **Root Class Syncing:** MutationObserver on document roots reflects global setting cascades downstream as host element boolean flags.
+- **Thematic Overrides:** Bound bounding container max-width, max-height, and clipping border-radius to the standard `--ds-thumbnail-*` naming standard.
+- **Storybook Workspace:** Configured complete interactive Controls and detailed CSF3 stories inside `Thumbnail.stories.js`.
+
+### Fixed
+- **Sub-Atomic Story Mapping:** Synchronized Storybook override controllers to output precise `--ds-thumbnail-max-height`, `--ds-thumbnail-max-width`, and `--ds-thumbnail-screen-radius` custom styles.
+
+---
+
+*This changelog is specific to the `<ds-thumbnail>` component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*
