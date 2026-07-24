@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import './Toc.js';
+import './TOC.js';
 import { userEvent, within, expect, fn } from 'storybook/test';
 
 /* Standard 13-item pool used across default story preview iframes */

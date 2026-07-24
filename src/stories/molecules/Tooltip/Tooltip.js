@@ -1,5 +1,5 @@
 import css from './tooltip.css?inline';
-import '../../atoms/Kbd/Kbd';
+import '../../atoms/KBD/Kbd.js';
 
 export class Tooltip extends HTMLElement {
   static get observedAttributes() {

@@ -3,7 +3,7 @@ import '../../sub-atomic/Iconography/Iconography';
 import '../../atoms/Toggle/Toggle';
 import '../../atoms/Check/Check';
 import '../../atoms/Radio/Radio';
-import '../../atoms/Kbd/Kbd';
+import '../../atoms/KBD/Kbd.js';
 
 export class DsItemRow extends HTMLElement {
   static get observedAttributes() {
