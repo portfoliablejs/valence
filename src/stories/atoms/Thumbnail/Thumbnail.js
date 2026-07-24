@@ -372,6 +372,10 @@ export class Thumbnail extends HTMLElement {
     this.imgEl = this.shadowRoot.querySelector('.device-image');
     this.screenEl = this.shadowRoot.querySelector('.screen-cover');
     this._renderSeq = 0;
+
+    // Keep gallery interactions clean by preventing native image drag/select behavior.
+    this.imgEl.setAttribute('draggable', 'false');
+    this.screenEl.setAttribute('draggable', 'false');
   }
 
   connectedCallback() {

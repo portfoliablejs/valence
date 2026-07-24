@@ -1,15 +1,25 @@
-import mermaid from 'mermaid';
+let mermaidLoaderPromise;
 
-// Inside your Mermaid setup file (e.g., MermaidDiagram.js)
-mermaid.initialize({
-  startOnLoad: false,
-  theme: 'default',
-  fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif', // Matches var(--font-family)
-  flowchart: {
-    htmlLabels: true,
-    padding: 20, // Adds comfortable horizontal breathing room inside node boxes
-  },
-});
+async function getMermaid() {
+  if (!mermaidLoaderPromise) {
+    mermaidLoaderPromise = import('mermaid').then((module) => {
+      const mermaidRuntime = module.default || module;
+      mermaidRuntime.initialize({
+        startOnLoad: false,
+        theme: 'default',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif',
+        flowchart: {
+          htmlLabels: true,
+          padding: 20,
+        },
+      });
+
+      return mermaidRuntime;
+    });
+  }
+
+  return mermaidLoaderPromise;
+}
 
 export class MermaidDiagram extends HTMLElement {
   async connectedCallback() {
@@ -18,6 +28,7 @@ export class MermaidDiagram extends HTMLElement {
 
     const id = `mermaid-${Math.random().toString(36).substring(2, 9)}`;
     try {
+      const mermaid = await getMermaid();
       const { svg } = await mermaid.render(id, rawChart);
       this.innerHTML = svg;
     } catch (error) {
