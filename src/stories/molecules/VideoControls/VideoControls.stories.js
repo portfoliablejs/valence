@@ -161,6 +161,16 @@ export const Desktop = {
     const playBtn = shadowBoundary.getElementById('btn-play');
     const speedBtn = shadowBoundary.getElementById('btn-speed');
 
+    await step('Verify control buttons use simplified ds-button props contract', async () => {
+      const controlIds = ['btn-cc', 'btn-mute', 'btn-speed', 'btn-play', 'btn-stop'];
+      controlIds.forEach((id) => {
+        const btn = shadowBoundary.getElementById(id);
+        expect(btn.getAttribute('variant')).toBe('floating');
+        expect(btn.getAttribute('has-text')).toBe('false');
+        expect(btn.hasAttribute('has-icon')).toBe(true);
+      });
+    });
+
     await step('Confirm structural interaction feedback on pointer targets', async () => {
       await userEvent.hover(playBtn);
     });

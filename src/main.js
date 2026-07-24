@@ -45,3 +45,6 @@ export * from './stories/organisms/ContextualMenu/ContextualMenu.js';
 export * from './stories/organisms/Gallery/Gallery.js';
 export * from './stories/organisms/Header/Header.js';
 export * from './stories/organisms/VideoPlayer/VideoPlayer.js';
+
+// Templates
+export * from './stories/templates/HomeView/HomeView.js';

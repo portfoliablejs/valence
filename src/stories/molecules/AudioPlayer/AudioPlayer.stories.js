@@ -215,6 +215,13 @@ export const Default = {
   play: async ({ canvasElement, step }) => {
     const player = canvasElement.querySelector('ds-audio-player');
 
+    await step('Verify control buttons use the simplified ds-button props contract', async () => {
+      const playBtnHost = player.shadowRoot.querySelector('.play-btn');
+      expect(playBtnHost.getAttribute('variant')).toBe('tertiary');
+      expect(playBtnHost.getAttribute('has-text')).toBe('false');
+      expect(playBtnHost.hasAttribute('has-icon')).toBe(true);
+    });
+
     await step('Verify Play button hover and click trigger toggles state', async () => {
       const playBtn = player.shadowRoot.querySelector('.play-btn');
       await userEvent.hover(playBtn);

@@ -1,8 +1,59 @@
 import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
 
-<Meta title="Atoms/Button [v1.0.0]/Changelog" />
+<Meta title="Atoms/Button [v1.0.1]/Changelog" />
 
 # Changelog
+
+<br />
+
+## [1.0.1] - 2026-07-24
+
+<br />
+
+### Props Simplification Update
+
+The button API has been simplified so visual styling is driven by four variants (`primary`, `secondary`, `tertiary`, `floating`) while iconography and imagery are now orthogonal content props that can be configured on any variant.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Changed`</td>
+      <td>`ds-button`</td>
+      <td>Renamed the `text` variant to `tertiary` and removed `icon`/`image` as standalone variants.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-button`</td>
+      <td>Introduced `has-icon`, `has-image`, and `has-text` props so text, icon, and image content can be composed across all variants.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`ds-button`</td>
+      <td>Added `image-position` support and unified directional layout under reflected `content-position` for right-aligned content.</td>
+    </tr>
+    <tr>
+      <td>`Fixed`</td>
+      <td>`button.css`</td>
+      <td>Adjusted no-text spacing so horizontal padding is symmetric, enlarged image content size, and corrected floating hug behavior for text-present vs text-hidden states.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`Button.stories.js`</td>
+      <td>Updated controls and stories to the simplified props model and new variant names.</td>
+    </tr>
+  </tbody>
+</table>
 
 <br />
 

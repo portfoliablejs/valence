@@ -11,7 +11,7 @@ export default {
     layout: 'centered',
     docs: {
       description: {
-        component: '`ds-toast` is a floating notification molecule used for dynamic system announcements. Features optional left "Close" `ds-button` `variant="icon"`, optional right "Never show this again" `ds-button` `variant="text"` with muted opacity, and `role="status"` / `aria-live="polite"` for assistive technology compatibility.',
+        component: '`ds-toast` is a floating notification molecule used for dynamic system announcements. Features optional left close `ds-button` (`variant="tertiary"`, `has-text="false"`, `has-icon`) and optional right "Never show this again" `ds-button` (`variant="tertiary"`), with `role="status"` / `aria-live="polite"` for assistive technology compatibility.',
       },
     },
   },
@@ -157,6 +157,10 @@ export const Default = {
 
       expect(closeBtn.hasAttribute('hidden')).toBe(false);
       expect(neverBtn.hasAttribute('hidden')).toBe(false);
+      expect(closeBtn.getAttribute('variant')).toBe('tertiary');
+      expect(closeBtn.getAttribute('has-text')).toBe('false');
+      expect(closeBtn.hasAttribute('has-icon')).toBe(true);
+      expect(neverBtn.getAttribute('variant')).toBe('tertiary');
     });
 
     await step('Verify clicking left close icon button triggers ds-toast-close event', async () => {

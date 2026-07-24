@@ -173,6 +173,16 @@ export const Default3Items = {
       { id: 'opt-3', label: 'Option 3' },
     ],
   },
+  play: async ({ canvasElement, step }) => {
+    const breadcrumb = canvasElement.querySelector('ds-breadcrumb');
+
+    await step('Verify return control uses simplified ds-button props contract', async () => {
+      const returnBtnHost = breadcrumb.shadowRoot.querySelector('.crumb-return-btn');
+      expect(returnBtnHost.getAttribute('variant')).toBe('tertiary');
+      expect(returnBtnHost.getAttribute('has-text')).toBe('false');
+      expect(returnBtnHost.hasAttribute('has-icon')).toBe(true);
+    });
+  },
 };
 
 export const TwoItemsWithoutMenu = {

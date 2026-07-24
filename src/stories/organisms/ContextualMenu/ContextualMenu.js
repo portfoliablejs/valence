@@ -36,7 +36,7 @@ export class DsContextualMenu extends HTMLElement {
       { id: 'notifications', label: 'Enable Alerts', icon: 'flag-shield', showIcon: true, control: 'check', selected: true, checkHasBackground: true, category: 'subcategory' }
     ];
 
-    this.shadowRoot.innerHTML = `<style>${css}</style><div class="menu-card" role="group"><div class="menu-header" role="presentation"><span class="menu-title">ACTIONS</span><ds-button class="close-btn" variant="icon" icon="close" aria-label="Close menu"></ds-button></div><div class="menu-scroll-viewport" data-lenis-prevent><div class="menu-content" role="presentation"></div></div></div>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><div class="menu-card" role="group"><div class="menu-header" role="presentation"><span class="menu-title">ACTIONS</span><ds-button class="close-btn" variant="tertiary" has-text="false" has-icon icon="close" aria-label="Close menu"></ds-button></div><div class="menu-scroll-viewport" data-lenis-prevent><div class="menu-content" role="presentation"></div></div></div>`;
   }
 
   get items() {

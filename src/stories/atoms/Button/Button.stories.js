@@ -10,7 +10,7 @@ import '../../molecules/Tooltip/Tooltip';
  * `ds-button` is Valence's multi-use resource. It can be used in a wide variety of contexts, and particularly inside the `portfoliable` environment it has recommendations regarding its use. This component can be seen in a variety of molecules, such as `ds-breadcrumb`, `ds-video-player` and many more.  
  */
 export default {
-  title: 'Atoms/Button [v1.0.0]',
+  title: 'Atoms/Button [v1.0.1]',
   component: 'ds-button',
   tags: ['autodocs'],
   parameters: {
@@ -30,23 +30,29 @@ export default {
     `
   ],
   argTypes: {
-    // --- 1. BUTTON (Core & Icon) ---
+    // --- 1. BUTTON (Core, Icon, Image) ---
     variant: {
       name: 'variant',
       description: 'Select the visual style and functional variant.',
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'text', 'icon', 'floating'],
+      options: ['primary', 'secondary', 'tertiary', 'floating'],
       table: { category: 'Button', subcategory: 'Core', defaultValue: { summary: 'primary' } },
     },
     label: {
       name: 'label',
-      description: 'The text content for the button (Ignored in icon-only variant).',
+      description: 'The text content for the button.',
       control: 'text',
       table: { category: 'Button', subcategory: 'Core' },
     },
+    hasText: {
+      name: 'hasText',
+      description: 'Toggle to render or hide the text label across all variants.',
+      control: 'boolean',
+      table: { category: 'Button', subcategory: 'Core', defaultValue: { summary: 'true' } },
+    },
     ariaLabel: {
       name: 'ariaLabel',
-      description: 'Essential for accessibility on icon-only buttons.',
+      description: 'Accessibility label for icon-only or image-only button content.',
       control: 'text',
       table: { category: 'Button', subcategory: 'Core' },
     },
@@ -58,7 +64,7 @@ export default {
     },
     hasIcon: {
       name: 'hasIcon',
-      description: 'Toggle to enable or disable the icon rendering.',
+      description: 'Toggle to render an icon inside any variant.',
       control: 'boolean',
       table: { category: 'Button', subcategory: 'Icon', defaultValue: { summary: 'false' } },
     },
@@ -84,6 +90,34 @@ export default {
       options: ['left', 'right'],
       if: { arg: 'hasIcon' },
       table: { category: 'Button', subcategory: 'Icon', defaultValue: { summary: 'left' } },
+    },
+    hasImage: {
+      name: 'hasImage',
+      description: 'Toggle to render an image inside any variant (takes precedence over icon when both are enabled).',
+      control: 'boolean',
+      table: { category: 'Button', subcategory: 'Image', defaultValue: { summary: 'false' } },
+    },
+    imageSrc: {
+      name: 'imageSrc',
+      description: 'Source URL for the image rendered inside the button.',
+      control: 'text',
+      if: { arg: 'hasImage' },
+      table: { category: 'Button', subcategory: 'Image' },
+    },
+    imageAlt: {
+      name: 'imageAlt',
+      description: 'Alt text applied to the rendered image.',
+      control: 'text',
+      if: { arg: 'hasImage' },
+      table: { category: 'Button', subcategory: 'Image' },
+    },
+    imagePosition: {
+      name: 'imagePosition',
+      description: 'Position of the image relative to the text label.',
+      control: 'radio',
+      options: ['left', 'right'],
+      if: { arg: 'hasImage' },
+      table: { category: 'Button', subcategory: 'Image', defaultValue: { summary: 'left' } },
     },
 
     // --- 2. TOOLTIP (Config, KBD Config, & Sub-Atomic Props) ---
@@ -228,12 +262,18 @@ export default {
           variant=${args.variant}
           aria-label=${ifDefined(args.ariaLabel)}
           ?disabled=${args.disabled}
+          has-text=${ifDefined(args.hasText === undefined ? undefined : String(args.hasText))}
+          ?has-icon=${args.hasIcon}
           icon=${ifDefined(args.hasIcon ? args.icon : undefined)}
           icon-position=${ifDefined(args.hasIcon ? args.iconPosition : undefined)}
           icon-variant=${ifDefined(args.hasIcon ? args.iconVariant : undefined)}
+          ?has-image=${args.hasImage}
+          image-src=${ifDefined(args.hasImage ? args.imageSrc : undefined)}
+          image-alt=${ifDefined(args.hasImage ? args.imageAlt : undefined)}
+          image-position=${ifDefined(args.hasImage ? args.imagePosition : undefined)}
           style=${ifDefined(buttonStyles || undefined)}
           @click=${args.onClick}>
-          ${args.variant !== 'icon' && args.variant !== 'floating' ? args.label : ''}
+            ${args.hasText ? (args.label || '') : ''}
         </ds-button>
         
         ${args.showTooltip
@@ -263,6 +303,7 @@ export default {
 export const PrimaryButton = {
   args: {
     variant: 'primary',
+    hasText: true,
     label: 'Play Video',
     hasIcon: true,
     icon: 'play',
@@ -307,6 +348,7 @@ export const PrimaryButton = {
 export const SecondaryButton = {
   args: {
     variant: 'secondary',
+    hasText: true,
     label: 'Repository',
     hasIcon: true,
     icon: 'link',
@@ -321,8 +363,8 @@ export const SecondaryButton = {
     const button = canvasElement.querySelector('ds-button');
     const tooltip = canvasElement.querySelector('ds-tooltip');
 
-    await step('Verify right-side icon position attribute', async () => {
-      expect(button.getAttribute('icon-position')).toBe('right');
+    await step('Verify right-side content position attribute', async () => {
+      expect(button.getAttribute('content-position')).toBe('right');
     });
 
     await step('Focus button via keyboard to trigger tooltip', async () => {
@@ -344,11 +386,13 @@ export const SecondaryButton = {
 /**
  * Great companions for long paragraphs and standalone blocks of text, and not so great attention-grabbers.
  */
-export const Text = {
+export const Tertiary = {
   args: {
-    variant: 'text',
+    variant: 'tertiary',
+    hasText: true,
     label: 'Learn More',
     hasIcon: false,
+    hasImage: false,
     showTooltip: false,
   },
   play: async ({ canvasElement, step }) => {
@@ -363,7 +407,7 @@ export const Text = {
       expect(button.textContent.trim()).toBe('Learn More');
     });
 
-    await step('Click the text button', async () => {
+    await step('Click the tertiary button', async () => {
       await userEvent.click(button);
     });
   },
@@ -374,9 +418,12 @@ export const Text = {
  */
 export const IconOnly = {
   args: {
-    variant: 'icon',
+    variant: 'tertiary',
+    hasText: false,
+    label: '',
     hasIcon: true,
     icon: 'share',
+    hasImage: false,
     ariaLabel: 'Share content',
     showTooltip: true,
     tooltipVisible: false,
@@ -414,8 +461,11 @@ export const IconOnly = {
 export const Floating = {
   args: {
     variant: 'floating',
+    hasText: false,
+    label: '',
     hasIcon: true,
     icon: 'play',
+    hasImage: false,
     ariaLabel: 'Go Back',
     showTooltip: true,
     tooltipVisible: false,
@@ -436,6 +486,49 @@ export const Floating = {
     });
 
     await step('Click the floating action button', async () => {
+      await userEvent.click(button);
+    });
+  },
+};
+
+/**
+ * Compact circular image treatment for profile or identity actions, as used in `ds-navigation-menu`.
+ */
+export const Image = {
+  args: {
+    variant: 'tertiary',
+    hasText: false,
+    label: '',
+    hasImage: true,
+    imageSrc: 'https://thispersondoesnotexist.com/random-person.jpeg',
+    imageAlt: 'Profile face',
+    imagePosition: 'left',
+    ariaLabel: 'About profile',
+    hasIcon: false,
+    showTooltip: true,
+    tooltipVisible: false,
+    tooltipText: 'About',
+    tooltipPosition: 'bottom',
+    tooltipShowKbd: false,
+  },
+  play: async ({ canvasElement, step }) => {
+    const button = canvasElement.querySelector('ds-button');
+    const internalButton = button.shadowRoot.querySelector('button');
+    const image = button.shadowRoot.querySelector('.btn-image');
+
+    await step('Verify image prop wiring', async () => {
+      expect(button.getAttribute('variant')).toBe('tertiary');
+      expect(button.hasAttribute('has-image')).toBe(true);
+      expect(image.getAttribute('src')).toBe('https://thispersondoesnotexist.com/random-person.jpeg');
+      expect(image.getAttribute('alt')).toBe('Profile face');
+      expect(internalButton.getAttribute('aria-label')).toBe('About profile');
+    });
+
+    await step('Verify image-only content has empty text slot', async () => {
+      expect(button.textContent.trim()).toBe('');
+    });
+
+    await step('Click the image button', async () => {
       await userEvent.click(button);
     });
   },

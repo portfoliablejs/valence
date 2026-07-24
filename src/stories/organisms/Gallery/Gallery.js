@@ -117,6 +117,7 @@ const DEFAULT_GALLERY_ITEMS = [
 ];
 
 const DEFAULT_GALLERY_ENGINE = 'minimal';
+const DRAG_ACTIVATION_THRESHOLD_PX = 3;
 const GALLERY_ENGINES = {
     minimal: {
         dragOverscrollMax: 64,
@@ -406,10 +407,6 @@ export class Gallery extends HTMLElement {
         this._dragState = { moved: false };
 
         this.viewport.setPointerCapture(event.pointerId);
-        this.viewport.classList.add('is-dragging');
-        this.track.classList.add('is-dragging');
-        this.classList.add('is-dragging');
-        this.track.style.transition = 'none';
         this._lastPointerSample = {
             x: event.clientX,
             time: event.timeStamp || performance.now(),
@@ -430,7 +427,13 @@ export class Gallery extends HTMLElement {
         const boundedOffset = this._projectDragOffset(nextOffset, engine);
         const sampleTime = event.timeStamp || performance.now();
 
-        this._dragState.moved = this._dragState.moved || Math.abs(deltaX) > 3;
+        this._dragState.moved = this._dragState.moved || Math.abs(deltaX) > DRAG_ACTIVATION_THRESHOLD_PX;
+        if (this._dragState.moved) {
+            this.viewport.classList.add('is-dragging');
+            this.track.classList.add('is-dragging');
+            this.classList.add('is-dragging');
+            this.track.style.transition = 'none';
+        }
         if (this._lastPointerSample) {
             const deltaTime = Math.max(8, sampleTime - this._lastPointerSample.time);
             const instantaneousVelocity = (event.clientX - this._lastPointerSample.x) / deltaTime;

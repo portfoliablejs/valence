@@ -1,7 +1,7 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as ButtonStories from './Button.stories';
 
-<Meta title="Atoms/Button [v1.0.0]/Architecture" />
+<Meta title="Atoms/Button [v1.0.1]/Architecture" />
 
 # `ds-button`
 
@@ -12,7 +12,7 @@ The `ds-button` component is an **atomic, multi-use action primitive** in the Va
 <br />
 ### Unidirectional Data Flow & State Synchronization
 The component follows a strict **State In / Events Out** lifecycle model:
-* **State In (Observed Attributes):** The component observes changes to core state attributes (`variant`, `aria-label`, `disabled`, `icon`, `icon-variant`, `icon-position`). When attributes mutate, `updateAttributes()` updates the internal Shadow DOM button element and the child `<ds-icon>` tag.
+* **State In (Observed Attributes):** The component observes core state attributes (`variant`, `aria-label`, `disabled`) and composition attributes (`has-text`, `has-icon`, `icon`, `icon-variant`, `icon-position`, `has-image`, `image-src`, `image-alt`, `image-position`). When attributes mutate, `updateAttributes()` synchronizes internal shadow elements for icon, image, and label visibility.
 * **Events Out (Native Interaction):** User interaction triggers standard `click` events emitted from the host.
 * **Encapsulation:** The component handles internal focus styling and ARIA delegation without exposing its inner Shadow DOM subtree.
 
@@ -34,7 +34,7 @@ The component follows a strict **State In / Events Out** lifecycle model:
           Tooltip["&lt;ds-tooltip&gt;"]
       end
 
-      App -->|"1. State Attributes<br/><code>variant, icon, disabled</code>"| HostTag
+      App -->|"1. State Attributes<br/><code>variant, has-text, has-icon, has-image</code>"| HostTag
       HostTag -->|"2. Updates Attributes"| ButtonEl
       HostTag -->|"3. Configures Size & Variant"| IconEl
       HostTag -->|"4. Directs Label Content"| SlotEl
@@ -61,8 +61,9 @@ The Shadow DOM template is intentionally compressed on a single line to prevent 
 ```html
 <style>${css}</style>
 <button type="button">
+  <img class="btn-image" alt="" loading="lazy" referrerpolicy="no-referrer" style="display: none;">
   <ds-icon class="btn-icon" style="display: none;"></ds-icon>
-  <slot></slot>
+  <span class="btn-label"><slot></slot></span>
 </button>
 ```
 
@@ -82,15 +83,17 @@ The Shadow DOM template is intentionally compressed on a single line to prevent 
       <td>`default`</td>
       <td>Text node, `<span>`</td>
       <td>Primary textual button label injected by the host application.</td>
-      <td>Rendered in `primary`, `secondary`, and `text` variants. Ignored when `variant="icon"` or `variant="floating"`.</td>
+      <td>Rendered when `has-text` is enabled (default) across all variants. Hidden when `has-text="false"`.</td>
     </tr>
   </tbody>
 </table>
 <br />
 ### Iconography & Tooltip Synergy
-1. **Child `<ds-icon>` Mechanics:** When the `icon` attribute is present, `ds-button` automatically displays the internal `<ds-icon>` component. It calculates icon sizing dynamically: circular variants (`icon` and `floating`) receive `size="20"`, while pill and text variants receive `size="14"`.
-2. **Icon Position Reversal:** Setting `icon-position="right"` sets flex direction to `row-reverse` on the internal button container.
-3. **Tooltip Composite Pattern:** When paired with `<ds-tooltip>`, hovering or focusing the button activates the tooltip's `visible` attribute to display helper text and keyboard shortcuts.
+1. **Child `<ds-icon>` Mechanics:** When `has-icon` is enabled and `icon` is provided, `ds-button` renders the internal `<ds-icon>` and applies dynamic sizing (`20` in floating, `14` otherwise).
+2. **Child Image Mechanics:** When `has-image` is enabled, `ds-button` renders the internal image using `image-src` and `image-alt`. Image sizing follows icon sizing logic with a slightly larger visual footprint.
+3. **Content Position Reversal:** Setting `icon-position="right"` or `image-position="right"` reflects to `content-position="right"`, which sets `row-reverse` on the internal button container.
+4. **Precedence Rule:** If both `has-image` and `has-icon` are enabled, image content takes precedence and icon content is suppressed.
+5. **Tooltip Composite Pattern:** When paired with `<ds-tooltip>`, hovering or focusing the button activates the tooltip's `visible` attribute to display helper text and keyboard shortcuts.
 <br />
 
 ## API Contract
@@ -108,15 +111,27 @@ The Shadow DOM template is intentionally compressed on a single line to prevent 
   <tbody>
     <tr>
       <td>`variant`</td>
-      <td>`'primary' | 'secondary' | 'text' | 'icon' | 'floating'`</td>
+      <td>`'primary' | 'secondary' | 'tertiary' | 'floating'`</td>
       <td>`'primary'`</td>
       <td>Determines visual presentation, geometry, and hover scaling behaviors.</td>
     </tr>
     <tr>
-      <td>`label`</td>
-      <td>`string`</td>
-      <td>`''`</td>
-      <td>Slotted textual content passed into default `<slot>`.</td>
+      <td>`has-text`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Toggles rendering of slotted text label content inside the button.</td>
+    </tr>
+    <tr>
+      <td>`has-icon`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Enables icon rendering (requires `icon`).</td>
+    </tr>
+    <tr>
+      <td>`has-image`</td>
+      <td>`boolean`</td>
+      <td>`false`</td>
+      <td>Enables image rendering (requires `image-src`), and takes precedence over icon.</td>
     </tr>
     <tr>
       <td>`aria-label`</td>
@@ -147,6 +162,24 @@ The Shadow DOM template is intentionally compressed on a single line to prevent 
       <td>`'left' | 'right'`</td>
       <td>`'left'`</td>
       <td>Determines icon placement relative to slotted label text.</td>
+    </tr>
+    <tr>
+      <td>`image-src`</td>
+      <td>`string`</td>
+      <td>`https://thispersondoesnotexist.com/random-person.jpeg`</td>
+      <td>Source URL used when image content is enabled.</td>
+    </tr>
+    <tr>
+      <td>`image-alt`</td>
+      <td>`string`</td>
+      <td>`Profile image`</td>
+      <td>Alt text used by the internal image.</td>
+    </tr>
+    <tr>
+      <td>`image-position`</td>
+      <td>`'left' | 'right'`</td>
+      <td>`'left'`</td>
+      <td>Determines image placement relative to slotted label text.</td>
     </tr>
   </tbody>
 </table>
@@ -287,6 +320,7 @@ const container = document.createElement('div');
 container.innerHTML = `
   <ds-button 
     variant="primary" 
+    has-icon
     icon="play" 
     icon-position="left">
     Play Video
@@ -336,7 +370,9 @@ Used inside header toolbars and case cards to trigger share links:
 
 ```javascript
 const shareBtn = document.createElement('ds-button');
-shareBtn.setAttribute('variant', 'icon');
+shareBtn.setAttribute('variant', 'tertiary');
+shareBtn.setAttribute('has-icon', 'true');
+shareBtn.setAttribute('has-text', 'false');
 shareBtn.setAttribute('icon', 'share');
 shareBtn.setAttribute('aria-label', 'Share case study');
 

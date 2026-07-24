@@ -547,6 +547,16 @@ export const CompleteArticle = {
       expect(primaryBtn).toBeTruthy();
     });
 
+    await step('Verify social controls use simplified ds-button props contract', async () => {
+      const socialBtnClasses = ['.btn-share', '.btn-linkedin', '.btn-x', '.btn-facebook'];
+      socialBtnClasses.forEach((selector) => {
+        const btn = article.shadowRoot.querySelector(selector);
+        expect(btn.getAttribute('variant')).toBe('tertiary');
+        expect(btn.getAttribute('has-text')).toBe('false');
+        expect(btn.hasAttribute('has-icon')).toBe(true);
+      });
+    });
+
     await step('Verify TOC element renders inside article Shadow DOM', async () => {
       const toc = article.shadowRoot.querySelector('.article-toc');
       expect(toc).toBeTruthy();

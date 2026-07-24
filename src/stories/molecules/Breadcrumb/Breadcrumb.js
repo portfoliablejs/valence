@@ -233,7 +233,9 @@ export class Breadcrumb extends HTMLElement {
 
     const returnBtn = document.createElement('ds-button');
     returnBtn.setAttribute('tabindex', '0');
-    returnBtn.setAttribute('variant', 'icon');
+    returnBtn.setAttribute('variant', 'tertiary');
+    returnBtn.setAttribute('has-text', 'false');
+    returnBtn.setAttribute('has-icon', '');
     returnBtn.setAttribute('icon', 'arrow-left');
     returnBtn.setAttribute('aria-label', 'Return');
     returnBtn.className = 'crumb-return-btn';
@@ -278,7 +280,7 @@ export class Breadcrumb extends HTMLElement {
       if (index === 0) {
         const homeBtn = document.createElement('ds-button');
         homeBtn.setAttribute('tabindex', '0');
-        homeBtn.setAttribute('variant', 'text');
+        homeBtn.setAttribute('variant', 'tertiary');
         homeBtn.className = 'crumb-btn crumb-home-btn';
         homeBtn.textContent = labelText;
         homeBtn.addEventListener('click', () => {
@@ -291,7 +293,7 @@ export class Breadcrumb extends HTMLElement {
 
         const itemBtn = document.createElement('ds-button');
         itemBtn.setAttribute('tabindex', '0');
-        itemBtn.setAttribute('variant', 'text');
+        itemBtn.setAttribute('variant', 'tertiary');
         itemBtn.className = 'crumb-btn';
         itemBtn.textContent = labelText;
         

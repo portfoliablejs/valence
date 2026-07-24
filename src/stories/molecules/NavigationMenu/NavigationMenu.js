@@ -47,7 +47,7 @@ export class NavigationMenu extends HTMLElement {
       { id: 'tab-navigation', label: 'TAB Navigation', showIcon: false, showKbd: true, kbd: '⌘', kbdShowPlus: true, kbdKey: 'B', control: 'toggle', active: false, category: 'subcategory' },
     ];
 
-    this.shadowRoot.innerHTML = `<style>${css}</style><nav class="navigation-menu" aria-label="Navigation menu"><div class="menu-group menu-profile"><div class="menu-item"><button class="avatar-button" type="button" aria-label="About"><img class="avatar-img" src="https://thispersondoesnotexist.com/random-person.jpeg" alt="Profile face" loading="lazy" referrerpolicy="no-referrer"></button><ds-tooltip class="about-tooltip" text="About" show-kbd kbd-label="Ctrl" kbd-show-plus kbd-key="I" position="bottom"></ds-tooltip></div></div><div class="menu-divider"><ds-divider orientation="vertical" aria-label="Navigation menu separator"></ds-divider></div><div class="menu-group menu-actions"><div class="menu-item menu-item-language"><ds-button class="language-btn" variant="icon" icon="language" icon-variant="outline" aria-label="Language"></ds-button><ds-tooltip class="language-tooltip" text="Language" show-kbd kbd-label="Ctrl" kbd-show-plus kbd-key="L" position="bottom"></ds-tooltip><ds-contextual-menu class="language-menu" aria-label="Language menu"></ds-contextual-menu></div><div class="menu-item menu-item-accessibility"><ds-button class="accessibility-btn" variant="icon" icon="accessibility" icon-variant="outline" aria-label="Accessibility"></ds-button><ds-tooltip class="accessibility-tooltip" text="Accessibility" show-kbd kbd-label="Ctrl" kbd-show-plus kbd-key="A" position="bottom-right"></ds-tooltip><ds-contextual-menu class="accessibility-menu" aria-label="Accessibility menu"></ds-contextual-menu></div></div></nav>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><nav class="navigation-menu" aria-label="Navigation menu"><div class="menu-group menu-profile"><div class="menu-item"><ds-button class="avatar-button" variant="tertiary" has-text="false" has-image image-src="https://thispersondoesnotexist.com/random-person.jpeg" image-alt="Profile face" aria-label="About"></ds-button><ds-tooltip class="about-tooltip" text="About" show-kbd kbd-label="Ctrl" kbd-show-plus kbd-key="I" position="bottom"></ds-tooltip></div></div><div class="menu-divider"><ds-divider orientation="vertical" aria-label="Navigation menu separator"></ds-divider></div><div class="menu-group menu-actions"><div class="menu-item menu-item-language"><ds-button class="language-btn" variant="tertiary" has-text="false" has-icon icon="language" icon-variant="outline" aria-label="Language"></ds-button><ds-tooltip class="language-tooltip" text="Language" show-kbd kbd-label="Ctrl" kbd-show-plus kbd-key="L" position="bottom"></ds-tooltip><ds-contextual-menu class="language-menu" aria-label="Language menu"></ds-contextual-menu></div><div class="menu-item menu-item-accessibility"><ds-button class="accessibility-btn" variant="tertiary" has-text="false" has-icon icon="accessibility" icon-variant="outline" aria-label="Accessibility"></ds-button><ds-tooltip class="accessibility-tooltip" text="Accessibility" show-kbd kbd-label="Ctrl" kbd-show-plus kbd-key="A" position="bottom-right"></ds-tooltip><ds-contextual-menu class="accessibility-menu" aria-label="Accessibility menu"></ds-contextual-menu></div></div></nav>`;
   }
 
   connectedCallback() {
@@ -80,7 +80,6 @@ export class NavigationMenu extends HTMLElement {
     this.languageBtn = this.shadowRoot.querySelector('.language-btn');
     this.accessibilityBtn = this.shadowRoot.querySelector('.accessibility-btn');
     this.avatarBtn = this.shadowRoot.querySelector('.avatar-button');
-    this.avatarImg = this.shadowRoot.querySelector('.avatar-img');
     this.languageTooltip = this.shadowRoot.querySelector('.language-tooltip');
     this.accessibilityTooltip = this.shadowRoot.querySelector('.accessibility-tooltip');
     this.aboutTooltip = this.shadowRoot.querySelector('.about-tooltip');
@@ -278,7 +277,7 @@ export class NavigationMenu extends HTMLElement {
 
     this.languageBtn.toggleAttribute('disabled', disabled);
     this.accessibilityBtn.toggleAttribute('disabled', disabled);
-    this.avatarBtn.disabled = disabled;
+    this.avatarBtn.toggleAttribute('disabled', disabled);
 
     this.languageBtn.setAttribute('aria-label', this.getAttribute('language-aria-label') || 'Language');
     this.accessibilityBtn.setAttribute('aria-label', this.getAttribute('accessibility-aria-label') || 'Accessibility');
@@ -306,8 +305,8 @@ export class NavigationMenu extends HTMLElement {
     });
 
     const avatarSrc = this.getAttribute('avatar-src') || DEFAULT_AVATAR_SRC;
-    this.avatarImg.setAttribute('src', avatarSrc);
-    this.avatarImg.setAttribute('alt', this.getAttribute('avatar-alt') || 'Profile face');
+    this.avatarBtn.setAttribute('image-src', avatarSrc);
+    this.avatarBtn.setAttribute('image-alt', this.getAttribute('avatar-alt') || 'Profile face');
   }
 
   _observeRootAccessibility() {

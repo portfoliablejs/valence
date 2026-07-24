@@ -18,7 +18,7 @@ const defaultBreadcrumbItems = [
 ];
 
 export default {
-  title: 'Organisms/Header',
+  title: 'Organisms/Header [v1.0.0]',
   component: 'ds-header',
   tags: ['autodocs'],
   parameters: {
