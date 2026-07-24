@@ -1,7 +1,7 @@
 import css from './article.css?inline';
 import '../../sub-atomic/Iconography/Iconography.js';
 import '../../atoms/Button/Button.js';
-import '../../atoms/Toc/Toc.js';
+import '../../atoms/TOC/TOC.js';
 import '../../atoms/Thumbnail/Thumbnail.js';
 import '../../molecules/Tooltip/Tooltip.js';
 

@@ -2,7 +2,7 @@ import css from './audio-player.css?inline';
 import '../../sub-atomic/Iconography/Iconography.js';
 import '../../atoms/Button/Button.js';
 import '../../atoms/SeekBar/SeekBar.js';
-import '../../atoms/Kbd/Kbd.js';
+import '../../atoms/KBD/Kbd.js';
 import '../../atoms/Divider/Divider.js';
 import '../Tooltip/Tooltip.js';
 
