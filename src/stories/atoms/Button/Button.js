@@ -1,19 +1,24 @@
 import css from './button.css?inline';
 import '../../sub-atomic/Iconography/Iconography'; 
 
+const DEFAULT_IMAGE_SRC = 'https://thispersondoesnotexist.com/random-person.jpeg';
+const DEFAULT_IMAGE_ALT = 'Profile image';
+const CONTENT_SIZE_PX = '22';
+
 export class Button extends HTMLElement {
   static get observedAttributes() {
-    return ['variant', 'aria-label', 'disabled', 'icon', 'icon-variant', 'icon-position'];
+    return ['variant', 'aria-label', 'disabled', 'has-text', 'has-icon', 'icon', 'icon-variant', 'icon-position', 'has-image', 'image-src', 'image-alt', 'image-position'];
   }
 
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHTML = `<style>${css}</style><button type="button"><ds-icon class="btn-icon" style="display: none;"></ds-icon><slot></slot></button>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><button type="button"><img class="btn-image" alt="" loading="lazy" referrerpolicy="no-referrer" style="display: none;"><ds-icon class="btn-icon" style="display: none;"></ds-icon><span class="btn-label"><slot></slot></span></button>`;
   }
 
   connectedCallback() {
     this.buttonEl = this.shadowRoot.querySelector('button');
+    this.imageEl = this.shadowRoot.querySelector('.btn-image');
     this.iconEl = this.shadowRoot.querySelector('.btn-icon');
     this.updateAttributes();
     this._observeRootAccessibility();
@@ -54,11 +59,21 @@ export class Button extends HTMLElement {
   }
 
   updateAttributes() {
-    const variant = this.getAttribute('variant') || 'primary';
+    const requestedVariant = this.getAttribute('variant') || 'primary';
+    const normalizedVariant = requestedVariant === 'text' ? 'tertiary' : requestedVariant;
+    const variant = ['primary', 'secondary', 'tertiary', 'floating'].includes(normalizedVariant)
+      ? normalizedVariant
+      : 'primary';
     const ariaLabel = this.getAttribute('aria-label');
     const disabled = this.hasAttribute('disabled');
+    const hasTextAttr = this.getAttribute('has-text');
+    const hasText = hasTextAttr === null ? true : hasTextAttr !== 'false';
+    const hasIcon = this.hasAttribute('has-icon');
+    const hasImage = this.hasAttribute('has-image');
     const iconName = this.getAttribute('icon');
     const iconPosition = this.getAttribute('icon-position') || 'left';
+    const imagePosition = this.getAttribute('image-position') || 'left';
+    const activePosition = hasImage ? imagePosition : iconPosition;
 
     this.buttonEl.className = `variant-${variant}`;
     this.buttonEl.disabled = disabled;
@@ -68,7 +83,21 @@ export class Button extends HTMLElement {
       this.removeAttribute('aria-label');
     }
 
-    if (iconName) {
+    if (hasImage) {
+      this.imageEl.setAttribute('src', this.getAttribute('image-src') || DEFAULT_IMAGE_SRC);
+      this.imageEl.setAttribute('alt', this.getAttribute('image-alt') || DEFAULT_IMAGE_ALT);
+      this.imageEl.style.setProperty('--ds-button-image-content-size', `${CONTENT_SIZE_PX}px`);
+      this.imageEl.style.display = 'block';
+      this.buttonEl.classList.add('has-image');
+    } else {
+      this.imageEl.style.display = 'none';
+      this.buttonEl.classList.remove('has-image');
+      this.imageEl.style.removeProperty('--ds-button-image-content-size');
+      this.imageEl.removeAttribute('src');
+      this.imageEl.setAttribute('alt', '');
+    }
+
+    if (hasIcon && iconName && !hasImage) {
       this.iconEl.setAttribute('name', iconName);
       
       // Strict mapping
@@ -79,8 +108,7 @@ export class Button extends HTMLElement {
         this.iconEl.removeAttribute('variant');
       }
 
-      const iconSize = (variant === 'icon' || variant === 'floating') ? '20' : '14';
-      this.iconEl.setAttribute('size', iconSize);
+      this.iconEl.setAttribute('size', CONTENT_SIZE_PX);
       this.iconEl.style.display = 'inline-flex';
       this.buttonEl.classList.add('has-icon');
     } else {
@@ -88,10 +116,12 @@ export class Button extends HTMLElement {
       this.buttonEl.classList.remove('has-icon');
     }
 
-    if (iconPosition === 'right') {
-      this.setAttribute('icon-position', 'right');
-    } else if (this.hasAttribute('icon-position')) {
-      this.removeAttribute('icon-position');
+    this.buttonEl.classList.toggle('no-text', !hasText);
+
+    if (activePosition === 'right') {
+      this.setAttribute('content-position', 'right');
+    } else {
+      this.removeAttribute('content-position');
     }
   }
 }

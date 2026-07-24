@@ -25,7 +25,7 @@
 
 .gallery-viewport {
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: visible;
     overflow-y: visible;
     cursor: grab;
     user-select: none;

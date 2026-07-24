@@ -10,7 +10,7 @@ export class Toast extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     // Compressed single-line template string with default hidden buttons
-    this.shadowRoot.innerHTML = `<style>${css}</style><div class="toast-container" role="status" aria-live="polite" tabindex="0"><ds-button variant="icon" icon="close" aria-label="Close notification" class="toast-close-btn" hidden></ds-button><span class="toast-text"><slot></slot></span><ds-button variant="text" class="toast-never-btn" hidden>Never show this again</ds-button></div>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><div class="toast-container" role="status" aria-live="polite" tabindex="0"><ds-button variant="tertiary" has-text="false" has-icon icon="close" aria-label="Close notification" class="toast-close-btn" hidden></ds-button><span class="toast-text"><slot></slot></span><ds-button variant="tertiary" class="toast-never-btn" hidden>Never show this again</ds-button></div>`;
 
     this._handleClick = this._handleClick.bind(this);
     this._handleClose = this._handleClose.bind(this);

@@ -1,0 +1,110 @@
+:host {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.homeview-layout {
+  width: 100%;
+}
+
+.header-wrap {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: clamp(20px, 5dvh, 48px);
+}
+
+.homeview-shell {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  --homeview-footer-reserved-space: clamp(96px, 14dvh, 132px);
+  padding: clamp(8px, 2dvh, 16px) 28px calc(var(--homeview-footer-reserved-space) + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+.title-wrap {
+  width: 100%;
+  margin-bottom: clamp(20px, 6dvh, 64px);
+}
+
+.homeview-title {
+  margin: 0;
+  color: var(--color-black);
+}
+
+.gallery-wrap {
+  width: 100%;
+  margin-bottom: clamp(10px, 2.2dvh, 20px);
+  --homeview-gallery-scale: clamp(0.38, calc((100dvh - 180px) / 520), 1);
+}
+
+.gallery-scale-shell {
+  width: 100%;
+  overflow: visible;
+}
+
+.gallery-scale-shell {
+  display: block;
+  width: calc(100% / var(--homeview-gallery-scale));
+  margin: 0 auto;
+  transform-origin: top center;
+  transform: scale(var(--homeview-gallery-scale));
+  will-change: transform;
+}
+
+.footer-wrap {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 14px;
+  width: calc(100% - 56px);
+  max-width: 1160px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Mirrors the global footer text token for shadow DOM usage in this template. */
+.p3-footer {
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.homeview-footer {
+  margin: 0;
+  color: var(--color-gray-med);
+  opacity: var(--opacity-medium, 0.6);
+}
+
+@media (max-width: 900px) {
+  .homeview-shell {
+    padding: clamp(8px, 1.8dvh, 14px) 20px calc(var(--homeview-footer-reserved-space) + env(safe-area-inset-bottom));
+  }
+
+  .header-wrap {
+    margin-bottom: 32px;
+  }
+
+  .title-wrap {
+    margin-bottom: 44px;
+  }
+
+  .gallery-wrap {
+    margin-bottom: 16px;
+  }
+
+  .footer-wrap {
+    width: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 1200px) {
+  .gallery-wrap ds-gallery {
+    --gallery-item-gap: clamp(20px, 2.6vw, 44px);
+  }
+}

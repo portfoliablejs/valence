@@ -225,6 +225,9 @@ export const Default = {
       expect(menu).toBeTruthy();
       const closeBtn = menu.shadowRoot.querySelector('.close-btn');
       expect(closeBtn).toBeTruthy();
+      expect(closeBtn.getAttribute('variant')).toBe('tertiary');
+      expect(closeBtn.getAttribute('has-text')).toBe('false');
+      expect(closeBtn.hasAttribute('has-icon')).toBe(true);
     });
 
     await step('Hover first item row to verify interaction feedback', async () => {

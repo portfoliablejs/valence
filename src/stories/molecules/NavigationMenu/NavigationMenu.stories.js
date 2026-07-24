@@ -124,6 +124,20 @@ export const Default = {
     const languageMenu = nav.shadowRoot.querySelector('.language-menu');
     const accessibilityMenu = nav.shadowRoot.querySelector('.accessibility-menu');
 
+    await step('Verify controls use simplified ds-button props contract', async () => {
+      expect(languageBtn.getAttribute('variant')).toBe('tertiary');
+      expect(languageBtn.getAttribute('has-text')).toBe('false');
+      expect(languageBtn.hasAttribute('has-icon')).toBe(true);
+
+      expect(accessibilityBtn.getAttribute('variant')).toBe('tertiary');
+      expect(accessibilityBtn.getAttribute('has-text')).toBe('false');
+      expect(accessibilityBtn.hasAttribute('has-icon')).toBe(true);
+
+      expect(avatarBtn.getAttribute('variant')).toBe('tertiary');
+      expect(avatarBtn.getAttribute('has-text')).toBe('false');
+      expect(avatarBtn.hasAttribute('has-image')).toBe(true);
+    });
+
     await step('Verify avatar appears on the left and menus are initially closed', async () => {
       const firstGroup = nav.shadowRoot.querySelector('.menu-profile');
       const firstMenuItem = firstGroup.querySelector('.menu-item');
@@ -176,6 +190,9 @@ export const Default = {
       expect(accessibilityMenu.hasAttribute('open')).toBe(false);
       expect(getComputedStyle(languageTooltip).display).not.toBe('none');
       expect(getComputedStyle(accessibilityTooltip).display).not.toBe('none');
+
+      const avatarImage = avatarBtn.shadowRoot.querySelector('.btn-image');
+      expect(avatarImage.getAttribute('src')).toBe('https://thispersondoesnotexist.com/random-person.jpeg');
     });
   },
 };

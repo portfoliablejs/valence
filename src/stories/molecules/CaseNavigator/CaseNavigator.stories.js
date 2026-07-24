@@ -337,6 +337,20 @@ export const Default = {
     const navigator = canvasElement.querySelector('ds-case-navigator');
     const searchBtn = navigator.shadowRoot.querySelector('.btn-case-search');
 
+    await step('Verify navigator controls use simplified ds-button props contract', async () => {
+      const prevBtn = navigator.shadowRoot.querySelector('.btn-prev-case');
+      const nextBtn = navigator.shadowRoot.querySelector('.btn-next-case');
+
+      expect(searchBtn.getAttribute('variant')).toBe('tertiary');
+      expect(searchBtn.getAttribute('has-text')).toBe('false');
+      expect(searchBtn.hasAttribute('has-icon')).toBe(true);
+
+      expect(prevBtn.getAttribute('variant')).toBe('tertiary');
+      expect(prevBtn.hasAttribute('has-icon')).toBe(true);
+      expect(nextBtn.getAttribute('variant')).toBe('tertiary');
+      expect(nextBtn.hasAttribute('has-icon')).toBe(true);
+    });
+
     await step('Verify search button expands input and sets accessible name', async () => {
       await userEvent.click(searchBtn);
       expect(navigator.getAttribute('search-expanded')).toBe('true');
