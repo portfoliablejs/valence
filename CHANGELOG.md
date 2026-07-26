@@ -1,3 +1,9 @@
+## [0.4.2](https://github.com/portfoliablejs/valence/compare/v0.4.1...v0.4.2) (2026-07-26)
+
+### Bug Fixes
+
+* fix(ci): align npm trusted publishing with setup-node registry ([9c89303](https://github.com/portfoliablejs/valence/commit/9c89303f8161657f5ae95c7ca55ca4e0526532cd))
+
 ## [0.4.1](https://github.com/portfoliablejs/valence/compare/v0.4.0...v0.4.1) (2026-07-26)
 
 ### Bug Fixes
@@ -64,5 +70,6 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
