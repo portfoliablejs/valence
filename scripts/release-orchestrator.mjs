@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 
 const REPO_URL = "https://github.com/portfoliablejs/valence";
 const isDryRun = process.argv.includes("--dry-run");
+const shouldSign = process.env.RELEASE_SIGN === "true";
 
 const target = {
   key: "valence",
@@ -227,13 +228,20 @@ function run() {
   prependChangelog(target.changelogPath, releaseEntry);
 
   git(["add", target.packageJsonPath, target.changelogPath]);
-  git(["commit", "-m", `chore(release): ${target.displayName}@${nextVersion} [skip ci]`]);
+  const commitArgs = ["commit", "-m", `chore(release): ${target.displayName}@${nextVersion} [skip ci]`];
+  if (shouldSign) {
+    commitArgs.splice(1, 0, "-S");
+  }
+  git(commitArgs);
 
   const tagExists = git(["rev-parse", "-q", "--verify", `refs/tags/${nextTag}`], {
     allowFailure: true,
   });
   if (!tagExists) {
-    git(["tag", nextTag]);
+    const tagArgs = shouldSign
+      ? ["tag", "-s", nextTag, "-m", `Release ${nextTag}`]
+      : ["tag", "-a", nextTag, "-m", `Release ${nextTag}`];
+    git(tagArgs);
   }
 }
 
