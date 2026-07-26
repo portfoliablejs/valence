@@ -1,8 +1,27 @@
 {
   "name": "@portfoliablejs/valence",
   "version": "0.1.0",
+  "description": "Valence web component design system used by Portfoliable",
   "private": false,
+  "license": "MIT",
   "type": "module",
+  "homepage": "https://github.com/portfoliablejs/valence",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/portfoliablejs/valence.git"
+  },
+  "bugs": {
+    "url": "https://github.com/portfoliablejs/valence/issues"
+  },
+  "files": [
+    "src",
+    "public",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "main": "src/main.js",
   "exports": {
     ".": "./src/main.js"
@@ -19,6 +38,9 @@
     "deploy-storybook": "storybook build && gh-pages -d storybook-static"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^7.0.0",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^11.0.1",
     "@storybook/addon-a11y": "10.5.0",
     "@storybook/addon-docs": "10.5.0",
     "@storybook/addon-vitest": "10.5.0",
@@ -30,6 +52,7 @@
     "playwright": "^1.61.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "semantic-release": "^25.0.8",
     "sharp": "^0.35.3",
     "storybook": "10.5.0",
     "storybook-addon-mermaid": "^0.2.7",
@@ -42,5 +65,8 @@
     "lit": "^3.3.3",
     "mermaid": "^11.16.0",
     "prismjs": "^1.30.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
