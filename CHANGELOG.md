@@ -1,3 +1,9 @@
+## [0.4.5](https://github.com/portfoliablejs/valence/compare/v0.4.4...v0.4.5) (2026-07-26)
+
+### Bug Fixes
+
+* ci: remove scoped setup and explicit publish registry flags ([ee41634](https://github.com/portfoliablejs/valence/commit/ee41634baf531fa25d5bb168700d4884aac50117))
+
 ## [0.4.4](https://github.com/portfoliablejs/valence/compare/v0.4.3...v0.4.4) (2026-07-26)
 
 ### Bug Fixes
@@ -82,6 +88,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
