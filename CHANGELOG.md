@@ -1,3 +1,9 @@
+## [0.4.7](https://github.com/portfoliablejs/valence/compare/v0.4.6...v0.4.7) (2026-07-26)
+
+### Bug Fixes
+
+* chore: add funding field to package.json ([39b13c1](https://github.com/portfoliablejs/valence/commit/39b13c169f2ca697390ea220fb2986102ff59c24))
+
 ## [0.4.6](https://github.com/portfoliablejs/valence/compare/v0.4.5...v0.4.6) (2026-07-26)
 
 ### Bug Fixes
@@ -94,6 +100,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
