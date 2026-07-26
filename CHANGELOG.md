@@ -1,3 +1,9 @@
+## [0.4.4](https://github.com/portfoliablejs/valence/compare/v0.4.3...v0.4.4) (2026-07-26)
+
+### Bug Fixes
+
+* ci: fix bash syntax error for pkg name ([c44af1c](https://github.com/portfoliablejs/valence/commit/c44af1cc9ee3d60e23d39ef48fa64f1582e1d677))
+
 ## [0.4.3](https://github.com/portfoliablejs/valence/compare/v0.4.2...v0.4.3) (2026-07-26)
 
 ### Bug Fixes
@@ -76,6 +82,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
