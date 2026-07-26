@@ -1,3 +1,21 @@
+## [0.4.0](https://github.com/portfoliablejs/valence/compare/v0.2.0...v0.4.0) (2026-07-26)
+
+### Features
+
+* feat: use trusted publishing with oidc instead of npm token ([1ec348f](https://github.com/portfoliablejs/valence/commit/1ec348f4bd3aae06beac50f284eeb9ddd38d5aa7))
+
+### Bug Fixes
+
+* ci(release): enforce schimanko-only release identity ([9adacef](https://github.com/portfoliablejs/valence/commit/9adacef1f322aecef07f50cca55dee91e349a0fe))
+* chore(release): replace semantic-release with native auto-versioning ([24a14d4](https://github.com/portfoliablejs/valence/commit/24a14d462fe58e8d4cd2b96517e0a44ee7f53d82))
+* chore(release): 0.3.1 [skip ci] ([80a8c1b](https://github.com/portfoliablejs/valence/commit/80a8c1be75918bf53dd0c97ee9fd3a25322a4185))
+* fix: skip valence release if no commits since last tag ([a030e75](https://github.com/portfoliablejs/valence/commit/a030e758aedeffbbc62e9b0fad36e3fc9b1798c6))
+* chore(release): 0.3.0 [skip ci] ([acae6c2](https://github.com/portfoliablejs/valence/commit/acae6c2b986fc219806b7d82a861ac17dcae6242))
+* chore(release): 0.2.2 [skip ci] ([c27f338](https://github.com/portfoliablejs/valence/commit/c27f338069a904985fc4370d2dbaf0ab35bb1e93))
+* fix: use manual npmrc auth for github packages instead of setup-node ([8c5bb77](https://github.com/portfoliablejs/valence/commit/8c5bb7768a2a831a30f14ccd87cb6ff53166eb19))
+* chore(release): 0.2.1 [skip ci] ([ff94b79](https://github.com/portfoliablejs/valence/commit/ff94b798089253ab3c1ba85d6a79fffaca75ec09))
+* fix: replace exec github packages publish with setup-node auth ([f4e3ede](https://github.com/portfoliablejs/valence/commit/f4e3ede7860a20f8cace074d224db9b2a7c2da99))
+
 ## [0.3.1](https://github.com/portfoliablejs/valence/compare/v0.3.0...v0.3.1) (2026-07-26)
 
 
@@ -39,3 +57,4 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
