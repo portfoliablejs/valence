@@ -1,3 +1,9 @@
+## [0.4.6](https://github.com/portfoliablejs/valence/compare/v0.4.5...v0.4.6) (2026-07-26)
+
+### Bug Fixes
+
+* ci: remove setup-node registry link to fix OIDC 404, upgrade npm ([0f261fe](https://github.com/portfoliablejs/valence/commit/0f261fee0ec132ff9eb01e67e40573f5b0664448))
+
 ## [0.4.5](https://github.com/portfoliablejs/valence/compare/v0.4.4...v0.4.5) (2026-07-26)
 
 ### Bug Fixes
@@ -88,6 +94,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
