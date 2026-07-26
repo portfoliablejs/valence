@@ -1,3 +1,10 @@
+## [0.2.2](https://github.com/portfoliablejs/valence/compare/v0.2.1...v0.2.2) (2026-07-26)
+
+
+### Bug Fixes
+
+* use manual npmrc auth for github packages instead of setup-node ([0a0f162](https://github.com/portfoliablejs/valence/commit/0a0f162154afe5be2af4077040b88320961f7f00))
+
 ## [0.2.1](https://github.com/portfoliablejs/valence/compare/v0.2.0...v0.2.1) (2026-07-26)
 
 
