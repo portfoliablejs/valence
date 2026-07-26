@@ -9,6 +9,7 @@ on:
 permissions:
   contents: write
   packages: write
+  id-token: write
 
 jobs:
   release:
@@ -42,14 +43,20 @@ jobs:
         id: valence-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          set -x  # Enable debug output
           before=$(node -p "require('./package.json').version")
-          npx semantic-release
+          echo "Version before: $before"
+          echo "Git status:"
+          git status
+          echo "Running semantic-release..."
+          npx semantic-release --debug 2>&1 || EXIT_CODE=$?
           after=$(node -p "require('./package.json').version")
+          echo "Version after: $after"
           if [ "$before" != "$after" ]; then
             echo "released=true" >> $GITHUB_OUTPUT
           fi
+          exit ${EXIT_CODE:-0}
 
       - name: Publish @portfoliablejs/valence to GitHub Packages
         if: steps.valence-release.outputs.released == 'true'
