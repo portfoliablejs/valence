@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/portfoliablejs/valence/compare/v0.4.0...v0.4.1) (2026-07-26)
+
+### Bug Fixes
+
+* fix(ci): make release signing optional when key secret is absent ([3765010](https://github.com/portfoliablejs/valence/commit/3765010a309501f137ea93969e5a444a0cd64228))
+* fix(release): trusted-publisher auth and signed release artifacts ([55ad3df](https://github.com/portfoliablejs/valence/commit/55ad3dff1fde529561e2bb3e4dd712b645c1ff9a))
+
 ## [0.4.0](https://github.com/portfoliablejs/valence/compare/v0.2.0...v0.4.0) (2026-07-26)
 
 ### Features
@@ -57,4 +64,5 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
