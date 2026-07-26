@@ -5,6 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Preview version bumps without writing commits, tags, or releases
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -36,38 +41,50 @@ jobs:
 
       - name: Configure git
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "valence-release"
+          git config user.email "release@users.noreply.github.com"
 
-      - name: Release @portfoliablejs/valence
-        id: valence-release
+      - name: Compute release plan and apply versions
+        id: release-plan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Check if there are commits since the last release
-          latest_tag=$(git describe --tags --match "v*" --abbrev=0 2>/dev/null || echo "")
-          if [ -z "$latest_tag" ]; then
-            # No previous tags, compare to first commit
-            latest_tag=$(git rev-list --max-parents=0 HEAD)
-          fi
-          commits_since_last=$(git log ${latest_tag}..HEAD --oneline 2>/dev/null | wc -l)
-          
-          if [ "$commits_since_last" -gt 0 ]; then
-            before=$(node -p "require('./package.json').version")
-            npx semantic-release
-            after=$(node -p "require('./package.json').version")
-            if [ "$before" != "$after" ]; then
-              echo "released=true" >> $GITHUB_OUTPUT
-            fi
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            echo "dry_run=true" >> $GITHUB_OUTPUT
+            node ./scripts/release-orchestrator.mjs --dry-run
           else
-            echo "No commits since last release, skipping"
+            echo "dry_run=false" >> $GITHUB_OUTPUT
+            node ./scripts/release-orchestrator.mjs
           fi
 
+      - name: Push release commit and tags
+        if: steps.release-plan.outputs.released_any == 'true' && steps.release-plan.outputs.dry_run != 'true'
+        run: |
+          git push origin main
+          git push origin --tags
+
+      - name: Publish @portfoliablejs/valence to npm
+        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
+        run: npm publish --provenance --access public
+
       - name: Publish @portfoliablejs/valence to GitHub Packages
-        if: steps.valence-release.outputs.released == 'true'
+        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
         run: |
           echo "@portfoliablejs:registry=https://npm.pkg.github.com" >> ~/.npmrc
           echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> ~/.npmrc
           npm publish --registry=https://npm.pkg.github.com --access public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub release for @portfoliablejs/valence
+        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.release-plan.outputs.valence_tag }}"
+          curl --silent --show-error --fail \
+            -X POST \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/releases" \
+            -d "{\"tag_name\":\"${TAG}\",\"name\":\"${TAG}\",\"generate_release_notes\":true}"
