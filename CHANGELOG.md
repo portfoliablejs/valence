@@ -1,3 +1,9 @@
+## [0.3.2](https://github.com/portfoliablejs/valence/compare/v0.3.1...v0.3.2) (2026-07-26)
+
+### Bug Fixes
+
+* chore(release): replace semantic-release with native auto-versioning ([0f3a472](https://github.com/portfoliablejs/valence/commit/0f3a472eed06461de5d6f511b0780cc978ee01e4))
+
 ## [0.3.1](https://github.com/portfoliablejs/valence/compare/v0.3.0...v0.3.1) (2026-07-26)
 
 
@@ -39,3 +45,4 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
