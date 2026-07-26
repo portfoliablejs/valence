@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/portfoliablejs/valence/compare/v0.2.2...v0.3.0) (2026-07-26)
+
+
+### Features
+
+* use trusted publishing with oidc instead of npm token ([46b4a42](https://github.com/portfoliablejs/valence/commit/46b4a42325f48cc7e36b73f54d6b797224914de0))
+
 ## [0.2.2](https://github.com/portfoliablejs/valence/compare/v0.2.1...v0.2.2) (2026-07-26)
 
 
