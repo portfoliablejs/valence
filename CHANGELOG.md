@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/portfoliablejs/valence/compare/v0.2.0...v0.2.1) (2026-07-26)
+
+
+### Bug Fixes
+
+* replace exec github packages publish with setup-node auth ([18fb701](https://github.com/portfoliablejs/valence/commit/18fb7016f6438a4db4671883ec9e2c1f82ae60d6))
+
 # [0.2.0](https://github.com/portfoliablejs/valence/compare/v0.1.0...v0.2.0) (2026-07-26)
 
 
