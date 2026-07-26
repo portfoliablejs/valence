@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/portfoliablejs/valence/compare/v0.3.0...v0.3.1) (2026-07-26)
+
+
+### Bug Fixes
+
+* skip valence release if no commits since last tag ([ca19583](https://github.com/portfoliablejs/valence/commit/ca19583e8119636ea1380877ec39e8c4e77f4f1f))
+
 # [0.3.0](https://github.com/portfoliablejs/valence/compare/v0.2.2...v0.3.0) (2026-07-26)
 
 
