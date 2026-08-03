@@ -1,3 +1,9 @@
+## [0.4.8](https://github.com/portfoliablejs/valence/compare/v0.4.7...v0.4.8) (2026-08-03)
+
+### Bug Fixes
+
+* docs(integration): add toc navigator host-shell sync guidance ([f2b80f0](https://github.com/portfoliablejs/valence/commit/f2b80f02fa062faa8d4dd4d7cd8b12c3a9c8f5ca))
+
 ## [0.4.7](https://github.com/portfoliablejs/valence/compare/v0.4.6...v0.4.7) (2026-07-26)
 
 ### Bug Fixes
@@ -100,6 +106,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
