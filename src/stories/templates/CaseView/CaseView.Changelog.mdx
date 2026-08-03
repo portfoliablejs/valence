@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Templates/CaseView [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-08-03
+
+<br />
+
+### Initial Release
+
+The first stable release of `ds-case-view`, a template-level composition that pairs the HomeView-style `ds-header` frame with `ds-article` for case-study detail rendering inside single-page application shells.
+
+<br />
+
+### Added
+- **Template Composition:** Added `ds-case-view` as a stateless wrapper around `ds-header` and `ds-article` with a consistent top-to-bottom layout contract.
+- **Full Pass-through API:** Introduced complete pass-through support for Header navigation attributes and Article content/action visibility attributes.
+- **Breadcrumb Control Surface:** Added controlled `breadcrumbItems`, `breadcrumbMenuItems`, `show-breadcrumb`, and `show-language-menu` integration for runtime route-state binding.
+- **Article Slot Re-projection:** Added slot bridging for `thumbnail`, `summary`, `player`, default body content, and `navigator` so host-provided content flows directly into `ds-article`.
+- **Storybook Coverage:** Added CaseView stories with interaction checks validating event pass-through and template render integrity.
+- **Architecture Documentation:** Added a dedicated architecture page explaining composition principles, event flow, slot mapping, and accessibility boundaries.
+
+---
+
+*This changelog is specific to the `<ds-case-view>` template component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

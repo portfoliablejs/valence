@@ -48,3 +48,4 @@ export * from './stories/organisms/VideoPlayer/VideoPlayer.js';
 
 // Templates
 export * from './stories/templates/HomeView/HomeView.js';
+export * from './stories/templates/CaseView/CaseView.js';

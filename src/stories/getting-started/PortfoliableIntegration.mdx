@@ -10,6 +10,17 @@ The `portfoliable` application is an open-source, web-native portfolio builder d
 
 This document serves as the primary integration guide explaining how the host application interacts with Valence components, passes data through shadow boundaries, manages global accessibility cascades, and handles runtime state transitions.
 
+## Integration Note: TOC + Navigator in Scrolling Shells
+
+When the host app scrolls a case container (instead of `window`), the host should synchronize TOC active state from that container's `scrollTop` and keep floating controls fixed relative to the viewport.
+
+Recommended host behavior:
+
+- feed heading items into `ds-toc` when headings live across nested shadow boundaries
+- sync active heading on container scroll so open menu rows and closed minimap lines keep highlighted state
+- keep `ds-toc` and `ds-case-navigator` fixed and non-scrollable as control surfaces
+- route TOC item selection to container-based scrolling
+
 <br />
 
 ## 1. Application Architecture & Component Shell
@@ -30,14 +41,14 @@ The application entrypoint (`src/main.js`) mounts the root Web Component (`<app-
           VideoPlayer["&lt;ds-video-player id='video-player'&gt;"]
       end
 
-      subgraph Views ["Dynamic View Containers"]
-          HomeView["#view-home (&lt;ds-gallery&gt;)"]
-          CaseView["#view-case (#case-slider-container)"]
+        subgraph Views ["Dynamic View Containers"]
+          HomeView["#view-home (&lt;ds-home-view&gt;)"]
+          CaseView["#view-case (&lt;ds-case-view&gt;)"]
       end
 
       subgraph Components ["Valence Component Instances"]
           GalleryItem["&lt;ds-gallery-item&gt;"]
-          CaseSlide["&lt;ds-case-slide&gt;"]
+          Article["&lt;ds-article&gt;"]
           Modals["&lt;ds-modal&gt; / &lt;ds-item-row&gt;"]
       end
 
@@ -51,7 +62,7 @@ The application entrypoint (`src/main.js`) mounts the root Web Component (`<app-
       Main --> CaseView
 
       HomeView --> GalleryItem
-      CaseView --> CaseSlide
+      CaseView --> Article
       ModalContainer --> Modals
 
       %% Styling
@@ -111,10 +122,10 @@ Application state values are passed downstream by setting standard HTML attribut
       <td>Boolean presence of URLs or video assets in case schema</td>
     </tr>
     <tr>
-      <td><code>&lt;ds-case-slide&gt;</code></td>
-      <td><code>title</code>, <code>year</code>, <code>thumb-src</code>, <code>device</code></td>
-      <td><code>string</code></td>
-      <td>Case study attributes mapped for slide layout</td>
+      <td><code>&lt;ds-case-view&gt;</code></td>
+      <td><code>kicker</code>, <code>title-text</code>, <code>show-breadcrumb</code>, <code>show-language-menu</code></td>
+      <td><code>string</code> / <code>'true' | 'false'</code></td>
+      <td>Case detail template attributes mapped to composed header and article regions</td>
     </tr>
     <tr>
       <td><code>&lt;ds-toast&gt;</code></td>
@@ -129,16 +140,19 @@ Application state values are passed downstream by setting standard HTML attribut
 For complex, formatted content (such as rich case study bodies, code snippets, or inline telemetry cards), `AppShell` injects HTML subtrees directly into component `<slot>` targets:
 
 ```javascript
-// Example: Injecting rich localized HTML into <ds-case-slide> slot
-const slide = document.createElement('ds-case-slide');
-slide.dataset.caseId = caseData.id;
-slide.setAttribute('title', this.getLang(caseData.title));
+// Example: Injecting rich localized HTML into <ds-case-view> slots
+const caseView = document.createElement('ds-case-view');
+caseView.dataset.caseId = caseData.id;
+caseView.setAttribute('title-text', this.getLang(caseData.title));
 
 // Choose executive vs recruiter content based on app state
 const descContent = this.state.isRecruiterMode ? caseData.descRecruiter : caseData.desc;
 
 // Slot injection target
-slide.innerHTML = `<div slot="description">${this.getLang(descContent)}</div>`;
+caseView.innerHTML = `
+  <ds-thumbnail slot="thumbnail" screen-image="${this.getLang(caseData.thumbSrc)}"></ds-thumbnail>
+  <div>${this.getLang(descContent)}</div>
+`;
 
 ```
 
@@ -189,7 +203,7 @@ getLang(prop) {
 
 ## 4. Dual-Persona Content Injection (Executive vs. Recruiter)
 
-To serve both executive hiring managers and technical recruiters, `portfoliable` dynamically mutates the content slotted into `<ds-case-slide>` based on `this.state.isRecruiterMode`:
+To serve both executive hiring managers and technical recruiters, `portfoliable` dynamically mutates the content slotted into `<ds-case-view>` based on `this.state.isRecruiterMode`:
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
@@ -211,7 +225,7 @@ To serve both executive hiring managers and technical recruiters, `portfoliable`
 
 ```
 
-When switching modes, `AppShell` clears and re-populates the `#case-slider-container` children, swapping the slotted HTML template passed into `<ds-case-slide>` without altering component wrapper attributes.
+When switching modes, `AppShell` re-renders the active `<ds-case-view>` content, swapping the projected article body while keeping the template wrapper attributes stable.
 
 ---
 

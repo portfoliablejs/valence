@@ -1,0 +1,212 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Templates/CaseView [v1.0.0]/Architecture" />
+
+# `ds-case-view`
+
+The `ds-case-view` component is a **stateless (presentational)** Template that composes `ds-header` and `ds-article` into a single case-study detail surface for SPA shells.
+
+---
+
+## Principles
+
+### Stateful Host, Stateless Template
+The template follows **State In / Events Out**:
+* **State In (Attributes / Properties):** The host app controls all breadcrumb, navigation, and article labels/visibility toggles.
+* **Events Out (Pass-through):** `ds-breadcrumb-*`, `ds-navigation-menu-*`, `ds-article-action`, and `ds-article-share` events bubble to the host unchanged.
+* **No Smart Routing Logic:** Route switching, deep-linking, data fetching, and analytics remain outside this template.
+
+### Composition Boundary
+`ds-case-view` provides structure, not content ownership:
+* **Header Region:** A full-width `ds-header` aligned with HomeView behavior.
+* **Article Region:** A centered `ds-article` with slot re-projection for thumbnail, summary, player, default body, and navigator.
+* **Motion Compatibility:** Transition orchestration is intentionally host-managed so reduced-motion and route-history policies stay centralized.
+
+<mermaid-diagram chart={`
+flowchart TD
+    Host["Host SPA / App Shell"] -->|bind props| CaseView["ds-case-view"]
+    CaseView --> Header["ds-header"]
+    CaseView --> Article["ds-article"]
+
+    Article --> ThumbSlot["slot='thumbnail'"]
+    Article --> SummarySlot["slot='summary'"]
+    Article --> PlayerSlot["slot='player'"]
+    Article --> BodySlot["default slot"]
+    Article --> NavigatorSlot["slot='navigator'"]
+
+    Header -->|bubble events| Host
+    Article -->|bubble events| Host
+
+    style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+    style CaseView fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+    style Header fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+    style Article fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Internal Composition
+
+<table>
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Rendered Element</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`header-wrap`</td>
+      <td>`<ds-header>`</td>
+      <td>Top navigation layer using the same composition model as HomeView.</td>
+    </tr>
+    <tr>
+      <td>`article-wrap`</td>
+      <td>`<ds-article>`</td>
+      <td>Case detail content shell receiving pass-through article attributes.</td>
+    </tr>
+    <tr>
+      <td>slot bridge</td>
+      <td>`<slot slot="...">`</td>
+      <td>Re-projects host light-DOM content into `ds-article` slots without transforming markup.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## API Contract
+
+### Core Properties & Attributes
+
+<table>
+  <thead>
+    <tr>
+      <th>Property / Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`breadcrumbItems`</td>
+      <td>`Array`</td>
+      <td>`[{ back }, { home }, { case }]`</td>
+      <td>Controlled breadcrumb stack forwarded to `ds-header`.</td>
+    </tr>
+    <tr>
+      <td>`breadcrumbMenuItems`</td>
+      <td>`Array`</td>
+      <td>`null`</td>
+      <td>Optional breadcrumb menu options forwarded to `ds-header`.</td>
+    </tr>
+    <tr>
+      <td>`show-breadcrumb`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Toggles breadcrumb region visibility in the composed header.</td>
+    </tr>
+    <tr>
+      <td>`show-language-menu`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Toggles navigation language controls in the composed header.</td>
+    </tr>
+    <tr>
+      <td>`kicker`, `title-text`, `primary-label`, `secondary1-label`, `secondary2-label`, `primary-icon`</td>
+      <td>`string`</td>
+      <td>Inherited from article defaults</td>
+      <td>Pass-through article labels forwarded to `ds-article`.</td>
+    </tr>
+    <tr>
+      <td>`show-*` article flags</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Pass-through article visibility toggles (`show-social-*`, `show-action-*`, `show-player`, `show-summary`, `show-navigator`, `show-toc`).</td>
+    </tr>
+    <tr>
+      <td>navigation menu presentation attributes</td>
+      <td>`string` / `boolean`</td>
+      <td>Inherited from child defaults</td>
+      <td>Full pass-through surface for avatar, tooltip, shortcut, aria-label, and disabled props.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Source</th>
+      <th>Bubbles / Composed</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`ds-breadcrumb-home`, `ds-breadcrumb-return`, `ds-breadcrumb-select`</td>
+      <td>`ds-header`</td>
+      <td>`true` / `true`</td>
+      <td>Pass-through breadcrumb navigation events for host-level route control.</td>
+    </tr>
+    <tr>
+      <td>`ds-navigation-menu-*`</td>
+      <td>`ds-header`</td>
+      <td>`true` / `true`</td>
+      <td>Pass-through navigation events for language/accessibility/about and option selection.</td>
+    </tr>
+    <tr>
+      <td>`ds-article-action`</td>
+      <td>`ds-article`</td>
+      <td>`true` / `true`</td>
+      <td>Signals CTA activation with `{ action }` detail payload.</td>
+    </tr>
+    <tr>
+      <td>`ds-article-share`</td>
+      <td>`ds-article`</td>
+      <td>`true` / `true`</td>
+      <td>Signals share intent with `{ platform }` detail payload.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Sub-Atomic CSS Hooks
+
+<table>
+  <thead>
+    <tr>
+      <th>CSS Custom Property</th>
+      <th>Fallback Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`--caseview-max-width`</td>
+      <td>`1200px`</td>
+      <td>Controls maximum width of the case content region wrapper.</td>
+    </tr>
+    <tr>
+      <td>`--caseview-inline-padding`</td>
+      <td>`clamp(12px, 2vw, 28px)`</td>
+      <td>Controls horizontal breathing room around the article shell.</td>
+    </tr>
+    <tr>
+      <td>`--caseview-header-margin-bottom`</td>
+      <td>`clamp(20px, 5dvh, 48px)`</td>
+      <td>Controls spacing between header and article regions.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Accessibility & Semantics
+
+* **Semantic Landmark:** Renders a top-level `<section>` with host-provided `aria-label` for case detail context.
+* **Keyboard and Tooltip Semantics:** Delegated to composed children (`ds-header`, `ds-article`, and their molecules/atoms).
+* **Reduced Motion Strategy:** The template does not impose route transitions internally, enabling host shells to centralize reduced-motion handling for all route changes.

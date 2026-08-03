@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.caseview-layout {
+  width: 100%;
+}
+
+.header-wrap {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: var(--caseview-header-margin-bottom, clamp(20px, 5dvh, 48px));
+}
+
+.article-wrap {
+  width: 100%;
+  max-width: var(--caseview-max-width, 1200px);
+  margin: 0 auto;
+  padding: 0 var(--caseview-inline-padding, clamp(12px, 2vw, 28px)) clamp(24px, 4dvh, 48px);
+  box-sizing: border-box;
+}
+
+.article-wrap ds-article {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .header-wrap {
+    margin-bottom: 32px;
+  }
+
+  .article-wrap {
+    padding: 0 16px 28px;
+  }
+}
