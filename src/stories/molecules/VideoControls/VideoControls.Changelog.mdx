@@ -1,8 +1,65 @@
 import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
 
-<Meta title="Molecules/Video Controls [v1.0.0]/Changelog" />
+<Meta title="Molecules/Video Controls [v1.1.0]/Changelog" />
 
 # Changelog
+
+<br />
+
+## [1.1.0] - 2026-08-04
+
+<br />
+
+### Layout Variants
+
+Introduces a `variant` attribute with two explicit layout modes, replacing the previous implicit responsive breakpoint.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`variant`</td>
+      <td>New observable attribute accepting `'default'` (horizontal pill bar) or `'vertical'` (transparent column strip). Default value is `'default'`.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`video-controls.css`</td>
+      <td>Horizontal pill layout is now the base `:host` style, applied at all viewport sizes when using the `default` variant.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`video-controls.css`</td>
+      <td>Tooltip `position` attribute is now dynamically set to `top` for `default` and `right` for `vertical` during render.</td>
+    </tr>
+    <tr>
+      <td>`Removed`</td>
+      <td>`video-controls.css`</td>
+      <td>Deleted the `@media (max-width: 768px)` responsive block, including the `ds-tooltip { display: none }` suppression rule. Layout orientation is now variant-driven, not viewport-driven.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Layout Variants:** `variant="default"` renders the horizontal pill bar at all viewport sizes. `variant="vertical"` renders the transparent column strip.
+- **Dynamic Tooltip Direction:** `render()` now syncs all tooltip `position` attributes to `top` (default) or `right` (vertical).
+
+### Removed
+- **Responsive Breakpoint:** The `@media (max-width: 768px)` block has been deleted. There is no longer any implicit responsive layout switching.
+
+---
 
 <br />
 

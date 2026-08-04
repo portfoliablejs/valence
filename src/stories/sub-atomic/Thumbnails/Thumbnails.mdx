@@ -6,7 +6,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The Thumbnail component (`<ds-thumbnail>`) is a framework-agnostic Web Component designed to showcase application screenshots, responsive designs, and portfolio projects inside physical device mockups (phones, laptops, tablets, wearables, and TVs).
 
-It uses a 2-layer Shadow DOM architecture combined with an automated canvas flood-fill mask generator that dynamically clips screen images to device bezels with subpixel precision.
+It uses a 2-layer Shadow DOM architecture combined with an automated canvas flood-fill mask generator that dynamically clips screen media to device bezels with subpixel precision.
 
 <br />
 
@@ -14,7 +14,7 @@ It uses a 2-layer Shadow DOM architecture combined with an automated canvas floo
 
 `<ds-thumbnail>` maintains two independent visual layers inside its Shadow DOM:
 
-1. **Screen Cover Layer (`.screen-cover`, z-index: 1):** The background image provided via the `screen-image` attribute.
+1. **Screen Media Layer (`.screen-media`, z-index: 1):** Renders `screen-image` or `screen-video` inside the same bounded/masked display region.
 2. **Device Frame Layer (`.device-image`, z-index: 2):** The physical device frame overlay (`.avif` asset from `DEVICE_CATALOG`).
 
 
@@ -38,7 +38,7 @@ It uses a 2-layer Shadow DOM architecture combined with an automated canvas floo
 
 ## Attributes & Component API
 
-The `<ds-thumbnail>` component accepts the following attributes for frame selection, image binding, and state control:
+The `<ds-thumbnail>` component accepts the following attributes for frame selection, media binding, and state control:
 
 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
   <thead>
@@ -78,7 +78,13 @@ The `<ds-thumbnail>` component accepts the following attributes for frame select
       <td><code>screen-image</code></td>
       <td><code>URL String</code></td>
       <td><code>''</code></td>
-      <td><strong>Mandatory.</strong> The project screenshot URL rendered inside the device display bounds.</td>
+      <td>Primary image URL rendered inside the device display bounds. If both media attributes are set, this source wins.</td>
+    </tr>
+    <tr>
+      <td><code>screen-video</code></td>
+      <td><code>URL String</code></td>
+      <td><code>''</code></td>
+      <td>Optional video URL for the same display bounds. Used only when <code>screen-image</code> is not provided.</td>
     </tr>
     <tr>
       <td><code>custom-only</code></td>
@@ -143,6 +149,8 @@ ds-thumbnail {
 
 ## Implementation Examples
 
+Media precedence: when both <code>screen-image</code> and <code>screen-video</code> are passed, <code>screen-image</code> is rendered.
+
 ### 1. Standard Mobile Device Framing
 
 ```html
@@ -200,6 +208,20 @@ ds-thumbnail {
   custom-only
   screen-image="[https://my-domain.com/assets/design-preview.png](https://my-domain.com/assets/design-preview.png)"
   max-height="350px">
+</ds-thumbnail>
+
+```
+
+### 5. Video in the Screen Region
+
+```html
+<ds-thumbnail
+  category="mobile"
+  brand="apple"
+  model="Apple iPhone 13"
+  color="Midnight"
+  screen-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+  max-height="500px">
 </ds-thumbnail>
 
 ```

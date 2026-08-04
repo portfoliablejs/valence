@@ -354,6 +354,7 @@ export class Thumbnail extends HTMLElement {
       'model',
       'color',
       'screen-image',
+      'screen-video',
       'device-src',
       'custom-only',
       'disabled',
@@ -366,16 +367,28 @@ export class Thumbnail extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     // Single compressed line Shadow DOM string per design system guidelines
-    this.shadowRoot.innerHTML = `<style>${css}</style><div class="frame-container" tabindex="0"><img class="screen-cover" alt="Screen Cover Content" loading="eager" /><img class="device-image" alt="Device Frame Mockup" loading="lazy" /></div>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><div class="frame-container" tabindex="0"><img class="screen-cover screen-media" alt="Screen Cover Content" loading="eager" /><video class="screen-cover-video screen-media" aria-hidden="true" preload="metadata" playsinline muted></video><img class="device-image" alt="Device Frame Mockup" loading="lazy" /></div>`;
 
     this.container = this.shadowRoot.querySelector('.frame-container');
     this.imgEl = this.shadowRoot.querySelector('.device-image');
-    this.screenEl = this.shadowRoot.querySelector('.screen-cover');
+    this.screenImageEl = this.shadowRoot.querySelector('.screen-cover');
+    this.screenVideoEl = this.shadowRoot.querySelector('.screen-cover-video');
+    this.screenMediaEls = [this.screenImageEl, this.screenVideoEl];
     this._renderSeq = 0;
 
     // Keep gallery interactions clean by preventing native image drag/select behavior.
     this.imgEl.setAttribute('draggable', 'false');
-    this.screenEl.setAttribute('draggable', 'false');
+    this.screenImageEl.setAttribute('draggable', 'false');
+    this.screenVideoEl.setAttribute('draggable', 'false');
+    this.screenVideoEl.controls = false;
+    this.screenVideoEl.autoplay = false;
+    this.screenVideoEl.loop = false;
+    this.screenVideoEl.playsInline = true;
+    this.screenVideoEl.muted = true;
+
+    this.screenVideoEl.addEventListener('error', () => {
+      this.screenVideoEl.hidden = true;
+    });
   }
 
   connectedCallback() {
@@ -461,13 +474,15 @@ export class Thumbnail extends HTMLElement {
   }
 
   _resetScreenGeometry() {
-    this.screenEl.style.removeProperty('--screen-top');
-    this.screenEl.style.removeProperty('--screen-left');
-    this.screenEl.style.removeProperty('--screen-width');
-    this.screenEl.style.removeProperty('--screen-height');
-    this.screenEl.style.removeProperty('--ds-thumbnail-screen-radius');
-    this.screenEl.style.removeProperty('-webkit-mask-image');
-    this.screenEl.style.removeProperty('mask-image');
+    for (const mediaEl of this.screenMediaEls) {
+      mediaEl.style.removeProperty('--screen-top');
+      mediaEl.style.removeProperty('--screen-left');
+      mediaEl.style.removeProperty('--screen-width');
+      mediaEl.style.removeProperty('--screen-height');
+      mediaEl.style.removeProperty('--ds-thumbnail-screen-radius');
+      mediaEl.style.removeProperty('-webkit-mask-image');
+      mediaEl.style.removeProperty('mask-image');
+    }
   }
 
   _applyBounds(bounds, maskUrl, screenRadius, edgeBleed = null) {
@@ -481,23 +496,25 @@ export class Thumbnail extends HTMLElement {
     const safeWidth = Math.max(0, Math.min(100 - safeLeft, bounds.width + (bleedX * 2)));
     const safeHeight = Math.max(0, Math.min(100 - safeTop, bounds.height + (bleedY * 2)));
 
-    this.screenEl.style.setProperty('--screen-top', `${safeTop}%`);
-    this.screenEl.style.setProperty('--screen-left', `${safeLeft}%`);
-    this.screenEl.style.setProperty('--screen-width', `${safeWidth}%`);
-    this.screenEl.style.setProperty('--screen-height', `${safeHeight}%`);
+    for (const mediaEl of this.screenMediaEls) {
+      mediaEl.style.setProperty('--screen-top', `${safeTop}%`);
+      mediaEl.style.setProperty('--screen-left', `${safeLeft}%`);
+      mediaEl.style.setProperty('--screen-width', `${safeWidth}%`);
+      mediaEl.style.setProperty('--screen-height', `${safeHeight}%`);
 
-    if (screenRadius != null && screenRadius !== '') {
-      this.screenEl.style.setProperty('--ds-thumbnail-screen-radius', String(screenRadius));
-    } else {
-      this.screenEl.style.removeProperty('--ds-thumbnail-screen-radius');
-    }
+      if (screenRadius != null && screenRadius !== '') {
+        mediaEl.style.setProperty('--ds-thumbnail-screen-radius', String(screenRadius));
+      } else {
+        mediaEl.style.removeProperty('--ds-thumbnail-screen-radius');
+      }
 
-    if (maskUrl) {
-      this.screenEl.style.setProperty('-webkit-mask-image', `url("${maskUrl}")`);
-      this.screenEl.style.setProperty('mask-image', `url("${maskUrl}")`);
-    } else {
-      this.screenEl.style.removeProperty('-webkit-mask-image');
-      this.screenEl.style.removeProperty('mask-image');
+      if (maskUrl) {
+        mediaEl.style.setProperty('-webkit-mask-image', `url("${maskUrl}")`);
+        mediaEl.style.setProperty('mask-image', `url("${maskUrl}")`);
+      } else {
+        mediaEl.style.removeProperty('-webkit-mask-image');
+        mediaEl.style.removeProperty('mask-image');
+      }
     }
   }
 
@@ -519,12 +536,33 @@ export class Thumbnail extends HTMLElement {
     const renderSeq = this._renderSeq;
 
     const screenImage = this.getAttribute('screen-image') || '';
+    const screenVideo = this.getAttribute('screen-video') || '';
     const isCustomOnly = this.hasAttribute('custom-only');
     const isDisabled = this.hasAttribute('disabled');
     const ariaLabel = this.getAttribute('aria-label') || 'Thumbnail Mockup';
     const maxHeight = this.getAttribute('max-height');
+    const shouldUseImage = Boolean(screenImage);
+    const shouldUseVideo = !shouldUseImage && Boolean(screenVideo);
 
-    this.screenEl.src = screenImage;
+    this.screenImageEl.hidden = !shouldUseImage;
+    this.screenVideoEl.hidden = !shouldUseVideo;
+
+    if (shouldUseImage) {
+      this.screenImageEl.src = screenImage;
+    } else {
+      this.screenImageEl.removeAttribute('src');
+    }
+
+    if (shouldUseVideo) {
+      if (this.screenVideoEl.src !== screenVideo) {
+        this.screenVideoEl.src = screenVideo;
+      }
+      this.screenVideoEl.pause();
+    } else {
+      this.screenVideoEl.pause();
+      this.screenVideoEl.removeAttribute('src');
+      this.screenVideoEl.load();
+    }
 
     if (maxHeight) {
       this.style.setProperty('--ds-thumbnail-max-height', maxHeight);

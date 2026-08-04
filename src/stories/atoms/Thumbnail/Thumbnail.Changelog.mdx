@@ -6,6 +6,61 @@ import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
 
 <br />
 
+## [1.1.1] - 2026-08-04
+
+<br />
+
+### Media Source Expansion
+
+This release adds optional video support to the thumbnail screen layer while preserving existing image-first behavior and frame masking fidelity.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`Thumbnail.js`</td>
+      <td>Added `screen-video` attribute support so the screen region can render video when no `screen-image` is provided.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`media precedence`</td>
+      <td>Defined deterministic behavior: when both `screen-image` and `screen-video` are set, `screen-image` remains primary.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`thumbnail.css`</td>
+      <td>Unified masking and geometry styles for image and video screen layers to keep identical fitting behavior.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`Storybook coverage`</td>
+      <td>Added controls and stories for video-only usage and image-vs-video precedence checks.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **`screen-video` Attribute:** Optional screen media source for masked video rendering.
+
+### Changed
+- **Media Priority Contract:** `screen-image` continues to win when both media attributes are present.
+- **Shared Media Geometry:** Image and video now share the same clipping and screen-bound styling pipeline.
+
+---
+
 ## [1.1.0] - 2026-07-23
 
 <br />

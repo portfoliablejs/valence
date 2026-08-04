@@ -1,0 +1,271 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Templates/PlayerView [v1.0.0]/Architecture" />
+
+# `ds-player-view`
+
+The `ds-player-view` component is a **stateless (presentational)** Template that composes `ds-thumbnail`, `ds-seek-bar`, `ds-video-controls`, and `ds-subtitle` into a single video-first viewport surface.
+
+---
+
+## Principles
+
+### Stateful Host, Stateless Template
+The template follows **State In / Controlled Playback**:
+* **State In (Attributes / Properties):** The host controls media sources, playback defaults, layout sizing, and visibility toggles.
+* **Internal Playback Sync:** The template maps the configured video source into `ds-thumbnail`, synchronizes duration and progress into `ds-seek-bar`, and keeps `ds-video-controls` aligned with the live video element.
+* **No Smart Routing Logic:** Route switching, data fetching, analytics, and page transitions remain outside this template.
+
+### Composition Boundary
+`ds-player-view` provides structure, not media ownership:
+* **Top Timeline Region:** A viewport-pinned `ds-seek-bar` using `variant="top-bar"` that controls and displays playback progress.
+* **Media Region:** A centered `ds-thumbnail` that renders the video inside the device frame using `screen-video` only.
+* **Control Region:** A compact `ds-video-controls` cluster that drives play, pause, mute, speed, stop, and captions against the same video node.
+* **Caption Region:** A `ds-subtitle` overlay that only becomes visible when a subtitle track is present.
+* **Caption Rule:** If no subtitle source is configured, the CC control is hidden entirely so the UI matches the available media.
+
+<mermaid-diagram chart={`
+flowchart TD
+		Host["Host SPA / App Shell"] -->|bind props| PlayerView["ds-player-view"]
+		PlayerView --> SeekBar["ds-seek-bar"]
+		PlayerView --> Thumbnail["ds-thumbnail"]
+		PlayerView --> Controls["ds-video-controls"]
+		PlayerView --> Subtitle["ds-subtitle"]
+
+		Thumbnail --> Video["screen-video media"]
+		SeekBar -->|ds-seek| Video
+		Controls -->|ds-video-action| Video
+		Video -->|timeupdate / metadata| SeekBar
+		Video -->|cuechange| Subtitle
+
+		style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
+		style PlayerView fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a
+		style SeekBar fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+		style Thumbnail fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+		style Controls fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+		style Subtitle fill:#ffffff,stroke:#93c5fd,color:#1e3a8a
+`} />
+
+---
+
+## Internal Composition
+
+<table>
+	<thead>
+		<tr>
+			<th>Region</th>
+			<th>Rendered Element</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>`top-seek-wrap`</td>
+			<td>`<ds-seek-bar>`</td>
+			<td>Viewport-pinned playback timeline using the `top-bar` variant and timecode tooltip formatting.</td>
+		</tr>
+		<tr>
+			<td>`thumbnail-shell`</td>
+			<td>`<ds-thumbnail>`</td>
+			<td>Video-rendering surface that uses `screen-video` only and keeps the media framed inside the thumbnail shell.</td>
+		</tr>
+		<tr>
+			<td>`controls-shell`</td>
+			<td>`<ds-video-controls>`</td>
+			<td>Playback control cluster that drives the same underlying video node.</td>
+		</tr>
+		<tr>
+			<td>`subtitle-layer`</td>
+			<td>`<ds-subtitle>`</td>
+			<td>Caption overlay that only becomes visible when a subtitle source exists and cues are active.</td>
+		</tr>
+	</tbody>
+</table>
+
+---
+
+## API Contract
+
+### Core Properties & Attributes
+
+<table>
+	<thead>
+		<tr>
+			<th>Property / Attribute</th>
+			<th>Type</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>`video-src`</td>
+			<td>`string`</td>
+			<td>Pixabay MP4 example</td>
+			<td>Primary video source rendered inside `ds-thumbnail`.</td>
+		</tr>
+		<tr>
+			<td>`subtitle-src`</td>
+			<td>`string`</td>
+			<td>`''`</td>
+			<td>Optional VTT subtitle source. When omitted, CC is hidden entirely.</td>
+		</tr>
+		<tr>
+			<td>`muted`</td>
+			<td>`boolean`</td>
+			<td>`false`</td>
+			<td>Initial muted playback state applied to the underlying video node.</td>
+		</tr>
+		<tr>
+			<td>`autoplay`</td>
+			<td>`boolean`</td>
+			<td>`false`</td>
+			<td>Initial autoplay preference passed to the video surface.</td>
+		</tr>
+		<tr>
+			<td>`loop`</td>
+			<td>`boolean`</td>
+			<td>`false`</td>
+			<td>Repeats playback when the clip ends.</td>
+		</tr>
+		<tr>
+			<td>`show-controls`</td>
+			<td>`boolean`</td>
+			<td>`true`</td>
+			<td>Toggles the visibility of the right-side control cluster.</td>
+		</tr>
+		<tr>
+			<td>`stage-gap`</td>
+			<td>`string`</td>
+			<td>`clamp(10px, 1.6vw, 18px)`</td>
+			<td>Controls spacing between the thumbnail and controls for fine tuning.</td>
+		</tr>
+		<tr>
+			<td>`thumbnail-width`</td>
+			<td>`string`</td>
+			<td>`390px`</td>
+			<td>Controls the default width of the thumbnail/device composition.</td>
+		</tr>
+		<tr>
+			<td>`thumbnail-height`</td>
+			<td>`string`</td>
+			<td>`min(72vh, 600px)`</td>
+			<td>Controls the default maximum height of the thumbnail/device composition.</td>
+		</tr>
+		<tr>
+			<td>`controls-width`</td>
+			<td>`string`</td>
+			<td>`220px`</td>
+			<td>Controls the width of the playback controls column.</td>
+		</tr>
+		<tr>
+			<td>`viewport-padding`</td>
+			<td>`string`</td>
+			<td>`clamp(64px, 8vh, 96px)`</td>
+			<td>Controls top viewport padding so the fixed seek bar and content remain balanced.</td>
+		</tr>
+		<tr>
+			<td>`viewport-inline-padding`</td>
+			<td>`string`</td>
+			<td>`clamp(16px, 3vw, 40px)`</td>
+			<td>Controls horizontal viewport padding around the stage.</td>
+		</tr>
+		<tr>
+			<td>`viewport-bottom-padding`</td>
+			<td>`string`</td>
+			<td>`clamp(20px, 3vh, 32px)`</td>
+			<td>Controls bottom padding to keep the composition inside the viewport without scroll.</td>
+		</tr>
+	</tbody>
+</table>
+
+### Emitted Custom Events
+
+<table>
+	<thead>
+		<tr>
+			<th>Event Name</th>
+			<th>Source</th>
+			<th>Bubbles / Composed</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>`ds-seek`</td>
+			<td>`ds-seek-bar`</td>
+			<td>`true` / `true`</td>
+			<td>Requests a new playback position using a percent payload.</td>
+		</tr>
+		<tr>
+			<td>`ds-video-action`</td>
+			<td>`ds-video-controls`</td>
+			<td>`true` / `true`</td>
+			<td>Requests playback actions such as play/pause, mute, speed, cc, and stop.</td>
+		</tr>
+		<tr>
+			<td>native media events</td>
+			<td>`video` inside `ds-thumbnail`</td>
+			<td>`true` / `true`</td>
+			<td>Playback state is synchronized from `timeupdate`, `loadedmetadata`, `playing`, `pause`, `ended`, `ratechange`, and `volumechange`.</td>
+		</tr>
+	</tbody>
+</table>
+
+### Sub-Atomic CSS Hooks
+
+<table>
+	<thead>
+		<tr>
+			<th>CSS Custom Property</th>
+			<th>Fallback Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>`--player-view-stage-gap`</td>
+			<td>`clamp(10px, 1.6vw, 18px)`</td>
+			<td>Controls spacing between the thumbnail and the control cluster.</td>
+		</tr>
+		<tr>
+			<td>`--player-view-thumbnail-width`</td>
+			<td>`390px`</td>
+			<td>Controls the default width of the thumbnail/device frame.</td>
+		</tr>
+		<tr>
+			<td>`--player-view-thumbnail-height`</td>
+			<td>`min(72vh, 600px)`</td>
+			<td>Controls the default height ceiling of the thumbnail/device frame.</td>
+		</tr>
+		<tr>
+			<td>`--player-view-controls-width`</td>
+			<td>`220px`</td>
+			<td>Controls the width budget for the controls column.</td>
+		</tr>
+		<tr>
+			<td>`--player-view-viewport-padding`</td>
+			<td>`clamp(64px, 8vh, 96px)`</td>
+			<td>Controls the top padding of the viewport shell.</td>
+		</tr>
+		<tr>
+			<td>`--player-view-viewport-inline-padding`</td>
+			<td>`clamp(16px, 3vw, 40px)`</td>
+			<td>Controls horizontal viewport padding around the stage.</td>
+		</tr>
+		<tr>
+			<td>`--player-view-viewport-bottom-padding`</td>
+			<td>`clamp(20px, 3vh, 32px)`</td>
+			<td>Controls bottom viewport padding so the page remains scroll-free.</td>
+		</tr>
+	</tbody>
+</table>
+
+---
+
+## Accessibility & Semantics
+
+* **Semantic Landmark:** Renders a top-level `<section>` with host-provided `aria-label` for player context.
+* **Keyboard and Tooltip Semantics:** Delegated to composed children (`ds-seek-bar`, `ds-video-controls`, and `ds-subtitle`).
+* **Reduced Motion Strategy:** The template does not impose route transitions internally, enabling host shells to centralize reduced-motion handling for surrounding layouts.
+* **Viewport Containment:** The shell remains `100dvh`-bounded so layout tuning does not force scroll.

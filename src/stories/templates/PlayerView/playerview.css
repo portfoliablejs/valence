@@ -1,0 +1,105 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at top left, rgba(255, 196, 0, 0.14), transparent 30%),
+    radial-gradient(circle at 80% 20%, rgba(52, 120, 246, 0.18), transparent 28%),
+    linear-gradient(180deg, #08111d 0%, #0f1725 42%, #05070c 100%);
+  color: #f4f7fb;
+  position: relative;
+  overflow: hidden;
+}
+
+.playerview-layout {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: var(--player-view-viewport-padding, clamp(64px, 8vh, 96px))
+           var(--player-view-viewport-inline-padding, clamp(16px, 3vw, 40px))
+           var(--player-view-viewport-bottom-padding, clamp(20px, 3vh, 32px));
+  box-sizing: border-box;
+}
+
+.top-seek-wrap {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-fixed, 100);
+  pointer-events: auto;
+}
+
+.media-stage {
+  width: min(100%, var(--player-view-stage-width, 720px));
+  min-height: min(100%, 0px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--player-view-stage-gap, clamp(10px, 1.6vw, 18px));
+  margin: 0 auto;
+}
+
+.thumbnail-shell {
+  position: relative;
+  width: min(100%, var(--player-view-thumbnail-width, 390px));
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnail-shell ds-thumbnail {
+  width: 100%;
+  max-width: var(--player-view-thumbnail-width, 390px);
+  max-height: var(--player-view-thumbnail-height, min(72vh, 600px));
+}
+
+.subtitle-layer {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(92px, 12vh, 128px);
+  transform: translateX(-50%);
+  z-index: calc(var(--z-fixed, 100) + 2);
+  pointer-events: none;
+}
+
+.subtitle-layer ds-subtitle {
+  pointer-events: auto;
+}
+
+.controls-shell {
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--player-view-controls-width, 220px);
+  flex: 0 0 auto;
+}
+
+@media (max-width: 980px) {
+  .media-stage {
+    min-height: auto;
+  }
+
+  .controls-shell {
+    width: auto;
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .thumbnail-shell {
+    width: min(100%, var(--player-view-thumbnail-width, 390px));
+  }
+
+  .thumbnail-shell ds-thumbnail {
+    max-width: var(--player-view-thumbnail-width, 390px);
+    max-height: var(--player-view-thumbnail-height, min(72vh, 600px));
+  }
+}

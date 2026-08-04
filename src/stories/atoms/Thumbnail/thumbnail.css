@@ -48,7 +48,7 @@
   pointer-events: none;
 }
 
-.screen-cover {
+.screen-media {
   position: absolute;
   top: var(--screen-top, 0);
   left: var(--screen-left, 0);
@@ -69,6 +69,10 @@
   mask-repeat: no-repeat;
 }
 
+.screen-cover-video {
+  display: block;
+}
+
 /* ==========================================================================
    3. CUSTOM-ONLY OVERRIDE
    ========================================================================== */
@@ -76,7 +80,7 @@
   display: none !important;
 }
 
-:host([custom-only]) .screen-cover {
+:host([custom-only]) .screen-media {
   position: relative;
   width: 100%;
   height: auto;
@@ -90,12 +94,12 @@
    4. ACCESSIBILITY & MOTION SUPPRESSION
    ========================================================================== */
 :host([a11y-high-contrast]) .device-image,
-:host([a11y-high-contrast]) .screen-cover {
+:host([a11y-high-contrast]) .screen-media {
   filter: none !important;
 }
 
 @media (forced-colors: active) {
-  .device-image, .screen-cover {
+  .device-image, .screen-media {
     forced-color-adjust: none !important;
   }
 }

@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Templates/PlayerView [v1.0.0]/Changelog" />
+
+# Changelog
+
+<br />
+
+## [1.0.0] - 2026-08-04
+
+<br />
+
+### Initial Release
+
+The first stable release of `ds-player-view`, a template-level composition that pairs a video-rendering thumbnail frame with a fixed timeline, playback controls, and optional subtitles inside a single viewport shell.
+
+<br />
+
+### Added
+- **Template Composition:** Added `ds-player-view` as a stateless wrapper around `ds-thumbnail`, `ds-seek-bar`, `ds-video-controls`, and `ds-subtitle` with a consistent viewport-level playback contract.
+- **Video-Only Media Surface:** Added `screen-video`-only thumbnail integration so the thumbnail acts as the media surface for the embedded player.
+- **Viewport Timeline:** Added a fixed top-bar seek surface using `ds-seek-bar` with `variant="top-bar"` and timestamp tooltip formatting.
+- **Playback Orchestration:** Added synchronization between the native video element inside `ds-thumbnail`, the seek bar, and the control cluster for play/pause, mute, speed, stop, and captions.
+- **Subtitle-Aware CC Visibility:** Added CC hiding when no subtitle source is configured so the control surface reflects actual media capabilities.
+- **Adjustable Layout Hooks:** Added Storybook and CSS-variable controls for stage spacing, thumbnail sizing, controls width, and viewport padding so the layout can be tuned without introducing scroll.
+- **Storybook Coverage:** Added PlayerView stories covering the default captioned case and the no-subtitle case.
+- **Architecture Documentation:** Added a dedicated architecture page explaining composition principles, event flow, layout hooks, and accessibility boundaries.
+
+---
+
+*This changelog is specific to the `<ds-player-view>` template component. For design system global releases, refer to the main [Getting Started/Changelog](?path=/docs/getting-started-changelog--docs).*

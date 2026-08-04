@@ -4,7 +4,7 @@ import { fn, userEvent, fireEvent, expect } from 'storybook/test';
 import './VideoControls';
 
 export default {
-  title: 'Molecules/Video Controls [v1.0.0]',
+  title: 'Molecules/Video Controls [v1.1.0]',
   tags: ['autodocs'],
   parameters: {
     backgrounds: { default: 'dark' },
@@ -16,6 +16,12 @@ export default {
   },
   argTypes: {
     // --- CORE & VARIANT CONTROLS ---
+    variant: {
+      control: { type: 'select' },
+      options: ['default', 'vertical'],
+      description: 'Controls the layout orientation and surface treatment of the toolbar.',
+      table: { category: 'Core & Variant Controls' }
+    },
     playing: { 
       control: 'boolean',
       description: 'Sets the play/pause visualization state downstream.',
@@ -118,6 +124,7 @@ const baseRenderTemplate = (args) => {
 
   return html`
     <ds-video-controls 
+      variant="${args.variant || 'default'}"
       playing="${args.playing}"
       muted="${args.muted}"
       cc-enabled="${args.ccEnabled}"
@@ -135,8 +142,9 @@ const baseRenderTemplate = (args) => {
   `;
 };
 
-export const Desktop = {
+export const Default = {
   args: {
+    variant: 'default',
     playing: false,
     muted: false,
     ccEnabled: true,
@@ -145,7 +153,7 @@ export const Desktop = {
   parameters: {
     docs: {
       description: {
-        story: 'Default implementation rendering the video toolbar as a vertical floating menu panel block suitable for large desktop application layouts.',
+        story: 'Default implementation rendering the video toolbar as a horizontal floating pill bar, suitable for overlay placement on compact canvas media surfaces.',
       }
     }
   },
@@ -191,23 +199,23 @@ export const Desktop = {
   }
 };
 
-export const Mobile = {
+export const Vertical = {
   args: {
-    ...Desktop.args,
-    ccEnabled: false,
+    variant: 'vertical',
+    playing: false,
+    muted: false,
+    ccEnabled: true,
+    speed: '1X',
   },
   parameters: {
-    viewport: {
-      defaultViewport: 'mobile1'
-    },
     docs: {
       description: {
-        story: 'Renders the component using Storybook\'s explicit mobile device emulation mode. This shrinks the parent viewport canvas to force trigger the responsive horizontal bar layouts and confirms that contextual tooltips are disabled.',
+        story: 'Vertical variant rendering the toolbar as a transparent column strip, suitable for sidebar or edge-mounted placement alongside a video canvas.',
       }
     }
   },
   render: (args) => html`
-    <div style="display: flex; justify-content: center; align-items: center; height: 25vh; width: 100%;">
+    <div style="display: flex; justify-content: center; align-items: center; height: 25vh;">
       ${baseRenderTemplate(args)}
     </div>
   `

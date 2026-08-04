@@ -150,7 +150,11 @@ const descContent = this.state.isRecruiterMode ? caseData.descRecruiter : caseDa
 
 // Slot injection target
 caseView.innerHTML = `
-  <ds-thumbnail slot="thumbnail" screen-image="${this.getLang(caseData.thumbSrc)}"></ds-thumbnail>
+  <ds-thumbnail
+    slot="thumbnail"
+    screen-image="${this.getLang(caseData.thumbSrc)}"
+    screen-video="${this.getLang(caseData.thumbVideoSrc || '')}">
+  </ds-thumbnail>
   <div>${this.getLang(descContent)}</div>
 `;
 

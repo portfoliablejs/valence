@@ -6,7 +6,7 @@ import '../../atoms/Icon/Iconography.js';
 export class VideoControls extends HTMLElement {
   static get observedAttributes() {
     return [
-      'playing', 'muted', 'cc-enabled', 'speed',
+      'playing', 'muted', 'cc-enabled', 'show-cc', 'speed', 'variant',
       'label-play', 'label-pause', 'label-cc-on', 'label-cc-off',
       'label-mute', 'label-unmute', 'label-speed', 'label-return'
     ];
@@ -17,8 +17,9 @@ export class VideoControls extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     
     // Tightly compressed single line structure completely purges ghost spacing nodes from layouts
-    this.shadowRoot.innerHTML = `<style>${css}</style><div class="video-controls-container"><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-cc" icon="subtitle-closed" aria-label="Toggle Captions"></ds-button><ds-tooltip class="cc-tooltip" text="Captions" kbd-label="C" show-kbd="true" position="right"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-mute" icon="volume-on" aria-label="Toggle Mute"></ds-button><ds-tooltip class="mute-tooltip" text="Mute" kbd-label="M" show-kbd="true" position="right"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-speed" icon="playback-1x" aria-label="Playback Speed"></ds-button><ds-tooltip class="speed-tooltip" text="Speed" kbd-label="S" show-kbd="true" position="right"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-play" icon="play" aria-label="Play or Pause"></ds-button><ds-tooltip class="play-tooltip" text="Play" kbd-label="Space" show-kbd="true" position="right"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-stop" icon="arrow-left" aria-label="Return to Case"></ds-button><ds-tooltip class="stop-tooltip" text="Return" kbd-label="Esc" show-kbd="true" position="right"></ds-tooltip></div></div>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><div class="video-controls-container"><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-stop" icon="arrow-left" aria-label="Return to Case"></ds-button><ds-tooltip class="stop-tooltip" text="Return" kbd-label="Esc" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-mute" icon="volume-on" aria-label="Toggle Mute"></ds-button><ds-tooltip class="mute-tooltip" text="Mute" kbd-label="M" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-play" icon="play" aria-label="Play or Pause"></ds-button><ds-tooltip class="play-tooltip" text="Play" kbd-label="Space" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-speed" icon="playback-1x" aria-label="Playback Speed"></ds-button><ds-tooltip class="speed-tooltip" text="Speed" kbd-label="S" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper cc-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-cc" icon="subtitle-closed" aria-label="Toggle Captions"></ds-button><ds-tooltip class="cc-tooltip" text="Captions" kbd-label="C" show-kbd="true" position="top"></ds-tooltip></div></div>`;
 
+    this.ccWrapper = this.shadowRoot.querySelector('.cc-wrapper');
     this.bindEvents();
   }
 
@@ -83,6 +84,7 @@ export class VideoControls extends HTMLElement {
     const isPlaying = this.getAttribute('playing') === 'true';
     const isMuted = this.getAttribute('muted') === 'true';
     const isCC = this.getAttribute('cc-enabled') === 'true';
+    const showCC = !this.hasAttribute('show-cc') || this.getAttribute('show-cc') !== 'false';
     const speed = this.getAttribute('speed') || '1X';
 
     // Ingest multi-locale translation bindings
@@ -127,6 +129,9 @@ export class VideoControls extends HTMLElement {
     if (ccTooltip) {
       ccTooltip.setAttribute('text', isCC ? labelCcOn : labelCcOff);
     }
+    if (this.ccWrapper) {
+      this.ccWrapper.hidden = !showCC;
+    }
 
     // Playback Rate Gauge Element Allocation
     const speedBtn = this.shadowRoot.getElementById('btn-speed');
@@ -149,6 +154,10 @@ export class VideoControls extends HTMLElement {
     if (stopTooltip) {
       stopTooltip.setAttribute('text', labelReturn);
     }
+
+    // Tooltip direction follows layout axis
+    const tooltipPosition = this.getAttribute('variant') === 'vertical' ? 'right' : 'top';
+    this.shadowRoot.querySelectorAll('ds-tooltip').forEach((t) => t.setAttribute('position', tooltipPosition));
   }
 }
 

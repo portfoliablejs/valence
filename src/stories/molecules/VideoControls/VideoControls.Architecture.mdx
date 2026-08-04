@@ -1,10 +1,10 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Molecules/Video Controls [v1.0.0]/Architecture" />
+<Meta title="Molecules/Video Controls [v1.1.0]/Architecture" />
 
 # `ds-video-controls`
 
-The `ds-video-controls` component is an interactive **controlled** Molecule designed to render quality, highly accessible playback buttons for floating, compact overlay video systems. It aggregates custom `ds-button` Atoms (configured as `variant="floating"` and `icon-variant="fill"` switches) and nested `ds-tooltip` cues.
+The `ds-video-controls` component is an interactive **controlled** Molecule designed to render quality, highly accessible playback buttons for floating, compact overlay video systems. It supports two layout variants — `default` (horizontal pill bar) and `vertical` (column strip) — selectable via the `variant` attribute. It aggregates custom `ds-button` Atoms (configured as `variant="floating"` and `icon-variant="fill"` switches) and nested `ds-tooltip` cues.
 
 ---
 
@@ -125,6 +125,13 @@ export interface DsVideoControlsLabels {
   </thead>
   <tbody>
     <tr>
+      <td>`variant`</td>
+      <td>`variant`</td>
+      <td>`string`</td>
+      <td>`'default'`</td>
+      <td>Switches layout orientation. `'default'` renders a horizontal pill bar; `'vertical'` renders a transparent column strip.</td>
+    </tr>
+    <tr>
       <td>`playing`</td>
       <td>`playing`</td>
       <td>`boolean`</td>
@@ -181,7 +188,7 @@ export interface DsVideoControlsLabels {
 This composite molecule overrides sub-atomic properties on child `ds-button` elements to ensure unified sizes:
 * `ds-button`: Overridden to use `variant="floating"` and `icon-variant="fill"` to guarantee round, compact clickable targets.
 
-Additional mobile-responsive layout custom overrides:
+Additional layout custom overrides (apply to the `default` horizontal variant):
 
 <table>
   <thead>
@@ -195,22 +202,22 @@ Additional mobile-responsive layout custom overrides:
     <tr>
       <td>`--ds-video-controls-bg`</td>
       <td>`var(--color-player-bg)`</td>
-      <td>Overrides background color on mobile views.</td>
+      <td>Overrides background color on the `default` horizontal variant.</td>
     </tr>
     <tr>
       <td>`--ds-video-controls-border-width`</td>
       <td>`var(--border-width-thin)`</td>
-      <td>Overrides container border thickness on mobile views.</td>
+      <td>Overrides container border thickness on the `default` horizontal variant.</td>
     </tr>
     <tr>
       <td>`--ds-video-controls-border-color`</td>
       <td>`var(--color-bg)`</td>
-      <td>Overrides container border line color on mobile views.</td>
+      <td>Overrides container border line color on the `default` horizontal variant.</td>
     </tr>
     <tr>
       <td>`--ds-video-controls-radius`</td>
       <td>`50px`</td>
-      <td>Overrides container border corner rounding on mobile views.</td>
+      <td>Overrides container border corner rounding on the `default` horizontal variant.</td>
     </tr>
     <tr>
       <td>`--ds-video-controls-shadow`</td>

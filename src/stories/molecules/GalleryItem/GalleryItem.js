@@ -11,6 +11,7 @@ export class GalleryItem extends HTMLElement {
       'short-desc',
       'read-time',
       'thumb-src',
+      'thumb-video-src',
       'aspect-ratio',
       'thumb-category',
       'thumb-brand',
@@ -101,6 +102,7 @@ export class GalleryItem extends HTMLElement {
     const shortDesc = this.getAttribute('short-desc') || '';
     const readTime = this.getAttribute('read-time') || '';
     const thumbSrc = this.getAttribute('thumb-src') || '';
+    const thumbVideoSrc = this.getAttribute('thumb-video-src') || '';
     const thumbCategory = this.getAttribute('thumb-category') || 'mobile';
     const thumbBrand = this.getAttribute('thumb-brand') || 'apple';
     const thumbModel = this.getAttribute('thumb-model') || 'Apple iPhone 12';
@@ -132,6 +134,7 @@ export class GalleryItem extends HTMLElement {
 
     // Thumbnail atom
     this.thumbWrapper.setAttribute('screen-image', thumbSrc);
+    this.thumbWrapper.setAttribute('screen-video', thumbVideoSrc);
     this.thumbWrapper.setAttribute('category', thumbCategory);
     this.thumbWrapper.setAttribute('brand', thumbBrand);
     this.thumbWrapper.setAttribute('model', thumbModel);

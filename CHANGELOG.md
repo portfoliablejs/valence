@@ -4,6 +4,16 @@
 
 * docs(integration): add toc navigator host-shell sync guidance ([f2b80f0](https://github.com/portfoliablejs/valence/commit/f2b80f02fa062faa8d4dd4d7cd8b12c3a9c8f5ca))
 
+## [0.5.0](https://github.com/portfoliablejs/valence/compare/v0.4.8...v0.5.0) (2026-08-04)
+
+### Features
+
+* feat: add ds-player-view template for video-first playback surfaces
+
+### Bug Fixes
+
+* fix: add timecode seek tooltip support and tighter viewport layout controls
+
 ## [0.4.7](https://github.com/portfoliablejs/valence/compare/v0.4.6...v0.4.7) (2026-07-26)
 
 ### Bug Fixes

@@ -5,10 +5,12 @@ export class SeekBar extends HTMLElement {
   static get observedAttributes() {
     return [
       'percent',
+      'duration',
       'variant',
       'disabled',
       'show-tooltip',
       'tooltip-text',
+      'tooltip-format',
       'show-kbd',
       'kbd-label',
       'kbd-key',
@@ -86,11 +88,13 @@ this.shadowRoot.innerHTML = `
 
   render() {
     const percent = parseFloat(this.getAttribute('percent')) || 0;
+    const duration = parseFloat(this.getAttribute('duration')) || 0;
     const variant = this.getAttribute('variant') || 'default';
     const isVertical = variant === 'vertical';
     const isDisabled = this.hasAttribute('disabled');
     const ariaLabel = this.getAttribute('aria-label');
     const showTooltip = !this.hasAttribute('show-tooltip') || this.getAttribute('show-tooltip') !== 'false';
+    const tooltipFormat = this.getAttribute('tooltip-format') || 'percent';
 
     this.fill.style.setProperty('--progress-percent', `${percent}%`);
     this.container.setAttribute('aria-valuenow', Math.round(percent).toString());
@@ -121,11 +125,17 @@ this.shadowRoot.innerHTML = `
       if (variant === 'vertical') targetPosition = 'right';
 
       this.tooltip.setAttribute('position', targetPosition);
+      this.tooltip.setAttribute('data-tooltip-format', tooltipFormat);
+      if (duration > 0) {
+        this.tooltip.setAttribute('data-duration', String(duration));
+      } else {
+        this.tooltip.removeAttribute('data-duration');
+      }
 
       const customText = this.getAttribute('tooltip-text');
       if (customText) {
         this.tooltip.setAttribute('text', customText);
-      } else if (!this.tooltip.hasAttribute('text')) {
+      } else if (tooltipFormat !== 'time' && !this.tooltip.hasAttribute('text')) {
         this.tooltip.setAttribute('text', `${Math.round(percent)}%`);
       }
 
@@ -181,6 +191,8 @@ this.shadowRoot.innerHTML = `
     const variant = this.getAttribute('variant') || 'default';
     const isVertical = variant === 'vertical';
     const isRTL = this.getAttribute('dir') === 'rtl';
+    const tooltipFormat = this.getAttribute('tooltip-format') || 'percent';
+    const duration = parseFloat(this.getAttribute('duration')) || 0;
 
     if (isVertical) {
       this.tooltip.style.left = '50%';
@@ -195,13 +207,30 @@ this.shadowRoot.innerHTML = `
     }
 
     const customText = this.getAttribute('tooltip-text');
-    const displayVal = Math.round(hoverPercent);
-    this.tooltip.setAttribute(
-      'text',
-      customText ? `${customText} (${displayVal}%)` : `${displayVal}%`
-    );
+    const displayValue = tooltipFormat === 'time' && duration > 0
+      ? this._formatTimecode((hoverPercent / 100) * duration)
+      : `${Math.round(hoverPercent)}%`;
+
+    this.tooltip.setAttribute('text', customText ? `${customText} ${displayValue}`.trim() : displayValue);
 
     this.tooltip.setAttribute('visible', '');
+  }
+
+  _formatTimecode(seconds) {
+    const safeSeconds = Math.max(0, Number(seconds) || 0);
+    const rounded = Math.floor(safeSeconds);
+    const hours = Math.floor(rounded / 3600);
+    const minutes = Math.floor((rounded % 3600) / 60);
+    const secs = rounded % 60;
+
+    const paddedSeconds = String(secs).padStart(2, '0');
+    const paddedMinutes = String(minutes).padStart(2, '0');
+
+    if (hours > 0) {
+      return `${hours}:${paddedMinutes}:${paddedSeconds}`;
+    }
+
+    return `${minutes}:${paddedSeconds}`;
   }
 
   _handleMove(e) {

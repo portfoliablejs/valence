@@ -80,6 +80,11 @@ export default {
       table: { category: 'Content' },
       description: 'Image rendered inside the selected device frame.',
     },
+    thumbVideoSrc: {
+      control: 'text',
+      table: { category: 'Content' },
+      description: 'Optional video rendered inside the selected device frame when thumbSrc is empty.',
+    },
     showTitle: {
       control: 'boolean',
       table: { category: 'Content Visibility' },
@@ -148,6 +153,7 @@ export default {
   args: {
     onSelect: fn(),
     thumbCustomOnly: false,
+    thumbVideoSrc: '',
     showTitle: true,
     showShortDesc: true,
     showReadTime: true,
@@ -161,6 +167,7 @@ export default {
           short-desc="${args.shortDesc}"
           read-time="${args.readTime}"
           thumb-src="${args.thumbSrc}"
+          thumb-video-src="${args.thumbVideoSrc}"
           thumb-category="${args.thumbCategory}"
           thumb-brand="${args.thumbBrand}"
           thumb-model="${args.thumbModel}"
@@ -196,6 +203,7 @@ export const DefaultPortrait = {
     shortDesc: 'A project with a default portrait aspect ratio.',
     readTime: '3 min',
     thumbSrc: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop',
+    thumbVideoSrc: '',
     thumbCategory: 'mobile',
     thumbBrand: 'apple',
     thumbModel: 'Apple iPhone 12',
@@ -228,6 +236,7 @@ export const SquareFrame = {
     shortDesc: 'A project best viewed in a 1:1 aspect ratio.',
     readTime: '2 min',
     thumbSrc: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop',
+    thumbVideoSrc: '',
     thumbCategory: 'mobile',
     thumbBrand: 'apple',
     thumbModel: 'Apple iPhone 12',
@@ -260,6 +269,7 @@ export const Protected = {
     shortDesc: 'This content is protected.',
     readTime: '1 min',
     thumbSrc: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop',
+    thumbVideoSrc: '',
     thumbCategory: 'mobile',
     thumbBrand: 'apple',
     thumbModel: 'Apple iPhone 12',
@@ -292,6 +302,7 @@ export const Unlocked = {
     shortDesc: 'This content is now unlocked.',
     readTime: '1 min',
     thumbSrc: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop',
+    thumbVideoSrc: '',
     thumbCategory: 'mobile',
     thumbBrand: 'apple',
     thumbModel: 'Apple iPhone 12',
@@ -308,5 +319,38 @@ export const Unlocked = {
     hasLive: false,
     isProtected: true,
     isUnlocked: true,
+  },
+};
+
+export const VideoThumbnailOnly = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Uses a video source in the thumbnail screen area when no image source is provided.',
+      },
+    },
+  },
+  args: {
+    title: 'Motion Showcase',
+    shortDesc: 'Video-only thumbnail rendering through ds-thumbnail.',
+    readTime: '2 min',
+    thumbSrc: '',
+    thumbVideoSrc: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    thumbCategory: 'mobile',
+    thumbBrand: 'apple',
+    thumbModel: 'Apple iPhone 12',
+    thumbColor: 'Black',
+    thumbDeviceSrc: '',
+    thumbCustomOnly: false,
+    showTitle: true,
+    showShortDesc: true,
+    showReadTime: true,
+    showThumbnail: true,
+    aspectRatio: '',
+    hasVideo: true,
+    hasRepo: false,
+    hasLive: false,
+    isProtected: false,
+    isUnlocked: false,
   },
 };
