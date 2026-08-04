@@ -26,10 +26,28 @@
   box-sizing: border-box;
 }
 
+.header-wrap {
+  position: fixed;
+  inset: 0 0 auto 0;
+  width: 100vw;
+  margin: 0;
+  z-index: calc(var(--z-fixed, 100) + 7);
+  transition: opacity var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
+              transform var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1));
+  will-change: opacity, transform;
+}
+
 .top-seek-wrap {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: var(--z-fixed, 100);
+  z-index: calc(var(--z-fixed, 100) + 8);
+  pointer-events: none;
+  transition: inset var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
+              opacity var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
+              transform var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.top-seek-wrap ds-seek-bar {
   pointer-events: auto;
 }
 
@@ -51,6 +69,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: scale(1);
+  transition: transform var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1));
+  will-change: transform;
 }
 
 .thumbnail-shell ds-thumbnail {
@@ -59,17 +80,42 @@
   max-height: var(--player-view-thumbnail-height, min(72vh, 600px));
 }
 
+.loader-shell {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.loader-shell ds-loader {
+  --ds-loader-bg: rgba(15, 23, 37, 0.82);
+  --ds-loader-color: #ffffff;
+  --ds-loader-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  transition: opacity var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.loader-shell ds-loader[visible="false"] {
+  opacity: 0;
+}
+
 .subtitle-layer {
   position: fixed;
   left: 50%;
-  bottom: clamp(92px, 12vh, 128px);
-  transform: translateX(-50%);
-  z-index: calc(var(--z-fixed, 100) + 2);
+  bottom: clamp(16px, 4vh, 40px);
+  transform: translate(-50%, var(--player-view-subtitle-offset-y, 0px));
+  z-index: calc(var(--z-fixed, 100) + 1);
   pointer-events: none;
+  transition: bottom var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
+              transform var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
+              opacity var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1));
+  will-change: bottom, transform, opacity;
 }
 
 .subtitle-layer ds-subtitle {
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .controls-shell {
@@ -80,6 +126,33 @@
   width: 100%;
   max-width: var(--player-view-controls-width, 220px);
   flex: 0 0 auto;
+  transition: opacity var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
+              transform var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1));
+  will-change: opacity, transform;
+}
+
+:host([ui-hidden]) .header-wrap,
+:host([ui-hidden]) .controls-shell,
+:host([ui-hidden]) .top-seek-wrap {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+}
+
+:host(:not([ui-hidden])) .header-wrap,
+:host(:not([ui-hidden])) .controls-shell,
+:host(:not([ui-hidden])) .top-seek-wrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+:host([ui-hidden]) .thumbnail-shell {
+  transform: scale(1.1);
+}
+
+:host([ui-hidden]) .subtitle-layer {
+  bottom: clamp(52px, 8vh, 84px);
+  --player-view-subtitle-offset-y: 10px;
 }
 
 @media (max-width: 980px) {

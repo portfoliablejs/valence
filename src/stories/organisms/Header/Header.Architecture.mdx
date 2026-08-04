@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Organisms/Header [v1.0.0]/Architecture" />
+<Meta title="Organisms/Header [v1.1.0]/Architecture" />
 
 # `ds-header`
 
@@ -64,7 +64,7 @@ flowchart LR
     <tr>
       <td>`navigation-region`</td>
       <td>`<ds-navigation-menu>`</td>
-      <td>Right-aligned action group that remains mounted and receives pass-through attributes from the host element.</td>
+      <td>Right-aligned action group that can be hidden through `show-navigation-region="false"` and receives pass-through attributes from the host element.</td>
     </tr>
   </tbody>
 </table>
@@ -108,6 +108,12 @@ flowchart LR
       <td>`boolean`</td>
       <td>`true`</td>
       <td>Controls visibility of the language action inside the composed navigation menu.</td>
+    </tr>
+    <tr>
+      <td>`show-navigation-region`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Mounts or hides the right navigation region while keeping breadcrumb behavior intact.</td>
     </tr>
     <tr>
       <td>`avatar-src`, `avatar-alt`, tooltip and aria-label props</td>
@@ -193,3 +199,4 @@ flowchart LR
 * **Semantic Landmark:** The organism renders an internal `<header>` element and delegates `aria-label` from the host for top-level navigation context.
 * **Child Accessibility Preservation:** Accessibility mechanics remain owned by `ds-breadcrumb` and `ds-navigation-menu`, allowing those molecules to preserve their own tooltip, keyboard, and contextual menu semantics.
 * **Visibility Without State Loss:** Optional regions are hidden through presentational toggles rather than destructive mutation of application state, keeping host control explicit and reversible.
+* **Independent Region Toggles:** `show-breadcrumb` controls the left region, `show-navigation-region` controls the right region, and `show-language-menu` only affects the language action inside navigation when that region is visible.

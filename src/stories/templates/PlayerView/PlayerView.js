@@ -1,11 +1,42 @@
 import css from './playerview.css?inline';
 import typographyCss from '../../sub-atomic/Typography/typography.css?inline';
+import '../../organisms/Header/Header.js';
 import '../../atoms/SeekBar/SeekBar.js';
 import '../../atoms/Thumbnail/Thumbnail.js';
+import '../../atoms/Loader/Loader.js';
 import '../../atoms/Subtitle/Subtitle.js';
 import '../../molecules/VideoControls/VideoControls.js';
 
 const DEFAULT_VIDEO_SRC = 'https://cdn.pixabay.com/video/2023/07/12/171274-845168276_tiny.mp4';
+const THUMBNAIL_FRAME_ATTRIBUTES = [
+  'category',
+  'brand',
+  'model',
+  'color',
+  'device-src',
+  'custom-only'
+];
+
+const HEADER_NAVIGATION_ATTRIBUTES = [
+  'language-tooltip',
+  'language-kbd-label',
+  'language-kbd-key',
+  'language-kbd-show-plus',
+  'language-aria-label',
+  'accessibility-tooltip',
+  'accessibility-kbd-label',
+  'accessibility-kbd-key',
+  'accessibility-kbd-show-plus',
+  'accessibility-aria-label',
+  'about-tooltip',
+  'about-kbd-label',
+  'about-kbd-key',
+  'about-kbd-show-plus',
+  'about-aria-label',
+  'avatar-src',
+  'avatar-alt',
+  'disabled'
+];
 
 export class PlayerView extends HTMLElement {
   static get observedAttributes() {
@@ -14,6 +45,11 @@ export class PlayerView extends HTMLElement {
       'video-src',
       'subtitle-src',
       'title',
+      'case-title',
+      'video-title',
+      'show-breadcrumb',
+      ...HEADER_NAVIGATION_ATTRIBUTES,
+      ...THUMBNAIL_FRAME_ATTRIBUTES,
       'muted',
       'autoplay',
       'loop',
@@ -31,17 +67,34 @@ export class PlayerView extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this._track = null;
     this._subtitleEnabled = false;
+    this._isMediaReady = false;
+    this._lastVideoSrc = '';
+    this._isPlaying = false;
+    this._isPlayTransitionPending = false;
+    this._playTransitionToken = 0;
+    this._playStartDelayMs = 420;
+    this._seekProgressFrame = null;
+    this._uiHideTimer = null;
+    this._uiHideDelayMs = 1800;
+    this._darkModeRegistered = false;
+    this._didForceRootDarkMode = false;
 
     this.shadowRoot.innerHTML = `
       <style>${typographyCss}</style>
       <style>${css}</style>
       <section class="playerview-layout" aria-label="Player view template">
+        <div class="header-wrap">
+          <ds-header></ds-header>
+        </div>
         <div class="top-seek-wrap">
           <ds-seek-bar variant="top-bar" percent="0" tooltip-format="time" aria-label="Video timeline"></ds-seek-bar>
         </div>
         <div class="media-stage">
           <div class="thumbnail-shell">
             <ds-thumbnail></ds-thumbnail>
+            <div class="loader-shell">
+              <ds-loader visible="true" aria-label="Loading video" size="52"></ds-loader>
+            </div>
           </div>
           <div class="controls-shell">
             <ds-video-controls></ds-video-controls>
@@ -55,7 +108,9 @@ export class PlayerView extends HTMLElement {
 
     this.seekBarEl = this.shadowRoot.querySelector('ds-seek-bar');
     this.thumbnailEl = this.shadowRoot.querySelector('ds-thumbnail');
+    this.loaderEl = this.shadowRoot.querySelector('ds-loader');
     this.controlsEl = this.shadowRoot.querySelector('ds-video-controls');
+    this.headerEl = this.shadowRoot.querySelector('ds-header');
     this.subtitleLayerEl = this.shadowRoot.querySelector('.subtitle-layer');
     this.subtitleEl = this.shadowRoot.querySelector('ds-subtitle');
     this.layoutEl = this.shadowRoot.querySelector('.playerview-layout');
@@ -63,15 +118,23 @@ export class PlayerView extends HTMLElement {
   }
 
   connectedCallback() {
+    this._enableRootDarkModeSetting();
     this._observeRootAccessibility();
+    this._bindPointerActivity();
     this.render();
     this._scheduleVideoSync();
   }
 
   disconnectedCallback() {
+    this._disableRootDarkModeSetting();
     if (this._themeObserver) {
       this._themeObserver.disconnect();
     }
+    this._stopSeekProgressLoop();
+    this._playTransitionToken += 1;
+    this._isPlayTransitionPending = false;
+    this._unbindPointerActivity();
+    this._clearUIHideTimer();
     this._unbindVideoEvents();
   }
 
@@ -88,6 +151,18 @@ export class PlayerView extends HTMLElement {
 
   get subtitleSrc() {
     return this.getAttribute('subtitle-src') || '';
+  }
+
+  get caseTitle() {
+    return this.getAttribute('case-title') || 'Case';
+  }
+
+  get videoTitle() {
+    return this.getAttribute('video-title') || this.getAttribute('title') || 'Video';
+  }
+
+  get showBreadcrumb() {
+    return this.getAttribute('show-breadcrumb') !== 'false';
   }
 
   get showControls() {
@@ -112,6 +187,64 @@ export class PlayerView extends HTMLElement {
 
   get viewportPadding() {
     return this.getAttribute('viewport-padding') || 'clamp(64px, 8vh, 96px)';
+  }
+
+  _forwardAttributes(target, attributes) {
+    attributes.forEach((attributeName) => {
+      if (this.hasAttribute(attributeName)) {
+        target.setAttribute(attributeName, this.getAttribute(attributeName) || '');
+      } else {
+        target.removeAttribute(attributeName);
+      }
+    });
+  }
+
+  _buildBreadcrumbItems() {
+    return [
+      { id: 'home', label: 'Home', hasMenu: false },
+      { id: 'case', label: this.caseTitle, hasMenu: false },
+      { id: 'video', label: this.videoTitle, hasMenu: false }
+    ];
+  }
+
+  _enableRootDarkModeSetting() {
+    if (this._darkModeRegistered) return;
+
+    const root = this.ownerDocument?.documentElement;
+    if (!root) return;
+
+    const count = Number.parseInt(root.dataset.playerViewForcedDarkCount || '0', 10) || 0;
+    const wasEnabled = root.classList.contains('a11y-dark-mode');
+
+    root.dataset.playerViewForcedDarkCount = String(count + 1);
+    if (!wasEnabled) {
+      root.classList.add('a11y-dark-mode');
+      this._didForceRootDarkMode = true;
+    }
+
+    this._darkModeRegistered = true;
+  }
+
+  _disableRootDarkModeSetting() {
+    if (!this._darkModeRegistered) return;
+
+    const root = this.ownerDocument?.documentElement;
+    if (!root) return;
+
+    const currentCount = Number.parseInt(root.dataset.playerViewForcedDarkCount || '0', 10) || 0;
+    const nextCount = Math.max(0, currentCount - 1);
+
+    if (nextCount === 0) {
+      delete root.dataset.playerViewForcedDarkCount;
+      if (this._didForceRootDarkMode) {
+        root.classList.remove('a11y-dark-mode');
+      }
+    } else {
+      root.dataset.playerViewForcedDarkCount = String(nextCount);
+    }
+
+    this._darkModeRegistered = false;
+    this._didForceRootDarkMode = false;
   }
 
   _observeRootAccessibility() {
@@ -142,6 +275,98 @@ export class PlayerView extends HTMLElement {
     });
   }
 
+  _bindPointerActivity() {
+    if (!this.layoutEl || this._onPointerMoveBound) return;
+
+    this._onPointerMoveBound = () => {
+      if (!this._isPlaying) return;
+      this._setUiVisible(true);
+      this._scheduleUIHide();
+    };
+
+    this.layoutEl.addEventListener('mousemove', this._onPointerMoveBound);
+  }
+
+  _unbindPointerActivity() {
+    if (!this.layoutEl || !this._onPointerMoveBound) return;
+    this.layoutEl.removeEventListener('mousemove', this._onPointerMoveBound);
+    this._onPointerMoveBound = null;
+  }
+
+  _setUiVisible(visible) {
+    this.toggleAttribute('ui-hidden', !visible);
+  }
+
+  _clearUIHideTimer() {
+    if (this._uiHideTimer) {
+      clearTimeout(this._uiHideTimer);
+      this._uiHideTimer = null;
+    }
+  }
+
+  _scheduleUIHide() {
+    this._clearUIHideTimer();
+    if (!this._isPlaying) return;
+
+    this._uiHideTimer = setTimeout(() => {
+      if (this._isPlaying) {
+        this._setUiVisible(false);
+      }
+      this._uiHideTimer = null;
+    }, this._uiHideDelayMs);
+  }
+
+  _waitMs(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  async _playAfterUiTransition() {
+    if (!this.videoEl || !this.videoEl.paused) return;
+
+    const transitionToken = ++this._playTransitionToken;
+    this._isPlayTransitionPending = true;
+
+    await this._waitMs(this._playStartDelayMs);
+    if (transitionToken !== this._playTransitionToken) {
+      this._isPlayTransitionPending = false;
+      return;
+    }
+
+    if (!this.videoEl || !this.videoEl.paused) {
+      this._isPlayTransitionPending = false;
+      return;
+    }
+
+    this.videoEl.play().catch(() => {
+      this._isPlayTransitionPending = false;
+    });
+  }
+
+  _startSeekProgressLoop() {
+    if (this._seekProgressFrame !== null) return;
+
+    const tick = () => {
+      if (!this.videoEl || this.videoEl.paused || this.videoEl.ended) {
+        this._seekProgressFrame = null;
+        return;
+      }
+
+      this._syncSeekFromVideo();
+      this._seekProgressFrame = requestAnimationFrame(tick);
+    };
+
+    this._seekProgressFrame = requestAnimationFrame(tick);
+  }
+
+  _stopSeekProgressLoop() {
+    if (this._seekProgressFrame !== null) {
+      cancelAnimationFrame(this._seekProgressFrame);
+      this._seekProgressFrame = null;
+    }
+  }
+
   _syncVideoSurface() {
     const thumbnailVideo = this.thumbnailEl?.shadowRoot?.querySelector('.screen-cover-video');
     if (!thumbnailVideo) return;
@@ -149,6 +374,8 @@ export class PlayerView extends HTMLElement {
     if (this.videoEl !== thumbnailVideo) {
       this._unbindVideoEvents();
       this.videoEl = thumbnailVideo;
+      this._isMediaReady = false;
+      this._syncLoaderVisibility();
       this._bindVideoEvents();
     }
 
@@ -160,6 +387,12 @@ export class PlayerView extends HTMLElement {
 
   _applyMediaAttributes() {
     if (!this.thumbnailEl) return;
+
+    if (this.videoSrc !== this._lastVideoSrc) {
+      this._lastVideoSrc = this.videoSrc;
+      this._isMediaReady = false;
+      this._syncLoaderVisibility();
+    }
 
     this.thumbnailEl.setAttribute('screen-video', this.videoSrc);
     this.thumbnailEl.removeAttribute('screen-image');
@@ -182,12 +415,17 @@ export class PlayerView extends HTMLElement {
       const video = this.thumbnailEl.shadowRoot.querySelector('.screen-cover-video');
       if (video) {
         video.controls = false;
-        video.muted = this.getAttribute('muted') !== 'false';
+        video.muted = this.hasAttribute('muted') ? this.getAttribute('muted') === 'true' : false;
         video.loop = this.getAttribute('loop') === 'true';
         video.playsInline = true;
         video.preload = 'metadata';
       }
     }
+  }
+
+  _syncLoaderVisibility() {
+    if (!this.loaderEl) return;
+    this.loaderEl.setAttribute('visible', this._isMediaReady ? 'false' : 'true');
   }
 
   _applySubtitleTrack() {
@@ -265,25 +503,59 @@ export class PlayerView extends HTMLElement {
     if (!this.videoEl) return;
 
     this._onVideoPlaying = () => {
+      this._isMediaReady = true;
+      this._syncLoaderVisibility();
+      this._isPlaying = true;
+      this._isPlayTransitionPending = false;
       this.controlsEl.setAttribute('playing', 'true');
       this._syncSeekFromVideo();
       this._syncDuration();
+      this._startSeekProgressLoop();
+      this._setUiVisible(true);
+      this._scheduleUIHide();
     };
     this._onVideoPause = () => {
+      this._isPlaying = false;
+      this._isPlayTransitionPending = false;
       this.controlsEl.setAttribute('playing', 'false');
       this._syncSeekFromVideo();
       this._syncDuration();
+      this._stopSeekProgressLoop();
+      this._setUiVisible(true);
+      this._clearUIHideTimer();
     };
-    this._onVideoWaiting = () => this.controlsEl.setAttribute('playing', 'false');
+    this._onVideoWaiting = () => {
+      this._isPlaying = false;
+      this._isPlayTransitionPending = false;
+      this.controlsEl.setAttribute('playing', 'false');
+      this._stopSeekProgressLoop();
+      this._setUiVisible(true);
+      this._clearUIHideTimer();
+    };
     this._onVideoEnded = () => {
+      this._isPlaying = false;
+      this._isPlayTransitionPending = false;
       this.controlsEl.setAttribute('playing', 'false');
       this.seekBarEl.setAttribute('percent', '100');
       this._syncDuration();
+      this._stopSeekProgressLoop();
+      this._setUiVisible(true);
+      this._clearUIHideTimer();
     };
     this._onTimeUpdate = () => this._syncSeekFromVideo();
     this._onLoadedMetadata = () => {
+      this._isMediaReady = true;
+      this._syncLoaderVisibility();
       this._syncSeekFromVideo();
       this._syncDuration();
+    };
+    this._onCanPlay = () => {
+      this._isMediaReady = true;
+      this._syncLoaderVisibility();
+    };
+    this._onVideoLoadStart = () => {
+      this._isMediaReady = false;
+      this._syncLoaderVisibility();
     };
     this._onRateChange = () => {
       const rate = this.videoEl.playbackRate || 1;
@@ -299,6 +571,8 @@ export class PlayerView extends HTMLElement {
     this.videoEl.addEventListener('ended', this._onVideoEnded);
     this.videoEl.addEventListener('timeupdate', this._onTimeUpdate);
     this.videoEl.addEventListener('loadedmetadata', this._onLoadedMetadata);
+    this.videoEl.addEventListener('canplay', this._onCanPlay);
+    this.videoEl.addEventListener('loadstart', this._onVideoLoadStart);
     this.videoEl.addEventListener('ratechange', this._onRateChange);
     this.videoEl.addEventListener('volumechange', this._onVolumeChange);
 
@@ -314,6 +588,8 @@ export class PlayerView extends HTMLElement {
       this.videoEl.removeEventListener('ended', this._onVideoEnded);
       this.videoEl.removeEventListener('timeupdate', this._onTimeUpdate);
       this.videoEl.removeEventListener('loadedmetadata', this._onLoadedMetadata);
+      this.videoEl.removeEventListener('canplay', this._onCanPlay);
+      this.videoEl.removeEventListener('loadstart', this._onVideoLoadStart);
       this.videoEl.removeEventListener('ratechange', this._onRateChange);
       this.videoEl.removeEventListener('volumechange', this._onVolumeChange);
     }
@@ -373,8 +649,15 @@ export class PlayerView extends HTMLElement {
     switch (action) {
       case 'play-pause':
         if (this.videoEl.paused) {
-          this.videoEl.play().catch(() => {});
+          if (this._isPlayTransitionPending) {
+            this._playTransitionToken += 1;
+            this._isPlayTransitionPending = false;
+            break;
+          }
+          this._playAfterUiTransition();
         } else {
+          this._playTransitionToken += 1;
+          this._isPlayTransitionPending = false;
           this.videoEl.pause();
         }
         break;
@@ -409,9 +692,18 @@ export class PlayerView extends HTMLElement {
   }
 
   render() {
-    if (!this.layoutEl || !this.thumbnailEl || !this.controlsEl || !this.seekBarEl) return;
+    if (!this.layoutEl || !this.thumbnailEl || !this.controlsEl || !this.seekBarEl || !this.headerEl) return;
 
     this.layoutEl.setAttribute('aria-label', this.getAttribute('aria-label') || 'Player view template');
+    if (!this._isPlaying && !this._isPlayTransitionPending) {
+      this._setUiVisible(true);
+    }
+    this.headerEl.showBreadcrumb = this.showBreadcrumb;
+    this.headerEl.showNavigationRegion = true;
+    this.headerEl.breadcrumbItems = this._buildBreadcrumbItems();
+    this._forwardAttributes(this.headerEl, HEADER_NAVIGATION_ATTRIBUTES);
+    this._forwardAttributes(this.thumbnailEl, THUMBNAIL_FRAME_ATTRIBUTES);
+    this._syncLoaderVisibility();
     this.style.setProperty('--player-view-stage-gap', this.stageGap);
     this.style.setProperty('--player-view-thumbnail-width', this.thumbnailWidth);
     this.style.setProperty('--player-view-thumbnail-height', this.thumbnailHeight);

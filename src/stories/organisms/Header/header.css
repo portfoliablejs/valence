@@ -46,3 +46,7 @@
 .breadcrumb-region[hidden] {
   display: none;
 }
+
+.navigation-region[hidden] {
+  display: none;
+}

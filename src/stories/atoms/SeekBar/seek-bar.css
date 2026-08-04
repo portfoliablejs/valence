@@ -24,15 +24,15 @@
 
 :host([variant="top-bar"]) .seek-container {
   width: 100%;
-  height: var(--size-height-lg, 48px);
+  height: 14px;
   padding: 0;
   align-items: flex-start;
 }
 
-/* Extended 96px top-bar hit area into video viewport */
+/* Keep top-bar hit area tight to reduce accidental hover/click capture */
 :host([variant="top-bar"]) .seek-container::before {
   top: 0;
-  bottom: -48px;
+  bottom: -2px;
 }
 
 /* Top-Bar Variant Zero Radius Override for Track & Fill */
@@ -40,8 +40,8 @@
 :host([variant="top-bar"]) .seek-fill {
   height: 8px; /* Larger baseline height */
   border-radius: 0 !important;
-  transition: height var(--anim-fast, 0.2s) var(--ease-fluid, ease),
-              background-color var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+  transition: height var(--anim-normal, 0.28s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
+              background-color var(--anim-normal, 0.28s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1));
 }
 
 /* Ensure the Handle Knob remains round on Top-Bar Variant */
@@ -51,21 +51,21 @@
 
 /* Prominent Hover & Click Expansion Animations for Top-Bar Variant */
 :host([variant="top-bar"]) .seek-container:hover .seek-track {
-  height: 16px;
+  height: 11px;
 }
 
 :host([variant="top-bar"]) .seek-container.is-dragging .seek-track,
 :host([variant="top-bar"]) .seek-container:active .seek-track {
-  height: 20px;
+  height: 13px;
 }
 
 :host([variant="top-bar"]) .seek-container:hover .seek-fill::after {
-  transform: translateY(-50%) scale(1.8);
+  transform: translateY(-50%) scale(1.35);
 }
 
 :host([variant="top-bar"]) .seek-container.is-dragging .seek-fill::after,
 :host([variant="top-bar"]) .seek-container:active .seek-fill::after {
-  transform: translateY(-50%) scale(2.4);
+  transform: translateY(-50%) scale(1.65);
 }
 
 /* Variant: Vertical Orientation (Volume Control & Mixers) */
@@ -169,6 +169,11 @@
   background: var(--ds-seek-bar-fill-bg, var(--color-accent, #2B71F0));
   border-radius: var(--radius-pill, 100px);
   pointer-events: none;
+  transition: width 140ms linear;
+}
+
+.seek-container.is-dragging .seek-fill {
+  transition: none;
 }
 
 /* --- RTL Visual Adjustments --- */

@@ -18,7 +18,7 @@ const defaultBreadcrumbItems = [
 ];
 
 export default {
-  title: 'Organisms/Header [v1.0.0]',
+  title: 'Organisms/Header [v1.1.0]',
   component: 'ds-header',
   tags: ['autodocs'],
   parameters: {
@@ -48,6 +48,12 @@ export default {
     showLanguageMenu: {
       control: 'boolean',
       description: 'Toggles the language action inside the composed navigation menu.',
+      table: { category: 'Core', defaultValue: { summary: 'true' } },
+    },
+    showNavigationRegion: {
+      control: 'boolean',
+      name: 'show-navigation-region',
+      description: 'Toggles the full navigation region on the far right.',
       table: { category: 'Core', defaultValue: { summary: 'true' } },
     },
     avatarSrc: {
@@ -110,6 +116,7 @@ export default {
     ],
     showBreadcrumb: true,
     showLanguageMenu: true,
+    showNavigationRegion: true,
     avatarSrc: 'https://thispersondoesnotexist.com/random-person.jpeg',
     avatarAlt: 'Profile face',
     onBreadcrumbHome: fn(),
@@ -128,6 +135,7 @@ export default {
         .breadcrumbMenuItems=${args.breadcrumbMenuItems}
         .showBreadcrumb=${args.showBreadcrumb}
         .showLanguageMenu=${args.showLanguageMenu}
+        .showNavigationRegion=${args.showNavigationRegion}
         avatar-src=${args.avatarSrc}
         avatar-alt=${args.avatarAlt}
         @ds-breadcrumb-home=${args.onBreadcrumbHome}
@@ -207,6 +215,27 @@ export const NoLanguageMenu = {
       const navigation = header.shadowRoot.querySelector('ds-navigation-menu');
       const languageItem = navigation.shadowRoot.querySelector('.menu-item-language');
       expect(getComputedStyle(languageItem).display).toBe('none');
+    });
+  },
+};
+
+export const NoNavigationRegion = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Header variant that keeps breadcrumb context while removing the full right navigation region.',
+      },
+    },
+  },
+  args: {
+    showNavigationRegion: false,
+  },
+  play: async ({ canvasElement, step }) => {
+    const header = canvasElement.querySelector('ds-header');
+
+    await step('Verify the navigation region is hidden', async () => {
+      const navigationRegion = header.shadowRoot.querySelector('.navigation-region');
+      expect(navigationRegion.hidden).toBe(true);
     });
   },
 };

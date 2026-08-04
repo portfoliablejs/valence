@@ -1,8 +1,24 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Templates/PlayerView [v1.0.0]/Changelog" />
+<Meta title="Templates/PlayerView [v1.1.0]/Changelog" />
 
 # Changelog
+
+<br />
+
+## [1.1.0] - 2026-08-04
+
+<br />
+
+### Added
+- **Header Composition:** Added `ds-header` to PlayerView in the same top full-bleed position pattern used by CaseView/HomeView.
+- **Breadcrumb Context:** Added internal breadcrumb rendering with fixed identity order: `Home`, `Case`, `Video`.
+- **Title Inputs for Breadcrumb:** Added `case-title` and `video-title` attributes so the case name and active video name can be configured by the host.
+
+### Changed
+- **Navigation Region Visibility:** PlayerView keeps header navigation visible so accessibility actions remain directly available alongside breadcrumb context.
+- **Non-Blocking Header Layout:** Header now overlays at the top viewport position and no longer pushes the player stage downward.
+- **Dark Accessibility Readability:** PlayerView now enables the same `a11y-dark-mode` setting flow used by the design system so breadcrumb and navigation controls render with their native dark-mode styles.
 
 <br />
 

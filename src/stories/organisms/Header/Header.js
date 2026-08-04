@@ -25,7 +25,7 @@ const NAVIGATION_MENU_ATTRIBUTES = [
 
 export class Header extends HTMLElement {
   static get observedAttributes() {
-    return ['aria-label', 'show-breadcrumb', 'show-language-menu', ...NAVIGATION_MENU_ATTRIBUTES];
+    return ['aria-label', 'show-breadcrumb', 'show-language-menu', 'show-navigation-region', ...NAVIGATION_MENU_ATTRIBUTES];
   }
 
   constructor() {
@@ -99,6 +99,14 @@ export class Header extends HTMLElement {
     this.setAttribute('show-language-menu', value ? 'true' : 'false');
   }
 
+  get showNavigationRegion() {
+    return this.getAttribute('show-navigation-region') !== 'false';
+  }
+
+  set showNavigationRegion(value) {
+    this.setAttribute('show-navigation-region', value ? 'true' : 'false');
+  }
+
   _forwardNavigationAttributes() {
     NAVIGATION_MENU_ATTRIBUTES.forEach((attributeName) => {
       if (this.hasAttribute(attributeName)) {
@@ -133,6 +141,7 @@ export class Header extends HTMLElement {
     this.headerEl.setAttribute('aria-label', this.getAttribute('aria-label') || 'Header');
 
     this.breadcrumbRegion.hidden = !this.showBreadcrumb;
+    this.navigationRegion.hidden = !this.showNavigationRegion;
     this.breadcrumbEl.visible = this.showBreadcrumb;
 
     if (Array.isArray(this._breadcrumbItems)) {
