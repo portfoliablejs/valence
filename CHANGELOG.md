@@ -1,3 +1,9 @@
+## [0.7.0](https://github.com/portfoliablejs/valence/compare/v0.6.0...v0.7.0) (2026-08-04)
+
+### Features
+
+* feat(playerview): integrate header, loader, and playback UX refinements ([070709d](https://github.com/portfoliablejs/valence/commit/070709dd5afa7de5129f31dd05fa3cf18fc8c925))
+
 ## [0.6.0](https://github.com/portfoliablejs/valence/compare/v0.4.8...v0.6.0) (2026-08-04)
 
 ### Features
@@ -122,6 +128,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
