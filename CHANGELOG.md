@@ -1,3 +1,9 @@
+## [0.6.0](https://github.com/portfoliablejs/valence/compare/v0.4.8...v0.6.0) (2026-08-04)
+
+### Features
+
+* feat: add player view template ([62aa49f](https://github.com/portfoliablejs/valence/commit/62aa49f4370dfeecedf836a255c9e3e1f00fd3d8))
+
 ## [0.4.8](https://github.com/portfoliablejs/valence/compare/v0.4.7...v0.4.8) (2026-08-03)
 
 ### Bug Fixes
@@ -116,6 +122,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
