@@ -3,7 +3,7 @@ import '../../sub-atomic/Iconography/Iconography';
 
 const DEFAULT_IMAGE_SRC = 'https://thispersondoesnotexist.com/random-person.jpeg';
 const DEFAULT_IMAGE_ALT = 'Profile image';
-const CONTENT_SIZE_PX = '22';
+const DEFAULT_IMAGE_CONTENT_SIZE_PX = '22';
 
 export class Button extends HTMLElement {
   static get observedAttributes() {
@@ -86,7 +86,7 @@ export class Button extends HTMLElement {
     if (hasImage) {
       this.imageEl.setAttribute('src', this.getAttribute('image-src') || DEFAULT_IMAGE_SRC);
       this.imageEl.setAttribute('alt', this.getAttribute('image-alt') || DEFAULT_IMAGE_ALT);
-      this.imageEl.style.setProperty('--ds-button-image-content-size', `${CONTENT_SIZE_PX}px`);
+      this.imageEl.style.setProperty('--ds-button-image-content-size', `${DEFAULT_IMAGE_CONTENT_SIZE_PX}px`);
       this.imageEl.style.display = 'block';
       this.buttonEl.classList.add('has-image');
     } else {
@@ -108,11 +108,13 @@ export class Button extends HTMLElement {
         this.iconEl.removeAttribute('variant');
       }
 
-      this.iconEl.setAttribute('size', CONTENT_SIZE_PX);
+      this.iconEl.removeAttribute('size');
+      this.iconEl.style.setProperty('--icon-size', 'var(--ds-button-icon-size, 22px)');
       this.iconEl.style.display = 'inline-flex';
       this.buttonEl.classList.add('has-icon');
     } else {
       this.iconEl.style.display = 'none';
+      this.iconEl.style.removeProperty('--icon-size');
       this.buttonEl.classList.remove('has-icon');
     }
 

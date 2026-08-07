@@ -9,6 +9,7 @@ const CATEGORIES = [
   { label: 'Atoms', folder: 'atoms' },
   { label: 'Molecules', folder: 'molecules' },
   { label: 'Organisms', folder: 'organisms' },
+  { label: 'Templates', folder: 'templates' },
 ];
 
 let content = `// src/main.js in the 'valence' project\n\n// Import the foundational styles so they are bundled with the package\nimport './style.css';\n\n`;

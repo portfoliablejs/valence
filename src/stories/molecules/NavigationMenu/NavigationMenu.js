@@ -6,6 +6,15 @@ import '../../organisms/ContextualMenu/ContextualMenu.js';
 
 const DEFAULT_AVATAR_SRC = 'https://thispersondoesnotexist.com/random-person.jpeg';
 
+const A11Y_CLASS_BY_ITEM_ID = {
+  'text-size': 'a11y-large-text',
+  'dyslexia-font': 'a11y-dyslexia',
+  'dark-mode': 'a11y-dark-mode',
+  'high-contrast': 'a11y-high-contrast',
+  'reduce-motion': 'a11y-reduce-motion',
+  'tab-navigation': 'a11y-tab-nav',
+};
+
 export class NavigationMenu extends HTMLElement {
   static get observedAttributes() {
     return [
@@ -39,15 +48,15 @@ export class NavigationMenu extends HTMLElement {
     ];
 
     this._accessibilityItems = [
-      { id: 'text-size', label: 'Text Size', showIcon: false, showKbd: true, kbd: '⌘', kbdShowPlus: true, kbdKey: 'T', control: 'toggle', active: false, category: 'main' },
-      { id: 'dyslexia-font', label: 'Dyslexia Font', showIcon: false, showKbd: true, kbd: '⌘', kbdShowPlus: true, kbdKey: 'D', control: 'toggle', active: false, category: 'main' },
-      { id: 'dark-mode', label: 'Dark Mode', showIcon: false, showKbd: true, kbd: '⌘', kbdShowPlus: true, kbdKey: 'M', control: 'toggle', active: false, category: 'subcategory' },
-      { id: 'high-contrast', label: 'High Contrast', showIcon: false, showKbd: true, kbd: '⌘', kbdShowPlus: true, kbdKey: 'H', control: 'toggle', active: false, category: 'subcategory' },
-      { id: 'reduce-motion', label: 'Reduce Motion', showIcon: false, showKbd: true, kbd: '⌘', kbdShowPlus: true, kbdKey: 'R', control: 'toggle', active: false, category: 'subcategory' },
-      { id: 'tab-navigation', label: 'TAB Navigation', showIcon: false, showKbd: true, kbd: '⌘', kbdShowPlus: true, kbdKey: 'B', control: 'toggle', active: false, category: 'subcategory' },
+      { id: 'text-size', label: 'Text Size', showIcon: false, showKbd: true, kbd: '⌥', kbdShowPlus: true, kbdKey: 'T', control: 'toggle', active: false, category: 'main' },
+      { id: 'dyslexia-font', label: 'Dyslexia Font', showIcon: false, showKbd: true, kbd: '⌥', kbdShowPlus: true, kbdKey: 'Y', control: 'toggle', active: false, category: 'main' },
+      { id: 'dark-mode', label: 'Dark Mode', showIcon: false, showKbd: true, kbd: '⌥', kbdShowPlus: true, kbdKey: 'D', control: 'toggle', active: false, category: 'subcategory' },
+      { id: 'high-contrast', label: 'High Contrast', showIcon: false, showKbd: true, kbd: '⌥', kbdShowPlus: true, kbdKey: 'C', control: 'toggle', active: false, category: 'subcategory' },
+      { id: 'reduce-motion', label: 'Reduce Motion', showIcon: false, showKbd: true, kbd: '⌥', kbdShowPlus: true, kbdKey: 'M', control: 'toggle', active: false, category: 'subcategory' },
+      { id: 'tab-navigation', label: 'TAB Navigation', showIcon: false, showKbd: true, kbd: '⌥', kbdShowPlus: true, kbdKey: 'F', control: 'toggle', active: false, category: 'subcategory' },
     ];
 
-    this.shadowRoot.innerHTML = `<style>${css}</style><nav class="navigation-menu" aria-label="Navigation menu"><div class="menu-group menu-profile"><div class="menu-item"><ds-button class="avatar-button" variant="tertiary" has-text="false" has-image image-src="https://thispersondoesnotexist.com/random-person.jpeg" image-alt="Profile face" aria-label="About"></ds-button><ds-tooltip class="about-tooltip" text="About" show-kbd kbd-label="Ctrl" kbd-show-plus kbd-key="I" position="bottom"></ds-tooltip></div></div><div class="menu-divider"><ds-divider orientation="vertical" aria-label="Navigation menu separator"></ds-divider></div><div class="menu-group menu-actions"><div class="menu-item menu-item-language"><ds-button class="language-btn" variant="tertiary" has-text="false" has-icon icon="language" icon-variant="outline" aria-label="Language"></ds-button><ds-tooltip class="language-tooltip" text="Language" show-kbd kbd-label="Ctrl" kbd-show-plus kbd-key="L" position="bottom"></ds-tooltip><ds-contextual-menu class="language-menu" aria-label="Language menu"></ds-contextual-menu></div><div class="menu-item menu-item-accessibility"><ds-button class="accessibility-btn" variant="tertiary" has-text="false" has-icon icon="accessibility" icon-variant="outline" aria-label="Accessibility"></ds-button><ds-tooltip class="accessibility-tooltip" text="Accessibility" show-kbd kbd-label="Ctrl" kbd-show-plus kbd-key="A" position="bottom-right"></ds-tooltip><ds-contextual-menu class="accessibility-menu" aria-label="Accessibility menu"></ds-contextual-menu></div></div></nav>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><nav class="navigation-menu" aria-label="Navigation menu"><div class="menu-group menu-profile"><div class="menu-item"><ds-button class="avatar-button" variant="tertiary" has-text="false" has-image image-src="https://thispersondoesnotexist.com/random-person.jpeg" image-alt="Profile face" aria-label="About"></ds-button><ds-tooltip class="about-tooltip" text="About" show-kbd kbd-label="⌥" kbd-show-plus kbd-key="I" position="bottom"></ds-tooltip></div></div><div class="menu-divider"><ds-divider orientation="vertical" aria-label="Navigation menu separator"></ds-divider></div><div class="menu-group menu-actions"><div class="menu-item menu-item-language"><ds-button class="language-btn" variant="tertiary" has-text="false" has-icon icon="language" icon-variant="outline" aria-label="Language"></ds-button><ds-tooltip class="language-tooltip" text="Language" show-kbd kbd-label="⌥" kbd-show-plus kbd-key="L" position="bottom"></ds-tooltip><ds-contextual-menu class="language-menu" aria-label="Language menu"></ds-contextual-menu></div><div class="menu-item menu-item-accessibility"><ds-button class="accessibility-btn" variant="tertiary" has-text="false" has-icon icon="accessibility" icon-variant="outline" aria-label="Accessibility"></ds-button><ds-tooltip class="accessibility-tooltip" text="Accessibility" show-kbd kbd-label="⌥" kbd-show-plus kbd-key="A" position="bottom-right"></ds-tooltip><ds-contextual-menu class="accessibility-menu" aria-label="Accessibility menu"></ds-contextual-menu></div></div></nav>`;
   }
 
   connectedCallback() {
@@ -228,6 +237,41 @@ export class NavigationMenu extends HTMLElement {
     this._syncMenuState();
   }
 
+  _syncAccessibilityItems() {
+    const root = this.ownerDocument.documentElement;
+    let hasChanges = false;
+
+    const nextItems = this._accessibilityItems.map((item) => {
+      if (item.control !== 'toggle') {
+        return item;
+      }
+
+      const className = A11Y_CLASS_BY_ITEM_ID[item.id] || `a11y-${item.id}`;
+      const isActive = root.classList.contains(className);
+
+      if (item.active === isActive) {
+        return item;
+      }
+
+      hasChanges = true;
+
+      return {
+        ...item,
+        active: isActive,
+      };
+    });
+
+    if (!hasChanges) {
+      return;
+    }
+
+    this._accessibilityItems = nextItems;
+
+    if (this.accessibilityMenu) {
+      this.accessibilityMenu.items = this._accessibilityItems;
+    }
+  }
+
   _closeMenus() {
     this.languageMenu.removeAttribute('open');
     this.accessibilityMenu.removeAttribute('open');
@@ -285,21 +329,21 @@ export class NavigationMenu extends HTMLElement {
 
     this._setTooltipContent('language', this.languageTooltip, {
       text: 'Language',
-      kbdLabel: 'Ctrl',
+      kbdLabel: '⌥',
       kbdKey: 'L',
       showPlus: true,
     });
 
     this._setTooltipContent('accessibility', this.accessibilityTooltip, {
       text: 'Accessibility',
-      kbdLabel: 'Ctrl',
+      kbdLabel: '⌥',
       kbdKey: 'A',
       showPlus: true,
     });
 
     this._setTooltipContent('about', this.aboutTooltip, {
       text: 'About',
-      kbdLabel: 'Ctrl',
+      kbdLabel: '⌥',
       kbdKey: 'I',
       showPlus: true,
     });
@@ -319,6 +363,7 @@ export class NavigationMenu extends HTMLElement {
       this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
       this.toggleAttribute('a11y-focus-mode', root.classList.contains('a11y-focus-mode'));
       this.toggleAttribute('a11y-forced-colors', root.classList.contains('a11y-forced-colors'));
+      this._syncAccessibilityItems();
     };
 
     sync();

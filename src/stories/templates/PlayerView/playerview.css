@@ -4,13 +4,25 @@
   height: 100dvh;
   min-height: 100dvh;
   box-sizing: border-box;
-  background:
-    radial-gradient(circle at top left, rgba(255, 196, 0, 0.14), transparent 30%),
-    radial-gradient(circle at 80% 20%, rgba(52, 120, 246, 0.18), transparent 28%),
-    linear-gradient(180deg, #08111d 0%, #0f1725 42%, #05070c 100%);
-  color: #f4f7fb;
+  background: var(--player-view-bg, var(--color-bg, #ffffff));
+  color: var(--player-view-fg, var(--color-black, #111111));
   position: relative;
   overflow: hidden;
+}
+
+:host([a11y-dark-mode]) {
+  background: var(--player-view-bg-dark, var(--color-bg, #111111));
+  color: var(--player-view-fg-dark, var(--color-black, #f4f7fb));
+}
+
+:host([a11y-high-contrast]) {
+  background: var(--player-view-bg-high-contrast, var(--color-bg, #000000));
+  color: var(--player-view-fg-high-contrast, var(--color-black, #ffffff));
+}
+
+:host([a11y-forced-colors]) {
+  background: Canvas;
+  color: CanvasText;
 }
 
 .playerview-layout {

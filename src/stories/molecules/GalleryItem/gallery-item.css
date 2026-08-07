@@ -65,6 +65,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  width: 100%;
 }
 
 .gallery-item-title {
@@ -78,6 +79,20 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  width: auto;
+  max-width: calc(100% - 44px);
+  min-width: 0;
+}
+
+.title-text {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  width: auto;
 }
 
 .gallery-read-time {
@@ -88,6 +103,12 @@
   font-size: 10px;
   font-weight: 600;
   color: var(--color-gray-med, #777777);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.read-time-text {
+  white-space: nowrap;
 }
 
 .gallery-item-shortdesc {
@@ -98,6 +119,22 @@
   text-align: center;
   margin: 4px 0 0 0;
   font-weight: 400;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+:host([a11y-dark-mode]) .gallery-item-title {
+  color: var(--color-text-primary, #FFFFFF);
+}
+
+:host([a11y-dark-mode]) .gallery-item-shortdesc,
+:host([a11y-dark-mode]) .gallery-read-time,
+:host([a11y-dark-mode]) .read-time-text {
+  color: var(--color-text-secondary, #F5F5F5);
 }
 
 .locked-shortdesc {
@@ -110,4 +147,39 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+}
+
+/* Large Text Mode */
+:host([a11y-large-text]) .gallery-item-title {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+:host([a11y-large-text]) .gallery-item-shortdesc {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+:host([a11y-large-text]) .gallery-read-time {
+  font-size: 12px;
+}
+
+/* Dyslexia Mode */
+:host([a11y-dyslexia]) .gallery-item-title,
+:host([a11y-dyslexia]) .gallery-item-shortdesc,
+:host([a11y-dyslexia]) .gallery-read-time,
+:host([a11y-dyslexia]) .read-time-text,
+:host([a11y-dyslexia]) .title-text {
+  font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em;
+}
+
+:host([a11y-reduce-motion]) .case-thumb-wrapper {
+  transition: none !important;
+}
+
+:host([a11y-reduce-motion]) .case-thumb-wrapper:hover,
+:host([a11y-reduce-motion]) .case-thumb-wrapper:active {
+  transform: none;
 }

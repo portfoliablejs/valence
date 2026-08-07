@@ -98,6 +98,10 @@ export const ICON_REGISTRY = {
     outline: `<path d="M6 4l14 8-14 8V4z"/>`,
     fill: `<polygon points="5 3 19 12 5 21 5 3"/>`
   },
+  'clock': {
+    outline: `<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>`,
+    fill: `<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" fill="none" stroke="Canvas" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`
+  },
   'pause': {
     outline: `<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>`,
     fill: `<rect x="5" y="3" width="5" height="18" rx="1.5"/><rect x="14" y="3" width="5" height="18" rx="1.5"/>`

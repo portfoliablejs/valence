@@ -19,7 +19,9 @@ The template follows **State In / Events Out**:
 ### Composition Boundary
 `ds-case-view` provides structure, not content ownership:
 * **Header Region:** A full-width `ds-header` aligned with HomeView behavior.
-* **Article Region:** A centered `ds-article` with slot re-projection for thumbnail, summary, player, default body, and navigator.
+* **Scroll Region:** A dedicated internal `.article-scroll` container with hidden native scrollbars and contained overscroll behavior.
+* **Smooth Scroll Engine:** Internal Lenis instance runs on the case reader scrollport (`wrapper: .article-scroll`, `content: .article-wrap`) for parity with live app motion.
+* **Article Region:** A centered `ds-article` inside `.article-wrap` with slot re-projection for cover, summary, player, default body, and navigator.
 * **Motion Compatibility:** Transition orchestration is intentionally host-managed so reduced-motion and route-history policies stay centralized.
 
 <mermaid-diagram chart={`
@@ -28,7 +30,7 @@ flowchart TD
     CaseView --> Header["ds-header"]
     CaseView --> Article["ds-article"]
 
-    Article --> ThumbSlot["slot='thumbnail'"]
+    Article --> CoverSlot["slot='cover'"]
     Article --> SummarySlot["slot='summary'"]
     Article --> PlayerSlot["slot='player'"]
     Article --> BodySlot["default slot"]
@@ -62,9 +64,14 @@ flowchart TD
       <td>Top navigation layer using the same composition model as HomeView.</td>
     </tr>
     <tr>
+      <td>`article-scroll`</td>
+      <td>`<div class="article-scroll">`</td>
+      <td>Dedicated vertical reader scroll container used by host shells for TOC sync and reader scroll control. Marked with `data-lenis-prevent` to isolate nested wheel/touch input from global smooth-scroll engines.</td>
+    </tr>
+    <tr>
       <td>`article-wrap`</td>
-      <td>`<ds-article>`</td>
-      <td>Case detail content shell receiving pass-through article attributes.</td>
+      <td>`<div class="article-wrap">` + `<ds-article>`</td>
+      <td>Centered case detail shell receiving pass-through article attributes.</td>
     </tr>
     <tr>
       <td>slot bridge</td>
@@ -115,7 +122,7 @@ flowchart TD
       <td>Toggles navigation language controls in the composed header.</td>
     </tr>
     <tr>
-      <td>`kicker`, `title-text`, `primary-label`, `secondary1-label`, `secondary2-label`, `primary-icon`</td>
+      <td>`kicker`, `title-text`, `subtitle-text`, `primary-label`, `secondary1-label`, `secondary2-label`, `primary-icon`</td>
       <td>`string`</td>
       <td>Inherited from article defaults</td>
       <td>Pass-through article labels forwarded to `ds-article`.</td>
@@ -187,8 +194,8 @@ flowchart TD
   <tbody>
     <tr>
       <td>`--caseview-max-width`</td>
-      <td>`1200px`</td>
-      <td>Controls maximum width of the case content region wrapper.</td>
+      <td>`924px`</td>
+      <td>Legacy max-width token retained for backward compatibility; `article-wrap` now defaults to `width: min(924px, 100%)`.</td>
     </tr>
     <tr>
       <td>`--caseview-inline-padding`</td>
@@ -197,8 +204,13 @@ flowchart TD
     </tr>
     <tr>
       <td>`--caseview-header-margin-bottom`</td>
-      <td>`clamp(20px, 5dvh, 48px)`</td>
-      <td>Controls spacing between header and article regions.</td>
+      <td>`0px`</td>
+      <td>Controls spacing between header and article regions; now defaults to zero to match live app reader shell.</td>
+    </tr>
+    <tr>
+      <td>`--caseview-bottom-padding`</td>
+      <td>`clamp(24px, 4dvh, 48px)`</td>
+      <td>Controls trailing reader padding at the bottom of the article scroll region.</td>
     </tr>
   </tbody>
 </table>

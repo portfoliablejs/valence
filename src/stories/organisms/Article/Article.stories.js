@@ -46,6 +46,9 @@ const mockParsedMarkdown = `
 <ul>
   <li><strong>Unordered Item One:</strong> Core architecture standards, design tokens, and modular slot allocations across complex web layouts.</li>
   <li><strong>Unordered Item Two:</strong> Nested items supported across all DOM depth levels:
+<p>
+  Footnote references should stay clickable too, like <sup id="fnref1"><a href="#fn1" class="footnote-ref">1</a></sup> and <sup id="fnref2"><a href="#fn2" class="footnote-ref">2</a></sup>.
+</p>
     <ul>
       <li>Nested list item alpha with extended text to test typography wrappers.</li>
       <li>Nested list item beta:
@@ -394,10 +397,10 @@ fn evaluate_status(code: u32) -&gt; Result&lt;&amp;'static str, String&gt; {
 <section class="footnotes">
   <ol>
     <li id="fn1">
-      Footnote reference example covering inline markup architecture. <a href="#" class="footnote-backref">↩</a>
+      Footnote reference example covering inline markup architecture. <a href="#fnref1" class="footnote-backref">↩</a>
     </li>
     <li id="fn2">
-      Secondary footnote verifying dynamic citation references. <a href="#" class="footnote-backref">↩</a>
+      Secondary footnote verifying dynamic citation references. <a href="#fnref2" class="footnote-backref">↩</a>
     </li>
   </ol>
 </section>
@@ -418,6 +421,7 @@ export default {
   argTypes: {
     kicker: { control: 'text', table: { category: 'Content' } },
     'title-text': { control: 'text', table: { category: 'Content' } },
+    'subtitle-text': { control: 'text', table: { category: 'Content' } },
     'primary-label': { control: 'text', table: { category: 'Content' } },
     'primary-icon': { control: 'text', table: { category: 'Content' } },
     'secondary1-label': { control: 'text', table: { category: 'Content' } },
@@ -446,6 +450,7 @@ export default {
   args: {
     kicker: '2026 • TESTAMENTUS.ORG',
     'title-text': 'Building an e-reader',
+    'subtitle-text': 'A focused reading surface for long-form retention, annotated media, and structured handoff.',
     'primary-label': 'Pitch',
     'primary-icon': 'play-fill',
     'secondary1-label': 'Repository',
@@ -481,6 +486,7 @@ export default {
           style=${styleString || undefined}
           kicker=${args.kicker}
           title-text=${args['title-text']}
+          subtitle-text=${args['subtitle-text']}
           primary-label=${args['primary-label']}
           primary-icon=${args['primary-icon']}
           secondary1-label=${args['secondary1-label']}
@@ -500,7 +506,7 @@ export default {
           show-navigator=${args['show-navigator']}>
           
           <ds-thumbnail
-            slot="thumbnail"
+            slot="cover"
             category="mobile"
             brand="apple"
             model="Apple iPhone 13"
@@ -544,7 +550,17 @@ export const CompleteArticle = {
 
     await step('Verify shadow root elements render correctly', async () => {
       const primaryBtn = article.shadowRoot.querySelector('.btn-primary');
+      const subtitle = article.shadowRoot.querySelector('.article-subtitle');
       expect(primaryBtn).toBeTruthy();
+      expect(subtitle?.textContent?.length).toBeGreaterThan(0);
+    });
+
+    await step('Verify cover slot renders above summary', async () => {
+      const coverSlot = article.shadowRoot.querySelector('.article-cover-container slot[name="cover"]');
+      const summarySlot = article.shadowRoot.querySelector('.article-summary-container slot[name="summary"]');
+      expect(coverSlot).toBeTruthy();
+      expect(summarySlot).toBeTruthy();
+      expect(Boolean(coverSlot.compareDocumentPosition(summarySlot) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(true);
     });
 
     await step('Verify social controls use simplified ds-button props contract', async () => {

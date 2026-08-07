@@ -20,6 +20,10 @@ Recommended host behavior:
 - sync active heading on container scroll so open menu rows and closed minimap lines keep highlighted state
 - keep `ds-toc` and `ds-case-navigator` fixed and non-scrollable as control surfaces
 - route TOC item selection to container-based scrolling
+- preserve DS top-action semantics for `scroll-top`:
+set `scroll-top` active when container scroll is at top threshold, not the first heading
+- in short case documents, when container reaches bottom threshold, force the last heading active
+to avoid partial TOC activation
 
 <br />
 
@@ -144,6 +148,7 @@ For complex, formatted content (such as rich case study bodies, code snippets, o
 const caseView = document.createElement('ds-case-view');
 caseView.dataset.caseId = caseData.id;
 caseView.setAttribute('title-text', this.getLang(caseData.title));
+caseView.setAttribute('subtitle-text', this.getLang(caseData.shortDesc));
 
 // Choose executive vs recruiter content based on app state
 const descContent = this.state.isRecruiterMode ? caseData.descRecruiter : caseData.desc;
@@ -151,7 +156,7 @@ const descContent = this.state.isRecruiterMode ? caseData.descRecruiter : caseDa
 // Slot injection target
 caseView.innerHTML = `
   <ds-thumbnail
-    slot="thumbnail"
+    slot="cover"
     screen-image="${this.getLang(caseData.thumbSrc)}"
     screen-video="${this.getLang(caseData.thumbVideoSrc || '')}">
   </ds-thumbnail>

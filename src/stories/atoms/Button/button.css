@@ -15,6 +15,7 @@
 button {
   font-family: inherit;
   cursor: pointer;
+  opacity: var(--ds-button-opacity, 1);
   
   /* Baseline transparent border so OS native Forced Colors can draw boundaries */
   border: var(--border-width-thin) var(--border-style-solid) transparent;
@@ -170,10 +171,10 @@ button:disabled,
 .variant-primary.no-text,
 .variant-secondary.no-text,
 .variant-tertiary.no-text {
-  width: var(--size-height-sm);
-  height: var(--size-height-sm);
-  min-width: var(--size-height-sm);
-  min-height: var(--size-height-sm);
+  width: var(--ds-button-size, var(--size-height-sm));
+  height: var(--ds-button-size, var(--size-height-sm));
+  min-width: var(--ds-button-size, var(--size-height-sm));
+  min-height: var(--ds-button-size, var(--size-height-sm));
   padding: 0;
   border-radius: var(--ds-button-radius, var(--radius-circle));
 }
@@ -244,8 +245,8 @@ button:disabled,
   CIRCULAR VARIANTS (Floating)
   ========================================================================== */
 .variant-floating {
-  min-width: var(--size-height-md);
-  min-height: var(--size-height-md);
+  min-width: var(--ds-button-size, var(--size-height-md));
+  min-height: var(--ds-button-size, var(--size-height-md));
   width: auto;
   height: auto;
   padding: 0 var(--space-sm);
@@ -256,6 +257,12 @@ button:disabled,
           var(--ds-button-border-color, var(--color-surface-border, var(--color-card-border)));
   box-shadow: var(--shadow-md);
   color: var(--color-text-primary, var(--color-black));
+}
+
+.variant-floating.no-text {
+  width: var(--ds-button-size, var(--size-height-md));
+  height: var(--ds-button-size, var(--size-height-md));
+  padding: 0;
 }
 
 .variant-floating.no-text {

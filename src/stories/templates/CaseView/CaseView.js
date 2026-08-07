@@ -1,5 +1,6 @@
 import css from './caseview.css?inline';
 import typographyCss from '../../sub-atomic/Typography/typography.css?inline';
+import Lenis from 'lenis';
 import '../../organisms/Header/Header.js';
 import '../../organisms/Article/Article.js';
 
@@ -27,6 +28,7 @@ const HEADER_NAVIGATION_ATTRIBUTES = [
 const ARTICLE_ATTRIBUTES = [
   'kicker',
   'title-text',
+  'subtitle-text',
   'primary-label',
   'primary-icon',
   'secondary1-label',
@@ -68,6 +70,8 @@ export class CaseView extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this._breadcrumbItems = DEFAULT_BREADCRUMB_ITEMS;
     this._breadcrumbMenuItems = null;
+    this._articleLenis = null;
+    this._articleLenisFrame = 0;
 
     this.shadowRoot.innerHTML = `
       <style>${typographyCss}</style>
@@ -76,14 +80,16 @@ export class CaseView extends HTMLElement {
         <div class="header-wrap">
           <ds-header></ds-header>
         </div>
-        <div class="article-wrap">
-          <ds-article>
-            <slot name="thumbnail" slot="thumbnail"></slot>
-            <slot name="summary" slot="summary"></slot>
-            <slot name="player" slot="player"></slot>
-            <slot slot="navigator" name="navigator"></slot>
-            <slot></slot>
-          </ds-article>
+        <div class="article-scroll" data-lenis-prevent>
+          <div class="article-wrap">
+            <ds-article>
+              <slot name="cover" slot="cover"></slot>
+              <slot name="summary" slot="summary"></slot>
+              <slot name="player" slot="player"></slot>
+              <slot slot="navigator" name="navigator"></slot>
+              <slot></slot>
+            </ds-article>
+          </div>
         </div>
       </section>
     `;
@@ -93,7 +99,23 @@ export class CaseView extends HTMLElement {
     this.layoutEl = this.shadowRoot.querySelector('.caseview-layout');
     this.headerEl = this.shadowRoot.querySelector('ds-header');
     this.articleEl = this.shadowRoot.querySelector('ds-article');
+    this.articleWrapEl = this.shadowRoot.querySelector('.article-wrap');
+    this.articleScrollEl = this.shadowRoot.querySelector('.article-scroll');
+
+    // Keep wheel/touch scrolling local to the reader when global Lenis is active.
+    if (this.articleScrollEl && this.articleScrollEl.dataset.caseviewScrollBound !== 'true') {
+      this.articleScrollEl.addEventListener('wheel', (event) => event.stopPropagation(), { passive: true });
+      this.articleScrollEl.addEventListener('touchmove', (event) => event.stopPropagation(), { passive: true });
+      this.articleScrollEl.dataset.caseviewScrollBound = 'true';
+    }
+
+    this._installSmoothArticleScrolling();
+
     this.render();
+  }
+
+  disconnectedCallback() {
+    this._destroySmoothArticleScrolling();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -147,6 +169,38 @@ export class CaseView extends HTMLElement {
         target.removeAttribute(attributeName);
       }
     });
+  }
+
+  _installSmoothArticleScrolling() {
+    if (!this.articleScrollEl || !this.articleWrapEl || this._articleLenis) return;
+
+    this._articleLenis = new Lenis({
+      wrapper: this.articleScrollEl,
+      content: this.articleWrapEl,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+    });
+
+    const raf = (time) => {
+      if (!this._articleLenis) return;
+      this._articleLenis.raf(time);
+      this._articleLenisFrame = requestAnimationFrame(raf);
+    };
+
+    this._articleLenisFrame = requestAnimationFrame(raf);
+  }
+
+  _destroySmoothArticleScrolling() {
+    if (this._articleLenis) {
+      this._articleLenis.destroy();
+    }
+
+    if (this._articleLenisFrame) {
+      cancelAnimationFrame(this._articleLenisFrame);
+      this._articleLenisFrame = 0;
+    }
+
+    this._articleLenis = null;
   }
 
   render() {

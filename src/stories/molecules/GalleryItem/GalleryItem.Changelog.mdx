@@ -1,10 +1,73 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Molecules/Gallery Item [v1.2.0]/Changelog" />
+<Meta title="Molecules/Gallery Item [v1.3.0]/Changelog" />
 
 # Changelog
 
 <br />
+
+## [1.3.0] - 2026-08-05
+
+<br />
+
+### Gallery Meta Truncation, Clock Icon, and Proportion Tuning
+
+This release updates gallery metadata readability and consistency by replacing the read-time play icon with a clock icon, enforcing line-clamp behavior for long text, and tightening tablet/desktop height proportions relative to phone cards.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Changed`</td>
+      <td>`GalleryItem.js`</td>
+      <td>Replaced the read-time icon from `play` to `clock` in the gallery metadata row.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`gallery-item.css`</td>
+      <td>Applied one-line ellipsis truncation for title text and two-line clamp truncation for short description text.</td>
+    </tr>
+    <tr>
+      <td>`Changed`</td>
+      <td>`GalleryItem.js`</td>
+      <td>Adjusted category-based gallery heights so tablet cards are only slightly larger than phone cards and desktop cards stay close to tablet sizing.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`Iconography.js`</td>
+      <td>Added `clock` icon glyph support in both icon registry implementations for consistent icon availability.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`GalleryItem.stories.js`</td>
+      <td>Added `LongContentTruncation` story to validate title and description overflow behavior visually.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Clock Icon Registry Entry:** Introduced `clock` icon support in both iconography registry layers used by `ds-icon`.
+- **Truncation Story Coverage:** Added a dedicated long-content story for manual and visual regression checks.
+
+### Changed
+- **Read-Time Meta Icon:** Read-time now uses a clock icon to better reflect duration semantics.
+- **Title Overflow Rule:** Title text is now single-line only with ellipsis overflow.
+- **Description Overflow Rule:** Description text is capped to two lines with ellipsis overflow.
+- **Tablet/Desktop Proportions:** Tablet and desktop gallery heights now track closely, with tablet remaining slightly larger than phone.
+
+---
 
 ## [1.2.0] - 2026-07-23
 

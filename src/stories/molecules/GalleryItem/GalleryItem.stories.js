@@ -6,7 +6,7 @@ import { DEVICE_CATALOG } from '../../atoms/Thumbnail/Thumbnail.js';
 import './GalleryItem';
 
 export default {
-  title: 'Molecules/Gallery Item [v1.2.0]',
+  title: 'Molecules/Gallery Item [v1.3.0]',
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -163,7 +163,7 @@ export default {
       <div style="padding: 0 50px; display: flex; justify-content: center; background: transparent; min-height: 600px; width: 100%; box-sizing: border-box; align-items: center;">
         <ds-gallery-item 
           style="--device-h-gallery: 450px;" 
-          title="${args.title}"
+          case-title="${args.title}"
           short-desc="${args.shortDesc}"
           read-time="${args.readTime}"
           thumb-src="${args.thumbSrc}"
@@ -336,6 +336,39 @@ export const VideoThumbnailOnly = {
     readTime: '2 min',
     thumbSrc: '',
     thumbVideoSrc: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    thumbCategory: 'mobile',
+    thumbBrand: 'apple',
+    thumbModel: 'Apple iPhone 12',
+    thumbColor: 'Black',
+    thumbDeviceSrc: '',
+    thumbCustomOnly: false,
+    showTitle: true,
+    showShortDesc: true,
+    showReadTime: true,
+    showThumbnail: true,
+    aspectRatio: '',
+    hasVideo: true,
+    hasRepo: false,
+    hasLive: false,
+    isProtected: false,
+    isUnlocked: false,
+  },
+};
+
+export const LongContentTruncation = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Validates metadata truncation rules: title is forced to a single line with ellipsis and description is clamped to two lines with ellipsis.',
+      },
+    },
+  },
+  args: {
+    title: 'Template Mixed Summary Reader with Extra Metadata to Prove Single-Line Ellipsis Behavior',
+    shortDesc: 'Mixed mode template with summary markers and full reader body enabled, plus additional descriptive context to ensure text clamps after two lines and never pushes the gallery layout out of alignment.',
+    readTime: '8 min',
+    thumbSrc: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop',
+    thumbVideoSrc: '',
     thumbCategory: 'mobile',
     thumbBrand: 'apple',
     thumbModel: 'Apple iPhone 12',

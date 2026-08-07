@@ -88,7 +88,7 @@ export class DsItemRow extends HTMLElement {
 
   _handleKeyDown(e) {
     if (this.hasAttribute('disabled')) return;
-    const controlType = this.getAttribute('control') || 'none';
+    const controlType = this._resolveControlType();
 
     if (controlType === 'none' && (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter')) {
       e.preventDefault();
@@ -103,11 +103,19 @@ export class DsItemRow extends HTMLElement {
       return;
     }
 
-    const controlType = this.getAttribute('control') || 'none';
+    const controlType = this._resolveControlType();
     const isDirectControlClick = e.target.closest && e.target.closest('.control-container');
 
     if (controlType === 'toggle') {
       if (!isDirectControlClick) {
+        const toggleEl = this.controlContainer?.querySelector('ds-toggle');
+        const toggleInputEl = toggleEl?.shadowRoot?.querySelector('input[type="checkbox"]');
+
+        if (toggleInputEl) {
+          toggleInputEl.click();
+          return;
+        }
+
         const newActive = !this.hasAttribute('active');
         this.toggleAttribute('active', newActive);
 
@@ -178,7 +186,7 @@ export class DsItemRow extends HTMLElement {
   updateAttributes() {
     const isDisabled = this.hasAttribute('disabled');
     const ariaLabel = this.getAttribute('aria-label');
-    const controlAttr = this.getAttribute('control') || 'none';
+    const controlAttr = this._resolveControlType();
     const labelText = this.getAttribute('label') || '';
     const effectiveLabel = labelText || ariaLabel || 'Option';
 
@@ -312,6 +320,13 @@ export class DsItemRow extends HTMLElement {
         this.controlContainer.innerHTML = '';
       }
     }
+  }
+
+  _resolveControlType() {
+    const rawControl = (this.getAttribute('control') || 'none').trim().toLowerCase();
+    if (rawControl === 'font-size') return 'toggle';
+    if (rawControl === 'switch') return 'toggle';
+    return rawControl;
   }
 }
 

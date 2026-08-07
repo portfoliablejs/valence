@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: var(--ds-toc-line-gap, 16px);
+  gap: var(--ds-toc-line-gap, 22px);
   padding: var(--space-xs, 4px);
   cursor: pointer;
   user-select: none;
@@ -47,17 +47,28 @@
               height var(--anim-fast, 0.2s) var(--ease-fluid);
 }
 
+.minimap-line-top {
+  width: var(--ds-toc-top-line-width, 28px);
+  margin-bottom: var(--ds-toc-top-line-gap, 14px);
+}
+
 /* Apple Minimap Level Width Allocations */
-.minimap-line[data-level="1"] { width: 26px; }
-.minimap-line[data-level="2"] { width: 18px; }
-.minimap-line[data-level="3"] { width: 12px; }
-.minimap-line[data-level="4"] { width: 8px; }
+.minimap-line[data-level="1"] { width: 22px; }
+.minimap-line[data-level="2"] { width: 15px; }
+.minimap-line[data-level="3"] { width: 10px; }
+.minimap-line[data-level="4"] { width: 7px; }
 
 /* Active Minimap Line */
 .minimap-line.active {
   height: 2px;
   background-color: var(--ds-toc-line-active-color, var(--color-black, #000000));
 }
+
+.minimap-line.active[data-level="1"] { width: 28px; }
+.minimap-line.active[data-level="2"] { width: 20px; }
+.minimap-line.active[data-level="3"] { width: 14px; }
+.minimap-line.active[data-level="4"] { width: 10px; }
+.minimap-line.active[data-level="top"] { width: var(--ds-toc-top-line-width, 28px); }
 
 /* Fade minimap when TOC menu is opened */
 .toc-wrapper:hover .minimap-strip,

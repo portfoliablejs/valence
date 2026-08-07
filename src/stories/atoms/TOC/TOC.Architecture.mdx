@@ -6,6 +6,8 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The `ds-toc` component is a **controlled** Atom designed to render an Apple-like document minimap strip that expands into a floating navigation overlay (`ds-contextual-menu`). It automatically scans document heading elements (`<h1>`–`4>`), monitors scrolling via `IntersectionObserver`, highlights active content sections, and provides smooth programmatic scroll navigation.
 
+The minimap includes a dedicated top action line (`scroll-top`) above heading lines. This line maps to the contextual-menu action label `Top of the page` and is promoted to active state when scroll position is at the top threshold.
+
 ---
 
 ## Principles
@@ -14,6 +16,7 @@ The `ds-toc` component is a **controlled** Atom designed to render an Apple-like
 The component strictly adheres to the **State In / Events Out** pattern:
 * **State In (Attributes / Properties):** The host binds `opened`, `title-text`, `target-selector`, `max-height`, `aria-label`, or programmatically injects an array of `items` heading objects downstream.
 * **Events Out:** Selecting a section heading dispatches a composed `ds-toc-select` custom event with heading metadata. Selecting the "Scroll to top" option dispatches `ds-toc-scroll-top`.
+* **Events Out:** Selecting a section heading dispatches a composed `ds-toc-select` custom event with heading metadata. Selecting the `Top of the page` option dispatches `ds-toc-scroll-top`.
 
 <mermaid-diagram chart={`
   flowchart TD
@@ -108,4 +111,16 @@ export interface DsTocSubAtomicHooks {
   '--ds-toc-line-active-color'?: string;
   '--ds-toc-line-height'?: string;
   '--ds-toc-line-gap'?: string;
+  '--ds-toc-top-line-width'?: string;
+  '--ds-toc-top-line-gap'?: string;
+}
+
+export interface DsTocMenuOptionIds {
+  topAction: 'scroll-top';
+  headings: string[];
+}
+
+export interface DsTocActiveRules {
+  topThresholdPx: number; // default <= 12
+  bottomThresholdPx: number; // host/app may define container-specific bottom handling
 }

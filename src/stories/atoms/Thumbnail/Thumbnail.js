@@ -385,10 +385,16 @@ export class Thumbnail extends HTMLElement {
     this.screenVideoEl.loop = false;
     this.screenVideoEl.playsInline = true;
     this.screenVideoEl.muted = true;
+    this._onScreenVideoCanPlay = () => {
+      if (!this.screenVideoEl || !this.hasAttribute('autoplay')) return;
+      if (!this.screenVideoEl.paused) return;
+      this.screenVideoEl.play().catch(() => {});
+    };
 
     this.screenVideoEl.addEventListener('error', () => {
       this.screenVideoEl.hidden = true;
     });
+    this.screenVideoEl.addEventListener('canplay', this._onScreenVideoCanPlay);
   }
 
   connectedCallback() {
@@ -557,7 +563,12 @@ export class Thumbnail extends HTMLElement {
       if (this.screenVideoEl.src !== screenVideo) {
         this.screenVideoEl.src = screenVideo;
       }
-      this.screenVideoEl.pause();
+      this.screenVideoEl.autoplay = this.hasAttribute('autoplay');
+      this.screenVideoEl.preload = 'auto';
+      this.screenVideoEl.load();
+      if (!this.hasAttribute('autoplay')) {
+        this.screenVideoEl.pause();
+      }
     } else {
       this.screenVideoEl.pause();
       this.screenVideoEl.removeAttribute('src');

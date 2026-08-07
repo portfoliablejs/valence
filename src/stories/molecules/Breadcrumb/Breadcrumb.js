@@ -324,9 +324,9 @@ export class Breadcrumb extends HTMLElement {
           menu.items = itemMenuItems.map((menuItem, menuIdx) => ({
             id: menuItem.id || `item-${menuIdx}`,
             label: menuItem.label || menuItem,
-            icon: 'chevron-right',
-            iconVariant: 'fill',
-            showIcon: true,
+            icon: menuItem.icon || crumb.menuItemIcon || '',
+            iconVariant: menuItem.iconVariant || crumb.menuItemIconVariant || 'fill',
+            showIcon: typeof menuItem.showIcon === 'boolean' ? menuItem.showIcon : (typeof crumb.menuItemShowIcon === 'boolean' ? crumb.menuItemShowIcon : false),
             control: 'none'
           }));
 

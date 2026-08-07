@@ -12,6 +12,7 @@
   max-width: 100%;
   box-sizing: border-box;
   overflow: visible;
+  background: transparent;
 }
 
 .header-content {
@@ -23,6 +24,7 @@
   padding: var(--ds-header-padding, 24px 28px);
   box-sizing: border-box;
   overflow: visible;
+  background: transparent;
 }
 
 .breadcrumb-region {
@@ -32,6 +34,7 @@
   min-width: 0;
   flex: 1 1 auto;
   overflow: visible;
+  background: transparent;
 }
 
 .navigation-region {
@@ -41,6 +44,7 @@
   flex: 0 0 auto;
   margin-left: auto;
   overflow: visible;
+  background: transparent;
 }
 
 .breadcrumb-region[hidden] {

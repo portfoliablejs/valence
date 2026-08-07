@@ -157,6 +157,7 @@ export class Gallery extends HTMLElement {
         this._boundResize = this._handleResize.bind(this);
         this._boundClickCapture = this._handleClickCapture.bind(this);
         this._boundKeyDown = this._handleKeyDown.bind(this);
+        this._boundWheel = this._handleWheel.bind(this);
         this.shadowRoot.innerHTML = `
             <style>${css}</style>
             <div class="gallery-viewport" id="galleryViewport" tabindex="0" role="region" aria-label="Gallery">
@@ -171,6 +172,7 @@ export class Gallery extends HTMLElement {
         this.viewport.addEventListener('pointerdown', this._boundPointerDown);
         this.viewport.addEventListener('click', this._boundClickCapture, true);
         this.viewport.addEventListener('keydown', this._boundKeyDown);
+        this.viewport.addEventListener('wheel', this._boundWheel, { passive: false });
         window.addEventListener('resize', this._boundResize);
 
         this._observeRootAccessibility();
@@ -182,6 +184,7 @@ export class Gallery extends HTMLElement {
         this.viewport.removeEventListener('pointerdown', this._boundPointerDown);
         this.viewport.removeEventListener('click', this._boundClickCapture, true);
         this.viewport.removeEventListener('keydown', this._boundKeyDown);
+        this.viewport.removeEventListener('wheel', this._boundWheel);
         window.removeEventListener('resize', this._boundResize);
         this._stopMomentum();
         this._detachPointerListeners();
@@ -294,7 +297,7 @@ export class Gallery extends HTMLElement {
 
         sourceItems.forEach((item, index) => {
             const galleryItem = document.createElement('ds-gallery-item');
-            galleryItem.setAttribute('title', item.title || `Case ${index + 1}`);
+            galleryItem.setAttribute('case-title', item.title || `Case ${index + 1}`);
             galleryItem.setAttribute('short-desc', item.shortDesc || '');
             galleryItem.setAttribute('read-time', item.readTime || '');
             galleryItem.setAttribute('thumb-src', item.thumbSrc || '');
@@ -394,6 +397,26 @@ export class Gallery extends HTMLElement {
 
     _handleResize() {
         this._syncOffsetToBounds(true);
+    }
+
+    _handleWheel(event) {
+        if (!this.viewport || !this.track) return;
+
+        const canScroll = this.track.scrollWidth > this.viewport.clientWidth + 1;
+        if (!canScroll) return;
+
+        const dominantDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY)
+            ? event.deltaX
+            : event.deltaY;
+
+        if (!dominantDelta) return;
+
+        this._stopMomentum();
+        const nextOffset = this._clampOffset(this._offsetX - dominantDelta);
+        if (nextOffset === this._offsetX) return;
+
+        this._applyTransform(nextOffset, true, 180, 'cubic-bezier(0.22, 1, 0.36, 1)');
+        event.preventDefault();
     }
 
     _handlePointerDown(event) {

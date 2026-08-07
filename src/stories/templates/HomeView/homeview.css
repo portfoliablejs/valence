@@ -6,6 +6,9 @@
 
 .homeview-layout {
   width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header-wrap {
@@ -19,8 +22,10 @@
   width: 100%;
   max-width: 1160px;
   margin: 0 auto;
-  --homeview-footer-reserved-space: clamp(96px, 14dvh, 132px);
-  padding: clamp(8px, 2dvh, 16px) 28px calc(var(--homeview-footer-reserved-space) + env(safe-area-inset-bottom));
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(8px, 2dvh, 16px) 28px calc(16px + env(safe-area-inset-bottom));
   box-sizing: border-box;
 }
 
@@ -37,7 +42,8 @@
 .gallery-wrap {
   width: 100%;
   margin-bottom: clamp(10px, 2.2dvh, 20px);
-  --homeview-gallery-scale: clamp(0.38, calc((100dvh - 180px) / 520), 1);
+  flex: 1 1 auto;
+  --homeview-gallery-scale: clamp(0.342, calc((100dvh - 180px) / 578), 0.9);
 }
 
 .gallery-scale-shell {
@@ -55,16 +61,13 @@
 }
 
 .footer-wrap {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 14px;
-  width: calc(100% - 56px);
-  max-width: 1160px;
-  margin: 0;
+  width: 100%;
+  margin: auto 0 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  z-index: 10;
 }
 
 /* Mirrors the global footer text token for shadow DOM usage in this template. */
@@ -76,14 +79,16 @@
 }
 
 .homeview-footer {
-  margin: 0;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
   color: var(--color-gray-med);
   opacity: var(--opacity-medium, 0.6);
 }
 
 @media (max-width: 900px) {
   .homeview-shell {
-    padding: clamp(8px, 1.8dvh, 14px) 20px calc(var(--homeview-footer-reserved-space) + env(safe-area-inset-bottom));
+    padding: clamp(8px, 1.8dvh, 14px) 20px calc(16px + env(safe-area-inset-bottom));
   }
 
   .header-wrap {
@@ -97,14 +102,10 @@
   .gallery-wrap {
     margin-bottom: 16px;
   }
-
-  .footer-wrap {
-    width: calc(100% - 40px);
-  }
 }
 
 @media (max-width: 1200px) {
   .gallery-wrap ds-gallery {
-    --gallery-item-gap: clamp(20px, 2.6vw, 44px);
+    --gallery-item-gap: clamp(23px, 2.94vw, 50px);
   }
 }

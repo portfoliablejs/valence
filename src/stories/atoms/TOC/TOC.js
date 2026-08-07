@@ -170,6 +170,11 @@ export class DsToc extends HTMLElement {
   _handleWindowScroll() {
     if (!this._items || this._items.length === 0) return;
 
+    if (window.scrollY <= 12) {
+      this._setActiveHeading('scroll-top');
+      return;
+    }
+
     const scrollPosition = window.innerHeight + window.scrollY;
     const totalHeight = document.documentElement.scrollHeight;
 
@@ -188,6 +193,8 @@ export class DsToc extends HTMLElement {
       (entries) => {
         // Skip normal observer logic if user is at bottom of page
         const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 30);
+        const isAtTop = window.scrollY <= 12;
+        if (isAtTop) return;
         if (isAtBottom) return;
 
         entries.forEach((entry) => {
@@ -228,7 +235,8 @@ export class DsToc extends HTMLElement {
     if (!this.minimapEl || !this.menuEl) return;
 
     // 1. Render Thin Apple-style Minimap Lines
-    this.minimapEl.innerHTML = this._items.map((item) => {
+    const topIsSelected = this._activeId === 'scroll-top';
+    const headingLines = this._items.map((item) => {
       const labelText = item.label || item.text || '';
       const isSelected = item.id === this._activeId || item.active === true || item.selected === true;
       return `
@@ -241,14 +249,26 @@ export class DsToc extends HTMLElement {
       `;
     }).join('');
 
+    this.minimapEl.innerHTML = `
+      <div
+        class="minimap-line minimap-line-top ${topIsSelected ? 'active' : ''}"
+        data-level="top"
+        data-id="scroll-top"
+        title="Top of the page">
+      </div>
+      ${headingLines}
+    `;
+
     // 2. Map Headings to ds-contextual-menu Format using ds-item-row with selected: true
     const menuOptions = [
       {
         id: 'scroll-top',
-        label: 'Scroll to top',
+        label: 'Top of the page',
         showIcon: false,
         showKbd: false,
         control: 'none',
+        active: topIsSelected,
+        selected: topIsSelected,
         category: 'main'
       },
       ...this._items.map((item) => {
@@ -277,6 +297,7 @@ export class DsToc extends HTMLElement {
     if (!selectedDetail || !selectedDetail.id) return;
 
     if (selectedDetail.id === 'scroll-top') {
+      this._setActiveHeading('scroll-top');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       this.dispatchEvent(
         new CustomEvent('ds-toc-scroll-top', {

@@ -66,6 +66,18 @@ export class PlayerView extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this._track = null;
+    this._caseMenuItems = [];
+    this._videoMenuItems = [];
+    this._caseMenuHeader = 'Case studies';
+    this._caseMenuCategory = 'SELECT CASE';
+    this._videoMenuHeader = 'Videos';
+    this._videoMenuCategory = 'SELECT VIDEO';
+    this._caseMenuIcon = '';
+    this._caseMenuIconVariant = 'fill';
+    this._caseMenuShowIcon = false;
+    this._videoMenuIcon = '';
+    this._videoMenuIconVariant = 'fill';
+    this._videoMenuShowIcon = false;
     this._subtitleEnabled = false;
     this._isMediaReady = false;
     this._lastVideoSrc = '';
@@ -76,8 +88,6 @@ export class PlayerView extends HTMLElement {
     this._seekProgressFrame = null;
     this._uiHideTimer = null;
     this._uiHideDelayMs = 1800;
-    this._darkModeRegistered = false;
-    this._didForceRootDarkMode = false;
 
     this.shadowRoot.innerHTML = `
       <style>${typographyCss}</style>
@@ -118,7 +128,6 @@ export class PlayerView extends HTMLElement {
   }
 
   connectedCallback() {
-    this._enableRootDarkModeSetting();
     this._observeRootAccessibility();
     this._bindPointerActivity();
     this.render();
@@ -126,7 +135,6 @@ export class PlayerView extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this._disableRootDarkModeSetting();
     if (this._themeObserver) {
       this._themeObserver.disconnect();
     }
@@ -163,6 +171,74 @@ export class PlayerView extends HTMLElement {
 
   get showBreadcrumb() {
     return this.getAttribute('show-breadcrumb') !== 'false';
+  }
+
+  get caseMenuItems() {
+    return this._caseMenuItems;
+  }
+
+  set caseMenuItems(items) {
+    this._caseMenuItems = Array.isArray(items) ? items : [];
+    this.render();
+  }
+
+  get videoMenuItems() {
+    return this._videoMenuItems;
+  }
+
+  set videoMenuItems(items) {
+    this._videoMenuItems = Array.isArray(items) ? items : [];
+    this.render();
+  }
+
+  set caseMenuHeader(value) {
+    this._caseMenuHeader = typeof value === 'string' && value.trim().length > 0 ? value : 'Case studies';
+    this.render();
+  }
+
+  set caseMenuCategory(value) {
+    this._caseMenuCategory = typeof value === 'string' && value.trim().length > 0 ? value : 'SELECT CASE';
+    this.render();
+  }
+
+  set videoMenuHeader(value) {
+    this._videoMenuHeader = typeof value === 'string' && value.trim().length > 0 ? value : 'Videos';
+    this.render();
+  }
+
+  set videoMenuCategory(value) {
+    this._videoMenuCategory = typeof value === 'string' && value.trim().length > 0 ? value : 'SELECT VIDEO';
+    this.render();
+  }
+
+  set caseMenuIcon(value) {
+    this._caseMenuIcon = typeof value === 'string' ? value.trim() : '';
+    this.render();
+  }
+
+  set caseMenuIconVariant(value) {
+    this._caseMenuIconVariant = typeof value === 'string' && value.trim().length > 0 ? value : 'fill';
+    this.render();
+  }
+
+  set caseMenuShowIcon(value) {
+    this._caseMenuShowIcon = typeof value === 'boolean' ? value : false;
+    this.render();
+  }
+
+  set videoMenuIcon(value) {
+    this._videoMenuIcon = typeof value === 'string' ? value.trim() : '';
+    this.render();
+  }
+
+  set videoMenuIconVariant(value) {
+    this._videoMenuIconVariant = typeof value === 'string' && value.trim().length > 0 ? value : 'fill';
+    this.render();
+  }
+
+  set videoMenuShowIcon(value) {
+    this._videoMenuShowIcon = typeof value === 'boolean' ? value : false;
+    this.render();
   }
 
   get showControls() {
@@ -202,49 +278,29 @@ export class PlayerView extends HTMLElement {
   _buildBreadcrumbItems() {
     return [
       { id: 'home', label: 'Home', hasMenu: false },
-      { id: 'case', label: this.caseTitle, hasMenu: false },
-      { id: 'video', label: this.videoTitle, hasMenu: false }
-    ];
-  }
-
-  _enableRootDarkModeSetting() {
-    if (this._darkModeRegistered) return;
-
-    const root = this.ownerDocument?.documentElement;
-    if (!root) return;
-
-    const count = Number.parseInt(root.dataset.playerViewForcedDarkCount || '0', 10) || 0;
-    const wasEnabled = root.classList.contains('a11y-dark-mode');
-
-    root.dataset.playerViewForcedDarkCount = String(count + 1);
-    if (!wasEnabled) {
-      root.classList.add('a11y-dark-mode');
-      this._didForceRootDarkMode = true;
-    }
-
-    this._darkModeRegistered = true;
-  }
-
-  _disableRootDarkModeSetting() {
-    if (!this._darkModeRegistered) return;
-
-    const root = this.ownerDocument?.documentElement;
-    if (!root) return;
-
-    const currentCount = Number.parseInt(root.dataset.playerViewForcedDarkCount || '0', 10) || 0;
-    const nextCount = Math.max(0, currentCount - 1);
-
-    if (nextCount === 0) {
-      delete root.dataset.playerViewForcedDarkCount;
-      if (this._didForceRootDarkMode) {
-        root.classList.remove('a11y-dark-mode');
+      {
+        id: 'case',
+        label: this.caseTitle,
+        hasMenu: this._caseMenuItems.length > 0,
+        menuItems: this._caseMenuItems,
+        menuHeader: this._caseMenuHeader,
+        subcategoryTitle: this._caseMenuCategory,
+        menuItemIcon: this._caseMenuIcon,
+        menuItemIconVariant: this._caseMenuIconVariant,
+        menuItemShowIcon: this._caseMenuShowIcon
+      },
+      {
+        id: 'video',
+        label: this.videoTitle,
+        hasMenu: this._videoMenuItems.length > 0,
+        menuItems: this._videoMenuItems,
+        menuHeader: this._videoMenuHeader,
+        subcategoryTitle: this._videoMenuCategory,
+        menuItemIcon: this._videoMenuIcon,
+        menuItemIconVariant: this._videoMenuIconVariant,
+        menuItemShowIcon: this._videoMenuShowIcon
       }
-    } else {
-      root.dataset.playerViewForcedDarkCount = String(nextCount);
-    }
-
-    this._darkModeRegistered = false;
-    this._didForceRootDarkMode = false;
+    ];
   }
 
   _observeRootAccessibility() {
@@ -685,6 +741,10 @@ export class PlayerView extends HTMLElement {
         this.videoEl.pause();
         this.videoEl.currentTime = 0;
         this.seekBarEl.setAttribute('percent', '0');
+        this.dispatchEvent(new CustomEvent('ds-breadcrumb-return', {
+          bubbles: true,
+          composed: true
+        }));
         break;
       default:
         break;

@@ -37,6 +37,7 @@ export default {
   argTypes: {
     kicker: { control: 'text', table: { category: 'Article Content' } },
     titleText: { control: 'text', name: 'title-text', table: { category: 'Article Content' } },
+    subtitleText: { control: 'text', name: 'subtitle-text', table: { category: 'Article Content' } },
     primaryLabel: { control: 'text', name: 'primary-label', table: { category: 'Article Actions' } },
     secondary1Label: { control: 'text', name: 'secondary1-label', table: { category: 'Article Actions' } },
     secondary2Label: { control: 'text', name: 'secondary2-label', table: { category: 'Article Actions' } },
@@ -49,6 +50,7 @@ export default {
   args: {
     kicker: '2026',
     titleText: 'Unified Case View Flow',
+    subtitleText: 'A template-level case layout that keeps story composition aligned with the app runtime.',
     primaryLabel: 'Watch Pitch',
     secondary1Label: 'Repository',
     secondary2Label: 'Live Demo',
@@ -59,10 +61,17 @@ export default {
     showNavigator: true,
   },
   render: (args) => html`
-    <div style="width: 100%; min-height: 100vh; background: var(--color-bg, #fff); box-sizing: border-box;">
+    <style>
+      html, body, #root, #storybook-root, .sb-show-main {
+        background: transparent !important;
+      }
+    </style>
+    <div style="width: 100%; height: 100vh; background: transparent; box-sizing: border-box; overflow: hidden;">
       <ds-case-view
+        style="display: block; width: 100%; height: 100%;"
         kicker=${args.kicker}
         title-text=${args.titleText}
+        subtitle-text=${args.subtitleText}
         primary-label=${args.primaryLabel}
         secondary1-label=${args.secondary1Label}
         secondary2-label=${args.secondary2Label}
@@ -72,7 +81,7 @@ export default {
         show-player=${args.showPlayer ? 'true' : 'false'}
         show-navigator=${args.showNavigator ? 'true' : 'false'}>
         <ds-thumbnail
-          slot="thumbnail"
+          slot="cover"
           category="mobile"
           brand="apple"
           model="Apple iPhone 15"
@@ -113,8 +122,10 @@ export const Default = {
       const shadow = caseView.shadowRoot;
       const header = shadow.querySelector('ds-header');
       const article = shadow.querySelector('ds-article');
+      const subtitle = article.getAttribute('subtitle-text');
       expect(header).toBeTruthy();
       expect(article).toBeTruthy();
+      expect(subtitle).toBeTruthy();
     });
 
     await step('Pass breadcrumb and article events through the template boundary', async () => {

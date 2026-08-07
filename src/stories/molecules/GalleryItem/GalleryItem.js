@@ -8,6 +8,7 @@ export class GalleryItem extends HTMLElement {
   static get observedAttributes() {
     return [
       'title',
+      'case-title',
       'short-desc',
       'read-time',
       'thumb-src',
@@ -35,8 +36,8 @@ export class GalleryItem extends HTMLElement {
     const map = {
       wearable: '26vh',
       mobile: '40vh',
-      tablet: '46vh',
-      desktop: '32vh',
+      tablet: '45vh',
+      desktop: '44vh',
       television: '30vh',
     };
 
@@ -58,7 +59,7 @@ export class GalleryItem extends HTMLElement {
               <span class="title-text"></span>
             </h4>
             <span class="gallery-read-time">
-              <ds-icon name="play" size="10"></ds-icon>
+              <ds-icon name="clock" size="10"></ds-icon>
               <span class="read-time-text"></span>
             </span>
           </div>
@@ -83,8 +84,36 @@ export class GalleryItem extends HTMLElement {
     this.dispatchEvent(new CustomEvent('ds-case-select', { bubbles: true, composed: true }));
   }
 
-  connectedCallback() { this.render(); }
-  attributeChangedCallback() { this.render(); }
+  connectedCallback() {
+    if (this.hasAttribute('title') && !this.hasAttribute('case-title')) {
+      this.setAttribute('case-title', this.getAttribute('title') || '');
+    }
+    this.removeAttribute('title');
+    this._observeRootAccessibility();
+    this.render();
+  }
+
+  disconnectedCallback() {
+    if (this._themeObserver) {
+      this._themeObserver.disconnect();
+      this._themeObserver = null;
+    }
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue === newValue) return;
+
+    if (name === 'title') {
+      if (newValue !== null && !this.hasAttribute('case-title')) {
+        this.setAttribute('case-title', newValue);
+      }
+      this.removeAttribute('title');
+      this.render();
+      return;
+    }
+
+    this.render();
+  }
 
   parseToggleAttr(name, defaultValue = true) {
     const raw = this.getAttribute(name);
@@ -97,8 +126,25 @@ export class GalleryItem extends HTMLElement {
     return defaultValue;
   }
 
+  _observeRootAccessibility() {
+    const root = this.ownerDocument.documentElement;
+    const sync = () => {
+      this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
+      this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
+      this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
+      this.toggleAttribute('a11y-dyslexia', root.classList.contains('a11y-dyslexia'));
+      this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
+      this.toggleAttribute('a11y-focus-mode', root.classList.contains('a11y-focus-mode'));
+      this.toggleAttribute('a11y-forced-colors', root.classList.contains('a11y-forced-colors'));
+    };
+
+    sync();
+    this._themeObserver = new MutationObserver(sync);
+    this._themeObserver.observe(root, { attributes: true, attributeFilter: ['class'] });
+  }
+
   render() {
-    const title = this.getAttribute('title') || 'Case Title';
+    const title = this.getAttribute('case-title') || this.getAttribute('title') || 'Case Title';
     const shortDesc = this.getAttribute('short-desc') || '';
     const readTime = this.getAttribute('read-time') || '';
     const thumbSrc = this.getAttribute('thumb-src') || '';
@@ -171,7 +217,7 @@ export class GalleryItem extends HTMLElement {
     const descEl = this.shadowRoot.querySelector('.gallery-item-shortdesc');
     descEl.textContent = isLocked ? 'Protected content placeholder.' : shortDesc;
     descEl.classList.toggle('locked-shortdesc', isLocked);
-    descEl.style.display = showShortDesc ? 'block' : 'none';
+    descEl.style.display = showShortDesc ? '' : 'none';
 
     // Read Time
     const readTimeEl = this.shadowRoot.querySelector('.gallery-read-time');

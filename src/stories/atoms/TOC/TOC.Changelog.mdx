@@ -6,6 +6,28 @@ import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
 
 <br />
 
+## [1.2.0] - 2026-08-06
+
+<br />
+
+### Top Action Minimap Line, Label Update, and Active-State Consistency
+
+Expanded `ds-toc` minimap behavior so the top action appears as its own dedicated line above all heading lines, renamed the top action label to clearer user language, and aligned active-state behavior at top-of-page across minimap and menu states.
+
+<br />
+
+### Added
+- **Dedicated Top Minimap Line:** Added a separate `scroll-top` minimap line rendered above heading lines, with its own spacing and width token hooks.
+
+### Changed
+- **Top Action Label:** Renamed contextual-menu action from `Scroll to top` to `Top of the page`.
+- **Minimap Visual Hierarchy:** Increased default minimap line gap and updated selected/unselected heading line widths while preserving baseline line thickness behavior.
+
+### Fixed
+- **Top Active-State Drift:** Ensured the `scroll-top` line becomes active when viewport/page scroll position is at the top threshold, preventing first-heading auto-selection when at top.
+
+---
+
 ## [1.1.0] - 2026-07-22
 
 <br />

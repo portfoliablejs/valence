@@ -59,6 +59,12 @@
   --ds-button-active-bg: var(--ds-navigation-icon-active-bg, rgba(0, 0, 0, 0.14));
 }
 
+:host([a11y-dark-mode]) .menu-actions ds-button {
+  --color-text-muted: var(--ds-navigation-icon-color-dark, var(--color-text-secondary, #F5F5F5));
+  --ds-button-hover-bg: var(--ds-navigation-icon-hover-bg-dark, rgba(255, 255, 255, 0.12));
+  --ds-button-active-bg: var(--ds-navigation-icon-active-bg-dark, rgba(255, 255, 255, 0.22));
+}
+
 .menu-divider {
   display: inline-flex;
   align-items: center;

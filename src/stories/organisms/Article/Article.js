@@ -2,7 +2,6 @@ import css from './article.css?inline';
 import '../../sub-atomic/Iconography/Iconography.js';
 import '../../atoms/Button/Button.js';
 import '../../atoms/TOC/TOC.js';
-import '../../atoms/Thumbnail/Thumbnail.js';
 import '../../molecules/Tooltip/Tooltip.js';
 
 // Import Prism.js Core & All Common Language Grammars
@@ -28,6 +27,7 @@ export class Article extends HTMLElement {
       'aria-label',
       'kicker',
       'title-text',
+      'subtitle-text',
       'primary-label',
       'primary-icon',
       'secondary1-label',
@@ -41,6 +41,7 @@ export class Article extends HTMLElement {
       'show-action-primary',
       'show-action-secondary1',
       'show-action-secondary2',
+      'show-cover',
       'show-summary',
       'show-player',
       'show-toc',
@@ -51,21 +52,48 @@ export class Article extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this._onScroll = this._onScroll.bind(this);
-    this._animateScrollProgress = this._animateScrollProgress.bind(this);
-    this._thumbnailProgress = 0;
-    this._targetThumbnailProgress = 0;
-    this._scrollRaf = null;
-    
-    // Single compressed line Shadow DOM string including <ds-toc> floating element
-    this.shadowRoot.innerHTML = `<style>${css}</style><article class="ds-article"><ds-toc class="article-toc" target-selector="ds-article"></ds-toc><section class="article-body-layout"><div class="thumbnail-column"><slot name="thumbnail"></slot></div><div class="content-column"><header class="article-header"><div class="kicker-container"><span class="kicker-text"></span></div><div class="title-row"><h1 class="article-title"></h1><div class="social-actions"><div class="tooltip-wrapper wrapper-share"><ds-button variant="tertiary" has-text="false" has-icon icon="share" icon-variant="outline" class="btn-share" aria-label="Share"></ds-button><ds-tooltip text="Share" position="bottom"></ds-tooltip></div><div class="tooltip-wrapper wrapper-linkedin"><ds-button variant="tertiary" has-text="false" has-icon icon="linkedin" icon-variant="outline" class="btn-linkedin" aria-label="LinkedIn"></ds-button><ds-tooltip text="LinkedIn" position="bottom"></ds-tooltip></div><div class="tooltip-wrapper wrapper-x"><ds-button variant="tertiary" has-text="false" has-icon icon="x" icon-variant="outline" class="btn-x" aria-label="X"></ds-button><ds-tooltip text="X" position="bottom"></ds-tooltip></div><div class="tooltip-wrapper wrapper-facebook"><ds-button variant="tertiary" has-text="false" has-icon icon="facebook" icon-variant="outline" class="btn-facebook" aria-label="Facebook"></ds-button><ds-tooltip text="Facebook" position="bottom"></ds-tooltip></div></div></div><div class="main-actions"><div class="tooltip-wrapper primary-wrapper"><ds-button variant="primary" class="btn-primary" icon="play-fill"></ds-button><ds-tooltip class="tooltip-primary" text="Watch Pitch" position="bottom" show-kbd kbd-label="Enter" kbd-key="Enter"></ds-tooltip></div><div class="tooltip-wrapper secondary1-wrapper"><ds-button variant="secondary" class="btn-secondary1"></ds-button><ds-tooltip class="tooltip-secondary1" text="Repository" position="bottom"></ds-tooltip></div><div class="tooltip-wrapper secondary2-wrapper"><ds-button variant="secondary" class="btn-secondary2"></ds-button><ds-tooltip class="tooltip-secondary2" text="Live Demo" position="bottom"></ds-tooltip></div></div></header><section class="article-summary-container"><slot name="summary"></slot></section><section class="article-player-container"><slot name="player"></slot></section><section class="article-body"><slot></slot></section></div></section><footer class="article-navigator"><div class="navigator-container"><slot name="navigator"></slot></div></footer></article>`;
+    this.shadowRoot.innerHTML = `
+      <style>${css}</style>
+      <article class="ds-article">
+        <ds-toc class="article-toc" target-selector="ds-article"></ds-toc>
+        <section class="article-body-layout">
+          <div class="content-column">
+            <header class="article-header">
+              <div class="kicker-container"><span class="kicker-text"></span></div>
+              <div class="title-block">
+                <h1 class="article-title"></h1>
+                <h2 class="article-subtitle"></h2>
+              </div>
+              <div class="main-actions">
+                <div class="tooltip-wrapper primary-wrapper"><ds-button variant="primary" class="btn-primary" icon="play-fill"></ds-button><ds-tooltip class="tooltip-primary" text="Watch Pitch" position="bottom" show-kbd kbd-label="Enter" kbd-key="Enter"></ds-tooltip></div>
+                <div class="tooltip-wrapper secondary1-wrapper"><ds-button variant="secondary" class="btn-secondary1"></ds-button><ds-tooltip class="tooltip-secondary1" text="Repository" position="bottom"></ds-tooltip></div>
+                <div class="tooltip-wrapper secondary2-wrapper"><ds-button variant="secondary" class="btn-secondary2"></ds-button><ds-tooltip class="tooltip-secondary2" text="Live Demo" position="bottom"></ds-tooltip></div>
+              </div>
+              <div class="social-actions">
+                <div class="tooltip-wrapper wrapper-share"><ds-button variant="tertiary" has-text="false" has-icon icon="share" icon-variant="outline" class="btn-share" aria-label="Share"></ds-button><ds-tooltip text="Share" position="bottom"></ds-tooltip></div>
+                <div class="tooltip-wrapper wrapper-linkedin"><ds-button variant="tertiary" has-text="false" has-icon icon="linkedin" icon-variant="outline" class="btn-linkedin" aria-label="LinkedIn"></ds-button><ds-tooltip text="LinkedIn" position="bottom"></ds-tooltip></div>
+                <div class="tooltip-wrapper wrapper-x"><ds-button variant="tertiary" has-text="false" has-icon icon="x" icon-variant="outline" class="btn-x" aria-label="X"></ds-button><ds-tooltip text="X" position="bottom"></ds-tooltip></div>
+                <div class="tooltip-wrapper wrapper-facebook"><ds-button variant="tertiary" has-text="false" has-icon icon="facebook" icon-variant="outline" class="btn-facebook" aria-label="Facebook"></ds-button><ds-tooltip text="Facebook" position="bottom"></ds-tooltip></div>
+              </div>
+            </header>
+            <section class="article-cover-container"><slot name="cover"></slot></section>
+            <section class="article-summary-container"><slot name="summary"></slot></section>
+            <section class="article-player-container"><slot name="player"></slot></section>
+            <section class="article-body"><slot></slot></section>
+          </div>
+        </section>
+        <footer class="article-navigator"><div class="navigator-container"><slot name="navigator"></slot></div></footer>
+      </article>
+    `;
 
     this.kickerEl = this.shadowRoot.querySelector('.kicker-text');
     this.titleEl = this.shadowRoot.querySelector('.article-title');
+    this.subtitleEl = this.shadowRoot.querySelector('.article-subtitle');
     this.tocEl = this.shadowRoot.querySelector('.article-toc');
     
     this.kickerContainer = this.shadowRoot.querySelector('.kicker-container');
-    this.titleRow = this.shadowRoot.querySelector('.title-row');
+    this.titleBlock = this.shadowRoot.querySelector('.title-block');
+    this.socialActions = this.shadowRoot.querySelector('.social-actions');
     
     this.wrapperShare = this.shadowRoot.querySelector('.wrapper-share');
     this.wrapperLinkedin = this.shadowRoot.querySelector('.wrapper-linkedin');
@@ -77,11 +105,10 @@ export class Article extends HTMLElement {
     this.wrapperSecondary1 = this.shadowRoot.querySelector('.secondary1-wrapper');
     this.wrapperSecondary2 = this.shadowRoot.querySelector('.secondary2-wrapper');
 
+  this.coverContainer = this.shadowRoot.querySelector('.article-cover-container');
     this.summaryContainer = this.shadowRoot.querySelector('.article-summary-container');
     this.playerContainer = this.shadowRoot.querySelector('.article-player-container');
     this.navigatorContainer = this.shadowRoot.querySelector('.article-navigator');
-    this.bodySlot = this.shadowRoot.querySelector('.article-body slot:not([name])');
-    this.thumbnailColumn = this.shadowRoot.querySelector('.thumbnail-column');
     this.contentColumn = this.shadowRoot.querySelector('.content-column');
     this.bodyLayout = this.shadowRoot.querySelector('.article-body-layout');
     this.articleRoot = this.shadowRoot.querySelector('.ds-article');
@@ -108,8 +135,6 @@ export class Article extends HTMLElement {
 
     this._observeRootAccessibility();
     this._setupSlotAndMutationObservers();
-    window.addEventListener('scroll', this._onScroll, { passive: true });
-    this._onScroll();
     this.render();
     this._highlightCodeBlocks();
 
@@ -124,11 +149,6 @@ export class Article extends HTMLElement {
   disconnectedCallback() {
     if (this._themeObserver) this._themeObserver.disconnect();
     if (this._contentObserver) this._contentObserver.disconnect();
-    if (this._scrollRaf) {
-      cancelAnimationFrame(this._scrollRaf);
-      this._scrollRaf = null;
-    }
-    window.removeEventListener('scroll', this._onScroll, { passive: true });
   }
 
   attributeChangedCallback() {
@@ -144,59 +164,6 @@ export class Article extends HTMLElement {
     this.shadowRoot.querySelector('.btn-linkedin').addEventListener('click', () => this.dispatchEvent(new CustomEvent('ds-article-share', { detail: { platform: 'linkedin' }, bubbles: true, composed: true })));
     this.shadowRoot.querySelector('.btn-x').addEventListener('click', () => this.dispatchEvent(new CustomEvent('ds-article-share', { detail: { platform: 'x' }, bubbles: true, composed: true })));
     this.shadowRoot.querySelector('.btn-facebook').addEventListener('click', () => this.dispatchEvent(new CustomEvent('ds-article-share', { detail: { platform: 'facebook' }, bubbles: true, composed: true })));
-  }
-
-  _onScroll() {
-    if (!this.thumbnailColumn || !this.articleRoot || !this.bodyLayout) return;
-
-    const threshold = 120;
-    const transitionRange = 240;
-    const rawProgress = (window.scrollY - threshold) / transitionRange;
-    const clamped = Math.min(1, Math.max(0, rawProgress));
-    const easedTarget = this._easeInOutCubic(clamped);
-
-    this._targetThumbnailProgress = easedTarget;
-    if (!this._scrollRaf) {
-      this._scrollRaf = requestAnimationFrame(this._animateScrollProgress);
-    }
-  }
-
-  _animateScrollProgress() {
-    this._scrollRaf = null;
-
-    const delta = this._targetThumbnailProgress - this._thumbnailProgress;
-    if (Math.abs(delta) <= 0.001) {
-      this._thumbnailProgress = this._targetThumbnailProgress;
-    } else {
-      this._thumbnailProgress += delta * 0.2;
-    }
-
-    this._applyThumbnailProgress(this._thumbnailProgress);
-
-    if (Math.abs(this._targetThumbnailProgress - this._thumbnailProgress) > 0.001) {
-      this._scrollRaf = requestAnimationFrame(this._animateScrollProgress);
-    }
-  }
-
-  _applyThumbnailProgress(progress) {
-    const hidden = progress >= 0.98;
-    const retracted = progress >= 0.95;
-
-    this.thumbnailColumn.classList.toggle('thumbnail-hidden', hidden);
-    this.articleRoot.classList.toggle('thumbnail-retracted', retracted);
-    this.bodyLayout.classList.toggle('thumbnail-retracted', retracted);
-
-    const normalized = progress.toFixed(3);
-    this.articleRoot.style.setProperty('--ds-article-thumbnail-progress', normalized);
-    this.bodyLayout.style.setProperty('--ds-article-thumbnail-progress', normalized);
-  }
-
-  _easeInOutCubic(value) {
-    if (value < 0.5) {
-      return 4 * value * value * value;
-    }
-
-    return 1 - Math.pow(-2 * value + 2, 3) / 2;
   }
 
   _observeRootAccessibility() {
@@ -340,6 +307,7 @@ export class Article extends HTMLElement {
     
     this.kickerEl.textContent = this.getAttribute('kicker') || '';
     this.titleEl.textContent = this.getAttribute('title-text') || '';
+    this.subtitleEl.textContent = this.getAttribute('subtitle-text') || '';
     
     const pLabel = this.getAttribute('primary-label') || 'Primary';
     const s1Label = this.getAttribute('secondary1-label') || 'Secondary';
@@ -360,6 +328,7 @@ export class Article extends HTMLElement {
 
     this.kickerContainer.style.display = this.getAttribute('show-kicker') === 'false' ? 'none' : 'block';
     this.titleEl.style.display = this.getAttribute('show-title') === 'false' ? 'none' : 'block';
+  this.subtitleEl.style.display = this.subtitleEl.textContent ? 'block' : 'none';
     
     this.wrapperShare.style.display = this.getAttribute('show-social-share') === 'false' ? 'none' : 'inline-flex';
     this.wrapperLinkedin.style.display = this.getAttribute('show-social-linkedin') === 'false' ? 'none' : 'inline-flex';
@@ -373,12 +342,18 @@ export class Article extends HTMLElement {
     const showAnyAction = this.getAttribute('show-action-primary') !== 'false' || this.getAttribute('show-action-secondary1') !== 'false' || this.getAttribute('show-action-secondary2') !== 'false';
     this.mainActions.style.display = showAnyAction ? 'flex' : 'none';
 
-    this.summaryContainer.style.display = this.getAttribute('show-summary') === 'false' ? 'none' : 'block';
-    this.playerContainer.style.display = this.getAttribute('show-player') === 'false' ? 'none' : 'block';
+    const showAnySocial = this.getAttribute('show-social-share') !== 'false' || this.getAttribute('show-social-linkedin') !== 'false' || this.getAttribute('show-social-x') !== 'false' || this.getAttribute('show-social-facebook') !== 'false';
+    this.socialActions.style.display = showAnySocial ? 'flex' : 'none';
+
+    const hasCoverContent = Boolean(this.querySelector('[slot="cover"]'));
+    const showCover = this.getAttribute('show-cover') !== 'false';
+    this.coverContainer.style.display = showCover && hasCoverContent ? '' : 'none';
+    this.summaryContainer.style.display = this.getAttribute('show-summary') === 'false' ? 'none' : '';
+    this.playerContainer.style.display = this.getAttribute('show-player') === 'false' ? 'none' : '';
     if (this.tocEl) {
-      this.tocEl.style.display = this.getAttribute('show-toc') === 'false' ? 'none' : 'block';
+      this.tocEl.style.display = this.getAttribute('show-toc') === 'false' ? 'none' : '';
     }
-    this.navigatorContainer.style.display = this.getAttribute('show-navigator') === 'false' ? 'none' : 'flex';
+    this.navigatorContainer.style.display = this.getAttribute('show-navigator') === 'false' ? 'none' : '';
   }
 
   _delegateAriaLabel() {

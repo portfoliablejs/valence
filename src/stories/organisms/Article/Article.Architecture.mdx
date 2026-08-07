@@ -5,7 +5,7 @@ import * as ArticleStories from './Article.stories';
 
 # `ds-article`
 
-The `ds-article` component is a **stateless (presentational)** Organism designed to orchestrate the layout logic for long-form reading experiences. It provides rigid bounds and toggleable structural zones for typography, metadata, action buttons, summaries, media players, and floating navigation docks.
+The `ds-article` component is a **stateless (presentational)** Organism designed to orchestrate the layout logic for long-form reading experiences. It provides rigid bounds and toggleable structural zones for typography, metadata, cover media, action buttons, summaries, media players, and floating navigation docks.
 
 ---
 
@@ -17,12 +17,12 @@ The component strictly adheres to the **Unidirectional Data Flow** paradigm:
 * **Events Out (`ds-article-*`):** Action buttons and social share icons emit standardized custom events up to the router/shell to handle link routing and native share API triggers.
 * **Typographic Inheritance:** Body copy passed into the default slot relies natively on Light DOM inheritance for `<p>`, `<h3>`, and `<code>` tags mapping directly to global sub-atomic typographic scale definitions.
 
-### Scroll Transition Engine (Thumbnail Retraction)
-The reading layout uses a **continuous progress-driven transition** instead of a binary threshold snap:
-* **Progress Source:** Scroll position is normalized and eased in JavaScript, then written as `--ds-article-thumbnail-progress`.
-* **Smooth Interpolation:** The grid thumbnail column width, inter-column gap, thumbnail opacity/offset, and content column offset are interpolated from that single progress variable.
-* **Bidirectional Consistency:** The same interpolation path is used for scroll-down and scroll-up, so expansion and retraction feel symmetrical.
-* **Body Stability:** Article body children no longer scale/fade during this transition, preventing perceived paragraph "bouncing" while preserving the thumbnail motion effect.
+### Single-Column Reading Layout
+The reading layout now prioritizes uninterrupted scan flow:
+* **Single Column:** Header, cover, summary, player, and body content stack vertically in one centered reading column.
+* **Supporting Subtitle:** A dedicated `subtitle-text` attribute renders an `H2`-level supporting line directly under the main title.
+* **Cover-First Composition:** Rich media now projects through a dedicated `cover` slot above the summary block instead of occupying a persistent sidebar.
+* **Action Hierarchy:** Primary and secondary CTA buttons render before social controls, making task intent precede sharing affordances.
 
 <mermaid-diagram chart={`
   flowchart LR
@@ -51,7 +51,7 @@ The reading layout uses a **continuous progress-driven transition** instead of a
 
 ## Slot Architecture
 
-The `ds-article` encapsulates its header grid in the Shadow DOM while relying on four distinct slots to map the article body.
+The `ds-article` encapsulates its header stack in the Shadow DOM while relying on distinct slots to map the article body.
 
 ### Slot Hierarchy Table
 
@@ -65,6 +65,12 @@ The `ds-article` encapsulates its header grid in the Shadow DOM while relying on
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>`cover`</td>
+      <td>`ds-thumbnail` or media component</td>
+      <td>Designated hero media zone displayed above the summary block.</td>
+      <td>Section height collapses if omitted.</td>
+    </tr>
     <tr>
       <td>`summary`</td>
       <td>`ds-summary`</td>
@@ -121,6 +127,12 @@ The `ds-article` encapsulates its header grid in the Shadow DOM while relying on
       <td>Main article `H1` title text.</td>
     </tr>
     <tr>
+      <td>`subtitle-text`</td>
+      <td>`string`</td>
+      <td>`''`</td>
+      <td>Supporting article `H2` subtitle rendered directly beneath the main title.</td>
+    </tr>
+    <tr>
       <td>`primary-label`</td>
       <td>`string`</td>
       <td>`'Primary'`</td>
@@ -169,7 +181,7 @@ The `ds-article` encapsulates its header grid in the Shadow DOM while relying on
       <td>`ds-article-share`</td>
       <td>`true` / `true`</td>
       <td>`{ platform: 'native' \| 'linkedin' \| 'x' \| 'facebook' }`</td>
-      <td>Emitted when a social media icon button is clicked next to the title.</td>
+      <td>Emitted when a social media icon button is clicked below the main action row.</td>
     </tr>
   </tbody>
 </table>

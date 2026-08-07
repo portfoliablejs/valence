@@ -6,6 +6,20 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <br />
 
+## [Unreleased] - 2026-08-06
+
+<br />
+
+### Changed
+- **Article Pass-through Contract:** Added `subtitle-text` forwarding and updated slot re-projection from `thumbnail` to `cover` to match the refreshed single-column `ds-article` layout.
+- **Live App Template Parity:** Reworked `ds-case-view` geometry to match the live case reader shell: grid-based header + reader region, dedicated `.article-scroll` container, hidden native scrollbars, and centered `.article-wrap` defaults (`width: min(924px, 100%)`).
+- **Header Spacing Default:** Updated `--caseview-header-margin-bottom` default to `0px` for exact parity with runtime case view composition.
+- **Reader Smooth Scroll Parity:** Added internal Lenis reader scrolling (`wrapper: .article-scroll`, `content: .article-wrap`) and lifecycle-safe RAF cleanup so template stories match live app case-reader motion.
+- **Lenis Input Isolation:** Marked the reader scrollport with `data-lenis-prevent` and stopped wheel/touchmove propagation to prevent global smooth-scroll engines from hijacking internal reader scroll.
+
+### Added
+- **Reader Bottom Padding Token:** Added `--caseview-bottom-padding` to control trailing vertical breathing room inside the scroll region.
+
 ## [1.0.0] - 2026-08-03
 
 <br />
@@ -20,7 +34,7 @@ The first stable release of `ds-case-view`, a template-level composition that pa
 - **Template Composition:** Added `ds-case-view` as a stateless wrapper around `ds-header` and `ds-article` with a consistent top-to-bottom layout contract.
 - **Full Pass-through API:** Introduced complete pass-through support for Header navigation attributes and Article content/action visibility attributes.
 - **Breadcrumb Control Surface:** Added controlled `breadcrumbItems`, `breadcrumbMenuItems`, `show-breadcrumb`, and `show-language-menu` integration for runtime route-state binding.
-- **Article Slot Re-projection:** Added slot bridging for `thumbnail`, `summary`, `player`, default body content, and `navigator` so host-provided content flows directly into `ds-article`.
+- **Article Slot Re-projection:** Added slot bridging for `cover`, `summary`, `player`, default body content, and `navigator` so host-provided content flows directly into `ds-article`.
 - **Storybook Coverage:** Added CaseView stories with interaction checks validating event pass-through and template render integrity.
 - **Architecture Documentation:** Added a dedicated architecture page explaining composition principles, event flow, slot mapping, and accessibility boundaries.
 
