@@ -1,3 +1,9 @@
+## [0.8.0](https://github.com/portfoliablejs/valence/compare/v0.7.0...v0.8.0) (2026-08-07)
+
+### Features
+
+* feat: add HomeView and PlayerView exports; update Article, GalleryItem, CaseView, PlayerView, NavigationMenu, TOC, and Gallery components ([e790001](https://github.com/portfoliablejs/valence/commit/e79000163aba6ace51c028ee56573b5ac1151aab))
+
 ## [0.7.0](https://github.com/portfoliablejs/valence/compare/v0.6.0...v0.7.0) (2026-08-04)
 
 ### Features
@@ -128,6 +134,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
