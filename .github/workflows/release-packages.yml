@@ -114,7 +114,7 @@ jobs:
             exit 1
           fi
 
-      - name: Publish @portfoliablejs/valence to npm
+      - name: Publish @portfoliable/valence to npm
         if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
         run: npm publish --provenance --access public
 
@@ -124,15 +124,15 @@ jobs:
         with:
           node-version: 22
           registry-url: https://npm.pkg.github.com
-          scope: '@portfoliablejs'
+          scope: '@portfoliable'
 
-      - name: Publish @portfoliablejs/valence to GitHub Packages
+      - name: Publish @portfoliable/valence to GitHub Packages
         if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create GitHub release for @portfoliablejs/valence
+      - name: Create GitHub release for @portfoliable/valence
         if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
