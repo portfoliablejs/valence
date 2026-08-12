@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/portfoliablejs/valence/compare/v1.0.2...v1.0.3) (2026-08-12)
+
+### Bug Fixes
+
+* chore(release): migrate valence scope to @portfoliablejs ([af03f42](https://github.com/portfoliablejs/valence/commit/af03f4284e5564876f614fad6b1cc325ed95f6d7))
+
 ## [1.0.2](https://github.com/portfoliablejs/valence/compare/v1.0.1...v1.0.2) (2026-08-12)
 
 ### Bug Fixes
@@ -146,6 +152,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
