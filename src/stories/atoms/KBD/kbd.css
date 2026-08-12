@@ -28,10 +28,6 @@ kbd {
   color: var(--color-text-secondary); 
 }
 
-.key {
-  text-transform: uppercase;
-}
-
 /* --- DARK MODE CONFIGURATION --- */
 :host([a11y-dark-mode]) kbd {
   background: var(--ds-kbd-bg, var(--color-card-bg));

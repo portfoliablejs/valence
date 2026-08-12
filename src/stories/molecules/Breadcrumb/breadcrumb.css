@@ -38,12 +38,22 @@
               opacity var(--anim-fast, 0.2s) var(--ease-fluid, ease);
 }
 
+:host([dir="rtl"]) .crumb-return-wrapper {
+  margin-right: 0;
+  margin-left: var(--ds-breadcrumb-gap, var(--space-xs, 4px));
+}
+
 .crumb-return-wrapper:hover {
   transform: scale(var(--btn-hover-scale, 1.05));
 }
 
 .crumb-return-wrapper ds-tooltip {
-  transform: translateX(55px);
+  --ds-breadcrumb-return-tooltip-offset: 55px;
+  transform: translateX(var(--ds-breadcrumb-return-tooltip-offset));
+}
+
+:host([dir="rtl"]) .crumb-return-wrapper ds-tooltip {
+  transform: translateX(calc(var(--ds-breadcrumb-return-tooltip-offset) * -1));
 }
 
 .crumb-separator {
@@ -83,6 +93,11 @@
   transition: opacity var(--anim-fast, 0.2s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1)),
               transform var(--anim-fast, 0.2s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1)),
               visibility var(--anim-fast, 0.2s) var(--ease-fluid, ease);
+}
+
+:host([dir="rtl"]) .crumb-item-wrapper ds-contextual-menu {
+  left: auto;
+  right: 0;
 }
 
 .crumb-item-wrapper::after {
@@ -146,4 +161,8 @@
 :host([a11y-reduce-motion]) ds-contextual-menu {
   transition: none !important;
   transform: none !important;
+}
+
+:host([data-mobile-breakpoint="true"]) ds-tooltip {
+  display: none !important;
 }

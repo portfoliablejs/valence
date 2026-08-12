@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Organisms/Header [v1.1.0]/Architecture" />
+<Meta title="Organisms/Header [v1.2.0]/Architecture" />
 
 # `ds-header`
 
@@ -59,7 +59,7 @@ flowchart LR
     <tr>
       <td>`breadcrumb-region`</td>
       <td>`<ds-breadcrumb>`</td>
-      <td>Flexible left-aligned region that can be hidden through `show-breadcrumb="false"`.</td>
+      <td>Flexible left-aligned region controlled by `show-breadcrumb="false"` and transitioned with an opacity/visibility fade class (`.is-hidden`).</td>
     </tr>
     <tr>
       <td>`navigation-region`</td>
@@ -116,6 +116,12 @@ flowchart LR
       <td>Mounts or hides the right navigation region while keeping breadcrumb behavior intact.</td>
     </tr>
     <tr>
+      <td>`show-about`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Shows or hides only the about/avatar action inside the right navigation region.</td>
+    </tr>
+    <tr>
       <td>`avatar-src`, `avatar-alt`, tooltip and aria-label props</td>
       <td>`string` / `boolean`</td>
       <td>Inherited from child molecule defaults</td>
@@ -163,6 +169,16 @@ flowchart LR
   </tbody>
 </table>
 
+### Breadcrumb Event Forwarding Contract
+
+`ds-header` does not transform breadcrumb payloads and does not enforce route ownership rules. It forwards composed bubbling events exactly as emitted by the child `ds-breadcrumb` instance.
+
+For host apps that also render additional breadcrumb instances outside `ds-header`, routing logic must:
+
+1. Gate return/select handling to the currently active view source.
+2. Deduplicate same-input return bursts.
+3. Apply navigation state changes from host canonical history.
+
 ### Sub-Atomic CSS Custom Property Hooks
 
 <table>
@@ -199,4 +215,6 @@ flowchart LR
 * **Semantic Landmark:** The organism renders an internal `<header>` element and delegates `aria-label` from the host for top-level navigation context.
 * **Child Accessibility Preservation:** Accessibility mechanics remain owned by `ds-breadcrumb` and `ds-navigation-menu`, allowing those molecules to preserve their own tooltip, keyboard, and contextual menu semantics.
 * **Visibility Without State Loss:** Optional regions are hidden through presentational toggles rather than destructive mutation of application state, keeping host control explicit and reversible.
-* **Independent Region Toggles:** `show-breadcrumb` controls the left region, `show-navigation-region` controls the right region, and `show-language-menu` only affects the language action inside navigation when that region is visible.
+* **Independent Region Toggles:** `show-breadcrumb` controls the left region, `show-navigation-region` controls the right region, `show-language-menu` affects only the language action, and `show-about` affects only the avatar/about action when navigation is visible.
+* **Fade-Based Breadcrumb Visibility:** Breadcrumb visibility uses class-based opacity/visibility transitions to minimize abrupt visual cuts during rapid host re-renders.
+* **ARIA Visibility Synchronization:** The breadcrumb region toggles `aria-hidden` alongside visibility classes so assistive technology receives consistent visibility semantics.

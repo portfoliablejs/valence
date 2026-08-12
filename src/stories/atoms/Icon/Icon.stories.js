@@ -175,3 +175,61 @@ export const ContainerInheritance = {
     variant: 'outline',
   },
 };
+
+/**
+ * Regression matrix covering glyphs that previously rendered broken or black in fill mode.
+ */
+export const FillVariantRegression = {
+  render: () => {
+    const regressionIcons = [
+      'clock',
+      'forward-10',
+      'forward-5',
+      'backward-10',
+      'backward-5',
+      'subtitle-on',
+      'subtitle-closed',
+      'autoscroll-closed',
+      'pip',
+      'video-quality',
+      'check-circle',
+      'info',
+      'alert-circle',
+      'language',
+      'accessibility',
+      'high-contrast',
+      'settings',
+      'tab-nav-left',
+      'tab-nav-right',
+      'ask-ai',
+    ];
+
+    return html`
+      <div style="display:grid; gap:16px; width:min(900px, 100%);">
+        <div style="display:grid; gap:8px;">
+          <strong>Default inherited color</strong>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(88px, 1fr)); gap:12px;">
+            ${regressionIcons.map((iconName) => html`
+              <div style="display:grid; place-items:center; gap:6px; padding:10px 8px; border:1px solid #ddd; border-radius:8px;">
+                <ds-icon name=${iconName} variant="fill" size="24"></ds-icon>
+                <span style="font-size:11px; text-align:center; line-height:1.2;">${iconName}</span>
+              </div>
+            `)}
+          </div>
+        </div>
+
+        <div style="display:grid; gap:8px; background:#111; color:#8af7ff; padding:12px; border-radius:10px;">
+          <strong style="color:#e7f9ff;">Token override color on dark surface</strong>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(88px, 1fr)); gap:12px;">
+            ${regressionIcons.map((iconName) => html`
+              <div style="display:grid; place-items:center; gap:6px; padding:10px 8px; border:1px solid #2a3d44; border-radius:8px;">
+                <ds-icon name=${iconName} variant="fill" size="24" style="--ds-icon-fill: #8af7ff; --ds-icon-stroke: #8af7ff;"></ds-icon>
+                <span style="font-size:11px; text-align:center; line-height:1.2; color:#d6eef2;">${iconName}</span>
+              </div>
+            `)}
+          </div>
+        </div>
+      </div>
+    `;
+  },
+};

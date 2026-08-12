@@ -1,5 +1,5 @@
 import css from './item-row.css?inline';
-import '../../sub-atomic/Iconography/Iconography';
+import '../../atoms/Icon/Iconography.js';
 import '../../atoms/Toggle/Toggle';
 import '../../atoms/Check/Check';
 import '../../atoms/Radio/Radio';

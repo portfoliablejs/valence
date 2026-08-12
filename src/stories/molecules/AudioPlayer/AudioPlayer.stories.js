@@ -14,6 +14,12 @@ export default {
     layout: 'centered',
   },
   argTypes: {
+    audioSrc: {
+      name: 'audio-src',
+      control: 'text',
+      description: 'Audio media URL consumed by ds-audio-player for real playback.',
+      table: { category: 'Media' },
+    },
     variant: {
       control: 'select',
       options: ['default', 'scrolled'],
@@ -151,6 +157,7 @@ export default {
     onAutoscrollToggle: { action: 'ds-audio-autoscroll-toggle', table: { category: 'Events' } },
   },
   args: {
+    audioSrc: 'src/content/cases/mobile-product-launch/audio-cassi-summary.mp3',
     variant: 'default',
     playing: false,
     time: 45,
@@ -166,6 +173,7 @@ export default {
   render: (args) => html`
     <div style="width: 580px; padding: 24px; background: var(--color-bg, #FFFFFF); display: flex; justify-content: center;">
       <ds-audio-player
+        audio-src="${ifDefined(args.audioSrc)}"
         variant="${args.variant}"
         playing="${args.playing}"
         time="${args.time}"
@@ -214,6 +222,11 @@ export const Default = {
   },
   play: async ({ canvasElement, step }) => {
     const player = canvasElement.querySelector('ds-audio-player');
+
+    await step('Verify localized audio source is passed through component contract', async () => {
+      expect(player.getAttribute('audio-src')).toBeTruthy();
+      expect(player.hasAttribute('has-audio-src')).toBe(true);
+    });
 
     await step('Verify control buttons use the simplified ds-button props contract', async () => {
       const playBtnHost = player.shadowRoot.querySelector('.play-btn');

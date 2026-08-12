@@ -163,13 +163,77 @@ export const SoftEdgeDrag = {
     await step('Pull the gallery beyond the left edge', async () => {
       fireEvent.pointerDown(viewport, { button: 0, pointerId: 1, clientX: 120, clientY: 120 });
       fireEvent.pointerMove(window, { pointerId: 1, clientX: 380, clientY: 120 });
-      expect(track.style.transform).not.toBe('translate3d(0px, 0, 0)');
+      expect(track.style.transform).not.toBe('translateX(0px)');
       expect(track.style.transform).toContain('px');
       fireEvent.pointerUp(window, { pointerId: 1 });
     });
 
     await step('Snap the gallery back to the resting position', async () => {
-      expect(track.style.transform).toBe('translate3d(0px, 0, 0)');
+      expect(track.style.transform).toBe('translateX(0px)');
     });
+  },
+};
+
+export const RtlDragDirection = {
+  args: {
+    itemCount: 5,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Validates RTL drag behavior follows physical pointer movement, so dragging right moves gallery items right and dragging left moves them left.',
+      },
+    },
+  },
+  play: async ({ canvasElement, step }) => {
+    const root = document.documentElement;
+    const previousDir = root.getAttribute('dir');
+    const previousReduceMotion = root.classList.contains('a11y-reduce-motion');
+
+    root.setAttribute('dir', 'rtl');
+    root.classList.add('a11y-reduce-motion');
+
+    const settle = () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+    try {
+      await settle();
+
+      const gallery = canvasElement.querySelector('ds-gallery');
+      const viewport = gallery.shadowRoot.querySelector('.gallery-viewport');
+
+      await step('Follow physical drag direction in RTL when moving pointer right', async () => {
+        const startOffset = gallery._offsetX;
+        fireEvent.pointerDown(viewport, { button: 0, pointerId: 11, clientX: 160, clientY: 100 });
+        fireEvent.pointerMove(window, { pointerId: 11, clientX: 320, clientY: 100 });
+        expect(gallery._offsetX).toBeGreaterThan(startOffset);
+        fireEvent.pointerUp(window, { pointerId: 11 });
+      });
+
+      await step('Follow physical drag direction in RTL when moving pointer left', async () => {
+        const startOffset = gallery._offsetX;
+        fireEvent.pointerDown(viewport, { button: 0, pointerId: 12, clientX: 320, clientY: 100 });
+        fireEvent.pointerMove(window, { pointerId: 12, clientX: 160, clientY: 100 });
+        expect(gallery._offsetX).toBeLessThan(startOffset);
+        fireEvent.pointerUp(window, { pointerId: 12 });
+      });
+
+      await step('Keep keyboard mapping consistent in RTL', async () => {
+        viewport.focus();
+        fireEvent.keyDown(viewport, { key: 'ArrowLeft' });
+        expect(gallery._getFocusedItemIndex()).toBeGreaterThanOrEqual(1);
+      });
+    } finally {
+      if (previousDir === null) {
+        root.removeAttribute('dir');
+      } else {
+        root.setAttribute('dir', previousDir);
+      }
+
+      if (previousReduceMotion) {
+        root.classList.add('a11y-reduce-motion');
+      } else {
+        root.classList.remove('a11y-reduce-motion');
+      }
+    }
   },
 };

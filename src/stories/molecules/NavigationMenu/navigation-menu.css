@@ -37,6 +37,11 @@
   z-index: var(--z-dropdown, 50);
 }
 
+:host([dir="rtl"]) .menu-item ds-contextual-menu {
+  right: auto;
+  left: 0;
+}
+
 .menu-item-language ds-contextual-menu {
   --ds-contextual-menu-width: var(--ds-navigation-contextual-width, 260px);
 }
@@ -51,6 +56,10 @@
 
 :host([accessibility-menu-open]) .accessibility-tooltip {
   display: none;
+}
+
+:host([data-mobile-breakpoint="true"]) ds-tooltip {
+  display: none !important;
 }
 
 .menu-actions ds-button {

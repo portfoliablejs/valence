@@ -50,14 +50,30 @@
 
 .screen-media {
   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--ds-thumbnail-screen-fit, cover);
+  object-position: var(--ds-thumbnail-screen-object-position, center);
+  z-index: 1;
+  backface-visibility: hidden;
+}
+
+.screen-window {
+  position: absolute;
   top: var(--screen-top, 0);
   left: var(--screen-left, 0);
   width: var(--screen-width, 100%);
   height: var(--screen-height, 100%);
-  object-fit: cover;
-  object-position: center;
   z-index: 1;
-  border-radius: var(--ds-thumbnail-screen-radius, 8px);
+  border-radius:
+    var(--ds-thumbnail-screen-radius-top-left, var(--ds-thumbnail-screen-radius, 8px))
+    var(--ds-thumbnail-screen-radius-top-right, var(--ds-thumbnail-screen-radius, 8px))
+    var(--ds-thumbnail-screen-radius-bottom-right, var(--ds-thumbnail-screen-radius, 8px))
+    var(--ds-thumbnail-screen-radius-bottom-left, var(--ds-thumbnail-screen-radius, 8px));
+  overflow: hidden;
+  isolation: isolate;
+  contain: paint;
   transform: translateZ(0);
   backface-visibility: hidden;
 
@@ -67,6 +83,8 @@
   mask-position: center;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
 }
 
 .screen-cover-video {
@@ -80,8 +98,23 @@
   display: none !important;
 }
 
+:host([custom-only]) .screen-window {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: var(--ds-thumbnail-max-height, 100%);
+  overflow: visible;
+  clip-path: none;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
 :host([custom-only]) .screen-media {
   position: relative;
+  inset: auto;
   width: 100%;
   height: auto;
   max-width: 100%;

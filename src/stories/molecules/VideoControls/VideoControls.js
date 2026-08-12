@@ -6,9 +6,10 @@ import '../../atoms/Icon/Iconography.js';
 export class VideoControls extends HTMLElement {
   static get observedAttributes() {
     return [
+      'dir',
       'playing', 'muted', 'cc-enabled', 'show-cc', 'speed', 'variant',
       'label-play', 'label-pause', 'label-cc-on', 'label-cc-off',
-      'label-mute', 'label-unmute', 'label-speed', 'label-return'
+      'label-mute', 'label-unmute', 'label-speed'
     ];
   }
 
@@ -17,7 +18,7 @@ export class VideoControls extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     
     // Tightly compressed single line structure completely purges ghost spacing nodes from layouts
-    this.shadowRoot.innerHTML = `<style>${css}</style><div class="video-controls-container"><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-stop" icon="arrow-left" aria-label="Return to Case"></ds-button><ds-tooltip class="stop-tooltip" text="Return" kbd-label="Esc" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-mute" icon="volume-on" aria-label="Toggle Mute"></ds-button><ds-tooltip class="mute-tooltip" text="Mute" kbd-label="M" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-play" icon="play" aria-label="Play or Pause"></ds-button><ds-tooltip class="play-tooltip" text="Play" kbd-label="Space" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-speed" icon="playback-1x" aria-label="Playback Speed"></ds-button><ds-tooltip class="speed-tooltip" text="Speed" kbd-label="S" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper cc-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-cc" icon="subtitle-closed" aria-label="Toggle Captions"></ds-button><ds-tooltip class="cc-tooltip" text="Captions" kbd-label="C" show-kbd="true" position="top"></ds-tooltip></div></div>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><div class="video-controls-container"><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-play" icon="play" aria-label="Play or Pause"></ds-button><ds-tooltip class="play-tooltip" text="Play" kbd-label="Space" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-mute" icon="volume-on" aria-label="Toggle Mute"></ds-button><ds-tooltip class="mute-tooltip" text="Mute" kbd-label="M" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="fill" id="btn-speed" icon="playback-1x" aria-label="Playback Speed"></ds-button><ds-tooltip class="speed-tooltip" text="Speed" kbd-label="S" show-kbd="true" position="top"></ds-tooltip></div><div class="tooltip-wrapper cc-wrapper"><ds-button variant="floating" has-text="false" has-icon icon-variant="default" id="btn-cc" icon="subtitle-closed" aria-label="Toggle Captions"></ds-button><ds-tooltip class="cc-tooltip" text="Captions" kbd-label="C" show-kbd="true" position="top"></ds-tooltip></div></div>`;
 
     this.ccWrapper = this.shadowRoot.querySelector('.cc-wrapper');
     this.bindEvents();
@@ -53,7 +54,6 @@ export class VideoControls extends HTMLElement {
     this.shadowRoot.getElementById('btn-mute').addEventListener('click', () => dispatch('mute'));
     this.shadowRoot.getElementById('btn-speed').addEventListener('click', () => dispatch('speed'));
     this.shadowRoot.getElementById('btn-play').addEventListener('click', () => dispatch('play-pause'));
-    this.shadowRoot.getElementById('btn-stop').addEventListener('click', () => dispatch('stop'));
   }
 
   _getSpeedIcon(speed) {
@@ -66,6 +66,9 @@ export class VideoControls extends HTMLElement {
   _observeRootAccessibility() {
     const root = this.ownerDocument.documentElement;
     const sync = () => {
+      const currentDir = root.getAttribute('dir') || 'ltr';
+      this.setAttribute('dir', currentDir);
+
       this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
       this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
       this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
@@ -73,11 +76,32 @@ export class VideoControls extends HTMLElement {
       this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
       this.toggleAttribute('a11y-focus-mode', root.classList.contains('a11y-focus-mode'));
       this.toggleAttribute('a11y-forced-colors', root.classList.contains('a11y-forced-colors'));
+
+      this._syncTooltipsForDirection(currentDir);
     };
 
     sync();
     this._themeObserver = new MutationObserver(sync);
-    this._themeObserver.observe(root, { attributes: true, attributeFilter: ['class'] });
+    this._themeObserver.observe(root, { attributes: true, attributeFilter: ['class', 'dir'] });
+  }
+
+  _syncTooltipsForDirection(direction = 'ltr') {
+    const isRtl = direction === 'rtl';
+    const tooltipPosition = this.getAttribute('variant') === 'vertical'
+      ? (isRtl ? 'left' : 'right')
+      : 'top';
+
+    this.shadowRoot.querySelectorAll('ds-tooltip').forEach((tooltipEl) => {
+      tooltipEl.setAttribute('position', tooltipPosition);
+
+      if (tooltipEl.hasAttribute('show-kbd')) {
+        if (isRtl) {
+          tooltipEl.setAttribute('kbd-first', '');
+        } else {
+          tooltipEl.removeAttribute('kbd-first');
+        }
+      }
+    });
   }
 
   render() {
@@ -88,14 +112,13 @@ export class VideoControls extends HTMLElement {
     const speed = this.getAttribute('speed') || '1X';
 
     // Ingest multi-locale translation bindings
-    const labelPlay = this.getAttribute('label-play') || 'Play';
-    const labelPause = this.getAttribute('label-pause') || 'Pause';
-    const labelCcOn = this.getAttribute('label-cc-on') || 'Captions On';
-    const labelCcOff = this.getAttribute('label-cc-off') || 'Captions';
-    const labelMute = this.getAttribute('label-mute') || 'Mute';
-    const labelUnmute = this.getAttribute('label-unmute') || 'Unmute';
-    const labelSpeed = this.getAttribute('label-speed') || 'Speed';
-    const labelReturn = this.getAttribute('label-return') || 'Return';
+    const labelPlay = this.getAttribute('label-play') || '';
+    const labelPause = this.getAttribute('label-pause') || '';
+    const labelCcOn = this.getAttribute('label-cc-on') || '';
+    const labelCcOff = this.getAttribute('label-cc-off') || '';
+    const labelMute = this.getAttribute('label-mute') || '';
+    const labelUnmute = this.getAttribute('label-unmute') || '';
+    const labelSpeed = this.getAttribute('label-speed') || '';
 
     // Playback Toggle Element Allocation
     const playBtn = this.shadowRoot.getElementById('btn-play');
@@ -131,6 +154,8 @@ export class VideoControls extends HTMLElement {
     }
     if (this.ccWrapper) {
       this.ccWrapper.hidden = !showCC;
+      this.ccWrapper.style.display = showCC ? '' : 'none';
+      this.ccWrapper.setAttribute('aria-hidden', showCC ? 'false' : 'true');
     }
 
     // Playback Rate Gauge Element Allocation
@@ -144,20 +169,8 @@ export class VideoControls extends HTMLElement {
       speedTooltip.setAttribute('text', `${labelSpeed} (${speed})`);
     }
 
-    // Termination / Return Navigation Element Allocation
-    const stopBtn = this.shadowRoot.getElementById('btn-stop');
-    const stopTooltip = this.shadowRoot.querySelector('.stop-tooltip');
-    if (stopBtn) {
-      stopBtn.setAttribute('icon', 'arrow-left');
-      stopBtn.setAttribute('aria-label', labelReturn);
-    }
-    if (stopTooltip) {
-      stopTooltip.setAttribute('text', labelReturn);
-    }
-
-    // Tooltip direction follows layout axis
-    const tooltipPosition = this.getAttribute('variant') === 'vertical' ? 'right' : 'top';
-    this.shadowRoot.querySelectorAll('ds-tooltip').forEach((t) => t.setAttribute('position', tooltipPosition));
+    const currentDir = this.getAttribute('dir') || 'ltr';
+    this._syncTooltipsForDirection(currentDir);
   }
 }
 

@@ -4,7 +4,7 @@
 import './style.css';
 
 // Sub-atomic
-export * from './stories/sub-atomic/Iconography/Iconography.js';
+export * from './stories/sub-atomic/Accessibility/a11y-theme-tokens.js';
 export * from './stories/sub-atomic/Mermaid/MermaidDiagram.js';
 
 // Atoms

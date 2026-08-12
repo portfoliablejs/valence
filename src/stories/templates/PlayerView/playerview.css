@@ -8,6 +8,10 @@
   color: var(--player-view-fg, var(--color-black, #111111));
   position: relative;
   overflow: hidden;
+  --player-view-subtitle-bottom-desktop-visible: clamp(18px, 3.2vh, 36px);
+  --player-view-subtitle-bottom-desktop-hidden: clamp(46px, 8.5vh, 88px);
+  --player-view-subtitle-bottom-mobile-visible: clamp(84px, 14vh, 126px);
+  --player-view-subtitle-bottom-mobile-hidden: clamp(12px, 3vh, 20px);
 }
 
 :host([a11y-dark-mode]) {
@@ -116,7 +120,8 @@
 .subtitle-layer {
   position: fixed;
   left: 50%;
-  bottom: clamp(16px, 4vh, 40px);
+  bottom: var(--player-view-subtitle-bottom-desktop-visible);
+  width: min(var(--player-view-subtitle-width, 80vw), calc(100vw - 24px));
   transform: translate(-50%, var(--player-view-subtitle-offset-y, 0px));
   z-index: calc(var(--z-fixed, 100) + 1);
   pointer-events: none;
@@ -127,6 +132,9 @@
 }
 
 .subtitle-layer ds-subtitle {
+  display: block;
+  width: 100%;
+  max-width: 100%;
   pointer-events: none;
 }
 
@@ -143,7 +151,6 @@
   will-change: opacity, transform;
 }
 
-:host([ui-hidden]) .header-wrap,
 :host([ui-hidden]) .controls-shell,
 :host([ui-hidden]) .top-seek-wrap {
   opacity: 0;
@@ -151,7 +158,10 @@
   transform: translateY(-8px);
 }
 
-:host(:not([ui-hidden])) .header-wrap,
+:host([ui-hidden]) .playerview-layout {
+  cursor: none;
+}
+
 :host(:not([ui-hidden])) .controls-shell,
 :host(:not([ui-hidden])) .top-seek-wrap {
   opacity: 1;
@@ -162,9 +172,14 @@
   transform: scale(1.1);
 }
 
-:host([ui-hidden]) .subtitle-layer {
-  bottom: clamp(52px, 8vh, 84px);
-  --player-view-subtitle-offset-y: 10px;
+:host(:not([data-mobile-breakpoint="true"]):not([ui-hidden])) .subtitle-layer {
+  bottom: var(--player-view-subtitle-bottom-desktop-visible);
+  --player-view-subtitle-offset-y: 0px;
+}
+
+:host(:not([data-mobile-breakpoint="true"])[ui-hidden]) .subtitle-layer {
+  bottom: var(--player-view-subtitle-bottom-desktop-hidden);
+  --player-view-subtitle-offset-y: 0px;
 }
 
 @media (max-width: 980px) {
@@ -187,4 +202,14 @@
     max-width: var(--player-view-thumbnail-width, 390px);
     max-height: var(--player-view-thumbnail-height, min(72vh, 600px));
   }
+}
+
+:host([data-mobile-breakpoint="true"]) .subtitle-layer {
+  width: min(var(--player-view-subtitle-width-mobile, 80vw), calc(100vw - 20px));
+  bottom: var(--player-view-subtitle-bottom-mobile-visible);
+  --player-view-subtitle-offset-y: 0px;
+}
+
+:host([data-mobile-breakpoint="true"][ui-hidden]) .subtitle-layer {
+  bottom: var(--player-view-subtitle-bottom-mobile-hidden);
 }

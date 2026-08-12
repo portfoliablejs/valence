@@ -1,12 +1,12 @@
 import css from './breadcrumb.css?inline';
-import '../../sub-atomic/Iconography/Iconography.js';
+import '../../atoms/Icon/Iconography.js';
 import '../../atoms/Button/Button.js';
 import '../../molecules/Tooltip/Tooltip.js';
 import '../../organisms/ContextualMenu/ContextualMenu.js';
 
 export class Breadcrumb extends HTMLElement {
   static get observedAttributes() {
-    return ['current-label', 'visible', 'aria-label', 'item-count'];
+    return ['current-label', 'visible', 'aria-label', 'item-count', 'dir'];
   }
 
   constructor() {
@@ -18,7 +18,7 @@ export class Breadcrumb extends HTMLElement {
     this._onKeyDown = this._onKeyDown.bind(this);
 
     // Compressed template string prevents ghost text nodes inside Shadow DOM layouts
-    this.shadowRoot.innerHTML = `<style>${css}</style><nav class="top-breadcrumb" aria-label="Breadcrumb"></nav>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><nav class="top-breadcrumb" aria-label=""></nav>`;
   }
 
   get items() {
@@ -54,7 +54,7 @@ export class Breadcrumb extends HTMLElement {
   }
 
   get currentLabel() {
-    return this.getAttribute('current-label') || 'Item Title';
+    return this.getAttribute('current-label') || '';
   }
 
   set currentLabel(val) {
@@ -100,6 +100,8 @@ export class Breadcrumb extends HTMLElement {
   _observeRootAccessibility() {
     const root = this.ownerDocument.documentElement;
     const sync = () => {
+      const currentDir = root.getAttribute('dir') || 'ltr';
+      this.setAttribute('dir', currentDir);
       this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
       this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
       this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
@@ -113,7 +115,7 @@ export class Breadcrumb extends HTMLElement {
     this._themeObserver = new MutationObserver(sync);
     this._themeObserver.observe(root, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ['class', 'dir'],
     });
   }
 
@@ -146,6 +148,7 @@ export class Breadcrumb extends HTMLElement {
   _onKeyDown(e) {
     const crumbs = this._getEffectiveCrumbs();
     if (crumbs.length <= 1) return;
+    const isRtl = (this.getAttribute('dir') || 'ltr') === 'rtl';
 
     const activeEl = this.shadowRoot.activeElement || document.activeElement;
     const isEditingText = activeEl && (
@@ -164,11 +167,11 @@ export class Breadcrumb extends HTMLElement {
     const currentIndex = focusableButtons.indexOf(this.shadowRoot.activeElement);
 
     if (currentIndex !== -1) {
-      if (e.key === 'ArrowRight') {
+      if ((e.key === 'ArrowRight' && !isRtl) || (e.key === 'ArrowLeft' && isRtl)) {
         e.preventDefault();
         const nextIdx = (currentIndex + 1) % focusableButtons.length;
         focusableButtons[nextIdx].focus();
-      } else if (e.key === 'ArrowLeft') {
+      } else if ((e.key === 'ArrowLeft' && !isRtl) || (e.key === 'ArrowRight' && isRtl)) {
         e.preventDefault();
         const prevIdx = (currentIndex - 1 + focusableButtons.length) % focusableButtons.length;
         focusableButtons[prevIdx].focus();
@@ -236,7 +239,8 @@ export class Breadcrumb extends HTMLElement {
     returnBtn.setAttribute('variant', 'tertiary');
     returnBtn.setAttribute('has-text', 'false');
     returnBtn.setAttribute('has-icon', '');
-    returnBtn.setAttribute('icon', 'arrow-left');
+    const isRtl = (this.getAttribute('dir') || 'ltr') === 'rtl';
+    returnBtn.setAttribute('icon', isRtl ? 'arrow-right' : 'arrow-left');
     returnBtn.setAttribute('aria-label', 'Return');
     returnBtn.className = 'crumb-return-btn';
 
@@ -245,6 +249,9 @@ export class Breadcrumb extends HTMLElement {
     returnTooltip.setAttribute('show-kbd', '');
     returnTooltip.setAttribute('kbd-label', 'Backspace');
     returnTooltip.setAttribute('position', 'bottom');
+    if (isRtl) {
+      returnTooltip.setAttribute('kbd-first', '');
+    }
 
     returnBtn.addEventListener('click', () => this._handleReturn());
 
@@ -271,7 +278,7 @@ export class Breadcrumb extends HTMLElement {
 
       if (index > 0) {
         const separator = document.createElement('ds-icon');
-        separator.setAttribute('name', 'chevron-right');
+        separator.setAttribute('name', isRtl ? 'chevron-left' : 'chevron-right');
         separator.setAttribute('size', '14');
         separator.className = 'crumb-separator';
         this.navEl.appendChild(separator);

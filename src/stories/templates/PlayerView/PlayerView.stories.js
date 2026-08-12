@@ -28,7 +28,6 @@ export default {
     muted: { control: 'boolean', table: { category: 'Media' } },
     autoplay: { control: 'boolean', table: { category: 'Media' } },
     loop: { control: 'boolean', table: { category: 'Media' } },
-    showControls: { control: 'boolean', name: 'show-controls', table: { category: 'Layout' } },
     stageGap: { control: 'text', name: 'stage-gap', table: { category: 'Layout' } },
     thumbnailWidth: { control: 'text', name: 'thumbnail-width', table: { category: 'Layout' } },
     thumbnailHeight: { control: 'text', name: 'thumbnail-height', table: { category: 'Layout' } },
@@ -78,7 +77,6 @@ export default {
     muted: false,
     autoplay: false,
     loop: false,
-    showControls: true,
     stageGap: 'clamp(10px, 1.6vw, 18px)',
     thumbnailWidth: '390px',
     thumbnailHeight: 'min(72vh, 600px)',
@@ -100,7 +98,6 @@ export default {
       ?muted=${args.muted}
       ?autoplay=${args.autoplay}
       ?loop=${args.loop}
-      ?show-controls=${args.showControls}
       stage-gap="${args.stageGap}"
       thumbnail-width="${args.thumbnailWidth}"
       thumbnail-height="${args.thumbnailHeight}"

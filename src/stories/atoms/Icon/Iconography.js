@@ -100,7 +100,7 @@ export const ICON_REGISTRY = {
   },
   'clock': {
     outline: `<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>`,
-    fill: `<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" fill="none" stroke="Canvas" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`
+    fill: `<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`
   },
   'pause': {
     outline: `<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>`,
@@ -120,19 +120,19 @@ export const ICON_REGISTRY = {
   },
   'forward-10': {
     outline: `<path d="M8.97 15.53V8.63a.03.03 0 0 0-.06-.03s-.97 1.38-1.56 1.79"/><rect x="10.95" y="8.45" width="4.28" height="7.08" rx="2.14"/><polyline points="20.41 5.78 19.44 9.02 16.2 8.04"/><path d="M19.45 8.98a8.22 8.22 0 1 0 .34 4.97"/>`,
-    fill: `<path d="M8.97 15.53V8.63a.03.03 0 0 0-.06-.03s-.97 1.38-1.56 1.79" stroke="Canvas" stroke-width="1.5"/><rect x="10.95" y="8.45" width="4.28" height="7.08" rx="2.14" fill="none" stroke="Canvas" stroke-width="1.5"/><path d="M19.45 8.98a8.22 8.22 0 1 0 .34 4.97" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><polygon points="20.41 5.78 19.44 9.02 16.2 8.04"/>`
+    fill: `<path d="M8.97 15.53V8.63a.03.03 0 0 0-.06-.03s-.97 1.38-1.56 1.79" stroke="currentColor" stroke-width="1.5"/><rect x="10.95" y="8.45" width="4.28" height="7.08" rx="2.14" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M19.45 8.98a8.22 8.22 0 1 0 .34 4.97" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><polygon points="20.41 5.78 19.44 9.02 16.2 8.04"/>`
   },
   'forward-5': {
     outline: `<path d="M13.5 8.62H10.12v3.1h1.8a2.1 2.1 0 1 1 0 4.2H10.05"/><polyline points="20.41 5.78 19.44 9.02 16.2 8.04"/><path d="M19.45 8.98a8.22 8.22 0 1 0 .34 4.97"/>`,
-    fill: `<path d="M13.5 8.62H10.12v3.1h1.8a2.1 2.1 0 1 1 0 4.2H10.05" fill="none" stroke="Canvas" stroke-width="2" stroke-linecap="round"/><path d="M19.45 8.98a8.22 8.22 0 1 0 .34 4.97" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><polygon points="20.41 5.78 19.44 9.02 16.2 8.04"/>`
+    fill: `<path d="M13.5 8.62H10.12v3.1h1.8a2.1 2.1 0 1 1 0 4.2H10.05" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M19.45 8.98a8.22 8.22 0 1 0 .34 4.97" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><polygon points="20.41 5.78 19.44 9.02 16.2 8.04"/>`
   },
   'backward-10': {
     outline: `<path d="M9.97 15.53V8.63a.03.03 0 0 0-.06-.03s-.97 1.38-1.56 1.79"/><rect x="11.2" y="8.45" width="4.28" height="7.08" rx="2.14"/><polyline points="3.59 5.78 4.56 9.02 7.8 8.04"/><path d="M4.55 8.98a8.22 8.22 0 1 1-.34 4.97"/>`,
-    fill: `<path d="M9.97 15.53V8.63a.03.03 0 0 0-.06-.03s-.97 1.38-1.56 1.79" stroke="Canvas" stroke-width="1.5"/><rect x="11.2" y="8.45" width="4.28" height="7.08" rx="2.14" fill="none" stroke="Canvas" stroke-width="1.5"/><path d="M4.55 8.98a8.22 8.22 0 1 1-.34 4.97" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><polygon points="3.59 5.78 4.56 9.02 7.8 8.04"/>`
+    fill: `<path d="M9.97 15.53V8.63a.03.03 0 0 0-.06-.03s-.97 1.38-1.56 1.79" stroke="currentColor" stroke-width="1.5"/><rect x="11.2" y="8.45" width="4.28" height="7.08" rx="2.14" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4.55 8.98a8.22 8.22 0 1 1-.34 4.97" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><polygon points="3.59 5.78 4.56 9.02 7.8 8.04"/>`
   },
   'backward-5': {
     outline: `<path d="M13.5 8.62H10.12v3.1h1.8a2.1 2.1 0 1 1 0 4.2H10.05"/><polyline points="3.59 5.78 4.56 9.02 7.8 8.04"/><path d="M4.55 8.98a8.22 8.22 0 1 1-.34 4.97"/>`,
-    fill: `<path d="M13.5 8.62H10.12v3.1h1.8a2.1 2.1 0 1 1 0 4.2H10.05" fill="none" stroke="Canvas" stroke-width="2" stroke-linecap="round"/><path d="M4.55 8.98a8.22 8.22 0 1 1-.34 4.97" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><polygon points="3.59 5.78 4.56 9.02 7.8 8.04"/>`
+    fill: `<path d="M13.5 8.62H10.12v3.1h1.8a2.1 2.1 0 1 1 0 4.2H10.05" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4.55 8.98a8.22 8.22 0 1 1-.34 4.97" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><polygon points="3.59 5.78 4.56 9.02 7.8 8.04"/>`
   },
 
   /* Graduated Volume Controls */
@@ -164,11 +164,11 @@ export const ICON_REGISTRY = {
   /* Captions, Autoscroll & Display Controls */
   'subtitle-on': {
     outline: `<rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="M7 15h3M14 15h3M7 11h10"></path>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><path d="M7 15h3M14 15h3M7 11h10" stroke="Canvas" stroke-width="2" stroke-linecap="round"/>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><path d="M7 15h3M14 15h3M7 11h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`
   },
   'subtitle-closed': {
     outline: `<rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="M7 15h3M14 15h3M7 11h10"></path><line x1="4" y1="4" x2="20" y2="20"></line>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><path d="M7 15h3M14 15h3M7 11h10" stroke="Canvas" stroke-width="2" stroke-linecap="round"/><line x1="3" y1="3" x2="21" y2="21" stroke="Canvas" stroke-width="2.5" stroke-linecap="round"/>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><path d="M7 15h3M14 15h3M7 11h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>`
   },
   'autoscroll': {
     outline: `<polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline>`,
@@ -176,7 +176,7 @@ export const ICON_REGISTRY = {
   },
   'autoscroll-closed': {
     outline: `<polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline><line x1="4" y1="4" x2="20" y2="20"></line>`,
-    fill: `<polygon points="12 19 6 13 18 13"/><polygon points="12 12 6 6 18 6"/><line x1="3" y1="3" x2="21" y2="21" stroke="Canvas" stroke-width="2.5" stroke-linecap="round"/>`
+    fill: `<polygon points="12 19 6 13 18 13"/><polygon points="12 12 6 6 18 6"/><line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>`
   },
   'fullscreen-enter': {
     outline: `<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>`,
@@ -196,7 +196,7 @@ export const ICON_REGISTRY = {
   },
   'pip': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"></rect><rect x="12" y="11" width="8" height="7" rx="1"></rect>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><rect x="11" y="10" width="9" height="8" rx="1.5" fill="Canvas" stroke="currentColor" stroke-width="1"/>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><rect x="11" y="10" width="9" height="8" rx="1.5" fill="currentColor" stroke="currentColor" stroke-width="1"/>`
   },
 
   /* Playback Speed Gauges */
@@ -228,57 +228,57 @@ export const ICON_REGISTRY = {
   /* Video Quality Badges */
   'video-quality': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"></rect><path d="M12 18v2M8 20h8"></path><circle cx="12" cy="11" r="2.5"></circle>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><circle cx="12" cy="11" r="2.5" fill="Canvas"/><path d="M12 18v2M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><circle cx="12" cy="11" r="2.5" fill="currentColor"/><path d="M12 18v2M8 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`
   },
   'hd': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="9" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">HD</text>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="9" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="Canvas" stroke="none">HD</text>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="9" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">HD</text>`
   },
   'quality-auto': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="14.8" font-size="6.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">AUTO</text>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="14.8" font-size="6.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="Canvas" stroke="none">AUTO</text>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="14.8" font-size="6.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">AUTO</text>`
   },
   'quality-240p': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">240p</text>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="Canvas" stroke="none">240p</text>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">240p</text>`
   },
   'quality-360p': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">360p</text>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="Canvas" stroke="none">360p</text>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">360p</text>`
   },
   'quality-480p': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">480p</text>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="Canvas" stroke="none">480p</text>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">480p</text>`
   },
   'quality-720p': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">720p</text>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="Canvas" stroke="none">720p</text>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="7.5" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">720p</text>`
   },
   'quality-1080p': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="14.5" font-size="6" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">1080p</text>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="14.5" font-size="6" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="Canvas" stroke="none">1080p</text>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="14.5" font-size="6" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">1080p</text>`
   },
   'quality-1440p': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="14.5" font-size="6" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">1440p</text>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="14.5" font-size="6" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="Canvas" stroke="none">1440p</text>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="14.5" font-size="6" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">1440p</text>`
   },
   'quality-2k': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="9" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">2K</text>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="9" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="Canvas" stroke="none">2K</text>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="9" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">2K</text>`
   },
   'quality-4k': {
     outline: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="9" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">4K</text>`,
-    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="9" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="Canvas" stroke="none">4K</text>`
+    fill: `<rect x="2" y="4" width="20" height="16" rx="3"/><text x="12" y="15" font-size="9" font-weight="700" font-family="system-ui, -apple-system, sans-serif" text-anchor="middle" fill="currentColor" stroke="none">4K</text>`
   },
 
   /* Navigation & Layout */
   'tab-nav-left': {
     outline: `<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line>`,
-    fill: `<path d="M3 3h18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><line x1="9" y1="3" x2="9" y2="21" stroke="Canvas" stroke-width="2"/>`
+    fill: `<path d="M3 3h18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><line x1="9" y1="3" x2="9" y2="21" stroke="currentColor" stroke-width="2"/>`
   },
   'tab-nav-right': {
     outline: `<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="15" y1="3" x2="15" y2="21"></line>`,
-    fill: `<path d="M3 3h18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><line x1="15" y1="3" x2="15" y2="21" stroke="Canvas" stroke-width="2"/>`
+    fill: `<path d="M3 3h18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><line x1="15" y1="3" x2="15" y2="21" stroke="currentColor" stroke-width="2"/>`
   },
   'chevron-right': {
     outline: `<path d="M9 18l6-6-6-6"/>`,
@@ -352,15 +352,15 @@ export const ICON_REGISTRY = {
   },
   'check-circle': {
     outline: `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>`,
-    fill: `<circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4" stroke="Canvas" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`
+    fill: `<circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`
   },
   'info': {
     outline: `<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line>`,
-    fill: `<circle cx="12" cy="12" r="10"/><path d="M12 8v.01M12 11v5" stroke="Canvas" stroke-width="2.5" stroke-linecap="round"/>`
+    fill: `<circle cx="12" cy="12" r="10"/><path d="M12 8v.01M12 11v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>`
   },
   'alert-circle': {
     outline: `<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>`,
-    fill: `<circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16v.01" stroke="Canvas" stroke-width="2.5" stroke-linecap="round"/>`
+    fill: `<circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16v.01" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>`
   },
   'lock-closed': {
     outline: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>`,
@@ -384,15 +384,15 @@ export const ICON_REGISTRY = {
   },
   'language': {
     outline: `<circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>`,
-    fill: `<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke="Canvas" stroke-width="2"/>`
+    fill: `<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke="currentColor" stroke-width="2"/>`
   },
   'accessibility': {
     outline: `<circle cx="12" cy="12" r="10"/><circle cx="12" cy="7" r="2" fill="currentColor" stroke="none"/><path d="M7 11h10M12 11v5m0 0l-3 5m3-5l3 5" stroke-linecap="round"/>`,
-    fill: `<circle cx="12" cy="12" r="10"/><circle cx="12" cy="7" r="1.8" fill="Canvas"/><path d="M7 11h10M12 11v5m0 0l-3 5m3-5l3 5" stroke-Canvas" stroke-width="2" stroke-linecap="round"/>`
+    fill: `<circle cx="12" cy="12" r="10"/><circle cx="12" cy="7" r="1.8" fill="currentColor"/><path d="M7 11h10M12 11v5m0 0l-3 5m3-5l3 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`
   },
   'high-contrast': {
     outline: `<circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18z"/>`,
-    fill: `<circle cx="12" cy="12" r="10"/><path d="M12 2v20a10 10 0 0 0 0-20z" fill="Canvas"/>`
+    fill: `<circle cx="12" cy="12" r="10"/><path d="M12 2v20a10 10 0 0 0 0-20z" fill="currentColor"/>`
   },
   'sun': {
     outline: `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`,
@@ -404,7 +404,7 @@ export const ICON_REGISTRY = {
   },
   'settings': {
     outline: `<circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>`,
-    fill: `<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/><circle cx="12" cy="12" r="3.5" fill="Canvas"/>`
+    fill: `<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/>`
   },
   'filter': {
     outline: `<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>`,
@@ -458,7 +458,7 @@ export const ICON_REGISTRY = {
   },
   'ask-ai': {
     outline: `<rect x="3" y="11" width="18" height="10" rx="2" /><circle cx="12" cy="5" r="2" /><path d="M12 7v4" /><line x1="8" y1="16" x2="8.01" y2="16" /><line x1="16" y1="16" x2="16.01" y2="16" />`,
-    fill: `<rect x="3" y="10" width="18" height="11" rx="2"/><circle cx="12" cy="4" r="2.5"/><path d="M12 6.5v3.5" stroke="Canvas" stroke-width="2"/><circle cx="8" cy="15.5" r="1.5" fill="Canvas"/><circle cx="16" cy="15.5" r="1.5" fill="Canvas"/>`
+    fill: `<rect x="3" y="10" width="18" height="11" rx="2"/><circle cx="12" cy="4" r="2.5"/><path d="M12 6.5v3.5" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="15.5" r="1.5" fill="currentColor"/><circle cx="16" cy="15.5" r="1.5" fill="currentColor"/>`
   },
 
   /* User & Account */
@@ -505,6 +505,34 @@ export const ICON_REGISTRY = {
   'facebook': {
     outline: `<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>`,
     fill: `<path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.6 13.77 5.6c1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 3h-2.33v6.8c4.56-.93 8-4.96 8-9.8z"/>`
+  },
+  'instagram': {
+    outline: `<rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.5"></circle><circle cx="17.4" cy="6.6" r="1.4" fill="currentColor" stroke="none"></circle>`,
+    fill: `<rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="5"></circle><circle cx="17.4" cy="6.6" r="1.8" fill="currentColor" stroke="none"></circle>`
+  },
+  'threads': {
+    outline: `<path d="M12.4 3.6c4.6 0 7.6 2.5 7.6 6.4 0 2.2-1.1 3.8-3.1 4.6"></path><path d="M16.7 14.7c.1 3.2-2.1 5.4-5.5 5.4-3.5 0-5.8-2.1-5.8-5.2 0-2.7 1.9-4.5 4.8-4.5 2.3 0 3.9 1.3 3.9 3.3 0 1.8-1.3 3-3.2 3-1.3 0-2.3-.6-2.8-1.7"></path><path d="M9.6 13.8c0-.9.7-1.6 1.7-1.6s1.7.7 1.7 1.7-.7 1.7-1.7 1.7"></path>`,
+    fill: `<path d="M12.4 2.8c5.1 0 8.4 2.8 8.4 7.1 0 2.9-1.5 5-4.1 5.9.5 3.6-2.1 6.2-5.9 6.2-4 0-6.8-2.5-6.8-6.1 0-3.2 2.3-5.4 5.7-5.4 2.8 0 4.8 1.6 4.8 4 0 2.1-1.6 3.6-3.8 3.6-1.6 0-2.8-.8-3.4-2l2-1.1c.3.7.8 1.1 1.4 1.1.9 0 1.5-.7 1.5-1.6 0-1-.8-1.8-2-1.8-2 0-3.4 1.3-3.4 3.3 0 2.3 1.8 3.8 4.5 3.8 2.5 0 4.1-1.5 4.1-3.7 0-.1 0-.4-.1-.7h-1.6v-2.4h1.5c2.5 0 4-1.2 4-3.3 0-2.9-2.3-4.6-5.9-4.6z"></path>`
+  },
+  'bluesky': {
+    outline: `<path d="M6.1 6.7c2.2.8 4.1 2.6 5.3 4.8.2.3.4.6.6.6s.4-.3.6-.6c1.2-2.2 3.1-4 5.3-4.8 1-.4 2-.2 2.5.6.7 1 .4 2.8-.7 4.7-.9 1.6-2.2 3-3.9 4.1 1.4-.2 2.7.1 3.7.8.8.6 1 1.5.6 2.3-.6 1.2-2.1 1.8-3.8 1.4-1.9-.5-3.4-1.8-4.3-3.6-.9 1.8-2.4 3.1-4.3 3.6-1.7.4-3.2-.2-3.8-1.4-.4-.8-.2-1.7.6-2.3 1-.7 2.3-1 3.7-.8-1.7-1.1-3-2.5-3.9-4.1-1.1-1.9-1.4-3.7-.7-4.7.5-.8 1.5-1 2.5-.6z"></path>`,
+    fill: `<path d="M6 5.7c2.5 1 4.6 2.9 6 5.3 1.4-2.4 3.5-4.3 6-5.3 1.7-.7 3.3-.3 4 1 .8 1.3.5 3.5-.8 5.8-1 1.8-2.5 3.3-4.3 4.5 1.9-.1 3.5.3 4.8 1.1 1.4.9 1.9 2.4 1.2 3.7-.9 1.7-3 2.4-5.3 1.8-2.3-.6-4.1-2-5.6-4.2-1.5 2.2-3.3 3.6-5.6 4.2-2.3.6-4.4-.1-5.3-1.8-.7-1.3-.2-2.8 1.2-3.7 1.3-.8 2.9-1.2 4.8-1.1-1.8-1.2-3.3-2.7-4.3-4.5-1.3-2.3-1.6-4.5-.8-5.8.7-1.3 2.3-1.7 4-1z"></path>`
+  },
+  'mastodon': {
+    outline: `<rect x="4" y="4" width="16" height="16" rx="6"></rect><path d="M8.8 16v-5.2c0-1.3.9-2.2 2.1-2.2 1 0 1.8.5 2.1 1.4.3-.9 1.1-1.4 2.1-1.4 1.2 0 2.1.9 2.1 2.2V16"></path><path d="M11 11.2v2.3M15 11.2v2.3"></path>`,
+    fill: `<rect x="3" y="3" width="18" height="18" rx="7"></rect><path d="M8.2 17v-6c0-1.7 1.1-2.9 2.6-2.9 1.1 0 2 .5 2.5 1.5.5-1 1.4-1.5 2.5-1.5 1.5 0 2.6 1.2 2.6 2.9v6h-2.4v-5.4c0-.7-.4-1.2-1-1.2-.7 0-1 .5-1 1.2V17h-2.2v-5.4c0-.7-.4-1.2-1-1.2-.6 0-1 .5-1 1.2V17z"></path>`
+  },
+  'github': {
+    outline: `<path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.7.1-.7.1-.7 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 3 .9.1-.7.4-1.2.6-1.5-2.3-.3-4.8-1.2-4.8-5.2 0-1.1.4-2.1 1.1-2.9-.1-.3-.5-1.5.1-3 0 0 .9-.3 3.1 1.1a10.6 10.6 0 0 1 5.6 0c2.2-1.4 3.1-1.1 3.1-1.1.6 1.5.2 2.7.1 3 .7.8 1.1 1.8 1.1 2.9 0 4-2.5 4.9-4.8 5.2.4.3.7.9.7 1.8v2.6c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5z"></path>`,
+    fill: `<path d="M12 2a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.2-3.37-1.2-.46-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.54 1.03 1.54 1.03.9 1.54 2.35 1.1 2.92.84.09-.66.35-1.1.64-1.35-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.29.1-2.68 0 0 .84-.27 2.75 1.02A9.52 9.52 0 0 1 12 6.91a9.52 9.52 0 0 1 2.5.33c1.9-1.29 2.74-1.02 2.74-1.02.55 1.39.2 2.43.1 2.68.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.67.92.67 1.86v2.76c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/>`
+  },
+  'youtube': {
+    outline: `<rect x="2.5" y="5.5" width="19" height="13" rx="3"></rect><path d="M10 9l6 3-6 3V9z"></path>`,
+    fill: `<rect x="2" y="4" width="20" height="16" rx="4"></rect><path d="M10 8.5l7 3.5-7 3.5V8.5z" fill="currentColor" stroke="none"></path>`
+  },
+  'tiktok': {
+    outline: `<path d="M14.5 3.5c.5 1.8 2 3.1 3.9 3.4v2.5a6.3 6.3 0 0 1-3.9-1.1v6.5a5 5 0 1 1-5-5 5 5 0 0 1 1 .1v2.7a2.6 2.6 0 1 0 2.1 2.5V3.5h2.9z"></path>`,
+    fill: `<path d="M15 3c1.4 0 2.7.7 3.5 1.8v2.4a6.2 6.2 0 0 1-3.5-1.2v7.1a5.2 5.2 0 0 1-9.6 3.2 5.2 5.2 0 0 1 9.6-3.2V10.6a8.1 8.1 0 0 0 3.5 1.3V9.5a6.1 6.1 0 0 1-3.5-1.2V3zm.5 1.3c.6 0 1.2.1 1.7.4v2.7c-.5-.2-1-.3-1.7-.3V4.3z"/>`
   },
   'flag-shield': {
     outline: `<path d="M4 19V5a2 2 0 0 1 2-2h13.4a1 1 0 0 1 .8 1.6l-3 4.4H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2-2H6a2 2 0 0 1-2-2z"></path>`,

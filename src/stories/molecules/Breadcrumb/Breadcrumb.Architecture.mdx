@@ -17,6 +17,9 @@ The component strictly implements the **Unidirectional Data Flow** pattern[cite:
 * **Events Out (`ds-breadcrumb-*`):** User interactions (clicking crumb buttons, pressing backspace, or selecting items from a contextual menu) dispatch custom DOM events containing full context payloads[cite: 5].
 * **No Internal State Mutation:** The component never truncates its own item stack, modifies history, or manipulates URL parameters internally[cite: 5].
 
+### Event Ownership Model
+`ds-breadcrumb` intentionally emits semantic navigation intents and does not arbitrate app-level route ownership. In applications that keep multiple breadcrumb instances mounted at once (for example, global header + embedded view headers), hosts must treat breadcrumb events as intents and choose the active source before mutating route state.
+
 <mermaid-diagram chart={`
   flowchart LR
       subgraph Host["Host SPA / App Shell"]
@@ -174,6 +177,19 @@ export interface MenuItem {
     </tr>
   </tbody>
 </table>
+
+### Integration Guardrails (Host Apps)
+
+When multiple breadcrumb instances are mounted concurrently, host applications should apply the following rules:
+
+1. **Source Gating:** Handle `ds-breadcrumb-return` only when the emitting breadcrumb belongs to the active view region.
+2. **Burst Deduplication:** Guard against same-tick duplicate return intents (for example, one Backspace press triggering multiple mounted breadcrumb listeners).
+3. **Canonical History Ownership:** Resolve previous route from host-owned canonical history/path state, not from a breadcrumb-local stack mutation.
+4. **Return/Home Separation:** Treat `ds-breadcrumb-return` as a single-step back intent and `ds-breadcrumb-home` as explicit root navigation.
+
+### Keyboard Listener Scope
+
+`ds-breadcrumb` binds a `window`-level `keydown` listener and emits `ds-breadcrumb-return` on Backspace when text editing is not active. This is intentional for consistent keyboard access, but it means multiple mounted instances can emit return intents during the same keypress. Hosts are expected to gate and deduplicate these events.
 
 ### Sub-Atomic CSS Custom Property Hooks
 

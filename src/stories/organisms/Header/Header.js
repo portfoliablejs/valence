@@ -2,6 +2,10 @@ import css from './header.css?inline';
 import '../../molecules/Breadcrumb/Breadcrumb.js';
 import '../../molecules/NavigationMenu/NavigationMenu.js';
 
+function serializeBreadcrumbPayload(value) {
+  return JSON.stringify(value ?? null);
+}
+
 const NAVIGATION_MENU_ATTRIBUTES = [
   'language-tooltip',
   'language-kbd-label',
@@ -18,6 +22,15 @@ const NAVIGATION_MENU_ATTRIBUTES = [
   'about-kbd-key',
   'about-kbd-show-plus',
   'about-aria-label',
+  'language-menu-header',
+  'accessibility-menu-header',
+  'accessibility-menu-subcategory-title',
+  'a11y-label-text-size',
+  'a11y-label-dyslexia-font',
+  'a11y-label-dark-mode',
+  'a11y-label-high-contrast',
+  'a11y-label-reduce-motion',
+  'a11y-label-tab-navigation',
   'avatar-src',
   'avatar-alt',
   'disabled'
@@ -25,7 +38,7 @@ const NAVIGATION_MENU_ATTRIBUTES = [
 
 export class Header extends HTMLElement {
   static get observedAttributes() {
-    return ['aria-label', 'show-breadcrumb', 'show-language-menu', 'show-navigation-region', ...NAVIGATION_MENU_ATTRIBUTES];
+    return ['aria-label', 'show-breadcrumb', 'show-language-menu', 'show-navigation-region', 'show-about', 'data-mobile-breakpoint', ...NAVIGATION_MENU_ATTRIBUTES];
   }
 
   constructor() {
@@ -33,6 +46,8 @@ export class Header extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this._breadcrumbItems = null;
     this._breadcrumbMenuItems = null;
+    this._breadcrumbItemsSignature = serializeBreadcrumbPayload(null);
+    this._breadcrumbMenuItemsSignature = serializeBreadcrumbPayload(null);
 
     this.shadowRoot.innerHTML = `
       <style>${css}</style>
@@ -70,7 +85,14 @@ export class Header extends HTMLElement {
   }
 
   set breadcrumbItems(items) {
-    this._breadcrumbItems = Array.isArray(items) ? items : null;
+    const normalizedItems = Array.isArray(items) ? items : null;
+    const nextSignature = serializeBreadcrumbPayload(normalizedItems);
+    if (nextSignature === this._breadcrumbItemsSignature) {
+      return;
+    }
+
+    this._breadcrumbItems = normalizedItems;
+    this._breadcrumbItemsSignature = nextSignature;
     this.render();
   }
 
@@ -79,7 +101,14 @@ export class Header extends HTMLElement {
   }
 
   set breadcrumbMenuItems(items) {
-    this._breadcrumbMenuItems = Array.isArray(items) ? items : null;
+    const normalizedItems = Array.isArray(items) ? items : null;
+    const nextSignature = serializeBreadcrumbPayload(normalizedItems);
+    if (nextSignature === this._breadcrumbMenuItemsSignature) {
+      return;
+    }
+
+    this._breadcrumbMenuItems = normalizedItems;
+    this._breadcrumbMenuItemsSignature = nextSignature;
     this.render();
   }
 
@@ -105,6 +134,14 @@ export class Header extends HTMLElement {
 
   set showNavigationRegion(value) {
     this.setAttribute('show-navigation-region', value ? 'true' : 'false');
+  }
+
+  get showAbout() {
+    return this.getAttribute('show-about') !== 'false';
+  }
+
+  set showAbout(value) {
+    this.setAttribute('show-about', value ? 'true' : 'false');
   }
 
   _forwardNavigationAttributes() {
@@ -135,14 +172,74 @@ export class Header extends HTMLElement {
     }
   }
 
+  _syncAboutVisibility() {
+    const showAbout = this.showAbout;
+    const navigationShadow = this.navigationEl.shadowRoot;
+
+    if (!navigationShadow) return;
+
+    const aboutItem = navigationShadow.querySelector('.menu-profile .menu-item');
+    const divider = navigationShadow.querySelector('.menu-divider');
+
+    if (aboutItem) {
+      aboutItem.style.display = showAbout ? '' : 'none';
+      aboutItem.setAttribute('aria-hidden', showAbout ? 'false' : 'true');
+    }
+
+    if (divider) {
+      divider.style.display = showAbout ? '' : 'none';
+      divider.setAttribute('aria-hidden', showAbout ? 'false' : 'true');
+    }
+  }
+
+  _applyReturnOnlyMode(isEnabled) {
+    const breadcrumbRoot = this.breadcrumbEl?.shadowRoot;
+    if (!breadcrumbRoot) return;
+
+    const returnWrapper = breadcrumbRoot.querySelector('.crumb-return-wrapper');
+    const nonReturnNodes = breadcrumbRoot.querySelectorAll('.crumb-home-btn, .crumb-item-wrapper, .crumb-separator');
+
+    if (returnWrapper instanceof HTMLElement) {
+      returnWrapper.style.display = '';
+      returnWrapper.style.opacity = '1';
+      returnWrapper.style.visibility = 'visible';
+      returnWrapper.style.pointerEvents = 'auto';
+    }
+
+    nonReturnNodes.forEach((node) => {
+      if (!(node instanceof HTMLElement)) return;
+      if (isEnabled) {
+        node.style.display = 'none';
+        node.style.opacity = '0';
+        node.style.visibility = 'hidden';
+        node.style.pointerEvents = 'none';
+      } else {
+        node.style.display = '';
+        node.style.opacity = '';
+        node.style.visibility = '';
+        node.style.pointerEvents = '';
+      }
+    });
+  }
+
   render() {
     if (!this.headerEl) return;
 
     this.headerEl.setAttribute('aria-label', this.getAttribute('aria-label') || 'Header');
+    if (this.getAttribute('data-mobile-breakpoint') === 'true') {
+      this.breadcrumbEl.setAttribute('data-mobile-breakpoint', 'true');
+      this.navigationEl.setAttribute('data-mobile-breakpoint', 'true');
+    } else {
+      this.breadcrumbEl.removeAttribute('data-mobile-breakpoint');
+      this.navigationEl.removeAttribute('data-mobile-breakpoint');
+    }
 
-    this.breadcrumbRegion.hidden = !this.showBreadcrumb;
+    const isBreadcrumbVisible = this.showBreadcrumb;
+    const isMobileBreakpoint = this.getAttribute('data-mobile-breakpoint') === 'true';
+    this.breadcrumbRegion.classList.toggle('is-hidden', !isBreadcrumbVisible);
+    this.breadcrumbRegion.setAttribute('aria-hidden', isBreadcrumbVisible ? 'false' : 'true');
     this.navigationRegion.hidden = !this.showNavigationRegion;
-    this.breadcrumbEl.visible = this.showBreadcrumb;
+    this.breadcrumbEl.visible = true;
 
     if (Array.isArray(this._breadcrumbItems)) {
       this.breadcrumbEl.items = this._breadcrumbItems;
@@ -152,6 +249,8 @@ export class Header extends HTMLElement {
 
     this._forwardNavigationAttributes();
     this._syncLanguageVisibility();
+    this._syncAboutVisibility();
+    this._applyReturnOnlyMode(isMobileBreakpoint);
   }
 }
 

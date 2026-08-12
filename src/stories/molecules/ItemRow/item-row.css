@@ -107,6 +107,25 @@
   margin-left: var(--space-sm, 8px);
 }
 
+:host([dir="rtl"]) .row-left {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+:host([dir="rtl"]) .row-label {
+  text-align: right;
+}
+
+:host([dir="rtl"]) .row-right {
+  flex-direction: row-reverse;
+  margin-left: 0;
+  margin-right: var(--space-sm, 8px);
+}
+
+:host([dir="rtl"]) .control-container {
+  justify-content: flex-start;
+}
+
 .control-container {
   display: flex;
   align-items: center;

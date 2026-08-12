@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Organisms/Header [v1.1.0]/Changelog" />
+<Meta title="Organisms/Header [v1.2.0]/Changelog" />
 
 # Changelog
 
@@ -16,6 +16,22 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ### Storybook
 - **NoNavigationRegion Story:** Added a dedicated story validating that `.navigation-region` is hidden while the breadcrumb region remains available.
+
+<br />
+
+## [1.2.0] - 2026-08-07
+
+<br />
+
+### Added
+- **Minimal Breadcrumb Fade Contract:** Added class-based breadcrumb visibility transitions (`.breadcrumb-region.is-hidden`) so host-driven visibility updates can fade instead of hard cutting.
+- **ARIA Visibility Sync:** Added explicit `aria-hidden` synchronization on the breadcrumb region when `show-breadcrumb` changes.
+
+### Changed
+- **Render Visibility Strategy:** Replaced direct breadcrumb `hidden` toggling with class-based visibility state in the Header renderer.
+
+### Fixed
+- **Perceived Header Flicker:** Reduced abrupt breadcrumb mount/unmount flashes during rapid cross-view header updates.
 
 <br />
 

@@ -33,6 +33,13 @@ export class MermaidDiagram extends HTMLElement {
       this.innerHTML = svg;
     } catch (error) {
       console.error('Mermaid rendering failed:', error);
+      const fallbackText = String(this.getAttribute('error-text') || '').trim() || 'Unable to render diagram.';
+      this.innerHTML = `<p class="mermaid-error" role="alert">${fallbackText}</p>`;
+      this.dispatchEvent(new CustomEvent('ds-mermaid-error', {
+        detail: { message: fallbackText },
+        bubbles: true,
+        composed: true
+      }));
     }
   }
 }

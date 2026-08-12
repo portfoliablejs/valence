@@ -43,6 +43,27 @@
   transform: translateX(-50%) translateY(var(--tooltip-slide));
 }
 
+.action-tooltip .tooltip-text {
+  order: 1;
+}
+
+.action-tooltip .tooltip-kbd {
+  order: 2;
+}
+
+:host([kbd-first]) .action-tooltip .tooltip-kbd {
+  order: 1;
+}
+
+:host([kbd-first]) .action-tooltip .tooltip-text {
+  order: 2;
+}
+
+:host([dir="rtl"]) .action-tooltip {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
 /* Visible State (Bottom Default) */
 :host([visible]) .action-tooltip {
   opacity: 1;
@@ -91,6 +112,18 @@
 }
 
 :host([position="bottom-right"][visible]) .action-tooltip {
+  transform: translateY(0);
+}
+
+/* --- POSITIONING VARIANT: BOTTOM-LEFT --- */
+:host([position="bottom-left"]) .action-tooltip {
+  top: calc(100% + var(--tooltip-gap));
+  left: 0;
+  right: auto;
+  transform: translateY(var(--tooltip-slide));
+}
+
+:host([position="bottom-left"][visible]) .action-tooltip {
   transform: translateY(0);
 }
 

@@ -12,6 +12,8 @@
 .case-navigator-container {
   display: flex;
   align-items: center;
+  width: max-content;
+  max-width: 100%;
   gap: var(--ds-case-navigator-gap, var(--space-xs, 4px));
   background: var(--ds-case-navigator-bg, var(--color-surface, #F2F2F7));
   backdrop-filter: blur(var(--overlay-glass-blur, 12px));
@@ -94,7 +96,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs, 2px);
-  max-width: 220px;
+  max-width: var(--ds-case-navigator-nav-max-width, 999px);
   opacity: 1;
   overflow: visible;
   clip-path: inset(-100px -120px -100px -120px);
@@ -125,6 +127,11 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs, 2px);
+  direction: ltr;
+}
+
+:host([data-rtl-nav-mirrored]) .nav-buttons-wrapper {
+  flex-direction: row-reverse;
 }
 
 .btn-prev-case,
@@ -202,6 +209,24 @@
   background: transparent;
   font-weight: 700;
   color: var(--color-text-primary, var(--color-black, #000000));
+}
+
+:host([data-mobile-breakpoint="true"]) .search-wrapper,
+:host([data-mobile-breakpoint="true"]) .nav-divider,
+:host([data-mobile-breakpoint="true"]) .autocomplete-menu,
+:host([data-mobile-breakpoint="true"]) ds-tooltip {
+  display: none !important;
+}
+
+:host([data-mobile-breakpoint="true"]) .nav-content-wrapper {
+  max-width: none;
+  opacity: 1;
+  pointer-events: auto;
+  clip-path: none;
+}
+
+:host([data-mobile-breakpoint="true"]) .case-navigator-container {
+  gap: 0;
 }
 
 /* ==========================================================================

@@ -10,9 +10,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 63.2716
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4938
+      "y": 0.4938,
+      "top": 0.4938,
+      "right": 0.4167,
+      "bottom": 0.4938,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple iMac 24 2021/Device/Apple iMac 24 Green.avif": {
@@ -23,9 +34,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 63.2716
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4938
+      "y": 0.4938,
+      "top": 0.4938,
+      "right": 0.4167,
+      "bottom": 0.4938,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple iMac 24 2021/Device/Apple iMac 24 Orange.avif": {
@@ -36,9 +58,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 63.2716
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4938
+      "y": 0.4938,
+      "top": 0.4938,
+      "right": 0.4167,
+      "bottom": 0.4938,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple iMac 24 2021/Device/Apple iMac 24 Purple.avif": {
@@ -49,9 +82,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 63.2716
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4938
+      "y": 0.4938,
+      "top": 0.4938,
+      "right": 0.4167,
+      "bottom": 0.4938,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple iMac 24 2021/Device/Apple iMac 24 Red.avif": {
@@ -62,9 +106,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 63.2716
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4938
+      "y": 0.4938,
+      "top": 0.4938,
+      "right": 0.4167,
+      "bottom": 0.4938,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple iMac 24 2021/Device/Apple iMac 24 Silver.avif": {
@@ -75,9 +130,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 63.2716
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4938
+      "y": 0.4938,
+      "top": 0.4938,
+      "right": 0.4167,
+      "bottom": 0.4938,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple iMac 24 2021/Device/Apple iMac 24 Yellow.avif": {
@@ -88,9 +154,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 63.2716
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4938
+      "y": 0.4938,
+      "top": 0.4938,
+      "right": 0.4167,
+      "bottom": 0.4938,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple iMac Pro/Device/Apple iMac Pro.avif": {
@@ -101,9 +178,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 62.1451
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.5047
+      "y": 0.5047,
+      "top": 0.5047,
+      "right": 0.4167,
+      "bottom": 0.5047,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple iMac Retina/Device/Apple iMac Retina.avif": {
@@ -114,9 +202,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 62.1451
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.5047
+      "y": 0.5047,
+      "top": 0.5047,
+      "right": 0.4167,
+      "bottom": 0.5047,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple iMac/Device/Apple iMac.avif": {
@@ -127,9 +226,212 @@ const THUMBNAIL_MANIFEST = {
       "height": 62.2642
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.5031
+      "y": 0.5031,
+      "top": 0.5031,
+      "right": 0.4167,
+      "bottom": 0.5031,
+      "left": 0.4167
+    }
+  },
+  "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air M5/MacBook Air M5 13-inch Midnight.avif": {
+    "bounds": {
+      "top": 3.4335,
+      "left": 10.1563,
+      "width": 79.6875,
+      "height": 85.4077
+    },
+    "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.4167,
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
+    }
+  },
+  "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air M5/MacBook Air M5 13-inch Silver.avif": {
+    "bounds": {
+      "top": 3.4335,
+      "left": 10.1563,
+      "width": 79.6875,
+      "height": 85.4077
+    },
+    "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.4167,
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
+    }
+  },
+  "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air M5/MacBook Air M5 13-inch Sky Blue.avif": {
+    "bounds": {
+      "top": 3.4335,
+      "left": 10.1563,
+      "width": 79.6875,
+      "height": 85.4077
+    },
+    "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.4167,
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
+    }
+  },
+  "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air M5/MacBook Air M5 13-inch Starlight.avif": {
+    "bounds": {
+      "top": 3.4335,
+      "left": 10.1563,
+      "width": 79.6875,
+      "height": 85.4077
+    },
+    "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.4167,
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
+    }
+  },
+  "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air M5/MacBook Air M5 15-inch Midnight.avif": {
+    "bounds": {
+      "top": 3.0043,
+      "left": 9.1146,
+      "width": 81.7708,
+      "height": 87.1245
+    },
+    "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.4167,
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
+    }
+  },
+  "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air M5/MacBook Air M5 15-inch Silver.avif": {
+    "bounds": {
+      "top": 3.0043,
+      "left": 9.1146,
+      "width": 81.7708,
+      "height": 87.1245
+    },
+    "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.4167,
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
+    }
+  },
+  "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air M5/MacBook Air M5 15-inch Sky Blue.avif": {
+    "bounds": {
+      "top": 3.0043,
+      "left": 9.1146,
+      "width": 81.7708,
+      "height": 87.1245
+    },
+    "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.4167,
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
+    }
+  },
+  "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air M5/MacBook Air M5 15-inch Starlight.avif": {
+    "bounds": {
+      "top": 3.0043,
+      "left": 9.1146,
+      "width": 81.7708,
+      "height": 87.1245
+    },
+    "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.4167,
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air/Device/Apple MacBook Air Gold.avif": {
@@ -140,9 +442,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 83.6364
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air/Device/Apple MacBook Air Silver.avif": {
@@ -153,9 +466,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 83.6364
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple MacBook Air/Device/Apple MacBook Air Space Grey.avif": {
@@ -166,9 +490,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 83.6364
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple MacBook Pro/Device/Apple Macbook Pro 13 Silver.avif": {
@@ -179,9 +514,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 80.531
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple MacBook Pro/Device/Apple Macbook Pro 13 Space Grey.avif": {
@@ -192,9 +538,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 80.531
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple MacBook Pro/Device/Apple Macbook Pro 16 Silver.avif": {
@@ -205,9 +562,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 85.4545
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple MacBook Pro/Device/Apple Macbook Pro 16 Space Grey.avif": {
@@ -218,9 +586,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 85.4545
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple Macbook/Device/Apple-Macbook-Gold.avif": {
@@ -231,9 +610,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 81.448
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple Macbook/Device/Apple-Macbook-Space-Grey.avif": {
@@ -244,9 +634,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 81.448
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple Pro Display XDR/Device/Apple Pro Display XDR.avif": {
@@ -257,9 +658,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 73.6842
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.5614
+      "y": 0.5614,
+      "top": 0.5614,
+      "right": 0.4167,
+      "bottom": 0.5614,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/apple/Apple Thunderbolt Display/Device/Apple Thunderbolt Display.avif": {
@@ -270,9 +682,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 67.5768
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.5461
+      "y": 0.5461,
+      "top": 0.5461,
+      "right": 0.4167,
+      "bottom": 0.5461,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/dell/Dell UltraSharp HD 5K Monitor/Device/Dell UltraSharp 5K Monitor 27 90deg.avif": {
@@ -283,9 +706,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 86.9792
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/desktop/dell/Dell UltraSharp HD 5K Monitor/Device/Dell UltraSharp 5K Monitor 27.avif": {
@@ -296,9 +730,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 65.798
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.5212
+      "y": 0.5212,
+      "top": 0.5212,
+      "right": 0.4167,
+      "bottom": 0.5212,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/dell/Dell UltraSharp Monitor/24 Inch/Device/Dell UltraSharp 24 90deg.avif": {
@@ -309,9 +754,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 85.9375
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/desktop/dell/Dell UltraSharp Monitor/24 Inch/Device/Dell UltraSharp 24.avif": {
@@ -322,9 +778,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 68.3284
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4692
+      "y": 0.4692,
+      "top": 0.4692,
+      "right": 0.4167,
+      "bottom": 0.4692,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/desktop/dell/Dell UltraSharp Monitor/27 Inch/Device/Dell UltraSharp 27 90deg.avif": {
@@ -335,9 +802,20 @@ const THUMBNAIL_MANIFEST = {
       "height": 88.2813
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/desktop/dell/Dell UltraSharp Monitor/27 Inch/Device/Dell UltraSharp 27.avif": {
@@ -348,5690 +826,12425 @@ const THUMBNAIL_MANIFEST = {
       "height": 69.7674
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.5316
+      "y": 0.5316,
+      "top": 0.5316,
+      "right": 0.4167,
+      "bottom": 0.5316,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro Max/Device/Apple iPhone 11 Pro Max Gold.avif": {
     "bounds": {
-      "top": 2.8646,
-      "left": 6.2827,
-      "width": 87.4346,
-      "height": 94.2708
+      "top": 2.5,
+      "left": 5.6604,
+      "width": 88.6792,
+      "height": 95
     },
-    "screenRadius": "7.335%",
+    "screenRadius": "7.041%",
+    "screenRadiusCorners": {
+      "topLeft": "7.284%",
+      "topRight": "6.799%",
+      "bottomLeft": "7.284%",
+      "bottomRight": "6.799%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.8129,
+      "depthPct": 1.3245,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro Max/Device/Apple iPhone 11 Pro Max Midnight Green.avif": {
     "bounds": {
-      "top": 2.8646,
-      "left": 6.2827,
-      "width": 87.4346,
-      "height": 94.2708
+      "top": 2.5,
+      "left": 5.6604,
+      "width": 88.6792,
+      "height": 95
     },
-    "screenRadius": "7.335%",
+    "screenRadius": "7.041%",
+    "screenRadiusCorners": {
+      "topLeft": "7.284%",
+      "topRight": "6.799%",
+      "bottomLeft": "7.284%",
+      "bottomRight": "6.799%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.8129,
+      "depthPct": 1.3245,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro Max/Device/Apple iPhone 11 Pro Max Silver.avif": {
     "bounds": {
-      "top": 2.8646,
-      "left": 6.2827,
-      "width": 87.4346,
-      "height": 94.2708
+      "top": 2.5,
+      "left": 5.6604,
+      "width": 88.6792,
+      "height": 95
     },
-    "screenRadius": "7.335%",
+    "screenRadius": "7.041%",
+    "screenRadiusCorners": {
+      "topLeft": "7.284%",
+      "topRight": "6.799%",
+      "bottomLeft": "7.284%",
+      "bottomRight": "6.799%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.8129,
+      "depthPct": 1.3245,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro Max/Device/Apple iPhone 11 Pro Max Space Grey.avif": {
     "bounds": {
-      "top": 2.8646,
-      "left": 6.2827,
-      "width": 87.4346,
-      "height": 94.2708
+      "top": 2.5,
+      "left": 5.6604,
+      "width": 88.6792,
+      "height": 95
     },
-    "screenRadius": "7.335%",
+    "screenRadius": "7.041%",
+    "screenRadiusCorners": {
+      "topLeft": "7.284%",
+      "topRight": "6.799%",
+      "bottomLeft": "7.284%",
+      "bottomRight": "6.799%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.8129,
+      "depthPct": 1.3245,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro/Device/Apple iPhone 11 Pro Gold.avif": {
     "bounds": {
-      "top": 3.125,
-      "left": 6.8421,
-      "width": 86.3158,
-      "height": 92.7083
+      "top": 2.6563,
+      "left": 6.0127,
+      "width": 87.9747,
+      "height": 93.4375
     },
-    "screenRadius": "8.537%",
+    "screenRadius": "8.499%",
+    "screenRadiusCorners": {
+      "topLeft": "8.540%",
+      "topRight": "8.704%",
+      "bottomLeft": "8.376%",
+      "bottomRight": "8.376%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 81.0219,
+      "depthPct": 1.8519,
+      "centerXPct": 49.8175
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro/Device/Apple iPhone 11 Pro Midnight Green.avif": {
     "bounds": {
-      "top": 3.125,
-      "left": 6.8421,
-      "width": 86.3158,
-      "height": 92.7083
+      "top": 2.6563,
+      "left": 6.0127,
+      "width": 87.9747,
+      "height": 93.4375
     },
-    "screenRadius": "8.537%",
+    "screenRadius": "8.499%",
+    "screenRadiusCorners": {
+      "topLeft": "8.540%",
+      "topRight": "8.704%",
+      "bottomLeft": "8.376%",
+      "bottomRight": "8.376%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 81.0219,
+      "depthPct": 1.8519,
+      "centerXPct": 49.8175
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro/Device/Apple iPhone 11 Pro Silver.avif": {
     "bounds": {
-      "top": 3.125,
-      "left": 6.8421,
-      "width": 86.3158,
-      "height": 92.7083
+      "top": 2.6563,
+      "left": 6.0127,
+      "width": 87.9747,
+      "height": 93.4375
     },
-    "screenRadius": "8.537%",
+    "screenRadius": "8.499%",
+    "screenRadiusCorners": {
+      "topLeft": "8.540%",
+      "topRight": "8.704%",
+      "bottomLeft": "8.376%",
+      "bottomRight": "8.376%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 81.0219,
+      "depthPct": 1.8519,
+      "centerXPct": 49.8175
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro/Device/Apple iPhone 11 Pro Space Grey.avif": {
     "bounds": {
-      "top": 3.125,
-      "left": 6.8421,
-      "width": 86.3158,
-      "height": 92.7083
+      "top": 2.6563,
+      "left": 6.0127,
+      "width": 87.9747,
+      "height": 93.4375
     },
-    "screenRadius": "8.537%",
+    "screenRadius": "8.499%",
+    "screenRadiusCorners": {
+      "topLeft": "8.540%",
+      "topRight": "8.704%",
+      "bottomLeft": "8.376%",
+      "bottomRight": "8.376%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 81.0219,
+      "depthPct": 1.8519,
+      "centerXPct": 49.8175
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 Black.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.871%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.418%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 Green.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.871%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.418%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 Purple.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.871%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.418%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 Red.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.871%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.418%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 White.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.871%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.418%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 Yellow.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.871%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.418%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Mini/Device/Apple iPhone 12 Mini Black.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7592,
-      "width": 88.4817,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.3459,
+      "width": 89.3082,
+      "height": 95.625
     },
-    "screenRadius": "10.947%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.2857,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Mini/Device/Apple iPhone 12 Mini Blue.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7592,
-      "width": 88.4817,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.3459,
+      "width": 89.3082,
+      "height": 95.625
     },
-    "screenRadius": "10.947%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.2857,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Mini/Device/Apple iPhone 12 Mini Green.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7592,
-      "width": 88.4817,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.3459,
+      "width": 89.3082,
+      "height": 95.625
     },
-    "screenRadius": "10.947%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.2857,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Mini/Device/Apple iPhone 12 Mini Red.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7592,
-      "width": 88.4817,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.3459,
+      "width": 89.3082,
+      "height": 95.625
     },
-    "screenRadius": "10.947%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.2857,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Mini/Device/Apple iPhone 12 Mini White.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7592,
-      "width": 88.4817,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.3459,
+      "width": 89.3082,
+      "height": 95.625
     },
-    "screenRadius": "10.947%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.2857,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro Max/Device/Apple iPhone 12 Pro Max Gold.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 5.291,
-      "width": 89.418,
-      "height": 95.3125
+      "top": 1.875,
+      "left": 4.7468,
+      "width": 90.5063,
+      "height": 96.25
     },
-    "screenRadius": "10.355%",
+    "screenRadius": "10.133%",
+    "screenRadiusCorners": {
+      "topLeft": "10.053%",
+      "topRight": "10.213%",
+      "bottomLeft": "10.053%",
+      "bottomRight": "10.213%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 76.5957,
+      "depthPct": 2.1242,
+      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro Max/Device/Apple iPhone 12 Pro Max Graphite.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 5.291,
-      "width": 89.418,
-      "height": 95.3125
+      "top": 1.875,
+      "left": 4.7468,
+      "width": 90.5063,
+      "height": 96.25
     },
-    "screenRadius": "10.355%",
+    "screenRadius": "10.093%",
+    "screenRadiusCorners": {
+      "topLeft": "10.053%",
+      "topRight": "10.053%",
+      "bottomLeft": "10.053%",
+      "bottomRight": "10.213%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 76.5957,
+      "depthPct": 2.1242,
+      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro Max/Device/Apple iPhone 12 Pro Max Pacific Blue.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 5.291,
-      "width": 89.418,
-      "height": 95.3125
+      "top": 1.875,
+      "left": 4.7468,
+      "width": 90.5063,
+      "height": 96.25
     },
-    "screenRadius": "10.355%",
+    "screenRadius": "10.133%",
+    "screenRadiusCorners": {
+      "topLeft": "10.213%",
+      "topRight": "10.053%",
+      "bottomLeft": "10.053%",
+      "bottomRight": "10.213%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 76.5957,
+      "depthPct": 2.1242,
+      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro Max/Device/Apple iPhone 12 Pro Max Silver.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 5.291,
-      "width": 89.418,
-      "height": 95.3125
+      "top": 1.875,
+      "left": 4.7468,
+      "width": 90.5063,
+      "height": 96.25
     },
-    "screenRadius": "10.355%",
+    "screenRadius": "10.093%",
+    "screenRadiusCorners": {
+      "topLeft": "10.053%",
+      "topRight": "10.053%",
+      "bottomLeft": "10.053%",
+      "bottomRight": "10.213%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 76.5957,
+      "depthPct": 2.1242,
+      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro/Device/Apple iPhone 12 Pro Gold.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "8.929%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro/Device/Apple iPhone 12 Pro Graphite.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "8.929%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro/Device/Apple iPhone 12 Pro Pacific Blue.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "9.003%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro/Device/Apple iPhone 12 Pro Silver.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "9.003%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12/Device/Apple iPhone 12 Black.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "8.929%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12/Device/Apple iPhone 12 Blue.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "8.929%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12/Device/Apple iPhone 12 Green.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "8.929%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12/Device/Apple iPhone 12 Red.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "8.929%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12/Device/Apple iPhone 12 White.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "8.929%",
+    "screenRadius": "9.161%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.161%",
+      "bottomRight": "9.161%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Mini/Device/iPhone 13 Mini — Blue.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 6.3158,
-      "width": 87.3684,
-      "height": 94.7917
+      "top": 2.3438,
+      "left": 5.3628,
+      "width": 89.2744,
+      "height": 95.3125
     },
-    "screenRadius": "10.617%",
+    "screenRadius": "10.040%",
+    "screenRadiusCorners": {
+      "topLeft": "9.839%",
+      "topRight": "10.323%",
+      "bottomLeft": "9.677%",
+      "bottomRight": "10.323%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6309,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6309,
+      "bottom": 0.4938,
+      "left": 0.6309
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 78.4946,
+      "depthPct": 2.1452,
+      "centerXPct": 49.8208
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Mini/Device/iPhone 13 Mini — Midnight.avif": {
     "bounds": {
-      "top": 2.8646,
-      "left": 6.3158,
-      "width": 87.8947,
-      "height": 94.5313
+      "top": 2.5,
+      "left": 5.6782,
+      "width": 89.2744,
+      "height": 95.3125
     },
-    "screenRadius": "10.180%",
+    "screenRadius": "10.323%",
+    "screenRadiusCorners": {
+      "topLeft": "9.032%",
+      "topRight": "10.806%",
+      "bottomLeft": "9.839%",
+      "bottomRight": "11.613%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6309,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6309,
+      "bottom": 0.4938,
+      "left": 0.6309
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.5699,
+      "depthPct": 2.1452,
+      "centerXPct": 49.6416
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Mini/Device/iPhone 13 Mini — Pink.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 6.3158,
-      "width": 87.3684,
-      "height": 94.7917
+      "top": 2.3438,
+      "left": 5.3628,
+      "width": 89.2744,
+      "height": 95.3125
     },
-    "screenRadius": "10.617%",
+    "screenRadius": "10.040%",
+    "screenRadiusCorners": {
+      "topLeft": "9.839%",
+      "topRight": "10.323%",
+      "bottomLeft": "9.677%",
+      "bottomRight": "10.323%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6309,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6309,
+      "bottom": 0.4938,
+      "left": 0.6309
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 78.4946,
+      "depthPct": 2.1452,
+      "centerXPct": 49.8208
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Mini/Device/iPhone 13 Mini — Red.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 6.3158,
-      "width": 87.3684,
-      "height": 94.7917
+      "top": 2.3438,
+      "left": 5.3628,
+      "width": 89.2744,
+      "height": 95.3125
     },
-    "screenRadius": "10.617%",
+    "screenRadius": "10.040%",
+    "screenRadiusCorners": {
+      "topLeft": "9.839%",
+      "topRight": "10.323%",
+      "bottomLeft": "9.677%",
+      "bottomRight": "10.323%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6309,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6309,
+      "bottom": 0.4938,
+      "left": 0.6309
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 78.4946,
+      "depthPct": 2.1452,
+      "centerXPct": 49.8208
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Mini/Device/iPhone 13 Mini — Starlight.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 6.3158,
-      "width": 87.3684,
-      "height": 94.7917
+      "top": 2.3438,
+      "left": 5.3628,
+      "width": 89.2744,
+      "height": 95.3125
     },
-    "screenRadius": "10.617%",
+    "screenRadius": "10.040%",
+    "screenRadiusCorners": {
+      "topLeft": "9.839%",
+      "topRight": "10.323%",
+      "bottomLeft": "9.677%",
+      "bottomRight": "10.323%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6309,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6309,
+      "bottom": 0.4938,
+      "left": 0.6309
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 78.4946,
+      "depthPct": 2.1452,
+      "centerXPct": 49.8208
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro Max/Device/Apple iPhone 13 Pro Max — Gold.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.291,
-      "width": 89.418,
-      "height": 95.3125
+      "top": 2.1875,
+      "left": 4.7619,
+      "width": 90.4762,
+      "height": 95.9375
     },
-    "screenRadius": "11.464%",
+    "screenRadius": "9.248%",
+    "screenRadiusCorners": {
+      "topLeft": "9.609%",
+      "topRight": "9.128%",
+      "bottomLeft": "9.288%",
+      "bottomRight": "8.968%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6349,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6349,
+      "bottom": 0.4938,
+      "left": 0.6349
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.0036,
+      "depthPct": 1.9672,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro Max/Device/Apple iPhone 13 Pro Max — Graphite.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.291,
-      "width": 89.418,
-      "height": 95.0521
+      "top": 2.1875,
+      "left": 4.7619,
+      "width": 90.4762,
+      "height": 95.9375
     },
-    "screenRadius": "10.207%",
+    "screenRadius": "9.248%",
+    "screenRadiusCorners": {
+      "topLeft": "9.288%",
+      "topRight": "8.968%",
+      "bottomLeft": "9.609%",
+      "bottomRight": "9.128%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6349,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6349,
+      "bottom": 0.4938,
+      "left": 0.6349
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80.0712,
+      "depthPct": 1.9672,
+      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro Max/Device/Apple iPhone 13 Pro Max — Sierra Blue.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.291,
-      "width": 89.418,
-      "height": 95.0521
+      "top": 2.1875,
+      "left": 4.7619,
+      "width": 90.4762,
+      "height": 95.9375
     },
-    "screenRadius": "10.207%",
+    "screenRadius": "9.248%",
+    "screenRadiusCorners": {
+      "topLeft": "8.968%",
+      "topRight": "9.288%",
+      "bottomLeft": "9.128%",
+      "bottomRight": "9.609%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6349,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6349,
+      "bottom": 0.4938,
+      "left": 0.6349
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80.0712,
+      "depthPct": 1.9672,
+      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro Max/Device/Apple iPhone 13 Pro Max — Silver.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.291,
-      "width": 89.418,
-      "height": 95.0521
+      "top": 2.1875,
+      "left": 4.7619,
+      "width": 90.4762,
+      "height": 95.9375
     },
-    "screenRadius": "10.207%",
+    "screenRadius": "9.248%",
+    "screenRadiusCorners": {
+      "topLeft": "9.288%",
+      "topRight": "8.968%",
+      "bottomLeft": "9.609%",
+      "bottomRight": "9.128%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6349,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6349,
+      "bottom": 0.4938,
+      "left": 0.6349
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80.0712,
+      "depthPct": 1.9672,
+      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro/Device/Apple iPhone 13 Pro — Gold.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 95.0521
+      "top": 2.0313,
+      "left": 5.0473,
+      "width": 89.9054,
+      "height": 95.7813
     },
-    "screenRadius": "11.607%",
+    "screenRadius": "21.600%",
+    "screenRadiusCorners": {
+      "topLeft": "13.772%",
+      "topRight": "11.851%",
+      "bottomLeft": "21.600%",
+      "bottomRight": "11.690%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6309,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6309,
+      "bottom": 0.4938,
+      "left": 0.6309
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.242,
+      "depthPct": 2.1346,
+      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro/Device/Apple iPhone 13 Pro — Graphite.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 95.0521
+      "top": 2.0313,
+      "left": 5.0473,
+      "width": 89.9054,
+      "height": 95.7813
     },
-    "screenRadius": "11.384%",
+    "screenRadius": "11.851%",
+    "screenRadiusCorners": {
+      "topLeft": "11.851%",
+      "topRight": "11.851%",
+      "bottomLeft": "11.851%",
+      "bottomRight": "11.851%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6309,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6309,
+      "bottom": 0.4938,
+      "left": 0.6309
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.9537,
+      "depthPct": 2.1346,
+      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro/Device/Apple iPhone 13 Pro — Sierra Blue.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 95.0521
+      "top": 2.0313,
+      "left": 5.0473,
+      "width": 89.9054,
+      "height": 95.7813
     },
-    "screenRadius": "11.384%",
+    "screenRadius": "11.851%",
+    "screenRadiusCorners": {
+      "topLeft": "11.851%",
+      "topRight": "11.851%",
+      "bottomLeft": "11.851%",
+      "bottomRight": "11.851%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6309,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6309,
+      "bottom": 0.4938,
+      "left": 0.6309
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.9537,
+      "depthPct": 2.1346,
+      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro/Device/Apple iPhone 13 Pro — Silver.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0473,
+      "width": 89.9054,
+      "height": 95.625
     },
-    "screenRadius": "9.896%",
+    "screenRadius": "10.569%",
+    "screenRadiusCorners": {
+      "topLeft": "10.089%",
+      "topRight": "10.089%",
+      "bottomLeft": "11.050%",
+      "bottomRight": "11.050%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6309,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6309,
+      "bottom": 0.4938,
+      "left": 0.6309
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80.0712,
+      "depthPct": 1.9737,
+      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13/Device/Apple iPhone 13 — Blue.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "9.375%",
+    "screenRadius": "9.321%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.482%",
+      "bottomRight": "9.482%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.2857,
+      "depthPct": 2.1382,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13/Device/Apple iPhone 13 — Midnight.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "9.375%",
+    "screenRadius": "9.321%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.482%",
+      "bottomRight": "9.482%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.2857,
+      "depthPct": 2.1382,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13/Device/Apple iPhone 13 — Pink.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "9.375%",
+    "screenRadius": "9.321%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.482%",
+      "bottomRight": "9.482%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.2857,
+      "depthPct": 2.1382,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13/Device/Apple iPhone 13 — Red.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "9.375%",
+    "screenRadius": "9.321%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.482%",
+      "bottomRight": "9.482%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.2857,
+      "depthPct": 2.1382,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13/Device/Apple iPhone 13 — Starlight.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.7895,
-      "width": 88.4211,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 5.0633,
+      "width": 89.8734,
+      "height": 95.625
     },
-    "screenRadius": "9.375%",
+    "screenRadius": "9.321%",
+    "screenRadiusCorners": {
+      "topLeft": "9.161%",
+      "topRight": "9.161%",
+      "bottomLeft": "9.482%",
+      "bottomRight": "9.482%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 79.2857,
+      "depthPct": 2.1382,
+      "centerXPct": 49.8214
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Cosmic Orange - Landscape.avif": {
+    "bounds": {
+      "top": 3.2362,
+      "left": 1.25,
+      "width": 97.5,
+      "height": 93.5275
+    },
+    "screenRadius": "13.342%",
+    "screenRadiusCorners": {
+      "topLeft": "13.737%",
+      "topRight": "12.789%",
+      "bottomLeft": "13.895%",
+      "bottomRight": "12.947%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6472,
+      "top": 0.2718,
+      "right": 0.3125,
+      "bottom": 1.0226,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.0968,
+      "depthPct": 3.1579,
+      "centerXPct": 49.9194
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Cosmic Orange - Portrait.avif": {
+    "bounds": {
+      "top": 1.25,
+      "left": 3.2362,
+      "width": 93.5275,
+      "height": 97.5
+    },
+    "screenRadius": "13.342%",
+    "screenRadiusCorners": {
+      "topLeft": "13.895%",
+      "topRight": "13.737%",
+      "bottomLeft": "12.947%",
+      "bottomRight": "12.789%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6472,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6472,
+      "bottom": 0.4938,
+      "left": 0.6472
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 67.0175,
+      "depthPct": 2.9032,
+      "centerXPct": 49.8246
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Deep Blue - Landscape.avif": {
+    "bounds": {
+      "top": 3.2362,
+      "left": 1.25,
+      "width": 97.5,
+      "height": 93.5275
+    },
+    "screenRadius": "13.342%",
+    "screenRadiusCorners": {
+      "topLeft": "13.737%",
+      "topRight": "12.789%",
+      "bottomLeft": "13.895%",
+      "bottomRight": "12.947%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6472,
+      "top": 0.2718,
+      "right": 0.3125,
+      "bottom": 1.0226,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.0968,
+      "depthPct": 3.1579,
+      "centerXPct": 49.9194
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Deep Blue - Portrait.avif": {
+    "bounds": {
+      "top": 1.25,
+      "left": 3.2362,
+      "width": 93.5275,
+      "height": 97.5
+    },
+    "screenRadius": "13.342%",
+    "screenRadiusCorners": {
+      "topLeft": "13.895%",
+      "topRight": "13.737%",
+      "bottomLeft": "12.947%",
+      "bottomRight": "12.789%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6472,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6472,
+      "bottom": 0.4938,
+      "left": 0.6472
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 67.0175,
+      "depthPct": 2.9032,
+      "centerXPct": 49.8246
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Silver - Landscape.avif": {
+    "bounds": {
+      "top": 3.2362,
+      "left": 1.25,
+      "width": 97.5,
+      "height": 93.5275
+    },
+    "screenRadius": "13.342%",
+    "screenRadiusCorners": {
+      "topLeft": "13.737%",
+      "topRight": "12.789%",
+      "bottomLeft": "13.895%",
+      "bottomRight": "12.947%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6472,
+      "top": 0.2718,
+      "right": 0.3125,
+      "bottom": 1.0226,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.0968,
+      "depthPct": 3.1579,
+      "centerXPct": 49.9194
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Silver - Portrait.avif": {
+    "bounds": {
+      "top": 1.25,
+      "left": 3.2362,
+      "width": 93.5275,
+      "height": 97.5
+    },
+    "screenRadius": "13.342%",
+    "screenRadiusCorners": {
+      "topLeft": "13.895%",
+      "topRight": "13.737%",
+      "bottomLeft": "12.947%",
+      "bottomRight": "12.789%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6472,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6472,
+      "bottom": 0.4938,
+      "left": 0.6472
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 67.0175,
+      "depthPct": 2.9032,
+      "centerXPct": 49.8246
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Cosmic Orange - Landscape.avif": {
+    "bounds": {
+      "top": 3.871,
+      "left": 1.5625,
+      "width": 97.0313,
+      "height": 92.2581
+    },
+    "screenRadius": "13.444%",
+    "screenRadiusCorners": {
+      "topLeft": "12.287%",
+      "topRight": "14.521%",
+      "bottomLeft": "12.606%",
+      "bottomRight": "14.362%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.5203,
+      "depthPct": 3.5461,
+      "centerXPct": 49.8379
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Cosmic Orange - Portrait.avif": {
+    "bounds": {
+      "top": 1.5625,
+      "left": 3.871,
+      "width": 92.2581,
+      "height": 97.0313
+    },
+    "screenRadius": "13.484%",
+    "screenRadiusCorners": {
+      "topLeft": "12.606%",
+      "topRight": "12.287%",
+      "bottomLeft": "14.681%",
+      "bottomRight": "14.362%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 71.9858,
+      "depthPct": 3.0794,
+      "centerXPct": 50
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Deep Blue - Landscape.avif": {
+    "bounds": {
+      "top": 3.871,
+      "left": 1.5625,
+      "width": 97.0313,
+      "height": 92.2581
+    },
+    "screenRadius": "13.444%",
+    "screenRadiusCorners": {
+      "topLeft": "12.287%",
+      "topRight": "14.521%",
+      "bottomLeft": "12.606%",
+      "bottomRight": "14.362%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.5203,
+      "depthPct": 3.5461,
+      "centerXPct": 49.8379
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Deep Blue - Portrait.avif": {
+    "bounds": {
+      "top": 1.5625,
+      "left": 3.871,
+      "width": 92.2581,
+      "height": 97.0313
+    },
+    "screenRadius": "13.484%",
+    "screenRadiusCorners": {
+      "topLeft": "12.606%",
+      "topRight": "12.287%",
+      "bottomLeft": "14.681%",
+      "bottomRight": "14.362%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 71.9858,
+      "depthPct": 3.0794,
+      "centerXPct": 50
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Silver - Landscape.avif": {
+    "bounds": {
+      "top": 3.871,
+      "left": 1.5625,
+      "width": 97.0313,
+      "height": 92.2581
+    },
+    "screenRadius": "13.444%",
+    "screenRadiusCorners": {
+      "topLeft": "12.287%",
+      "topRight": "14.521%",
+      "bottomLeft": "12.606%",
+      "bottomRight": "14.362%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.5203,
+      "depthPct": 3.5461,
+      "centerXPct": 49.8379
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Silver - Portrait.avif": {
+    "bounds": {
+      "top": 1.5625,
+      "left": 3.871,
+      "width": 92.2581,
+      "height": 97.0313
+    },
+    "screenRadius": "13.484%",
+    "screenRadiusCorners": {
+      "topLeft": "12.606%",
+      "topRight": "12.287%",
+      "bottomLeft": "14.681%",
+      "bottomRight": "14.362%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 71.9858,
+      "depthPct": 3.0794,
+      "centerXPct": 50
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Black - Landscape.avif": {
+    "bounds": {
+      "top": 3.5484,
+      "left": 1.4063,
+      "width": 97.1875,
+      "height": 92.9032
+    },
+    "screenRadius": "12.597%",
+    "screenRadiusCorners": {
+      "topLeft": "12.518%",
+      "topRight": "12.201%",
+      "bottomLeft": "12.835%",
+      "bottomRight": "12.835%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.2168,
+      "depthPct": 3.5211,
+      "centerXPct": 50
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Black - Portrait.avif": {
+    "bounds": {
+      "top": 1.6,
+      "left": 3.5484,
+      "width": 92.9032,
+      "height": 97.1875
+    },
+    "screenRadius": "12.557%",
+    "screenRadiusCorners": {
+      "topLeft": "10%",
+      "topRight": "10%",
+      "bottomLeft": "10%",
+      "bottomRight": "10%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.5352,
+      "depthPct": 3.0744,
+      "centerXPct": 49.8239
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Lavender - Landscape.avif": {
+    "bounds": {
+      "top": 3.5484,
+      "left": 1.4063,
+      "width": 97.1875,
+      "height": 92.9032
+    },
+    "screenRadius": "12.597%",
+    "screenRadiusCorners": {
+      "topLeft": "12.518%",
+      "topRight": "12.201%",
+      "bottomLeft": "12.835%",
+      "bottomRight": "12.835%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.2168,
+      "depthPct": 3.5211,
+      "centerXPct": 50
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Lavender - Portrait.avif": {
+    "bounds": {
+      "top": 1.6,
+      "left": 3.5484,
+      "width": 92.9032,
+      "height": 97.1875
+    },
+    "screenRadius": "12.557%",
+    "screenRadiusCorners": {
+      "topLeft": "10%",
+      "topRight": "10%",
+      "bottomLeft": "10%",
+      "bottomRight": "10%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.5352,
+      "depthPct": 3.0744,
+      "centerXPct": 49.8239
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Mist Blue - Landscape.avif": {
+    "bounds": {
+      "top": 3.5484,
+      "left": 1.4063,
+      "width": 97.1875,
+      "height": 92.9032
+    },
+    "screenRadius": "12.597%",
+    "screenRadiusCorners": {
+      "topLeft": "12.518%",
+      "topRight": "12.201%",
+      "bottomLeft": "12.835%",
+      "bottomRight": "12.835%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.2168,
+      "depthPct": 3.5211,
+      "centerXPct": 50
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Mist Blue - Portrait.avif": {
+    "bounds": {
+      "top": 1.6,
+      "left": 3.5484,
+      "width": 92.9032,
+      "height": 97.1875
+    },
+    "screenRadius": "12.557%",
+    "screenRadiusCorners": {
+      "topLeft": "10%",
+      "topRight": "10%",
+      "bottomLeft": "10%",
+      "bottomRight": "10%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.5352,
+      "depthPct": 3.0744,
+      "centerXPct": 49.8239
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Sage - Landscape.avif": {
+    "bounds": {
+      "top": 3.5484,
+      "left": 1.4063,
+      "width": 97.1875,
+      "height": 92.9032
+    },
+    "screenRadius": "12.597%",
+    "screenRadiusCorners": {
+      "topLeft": "12.518%",
+      "topRight": "12.201%",
+      "bottomLeft": "12.835%",
+      "bottomRight": "12.835%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.2168,
+      "depthPct": 3.5211,
+      "centerXPct": 50
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Sage - Portrait.avif": {
+    "bounds": {
+      "top": 1.6,
+      "left": 3.5484,
+      "width": 92.9032,
+      "height": 97.1875
+    },
+    "screenRadius": "12.557%",
+    "screenRadiusCorners": {
+      "topLeft": "10%",
+      "topRight": "10%",
+      "bottomLeft": "10%",
+      "bottomRight": "10%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.5352,
+      "depthPct": 3.0744,
+      "centerXPct": 49.8239
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - White - Landscape.avif": {
+    "bounds": {
+      "top": 3.5484,
+      "left": 1.4063,
+      "width": 97.1875,
+      "height": 92.9032
+    },
+    "screenRadius": "12.597%",
+    "screenRadiusCorners": {
+      "topLeft": "12.518%",
+      "topRight": "12.201%",
+      "bottomLeft": "12.835%",
+      "bottomRight": "12.835%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.2168,
+      "depthPct": 3.5211,
+      "centerXPct": 50
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - White - Portrait.avif": {
+    "bounds": {
+      "top": 1.6,
+      "left": 3.5484,
+      "width": 92.9032,
+      "height": 97.1875
+    },
+    "screenRadius": "12.557%",
+    "screenRadiusCorners": {
+      "topLeft": "10%",
+      "topRight": "10%",
+      "bottomLeft": "10%",
+      "bottomRight": "10%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.5352,
+      "depthPct": 3.0744,
+      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 5c/Device/Apple iPhone 5c Blue.avif": {
     "bounds": {
-      "top": 15.1042,
-      "left": 9.2391,
-      "width": 82.6087,
-      "height": 70.5729
+      "top": 14.6875,
+      "left": 8.1699,
+      "width": 84.6405,
+      "height": 71.25
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6536,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6536,
+      "bottom": 0.4938,
+      "left": 0.6536
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 5c/Device/Apple iPhone 5c Green.avif": {
     "bounds": {
-      "top": 15.1042,
-      "left": 9.2391,
-      "width": 82.6087,
-      "height": 70.5729
+      "top": 14.6875,
+      "left": 8.1699,
+      "width": 84.6405,
+      "height": 71.25
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6536,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6536,
+      "bottom": 0.4938,
+      "left": 0.6536
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 5c/Device/Apple iPhone 5c Red.avif": {
     "bounds": {
-      "top": 15.1042,
-      "left": 9.2391,
-      "width": 82.6087,
-      "height": 70.5729
+      "top": 14.6875,
+      "left": 8.1699,
+      "width": 84.6405,
+      "height": 71.25
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6536,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6536,
+      "bottom": 0.4938,
+      "left": 0.6536
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 5c/Device/Apple iPhone 5c White.avif": {
     "bounds": {
-      "top": 15.1042,
-      "left": 9.2391,
-      "width": 82.6087,
-      "height": 70.5729
+      "top": 14.6875,
+      "left": 8.1699,
+      "width": 84.6405,
+      "height": 71.25
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6536,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6536,
+      "bottom": 0.4938,
+      "left": 0.6536
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 5c/Device/Apple iPhone 5c Yellow.avif": {
     "bounds": {
-      "top": 15.1042,
-      "left": 9.2391,
-      "width": 82.6087,
-      "height": 70.5729
+      "top": 14.6875,
+      "left": 8.1699,
+      "width": 84.6405,
+      "height": 71.25
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6536,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6536,
+      "bottom": 0.4938,
+      "left": 0.6536
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 5s/Device/Apple iPhone 5s Gold.avif": {
     "bounds": {
-      "top": 15.1042,
-      "left": 8.7432,
-      "width": 83.6066,
-      "height": 70.8333
+      "top": 14.6875,
+      "left": 7.8689,
+      "width": 85.2459,
+      "height": 71.5625
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6557,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6557,
+      "bottom": 0.4938,
+      "left": 0.6557
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 5s/Device/Apple iPhone 5s Silver.avif": {
     "bounds": {
-      "top": 15.1042,
-      "left": 8.7432,
-      "width": 83.6066,
-      "height": 70.8333
+      "top": 14.6875,
+      "left": 7.8689,
+      "width": 85.2459,
+      "height": 71.5625
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6557,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6557,
+      "bottom": 0.4938,
+      "left": 0.6557
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 5s/Device/Apple iPhone 5s Space Gray.avif": {
     "bounds": {
-      "top": 15.1042,
-      "left": 8.7432,
-      "width": 83.6066,
-      "height": 70.8333
+      "top": 14.6875,
+      "left": 7.8689,
+      "width": 85.2459,
+      "height": 71.5625
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6557,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6557,
+      "bottom": 0.4938,
+      "left": 0.6557
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 6s Plus/Device/Apple iPhone 6s Plus Gold.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.1064,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.6879,
+      "width": 86.6242,
+      "height": 75.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 6s Plus/Device/Apple iPhone 6s Plus Rose Gold.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.1064,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.6879,
+      "width": 86.6242,
+      "height": 75.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 6s Plus/Device/Apple iPhone 6s Plus Silver.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.1064,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.6879,
+      "width": 86.6242,
+      "height": 75.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 6s Plus/Device/Apple iPhone 6s Plus Space Gray.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.1064,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.6879,
+      "width": 86.6242,
+      "height": 75.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 6s/Device/Apple iPhone 6s Gold.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "21.600%",
+      "bottomRight": "0.167%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 6s/Device/Apple iPhone 6s Rose Gold.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "21.600%",
+      "bottomRight": "0.167%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 6s/Device/Apple iPhone 6s Silver.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "21.600%",
+      "bottomRight": "0.167%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 6s/Device/Apple iPhone 6s Space Gray.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.5,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "21.600%",
+      "topRight": "0.167%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 7 Plus/Device/Apple iPhone 7 Plus Gold.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.6879,
+      "width": 86.9427,
+      "height": 75.4688
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0.167%",
+      "bottomRight": "21.600%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 7 Plus/Device/Apple iPhone 7 Plus Jet Black.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.4792
+      "top": 12.6563,
+      "left": 6.6879,
+      "width": 86.9427,
+      "height": 75.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 7 Plus/Device/Apple iPhone 7 Plus Matte Black.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.4792
+      "top": 12.6563,
+      "left": 6.6879,
+      "width": 86.9427,
+      "height": 75.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 7 Plus/Device/Apple iPhone 7 Plus Rose Gold.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.6879,
+      "width": 86.9427,
+      "height": 75.4688
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0.167%",
+      "bottomRight": "21.600%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 7 Plus/Device/Apple iPhone 7 Plus Silver.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.6879,
+      "width": 86.9427,
+      "height": 75.4688
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0.167%",
+      "bottomRight": "21.600%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 7/Device/Apple iPhone 7 Gold.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "21.600%",
+      "bottomRight": "0.167%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 7/Device/Apple iPhone 7 Jet Black.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.5,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "21.600%",
+      "topRight": "0.167%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 7/Device/Apple iPhone 7 Matte Black.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.5,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "21.600%",
+      "topRight": "0.167%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 7/Device/Apple iPhone 7 Rose Gold.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "21.600%",
+      "bottomRight": "0.167%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 7/Device/Apple iPhone 7 Silver.avif": {
     "bounds": {
-      "top": 13.0208,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.6563,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.292%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "21.600%",
+      "bottomRight": "0.167%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 8 Plus/Device/Apple iPhone 8 Plus Gold.avif": {
     "bounds": {
-      "top": 11.7188,
-      "left": 7.2917,
-      "width": 85.9375,
-      "height": 76.5625
+      "top": 11.4063,
+      "left": 6.25,
+      "width": 87.5,
+      "height": 77.3438
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.291%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "21.600%",
+      "bottomRight": "0.163%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.625,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.625,
+      "bottom": 0.4938,
+      "left": 0.625
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 8 Plus/Device/Apple iPhone 8 Plus Silver.avif": {
     "bounds": {
-      "top": 11.7188,
-      "left": 7.2917,
-      "width": 85.9375,
-      "height": 76.5625
+      "top": 11.4063,
+      "left": 6.25,
+      "width": 87.5,
+      "height": 77.3438
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.291%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "21.600%",
+      "bottomRight": "0.163%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.625,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.625,
+      "bottom": 0.4938,
+      "left": 0.625
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 8 Plus/Device/Apple iPhone 8 Plus Space Grey.avif": {
     "bounds": {
-      "top": 11.7188,
-      "left": 7.2917,
-      "width": 85.9375,
-      "height": 76.5625
+      "top": 11.4063,
+      "left": 6.25,
+      "width": 87.5,
+      "height": 77.3438
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.291%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "21.600%",
+      "bottomRight": "0.163%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.625,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.625,
+      "bottom": 0.4938,
+      "left": 0.625
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 8/Device/Apple iPhone 8 Gold.avif": {
     "bounds": {
-      "top": 12.5,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.0313,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 8/Device/Apple iPhone 8 Silver.avif": {
     "bounds": {
-      "top": 12.5,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.0313,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 8/Device/Apple iPhone 8 Space Grey.avif": {
     "bounds": {
-      "top": 12.5,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.0313,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Cloud White - Landscape.avif": {
+    "bounds": {
+      "top": 3.5484,
+      "left": 1.4063,
+      "width": 97.1875,
+      "height": 92.9032
+    },
+    "screenRadius": "12.320%",
+    "screenRadiusCorners": {
+      "topLeft": "12.359%",
+      "topRight": "12.201%",
+      "bottomLeft": "12.359%",
+      "bottomRight": "12.359%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.3786,
+      "depthPct": 3.169,
+      "centerXPct": 49.9191
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Cloud White - Portrait.avif": {
+    "bounds": {
+      "top": 1.4063,
+      "left": 3.5484,
+      "width": 92.9032,
+      "height": 97.1875
+    },
+    "screenRadius": "12.280%",
+    "screenRadiusCorners": {
+      "topLeft": "12.359%",
+      "topRight": "12.359%",
+      "bottomLeft": "12.201%",
+      "bottomRight": "12.201%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.5352,
+      "depthPct": 2.9126,
+      "centerXPct": 49.8239
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Light Gold - Landscape.avif": {
+    "bounds": {
+      "top": 3.5484,
+      "left": 1.4063,
+      "width": 97.1875,
+      "height": 92.9032
+    },
+    "screenRadius": "12.320%",
+    "screenRadiusCorners": {
+      "topLeft": "12.359%",
+      "topRight": "12.201%",
+      "bottomLeft": "12.359%",
+      "bottomRight": "12.359%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.3786,
+      "depthPct": 3.169,
+      "centerXPct": 49.9191
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Light Gold - Portrait.avif": {
+    "bounds": {
+      "top": 1.4063,
+      "left": 3.5484,
+      "width": 92.9032,
+      "height": 97.1875
+    },
+    "screenRadius": "12.280%",
+    "screenRadiusCorners": {
+      "topLeft": "12.359%",
+      "topRight": "12.359%",
+      "bottomLeft": "12.201%",
+      "bottomRight": "12.201%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.5352,
+      "depthPct": 2.9126,
+      "centerXPct": 49.8239
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Sky Blue - Landscape.avif": {
+    "bounds": {
+      "top": 3.5484,
+      "left": 1.4063,
+      "width": 97.1875,
+      "height": 92.9032
+    },
+    "screenRadius": "12.320%",
+    "screenRadiusCorners": {
+      "topLeft": "12.359%",
+      "topRight": "12.201%",
+      "bottomLeft": "12.359%",
+      "bottomRight": "12.359%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.3786,
+      "depthPct": 3.169,
+      "centerXPct": 49.9191
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Sky Blue - Portrait.avif": {
+    "bounds": {
+      "top": 1.4063,
+      "left": 3.5484,
+      "width": 92.9032,
+      "height": 97.1875
+    },
+    "screenRadius": "12.280%",
+    "screenRadiusCorners": {
+      "topLeft": "12.359%",
+      "topRight": "12.359%",
+      "bottomLeft": "12.201%",
+      "bottomRight": "12.201%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 72.5352,
+      "depthPct": 2.9126,
+      "centerXPct": 49.8239
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Space Black - Landscape.avif": {
+    "bounds": {
+      "top": 3.5484,
+      "left": 1.4063,
+      "width": 97.1875,
+      "height": 92.9032
+    },
+    "screenRadius": "12.478%",
+    "screenRadiusCorners": {
+      "topLeft": "12.676%",
+      "topRight": "12.201%",
+      "bottomLeft": "12.835%",
+      "bottomRight": "12.201%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.3125,
+      "y": 0.6452,
+      "top": 0.271,
+      "right": 0.3125,
+      "bottom": 1.0194,
+      "left": 0.3125
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.3786,
+      "depthPct": 3.169,
+      "centerXPct": 49.9191
+    }
+  },
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Space Black - Portrait.avif": {
+    "bounds": {
+      "top": 1.4063,
+      "left": 3.5484,
+      "width": 92.9032,
+      "height": 97.1875
+    },
+    "screenRadius": "12.518%",
+    "screenRadiusCorners": {
+      "topLeft": "12.993%",
+      "topRight": "12.676%",
+      "bottomLeft": "12.201%",
+      "bottomRight": "12.201%"
+    },
+    "screenFit": "contain",
+    "edgeBleed": {
+      "x": 0.6452,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6452,
+      "bottom": 0.4938,
+      "left": 0.6452
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 70.7746,
+      "depthPct": 2.9126,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone SE/Device/Apple iPhone SE Black.avif": {
     "bounds": {
-      "top": 12.5,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.0313,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone SE/Device/Apple iPhone SE Red.avif": {
     "bounds": {
-      "top": 12.5,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.0313,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone SE/Device/Apple iPhone SE White.avif": {
     "bounds": {
-      "top": 12.5,
-      "left": 7.4468,
-      "width": 85.6383,
-      "height": 74.7396
+      "top": 12.0313,
+      "left": 6.3694,
+      "width": 87.2611,
+      "height": 75.625
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone X/Device/Apple iPhone X Silver.avif": {
     "bounds": {
-      "top": 3.125,
-      "left": 6.7708,
-      "width": 86.4583,
-      "height": 93.75
+      "top": 2.8125,
+      "left": 5.9375,
+      "width": 88.125,
+      "height": 94.375
     },
-    "screenRadius": "8.133%",
+    "screenRadius": "8.498%",
+    "screenRadiusCorners": {
+      "topLeft": "8.579%",
+      "topRight": "8.417%",
+      "bottomLeft": "8.579%",
+      "bottomRight": "8.417%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.625,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.625,
+      "bottom": 0.4938,
+      "left": 0.625
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.4532,
+      "depthPct": 1.8333,
+      "centerXPct": 49.8201
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone X/Device/Apple iPhone X Space Grey.avif": {
     "bounds": {
-      "top": 3.125,
-      "left": 6.7708,
-      "width": 86.4583,
-      "height": 93.75
+      "top": 2.8125,
+      "left": 5.9375,
+      "width": 88.125,
+      "height": 94.375
     },
-    "screenRadius": "8.133%",
+    "screenRadius": "8.498%",
+    "screenRadiusCorners": {
+      "topLeft": "8.579%",
+      "topRight": "8.417%",
+      "bottomLeft": "8.579%",
+      "bottomRight": "8.417%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.625,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.625,
+      "bottom": 0.4938,
+      "left": 0.625
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.4532,
+      "depthPct": 1.8333,
+      "centerXPct": 49.8201
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Blue.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.830%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.253%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Coral.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.830%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.253%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Red.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.830%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.253%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Silver.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.871%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.418%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.253%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Space Grey.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.830%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.253%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Yellow.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 7.732,
-      "width": 84.0206,
-      "height": 92.1875
+      "top": 3.4375,
+      "left": 7.0988,
+      "width": 85.4938,
+      "height": 93.125
     },
-    "screenRadius": "7.362%",
+    "screenRadius": "7.830%",
+    "screenRadiusCorners": {
+      "topLeft": "8.407%",
+      "topRight": "7.253%",
+      "bottomLeft": "8.407%",
+      "bottomRight": "7.253%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6173,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6173,
+      "bottom": 0.4938,
+      "left": 0.6173
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.7839,
+      "depthPct": 1.5203,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS Max/Device/Apple iPhone XS Max Gold.avif": {
     "bounds": {
-      "top": 2.8646,
-      "left": 6.2827,
-      "width": 87.4346,
-      "height": 94.2708
+      "top": 2.5,
+      "left": 5.6604,
+      "width": 88.6792,
+      "height": 95
     },
-    "screenRadius": "7.335%",
+    "screenRadius": "7.041%",
+    "screenRadiusCorners": {
+      "topLeft": "7.284%",
+      "topRight": "6.799%",
+      "bottomLeft": "7.284%",
+      "bottomRight": "6.799%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.8129,
+      "depthPct": 1.3245,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS Max/Device/Apple iPhone XS Max Silver.avif": {
     "bounds": {
-      "top": 2.8646,
-      "left": 6.2827,
-      "width": 87.4346,
-      "height": 94.2708
+      "top": 2.5,
+      "left": 5.6604,
+      "width": 88.6792,
+      "height": 95
     },
-    "screenRadius": "7.335%",
+    "screenRadius": "7.041%",
+    "screenRadiusCorners": {
+      "topLeft": "7.284%",
+      "topRight": "6.799%",
+      "bottomLeft": "7.284%",
+      "bottomRight": "6.799%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.8129,
+      "depthPct": 1.3245,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS Max/Device/Apple iPhone XS Max Space Grey.avif": {
     "bounds": {
-      "top": 2.8646,
-      "left": 6.2827,
-      "width": 87.4346,
-      "height": 94.2708
+      "top": 2.5,
+      "left": 5.6604,
+      "width": 88.6792,
+      "height": 95
     },
-    "screenRadius": "7.335%",
+    "screenRadius": "7.041%",
+    "screenRadiusCorners": {
+      "topLeft": "7.284%",
+      "topRight": "6.799%",
+      "bottomLeft": "7.284%",
+      "bottomRight": "6.799%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.8129,
+      "depthPct": 1.3245,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS/Device/Apple iPhone XS Gold.avif": {
     "bounds": {
-      "top": 3.125,
-      "left": 6.7708,
-      "width": 86.4583,
-      "height": 93.75
+      "top": 2.8125,
+      "left": 5.9375,
+      "width": 88.125,
+      "height": 94.375
     },
-    "screenRadius": "8.133%",
+    "screenRadius": "8.498%",
+    "screenRadiusCorners": {
+      "topLeft": "8.579%",
+      "topRight": "8.417%",
+      "bottomLeft": "8.579%",
+      "bottomRight": "8.417%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.625,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.625,
+      "bottom": 0.4938,
+      "left": 0.625
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.4532,
+      "depthPct": 1.8333,
+      "centerXPct": 49.8201
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS/Device/Apple iPhone XS Silver.avif": {
     "bounds": {
-      "top": 3.125,
-      "left": 6.7708,
-      "width": 86.4583,
-      "height": 93.75
+      "top": 2.8125,
+      "left": 5.9375,
+      "width": 88.125,
+      "height": 94.375
     },
-    "screenRadius": "8.133%",
+    "screenRadius": "8.498%",
+    "screenRadiusCorners": {
+      "topLeft": "8.579%",
+      "topRight": "8.417%",
+      "bottomLeft": "8.579%",
+      "bottomRight": "8.417%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.625,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.625,
+      "bottom": 0.4938,
+      "left": 0.625
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.4532,
+      "depthPct": 1.8333,
+      "centerXPct": 49.8201
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS/Device/Apple iPhone XS Space Grey.avif": {
     "bounds": {
-      "top": 3.125,
-      "left": 6.7708,
-      "width": 86.4583,
-      "height": 93.75
+      "top": 2.8125,
+      "left": 5.9375,
+      "width": 88.125,
+      "height": 94.375
     },
-    "screenRadius": "8.133%",
+    "screenRadius": "8.498%",
+    "screenRadiusCorners": {
+      "topLeft": "8.579%",
+      "topRight": "8.417%",
+      "bottomLeft": "8.579%",
+      "bottomRight": "8.417%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.625,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.625,
+      "bottom": 0.4938,
+      "left": 0.625
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.4532,
+      "depthPct": 1.8333,
+      "centerXPct": 49.8201
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 2 XL/Device/Google Pixel 2 XL Black and White.avif": {
     "bounds": {
-      "top": 7.2917,
-      "left": 5.8824,
-      "width": 87.7005,
-      "height": 86.1979
+      "top": 7.0313,
+      "left": 5.1282,
+      "width": 89.4231,
+      "height": 86.7188
     },
-    "screenRadius": "4.116%",
+    "screenRadius": "3.927%",
+    "screenRadiusCorners": {
+      "topLeft": "3.600%",
+      "topRight": "4.091%",
+      "bottomLeft": "3.764%",
+      "bottomRight": "4.255%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.641,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.641,
+      "bottom": 0.4938,
+      "left": 0.641
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 2 XL/Device/Google Pixel 2 XL Just Black.avif": {
     "bounds": {
-      "top": 7.2917,
-      "left": 5.8824,
-      "width": 87.7005,
-      "height": 86.1979
+      "top": 7.0313,
+      "left": 5.1282,
+      "width": 89.4231,
+      "height": 86.7188
     },
-    "screenRadius": "4.116%",
+    "screenRadius": "3.927%",
+    "screenRadiusCorners": {
+      "topLeft": "3.600%",
+      "topRight": "4.091%",
+      "bottomLeft": "3.764%",
+      "bottomRight": "4.255%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.641,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.641,
+      "bottom": 0.4938,
+      "left": 0.641
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 2/Device/Google Pixel 2 Clearly White.avif": {
     "bounds": {
-      "top": 11.9792,
-      "left": 5.4054,
-      "width": 88.6486,
-      "height": 76.0417
+      "top": 11.5625,
+      "left": 4.2208,
+      "width": 90.2597,
+      "height": 76.875
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6494,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6494,
+      "bottom": 0.4938,
+      "left": 0.6494
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 2/Device/Google Pixel 2 Just Black.avif": {
     "bounds": {
-      "top": 11.9792,
-      "left": 5.4054,
-      "width": 88.6486,
-      "height": 76.0417
+      "top": 11.5625,
+      "left": 4.2208,
+      "width": 90.2597,
+      "height": 76.875
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6494,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6494,
+      "bottom": 0.4938,
+      "left": 0.6494
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 2/Device/Google PIxel 2 Kinda Blue.avif": {
     "bounds": {
-      "top": 11.9792,
-      "left": 5.4054,
-      "width": 88.6486,
-      "height": 76.0417
+      "top": 11.5625,
+      "left": 4.2208,
+      "width": 90.2597,
+      "height": 76.875
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6494,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6494,
+      "bottom": 0.4938,
+      "left": 0.6494
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 3 XL/Device/Google Pixel 3 XL - Clearly White.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 4.7872,
-      "width": 89.8936,
-      "height": 90.8854
+      "top": 1.875,
+      "left": 3.8339,
+      "width": 91.3738,
+      "height": 91.7188
     },
-    "screenRadius": "3.698%",
+    "screenRadius": "3.949%",
+    "screenRadiusCorners": {
+      "topLeft": "5.745%",
+      "topRight": "5.426%",
+      "bottomLeft": "2.553%",
+      "bottomRight": "2.074%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.639,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.639,
+      "bottom": 0.4938,
+      "left": 0.639
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 86.5248,
+      "depthPct": 0.8576,
+      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 3 XL/Device/Google Pixel 3 XL - Just Black.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 4.7872,
-      "width": 89.8936,
-      "height": 90.8854
+      "top": 1.875,
+      "left": 3.8339,
+      "width": 91.6933,
+      "height": 91.7188
     },
-    "screenRadius": "3.550%",
+    "screenRadius": "4.254%",
+    "screenRadiusCorners": {
+      "topLeft": "5.724%",
+      "topRight": "6.042%",
+      "bottomLeft": "2.703%",
+      "bottomRight": "2.544%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.639,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.639,
+      "bottom": 0.4938,
+      "left": 0.639
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 86.2191,
+      "depthPct": 0.8576,
+      "centerXPct": 49.6466
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 3 XL/Device/Google Pixel 3 XL - Not Pink.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 4.7872,
-      "width": 89.8936,
-      "height": 90.8854
+      "top": 1.875,
+      "left": 3.8339,
+      "width": 91.3738,
+      "height": 91.7188
     },
-    "screenRadius": "3.698%",
+    "screenRadius": "3.949%",
+    "screenRadiusCorners": {
+      "topLeft": "5.745%",
+      "topRight": "5.426%",
+      "bottomLeft": "2.553%",
+      "bottomRight": "2.074%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.639,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.639,
+      "bottom": 0.4938,
+      "left": 0.639
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 86.5248,
+      "depthPct": 0.8576,
+      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 3/Device/Google Pixel 3 - Clearly White.avif": {
     "bounds": {
-      "top": 8.0729,
-      "left": 4.9724,
-      "width": 89.5028,
-      "height": 84.6354
+      "top": 7.6563,
+      "left": 3.9735,
+      "width": 91.0596,
+      "height": 85.3125
     },
-    "screenRadius": "2.392%",
+    "screenRadius": "2.283%",
+    "screenRadiusCorners": {
+      "topLeft": "2.491%",
+      "topRight": "1.993%",
+      "bottomLeft": "2.657%",
+      "bottomRight": "1.993%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 3/Device/Google Pixel 3 - Just Black.avif": {
     "bounds": {
-      "top": 8.0729,
-      "left": 4.9724,
-      "width": 89.5028,
-      "height": 84.6354
+      "top": 7.6563,
+      "left": 3.9735,
+      "width": 91.0596,
+      "height": 85.3125
     },
-    "screenRadius": "2.392%",
+    "screenRadius": "2.283%",
+    "screenRadiusCorners": {
+      "topLeft": "2.491%",
+      "topRight": "1.993%",
+      "bottomLeft": "2.657%",
+      "bottomRight": "1.993%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 3/Device/Google Pixel 3 - Not Pink.avif": {
     "bounds": {
-      "top": 8.0729,
-      "left": 4.9724,
-      "width": 89.5028,
-      "height": 84.6354
+      "top": 7.6563,
+      "left": 3.9735,
+      "width": 91.0596,
+      "height": 85.3125
     },
-    "screenRadius": "2.392%",
+    "screenRadius": "2.283%",
+    "screenRadiusCorners": {
+      "topLeft": "2.491%",
+      "topRight": "1.993%",
+      "bottomLeft": "2.657%",
+      "bottomRight": "1.993%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4 XL/Device/Google Pixel 4 XL Clearly White.avif": {
     "bounds": {
-      "top": 5.9896,
-      "left": 3.8674,
-      "width": 91.7127,
-      "height": 91.1458
+      "top": 5.625,
+      "left": 3.3223,
+      "width": 93.0233,
+      "height": 92.0313
     },
-    "screenRadius": "7.380%",
+    "screenRadius": "7.174%",
+    "screenRadiusCorners": {
+      "topLeft": "6.848%",
+      "topRight": "6.685%",
+      "bottomLeft": "7.989%",
+      "bottomRight": "7.174%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6645,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6645,
+      "bottom": 0.4938,
+      "left": 0.6645
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.1449,
+      "depthPct": 1.3675,
+      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4 XL/Device/Google Pixel 4 XL Just Black.avif": {
     "bounds": {
-      "top": 5.9896,
-      "left": 3.8674,
-      "width": 91.7127,
-      "height": 91.1458
+      "top": 5.625,
+      "left": 3.3223,
+      "width": 93.0233,
+      "height": 92.0313
     },
-    "screenRadius": "7.380%",
+    "screenRadius": "7.174%",
+    "screenRadiusCorners": {
+      "topLeft": "6.848%",
+      "topRight": "6.685%",
+      "bottomLeft": "7.989%",
+      "bottomRight": "7.174%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6645,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6645,
+      "bottom": 0.4938,
+      "left": 0.6645
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.1449,
+      "depthPct": 1.3675,
+      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4 XL/Device/Google Pixel 4 XL Oh So Orange.avif": {
     "bounds": {
-      "top": 5.9896,
-      "left": 3.8674,
-      "width": 91.7127,
-      "height": 91.1458
+      "top": 5.625,
+      "left": 3.3223,
+      "width": 93.0233,
+      "height": 92.0313
     },
-    "screenRadius": "7.380%",
+    "screenRadius": "7.174%",
+    "screenRadiusCorners": {
+      "topLeft": "6.848%",
+      "topRight": "6.685%",
+      "bottomLeft": "7.989%",
+      "bottomRight": "7.174%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6645,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6645,
+      "bottom": 0.4938,
+      "left": 0.6645
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.1449,
+      "depthPct": 1.3675,
+      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4/Device/Google Pixel 4 Clearly White.avif": {
     "bounds": {
-      "top": 5.9896,
-      "left": 3.8674,
-      "width": 91.1602,
-      "height": 91.1458
+      "top": 5.625,
+      "left": 3.3113,
+      "width": 92.7152,
+      "height": 91.7188
     },
-    "screenRadius": "7.727%",
+    "screenRadius": "6.970%",
+    "screenRadiusCorners": {
+      "topLeft": "6.522%",
+      "topRight": "7.174%",
+      "bottomLeft": "7.011%",
+      "bottomRight": "7.174%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.1449,
+      "depthPct": 1.3722,
+      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4/Device/Google Pixel 4 Just Black.avif": {
     "bounds": {
-      "top": 5.9896,
-      "left": 3.8674,
-      "width": 91.1602,
-      "height": 91.1458
+      "top": 5.625,
+      "left": 3.3113,
+      "width": 92.7152,
+      "height": 91.7188
     },
-    "screenRadius": "7.727%",
+    "screenRadius": "6.970%",
+    "screenRadiusCorners": {
+      "topLeft": "6.522%",
+      "topRight": "7.174%",
+      "bottomLeft": "7.011%",
+      "bottomRight": "7.174%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.1449,
+      "depthPct": 1.3722,
+      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4/Device/Google Pixel 4 Oh So Orange.avif": {
     "bounds": {
-      "top": 5.9896,
-      "left": 3.8674,
-      "width": 91.1602,
-      "height": 91.1458
+      "top": 5.625,
+      "left": 3.3113,
+      "width": 92.7152,
+      "height": 91.7188
     },
-    "screenRadius": "7.727%",
+    "screenRadius": "6.970%",
+    "screenRadiusCorners": {
+      "topLeft": "6.522%",
+      "topRight": "7.174%",
+      "bottomLeft": "7.011%",
+      "bottomRight": "7.174%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.1449,
+      "depthPct": 1.3722,
+      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 5/Device/Google Pixel 5 Just Black.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.3191,
-      "width": 88.8298,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 4.4586,
+      "width": 90.4459,
+      "height": 95.625
     },
-    "screenRadius": "5.539%",
+    "screenRadius": "6.067%",
+    "screenRadiusCorners": {
+      "topLeft": "6.107%",
+      "topRight": "6.107%",
+      "bottomLeft": "5.946%",
+      "bottomRight": "6.107%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 86.4286,
+      "depthPct": 0.9868,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 5/Device/Google Pixel 5 Sorta Sage.avif": {
     "bounds": {
-      "top": 2.6042,
-      "left": 5.3191,
-      "width": 88.8298,
-      "height": 94.7917
+      "top": 2.1875,
+      "left": 4.4586,
+      "width": 90.4459,
+      "height": 95.625
     },
-    "screenRadius": "5.539%",
+    "screenRadius": "6.067%",
+    "screenRadiusCorners": {
+      "topLeft": "6.107%",
+      "topRight": "6.107%",
+      "bottomLeft": "5.946%",
+      "bottomRight": "6.107%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6369,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6369,
+      "bottom": 0.4938,
+      "left": 0.6369
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 86.4286,
+      "depthPct": 0.9868,
+      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel/Device/Google Pixel Quite Black.avif": {
     "bounds": {
-      "top": 10.4167,
-      "left": 5.2632,
-      "width": 88.4211,
-      "height": 77.8646
+      "top": 10,
+      "left": 4.7468,
+      "width": 89.8734,
+      "height": 78.5938
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel/Device/Google Pixel Really Blue.avif": {
     "bounds": {
-      "top": 10.4167,
-      "left": 5.2632,
-      "width": 88.4211,
-      "height": 77.8646
+      "top": 10,
+      "left": 4.7468,
+      "width": 89.8734,
+      "height": 78.5938
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel/Device/Google Pixel Very Silver.avif": {
     "bounds": {
-      "top": 10.4167,
-      "left": 5.2632,
-      "width": 88.4211,
-      "height": 77.8646
+      "top": 10,
+      "left": 4.7468,
+      "width": 89.8734,
+      "height": 78.5938
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
     }
   },
   "/src/stories/assets/mockups/mobile/google/Nexus 4/Device/Nexus 4.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 5.0505,
-      "width": 89.3939,
-      "height": 77.0833
+      "top": 10.9375,
+      "left": 4.2424,
+      "width": 90.9091,
+      "height": 77.6563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6061,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6061,
+      "bottom": 0.4938,
+      "left": 0.6061
     }
   },
   "/src/stories/assets/mockups/mobile/google/Nexus 5X/Device/Nexus 5x.avif": {
     "bounds": {
-      "top": 9.6354,
-      "left": 4.712,
-      "width": 90.0524,
-      "height": 79.6875
+      "top": 9.375,
+      "left": 4.0881,
+      "width": 91.195,
+      "height": 80.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6289,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6289,
+      "bottom": 0.4938,
+      "left": 0.6289
     }
   },
   "/src/stories/assets/mockups/mobile/google/Nexus 6P/Device/Nexus 6P.avif": {
     "bounds": {
-      "top": 10.4167,
-      "left": 4.2553,
-      "width": 90.9574,
-      "height": 79.6875
+      "top": 10,
+      "left": 3.1949,
+      "width": 92.9712,
+      "height": 80.625
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.639,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.639,
+      "bottom": 0.4938,
+      "left": 0.639
     }
   },
   "/src/stories/assets/mockups/mobile/google/Nexus 9/Device/Nexus 9.avif": {
     "bounds": {
-      "top": 10.4167,
-      "left": 5.7915,
-      "width": 88.0309,
-      "height": 79.4271
+      "top": 10.1563,
+      "left": 5.1044,
+      "width": 89.3271,
+      "height": 80
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.6178,
-      "y": 0.4167
+      "x": 0.464,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.464,
+      "bottom": 0.4938,
+      "left": 0.464
     }
   },
   "/src/stories/assets/mockups/mobile/htcone/HTC One A9/Device/HTC One A9 Black.avif": {
     "bounds": {
-      "top": 11.4583,
-      "left": 6.383,
-      "width": 86.7021,
-      "height": 75.2604
+      "top": 11.25,
+      "left": 5.7508,
+      "width": 87.8594,
+      "height": 75.7813
     },
-    "screenRadius": "12.577%",
+    "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.639,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.639,
+      "bottom": 0.4938,
+      "left": 0.639
     }
   },
   "/src/stories/assets/mockups/mobile/htcone/HTC One A9/Device/HTC One A9 White.avif": {
     "bounds": {
-      "top": 11.4583,
-      "left": 6.383,
-      "width": 86.7021,
-      "height": 75.2604
+      "top": 11.25,
+      "left": 5.7508,
+      "width": 87.8594,
+      "height": 75.7813
     },
-    "screenRadius": "12.577%",
+    "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.639,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.639,
+      "bottom": 0.4938,
+      "left": 0.639
     }
   },
   "/src/stories/assets/mockups/mobile/huawei/Huawei P8/Device/Huawei P8 Black.avif": {
     "bounds": {
-      "top": 9.6354,
-      "left": 5.2083,
-      "width": 89.5833,
-      "height": 79.9479
+      "top": 9.375,
+      "left": 4.6875,
+      "width": 90.9375,
+      "height": 80.4688
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.625,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.625,
+      "bottom": 0.4938,
+      "left": 0.625
     }
   },
   "/src/stories/assets/mockups/mobile/huawei/Huawei P8/Device/Huawei P8 White.avif": {
     "bounds": {
-      "top": 9.6354,
-      "left": 5.2083,
-      "width": 89.5833,
-      "height": 79.9479
+      "top": 9.375,
+      "left": 4.6875,
+      "width": 90.9375,
+      "height": 80.4688
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.625,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.625,
+      "bottom": 0.4938,
+      "left": 0.625
     }
   },
   "/src/stories/assets/mockups/mobile/microsoft/Microsoft Lumia 950/Device/Microsoft Lumia 950 Black.avif": {
     "bounds": {
-      "top": 11.4583,
-      "left": 6.1224,
-      "width": 86.7347,
-      "height": 79.4271
+      "top": 11.0938,
+      "left": 5.1988,
+      "width": 88.685,
+      "height": 80.1563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6116,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6116,
+      "bottom": 0.4938,
+      "left": 0.6116
     }
   },
   "/src/stories/assets/mockups/mobile/microsoft/Microsoft Lumia 950/Device/Microsoft Lumia 950 White.avif": {
     "bounds": {
-      "top": 11.4583,
-      "left": 6.1224,
-      "width": 86.7347,
-      "height": 79.4271
+      "top": 11.0938,
+      "left": 5.1988,
+      "width": 88.685,
+      "height": 80.1563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6116,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6116,
+      "bottom": 0.4938,
+      "left": 0.6116
     }
   },
   "/src/stories/assets/mockups/mobile/motorola/Motorola Moto E/Device/Motorola Moto E Black.avif": {
     "bounds": {
-      "top": 14.8438,
-      "left": 8.5,
-      "width": 81.5,
-      "height": 75.5208
+      "top": 14.375,
+      "left": 7.8078,
+      "width": 83.1832,
+      "height": 76.4063
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6006,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6006,
+      "bottom": 0.4938,
+      "left": 0.6006
     }
   },
   "/src/stories/assets/mockups/mobile/motorola/Motorola Moto E/Device/Motorola Moto E White.avif": {
     "bounds": {
-      "top": 14.8438,
-      "left": 8.5,
-      "width": 81.5,
-      "height": 75.5208
+      "top": 14.375,
+      "left": 7.8078,
+      "width": 83.1832,
+      "height": 76.4063
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6006,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6006,
+      "bottom": 0.4938,
+      "left": 0.6006
     }
   },
   "/src/stories/assets/mockups/mobile/motorola/Motorola Moto G/Device/Motorola Moto G.avif": {
     "bounds": {
-      "top": 11.7188,
-      "left": 6.599,
-      "width": 85.7868,
-      "height": 78.3854
+      "top": 11.4063,
+      "left": 6.079,
+      "width": 87.234,
+      "height": 79.2188
     },
-    "screenRadius": "0%",
+    "screenRadius": "11.290%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0.159%",
+      "bottomRight": "21.600%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6079,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6079,
+      "bottom": 0.4938,
+      "left": 0.6079
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note 5/Device/Samsung Galaxy Note 5 Black.avif": {
     "bounds": {
-      "top": 9.375,
-      "left": 4.6632,
-      "width": 91.1917,
-      "height": 82.0313
+      "top": 9.0625,
+      "left": 3.7267,
+      "width": 92.8571,
+      "height": 82.6563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6211,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6211,
+      "bottom": 0.4938,
+      "left": 0.6211
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note 5/Device/Samsung Galaxy Note 5 Gold.avif": {
     "bounds": {
-      "top": 9.375,
-      "left": 4.6632,
-      "width": 91.1917,
-      "height": 82.0313
+      "top": 9.0625,
+      "left": 3.7267,
+      "width": 92.8571,
+      "height": 82.6563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6211,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6211,
+      "bottom": 0.4938,
+      "left": 0.6211
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note 5/Device/Samsung Galaxy Note 5 Pink.avif": {
     "bounds": {
-      "top": 9.375,
-      "left": 4.6632,
-      "width": 91.1917,
-      "height": 82.0313
+      "top": 9.0625,
+      "left": 3.7267,
+      "width": 92.8571,
+      "height": 82.6563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6211,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6211,
+      "bottom": 0.4938,
+      "left": 0.6211
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note 5/Device/Samsung Galaxy Note 5 Silver Titanium.avif": {
     "bounds": {
-      "top": 9.375,
-      "left": 4.6632,
-      "width": 91.1917,
-      "height": 82.0313
+      "top": 9.0625,
+      "left": 3.7267,
+      "width": 92.8571,
+      "height": 82.6563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6211,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6211,
+      "bottom": 0.4938,
+      "left": 0.6211
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note 5/Device/Samsung Galaxy Note 5 White.avif": {
     "bounds": {
-      "top": 9.375,
-      "left": 4.6632,
-      "width": 91.1917,
-      "height": 82.0313
+      "top": 9.0625,
+      "left": 3.7267,
+      "width": 92.8571,
+      "height": 82.6563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6211,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6211,
+      "bottom": 0.4938,
+      "left": 0.6211
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note10/Device/Samsung Galaxy Note10 Aura Black.avif": {
     "bounds": {
-      "top": 1.5625,
-      "left": 2.7322,
-      "width": 95.082,
-      "height": 96.0938
+      "top": 1.0938,
+      "left": 2.2876,
+      "width": 96.0784,
+      "height": 96.875
     },
-    "screenRadius": "1.868%",
+    "screenRadius": "1.319%",
+    "screenRadiusCorners": {
+      "topLeft": "1.241%",
+      "topRight": "1.397%",
+      "bottomLeft": "1.241%",
+      "bottomRight": "1.397%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6536,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6536,
+      "bottom": 0.4938,
+      "left": 0.6536
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note10/Device/Samsung Galaxy Note10 Aura Glow.avif": {
     "bounds": {
-      "top": 1.5625,
-      "left": 2.7322,
-      "width": 95.082,
-      "height": 96.0938
+      "top": 1.0938,
+      "left": 2.2876,
+      "width": 96.0784,
+      "height": 96.875
     },
-    "screenRadius": "1.868%",
+    "screenRadius": "1.319%",
+    "screenRadiusCorners": {
+      "topLeft": "1.241%",
+      "topRight": "1.397%",
+      "bottomLeft": "1.241%",
+      "bottomRight": "1.397%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6536,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6536,
+      "bottom": 0.4938,
+      "left": 0.6536
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note10/Device/Samsung Galaxy Note10 Aura Pink.avif": {
     "bounds": {
-      "top": 1.5625,
-      "left": 2.7322,
-      "width": 95.082,
-      "height": 96.0938
+      "top": 1.0938,
+      "left": 2.2876,
+      "width": 96.0784,
+      "height": 96.875
     },
-    "screenRadius": "1.868%",
+    "screenRadius": "1.319%",
+    "screenRadiusCorners": {
+      "topLeft": "1.241%",
+      "topRight": "1.397%",
+      "bottomLeft": "1.241%",
+      "bottomRight": "1.397%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6536,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6536,
+      "bottom": 0.4938,
+      "left": 0.6536
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note10/Device/Samsung Galaxy Note10 Aura Red.avif": {
     "bounds": {
-      "top": 1.5625,
-      "left": 2.7322,
-      "width": 95.082,
-      "height": 96.0938
+      "top": 1.0938,
+      "left": 2.2876,
+      "width": 96.0784,
+      "height": 96.875
     },
-    "screenRadius": "1.868%",
+    "screenRadius": "1.319%",
+    "screenRadiusCorners": {
+      "topLeft": "1.241%",
+      "topRight": "1.397%",
+      "bottomLeft": "1.241%",
+      "bottomRight": "1.397%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6536,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6536,
+      "bottom": 0.4938,
+      "left": 0.6536
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note10/Device/Samsung Galaxy Note10 Aura White.avif": {
     "bounds": {
-      "top": 1.5625,
-      "left": 2.7322,
-      "width": 95.082,
-      "height": 96.0938
+      "top": 1.0938,
+      "left": 2.2876,
+      "width": 96.0784,
+      "height": 96.875
     },
-    "screenRadius": "1.868%",
+    "screenRadius": "1.319%",
+    "screenRadiusCorners": {
+      "topLeft": "1.241%",
+      "topRight": "1.397%",
+      "bottomLeft": "1.241%",
+      "bottomRight": "1.397%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6536,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6536,
+      "bottom": 0.4938,
+      "left": 0.6536
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note10+/Device/Samsung Galaxy Note10+ Aura Black.avif": {
     "bounds": {
-      "top": 1.3021,
-      "left": 2.7322,
-      "width": 95.082,
-      "height": 96.3542
+      "top": 1.0938,
+      "left": 2.2951,
+      "width": 96.0656,
+      "height": 96.875
     },
-    "screenRadius": "2.371%",
+    "screenRadius": "1.207%",
+    "screenRadiusCorners": {
+      "topLeft": "1.246%",
+      "topRight": "1.246%",
+      "bottomLeft": "1.090%",
+      "bottomRight": "1.246%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6557,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6557,
+      "bottom": 0.4938,
+      "left": 0.6557
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note10+/Device/Samsung Galaxy Note10+ Aura Blue.avif": {
     "bounds": {
-      "top": 1.3021,
-      "left": 2.7322,
-      "width": 95.082,
-      "height": 96.3542
+      "top": 1.0938,
+      "left": 2.2951,
+      "width": 96.0656,
+      "height": 96.875
     },
-    "screenRadius": "2.371%",
+    "screenRadius": "1.207%",
+    "screenRadiusCorners": {
+      "topLeft": "1.246%",
+      "topRight": "1.246%",
+      "bottomLeft": "1.090%",
+      "bottomRight": "1.246%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6557,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6557,
+      "bottom": 0.4938,
+      "left": 0.6557
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note10+/Device/Samsung Galaxy Note10+ Aura Glow.avif": {
     "bounds": {
-      "top": 1.3021,
-      "left": 2.7322,
-      "width": 95.082,
-      "height": 96.3542
+      "top": 1.0938,
+      "left": 2.2951,
+      "width": 96.0656,
+      "height": 96.875
     },
-    "screenRadius": "2.371%",
+    "screenRadius": "1.207%",
+    "screenRadiusCorners": {
+      "topLeft": "1.246%",
+      "topRight": "1.246%",
+      "bottomLeft": "1.090%",
+      "bottomRight": "1.246%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6557,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6557,
+      "bottom": 0.4938,
+      "left": 0.6557
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Note10+/Device/Samsung Galaxy Note10+ Aura White.avif": {
     "bounds": {
-      "top": 1.3021,
-      "left": 2.7322,
-      "width": 95.082,
-      "height": 96.3542
+      "top": 1.0938,
+      "left": 2.2951,
+      "width": 96.0656,
+      "height": 96.875
     },
-    "screenRadius": "2.371%",
+    "screenRadius": "1.207%",
+    "screenRadiusCorners": {
+      "topLeft": "1.246%",
+      "topRight": "1.246%",
+      "bottomLeft": "1.090%",
+      "bottomRight": "1.246%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6557,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6557,
+      "bottom": 0.4938,
+      "left": 0.6557
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S Duos/Device/Samsung Galaxy S Duos.avif": {
     "bounds": {
-      "top": 14.3229,
-      "left": 8.5,
-      "width": 83.5,
-      "height": 72.3958
+      "top": 13.9063,
+      "left": 7.7844,
+      "width": 84.7305,
+      "height": 73.2813
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.5988,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.5988,
+      "bottom": 0.4938,
+      "left": 0.5988
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10/Device/Samsung Galaxy S10 Flamingo Pink.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 3.2967,
-      "width": 92.8571,
-      "height": 94.2708
+      "top": 2.0313,
+      "left": 2.6403,
+      "width": 94.3894,
+      "height": 95
     },
-    "screenRadius": "4.586%",
+    "screenRadius": "4.548%",
+    "screenRadiusCorners": {
+      "topLeft": "4.628%",
+      "topRight": "4.149%",
+      "bottomLeft": "4.947%",
+      "bottomRight": "4.468%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6601,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6601,
+      "bottom": 0.4938,
+      "left": 0.6601
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10/Device/Samsung Galaxy S10 Prism Black.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 3.2967,
-      "width": 92.8571,
-      "height": 94.2708
+      "top": 2.0313,
+      "left": 2.6403,
+      "width": 94.3894,
+      "height": 95
     },
-    "screenRadius": "4.586%",
+    "screenRadius": "4.548%",
+    "screenRadiusCorners": {
+      "topLeft": "4.628%",
+      "topRight": "4.149%",
+      "bottomLeft": "4.947%",
+      "bottomRight": "4.468%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6601,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6601,
+      "bottom": 0.4938,
+      "left": 0.6601
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10/Device/Samsung Galaxy S10 Prism Blue.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 3.2967,
-      "width": 92.8571,
-      "height": 94.2708
+      "top": 2.0313,
+      "left": 2.6403,
+      "width": 94.3894,
+      "height": 95
     },
-    "screenRadius": "4.586%",
+    "screenRadius": "4.548%",
+    "screenRadiusCorners": {
+      "topLeft": "4.628%",
+      "topRight": "4.149%",
+      "bottomLeft": "4.947%",
+      "bottomRight": "4.468%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6601,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6601,
+      "bottom": 0.4938,
+      "left": 0.6601
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10/Device/Samsung Galaxy S10 Prism Green.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 3.2967,
-      "width": 92.8571,
-      "height": 94.2708
+      "top": 2.0313,
+      "left": 2.6403,
+      "width": 94.3894,
+      "height": 95
     },
-    "screenRadius": "24.000%",
+    "screenRadius": "4.548%",
+    "screenRadiusCorners": {
+      "topLeft": "4.628%",
+      "topRight": "4.149%",
+      "bottomLeft": "4.947%",
+      "bottomRight": "4.468%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6601,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6601,
+      "bottom": 0.4938,
+      "left": 0.6601
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10/Device/Samsung Galaxy S10 Prism White.avif": {
     "bounds": {
-      "top": 2.3438,
-      "left": 3.2967,
-      "width": 92.8571,
-      "height": 94.2708
+      "top": 2.0313,
+      "left": 2.6403,
+      "width": 94.3894,
+      "height": 95
     },
-    "screenRadius": "24.000%",
+    "screenRadius": "4.548%",
+    "screenRadiusCorners": {
+      "topLeft": "4.628%",
+      "topRight": "4.149%",
+      "bottomLeft": "4.947%",
+      "bottomRight": "4.468%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6601,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6601,
+      "bottom": 0.4938,
+      "left": 0.6601
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Ceramic White.avif": {
     "bounds": {
-      "top": 2.0833,
-      "left": 3.2967,
-      "width": 93.4066,
-      "height": 94.5313
+      "top": 1.7188,
+      "left": 2.6316,
+      "width": 94.7368,
+      "height": 95.3125
     },
-    "screenRadius": "5.588%",
+    "screenRadius": "5.467%",
+    "screenRadiusCorners": {
+      "topLeft": "5.863%",
+      "topRight": "5.863%",
+      "bottomLeft": "5.070%",
+      "bottomRight": "5.070%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6579,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6579,
+      "bottom": 0.4938,
+      "left": 0.6579
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.2113,
+      "depthPct": 0.6601,
+      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Flamingo Pink.avif": {
     "bounds": {
-      "top": 2.0833,
-      "left": 3.2967,
-      "width": 93.4066,
-      "height": 94.5313
+      "top": 1.7188,
+      "left": 2.6316,
+      "width": 94.7368,
+      "height": 95.3125
     },
-    "screenRadius": "5.588%",
+    "screenRadius": "5.387%",
+    "screenRadiusCorners": {
+      "topLeft": "5.704%",
+      "topRight": "5.863%",
+      "bottomLeft": "4.912%",
+      "bottomRight": "5.070%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6579,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6579,
+      "bottom": 0.4938,
+      "left": 0.6579
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.2113,
+      "depthPct": 0.6601,
+      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Prism Black.avif": {
     "bounds": {
-      "top": 2.0833,
-      "left": 3.2967,
-      "width": 93.4066,
-      "height": 94.5313
+      "top": 1.7188,
+      "left": 2.6316,
+      "width": 94.7368,
+      "height": 95.3125
     },
-    "screenRadius": "5.588%",
+    "screenRadius": "5.387%",
+    "screenRadiusCorners": {
+      "topLeft": "5.704%",
+      "topRight": "5.863%",
+      "bottomLeft": "4.912%",
+      "bottomRight": "5.070%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6579,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6579,
+      "bottom": 0.4938,
+      "left": 0.6579
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.2113,
+      "depthPct": 0.6601,
+      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Prism Blue.avif": {
     "bounds": {
-      "top": 2.0833,
-      "left": 3.2967,
-      "width": 93.4066,
-      "height": 94.5313
+      "top": 1.7188,
+      "left": 2.6316,
+      "width": 94.7368,
+      "height": 95.3125
     },
-    "screenRadius": "5.588%",
+    "screenRadius": "5.387%",
+    "screenRadiusCorners": {
+      "topLeft": "5.704%",
+      "topRight": "5.863%",
+      "bottomLeft": "4.912%",
+      "bottomRight": "5.070%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6579,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6579,
+      "bottom": 0.4938,
+      "left": 0.6579
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.2113,
+      "depthPct": 0.6601,
+      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Prism Green.avif": {
     "bounds": {
-      "top": 2.0833,
-      "left": 3.2967,
-      "width": 93.4066,
-      "height": 94.5313
+      "top": 1.7188,
+      "left": 2.6316,
+      "width": 94.7368,
+      "height": 95.3125
     },
-    "screenRadius": "24.000%",
+    "screenRadius": "5.387%",
+    "screenRadiusCorners": {
+      "topLeft": "5.704%",
+      "topRight": "5.863%",
+      "bottomLeft": "4.912%",
+      "bottomRight": "5.070%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6579,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6579,
+      "bottom": 0.4938,
+      "left": 0.6579
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.2113,
+      "depthPct": 0.6601,
+      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Prism White.avif": {
     "bounds": {
-      "top": 2.0833,
-      "left": 3.2967,
-      "width": 93.4066,
-      "height": 94.5313
+      "top": 1.7188,
+      "left": 2.6316,
+      "width": 94.7368,
+      "height": 95.3125
     },
-    "screenRadius": "5.588%",
+    "screenRadius": "5.467%",
+    "screenRadiusCorners": {
+      "topLeft": "5.863%",
+      "topRight": "5.863%",
+      "bottomLeft": "5.070%",
+      "bottomRight": "5.070%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6579,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6579,
+      "bottom": 0.4938,
+      "left": 0.6579
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 85.2113,
+      "depthPct": 0.6601,
+      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20 Ultra/Device/Samsung Galaxy S20 Utra Cosmic Black.avif": {
     "bounds": {
-      "top": 1.5625,
-      "left": 4.5198,
-      "width": 90.3955,
-      "height": 96.0938
+      "top": 1.0938,
+      "left": 4.0678,
+      "width": 91.5254,
+      "height": 97.0313
     },
-    "screenRadius": "6.719%",
+    "screenRadius": "6.936%",
+    "screenRadiusCorners": {
+      "topLeft": "6.598%",
+      "topRight": "8.289%",
+      "bottomLeft": "5.414%",
+      "bottomRight": "7.444%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.678,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.678,
+      "bottom": 0.4938,
+      "left": 0.678
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.0827,
+      "depthPct": 0.8104,
+      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20 Ultra/Device/Samsung Galaxy S20 Utra Cosmic Gray.avif": {
     "bounds": {
-      "top": 1.5625,
-      "left": 4.5198,
-      "width": 90.3955,
-      "height": 96.0938
+      "top": 1.0938,
+      "left": 4.0678,
+      "width": 91.5254,
+      "height": 97.0313
     },
-    "screenRadius": "7.031%",
+    "screenRadius": "6.978%",
+    "screenRadiusCorners": {
+      "topLeft": "6.429%",
+      "topRight": "8.289%",
+      "bottomLeft": "5.414%",
+      "bottomRight": "7.782%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.678,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.678,
+      "bottom": 0.4938,
+      "left": 0.678
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 83.0827,
+      "depthPct": 0.8104,
+      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20/Device/Samsung Galaxy S20 Cloud Blue.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 4.5198,
-      "width": 90.3955,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 4.0678,
+      "width": 91.5254,
+      "height": 96.5625
     },
-    "screenRadius": "24.000%",
+    "screenRadius": "21.600%",
+    "screenRadiusCorners": {
+      "topLeft": "7.782%",
+      "topRight": "21.600%",
+      "bottomLeft": "6.598%",
+      "bottomRight": "6.936%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.678,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.678,
+      "bottom": 0.4938,
+      "left": 0.678
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80.8271,
+      "depthPct": 0.9772,
+      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20/Device/Samsung Galaxy S20 Cloud Pink.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 4.5198,
-      "width": 90.3955,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 4.0678,
+      "width": 91.5254,
+      "height": 96.5625
     },
-    "screenRadius": "24.000%",
+    "screenRadius": "21.600%",
+    "screenRadiusCorners": {
+      "topLeft": "7.782%",
+      "topRight": "21.600%",
+      "bottomLeft": "6.598%",
+      "bottomRight": "6.936%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.678,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.678,
+      "bottom": 0.4938,
+      "left": 0.678
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80.8271,
+      "depthPct": 0.9772,
+      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20/Device/Samsung Galaxy S20 Cosmic Gray.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 4.5198,
-      "width": 90.3955,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 4.0678,
+      "width": 91.5254,
+      "height": 96.5625
     },
-    "screenRadius": "24.000%",
+    "screenRadius": "21.600%",
+    "screenRadiusCorners": {
+      "topLeft": "7.782%",
+      "topRight": "21.600%",
+      "bottomLeft": "6.598%",
+      "bottomRight": "6.936%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.678,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.678,
+      "bottom": 0.4938,
+      "left": 0.678
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 80.8271,
+      "depthPct": 0.9772,
+      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20+/Device/Samsung Galaxy S20+ Cloud Blue.avif": {
     "bounds": {
-      "top": 1.5625,
-      "left": 4.5198,
-      "width": 90.3955,
-      "height": 96.0938
+      "top": 1.25,
+      "left": 4.0678,
+      "width": 91.5254,
+      "height": 96.875
     },
-    "screenRadius": "7.109%",
+    "screenRadius": "5.540%",
+    "screenRadiusCorners": {
+      "topLeft": "5.075%",
+      "topRight": "6.767%",
+      "bottomLeft": "3.891%",
+      "bottomRight": "6.429%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.678,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.678,
+      "bottom": 0.4938,
+      "left": 0.678
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 89.0977,
+      "depthPct": 0.487,
+      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20+/Device/Samsung Galaxy S20+ Cosmic Black.avif": {
     "bounds": {
-      "top": 1.5625,
-      "left": 4.5198,
-      "width": 90.3955,
-      "height": 96.0938
+      "top": 1.25,
+      "left": 4.0678,
+      "width": 91.5254,
+      "height": 96.875
     },
-    "screenRadius": "7.187%",
+    "screenRadius": "5.498%",
+    "screenRadiusCorners": {
+      "topLeft": "4.906%",
+      "topRight": "6.767%",
+      "bottomLeft": "3.891%",
+      "bottomRight": "6.429%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.678,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.678,
+      "bottom": 0.4938,
+      "left": 0.678
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 89.0977,
+      "depthPct": 0.487,
+      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20+/Device/Samsung Galaxy S20+ Cosmic Gray.avif": {
     "bounds": {
-      "top": 1.5625,
-      "left": 4.5198,
-      "width": 90.3955,
-      "height": 96.0938
+      "top": 1.25,
+      "left": 4.0678,
+      "width": 91.5254,
+      "height": 96.875
     },
-    "screenRadius": "7.109%",
+    "screenRadius": "5.540%",
+    "screenRadiusCorners": {
+      "topLeft": "5.075%",
+      "topRight": "6.767%",
+      "bottomLeft": "3.891%",
+      "bottomRight": "6.429%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.678,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.678,
+      "bottom": 0.4938,
+      "left": 0.678
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 89.0977,
+      "depthPct": 0.487,
+      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 5G/Device/Samsung Galaxy S21 5G — Black.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 3.8674,
-      "width": 91.1602,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 3.3113,
+      "width": 92.3841,
+      "height": 96.5625
     },
-    "screenRadius": "8.106%",
+    "screenRadius": "7.445%",
+    "screenRadiusCorners": {
+      "topLeft": "7.200%",
+      "topRight": "7.364%",
+      "bottomLeft": "7.527%",
+      "bottomRight": "7.691%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.5455,
+      "depthPct": 1.3029,
+      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 5G/Device/Samsung Galaxy S21 5G — Pink.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 3.8674,
-      "width": 91.1602,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 3.3113,
+      "width": 92.3841,
+      "height": 96.5625
     },
-    "screenRadius": "8.106%",
+    "screenRadius": "7.445%",
+    "screenRadiusCorners": {
+      "topLeft": "7.200%",
+      "topRight": "7.364%",
+      "bottomLeft": "7.527%",
+      "bottomRight": "7.691%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.5455,
+      "depthPct": 1.3029,
+      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 5G/Device/Samsung Galaxy S21 5G — Violet.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 3.8674,
-      "width": 91.1602,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 3.3113,
+      "width": 92.3841,
+      "height": 96.5625
     },
-    "screenRadius": "8.106%",
+    "screenRadius": "7.445%",
+    "screenRadiusCorners": {
+      "topLeft": "7.200%",
+      "topRight": "7.364%",
+      "bottomLeft": "7.527%",
+      "bottomRight": "7.691%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.5455,
+      "depthPct": 1.3029,
+      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 5G/Device/Samsung Galaxy S21 5G — White.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 3.8674,
-      "width": 91.1602,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 3.3113,
+      "width": 92.3841,
+      "height": 96.5625
     },
-    "screenRadius": "8.106%",
+    "screenRadius": "7.445%",
+    "screenRadiusCorners": {
+      "topLeft": "7.200%",
+      "topRight": "7.364%",
+      "bottomLeft": "7.527%",
+      "bottomRight": "7.691%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.5455,
+      "depthPct": 1.3029,
+      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 Ultra 5G/Device/Samsung Galaxy S21 Ultra 5G — Black.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 3.3708,
-      "width": 92.6966,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 2.3569,
+      "width": 94.6128,
+      "height": 96.7188
     },
-    "screenRadius": "4.924%",
+    "screenRadius": "6.051%",
+    "screenRadiusCorners": {
+      "topLeft": "5.686%",
+      "topRight": "6.336%",
+      "bottomLeft": "5.848%",
+      "bottomRight": "6.336%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6734,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6734,
+      "bottom": 0.4938,
+      "left": 0.6734
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.3646,
+      "depthPct": 0.9756,
+      "centerXPct": 49.639
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 Ultra 5G/Device/Samsung Galaxy S21 Ultra 5G — Silver.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 3.3708,
-      "width": 92.6966,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 2.3569,
+      "width": 94.6128,
+      "height": 96.7188
     },
-    "screenRadius": "4.924%",
+    "screenRadius": "6.051%",
+    "screenRadiusCorners": {
+      "topLeft": "5.686%",
+      "topRight": "6.336%",
+      "bottomLeft": "5.848%",
+      "bottomRight": "6.336%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6734,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6734,
+      "bottom": 0.4938,
+      "left": 0.6734
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.3646,
+      "depthPct": 0.9756,
+      "centerXPct": 49.639
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21+/Device/Samsung Galaxy S21+ 5G — Black.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 3.8674,
-      "width": 91.1602,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 3.3113,
+      "width": 92.3841,
+      "height": 96.5625
     },
-    "screenRadius": "8.106%",
+    "screenRadius": "7.445%",
+    "screenRadiusCorners": {
+      "topLeft": "7.200%",
+      "topRight": "7.364%",
+      "bottomLeft": "7.527%",
+      "bottomRight": "7.691%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.5455,
+      "depthPct": 1.3029,
+      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21+/Device/Samsung Galaxy S21+ 5G — Silver.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 3.8674,
-      "width": 90.6077,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 2.9801,
+      "width": 92.3841,
+      "height": 96.5625
     },
-    "screenRadius": "7.241%",
+    "screenRadius": "7.405%",
+    "screenRadiusCorners": {
+      "topLeft": "7.527%",
+      "topRight": "7.036%",
+      "bottomLeft": "7.855%",
+      "bottomRight": "7.200%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.5455,
+      "depthPct": 1.3029,
+      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21+/Device/Samsung Galaxy S21+ 5G — Violet.avif": {
     "bounds": {
-      "top": 1.8229,
-      "left": 3.8674,
-      "width": 91.1602,
-      "height": 95.8333
+      "top": 1.4063,
+      "left": 2.9801,
+      "width": 92.7152,
+      "height": 96.5625
     },
-    "screenRadius": "8.030%",
+    "screenRadius": "8.519%",
+    "screenRadiusCorners": {
+      "topLeft": "9.130%",
+      "topRight": "7.663%",
+      "bottomLeft": "9.293%",
+      "bottomRight": "7.989%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6623,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6623,
+      "bottom": 0.4938,
+      "left": 0.6623
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 82.2464,
+      "depthPct": 1.3029,
+      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S3/Device/Samsung Galaxy S3.avif": {
     "bounds": {
-      "top": 9.8958,
-      "left": 7.9602,
-      "width": 84.5771,
-      "height": 78.9063
+      "top": 9.5313,
+      "left": 7.1856,
+      "width": 86.2275,
+      "height": 79.5313
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.5988,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.5988,
+      "bottom": 0.4938,
+      "left": 0.5988
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S5/Device/Samsung Galaxy S5 Black.avif": {
     "bounds": {
-      "top": 10.4167,
-      "left": 6.5657,
-      "width": 86.8687,
-      "height": 79.6875
+      "top": 10,
+      "left": 6.0606,
+      "width": 88.1818,
+      "height": 80.4688
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6061,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6061,
+      "bottom": 0.4938,
+      "left": 0.6061
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S5/Device/Samsung Galaxy S5 White.avif": {
     "bounds": {
-      "top": 10.4167,
-      "left": 6.5657,
-      "width": 86.8687,
-      "height": 79.6875
+      "top": 10,
+      "left": 6.0606,
+      "width": 88.1818,
+      "height": 80.4688
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6061,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6061,
+      "bottom": 0.4938,
+      "left": 0.6061
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S7/Device/Samsung Galaxy S7 Black.avif": {
     "bounds": {
-      "top": 10.6771,
-      "left": 4.7368,
-      "width": 90.5263,
-      "height": 79.4271
+      "top": 10.3125,
+      "left": 4.1139,
+      "width": 91.7722,
+      "height": 80.1563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S7/Device/Samsung Galaxy S7 Gold.avif": {
     "bounds": {
-      "top": 10.6771,
-      "left": 4.7368,
-      "width": 90.5263,
-      "height": 79.4271
+      "top": 10.3125,
+      "left": 4.1139,
+      "width": 91.7722,
+      "height": 80.1563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S7/Device/Samsung Galaxy S7 Silver.avif": {
     "bounds": {
-      "top": 10.6771,
-      "left": 4.7368,
-      "width": 90.5263,
-      "height": 79.4271
+      "top": 10.3125,
+      "left": 4.1139,
+      "width": 91.7722,
+      "height": 80.1563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S7/Device/Samsung Galaxy S7 White.avif": {
     "bounds": {
-      "top": 10.6771,
-      "left": 4.7368,
-      "width": 90.5263,
-      "height": 79.4271
+      "top": 10.3125,
+      "left": 4.1139,
+      "width": 91.7722,
+      "height": 80.1563
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6329,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6329,
+      "bottom": 0.4938,
+      "left": 0.6329
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S8/Device/Samsung Galaxy S8 Arctic Silver.avif": {
     "bounds": {
-      "top": 5.7292,
-      "left": 3.3708,
-      "width": 93.2584,
-      "height": 89.0625
+      "top": 5.4688,
+      "left": 2.6936,
+      "width": 94.6128,
+      "height": 89.8438
     },
-    "screenRadius": "6.325%",
+    "screenRadius": "6.173%",
+    "screenRadiusCorners": {
+      "topLeft": "5.848%",
+      "topRight": "5.848%",
+      "bottomLeft": "6.498%",
+      "bottomRight": "6.498%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6734,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6734,
+      "bottom": 0.4938,
+      "left": 0.6734
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.7256,
+      "depthPct": 1.2259,
+      "centerXPct": 49.8195
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S8/Device/Samsung Galaxy S8 Coral Blue.avif": {
     "bounds": {
-      "top": 5.7292,
-      "left": 3.3708,
-      "width": 93.2584,
-      "height": 89.0625
+      "top": 5.4688,
+      "left": 2.6936,
+      "width": 94.6128,
+      "height": 89.8438
     },
-    "screenRadius": "6.325%",
+    "screenRadius": "6.173%",
+    "screenRadiusCorners": {
+      "topLeft": "5.848%",
+      "topRight": "5.848%",
+      "bottomLeft": "6.498%",
+      "bottomRight": "6.498%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6734,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6734,
+      "bottom": 0.4938,
+      "left": 0.6734
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.7256,
+      "depthPct": 1.2259,
+      "centerXPct": 49.8195
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S8/Device/Samsung Galaxy S8 Maple Gold.avif": {
     "bounds": {
-      "top": 5.7292,
-      "left": 3.3708,
-      "width": 93.2584,
-      "height": 89.0625
+      "top": 5.4688,
+      "left": 2.6936,
+      "width": 94.6128,
+      "height": 89.8438
     },
-    "screenRadius": "6.325%",
+    "screenRadius": "6.173%",
+    "screenRadiusCorners": {
+      "topLeft": "5.848%",
+      "topRight": "5.848%",
+      "bottomLeft": "6.498%",
+      "bottomRight": "6.498%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6734,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6734,
+      "bottom": 0.4938,
+      "left": 0.6734
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.7256,
+      "depthPct": 1.2259,
+      "centerXPct": 49.8195
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S8/Device/Samsung Galaxy S8 Midnight Black.avif": {
     "bounds": {
-      "top": 5.7292,
-      "left": 3.3708,
-      "width": 93.2584,
-      "height": 89.0625
+      "top": 5.4688,
+      "left": 2.6936,
+      "width": 94.6128,
+      "height": 89.8438
     },
-    "screenRadius": "6.325%",
+    "screenRadius": "6.173%",
+    "screenRadiusCorners": {
+      "topLeft": "5.848%",
+      "topRight": "5.848%",
+      "bottomLeft": "6.498%",
+      "bottomRight": "6.498%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6734,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6734,
+      "bottom": 0.4938,
+      "left": 0.6734
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.7256,
+      "depthPct": 1.2259,
+      "centerXPct": 49.8195
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S8/Device/Samsung Galaxy S8 Orchid Gray.avif": {
     "bounds": {
-      "top": 5.7292,
-      "left": 3.3708,
-      "width": 93.2584,
-      "height": 89.0625
+      "top": 5.4688,
+      "left": 2.6936,
+      "width": 94.6128,
+      "height": 89.8438
     },
-    "screenRadius": "6.325%",
+    "screenRadius": "6.173%",
+    "screenRadiusCorners": {
+      "topLeft": "5.848%",
+      "topRight": "5.848%",
+      "bottomLeft": "6.498%",
+      "bottomRight": "6.498%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6734,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6734,
+      "bottom": 0.4938,
+      "left": 0.6734
+    },
+    "screenImageAnchor": {
+      "x": 50,
+      "y": 1.2
+    },
+    "notch": {
+      "widthPct": 87.7256,
+      "depthPct": 1.2259,
+      "centerXPct": 49.8195
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S9/Device/Samsung Galaxy S9 Burgundy Red.avif": {
     "bounds": {
-      "top": 5.4688,
-      "left": 5.5866,
-      "width": 88.8268,
-      "height": 89.8438
+      "top": 5.1563,
+      "left": 5.0336,
+      "width": 89.9329,
+      "height": 90.4688
     },
-    "screenRadius": "3.616%",
+    "screenRadius": "3.153%",
+    "screenRadiusCorners": {
+      "topLeft": "3.409%",
+      "topRight": "3.409%",
+      "bottomLeft": "2.898%",
+      "bottomRight": "2.898%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6711,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6711,
+      "bottom": 0.4938,
+      "left": 0.6711
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S9/Device/Samsung Galaxy S9 Coral Blue.avif": {
     "bounds": {
-      "top": 5.4688,
-      "left": 5.5866,
-      "width": 88.8268,
-      "height": 89.8438
+      "top": 5.1563,
+      "left": 5.0336,
+      "width": 89.9329,
+      "height": 90.4688
     },
-    "screenRadius": "3.616%",
+    "screenRadius": "3.153%",
+    "screenRadiusCorners": {
+      "topLeft": "3.409%",
+      "topRight": "3.409%",
+      "bottomLeft": "2.898%",
+      "bottomRight": "2.898%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6711,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6711,
+      "bottom": 0.4938,
+      "left": 0.6711
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S9/Device/Samsung Galaxy S9 Lilac Purple.avif": {
     "bounds": {
-      "top": 5.4688,
-      "left": 5.5866,
-      "width": 88.8268,
-      "height": 89.8438
+      "top": 5.1563,
+      "left": 5.0336,
+      "width": 89.9329,
+      "height": 90.4688
     },
-    "screenRadius": "3.616%",
+    "screenRadius": "3.153%",
+    "screenRadiusCorners": {
+      "topLeft": "3.409%",
+      "topRight": "3.409%",
+      "bottomLeft": "2.898%",
+      "bottomRight": "2.898%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6711,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6711,
+      "bottom": 0.4938,
+      "left": 0.6711
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S9/Device/Samsung Galaxy S9 Midnight Black.avif": {
     "bounds": {
-      "top": 5.4688,
-      "left": 5.5866,
-      "width": 88.8268,
-      "height": 89.8438
+      "top": 5.1563,
+      "left": 5.0336,
+      "width": 89.9329,
+      "height": 90.4688
     },
-    "screenRadius": "3.616%",
+    "screenRadius": "3.153%",
+    "screenRadiusCorners": {
+      "topLeft": "3.409%",
+      "topRight": "3.409%",
+      "bottomLeft": "2.898%",
+      "bottomRight": "2.898%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6711,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6711,
+      "bottom": 0.4938,
+      "left": 0.6711
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S9/Device/Samsung Galaxy S9 Sunrise Gold.avif": {
     "bounds": {
-      "top": 5.4688,
-      "left": 5.5866,
-      "width": 88.8268,
-      "height": 89.8438
+      "top": 5.1563,
+      "left": 5.0336,
+      "width": 89.9329,
+      "height": 90.4688
     },
-    "screenRadius": "3.616%",
+    "screenRadius": "3.153%",
+    "screenRadiusCorners": {
+      "topLeft": "3.409%",
+      "topRight": "3.409%",
+      "bottomLeft": "2.898%",
+      "bottomRight": "2.898%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6711,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6711,
+      "bottom": 0.4938,
+      "left": 0.6711
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S9/Device/Samsung Galaxy S9 Titanium Gray.avif": {
     "bounds": {
-      "top": 5.4688,
-      "left": 5.5866,
-      "width": 88.8268,
-      "height": 89.8438
+      "top": 5.1563,
+      "left": 5.0336,
+      "width": 89.9329,
+      "height": 90.4688
     },
-    "screenRadius": "3.616%",
+    "screenRadius": "3.153%",
+    "screenRadiusCorners": {
+      "topLeft": "3.409%",
+      "topRight": "3.409%",
+      "bottomLeft": "2.898%",
+      "bottomRight": "2.898%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6711,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6711,
+      "bottom": 0.4938,
+      "left": 0.6711
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Y/Device/Samsung Galaxy Y Black.avif": {
     "bounds": {
-      "top": 21.0938,
-      "left": 11.9816,
-      "width": 76.4977,
-      "height": 57.5521
+      "top": 20.6148,
+      "left": 11.1821,
+      "width": 77.9553,
+      "height": 58.5895
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.639,
+      "y": 0.3617,
+      "top": 0.1519,
+      "right": 0.639,
+      "bottom": 0.5715,
+      "left": 0.639
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy Y/Device/Samsung Galaxy Y White.avif": {
     "bounds": {
-      "top": 21.0938,
-      "left": 11.9816,
-      "width": 76.4977,
-      "height": 57.5521
+      "top": 20.6148,
+      "left": 11.1821,
+      "width": 77.9553,
+      "height": 58.5895
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.639,
+      "y": 0.3617,
+      "top": 0.1519,
+      "right": 0.639,
+      "bottom": 0.5715,
+      "left": 0.639
     }
   },
   "/src/stories/assets/mockups/mobile/xiaomi/Xiaomi Mi Mix Alpha/Device/Xiaomi Mi Mix Alpha Front.avif": {
     "bounds": {
-      "top": 2.0833,
-      "left": 6.6667,
-      "width": 86.6667,
-      "height": 96.3542
+      "top": 1.5625,
+      "left": 5.6667,
+      "width": 88.6667,
+      "height": 97.1875
     },
-    "screenRadius": "0%",
+    "screenRadius": "21.600%",
+    "screenRadiusCorners": {
+      "topLeft": "21.600%",
+      "topRight": "21.600%",
+      "bottomLeft": "0.172%",
+      "bottomRight": "0.172%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.6667,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.6667,
+      "bottom": 0.4938,
+      "left": 0.6667
     }
   },
   "/src/stories/assets/mockups/mobile/xiaomi/Xiaomi Mi Mix Alpha/Device/Xiaomi Mi Mix Alpha Side.avif": {
     "bounds": {
-      "top": 2.0833,
-      "left": 37.037,
-      "width": 29.6296,
-      "height": 96.3542
+      "top": 1.5625,
+      "left": 32.6087,
+      "width": 41.3043,
+      "height": 97.1875
     },
-    "screenRadius": "0%",
+    "screenRadius": "21.600%",
+    "screenRadiusCorners": {
+      "topLeft": "3.000%",
+      "topRight": "21.600%",
+      "bottomLeft": "3.000%",
+      "bottomRight": "3.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.65,
-      "y": 0.4167
+      "x": 0.9,
+      "y": 0.3125,
+      "top": 0.1313,
+      "right": 0.9,
+      "bottom": 0.4938,
+      "left": 0.9
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Air 2020/Device/Apple iPad Air 2020 Green Landscape.avif": {
     "bounds": {
-      "top": 6.1372,
-      "left": 4.4271,
-      "width": 91.1458,
-      "height": 87.7256
+      "top": 5.9621,
+      "left": 4.2969,
+      "width": 91.6016,
+      "height": 88.3469
     },
-    "screenRadius": "1.440%",
+    "screenRadius": "1.370%",
+    "screenRadiusCorners": {
+      "topLeft": "1.185%",
+      "topRight": "1.333%",
+      "bottomLeft": "1.481%",
+      "bottomRight": "1.481%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5776
+      "x": 0.3516,
+      "y": 0.4878,
+      "top": 0.3902,
+      "right": 0.3516,
+      "bottom": 0.5854,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Air 2020/Device/Apple iPad Air 2020 Green Portrait.avif": {
     "bounds": {
-      "top": 4.4271,
-      "left": 6.1372,
-      "width": 87.7256,
-      "height": 91.1458
+      "top": 4.2969,
+      "left": 5.6911,
+      "width": 88.3469,
+      "height": 91.6016
     },
-    "screenRadius": "1.440%",
+    "screenRadius": "1.333%",
+    "screenRadiusCorners": {
+      "topLeft": "1.333%",
+      "topRight": "1.185%",
+      "bottomLeft": "1.481%",
+      "bottomRight": "1.333%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5776,
-      "y": 0.4167
+      "x": 0.4878,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4878,
+      "bottom": 0.4219,
+      "left": 0.4878
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Air 2020/Device/Apple iPad Air 2020 Rose Gold Landscape.avif": {
     "bounds": {
-      "top": 6.1372,
-      "left": 4.4271,
-      "width": 91.1458,
-      "height": 87.7256
+      "top": 5.9621,
+      "left": 4.2969,
+      "width": 91.6016,
+      "height": 88.3469
     },
-    "screenRadius": "1.440%",
+    "screenRadius": "1.370%",
+    "screenRadiusCorners": {
+      "topLeft": "1.185%",
+      "topRight": "1.333%",
+      "bottomLeft": "1.481%",
+      "bottomRight": "1.481%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5776
+      "x": 0.3516,
+      "y": 0.4878,
+      "top": 0.3902,
+      "right": 0.3516,
+      "bottom": 0.5854,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Air 2020/Device/Apple iPad Air 2020 Rose Gold Portrait.avif": {
     "bounds": {
-      "top": 4.4271,
-      "left": 6.1372,
-      "width": 87.7256,
-      "height": 91.1458
+      "top": 4.2969,
+      "left": 5.6911,
+      "width": 88.3469,
+      "height": 91.6016
     },
-    "screenRadius": "1.440%",
+    "screenRadius": "1.333%",
+    "screenRadiusCorners": {
+      "topLeft": "1.333%",
+      "topRight": "1.185%",
+      "bottomLeft": "1.481%",
+      "bottomRight": "1.333%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5776,
-      "y": 0.4167
+      "x": 0.4878,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4878,
+      "bottom": 0.4219,
+      "left": 0.4878
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Air 2020/Device/Apple iPad Air 2020 Silver Landscape.avif": {
     "bounds": {
-      "top": 6.1372,
-      "left": 4.4271,
-      "width": 91.1458,
-      "height": 87.7256
+      "top": 5.9621,
+      "left": 4.2969,
+      "width": 91.6016,
+      "height": 88.3469
     },
-    "screenRadius": "1.440%",
+    "screenRadius": "1.370%",
+    "screenRadiusCorners": {
+      "topLeft": "1.185%",
+      "topRight": "1.333%",
+      "bottomLeft": "1.481%",
+      "bottomRight": "1.481%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5776
+      "x": 0.3516,
+      "y": 0.4878,
+      "top": 0.3902,
+      "right": 0.3516,
+      "bottom": 0.5854,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Air 2020/Device/Apple iPad Air 2020 Silver Portrait.avif": {
     "bounds": {
-      "top": 4.4271,
-      "left": 6.1372,
-      "width": 87.7256,
-      "height": 91.1458
+      "top": 4.2969,
+      "left": 5.6911,
+      "width": 88.3469,
+      "height": 91.6016
     },
-    "screenRadius": "1.440%",
+    "screenRadius": "1.333%",
+    "screenRadiusCorners": {
+      "topLeft": "1.333%",
+      "topRight": "1.185%",
+      "bottomLeft": "1.481%",
+      "bottomRight": "1.333%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5776,
-      "y": 0.4167
+      "x": 0.4878,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4878,
+      "bottom": 0.4219,
+      "left": 0.4878
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Air 2020/Device/Apple iPad Air 2020 Sky Blue Landscape.avif": {
     "bounds": {
-      "top": 6.1372,
-      "left": 4.4271,
-      "width": 91.1458,
-      "height": 87.7256
+      "top": 5.9621,
+      "left": 4.2969,
+      "width": 91.6016,
+      "height": 88.3469
     },
-    "screenRadius": "1.440%",
+    "screenRadius": "1.370%",
+    "screenRadiusCorners": {
+      "topLeft": "1.185%",
+      "topRight": "1.333%",
+      "bottomLeft": "1.481%",
+      "bottomRight": "1.481%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5776
+      "x": 0.3516,
+      "y": 0.4878,
+      "top": 0.3902,
+      "right": 0.3516,
+      "bottom": 0.5854,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Air 2020/Device/Apple iPad Air 2020 Sky Blue Portrait.avif": {
     "bounds": {
-      "top": 4.4271,
-      "left": 6.1372,
-      "width": 87.7256,
-      "height": 91.1458
+      "top": 4.2969,
+      "left": 5.6911,
+      "width": 88.3469,
+      "height": 91.6016
     },
-    "screenRadius": "1.440%",
+    "screenRadius": "1.333%",
+    "screenRadiusCorners": {
+      "topLeft": "1.333%",
+      "topRight": "1.185%",
+      "bottomLeft": "1.481%",
+      "bottomRight": "1.333%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5776,
-      "y": 0.4167
+      "x": 0.4878,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4878,
+      "bottom": 0.4219,
+      "left": 0.4878
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Air 2020/Device/Apple iPad Air 2020 Space Gray Landscape.avif": {
     "bounds": {
-      "top": 6.1372,
-      "left": 4.4271,
-      "width": 91.1458,
-      "height": 87.7256
+      "top": 5.9621,
+      "left": 4.2969,
+      "width": 91.6016,
+      "height": 88.3469
     },
-    "screenRadius": "1.440%",
+    "screenRadius": "1.370%",
+    "screenRadiusCorners": {
+      "topLeft": "1.185%",
+      "topRight": "1.333%",
+      "bottomLeft": "1.481%",
+      "bottomRight": "1.481%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5776
+      "x": 0.3516,
+      "y": 0.4878,
+      "top": 0.3902,
+      "right": 0.3516,
+      "bottom": 0.5854,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Air 2020/Device/Apple iPad Air 2020 Space Gray Portrait.avif": {
     "bounds": {
-      "top": 4.4271,
-      "left": 6.1372,
-      "width": 87.7256,
-      "height": 91.1458
+      "top": 4.2969,
+      "left": 5.6911,
+      "width": 88.3469,
+      "height": 91.6016
     },
-    "screenRadius": "1.440%",
+    "screenRadius": "1.333%",
+    "screenRadiusCorners": {
+      "topLeft": "1.333%",
+      "topRight": "1.185%",
+      "bottomLeft": "1.481%",
+      "bottomRight": "1.333%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5776,
-      "y": 0.4167
+      "x": 0.4878,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4878,
+      "bottom": 0.4219,
+      "left": 0.4878
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Mini/Device/Apple iPad Mini Gold.avif": {
     "bounds": {
-      "top": 10.6771,
-      "left": 5.8824,
-      "width": 88.2353,
-      "height": 78.3854
+      "top": 10.5469,
+      "left": 5.3097,
+      "width": 89.3805,
+      "height": 78.9063
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.6275,
-      "y": 0.4167
+      "x": 0.531,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.531,
+      "bottom": 0.4219,
+      "left": 0.531
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Mini/Device/Apple iPad Mini Silver.avif": {
     "bounds": {
-      "top": 10.6771,
-      "left": 5.8824,
-      "width": 88.2353,
-      "height": 78.3854
+      "top": 10.5469,
+      "left": 5.3097,
+      "width": 89.3805,
+      "height": 78.9063
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.6275,
-      "y": 0.4167
+      "x": 0.531,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.531,
+      "bottom": 0.4219,
+      "left": 0.531
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Mini/Device/Apple iPad Mini Space Grey.avif": {
     "bounds": {
-      "top": 10.6771,
-      "left": 5.8824,
-      "width": 88.2353,
-      "height": 78.3854
+      "top": 10.5469,
+      "left": 5.3097,
+      "width": 89.3805,
+      "height": 78.9063
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.6275,
-      "y": 0.4167
+      "x": 0.531,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.531,
+      "bottom": 0.4219,
+      "left": 0.531
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device with Pencil/Apple iPad Pro 11 Silver - Landscape.avif": {
     "bounds": {
-      "top": 9.3426,
-      "left": 3.9063,
-      "width": 92.1875,
-      "height": 85.4671
+      "top": 9.0909,
+      "left": 3.7109,
+      "width": 92.7734,
+      "height": 86.2338
     },
-    "screenRadius": "0%",
+    "screenRadius": "1.418%",
+    "screenRadiusCorners": {
+      "topLeft": "1.309%",
+      "topRight": "1.309%",
+      "bottomLeft": "1.455%",
+      "bottomRight": "1.600%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5536
+      "x": 0.3516,
+      "y": 0.4675,
+      "top": 0.374,
+      "right": 0.3516,
+      "bottom": 0.561,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device with Pencil/Apple iPad Pro 11 Silver - Portrait.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 5.1903,
-      "width": 85.4671,
-      "height": 92.1875
+      "top": 3.7109,
+      "left": 4.6753,
+      "width": 86.2338,
+      "height": 92.7734
     },
-    "screenRadius": "0%",
+    "screenRadius": "1.382%",
+    "screenRadiusCorners": {
+      "topLeft": "1.455%",
+      "topRight": "1.309%",
+      "bottomLeft": "1.455%",
+      "bottomRight": "1.309%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5536,
-      "y": 0.4167
+      "x": 0.4675,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4675,
+      "bottom": 0.4219,
+      "left": 0.4675
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device with Pencil/Apple iPad Pro 11 Space Gray - Landscape.avif": {
     "bounds": {
-      "top": 9.3426,
-      "left": 3.9063,
-      "width": 92.1875,
-      "height": 85.4671
+      "top": 9.0909,
+      "left": 3.7109,
+      "width": 92.7734,
+      "height": 86.2338
     },
-    "screenRadius": "0%",
+    "screenRadius": "1.418%",
+    "screenRadiusCorners": {
+      "topLeft": "1.309%",
+      "topRight": "1.309%",
+      "bottomLeft": "1.455%",
+      "bottomRight": "1.600%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5536
+      "x": 0.3516,
+      "y": 0.4675,
+      "top": 0.374,
+      "right": 0.3516,
+      "bottom": 0.561,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device with Pencil/Apple iPad Pro 11 Space Gray - Portrait.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 5.1903,
-      "width": 85.4671,
-      "height": 92.1875
+      "top": 3.7109,
+      "left": 4.6753,
+      "width": 86.2338,
+      "height": 92.7734
     },
-    "screenRadius": "0%",
+    "screenRadius": "1.382%",
+    "screenRadiusCorners": {
+      "topLeft": "1.455%",
+      "topRight": "1.309%",
+      "bottomLeft": "1.455%",
+      "bottomRight": "1.309%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5536,
-      "y": 0.4167
+      "x": 0.4675,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4675,
+      "bottom": 0.4219,
+      "left": 0.4675
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device with Pencil/Apple iPad Pro 13 Silver - Landscape.avif": {
     "bounds": {
-      "top": 7.8689,
-      "left": 3.6458,
-      "width": 92.9688,
-      "height": 87.8689
+      "top": 7.6355,
+      "left": 3.3203,
+      "width": 93.5547,
+      "height": 88.4236
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5246
+      "x": 0.3516,
+      "y": 0.4433,
+      "top": 0.3546,
+      "right": 0.3516,
+      "bottom": 0.532,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device with Pencil/Apple iPad Pro 13 Silver - Portrait.avif": {
     "bounds": {
-      "top": 3.6458,
-      "left": 4.2623,
-      "width": 87.8689,
-      "height": 92.9688
+      "top": 3.3203,
+      "left": 3.9409,
+      "width": 88.4236,
+      "height": 93.5547
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5246,
-      "y": 0.4167
+      "x": 0.4433,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4433,
+      "bottom": 0.4219,
+      "left": 0.4433
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device with Pencil/Apple iPad Pro 13 Space Gray - Landscape.avif": {
     "bounds": {
-      "top": 7.8689,
-      "left": 3.6458,
-      "width": 92.9688,
-      "height": 87.8689
+      "top": 7.6355,
+      "left": 3.3203,
+      "width": 93.5547,
+      "height": 88.4236
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5246
+      "x": 0.3516,
+      "y": 0.4433,
+      "top": 0.3546,
+      "right": 0.3516,
+      "bottom": 0.532,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device with Pencil/Apple iPad Pro 13 Space Gray - Portrait.avif": {
     "bounds": {
-      "top": 3.6458,
-      "left": 4.2623,
-      "width": 87.8689,
-      "height": 92.9688
+      "top": 3.3203,
+      "left": 3.9409,
+      "width": 88.4236,
+      "height": 93.5547
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5246,
-      "y": 0.4167
+      "x": 0.4433,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4433,
+      "bottom": 0.4219,
+      "left": 0.4433
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device without Pencil/Apple iPad Pro 11 Silver - Landscape.avif": {
     "bounds": {
-      "top": 5.4152,
-      "left": 3.9063,
-      "width": 92.1875,
-      "height": 89.1697
+      "top": 5.1491,
+      "left": 3.7109,
+      "width": 92.7734,
+      "height": 89.9729
     },
-    "screenRadius": "0%",
+    "screenRadius": "1.455%",
+    "screenRadiusCorners": {
+      "topLeft": "1.455%",
+      "topRight": "1.455%",
+      "bottomLeft": "1.455%",
+      "bottomRight": "1.455%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5776
+      "x": 0.3516,
+      "y": 0.4878,
+      "top": 0.3902,
+      "right": 0.3516,
+      "bottom": 0.5854,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device without Pencil/Apple iPad Pro 11 Silver - Portrait.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 5.4152,
-      "width": 89.1697,
-      "height": 92.1875
+      "top": 3.7109,
+      "left": 4.878,
+      "width": 89.9729,
+      "height": 92.7734
     },
-    "screenRadius": "0%",
+    "screenRadius": "1.455%",
+    "screenRadiusCorners": {
+      "topLeft": "1.455%",
+      "topRight": "1.455%",
+      "bottomLeft": "1.455%",
+      "bottomRight": "1.455%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5776,
-      "y": 0.4167
+      "x": 0.4878,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4878,
+      "bottom": 0.4219,
+      "left": 0.4878
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device without Pencil/Apple iPad Pro 11 Space Gray - Landscape.avif": {
     "bounds": {
-      "top": 5.4152,
-      "left": 3.9063,
-      "width": 92.1875,
-      "height": 89.1697
+      "top": 5.1491,
+      "left": 3.7109,
+      "width": 92.7734,
+      "height": 89.9729
     },
-    "screenRadius": "0%",
+    "screenRadius": "1.455%",
+    "screenRadiusCorners": {
+      "topLeft": "1.455%",
+      "topRight": "1.455%",
+      "bottomLeft": "1.455%",
+      "bottomRight": "1.455%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5776
+      "x": 0.3516,
+      "y": 0.4878,
+      "top": 0.3902,
+      "right": 0.3516,
+      "bottom": 0.5854,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device without Pencil/Apple iPad Pro 11 Space Gray - Portrait.avif": {
     "bounds": {
-      "top": 3.9063,
-      "left": 5.4152,
-      "width": 89.1697,
-      "height": 92.1875
+      "top": 3.7109,
+      "left": 4.878,
+      "width": 89.9729,
+      "height": 92.7734
     },
-    "screenRadius": "0%",
+    "screenRadius": "1.455%",
+    "screenRadiusCorners": {
+      "topLeft": "1.455%",
+      "topRight": "1.455%",
+      "bottomLeft": "1.455%",
+      "bottomRight": "1.455%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5776,
-      "y": 0.4167
+      "x": 0.4878,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4878,
+      "bottom": 0.4219,
+      "left": 0.4878
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device without Pencil/Apple iPad Pro 13 Silver - Landscape.avif": {
     "bounds": {
-      "top": 4.7619,
-      "left": 3.6458,
-      "width": 92.9688,
-      "height": 90.8163
+      "top": 4.3367,
+      "left": 3.3203,
+      "width": 93.5547,
+      "height": 91.5816
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5442
+      "x": 0.3516,
+      "y": 0.4592,
+      "top": 0.3674,
+      "right": 0.3516,
+      "bottom": 0.551,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device without Pencil/Apple iPad Pro 13 Silver - Portrait.avif": {
     "bounds": {
-      "top": 3.6458,
-      "left": 4.4218,
-      "width": 90.8163,
-      "height": 92.9688
+      "top": 3.3203,
+      "left": 4.0816,
+      "width": 91.5816,
+      "height": 93.5547
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5442,
-      "y": 0.4167
+      "x": 0.4592,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4592,
+      "bottom": 0.4219,
+      "left": 0.4592
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device without Pencil/Apple iPad Pro 13 Space Gray - Landscape.avif": {
     "bounds": {
-      "top": 4.7619,
-      "left": 3.6458,
-      "width": 92.9688,
-      "height": 90.8163
+      "top": 4.3367,
+      "left": 3.3203,
+      "width": 93.5547,
+      "height": 91.5816
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5442
+      "x": 0.3516,
+      "y": 0.4592,
+      "top": 0.3674,
+      "right": 0.3516,
+      "bottom": 0.551,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad Pro/Device/Device without Pencil/Apple iPad Pro 13 Space Gray - Portrait.avif": {
     "bounds": {
-      "top": 3.6458,
-      "left": 4.4218,
-      "width": 90.8163,
-      "height": 92.9688
+      "top": 3.3203,
+      "left": 4.0816,
+      "width": 91.5816,
+      "height": 93.5547
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5442,
-      "y": 0.4167
+      "x": 0.4592,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.4592,
+      "bottom": 0.4219,
+      "left": 0.4592
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad/Device/Apple iPad Gold.avif": {
     "bounds": {
-      "top": 8.8542,
-      "left": 5.618,
-      "width": 88.764,
-      "height": 82.5521
+      "top": 8.5938,
+      "left": 5.0562,
+      "width": 89.8876,
+      "height": 83.0078
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5993,
-      "y": 0.4167
+      "x": 0.5056,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.5056,
+      "bottom": 0.4219,
+      "left": 0.5056
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad/Device/Apple iPad Silver.avif": {
     "bounds": {
-      "top": 8.8542,
-      "left": 5.618,
-      "width": 88.764,
-      "height": 82.5521
+      "top": 8.5938,
+      "left": 5.0562,
+      "width": 89.8876,
+      "height": 83.0078
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5993,
-      "y": 0.4167
+      "x": 0.5056,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.5056,
+      "bottom": 0.4219,
+      "left": 0.5056
     }
   },
   "/src/stories/assets/mockups/tablet/apple/Apple iPad/Device/Apple iPad Space Grey.avif": {
     "bounds": {
-      "top": 8.8542,
-      "left": 5.618,
-      "width": 88.764,
-      "height": 82.5521
+      "top": 8.5938,
+      "left": 5.0562,
+      "width": 89.8876,
+      "height": 83.0078
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.5993,
-      "y": 0.4167
+      "x": 0.5056,
+      "y": 0.3516,
+      "top": 0.2813,
+      "right": 0.5056,
+      "bottom": 0.4219,
+      "left": 0.5056
     }
   },
   "/src/stories/assets/mockups/tablet/dell/Dell XPS 13/Device/Dell XPS 13.avif": {
     "bounds": {
-      "top": 2.7149,
-      "left": 8.3333,
-      "width": 83.3333,
-      "height": 81.448
+      "top": 2.381,
+      "left": 8.2031,
+      "width": 83.5938,
+      "height": 82.3129
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.65
+      "x": 0.3516,
+      "y": 0.6122,
+      "top": 0.4898,
+      "right": 0.3516,
+      "bottom": 0.7346,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/dell/Dell XPS 15/Device/Dell XPS 15.avif": {
     "bounds": {
-      "top": 2.5641,
-      "left": 13.2813,
-      "width": 73.4375,
-      "height": 81.0256
+      "top": 1.9157,
+      "left": 12.8906,
+      "width": 74.2188,
+      "height": 81.9923
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.65
+      "x": 0.3516,
+      "y": 0.6897,
+      "top": 0.5518,
+      "right": 0.3516,
+      "bottom": 0.8276,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/google/Google Slate/Device/Google Pixel Slate.avif": {
     "bounds": {
-      "top": 6.7416,
-      "left": 4.9479,
-      "width": 90.3646,
-      "height": 86.5169
+      "top": 6.4607,
+      "left": 4.6875,
+      "width": 90.8203,
+      "height": 87.0787
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5993
+      "x": 0.3516,
+      "y": 0.5056,
+      "top": 0.4045,
+      "right": 0.3516,
+      "bottom": 0.6067,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/microsoft/Microsoft Surface 3/Device/Microsoft Surface Pro 3.avif": {
     "bounds": {
-      "top": 7.9245,
-      "left": 6.5104,
-      "width": 86.9792,
-      "height": 84.1509
+      "top": 7.6487,
+      "left": 6.25,
+      "width": 87.5,
+      "height": 84.7025
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.6038
+      "x": 0.3516,
+      "y": 0.5099,
+      "top": 0.4079,
+      "right": 0.3516,
+      "bottom": 0.6119,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/microsoft/Microsoft Surface Book/Device/Microsoft Surface Book.avif": {
     "bounds": {
-      "top": 6.6667,
-      "left": 13.5417,
-      "width": 72.9167,
-      "height": 83.1111
+      "top": 6.3545,
+      "left": 13.2813,
+      "width": 73.4375,
+      "height": 83.9465
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.65
+      "x": 0.3516,
+      "y": 0.602,
+      "top": 0.4816,
+      "right": 0.3516,
+      "bottom": 0.7224,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/microsoft/Microsoft Surface Pro 4/Device/Microsoft Surface Pro 4.avif": {
     "bounds": {
-      "top": 7.1698,
-      "left": 5.4688,
-      "width": 89.0625,
-      "height": 86.0377
+      "top": 6.7989,
+      "left": 5.2734,
+      "width": 89.4531,
+      "height": 86.6856
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.6038
+      "x": 0.3516,
+      "y": 0.5099,
+      "top": 0.4079,
+      "right": 0.3516,
+      "bottom": 0.6119,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/microsoft/Microsoft Surface Pro X/Device/Surface Pro X Black.avif": {
     "bounds": {
-      "top": 6.1151,
-      "left": 2.6042,
-      "width": 95.0521,
-      "height": 87.7698
+      "top": 5.9299,
+      "left": 2.3438,
+      "width": 95.5078,
+      "height": 88.1402
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5755
+      "x": 0.3516,
+      "y": 0.4852,
+      "top": 0.3882,
+      "right": 0.3516,
+      "bottom": 0.5822,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/tablet/microsoft/Microsoft Surface Pro X/Device/Surface Pro X Silver.avif": {
     "bounds": {
-      "top": 6.1151,
-      "left": 2.6042,
-      "width": 95.0521,
-      "height": 87.7698
+      "top": 5.9299,
+      "left": 2.3438,
+      "width": 95.5078,
+      "height": 88.1402
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
-      "x": 0.4167,
-      "y": 0.5755
+      "x": 0.3516,
+      "y": 0.4852,
+      "top": 0.3882,
+      "right": 0.3516,
+      "bottom": 0.5822,
+      "left": 0.3516
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - Beige with Studio Stand.avif": {
     "bounds": {
-      "top": 1.3263,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 55.7029
+      "top": 1.061,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 56.2334
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4244
+      "y": 0.4244,
+      "top": 0.4244,
+      "right": 0.4167,
+      "bottom": 0.4244,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - Beige without Stand.avif": {
     "bounds": {
-      "top": 2.2727,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 95.4545
+      "top": 1.8182,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 96.3636
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - Beige.avif": {
     "bounds": {
-      "top": 2.1277,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 89.3617
+      "top": 1.7021,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 90.2128
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - Black with Studio Stand.avif": {
     "bounds": {
-      "top": 1.3263,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 55.7029
+      "top": 1.061,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 56.2334
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4244
+      "y": 0.4244,
+      "top": 0.4244,
+      "right": 0.4167,
+      "bottom": 0.4244,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - Black without Stand.avif": {
     "bounds": {
-      "top": 2.2727,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 95.4545
+      "top": 1.8182,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 96.3636
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - Black.avif": {
     "bounds": {
-      "top": 2.1277,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 89.3617
+      "top": 1.7021,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 90.2128
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - Brown with Studio Stand.avif": {
     "bounds": {
-      "top": 1.3263,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 55.7029
+      "top": 1.061,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 56.2334
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4244
+      "y": 0.4244,
+      "top": 0.4244,
+      "right": 0.4167,
+      "bottom": 0.4244,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - Brown without Stand.avif": {
     "bounds": {
-      "top": 2.2727,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 95.4545
+      "top": 1.8182,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 96.3636
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - Brown.avif": {
     "bounds": {
-      "top": 2.1277,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 89.3617
+      "top": 1.7021,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 90.2128
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - White with Studio Stand.avif": {
     "bounds": {
-      "top": 1.3263,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 55.7029
+      "top": 1.061,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 56.2334
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.4244
+      "y": 0.4244,
+      "top": 0.4244,
+      "right": 0.4167,
+      "bottom": 0.4244,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - White without Stand.avif": {
     "bounds": {
-      "top": 2.2727,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 95.4545
+      "top": 1.8182,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 96.3636
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/samsung/Samsung Frame/Device/Samsung Frame - White.avif": {
     "bounds": {
-      "top": 2.1277,
-      "left": 1.3021,
-      "width": 97.3958,
-      "height": 89.3617
+      "top": 1.7021,
+      "left": 1.0417,
+      "width": 97.9167,
+      "height": 90.2128
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/television/sony/Sony W850C/Device/Sony W850C.avif": {
     "bounds": {
-      "top": 1.7021,
-      "left": 1.0417,
-      "width": 97.6563,
-      "height": 89.7872
+      "top": 1.2766,
+      "left": 0.7813,
+      "width": 98.1771,
+      "height": 90.6383
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4167,
-      "y": 0.65
+      "y": 0.65,
+      "top": 0.65,
+      "right": 0.4167,
+      "bottom": 0.65,
+      "left": 0.4167
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Black Steel + Black Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Edition Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Rose Gold Aluminum + Midnight Blue Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Silver Aluminum + Cocoa Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Silver Aluminum + Concrete Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Silver Aluminum + Flat Silver Volt Nike Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Silver Aluminum + Flat Silver White Nike Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Silver Aluminum + Ocean Blue Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Silver Aluminum + Red Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Silver Aluminum + Turquoise Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Silver Aluminum + White Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Silver Aluminum + Yellow Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Space Gray Aluminum + Black Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Space Gray Aluminum + Black Cool Gray Nike Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Space Gray Aluminum + Black Volt Nike Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Sport Aluminum + Walnut Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/38mm/Device Closed/Apple Watch 38mm Steel + White Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Edition Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Gold Aluminum + Cocoa Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Rose Gold Aluminum + Midnight Blue Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + Concrete Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + Flat Silver Volt Nike Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + Flat Silver White Nike Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + Green Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + Light Pink Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + Ocean Blue Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + Pink Sand Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + Red Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + Turquoise Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + White Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Silver Aluminum + Yellow Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Space Black Steel + Black Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Space Gray Aluminum + Black Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Space Gray Aluminum + Black Cool Gray Nike Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Space Gray Aluminum + Black Volt Nike Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch 2/Device/42mm/Device Closed/Apple Watch 42mm Steel + White Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 5/Device/44mm/Closed/Apple Watch 44mm Gold Aluminum + Pink Sand Closed.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "20.503%",
+    "screenRadiusCorners": {
+      "topLeft": "22.866%",
+      "topRight": "18.598%",
+      "bottomLeft": "21.951%",
+      "bottomRight": "18.598%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 5/Device/44mm/Closed/Apple Watch 44mm Gold Stainless Steel + Stone Closed.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "20.274%",
+    "screenRadiusCorners": {
+      "topLeft": "21.951%",
+      "topRight": "18.598%",
+      "bottomLeft": "21.951%",
+      "bottomRight": "18.598%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 5/Device/44mm/Closed/Apple Watch 44mm Silver Aluminum + Clementine Closed.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "20.274%",
+    "screenRadiusCorners": {
+      "topLeft": "21.951%",
+      "topRight": "18.598%",
+      "bottomLeft": "21.951%",
+      "bottomRight": "18.598%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 5/Device/44mm/Closed/Apple Watch 44mm Space Black Stainless Steel + Alaskan Blue Closed.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "20.274%",
+    "screenRadiusCorners": {
+      "topLeft": "21.951%",
+      "topRight": "18.598%",
+      "bottomLeft": "21.951%",
+      "bottomRight": "18.598%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 5/Device/44mm/Closed/Apple Watch 44mm Space Black Titanium + Pine Green Closed.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "20.351%",
+    "screenRadiusCorners": {
+      "topLeft": "21.951%",
+      "topRight": "18.598%",
+      "bottomLeft": "21.951%",
+      "bottomRight": "18.902%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 5/Device/44mm/Closed/Apple Watch 44mm Space Grey Aluminum + Black Closed.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "20.274%",
+    "screenRadiusCorners": {
+      "topLeft": "21.951%",
+      "topRight": "18.598%",
+      "bottomLeft": "21.951%",
+      "bottomRight": "18.598%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 5/Device/44mm/Closed/Apple Watch 44mm Stainless Steel + Lemon Cream Closed.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "20.274%",
+    "screenRadiusCorners": {
+      "topLeft": "21.951%",
+      "topRight": "18.598%",
+      "bottomLeft": "21.951%",
+      "bottomRight": "18.598%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 5/Device/44mm/Closed/Apple Watch 44mm Titanium + Red Closed.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "20.274%",
+    "screenRadiusCorners": {
+      "topLeft": "21.951%",
+      "topRight": "18.598%",
+      "bottomLeft": "21.951%",
+      "bottomRight": "18.598%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 5/Device/44mm/Closed/Apple Watch 44mm White Ceramic + White Closed.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.8943,
-      "width": 71.8062,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 11.4537,
+      "width": 72.6872,
+      "height": 52.6042
     },
     "screenRadius": "19.095%",
+    "screenRadiusCorners": {
+      "topLeft": "19.939%",
+      "topRight": "18.098%",
+      "bottomLeft": "20.245%",
+      "bottomRight": "18.098%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/40mm/Apple Watch 40mm Blue Aluminum Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/40mm/Apple Watch 40mm Dark Titanium Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/40mm/Apple Watch 40mm Gold Aluminum Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/40mm/Apple Watch 40mm Gold Stainless Steel Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/40mm/Apple Watch 40mm Graphite Stainless Steel Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/40mm/Apple Watch 40mm Light Titanium Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/40mm/Apple Watch 40mm Red Aluminum Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/40mm/Apple Watch 40mm Silver Aluminum Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/40mm/Apple Watch 40mm Silver Stainless Steel Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/40mm/Apple Watch 40mm Space Gray Aluminum Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.289%",
+    "screenRadiusCorners": {
+      "topLeft": "17.857%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/44mm/Apple Watch 44mm Blue Aluminum Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/44mm/Apple Watch 44mm Dark Titanium Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/44mm/Apple Watch 44mm Gold Aluminum Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/44mm/Apple Watch 44mm Gold Stainless Steel Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/44mm/Apple Watch 44mm Graphite Stainless Steel Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/44mm/Apple Watch 44mm Light Titanium Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/44mm/Apple Watch 44mm Red Aluminum Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/44mm/Apple Watch 44mm Silver Aluminum Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/44mm/Apple Watch 44mm Silver Stainless Steel Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Cyprus Green Solo Loop/44mm/Apple Watch 44mm Space Gray Aluminum Cyprus Green Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/40mm/Apple Watch 40mm Blue Aluminum Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/40mm/Apple Watch 40mm Dark Titanium Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/40mm/Apple Watch 40mm Gold Aluminum Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/40mm/Apple Watch 40mm Gold Stainless Steel Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/40mm/Apple Watch 40mm Graphite Stainless Steel Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/40mm/Apple Watch 40mm Light Titanium Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/40mm/Apple Watch 40mm Red Aluminum Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/40mm/Apple Watch 40mm Silver Aluminum Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/40mm/Apple Watch 40mm Silver Stainless Steel Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/40mm/Apple Watch 40mm Space Gray Aluminum Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.7854,
-      "width": 70.3196,
-      "height": 48.9583
+      "top": 25.2604,
+      "left": 12.3288,
+      "width": 71.2329,
+      "height": 49.4792
     },
     "screenRadius": "17.370%",
+    "screenRadiusCorners": {
+      "topLeft": "18.182%",
+      "topRight": "19.481%",
+      "bottomLeft": "14.935%",
+      "bottomRight": "16.883%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/44mm/Apple Watch 44mm Blue Aluminum Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/44mm/Apple Watch 44mm Dark Titanium Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/44mm/Apple Watch 44mm Gold Aluminum Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/44mm/Apple Watch 44mm Gold Stainless Steel Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/44mm/Apple Watch 44mm Graphite Stainless Steel Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/44mm/Apple Watch 44mm Light Titanium Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/44mm/Apple Watch 44mm Red Aluminum Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/44mm/Apple Watch 44mm Silver Aluminum Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/44mm/Apple Watch 44mm Silver Stainless Steel Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Ginger Solo Loop/44mm/Apple Watch 44mm Space Gray Aluminum Ginger Solo Loop.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/40mm/Apple Watch 40mm Blue Aluminum Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.6697,
-      "width": 70.1357,
-      "height": 49.2188
+      "top": 25.2604,
+      "left": 12.2172,
+      "width": 71.0407,
+      "height": 49.7396
     },
     "screenRadius": "15.645%",
+    "screenRadiusCorners": {
+      "topLeft": "15.161%",
+      "topRight": "14.516%",
+      "bottomLeft": "16.774%",
+      "bottomRight": "16.129%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/40mm/Apple Watch 40mm Dark Titanium Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.6697,
-      "width": 70.1357,
-      "height": 49.2188
+      "top": 25.2604,
+      "left": 12.2172,
+      "width": 71.0407,
+      "height": 49.7396
     },
     "screenRadius": "15.645%",
+    "screenRadiusCorners": {
+      "topLeft": "15.161%",
+      "topRight": "14.516%",
+      "bottomLeft": "16.774%",
+      "bottomRight": "16.129%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/40mm/Apple Watch 40mm Gold Aluminum Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.6697,
-      "width": 70.1357,
-      "height": 49.2188
+      "top": 25.2604,
+      "left": 12.2172,
+      "width": 71.0407,
+      "height": 49.7396
     },
     "screenRadius": "15.645%",
+    "screenRadiusCorners": {
+      "topLeft": "15.161%",
+      "topRight": "14.516%",
+      "bottomLeft": "16.774%",
+      "bottomRight": "16.129%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/40mm/Apple Watch 40mm Gold Stainless Steel Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.6697,
-      "width": 70.1357,
-      "height": 49.2188
+      "top": 25.2604,
+      "left": 12.2172,
+      "width": 71.0407,
+      "height": 49.7396
     },
     "screenRadius": "15.645%",
+    "screenRadiusCorners": {
+      "topLeft": "15.161%",
+      "topRight": "14.516%",
+      "bottomLeft": "16.774%",
+      "bottomRight": "16.129%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/40mm/Apple Watch 40mm Graphite Stainless Steel Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.6697,
-      "width": 70.1357,
-      "height": 49.2188
+      "top": 25.2604,
+      "left": 12.2172,
+      "width": 71.0407,
+      "height": 49.7396
     },
     "screenRadius": "15.645%",
+    "screenRadiusCorners": {
+      "topLeft": "15.161%",
+      "topRight": "14.516%",
+      "bottomLeft": "16.774%",
+      "bottomRight": "16.129%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/40mm/Apple Watch 40mm Light Titanium Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.6697,
-      "width": 70.1357,
-      "height": 49.2188
+      "top": 25.2604,
+      "left": 12.2172,
+      "width": 71.0407,
+      "height": 49.7396
     },
     "screenRadius": "15.645%",
+    "screenRadiusCorners": {
+      "topLeft": "15.161%",
+      "topRight": "14.516%",
+      "bottomLeft": "16.774%",
+      "bottomRight": "16.129%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/40mm/Apple Watch 40mm Red Aluminum Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.6697,
-      "width": 70.1357,
-      "height": 49.2188
+      "top": 25.2604,
+      "left": 12.2172,
+      "width": 71.0407,
+      "height": 49.7396
     },
     "screenRadius": "15.645%",
+    "screenRadiusCorners": {
+      "topLeft": "15.161%",
+      "topRight": "14.516%",
+      "bottomLeft": "16.774%",
+      "bottomRight": "16.129%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/40mm/Apple Watch 40mm Silver Aluminum Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.6697,
-      "width": 70.1357,
-      "height": 49.2188
+      "top": 25.2604,
+      "left": 12.2172,
+      "width": 71.0407,
+      "height": 49.7396
     },
     "screenRadius": "15.645%",
+    "screenRadiusCorners": {
+      "topLeft": "15.161%",
+      "topRight": "14.516%",
+      "bottomLeft": "16.774%",
+      "bottomRight": "16.129%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/40mm/Apple Watch 40mm Silver Stainless Steel Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.6697,
-      "width": 70.1357,
-      "height": 49.2188
+      "top": 25.2604,
+      "left": 12.2172,
+      "width": 71.0407,
+      "height": 49.7396
     },
     "screenRadius": "15.645%",
+    "screenRadiusCorners": {
+      "topLeft": "15.161%",
+      "topRight": "14.516%",
+      "bottomLeft": "16.774%",
+      "bottomRight": "16.129%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/40mm/Apple Watch 40mm Space Gray Aluminum Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 25.5208,
-      "left": 12.6697,
-      "width": 70.1357,
-      "height": 49.2188
+      "top": 25.2604,
+      "left": 12.2172,
+      "width": 71.0407,
+      "height": 49.7396
     },
     "screenRadius": "15.645%",
+    "screenRadiusCorners": {
+      "topLeft": "15.161%",
+      "topRight": "14.516%",
+      "bottomLeft": "16.774%",
+      "bottomRight": "16.129%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/44mm/Apple Watch 44mm Blue Aluminum Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/44mm/Apple Watch 44mm Dark Titanium Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/44mm/Apple Watch 44mm Gold Aluminum Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/44mm/Apple Watch 44mm Gold Stainless Steel Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/44mm/Apple Watch 44mm Graphite Stainless Steel Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/44mm/Apple Watch 44mm Light Titanium Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/44mm/Apple Watch 44mm Red Aluminum Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/44mm/Apple Watch 44mm Silver Aluminum Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/44mm/Apple Watch 44mm Silver Stainless Steel Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.055%",
+    "screenRadiusCorners": {
+      "topLeft": "20.732%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/With Bands/Pink Citrus Sport Closed/44mm/Apple Watch 44mm Space Gray Aluminum Pink Citrus Sport.avif": {
     "bounds": {
-      "top": 23.9583,
-      "left": 11.1607,
-      "width": 73.2143,
-      "height": 52.0833
+      "top": 23.6979,
+      "left": 10.7143,
+      "width": 74.1071,
+      "height": 52.6042
     },
     "screenRadius": "19.131%",
+    "screenRadiusCorners": {
+      "topLeft": "21.037%",
+      "topRight": "17.378%",
+      "bottomLeft": "20.732%",
+      "bottomRight": "17.378%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/40mm/Apple Watch 40mm Blue Aluminum.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 12.6801,
-      "width": 70.317,
-      "height": 77.3438
+      "top": 10.9375,
+      "left": 12.3919,
+      "width": 70.8934,
+      "height": 77.8646
     },
     "screenRadius": "15.727%",
+    "screenRadiusCorners": {
+      "topLeft": "15.984%",
+      "topRight": "16.189%",
+      "bottomLeft": "15.164%",
+      "bottomRight": "15.574%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4611,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4611,
+      "bottom": 0.4167,
+      "left": 0.4611
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/40mm/Apple Watch 40mm Dark Titanium.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 12.6801,
-      "width": 70.317,
-      "height": 77.3438
+      "top": 10.9375,
+      "left": 12.3919,
+      "width": 70.8934,
+      "height": 77.8646
     },
     "screenRadius": "15.727%",
+    "screenRadiusCorners": {
+      "topLeft": "15.984%",
+      "topRight": "16.189%",
+      "bottomLeft": "15.164%",
+      "bottomRight": "15.574%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4611,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4611,
+      "bottom": 0.4167,
+      "left": 0.4611
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/40mm/Apple Watch 40mm Gold Aluminum.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 12.6801,
-      "width": 70.317,
-      "height": 77.3438
+      "top": 10.9375,
+      "left": 12.3919,
+      "width": 70.8934,
+      "height": 77.8646
     },
     "screenRadius": "15.727%",
+    "screenRadiusCorners": {
+      "topLeft": "15.984%",
+      "topRight": "16.189%",
+      "bottomLeft": "15.164%",
+      "bottomRight": "15.574%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4611,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4611,
+      "bottom": 0.4167,
+      "left": 0.4611
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/40mm/Apple Watch 40mm Gold Stainless Steel.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 12.6801,
-      "width": 70.317,
-      "height": 77.3438
+      "top": 10.9375,
+      "left": 12.3919,
+      "width": 70.8934,
+      "height": 77.8646
     },
     "screenRadius": "15.727%",
+    "screenRadiusCorners": {
+      "topLeft": "15.984%",
+      "topRight": "16.189%",
+      "bottomLeft": "15.164%",
+      "bottomRight": "15.574%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4611,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4611,
+      "bottom": 0.4167,
+      "left": 0.4611
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/40mm/Apple Watch 40mm Graphite Stainless Steel.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 12.6801,
-      "width": 70.317,
-      "height": 77.3438
+      "top": 10.9375,
+      "left": 12.3919,
+      "width": 70.8934,
+      "height": 77.8646
     },
     "screenRadius": "15.727%",
+    "screenRadiusCorners": {
+      "topLeft": "15.984%",
+      "topRight": "16.189%",
+      "bottomLeft": "15.164%",
+      "bottomRight": "15.574%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4611,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4611,
+      "bottom": 0.4167,
+      "left": 0.4611
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/40mm/Apple Watch 40mm Light Titanium.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 12.6801,
-      "width": 70.317,
-      "height": 77.3438
+      "top": 10.9375,
+      "left": 12.3919,
+      "width": 70.8934,
+      "height": 77.8646
     },
     "screenRadius": "15.727%",
+    "screenRadiusCorners": {
+      "topLeft": "15.984%",
+      "topRight": "16.189%",
+      "bottomLeft": "15.164%",
+      "bottomRight": "15.574%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4611,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4611,
+      "bottom": 0.4167,
+      "left": 0.4611
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/40mm/Apple Watch 40mm Red Aluminum.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 12.6801,
-      "width": 70.317,
-      "height": 77.3438
+      "top": 10.9375,
+      "left": 12.3919,
+      "width": 70.8934,
+      "height": 77.8646
     },
     "screenRadius": "15.727%",
+    "screenRadiusCorners": {
+      "topLeft": "15.984%",
+      "topRight": "16.189%",
+      "bottomLeft": "15.164%",
+      "bottomRight": "15.574%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4611,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4611,
+      "bottom": 0.4167,
+      "left": 0.4611
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/40mm/Apple Watch 40mm Silver Aluminum.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 12.6801,
-      "width": 70.317,
-      "height": 77.3438
+      "top": 10.9375,
+      "left": 12.3919,
+      "width": 70.8934,
+      "height": 77.8646
     },
     "screenRadius": "15.727%",
+    "screenRadiusCorners": {
+      "topLeft": "15.984%",
+      "topRight": "16.189%",
+      "bottomLeft": "15.164%",
+      "bottomRight": "15.574%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4611,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4611,
+      "bottom": 0.4167,
+      "left": 0.4611
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/40mm/Apple Watch 40mm Silver Stainless Steel.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 12.6801,
-      "width": 70.317,
-      "height": 77.3438
+      "top": 10.9375,
+      "left": 12.3919,
+      "width": 70.8934,
+      "height": 77.8646
     },
     "screenRadius": "15.727%",
+    "screenRadiusCorners": {
+      "topLeft": "15.984%",
+      "topRight": "16.189%",
+      "bottomLeft": "15.164%",
+      "bottomRight": "15.574%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4611,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4611,
+      "bottom": 0.4167,
+      "left": 0.4611
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/40mm/Apple Watch 40mm Space Gray Aluminum.avif": {
     "bounds": {
-      "top": 11.1979,
-      "left": 12.6801,
-      "width": 70.317,
-      "height": 77.3438
+      "top": 10.9375,
+      "left": 12.3919,
+      "width": 70.8934,
+      "height": 77.8646
     },
     "screenRadius": "15.727%",
+    "screenRadiusCorners": {
+      "topLeft": "15.984%",
+      "topRight": "16.189%",
+      "bottomLeft": "15.164%",
+      "bottomRight": "15.574%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4611,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4611,
+      "bottom": 0.4167,
+      "left": 0.4611
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/44mm/Apple Watch 44mm Blue Aluminum.avif": {
     "bounds": {
-      "top": 10.1563,
-      "left": 11.3372,
-      "width": 73.2558,
-      "height": 79.6875
+      "top": 9.8958,
+      "left": 11.0465,
+      "width": 73.8372,
+      "height": 80.2083
     },
     "screenRadius": "18.105%",
+    "screenRadiusCorners": {
+      "topLeft": "17.262%",
+      "topRight": "18.849%",
+      "bottomLeft": "17.460%",
+      "bottomRight": "18.849%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4651,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4651,
+      "bottom": 0.4167,
+      "left": 0.4651
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/44mm/Apple Watch 44mm Dark Titanium.avif": {
     "bounds": {
-      "top": 10.1563,
-      "left": 11.3372,
-      "width": 73.2558,
-      "height": 79.6875
+      "top": 9.8958,
+      "left": 11.0465,
+      "width": 73.8372,
+      "height": 80.2083
     },
     "screenRadius": "18.105%",
+    "screenRadiusCorners": {
+      "topLeft": "17.262%",
+      "topRight": "18.849%",
+      "bottomLeft": "17.460%",
+      "bottomRight": "18.849%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4651,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4651,
+      "bottom": 0.4167,
+      "left": 0.4651
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/44mm/Apple Watch 44mm Gold Aluminum.avif": {
     "bounds": {
-      "top": 10.1563,
-      "left": 11.3372,
-      "width": 73.2558,
-      "height": 79.6875
+      "top": 9.8958,
+      "left": 11.0465,
+      "width": 73.8372,
+      "height": 80.2083
     },
     "screenRadius": "18.105%",
+    "screenRadiusCorners": {
+      "topLeft": "17.262%",
+      "topRight": "18.849%",
+      "bottomLeft": "17.460%",
+      "bottomRight": "18.849%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4651,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4651,
+      "bottom": 0.4167,
+      "left": 0.4651
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/44mm/Apple Watch 44mm Gold Stainless Steel.avif": {
     "bounds": {
-      "top": 10.1563,
-      "left": 11.3372,
-      "width": 73.2558,
-      "height": 79.6875
+      "top": 9.8958,
+      "left": 11.0465,
+      "width": 73.8372,
+      "height": 80.2083
     },
     "screenRadius": "18.105%",
+    "screenRadiusCorners": {
+      "topLeft": "17.262%",
+      "topRight": "18.849%",
+      "bottomLeft": "17.460%",
+      "bottomRight": "18.849%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4651,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4651,
+      "bottom": 0.4167,
+      "left": 0.4651
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/44mm/Apple Watch 44mm Graphite Stainless Steel.avif": {
     "bounds": {
-      "top": 10.1563,
-      "left": 11.3372,
-      "width": 73.2558,
-      "height": 79.6875
+      "top": 9.8958,
+      "left": 11.0465,
+      "width": 73.8372,
+      "height": 80.2083
     },
     "screenRadius": "18.105%",
+    "screenRadiusCorners": {
+      "topLeft": "17.262%",
+      "topRight": "18.849%",
+      "bottomLeft": "17.460%",
+      "bottomRight": "18.849%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4651,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4651,
+      "bottom": 0.4167,
+      "left": 0.4651
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/44mm/Apple Watch 44mm Light Titanium.avif": {
     "bounds": {
-      "top": 10.1563,
-      "left": 11.3372,
-      "width": 73.2558,
-      "height": 79.6875
+      "top": 9.8958,
+      "left": 11.0465,
+      "width": 73.8372,
+      "height": 80.2083
     },
     "screenRadius": "18.105%",
+    "screenRadiusCorners": {
+      "topLeft": "17.262%",
+      "topRight": "18.849%",
+      "bottomLeft": "17.460%",
+      "bottomRight": "18.849%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4651,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4651,
+      "bottom": 0.4167,
+      "left": 0.4651
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/44mm/Apple Watch 44mm Red Aluminum.avif": {
     "bounds": {
-      "top": 10.1563,
-      "left": 11.3372,
-      "width": 73.2558,
-      "height": 79.6875
+      "top": 9.8958,
+      "left": 11.0465,
+      "width": 73.8372,
+      "height": 80.2083
     },
     "screenRadius": "18.105%",
+    "screenRadiusCorners": {
+      "topLeft": "17.262%",
+      "topRight": "18.849%",
+      "bottomLeft": "17.460%",
+      "bottomRight": "18.849%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4651,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4651,
+      "bottom": 0.4167,
+      "left": 0.4651
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/44mm/Apple Watch 44mm Silver Aluminum.avif": {
     "bounds": {
-      "top": 10.1563,
-      "left": 11.3372,
-      "width": 73.2558,
-      "height": 79.6875
+      "top": 9.8958,
+      "left": 11.0465,
+      "width": 73.8372,
+      "height": 80.2083
     },
     "screenRadius": "18.105%",
+    "screenRadiusCorners": {
+      "topLeft": "17.262%",
+      "topRight": "18.849%",
+      "bottomLeft": "17.460%",
+      "bottomRight": "18.849%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4651,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4651,
+      "bottom": 0.4167,
+      "left": 0.4651
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/44mm/Apple Watch 44mm Silver Stainless Steel.avif": {
     "bounds": {
-      "top": 10.1563,
-      "left": 11.3372,
-      "width": 73.2558,
-      "height": 79.6875
+      "top": 9.8958,
+      "left": 11.0465,
+      "width": 73.8372,
+      "height": 80.2083
     },
     "screenRadius": "18.105%",
+    "screenRadiusCorners": {
+      "topLeft": "17.262%",
+      "topRight": "18.849%",
+      "bottomLeft": "17.460%",
+      "bottomRight": "18.849%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4651,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4651,
+      "bottom": 0.4167,
+      "left": 0.4651
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch Series 6/Device/Without Bands/44mm/Apple Watch 44mm Space Gray Aluminum.avif": {
     "bounds": {
-      "top": 10.1563,
-      "left": 11.3372,
-      "width": 73.2558,
-      "height": 79.6875
+      "top": 9.8958,
+      "left": 11.0465,
+      "width": 73.8372,
+      "height": 80.2083
     },
     "screenRadius": "18.105%",
+    "screenRadiusCorners": {
+      "topLeft": "17.262%",
+      "topRight": "18.849%",
+      "bottomLeft": "17.460%",
+      "bottomRight": "18.849%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.4651,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.4651,
+      "bottom": 0.4167,
+      "left": 0.4651
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Black Steel + Black Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Gold + Black Leather Closed.avif": {
     "bounds": {
-      "top": 28.3854,
-      "left": 15.942,
-      "width": 63.285,
-      "height": 42.7083
+      "top": 28.125,
+      "left": 15.4589,
+      "width": 64.2512,
+      "height": 43.2292
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Gold + Midnight Blue Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Rose Gold + Black Leather Closed.avif": {
     "bounds": {
-      "top": 28.3854,
-      "left": 15.942,
-      "width": 63.285,
-      "height": 42.7083
+      "top": 28.125,
+      "left": 15.4589,
+      "width": 64.2512,
+      "height": 43.2292
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Rose Gold + Lavender Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Sport Aluminum + Blue Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Sport Aluminum + Fog Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Sport Aluminum + Green Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Sport Aluminum + Red Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Sport Aluminum + Walnut Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Sport Aluminum + White Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Sport Aluminum Gold + Antique White Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Sport Aluminum Rose Gold + Stone Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Sport Space Gray + Black Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.5313
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Stainless Steel + Black Leather Closed.avif": {
     "bounds": {
-      "top": 28.3854,
-      "left": 15.942,
-      "width": 63.285,
-      "height": 42.7083
+      "top": 28.125,
+      "left": 15.4589,
+      "width": 64.2512,
+      "height": 43.2292
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/38mm/Device Closed/Apple Watch 38mm Steel + White Closed.avif": {
     "bounds": {
-      "top": 27.8646,
-      "left": 15.8879,
-      "width": 63.5514,
-      "height": 44.2708
+      "top": 27.6042,
+      "left": 15.4206,
+      "width": 64.486,
+      "height": 44.7917
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Black Steel + Black Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Gold + Black Leather Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.7917
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Gold + Midnight Blue Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Rose Gold + Black Leather Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.7917
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Rose Gold + Lavender Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Sport Aluminum + Blue Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Sport Aluminum + Fog Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Sport Aluminum + Green Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Sport Aluminum + Red Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Sport Aluminum + Walnut Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Sport Aluminum + White Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Sport Aluminum Gold + Antique White Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Sport Aluminum Rose Gold + Stone Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Sport Space Gray + Black Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.5313
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.0521
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Stainless Steel + Black Leather Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.7917
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/apple/Apple Watch/Device/42mm/Device Closed/Apple Watch 42mm Steel + White Closed.avif": {
     "bounds": {
-      "top": 27.6042,
-      "left": 15.814,
-      "width": 63.7209,
-      "height": 44.7917
+      "top": 27.3438,
+      "left": 15.3488,
+      "width": 64.6512,
+      "height": 45.3125
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Men Black + Black Closed.avif": {
     "bounds": {
-      "top": 23.1771,
-      "left": 7.4803,
-      "width": 85.0394,
-      "height": 49.4792
+      "top": 22.9167,
+      "left": 7.0866,
+      "width": 85.8268,
+      "height": 50
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.6299,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.6299,
+      "bottom": 0.4167,
+      "left": 0.6299
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Men Black + Cognac Closed.avif": {
     "bounds": {
-      "top": 23.1771,
-      "left": 7.4803,
-      "width": 85.0394,
-      "height": 49.4792
+      "top": 22.9167,
+      "left": 7.0866,
+      "width": 85.8268,
+      "height": 50
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.6299,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.6299,
+      "bottom": 0.4167,
+      "left": 0.6299
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Men Gold + Black Closed.avif": {
     "bounds": {
-      "top": 23.1771,
-      "left": 7.4803,
-      "width": 85.0394,
-      "height": 49.4792
+      "top": 22.9167,
+      "left": 7.0866,
+      "width": 85.8268,
+      "height": 50
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.6299,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.6299,
+      "bottom": 0.4167,
+      "left": 0.6299
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Men Gold + Cognac Closed.avif": {
     "bounds": {
-      "top": 22.6563,
-      "left": 7.4803,
-      "width": 85.0394,
-      "height": 50
+      "top": 22.3958,
+      "left": 7.0866,
+      "width": 85.8268,
+      "height": 50.5208
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.6299,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.6299,
+      "bottom": 0.4167,
+      "left": 0.6299
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Men Silver + Black Closed.avif": {
     "bounds": {
-      "top": 22.6563,
-      "left": 7.4803,
-      "width": 85.0394,
-      "height": 50
+      "top": 22.3958,
+      "left": 7.0866,
+      "width": 85.8268,
+      "height": 50.5208
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.6299,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.6299,
+      "bottom": 0.4167,
+      "left": 0.6299
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Men Silver + Cognac Closed.avif": {
     "bounds": {
-      "top": 22.6563,
-      "left": 7.4803,
-      "width": 85.0394,
-      "height": 50
+      "top": 22.3958,
+      "left": 7.0866,
+      "width": 85.8268,
+      "height": 50.5208
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.6299,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.6299,
+      "bottom": 0.4167,
+      "left": 0.6299
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Women Gold + Blush Closed.avif": {
     "bounds": {
-      "top": 20.8333,
-      "left": 7.3801,
-      "width": 85.2399,
-      "height": 53.3854
+      "top": 20.5729,
+      "left": 7.0111,
+      "width": 85.9779,
+      "height": 53.9063
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.5904,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.5904,
+      "bottom": 0.4167,
+      "left": 0.5904
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Women Gold + Stone Closed.avif": {
     "bounds": {
-      "top": 20.8333,
-      "left": 7.3801,
-      "width": 85.2399,
-      "height": 53.3854
+      "top": 20.5729,
+      "left": 7.0111,
+      "width": 85.9779,
+      "height": 53.9063
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.5904,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.5904,
+      "bottom": 0.4167,
+      "left": 0.5904
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Women Rose Gold + Blush Closed.avif": {
     "bounds": {
-      "top": 20.8333,
-      "left": 7.3801,
-      "width": 85.2399,
-      "height": 53.3854
+      "top": 20.5729,
+      "left": 7.0111,
+      "width": 85.9779,
+      "height": 53.9063
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.5904,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.5904,
+      "bottom": 0.4167,
+      "left": 0.5904
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Women Rose Gold + Stone Grey Closed.avif": {
     "bounds": {
-      "top": 20.8333,
-      "left": 7.3801,
-      "width": 85.2399,
-      "height": 53.3854
+      "top": 20.5729,
+      "left": 7.0111,
+      "width": 85.9779,
+      "height": 53.9063
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.5904,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.5904,
+      "bottom": 0.4167,
+      "left": 0.5904
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Women Silver + Blush Closed.avif": {
     "bounds": {
-      "top": 20.8333,
-      "left": 7.3801,
-      "width": 85.2399,
-      "height": 53.3854
+      "top": 20.5729,
+      "left": 7.0111,
+      "width": 85.9779,
+      "height": 53.9063
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.5904,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.5904,
+      "bottom": 0.4167,
+      "left": 0.5904
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Closed/Motorola Moto 360 Women Silver + Stone Grey Closed.avif": {
     "bounds": {
-      "top": 20.8333,
-      "left": 7.3801,
-      "width": 85.2399,
-      "height": 53.3854
+      "top": 20.5729,
+      "left": 7.0111,
+      "width": 85.9779,
+      "height": 53.9063
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.5904,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.5904,
+      "bottom": 0.4167,
+      "left": 0.5904
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Men Black + Black Open.avif": {
     "bounds": {
-      "top": 35.4167,
-      "left": 8.9552,
-      "width": 82.0896,
-      "height": 13.0208
+      "top": 35.1563,
+      "left": 7.4627,
+      "width": 85.0746,
+      "height": 13.5417
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Men Black + Cognac Open.avif": {
     "bounds": {
-      "top": 35.4167,
-      "left": 8.9552,
-      "width": 82.0896,
-      "height": 13.0208
+      "top": 35.1563,
+      "left": 7.4627,
+      "width": 85.0746,
+      "height": 13.5417
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Men Gold + Black Open.avif": {
     "bounds": {
-      "top": 35.4167,
-      "left": 8.9552,
-      "width": 82.0896,
-      "height": 13.0208
+      "top": 35.1563,
+      "left": 7.4627,
+      "width": 85.0746,
+      "height": 13.5417
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Men Gold + Cognac Open.avif": {
     "bounds": {
-      "top": 35.4167,
-      "left": 8.9552,
-      "width": 82.0896,
-      "height": 13.0208
+      "top": 35.1563,
+      "left": 7.4627,
+      "width": 85.0746,
+      "height": 13.5417
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Men Silver + Black Open.avif": {
     "bounds": {
-      "top": 35.4167,
-      "left": 8.9552,
-      "width": 82.0896,
-      "height": 13.0208
+      "top": 35.1563,
+      "left": 7.4627,
+      "width": 85.0746,
+      "height": 13.5417
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Men Silver + Cognac Open.avif": {
     "bounds": {
-      "top": 35.4167,
-      "left": 8.9552,
-      "width": 82.0896,
-      "height": 13.0208
+      "top": 35.1563,
+      "left": 7.4627,
+      "width": 85.0746,
+      "height": 13.5417
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Women Gold + Blush Open.avif": {
     "bounds": {
-      "top": 35.1563,
-      "left": 8.5714,
-      "width": 82.8571,
-      "height": 13.5417
+      "top": 34.8958,
+      "left": 7.1429,
+      "width": 85.7143,
+      "height": 14.0625
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Women Gold + Stone Open.avif": {
     "bounds": {
-      "top": 35.1563,
-      "left": 8.5714,
-      "width": 82.8571,
-      "height": 13.5417
+      "top": 34.8958,
+      "left": 7.1429,
+      "width": 85.7143,
+      "height": 14.0625
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Women Rose Gold + Blush Open.avif": {
     "bounds": {
-      "top": 35.1563,
-      "left": 8.5714,
-      "width": 82.8571,
-      "height": 13.5417
+      "top": 34.8958,
+      "left": 7.1429,
+      "width": 85.7143,
+      "height": 14.0625
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Women Rose Gold + Stone Grey Open.avif": {
     "bounds": {
-      "top": 35.1563,
-      "left": 8.5714,
-      "width": 82.8571,
-      "height": 13.5417
+      "top": 34.8958,
+      "left": 7.1429,
+      "width": 85.7143,
+      "height": 14.0625
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Women Silver + Blush Open.avif": {
     "bounds": {
-      "top": 35.1563,
-      "left": 8.5714,
-      "width": 82.8571,
-      "height": 13.5417
+      "top": 34.8958,
+      "left": 7.1429,
+      "width": 85.7143,
+      "height": 14.0625
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/motorola/Motorola Moto 360/Device Open/Motorola Moto 360 Women Silver + Stone Grey Open.avif": {
     "bounds": {
-      "top": 35.1563,
-      "left": 8.5714,
-      "width": 82.8571,
-      "height": 13.5417
+      "top": 34.8958,
+      "left": 7.1429,
+      "width": 85.7143,
+      "height": 14.0625
     },
     "screenRadius": "24.000%",
+    "screenRadiusCorners": {
+      "topLeft": "24.000%",
+      "topRight": "24.000%",
+      "bottomLeft": "24.000%",
+      "bottomRight": "24.000%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/sony/Sony SmartWatch 3/Device Closed/Sony SmartWatch 3 Black Closed.avif": {
     "bounds": {
-      "top": 25.2604,
-      "left": 13.8528,
-      "width": 71.8615,
-      "height": 43.4896
+      "top": 25,
+      "left": 13.4199,
+      "width": 72.7273,
+      "height": 44.0104
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/sony/Sony SmartWatch 3/Device Closed/Sony SmartWatch 3 White Closed.avif": {
     "bounds": {
-      "top": 25.2604,
-      "left": 13.8528,
-      "width": 71.8615,
-      "height": 43.4896
+      "top": 25,
+      "left": 13.4199,
+      "width": 72.7273,
+      "height": 44.0104
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/sony/Sony SmartWatch 3/Device Open/Sony SmartWatch 3 Black Open.avif": {
     "bounds": {
-      "top": 42.4479,
-      "left": 13.6364,
-      "width": 71.2121,
-      "height": 12.2396
+      "top": 42.1875,
+      "left": 12.1212,
+      "width": 74.2424,
+      "height": 12.7604
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   },
   "/src/stories/assets/mockups/wearable/sony/Sony SmartWatch 3/Device Open/Sony SmartWatch 3 White Open.avif": {
     "bounds": {
-      "top": 42.4479,
-      "left": 13.6364,
-      "width": 71.2121,
-      "height": 12.2396
+      "top": 42.1875,
+      "left": 12.1212,
+      "width": 74.2424,
+      "height": 12.7604
     },
     "screenRadius": "0%",
+    "screenRadiusCorners": {
+      "topLeft": "0%",
+      "topRight": "0%",
+      "bottomLeft": "0%",
+      "bottomRight": "0%"
+    },
+    "screenFit": "contain",
     "edgeBleed": {
       "x": 0.65,
-      "y": 0.4167
+      "y": 0.4167,
+      "top": 0.4167,
+      "right": 0.65,
+      "bottom": 0.4167,
+      "left": 0.65
     }
   }
 };

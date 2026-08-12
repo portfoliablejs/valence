@@ -52,6 +52,27 @@ The component strictly adheres to the **State In / Events Out** pattern:
       style SpeedBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
 `} />
 
+    ### Host Persistence and Lifecycle Contract
+    The component remains controlled and intentionally stateless regarding cross-view persistence. Host applications are expected to persist and restore playback position by reading and writing the `time` attribute.
+
+    Recommended host behavior:
+    * Persist current `time` per content scope (for example, per case study) from `ds-audio-timeupdate` events.
+    * Rehydrate the saved position by setting `time` before or immediately after mount.
+    * Force playback shutdown on view exit by setting `playing="false"` and/or tearing down the mounted player instance.
+
+    Reparent-safe lifecycle behavior:
+    * During same-tick DOM reparenting (for example, moving the player into a global floating layer), the component defers its disconnect pause by one task and cancels it if reconnected immediately.
+    * This prevents audible playback blips during host-driven floating transitions while preserving the expected pause behavior on true unmount/disconnect.
+
+    Host runtime binding requirements during floating mode:
+    * Host shells that promote `ds-audio-player` into an overlay or floating layer should continue tracking the same element instance rather than remounting a new player node.
+    * Runtime binders should resolve the player from both the in-flow article tree and the floating layer container before deciding the player is missing.
+    * Teardown should only run on true route exit/unmount; using teardown as a relocation fallback can force `playing="false"` and unintentionally pause active playback.
+
+    This contract keeps `ds-audio-player` reusable while allowing route-aware experiences such as:
+    * Resume audio where the user left off when they return to the same case.
+    * Stop audio immediately when leaving the owning case view to avoid cross-view bleed.
+
 ---
 
 ## Slot Architecture
@@ -250,6 +271,24 @@ export interface DsAudioPlayerLabels {
       <td>`{ volume: number }`</td>
       <td>Emitted continuously when adjusting volume slides.</td>
     </tr>
+    <tr>
+      <td>`ds-audio-timeupdate`</td>
+      <td>`true` / `true`</td>
+      <td>`{ time: number, duration: number, progress: number }`</td>
+      <td>Emitted while playback advances; use this to persist resume positions in host storage.</td>
+    </tr>
+    <tr>
+      <td>`ds-audio-ended`</td>
+      <td>`true` / `true`</td>
+      <td>`{}`</td>
+      <td>Emitted when playback reaches the end of the active source.</td>
+    </tr>
+    <tr>
+      <td>`ds-audio-error`</td>
+      <td>`true` / `true`</td>
+      <td>`{ code: number, message: string, src: string }`</td>
+      <td>Emitted when playback fails after source resolution/retry handling.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -258,6 +297,7 @@ export interface DsAudioPlayerLabels {
 This composite molecule encapsulates nested Atom sub-atomic overrides to align colors and spacing parameters:
 - `ds-divider` margin: `--ds-divider-margin` is overridden to `0`.
 - `ds-seek-bar` colors: `--ds-seek-bar-fill-bg`, `--ds-seek-bar-knob-bg`, and `--ds-seek-bar-track-bg` are cleanly set on `.volume-seek` elements.
+- Scrolled floating host layering uses `:host([variant="scrolled"])` with a mobile baseline token `--ds-audio-player-scrolled-z-index-mobile` and a desktop override token `--ds-audio-player-scrolled-z-index-desktop`.
 
 ---
 

@@ -112,6 +112,8 @@ export class Tooltip extends HTMLElement {
   _observeRootAccessibility() {
     const root = this.ownerDocument.documentElement;
     const sync = () => {
+      const currentDir = root.getAttribute('dir') || 'ltr';
+      this.setAttribute('dir', currentDir);
       this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
       this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
       this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
@@ -125,7 +127,7 @@ export class Tooltip extends HTMLElement {
     this._themeObserver = new MutationObserver(sync);
     this._themeObserver.observe(root, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ['class', 'dir'],
     });
   }
 }

@@ -2,7 +2,7 @@
 import css from './gallery-item.css?inline';
 import '../../atoms/Pill/Pill.js';
 import '../../atoms/Thumbnail/Thumbnail.js';
-import '../../sub-atomic/Iconography/Iconography.js';
+import '../../atoms/Icon/Iconography.js';
 
 export class GalleryItem extends HTMLElement {
   static get observedAttributes() {
@@ -29,6 +29,9 @@ export class GalleryItem extends HTMLElement {
       'has-video',
       'has-repo',
       'has-live',
+      'pill-video-label',
+      'pill-repo-label',
+      'pill-live-label',
     ];
   }
 
@@ -238,9 +241,13 @@ export class GalleryItem extends HTMLElement {
     pillsContainer.innerHTML = '';
     if (!isLocked) {
       const t = typeof window.t === 'function' ? window.t : (k) => k;
-      if (hasVideo) pillsContainer.innerHTML += `<ds-pill label="${t('pitch')}"></ds-pill>`;
-      if (hasRepo) pillsContainer.innerHTML += `<ds-pill label="${t('repo')}"></ds-pill>`;
-      if (hasLive) pillsContainer.innerHTML += `<ds-pill label="${t('demo')}"></ds-pill>`;
+      const pillVideoLabel = this.getAttribute('pill-video-label') || t('gallery_pill_pitch') || t('pitch');
+      const pillRepoLabel = this.getAttribute('pill-repo-label') || t('gallery_pill_repo') || t('repo');
+      const pillLiveLabel = this.getAttribute('pill-live-label') || t('gallery_pill_demo') || t('demo');
+
+      if (hasVideo) pillsContainer.innerHTML += `<ds-pill label="${pillVideoLabel}"></ds-pill>`;
+      if (hasRepo) pillsContainer.innerHTML += `<ds-pill label="${pillRepoLabel}"></ds-pill>`;
+      if (hasLive) pillsContainer.innerHTML += `<ds-pill label="${pillLiveLabel}"></ds-pill>`;
     }
   }
 }

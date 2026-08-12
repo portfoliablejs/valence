@@ -35,6 +35,16 @@
   flex: 1 1 auto;
   overflow: visible;
   background: transparent;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 180ms ease, visibility 180ms ease;
+}
+
+.breadcrumb-region.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .navigation-region {

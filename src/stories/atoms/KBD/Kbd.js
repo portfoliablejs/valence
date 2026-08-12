@@ -33,11 +33,15 @@ export class DsKbd extends HTMLElement {
     if (!comboContainer) return;
 
     const showPlus = this.hasAttribute('show-plus');
-    const key = this.getAttribute('key');
+    const key = String(this.getAttribute('key') || '').trim();
 
-    if (showPlus && key) {
+    if (key) {
+      const plusMarkup = showPlus
+        ? '<span class="plus" aria-hidden="true">+</span>'
+        : '';
+
       comboContainer.innerHTML = `
-        <span class="plus" aria-hidden="true">+</span>
+        ${plusMarkup}
         <span class="key">${key}</span>
       `;
     } else {

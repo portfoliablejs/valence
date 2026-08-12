@@ -57,9 +57,11 @@ const DEFAULT_BREADCRUMB_ITEMS = [
 export class CaseView extends HTMLElement {
   static get observedAttributes() {
     return [
+      'dir',
       'aria-label',
       'show-breadcrumb',
       'show-language-menu',
+      'data-mobile-breakpoint',
       ...HEADER_NAVIGATION_ATTRIBUTES,
       ...ARTICLE_ATTRIBUTES
     ];
@@ -171,6 +173,32 @@ export class CaseView extends HTMLElement {
     });
   }
 
+  _resolveDirection() {
+    let node = this;
+
+    while (node) {
+      if (node instanceof HTMLElement) {
+        const dir = node.getAttribute('dir');
+        if (dir === 'rtl' || dir === 'ltr') return dir;
+      }
+
+      if (node.parentElement) {
+        node = node.parentElement;
+        continue;
+      }
+
+      const rootNode = node.getRootNode?.();
+      if (rootNode && rootNode.host instanceof HTMLElement) {
+        node = rootNode.host;
+        continue;
+      }
+
+      break;
+    }
+
+    return this.ownerDocument.documentElement.getAttribute('dir') || 'ltr';
+  }
+
   _installSmoothArticleScrolling() {
     if (!this.articleScrollEl || !this.articleWrapEl || this._articleLenis) return;
 
@@ -205,8 +233,21 @@ export class CaseView extends HTMLElement {
 
   render() {
     if (!this.layoutEl || !this.headerEl || !this.articleEl) return;
+    const currentDir = this._resolveDirection();
 
     this.layoutEl.setAttribute('aria-label', this.getAttribute('aria-label') || 'Case view template');
+    this.layoutEl.setAttribute('dir', currentDir);
+    this.layoutEl.setAttribute('data-dir', currentDir);
+    this.headerEl.setAttribute('dir', currentDir);
+    this.articleEl.setAttribute('dir', currentDir);
+
+    if (this.getAttribute('data-mobile-breakpoint') === 'true') {
+      this.headerEl.setAttribute('data-mobile-breakpoint', 'true');
+      this.articleEl.setAttribute('data-mobile-breakpoint', 'true');
+    } else {
+      this.headerEl.removeAttribute('data-mobile-breakpoint');
+      this.articleEl.removeAttribute('data-mobile-breakpoint');
+    }
 
     this.headerEl.showBreadcrumb = this.showBreadcrumb;
     this.headerEl.showLanguageMenu = this.showLanguageMenu;

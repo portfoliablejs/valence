@@ -33,9 +33,8 @@ export function buildDeviceCatalog() {
     const fileName = parts[parts.length - 1];
 
     const intermediateDirs = parts.slice(2, parts.length - 1);
-    const modelDirs = intermediateDirs.filter(
-      (dir) => !/^(device|device closed|device open|device with shadow)$/i.test(dir)
-    );
+    const genericDirPattern = /^(device|device with pencil|device without pencil|device with shadow|device open|device closed|with bands|without bands|open|closed)$/i;
+    const modelDirs = intermediateDirs.filter((dir) => !genericDirPattern.test(dir));
 
     const modelName = modelDirs.length > 0 ? modelDirs.join(' - ') : parts[2];
 
@@ -77,7 +76,6 @@ const RUNTIME_GEOMETRY_CACHE = new Map();
 const ALPHA_THRESHOLD = 22;
 const MAX_ANALYSIS_SIDE = 384;
 const MIN_INTERNAL_HOLE_AREA_RATIO = 0.001;
-
 /**
  * Register pre-calculated bounds & mask URLs for fast production rendering.
  */
@@ -101,6 +99,35 @@ function parseManifestRadius(manifestEntry) {
   }
 
   return null;
+}
+
+function parseManifestScreenImageAnchor(manifestEntry) {
+  if (!manifestEntry?.screenImageAnchor || typeof manifestEntry.screenImageAnchor !== 'object') {
+    return null;
+  }
+
+  const x = Number(manifestEntry.screenImageAnchor.x);
+  const y = Number(manifestEntry.screenImageAnchor.y);
+  if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+
+  return {
+    x: Math.max(0, Math.min(100, x)),
+    y: Math.max(0, Math.min(100, y)),
+  };
+}
+
+function parseManifestRadiusCorners(manifestEntry) {
+  const source = manifestEntry?.screenRadiusCorners;
+  if (!source || typeof source !== 'object') return null;
+
+  const topLeft = typeof source.topLeft === 'string' ? source.topLeft.trim() : '';
+  const topRight = typeof source.topRight === 'string' ? source.topRight.trim() : '';
+  const bottomRight = typeof source.bottomRight === 'string' ? source.bottomRight.trim() : '';
+  const bottomLeft = typeof source.bottomLeft === 'string' ? source.bottomLeft.trim() : '';
+
+  if (!topLeft || !topRight || !bottomRight || !bottomLeft) return null;
+
+  return { topLeft, topRight, bottomRight, bottomLeft };
 }
 
 function loadImage(url) {
@@ -299,6 +326,64 @@ function inferWindowGeometryFromAlpha(image) {
     ? Math.max(0, Math.min(normalizedInset * 100, 24))
     : 0;
 
+  const detectNotchAnchor = () => {
+    if (boxWidth < 48 || boxHeight < 96) return null;
+
+    const rowStats = [];
+    for (let y = bestMinY; y <= bestMaxY; y += 1) {
+      let rowMinX = Number.POSITIVE_INFINITY;
+      let rowMaxX = Number.NEGATIVE_INFINITY;
+
+      for (let x = bestMinX; x <= bestMaxX; x += 1) {
+        if (!holeMask[(y * width) + x]) continue;
+        if (x < rowMinX) rowMinX = x;
+        if (x > rowMaxX) rowMaxX = x;
+      }
+
+      if (!Number.isFinite(rowMinX) || !Number.isFinite(rowMaxX)) {
+        rowStats.push(null);
+        continue;
+      }
+
+      rowStats.push({
+        y,
+        rowWidth: (rowMaxX - rowMinX) + 1,
+        rowCenterX: (rowMinX + rowMaxX) / 2,
+      });
+    }
+
+    const baselineStart = Math.floor(boxHeight * 0.38);
+    const baselineEnd = Math.floor(boxHeight * 0.82);
+    const baselineWidths = rowStats
+      .slice(baselineStart, Math.max(baselineStart + 1, baselineEnd))
+      .filter(Boolean)
+      .map((row) => row.rowWidth)
+      .sort((a, b) => a - b);
+
+    if (baselineWidths.length < 8) return null;
+
+    const mid = Math.floor(baselineWidths.length / 2);
+    const baselineWidth = baselineWidths.length % 2 === 0
+      ? (baselineWidths[mid - 1] + baselineWidths[mid]) / 2
+      : baselineWidths[mid];
+
+    const topSampleRows = Math.max(8, Math.floor(boxHeight * 0.24));
+    const topRows = rowStats.slice(0, topSampleRows).filter(Boolean);
+    if (!topRows.length) return null;
+
+    const narrowestTopRow = topRows.reduce((best, row) => (row.rowWidth < best.rowWidth ? row : best), topRows[0]);
+    const reductionRatio = (baselineWidth - narrowestTopRow.rowWidth) / baselineWidth;
+    if (reductionRatio < 0.1) return null;
+
+    const centerX = (bestMinX + bestMaxX) / 2;
+    const centerOffsetRatio = Math.abs(narrowestTopRow.rowCenterX - centerX) / boxWidth;
+    if (centerOffsetRatio > 0.08) return null;
+
+    return { x: 50, y: 1.2 };
+  };
+
+  const screenImageAnchor = detectNotchAnchor();
+
   return {
     bounds: {
       top: (bestMinY / height) * 100,
@@ -312,6 +397,13 @@ function inferWindowGeometryFromAlpha(image) {
       y: Math.min(0.65, Math.max(0.08, (100 / height) * 1.6)),
     },
     hasRoundedCorners,
+    screenImageAnchor,
+    screenRadiusCorners: {
+      topLeft: `${Math.max(0, Math.min((cornerRadiiPx[0] / Math.max(1, minSide)) * 100, 24)).toFixed(3)}%`,
+      topRight: `${Math.max(0, Math.min((cornerRadiiPx[1] / Math.max(1, minSide)) * 100, 24)).toFixed(3)}%`,
+      bottomLeft: `${Math.max(0, Math.min((cornerRadiiPx[2] / Math.max(1, minSide)) * 100, 24)).toFixed(3)}%`,
+      bottomRight: `${Math.max(0, Math.min((cornerRadiiPx[3] / Math.max(1, minSide)) * 100, 24)).toFixed(3)}%`,
+    },
   };
 }
 
@@ -328,6 +420,36 @@ function getRuntimeGeometry(deviceUrl) {
 
   RUNTIME_GEOMETRY_CACHE.set(deviceUrl, job);
   return job;
+}
+
+function buildScreenImageCandidates(screenImage) {
+  const raw = String(screenImage || '').trim();
+  if (!raw) return [];
+
+  const candidates = [];
+  const addCandidate = (value) => {
+    const candidate = String(value || '').trim();
+    if (!candidate || candidates.includes(candidate)) return;
+    candidates.push(candidate);
+  };
+
+  const normalized = raw.replace(/\\/g, '/');
+  const canonical = /^(?:https?:|data:|blob:|\/)/i.test(normalized) ? normalized : `/${normalized}`;
+
+  addCandidate(canonical);
+
+  const sourcePrefix = '/src/content/cases/';
+  const templatePrefix = '/templates/src/content/cases/';
+
+  if (canonical.startsWith(sourcePrefix)) {
+    addCandidate(canonical.replace(sourcePrefix, templatePrefix));
+  }
+
+  if (canonical.startsWith(templatePrefix)) {
+    addCandidate(canonical.replace(templatePrefix, sourcePrefix));
+  }
+
+  return candidates;
 }
 
 function runWhenIdle(task) {
@@ -367,9 +489,10 @@ export class Thumbnail extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     // Single compressed line Shadow DOM string per design system guidelines
-    this.shadowRoot.innerHTML = `<style>${css}</style><div class="frame-container" tabindex="0"><img class="screen-cover screen-media" alt="Screen Cover Content" loading="eager" /><video class="screen-cover-video screen-media" aria-hidden="true" preload="metadata" playsinline muted></video><img class="device-image" alt="Device Frame Mockup" loading="lazy" /></div>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><div class="frame-container" tabindex="0"><div class="screen-window"><img class="screen-cover screen-media" alt="Screen Cover Content" loading="eager" /><video class="screen-cover-video screen-media" aria-hidden="true" preload="metadata" playsinline muted></video></div><img class="device-image" alt="Device Frame Mockup" loading="lazy" /></div>`;
 
     this.container = this.shadowRoot.querySelector('.frame-container');
+    this.screenWindowEl = this.shadowRoot.querySelector('.screen-window');
     this.imgEl = this.shadowRoot.querySelector('.device-image');
     this.screenImageEl = this.shadowRoot.querySelector('.screen-cover');
     this.screenVideoEl = this.shadowRoot.querySelector('.screen-cover-video');
@@ -385,6 +508,8 @@ export class Thumbnail extends HTMLElement {
     this.screenVideoEl.loop = false;
     this.screenVideoEl.playsInline = true;
     this.screenVideoEl.muted = true;
+    this._screenImageFallbacks = [];
+    this._screenImageFallbackIndex = 0;
     this._onScreenVideoCanPlay = () => {
       if (!this.screenVideoEl || !this.hasAttribute('autoplay')) return;
       if (!this.screenVideoEl.paused) return;
@@ -480,47 +605,77 @@ export class Thumbnail extends HTMLElement {
   }
 
   _resetScreenGeometry() {
-    for (const mediaEl of this.screenMediaEls) {
-      mediaEl.style.removeProperty('--screen-top');
-      mediaEl.style.removeProperty('--screen-left');
-      mediaEl.style.removeProperty('--screen-width');
-      mediaEl.style.removeProperty('--screen-height');
-      mediaEl.style.removeProperty('--ds-thumbnail-screen-radius');
-      mediaEl.style.removeProperty('-webkit-mask-image');
-      mediaEl.style.removeProperty('mask-image');
-    }
+    this.screenWindowEl?.style.removeProperty('--screen-top');
+    this.screenWindowEl?.style.removeProperty('--screen-left');
+    this.screenWindowEl?.style.removeProperty('--screen-width');
+    this.screenWindowEl?.style.removeProperty('--screen-height');
+    this.screenWindowEl?.style.removeProperty('--ds-thumbnail-screen-radius');
+    this.screenWindowEl?.style.removeProperty('--ds-thumbnail-screen-radius-top-left');
+    this.screenWindowEl?.style.removeProperty('--ds-thumbnail-screen-radius-top-right');
+    this.screenWindowEl?.style.removeProperty('--ds-thumbnail-screen-radius-bottom-right');
+    this.screenWindowEl?.style.removeProperty('--ds-thumbnail-screen-radius-bottom-left');
+    this.screenWindowEl?.style.removeProperty('--ds-thumbnail-screen-fit');
+    this.screenWindowEl?.style.removeProperty('--ds-thumbnail-screen-object-position');
+    this.screenWindowEl?.style.removeProperty('-webkit-mask-image');
+    this.screenWindowEl?.style.removeProperty('mask-image');
   }
 
-  _applyBounds(bounds, maskUrl, screenRadius, edgeBleed = null) {
-    if (!bounds) return;
+  _applyBounds(bounds, maskUrl, screenRadius, edgeBleed = null, screenFit = null, screenImageAnchor = null, screenRadiusCorners = null) {
+    if (!bounds || !this.screenWindowEl) return;
 
     const bleedX = Number.isFinite(Number(edgeBleed?.x)) ? Number(edgeBleed.x) : 0;
     const bleedY = Number.isFinite(Number(edgeBleed?.y)) ? Number(edgeBleed.y) : 0;
+    const bleedTop = Number.isFinite(Number(edgeBleed?.top)) ? Number(edgeBleed.top) : bleedY;
+    const bleedRight = Number.isFinite(Number(edgeBleed?.right)) ? Number(edgeBleed.right) : bleedX;
+    const bleedBottom = Number.isFinite(Number(edgeBleed?.bottom)) ? Number(edgeBleed.bottom) : bleedY;
+    const bleedLeft = Number.isFinite(Number(edgeBleed?.left)) ? Number(edgeBleed.left) : bleedX;
 
-    const safeTop = Math.max(0, bounds.top - bleedY);
-    const safeLeft = Math.max(0, bounds.left - bleedX);
-    const safeWidth = Math.max(0, Math.min(100 - safeLeft, bounds.width + (bleedX * 2)));
-    const safeHeight = Math.max(0, Math.min(100 - safeTop, bounds.height + (bleedY * 2)));
+    const safeTop = Math.max(0, bounds.top - bleedTop);
+    const safeLeft = Math.max(0, bounds.left - bleedLeft);
+    const safeWidth = Math.max(0, Math.min(100 - safeLeft, bounds.width + bleedLeft + bleedRight));
+    const safeHeight = Math.max(0, Math.min(100 - safeTop, bounds.height + bleedTop + bleedBottom));
 
-    for (const mediaEl of this.screenMediaEls) {
-      mediaEl.style.setProperty('--screen-top', `${safeTop}%`);
-      mediaEl.style.setProperty('--screen-left', `${safeLeft}%`);
-      mediaEl.style.setProperty('--screen-width', `${safeWidth}%`);
-      mediaEl.style.setProperty('--screen-height', `${safeHeight}%`);
+    this.screenWindowEl.style.setProperty('--screen-top', `${safeTop}%`);
+    this.screenWindowEl.style.setProperty('--screen-left', `${safeLeft}%`);
+    this.screenWindowEl.style.setProperty('--screen-width', `${safeWidth}%`);
+    this.screenWindowEl.style.setProperty('--screen-height', `${safeHeight}%`);
 
-      if (screenRadius != null && screenRadius !== '') {
-        mediaEl.style.setProperty('--ds-thumbnail-screen-radius', String(screenRadius));
-      } else {
-        mediaEl.style.removeProperty('--ds-thumbnail-screen-radius');
-      }
+    if (screenRadius != null && screenRadius !== '') {
+      this.screenWindowEl.style.setProperty('--ds-thumbnail-screen-radius', String(screenRadius));
+    } else {
+      this.screenWindowEl.style.removeProperty('--ds-thumbnail-screen-radius');
+    }
 
-      if (maskUrl) {
-        mediaEl.style.setProperty('-webkit-mask-image', `url("${maskUrl}")`);
-        mediaEl.style.setProperty('mask-image', `url("${maskUrl}")`);
-      } else {
-        mediaEl.style.removeProperty('-webkit-mask-image');
-        mediaEl.style.removeProperty('mask-image');
-      }
+    if (screenRadiusCorners) {
+      this.screenWindowEl.style.setProperty('--ds-thumbnail-screen-radius-top-left', String(screenRadiusCorners.topLeft));
+      this.screenWindowEl.style.setProperty('--ds-thumbnail-screen-radius-top-right', String(screenRadiusCorners.topRight));
+      this.screenWindowEl.style.setProperty('--ds-thumbnail-screen-radius-bottom-right', String(screenRadiusCorners.bottomRight));
+      this.screenWindowEl.style.setProperty('--ds-thumbnail-screen-radius-bottom-left', String(screenRadiusCorners.bottomLeft));
+    } else {
+      this.screenWindowEl.style.removeProperty('--ds-thumbnail-screen-radius-top-left');
+      this.screenWindowEl.style.removeProperty('--ds-thumbnail-screen-radius-top-right');
+      this.screenWindowEl.style.removeProperty('--ds-thumbnail-screen-radius-bottom-right');
+      this.screenWindowEl.style.removeProperty('--ds-thumbnail-screen-radius-bottom-left');
+    }
+
+    if (screenFit) {
+      this.screenWindowEl.style.setProperty('--ds-thumbnail-screen-fit', String(screenFit));
+    } else {
+      this.screenWindowEl.style.removeProperty('--ds-thumbnail-screen-fit');
+    }
+
+    if (screenImageAnchor && Number.isFinite(screenImageAnchor.x) && Number.isFinite(screenImageAnchor.y)) {
+      this.screenWindowEl.style.setProperty('--ds-thumbnail-screen-object-position', `${screenImageAnchor.x}% ${screenImageAnchor.y}%`);
+    } else {
+      this.screenWindowEl.style.removeProperty('--ds-thumbnail-screen-object-position');
+    }
+
+    if (maskUrl) {
+      this.screenWindowEl.style.setProperty('-webkit-mask-image', `url("${maskUrl}")`);
+      this.screenWindowEl.style.setProperty('mask-image', `url("${maskUrl}")`);
+    } else {
+      this.screenWindowEl.style.removeProperty('-webkit-mask-image');
+      this.screenWindowEl.style.removeProperty('mask-image');
     }
   }
 
@@ -531,9 +686,19 @@ export class Thumbnail extends HTMLElement {
     const bounds = manifestEntry?.bounds || runtimeGeometry?.bounds;
     const maskUrl = manifestEntry?.maskUrl || runtimeGeometry?.maskUrl;
     const screenRadius = parseManifestRadius(manifestEntry) ?? runtimeGeometry?.screenRadius;
+    const screenImageAnchor = parseManifestScreenImageAnchor(manifestEntry) || runtimeGeometry?.screenImageAnchor || null;
+    const screenRadiusCorners = parseManifestRadiusCorners(manifestEntry) || runtimeGeometry?.screenRadiusCorners || null;
 
     if (bounds) {
-      this._applyBounds(bounds, maskUrl, screenRadius, manifestEntry?.edgeBleed || runtimeGeometry?.edgeBleed || null);
+      this._applyBounds(
+        bounds,
+        maskUrl,
+        screenRadius,
+        manifestEntry?.edgeBleed || runtimeGeometry?.edgeBleed || null,
+        manifestEntry?.screenFit || runtimeGeometry?.screenFit || null,
+        screenImageAnchor,
+        screenRadiusCorners,
+      );
     }
   }
 
@@ -542,6 +707,7 @@ export class Thumbnail extends HTMLElement {
     const renderSeq = this._renderSeq;
 
     const screenImage = this.getAttribute('screen-image') || '';
+    const screenImageCandidates = buildScreenImageCandidates(screenImage);
     const screenVideo = this.getAttribute('screen-video') || '';
     const isCustomOnly = this.hasAttribute('custom-only');
     const isDisabled = this.hasAttribute('disabled');
@@ -552,10 +718,23 @@ export class Thumbnail extends HTMLElement {
 
     this.screenImageEl.hidden = !shouldUseImage;
     this.screenVideoEl.hidden = !shouldUseVideo;
+    this._screenImageFallbacks = screenImageCandidates;
+    this._screenImageFallbackIndex = 0;
 
     if (shouldUseImage) {
-      this.screenImageEl.src = screenImage;
+      this.screenImageEl.onerror = () => {
+        if (this._screenImageFallbackIndex + 1 >= this._screenImageFallbacks.length) {
+          this.screenImageEl.onerror = null;
+          return;
+        }
+
+        this._screenImageFallbackIndex += 1;
+        this.screenImageEl.src = this._screenImageFallbacks[this._screenImageFallbackIndex];
+      };
+
+      this.screenImageEl.src = this._screenImageFallbacks[0] || screenImage;
     } else {
+      this.screenImageEl.onerror = null;
       this.screenImageEl.removeAttribute('src');
     }
 
@@ -596,9 +775,19 @@ export class Thumbnail extends HTMLElement {
 
         const manifestEntry = this._getManifestEntry(deviceUrl, sourcePath, baseFileName);
         const manifestRadius = parseManifestRadius(manifestEntry);
+        const manifestAnchor = parseManifestScreenImageAnchor(manifestEntry);
+        const manifestRadiusCorners = parseManifestRadiusCorners(manifestEntry);
 
         if (manifestEntry?.bounds) {
-          this._applyBounds(manifestEntry.bounds, manifestEntry.maskUrl, manifestRadius, manifestEntry?.edgeBleed || null);
+          this._applyBounds(
+            manifestEntry.bounds,
+            manifestEntry.maskUrl,
+            manifestRadius,
+            manifestEntry?.edgeBleed || null,
+            manifestEntry?.screenFit || null,
+            manifestAnchor,
+            manifestRadiusCorners,
+          );
         } else {
           this._resetScreenGeometry();
         }

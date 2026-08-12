@@ -33,6 +33,15 @@ export class NavigationMenu extends HTMLElement {
       'about-kbd-key',
       'about-kbd-show-plus',
       'about-aria-label',
+      'language-menu-header',
+      'accessibility-menu-header',
+      'accessibility-menu-subcategory-title',
+      'a11y-label-text-size',
+      'a11y-label-dyslexia-font',
+      'a11y-label-dark-mode',
+      'a11y-label-high-contrast',
+      'a11y-label-reduce-motion',
+      'a11y-label-tab-navigation',
       'avatar-src',
       'avatar-alt',
       'disabled'
@@ -216,7 +225,7 @@ export class NavigationMenu extends HTMLElement {
       control: 'check',
     }));
 
-    this.languageMenu.setAttribute('header-text', 'LANGUAGE');
+    this.languageMenu.setAttribute('header-text', this.getAttribute('language-menu-header') || 'LANGUAGE');
     this.languageMenu.setAttribute('semantic-role', 'group');
     this.languageMenu.setAttribute('open', '');
     this.languageMenu.removeAttribute('open');
@@ -226,10 +235,16 @@ export class NavigationMenu extends HTMLElement {
     this.languageMenu.setAttribute('max-height', '520px');
     this.languageMenu.items = this._languageItems;
 
-    this.accessibilityMenu.setAttribute('header-text', 'ACCESSIBILITY');
+    this.accessibilityMenu.setAttribute('header-text', this.getAttribute('accessibility-menu-header') || 'ACCESSIBILITY');
     this.accessibilityMenu.setAttribute('semantic-role', 'group');
-    this.accessibilityMenu.setAttribute('show-subcategory', '');
-    this.accessibilityMenu.setAttribute('subcategory-title', 'VISUALS & MOTION');
+    const accessibilitySubcategoryTitle = String(this.getAttribute('accessibility-menu-subcategory-title') || '').trim();
+    if (accessibilitySubcategoryTitle) {
+      this.accessibilityMenu.setAttribute('show-subcategory', '');
+      this.accessibilityMenu.setAttribute('subcategory-title', accessibilitySubcategoryTitle);
+    } else {
+      this.accessibilityMenu.removeAttribute('show-subcategory');
+      this.accessibilityMenu.removeAttribute('subcategory-title');
+    }
     this.accessibilityMenu.removeAttribute('hide-close');
     this.accessibilityMenu.setAttribute('max-height', '520px');
     this.accessibilityMenu.items = this._accessibilityItems;
@@ -316,6 +331,27 @@ export class NavigationMenu extends HTMLElement {
     }
   }
 
+  _syncTooltipPositionsForDirection(direction = 'ltr') {
+    if (!(this.accessibilityTooltip instanceof HTMLElement)) return;
+    if (direction === 'rtl') {
+      this.accessibilityTooltip.setAttribute('position', 'bottom-left');
+    } else {
+      this.accessibilityTooltip.setAttribute('position', 'bottom-right');
+    }
+  }
+
+  _syncTooltipKbdOrderForDirection(direction = 'ltr') {
+    const tooltips = [this.languageTooltip, this.accessibilityTooltip, this.aboutTooltip];
+    tooltips.forEach((tooltipEl) => {
+      if (!(tooltipEl instanceof HTMLElement)) return;
+      if (direction === 'rtl') {
+        tooltipEl.setAttribute('kbd-first', '');
+      } else {
+        tooltipEl.removeAttribute('kbd-first');
+      }
+    });
+  }
+
   updateAttributes() {
     const disabled = this.hasAttribute('disabled');
 
@@ -341,12 +377,47 @@ export class NavigationMenu extends HTMLElement {
       showPlus: true,
     });
 
+    const currentDirection = this.getAttribute('dir') || 'ltr';
+    this._syncTooltipPositionsForDirection(currentDirection);
+    this._syncTooltipKbdOrderForDirection(currentDirection);
+
     this._setTooltipContent('about', this.aboutTooltip, {
       text: 'About',
       kbdLabel: '⌥',
       kbdKey: 'I',
       showPlus: true,
     });
+
+    this.languageMenu.setAttribute('header-text', this.getAttribute('language-menu-header') || 'LANGUAGE');
+    this.accessibilityMenu.setAttribute('header-text', this.getAttribute('accessibility-menu-header') || 'ACCESSIBILITY');
+
+    const accessibilitySubcategoryTitle = String(this.getAttribute('accessibility-menu-subcategory-title') || '').trim();
+    if (accessibilitySubcategoryTitle) {
+      this.accessibilityMenu.setAttribute('show-subcategory', '');
+      this.accessibilityMenu.setAttribute('subcategory-title', accessibilitySubcategoryTitle);
+    } else {
+      this.accessibilityMenu.removeAttribute('show-subcategory');
+      this.accessibilityMenu.removeAttribute('subcategory-title');
+    }
+
+    const labelByItemId = {
+      'text-size': this.getAttribute('a11y-label-text-size') || 'Text Size',
+      'dyslexia-font': this.getAttribute('a11y-label-dyslexia-font') || 'Dyslexia Font',
+      'dark-mode': this.getAttribute('a11y-label-dark-mode') || 'Dark Mode',
+      'high-contrast': this.getAttribute('a11y-label-high-contrast') || 'High Contrast',
+      'reduce-motion': this.getAttribute('a11y-label-reduce-motion') || 'Reduce Motion',
+      'tab-navigation': this.getAttribute('a11y-label-tab-navigation') || 'TAB Navigation'
+    };
+
+    this._accessibilityItems = this._accessibilityItems.map((item) => {
+      const nextLabel = labelByItemId[item.id] || item.label;
+      if (item.label === nextLabel) return item;
+      return { ...item, label: nextLabel };
+    });
+
+    if (this.accessibilityMenu) {
+      this.accessibilityMenu.items = this._accessibilityItems;
+    }
 
     const avatarSrc = this.getAttribute('avatar-src') || DEFAULT_AVATAR_SRC;
     this.avatarBtn.setAttribute('image-src', avatarSrc);
@@ -356,6 +427,8 @@ export class NavigationMenu extends HTMLElement {
   _observeRootAccessibility() {
     const root = this.ownerDocument.documentElement;
     const sync = () => {
+      const currentDir = root.getAttribute('dir') || 'ltr';
+      this.setAttribute('dir', currentDir);
       this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
       this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
       this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
@@ -363,6 +436,8 @@ export class NavigationMenu extends HTMLElement {
       this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
       this.toggleAttribute('a11y-focus-mode', root.classList.contains('a11y-focus-mode'));
       this.toggleAttribute('a11y-forced-colors', root.classList.contains('a11y-forced-colors'));
+      this._syncTooltipPositionsForDirection(currentDir);
+      this._syncTooltipKbdOrderForDirection(currentDir);
       this._syncAccessibilityItems();
     };
 
@@ -370,7 +445,7 @@ export class NavigationMenu extends HTMLElement {
     this._themeObserver = new MutationObserver(sync);
     this._themeObserver.observe(root, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ['class', 'dir'],
     });
   }
 }

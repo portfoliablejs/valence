@@ -1,0 +1,17 @@
+{
+  "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - * - Portrait.avif": {
+    "bounds": {
+      "top": 1.6,
+      "left": 3.5484,
+      "width": 92.9032,
+      "height": 97.1875
+    },
+    "screenRadius": "12.557%",
+    "screenRadiusCorners": {
+      "topLeft": "10%",
+      "topRight": "10%",
+      "bottomLeft": "10%",
+      "bottomRight": "10%"
+    }
+  }
+}

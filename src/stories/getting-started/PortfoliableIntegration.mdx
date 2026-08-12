@@ -165,6 +165,15 @@ caseView.innerHTML = `
 
 ```
 
+When binding a video case into `ds-player-view`, use the localized `actions.primary.videoSrc` value and `actions.primary.vttSrc` for the `ds-subtitle` overlay. For template projects, root-relative `/src/content/...` URLs are supported, and the player will retry the matching `/templates/src/content/...` path when the runtime serves packaged assets from the templates directory.
+
+When integrating `ds-player-view` into a global shell header:
+
+- treat `ds-player-ui-visibility-change` as a host request signal and mirror it back by toggling `ui-hidden` on the player instance
+- keep the global header visible if desired, but collapse breadcrumb context to return-only mode while `ui-hidden` is active
+- hide navigation/language actions during hidden mode so only the return/back affordance remains interactive
+- restore full breadcrumb and navigation context when `ui-hidden` is cleared
+
 ### C. Upstream Custom Events (`ds-*`)
 
 User actions inside Valence components dispatch custom DOM events prefixed with `ds-`. `AppShell` listens to these events on its shadow root to mutate global application state:

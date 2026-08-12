@@ -3,7 +3,7 @@ import '../../atoms/Button/Button.js';
 
 export class Toast extends HTMLElement {
   static get observedAttributes() {
-    return ['visible', 'aria-label', 'case-title', 'show-close', 'show-never-show', 'label-never-show', 'label-close'];
+    return ['visible', 'aria-label', 'case-title', 'show-close', 'show-never-show', 'label-never-show', 'label-close', 'managed-dismiss'];
   }
 
   constructor() {
@@ -53,6 +53,7 @@ export class Toast extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
+    this._trace('Attribute changed', { name, oldValue, newValue });
     if (name === 'aria-label' && newValue === null) return;
 
     if (this.containerEl && oldValue !== newValue) {
@@ -61,6 +62,9 @@ export class Toast extends HTMLElement {
   }
 
   _handleClick(e) {
+    this._trace('CTA click emitted', {
+      visibleAttr: this.getAttribute('visible')
+    });
     this.dispatchEvent(new CustomEvent('ds-toast-click', {
       bubbles: true,
       composed: true,
@@ -70,7 +74,17 @@ export class Toast extends HTMLElement {
 
   _handleClose(e) {
     e.stopPropagation();
-    this.setAttribute('visible', 'false');
+    const managedDismiss = this._isManagedDismissEnabled();
+    this._trace('Close clicked', {
+      managedDismiss,
+      visibleAttrBefore: this.getAttribute('visible')
+    });
+    if (!managedDismiss) {
+      this.setAttribute('visible', 'false');
+      this._trace('Close self-hid toast', {
+        visibleAttrAfter: this.getAttribute('visible')
+      });
+    }
     this.dispatchEvent(new CustomEvent('ds-toast-close', {
       bubbles: true,
       composed: true
@@ -79,11 +93,36 @@ export class Toast extends HTMLElement {
 
   _handleNeverShow(e) {
     e.stopPropagation();
-    this.setAttribute('visible', 'false');
+    const managedDismiss = this._isManagedDismissEnabled();
+    this._trace('Never-show clicked', {
+      managedDismiss,
+      visibleAttrBefore: this.getAttribute('visible')
+    });
+    if (!managedDismiss) {
+      this.setAttribute('visible', 'false');
+      this._trace('Never-show self-hid toast', {
+        visibleAttrAfter: this.getAttribute('visible')
+      });
+    }
     this.dispatchEvent(new CustomEvent('ds-toast-never-show', {
       bubbles: true,
       composed: true
     }));
+  }
+
+  _isManagedDismissEnabled() {
+    const mode = (this.getAttribute('managed-dismiss') || '').trim().toLowerCase();
+    return mode === 'host' || mode === 'external';
+  }
+
+  _trace(message, extra = null) {
+    const prefix = '[ds-toast][Trace]';
+    if (extra == null) {
+      console.log(prefix, message);
+      return;
+    }
+
+    console.log(prefix, message, extra);
   }
 
   _observeRootAccessibility() {

@@ -1,11 +1,11 @@
 import css from './article.css?inline';
-import '../../sub-atomic/Iconography/Iconography.js';
+import '../../atoms/Icon/Iconography.js';
 import '../../atoms/Button/Button.js';
 import '../../atoms/TOC/TOC.js';
 import '../../molecules/Tooltip/Tooltip.js';
 
 // Import Prism.js Core & All Common Language Grammars
-import Prism from 'prismjs';
+import 'prismjs';
 import 'prismjs/components/prism-c';
 import 'prismjs/components/prism-cpp';
 import 'prismjs/components/prism-rust';
@@ -20,6 +20,8 @@ import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-go';
 import 'prismjs/components/prism-ruby';
 import 'prismjs/components/prism-yaml';
+
+const Prism = globalThis.Prism;
 
 export class Article extends HTMLElement {
   static get observedAttributes() {
@@ -126,24 +128,56 @@ export class Article extends HTMLElement {
   }
 
   connectedCallback() {
-    if (!document.getElementById('ds-article-styles')) {
-      const tag = document.createElement('style');
-      tag.id = 'ds-article-styles';
-      tag.textContent = css;
-      document.head.appendChild(tag);
-    }
+    this._ensureRootStyles();
 
     this._observeRootAccessibility();
     this._setupSlotAndMutationObservers();
     this.render();
     this._highlightCodeBlocks();
 
-    // Trigger TOC heading scan once slotted content is attached
+    // Trigger TOC heading scan once slotted content is attached, but only when
+    // the TOC has not already been populated by the host application.
     setTimeout(() => {
-      if (this.tocEl && typeof this.tocEl.scanHeadings === 'function') {
-        this.tocEl.scanHeadings();
-      }
+      this._syncTocHeadings();
     }, 100);
+  }
+
+  _ensureRootStyles() {
+    const root = this.getRootNode();
+
+    // When ds-article is rendered inside another shadow tree (app shell/case view),
+    // install markdown selectors into that same root so descendant selectors apply.
+    if (root instanceof ShadowRoot) {
+      if (!root.querySelector('style[data-ds-article-root-styles="true"]')) {
+        const tag = document.createElement('style');
+        tag.setAttribute('data-ds-article-root-styles', 'true');
+        tag.textContent = css;
+        root.appendChild(tag);
+      }
+
+      const rootHost = root.host;
+      const outerRoot = rootHost?.getRootNode?.();
+      if (
+        rootHost?.localName === 'runtime-case-view'
+        && outerRoot instanceof ShadowRoot
+        && !outerRoot.querySelector('style[data-ds-article-runtime-case-view-styles="true"]')
+      ) {
+        const runtimeCaseViewCss = css.replace(/\bds-article\b/g, 'runtime-case-view');
+        const outerTag = document.createElement('style');
+        outerTag.setAttribute('data-ds-article-runtime-case-view-styles', 'true');
+        outerTag.textContent = runtimeCaseViewCss;
+        outerRoot.appendChild(outerTag);
+      }
+
+      return;
+    }
+
+    if (!document.getElementById('ds-article-styles')) {
+      const tag = document.createElement('style');
+      tag.id = 'ds-article-styles';
+      tag.textContent = css;
+      document.head.appendChild(tag);
+    }
   }
 
   disconnectedCallback() {
@@ -169,6 +203,8 @@ export class Article extends HTMLElement {
   _observeRootAccessibility() {
     const root = this.ownerDocument.documentElement;
     const sync = () => {
+      const currentDir = root.getAttribute('dir') || 'ltr';
+      this.setAttribute('dir', currentDir);
       this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
       this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
       this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
@@ -180,7 +216,7 @@ export class Article extends HTMLElement {
 
     sync();
     this._themeObserver = new MutationObserver(sync);
-    this._themeObserver.observe(root, { attributes: true, attributeFilter: ['class'] });
+    this._themeObserver.observe(root, { attributes: true, attributeFilter: ['class', 'dir'] });
   }
 
   _setupSlotAndMutationObservers() {
@@ -188,19 +224,27 @@ export class Article extends HTMLElement {
     slots.forEach((slot) => {
       slot.addEventListener('slotchange', () => {
         this._highlightCodeBlocks();
-        if (this.tocEl && typeof this.tocEl.scanHeadings === 'function') {
-          this.tocEl.scanHeadings();
-        }
+        this._syncTocHeadings();
       });
     });
 
     this._contentObserver = new MutationObserver(() => {
       this._highlightCodeBlocks();
-      if (this.tocEl && typeof this.tocEl.scanHeadings === 'function') {
-        this.tocEl.scanHeadings();
-      }
+      this._syncTocHeadings();
     });
     this._contentObserver.observe(this, { childList: true, subtree: true });
+  }
+
+  _syncTocHeadings() {
+    if (!this.tocEl || typeof this.tocEl.scanHeadings !== 'function') {
+      return;
+    }
+
+    if (Array.isArray(this.tocEl.items) && this.tocEl.items.length > 0) {
+      return;
+    }
+
+    this.tocEl.scanHeadings();
   }
 
   /* Language Detection Engine (Class match + Syntax Heuristics) */
@@ -264,6 +308,10 @@ export class Article extends HTMLElement {
 
   /* Prism Tokenization & Badge Injection with Flattened Slot Traversal */
   _highlightCodeBlocks() {
+    if (!Prism?.highlight || !Prism?.languages) {
+      return;
+    }
+
     const slots = Array.from(this.shadowRoot.querySelectorAll('slot'));
     const assignedNodes = slots.flatMap((slot) => slot.assignedElements({ flatten: true }));
     const directChildren = Array.from(this.children);
@@ -303,7 +351,12 @@ export class Article extends HTMLElement {
   }
 
   render() {
+    const isRtl = (this.getAttribute('dir') || 'ltr') === 'rtl';
     this._delegateAriaLabel();
+
+    if (this.tocEl) {
+      this.tocEl.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
+    }
     
     this.kickerEl.textContent = this.getAttribute('kicker') || '';
     this.titleEl.textContent = this.getAttribute('title-text') || '';
@@ -322,9 +375,28 @@ export class Article extends HTMLElement {
     this.btnSecondary2.textContent = s2Label;
     this.tooltipSecondary2.setAttribute('text', s2Label);
 
+    const actionTooltipPosition = 'bottom';
+    this.tooltipPrimary.setAttribute('position', actionTooltipPosition);
+    this.tooltipSecondary1.setAttribute('position', actionTooltipPosition);
+    this.tooltipSecondary2.setAttribute('position', actionTooltipPosition);
+
+    const socialTooltipPosition = 'bottom';
+    this.shadowRoot.querySelectorAll('.social-actions ds-tooltip').forEach((tooltipEl) => {
+      tooltipEl.setAttribute('position', socialTooltipPosition);
+    });
+
     if (this.hasAttribute('primary-icon')) {
       this.btnPrimary.setAttribute('icon', this.getAttribute('primary-icon'));
     }
+
+    [
+      ...this.querySelectorAll('[slot="cover"], [slot="summary"], [slot="player"], [slot="navigator"]'),
+      ...this.querySelectorAll(':scope > :not([slot])')
+    ].forEach((el) => {
+      if (el instanceof HTMLElement) {
+        el.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
+      }
+    });
 
     this.kickerContainer.style.display = this.getAttribute('show-kicker') === 'false' ? 'none' : 'block';
     this.titleEl.style.display = this.getAttribute('show-title') === 'false' ? 'none' : 'block';

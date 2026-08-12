@@ -15,7 +15,7 @@ const DEFAULT_BREADCRUMB_ITEMS = [
 
 export class HomeView extends HTMLElement {
   static get observedAttributes() {
-    return ['aria-label', 'title-text', 'footer-text', 'item-count', 'engine', 'show-breadcrumb', 'show-language-menu'];
+    return ['aria-label', 'title-text', 'footer-text', 'item-count', 'engine', 'show-breadcrumb', 'show-language-menu', 'data-mobile-breakpoint', 'dir'];
   }
 
   constructor() {
@@ -146,7 +146,15 @@ export class HomeView extends HTMLElement {
   render() {
     if (!this.layoutEl) return;
 
+    const effectiveDirection = String(this.getAttribute('dir') || getComputedStyle(this).direction || 'ltr').trim().toLowerCase();
+    const normalizedDirection = effectiveDirection === 'rtl' ? 'rtl' : 'ltr';
+
     this.layoutEl.setAttribute('aria-label', this.getAttribute('aria-label') || 'Home view template');
+    if (this.getAttribute('data-mobile-breakpoint') === 'true') {
+      this.headerEl.setAttribute('data-mobile-breakpoint', 'true');
+    } else {
+      this.headerEl.removeAttribute('data-mobile-breakpoint');
+    }
     this.titleEl.textContent = this.titleText;
     this.footerEl.textContent = this.footerText;
 
@@ -154,6 +162,7 @@ export class HomeView extends HTMLElement {
     this.headerEl.showLanguageMenu = this.showLanguageMenu;
     this.headerEl.breadcrumbItems = this._breadcrumbItems;
 
+    this.galleryEl.setAttribute('dir', normalizedDirection);
     this.galleryEl.itemCount = this.itemCount;
     this.galleryEl.engine = this.engine;
   }

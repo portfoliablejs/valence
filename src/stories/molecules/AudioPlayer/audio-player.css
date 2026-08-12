@@ -4,6 +4,9 @@
 :host {
   display: block;
   width: 100%;
+  transition:
+    top var(--anim-normal, 0.3s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1)),
+    opacity var(--anim-normal, 0.3s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
 /* ==========================================================================
@@ -35,9 +38,7 @@
     box-shadow var(--anim-normal, 0.3s) var(--ease-fluid, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
-.case-audio-player ds-button {
-  --ds-button-size: var(--size-icon-md, 20px); 
-}
+/* ds-button uses its own default sizing inside the player */
 
 /* Vertical ds-divider Host Sizing Overrides */
 ds-divider {
@@ -146,6 +147,56 @@ ds-tooltip {
   --ds-seek-bar-track-bg: var(--color-surface-border, rgba(0,0,0,0.08));
 }
 
+/* ==========================================================================
+   2B. RESPONSIVE CONTROL PRUNING (RIGHT -> LEFT)
+   ========================================================================== */
+@media (max-width: 980px) {
+  .audio-player-controls-row > .tooltip-wrapper:has(> .speed-btn) {
+    display: none;
+  }
+
+  /* Divider between volume and speed controls */
+  .audio-player-controls-row > ds-divider:nth-of-type(2) {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .volume-container {
+    display: none;
+  }
+
+  /* Divider between time label and volume controls */
+  .audio-player-controls-row > ds-divider:nth-of-type(1) {
+    display: none;
+  }
+
+  .audio-seek {
+    margin-left: var(--space-xs, 4px);
+    margin-right: var(--space-xs, 4px);
+    min-width: 64px;
+  }
+}
+
+@media (max-width: 560px) {
+  .audio-player-controls-row > .tooltip-wrapper:has(> .hide-btn),
+  .audio-player-controls-row > .tooltip-wrapper:has(> .autoscroll-btn) {
+    display: inline-flex;
+  }
+
+  .audio-time-label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: -0.01em;
+  }
+
+  .audio-seek {
+    margin-left: 0;
+    margin-right: 0;
+    min-width: 56px;
+  }
+}
+
 
 /* ==========================================================================
    3. INTERACTIVE STATES & SCROLLED VARIANT
@@ -156,6 +207,16 @@ ds-tooltip {
 }
 
 /* Scrolled / Shrunk Variant Styles */
+:host([variant="scrolled"]) {
+  z-index: var(--ds-audio-player-scrolled-z-index-mobile, 4696);
+}
+
+@media (min-width: 768px) {
+  :host([variant="scrolled"]) {
+    z-index: var(--ds-audio-player-scrolled-z-index-desktop, 4706);
+  }
+}
+
 :host([variant="scrolled"]) .case-audio-player {
   border-radius: var(--radius-pill, 100px);
   padding: var(--space-xs, 4px) var(--space-md, 12px);
@@ -248,12 +309,30 @@ ds-tooltip {
   }
 }
 
+:host([data-mobile-breakpoint="true"]) ds-tooltip {
+  display: none !important;
+}
+
+:host([data-mobile-breakpoint="true"]) .volume-container {
+  display: none !important;
+}
+
+:host([data-mobile-breakpoint="true"]) ds-divider {
+  display: none !important;
+}
+
 /* ==========================================================================
    6. TYPOGRAPHY, MOTION & VISION SUPPRESSION
    ========================================================================== */
 :host([a11y-dyslexia]) .case-audio-player {
   font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
   letter-spacing: 0.05em !important;
+}
+
+:host([a11y-large-text]) .audio-player-header {
+  font-size: 14px;
+  line-height: 1.4;
+  max-height: 32px;
 }
 
 :host([a11y-reduce-motion]) .case-audio-player,

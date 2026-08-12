@@ -34,7 +34,7 @@
 }
 
 .locked-thumb {
-  filter: blur(10px);
+  filter: blur(var(--ds-gallery-item-protected-blur, 10px));
 }
 
 .gallery-item-meta {

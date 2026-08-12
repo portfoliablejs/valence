@@ -2,6 +2,7 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
+  --ds-home-gallery-desktop-height: 50vh;
 }
 
 .homeview-layout {
@@ -31,7 +32,7 @@
 
 .title-wrap {
   width: 100%;
-  margin-bottom: clamp(20px, 6dvh, 64px);
+  margin-bottom: var(--ds-home-title-gallery-gap-desktop, clamp(20px, 6dvh, 64px));
 }
 
 .homeview-title {
@@ -43,7 +44,15 @@
   width: 100%;
   margin-bottom: clamp(10px, 2.2dvh, 20px);
   flex: 1 1 auto;
+  min-height: 0;
   --homeview-gallery-scale: clamp(0.342, calc((100dvh - 180px) / 578), 0.9);
+}
+
+:host([data-gallery-height-override="true"]) .gallery-wrap {
+  flex: 0 0 var(--ds-gallery-height);
+  height: var(--ds-gallery-height);
+  max-height: var(--ds-gallery-height);
+  overflow: hidden;
 }
 
 .gallery-scale-shell {
@@ -56,8 +65,10 @@
   width: calc(100% / var(--homeview-gallery-scale));
   margin: 0 auto;
   transform-origin: top center;
-  transform: scale(var(--homeview-gallery-scale));
+  transform: translateZ(0) scale(var(--homeview-gallery-scale));
   will-change: transform;
+  /* prevents the browser from intercepting horizontal swipes over the pre-scale overflow */
+  touch-action: pan-y;
 }
 
 .footer-wrap {
@@ -96,7 +107,7 @@
   }
 
   .title-wrap {
-    margin-bottom: 44px;
+    margin-bottom: var(--ds-home-title-gallery-gap-mobile, 44px);
   }
 
   .gallery-wrap {
@@ -104,8 +115,24 @@
   }
 }
 
+:host([data-mobile-breakpoint="true"]) .homeview-title {
+  font-size: clamp(28px, 7vw, 34px);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
 @media (max-width: 1200px) {
   .gallery-wrap ds-gallery {
     --gallery-item-gap: clamp(23px, 2.94vw, 50px);
+  }
+}
+
+.gallery-wrap ds-gallery {
+  height: var(--ds-gallery-height, auto);
+}
+
+@media (pointer: coarse) and (max-width: 767px) {
+  :host {
+    --ds-home-gallery-mobile-height: 35vh;
   }
 }

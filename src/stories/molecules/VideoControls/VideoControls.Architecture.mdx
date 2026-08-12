@@ -4,7 +4,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # `ds-video-controls`
 
-The `ds-video-controls` component is an interactive **controlled** Molecule designed to render quality, highly accessible playback buttons for floating, compact overlay video systems. It supports two layout variants — `default` (horizontal pill bar) and `vertical` (column strip) — selectable via the `variant` attribute. It aggregates custom `ds-button` Atoms (configured as `variant="floating"` and `icon-variant="fill"` switches) and nested `ds-tooltip` cues.
+The `ds-video-controls` component is an interactive **controlled** Molecule designed to render highly accessible playback buttons for floating, compact overlay video systems. It supports two layout variants — `default` (horizontal pill bar) and `vertical` (column strip) — selectable via the `variant` attribute. It aggregates custom `ds-button` Atoms (configured as `variant="floating"` and `icon-variant="fill"` switches) and nested `ds-tooltip` cues.
 
 ---
 
@@ -13,7 +13,8 @@ The `ds-video-controls` component is an interactive **controlled** Molecule desi
 ### Unidirectional Data Flow
 The component strictly adheres to the **State In / Events Out** pattern:
 * **State In (Attributes / Properties):** The host binds attributes (`playing`, `muted`, `cc-enabled`, `speed`, `label-*`) downstream to swap control icons, toggle active highlighting, and configure translations.
-* **Events Out (`ds-video-action`):** Selecting any control switch fires a unified custom event payload indicating the selected action name (`'play-pause'`, `'mute'`, `'cc'`, `'speed'`, or `'stop'`) upstream for video state management.
+* **Events Out (`ds-video-action`):** Selecting any control switch fires a unified custom event payload indicating the selected action name (`'play-pause'`, `'mute'`, `'cc'`, or `'speed'`) upstream for video state management.
+* **Subtitle Visibility Rule:** The captions button is controlled by `show-cc`; when `show-cc="false"`, the captions control is hidden and removed from accessibility flow.
 
 <mermaid-diagram chart={`
   flowchart LR
@@ -28,7 +29,6 @@ The component strictly adheres to the **State In / Events Out** pattern:
           MuteBtn["ds-button (Mute)"]
           SpeedBtn["ds-button (Speed)"]
           PlayBtn["ds-button (Play)"]
-          StopBtn["ds-button (Stop)"]
       end
 
       State -->|"1. State In: playing / muted / cc-enabled / speed / labels"| Component
@@ -36,13 +36,11 @@ The component strictly adheres to the **State In / Events Out** pattern:
       Component -->|"2. Render Icons"| MuteBtn
       Component -->|"2. Render Icons"| SpeedBtn
       Component -->|"2. Render Icons"| PlayBtn
-      Component -->|"2. Render Icons"| StopBtn
       
       CcBtn -->|"3. Event Out: ds-video-action { action: 'cc' }"| State
       MuteBtn -->|"3. Event Out: ds-video-action { action: 'mute' }"| State
       SpeedBtn -->|"3. Event Out: ds-video-action { action: 'speed' }"| State
       PlayBtn -->|"3. Event Out: ds-video-action { action: 'play-pause' }"| State
-      StopBtn -->|"3. Event Out: ds-video-action { action: 'stop' }"| State
 
       %% Styling
       style Host fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#0f172a
@@ -53,7 +51,6 @@ The component strictly adheres to the **State In / Events Out** pattern:
       style MuteBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
       style SpeedBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
       style PlayBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
-      style StopBtn fill:#ffffff,stroke:#cbd5e1,color:#0f172a
 `} />
 
 ---
@@ -78,7 +75,7 @@ The `ds-video-controls` component seals its internal layouts completely, nesting
       <td>`default`</td>
       <td>None</td>
       <td>Projects no content. Control buttons are fully encapsulated.</td>
-      <td>Renders standard captions, mute, speed, play, and return buttons.</td>
+      <td>Renders standard captions, mute, speed, and play buttons.</td>
     </tr>
   </tbody>
 </table>
@@ -103,7 +100,6 @@ export interface DsVideoControlsLabels {
   'label-mute'?: string;
   'label-unmute'?: string;
   'label-speed'?: string;
-  'label-return'?: string;
 }
 ```
 
@@ -158,6 +154,13 @@ export interface DsVideoControlsLabels {
       <td>`string`</td>
       <td>`'1X'`</td>
       <td>Configures active speed rate gauge (`'0.75X'`, `'1X'`, etc.).</td>
+    </tr>
+    <tr>
+      <td>`showCc`</td>
+      <td>`show-cc`</td>
+      <td>`boolean`</td>
+      <td>`true`</td>
+      <td>Controls subtitle button visibility. When `false`, the captions control is hidden (`hidden`, `display: none`, and `aria-hidden="true"`).</td>
     </tr>
   </tbody>
 </table>

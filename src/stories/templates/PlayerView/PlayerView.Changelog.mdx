@@ -6,6 +6,17 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <br />
 
+## [1.1.1] - 2026-08-09
+
+<br />
+
+### Changed
+- **Hidden Surface Scope:** `ui-hidden` now focuses on player UI surfaces (seek + controls) so host shells can keep headers visible while media remains in focus.
+- **Return-Only Breadcrumb Pattern:** Hidden-mode integrations now support keeping only the breadcrumb return/back affordance visible while suppressing other breadcrumb and navigation actions.
+- **Fallback Traceability:** Player source fallback diagnostics now include explicit source-path normalization details to simplify debugging of `/src/content/...` to `/templates/src/content/...` retries.
+
+<br />
+
 ## [1.1.0] - 2026-08-04
 
 <br />
@@ -19,6 +30,9 @@ import { Meta } from '@storybook/addon-docs/blocks';
 - **Navigation Region Visibility:** PlayerView keeps header navigation visible so accessibility actions remain directly available alongside breadcrumb context.
 - **Non-Blocking Header Layout:** Header now overlays at the top viewport position and no longer pushes the player stage downward.
 - **Dark Accessibility Readability:** PlayerView now enables the same `a11y-dark-mode` setting flow used by the design system so breadcrumb and navigation controls render with their native dark-mode styles.
+- **Local Video Path Fallback:** PlayerView now retries `video-src` values that point at `/src/content/...` using the `/templates/src/content/...` runtime path, matching the audio player fallback behavior for packaged template assets.
+- **Local Subtitle Path Fallback:** PlayerView now retries `subtitle-src` values that point at `/src/content/...` using the `/templates/src/content/...` runtime path so the `ds-subtitle` overlay can load VTT captions in packaged template builds.
+- **App-Owned UI Visibility:** PlayerView now emits `ds-player-ui-visibility-change` requests and the host app owns the `ui-hidden` state instead of relying on a `show-controls` prop.
 
 <br />
 

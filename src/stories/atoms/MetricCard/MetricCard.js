@@ -1,5 +1,5 @@
 import css from './metric-card.css?inline';
-import '../../sub-atomic/Iconography/Iconography.js';
+import '../../atoms/Icon/Iconography.js';
 
 export class MetricCard extends HTMLElement {
   static get observedAttributes() {
@@ -52,6 +52,9 @@ export class MetricCard extends HTMLElement {
   _observeRootAccessibility() {
     const root = this.ownerDocument.documentElement;
     const sync = () => {
+      const currentDir = root.getAttribute('dir') || 'ltr';
+      this.setAttribute('dir', currentDir);
+
       this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
       this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
       this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
@@ -59,6 +62,12 @@ export class MetricCard extends HTMLElement {
       this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
       this.toggleAttribute('a11y-focus-mode', root.classList.contains('a11y-focus-mode'));
       this.toggleAttribute('a11y-forced-colors', root.classList.contains('a11y-forced-colors'));
+
+      console.debug('[rtl][metric-card]', {
+        dir: this.getAttribute('dir') || null,
+        value: this.getAttribute('value') || null,
+        label: this.getAttribute('label') || null
+      });
     };
 
     sync();

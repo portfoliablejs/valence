@@ -56,6 +56,12 @@ export default {
       description: 'Toggles the full navigation region on the far right.',
       table: { category: 'Core', defaultValue: { summary: 'true' } },
     },
+    showAbout: {
+      control: 'boolean',
+      name: 'show-about',
+      description: 'Toggles the about/avatar action inside the composed navigation menu.',
+      table: { category: 'Core', defaultValue: { summary: 'true' } },
+    },
     avatarSrc: {
       control: 'text',
       description: 'Pass-through avatar image source for the navigation menu.',
@@ -117,6 +123,7 @@ export default {
     showBreadcrumb: true,
     showLanguageMenu: true,
     showNavigationRegion: true,
+    showAbout: true,
     avatarSrc: 'https://thispersondoesnotexist.com/random-person.jpeg',
     avatarAlt: 'Profile face',
     onBreadcrumbHome: fn(),
@@ -136,6 +143,7 @@ export default {
         .showBreadcrumb=${args.showBreadcrumb}
         .showLanguageMenu=${args.showLanguageMenu}
         .showNavigationRegion=${args.showNavigationRegion}
+        .showAbout=${args.showAbout}
         avatar-src=${args.avatarSrc}
         avatar-alt=${args.avatarAlt}
         @ds-breadcrumb-home=${args.onBreadcrumbHome}
@@ -236,6 +244,30 @@ export const NoNavigationRegion = {
     await step('Verify the navigation region is hidden', async () => {
       const navigationRegion = header.shadowRoot.querySelector('.navigation-region');
       expect(navigationRegion.hidden).toBe(true);
+    });
+  },
+};
+
+export const NoAbout = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Header variant that keeps navigation controls while hiding only the about/avatar action.',
+      },
+    },
+  },
+  args: {
+    showAbout: false,
+  },
+  play: async ({ canvasElement, step }) => {
+    const header = canvasElement.querySelector('ds-header');
+
+    await step('Verify the about/avatar action and profile divider are hidden', async () => {
+      const navigation = header.shadowRoot.querySelector('ds-navigation-menu');
+      const aboutItem = navigation.shadowRoot.querySelector('.menu-profile .menu-item');
+      const profileDivider = navigation.shadowRoot.querySelector('.menu-divider');
+      expect(getComputedStyle(aboutItem).display).toBe('none');
+      expect(getComputedStyle(profileDivider).display).toBe('none');
     });
   },
 };

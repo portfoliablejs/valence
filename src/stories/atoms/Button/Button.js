@@ -1,5 +1,5 @@
 import css from './button.css?inline';
-import '../../sub-atomic/Iconography/Iconography'; 
+import '../../atoms/Icon/Iconography.js';
 
 const DEFAULT_IMAGE_SRC = 'https://thispersondoesnotexist.com/random-person.jpeg';
 const DEFAULT_IMAGE_ALT = 'Profile image';
@@ -98,10 +98,17 @@ export class Button extends HTMLElement {
     }
 
     if (hasIcon && iconName && !hasImage) {
-      this.iconEl.setAttribute('name', iconName);
-      
-      // Strict mapping
-      const iconVariant = this.getAttribute('icon-variant');
+      let resolvedIconName = iconName;
+      let iconVariant = this.getAttribute('icon-variant');
+
+      // Backward compatibility: legacy names like "play-fill" now map to name="play" + variant="fill".
+      if (!iconVariant && /-(fill|filled)$/.test(iconName)) {
+        resolvedIconName = iconName.replace(/-(fill|filled)$/, '');
+        iconVariant = 'fill';
+      }
+
+      this.iconEl.setAttribute('name', resolvedIconName);
+
       if (iconVariant === 'fill') {
         this.iconEl.setAttribute('variant', 'fill');
       } else {
@@ -109,11 +116,13 @@ export class Button extends HTMLElement {
       }
 
       this.iconEl.removeAttribute('size');
-      this.iconEl.style.setProperty('--icon-size', 'var(--ds-button-icon-size, 22px)');
+      this.iconEl.style.setProperty('--ds-icon-size', `var(--ds-button-icon-size, ${DEFAULT_IMAGE_CONTENT_SIZE_PX}px)`);
+      this.iconEl.style.setProperty('--icon-size', `var(--ds-button-icon-size, ${DEFAULT_IMAGE_CONTENT_SIZE_PX}px)`);
       this.iconEl.style.display = 'inline-flex';
       this.buttonEl.classList.add('has-icon');
     } else {
       this.iconEl.style.display = 'none';
+      this.iconEl.style.removeProperty('--ds-icon-size');
       this.iconEl.style.removeProperty('--icon-size');
       this.buttonEl.classList.remove('has-icon');
     }

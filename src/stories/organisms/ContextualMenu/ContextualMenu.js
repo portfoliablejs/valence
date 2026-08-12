@@ -1,5 +1,5 @@
 import css from './contextual-menu.css?inline';
-import '../../sub-atomic/Iconography/Iconography';
+import '../../atoms/Icon/Iconography.js';
 import '../../atoms/Button/Button';
 import '../../atoms/Divider/Divider';
 import '../../molecules/ItemRow/ItemRow';
@@ -7,6 +7,7 @@ import '../../molecules/ItemRow/ItemRow';
 export class DsContextualMenu extends HTMLElement {
   static get observedAttributes() {
     return [
+      'dir',
       'title',
       'header-text',
       'open',
@@ -28,13 +29,7 @@ export class DsContextualMenu extends HTMLElement {
     this._boundHandleClose = this._handleClose.bind(this);
     this._boundHandleVisibilityChange = this._handleVisibilityChange.bind(this);
 
-    this._items = [
-      { id: 'autoscroll', label: 'Auto-scroll from here', icon: 'autoscroll', showIcon: true, showKbd: true, kbd: '⌥', kbdShowPlus: true, kbdKey: 'A', control: 'none', category: 'main' },
-      { id: 'copy-link', label: 'Copy link', icon: 'link', showIcon: true, showKbd: true, kbd: '⌘', kbdShowPlus: true, kbdKey: 'C', control: 'none', category: 'main' },
-      { id: 'email-lio', label: 'Email Lio', icon: 'email', showIcon: true, control: 'none', category: 'main' },
-      { id: 'dark-mode', label: 'Dark Theme', icon: 'moon', showIcon: true, control: 'toggle', active: false, category: 'subcategory' },
-      { id: 'notifications', label: 'Enable Alerts', icon: 'flag-shield', showIcon: true, control: 'check', selected: true, checkHasBackground: true, category: 'subcategory' }
-    ];
+    this._items = [];
 
     this.shadowRoot.innerHTML = `<style>${css}</style><div class="menu-card" role="group"><div class="menu-header" role="presentation"><span class="menu-title">ACTIONS</span><ds-button class="close-btn" variant="tertiary" has-text="false" has-icon icon="close" aria-label="Close menu"></ds-button></div><div class="menu-scroll-viewport" data-lenis-prevent><div class="menu-content" role="presentation"></div></div></div>`;
   }
@@ -97,7 +92,7 @@ export class DsContextualMenu extends HTMLElement {
   }
 
   get subcategoryTitle() {
-    return this.getAttribute('subcategory-title') || 'PREFERENCES';
+    return this.getAttribute('subcategory-title') || '';
   }
 
   set subcategoryTitle(value) {
@@ -202,6 +197,9 @@ export class DsContextualMenu extends HTMLElement {
   _observeRootAccessibility() {
     const root = this.ownerDocument.documentElement;
     const sync = () => {
+      const currentDir = root.getAttribute('dir') || 'ltr';
+      this.setAttribute('dir', currentDir);
+
       this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
       this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
       this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
@@ -209,13 +207,17 @@ export class DsContextualMenu extends HTMLElement {
       this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
       this.toggleAttribute('a11y-focus-mode', root.classList.contains('a11y-focus-mode'));
       this.toggleAttribute('a11y-forced-colors', root.classList.contains('a11y-forced-colors'));
+
+      this.shadowRoot.querySelectorAll('ds-item-row').forEach((rowEl) => {
+        rowEl.setAttribute('dir', currentDir);
+      });
     };
 
     sync();
     this._themeObserver = new MutationObserver(sync);
     this._themeObserver.observe(root, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ['class', 'dir'],
     });
   }
 
@@ -247,7 +249,7 @@ export class DsContextualMenu extends HTMLElement {
     }
 
     if (headerTextAttr !== null && this.titleEl) {
-      this.titleEl.textContent = headerTextAttr || 'ACTIONS';
+      this.titleEl.textContent = headerTextAttr || '';
       this.removeAttribute('title');
     }
 
@@ -300,6 +302,7 @@ export class DsContextualMenu extends HTMLElement {
 
   _createItemRow(opt, index) {
     const itemRow = document.createElement('ds-item-row');
+    itemRow.setAttribute('dir', this.getAttribute('dir') || 'ltr');
 
     // Rows that contain interactive controls should not expose menuitem* roles on the host.
     // This avoids invalid nested interactive semantics and aria-checked requirements.

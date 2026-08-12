@@ -87,12 +87,6 @@ export default {
       description: 'Translation string prefix applied to the speed gauge state tracker.',
       table: { category: 'Localization' },
     },
-    labelReturn: {
-      name: 'label-return',
-      control: 'text',
-      description: 'Translation string allocated to the navigation escape trigger.',
-      table: { category: 'Localization' },
-    },
   },
   args: { onAction: fn() }
 };
@@ -136,7 +130,6 @@ const baseRenderTemplate = (args) => {
       label-mute="${ifDefined(args.labelMute)}"
       label-unmute="${ifDefined(args.labelUnmute)}"
       label-speed="${ifDefined(args.labelSpeed)}"
-      label-return="${ifDefined(args.labelReturn)}"
       @ds-video-action="${handleAction}">
     </ds-video-controls>
   `;
@@ -170,7 +163,7 @@ export const Default = {
     const speedBtn = shadowBoundary.getElementById('btn-speed');
 
     await step('Verify control buttons use simplified ds-button props contract', async () => {
-      const controlIds = ['btn-cc', 'btn-mute', 'btn-speed', 'btn-play', 'btn-stop'];
+      const controlIds = ['btn-cc', 'btn-mute', 'btn-speed', 'btn-play'];
       controlIds.forEach((id) => {
         const btn = shadowBoundary.getElementById(id);
         expect(btn.getAttribute('variant')).toBe('floating');

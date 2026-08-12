@@ -6,11 +6,13 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The Accessibility system provides global theme overrides, high-contrast tokens, typography adjustments, motion suppressions, and focus indicators across Valence. Applied as root-level modifier classes on the `<html>` element, these accessibility features ensure the platform remains inclusive, WCAG AA/AAA compliant, and adaptable to individual user preferences.
 
+The canonical color and contrast values live in [accessibility.css](./accessibility.css). The package entry re-exports a derived token map for consumers that need runtime access, but token edits should still be made in the CSS file.
+
 <br />
 
 ## Color & Contrast System
 
-To eliminate theme complexity and prevent color transition drift, theme overrides alter four core semantic roles (`--color-bg`, `--color-surface`, `--color-text-primary`, and `--color-surface-border`) rather than individual component primitives.
+To eliminate theme complexity and prevent color transition drift, the accessibility stylesheet defines theme overrides for four core semantic roles (`--color-bg`, `--color-surface`, `--color-text-primary`, and `--color-surface-border`) rather than individual component primitives. The exported JS token map is derived from those CSS rules, so the CSS remains the source of truth.
 
 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
   <thead>
@@ -221,7 +223,7 @@ _observeRootAccessibility() {
 
 ### Targeting Accessibility States in Component CSS
 
-Target host attributes inside internal component stylesheets rather than using `:host-context()`:
+The same host-attribute pattern applies to forced-colors support:
 
 ```css
 /* Dark mode primary button state transition */

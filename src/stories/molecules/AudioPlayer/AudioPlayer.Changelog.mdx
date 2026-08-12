@@ -6,6 +6,54 @@ import { Meta, Subtitle, Source } from '@storybook/addon-docs/blocks';
 
 <br />
 
+## [1.0.1] - 2026-08-09
+
+<br />
+
+### Host Integration Update
+
+Documented and aligned host integration patterns for route-aware audio sessions.
+
+<br />
+
+### Summary of Changes
+
+<table>
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Scope / Context</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>`Added`</td>
+      <td>`AudioPlayer.Architecture.mdx`</td>
+      <td>Added explicit host contract for persisting and restoring per-case audio position using `time` and `ds-audio-timeupdate`.</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`AudioPlayer.Architecture.mdx`</td>
+      <td>Documented teardown behavior guidance to stop playback on case-view exit (`playing="false"` and runtime unmount/teardown).</td>
+    </tr>
+    <tr>
+      <td>`Added`</td>
+      <td>`AudioPlayer.Architecture.mdx`</td>
+      <td>Expanded emitted event table to include `ds-audio-timeupdate`, `ds-audio-ended`, and `ds-audio-error` payload contracts.</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+### Added
+- **Resume Position Contract:** Host apps should save time per content scope and restore by reapplying `time` on mount.
+- **Leave-View Stop Contract:** Host apps should stop playback when leaving the owning case context to prevent cross-view audio continuation.
+- **Event Contract Expansion:** Added formal docs for timeupdate, ended, and error emissions to support robust host orchestration.
+
+---
+
 ## [1.0.0] - 2026-07-20
 
 <br />

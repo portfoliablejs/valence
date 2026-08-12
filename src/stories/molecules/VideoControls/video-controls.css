@@ -60,3 +60,7 @@ ds-button {
     border-color: CanvasText !important;
   }
 }
+
+:host([data-mobile-breakpoint="true"]) ds-tooltip {
+  display: none !important;
+}

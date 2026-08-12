@@ -13,6 +13,7 @@ The `ds-thumbnail` component is a presentational **controlled / dynamic** Atom d
 ### Unidirectional Data Flow
 The component strictly adheres to the **State In / Events Out** pattern:
 * **State In (Attributes / Properties):** The host shell binds properties (`category`, `brand`, `model`, `color`, `screen-image`, `screen-video`, `custom-only`, `max-height`, `disabled`) downstream to configure device mockups, inject screen graphics, or toggle bezel cancellations.
+* **Catalog Key Normalization:** Device catalog model keys are derived from the mockup folder tree after removing generic state wrappers (`device`, `open`, `closed`, `with bands`, `without bands`, and related variants). This keeps `model` selectors consistent with generated thumbnail options and avoids fallback mismatches (for example wearable models where `Closed` is a folder state, not part of the model name).
 * **Geometry Resolution Engine:** The component resolves screen geometry from prebuilt `thumbnail-manifest.generated.js` entries keyed by source mockup paths. Each entry provides: bounds (`top/left/width/height`), optional `maskUrl`, inferred `screenRadius`, and anti-fringe `edgeBleed`.
 * **Runtime Fallback (Lightweight):** If a manifest entry is incomplete, the component performs a capped-resolution alpha scan in idle time (`requestIdleCallback`) and caches results per device URL to avoid repeated work.
 * **Events Out:** As a passive visual mockup card, this component emits no customized event streams and does not manage action-oriented form values.
@@ -91,8 +92,11 @@ export interface DsThumbnailSubAtomicHooks {
 export interface DsThumbnailManifestEntry {
   bounds: { top: number; left: number; width: number; height: number };
   screenRadius?: string;
+  screenFit?: 'contain' | 'cover';
   maskUrl?: string;
   edgeBleed?: { x: number; y: number };
+  screenImageAnchor?: { x: number; y: number };
+  notch?: { widthPct: number; depthPct: number; centerXPct: number };
 }
 ```
 

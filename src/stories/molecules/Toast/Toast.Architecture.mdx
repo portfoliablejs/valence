@@ -15,6 +15,13 @@ The component strictly adheres to the **State In / Events Out** pattern:
 * **State In (Attributes / Properties):** The host binds attributes (`visible`, `case-title`, `show-close`, `show-never-show`, `aria-label`, `label-*`) downstream to trigger entry/exit slide animations, inject message strings, and configure translation labels.
 * **Events Out:** User clicks on the toast body, the close button, or the never-show button emit customized event streams prefixed with `ds-toast-` upstream.
 
+### Host-Orchestrated Overlay Contract
+`ds-toast` is intentionally presentational and assumes host orchestration for overlay geometry, stacking, and dismissal timing:
+* Positioning and z-order are host concerns. When a floating `ds-audio-player` is pinned, hosts should anchor toast below the player and avoid higher stack layers that visually cover the player controls.
+* Visibility changes (`visible=true/false`) should not force host remounts of neighboring interactive components (for example, case readers or audio players). Toast state updates are expected to be overlay-only updates.
+* For responsive safety, hosts should use a desktop anchor strategy based on floating player bounds (for example `playerRect.bottom + gap`) and a mobile fallback anchored to header/safe-area offsets.
+* Exit animations may be host-managed. In host-managed flows, keep toast mounted during exit motion and finalize state only after animation completion.
+
 <mermaid-diagram chart={`
   flowchart LR
       subgraph Host["Host Application / App Shell"]

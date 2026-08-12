@@ -131,7 +131,7 @@ const GALLERY_ENGINES = {
 
 export class Gallery extends HTMLElement {
     static get observedAttributes() {
-        return ['item-count', 'engine'];
+        return ['item-count', 'engine', 'dir'];
     }
 
     constructor() {
@@ -145,12 +145,19 @@ export class Gallery extends HTMLElement {
         this._offsetX = 0;
         this._velocityX = 0;
         this._momentumFrame = null;
+        this._wheelFrame = null;
+        this._wheelTargetOffset = 0;
         this._lastPointerSample = null;
         this._focusedItemIndex = 0;
         this._dragPointerId = null;
         this._pointerStartX = 0;
         this._pointerStartOffset = 0;
+        this._hasInteracted = false;
         this._isDragging = false;
+        this._isTouchDrag = false;
+        this._scaleAnimation = null;
+        this._isDragScaleActive = false;
+        this._cachedDragScale = null;
         this._boundPointerDown = this._handlePointerDown.bind(this);
         this._boundPointerMove = this._handlePointerMove.bind(this);
         this._boundPointerUp = this._handlePointerUp.bind(this);
@@ -187,7 +194,9 @@ export class Gallery extends HTMLElement {
         this.viewport.removeEventListener('wheel', this._boundWheel);
         window.removeEventListener('resize', this._boundResize);
         this._stopMomentum();
+        this._stopWheelSmoothing();
         this._detachPointerListeners();
+        this._scaleAnimation?.cancel();
 
         if (this._themeObserver) {
             this._themeObserver.disconnect();
@@ -205,6 +214,15 @@ export class Gallery extends HTMLElement {
         if (name === 'engine' && oldValue !== newValue) {
             this._engine = this._normalizeEngine(newValue);
             this._syncOffsetToBounds(true);
+            return;
+        }
+
+        if (name === 'dir' && oldValue !== newValue && !this._isDragging) {
+            this._stopMomentum();
+            this._stopWheelSmoothing();
+            this._velocityX = 0;
+            this._offsetX = this._getDirectionalStartOffset();
+            this._syncOffsetToBounds(false);
         }
     }
 
@@ -258,32 +276,90 @@ export class Gallery extends HTMLElement {
     _getEngineConfig() {
         const baseEngine = GALLERY_ENGINES[this._engine] || GALLERY_ENGINES[DEFAULT_GALLERY_ENGINE];
 
-        if (!this.hasAttribute('a11y-reduce-motion')) {
-            return baseEngine;
+        if (this.hasAttribute('a11y-reduce-motion')) {
+            return {
+                dragOverscrollMax: 0,
+                dragOverscrollTension: baseEngine.dragOverscrollTension,
+                dragFollowFactor: 1,
+                dragPointerMultiplier: 1,
+                edgeReturnDuration: 0,
+                edgeReturnEasing: 'linear',
+            };
         }
 
-        return {
-            dragOverscrollMax: 0,
-            dragOverscrollTension: baseEngine.dragOverscrollTension,
-            dragFollowFactor: 1,
-            dragPointerMultiplier: 1,
-            edgeReturnDuration: 0,
-            edgeReturnEasing: 'linear',
-        };
+        // Touch pointer events fire at ~30-60 Hz; direct tracking avoids the per-event lag that makes mobile feel stuck
+        if (this._isTouchDrag) {
+            return { ...baseEngine, dragFollowFactor: 1, dragPointerMultiplier: 1 };
+        }
+
+        return baseEngine;
     }
 
     _observeRootAccessibility() {
         const root = this.ownerDocument.documentElement;
+        let lastDir = null;
         const sync = () => {
+            const currentDir = this._getResolvedDirection();
             this.toggleAttribute('a11y-reduce-motion', root.classList.contains('a11y-reduce-motion'));
+
+            if (lastDir !== null && lastDir !== currentDir && !this._isDragging) {
+                this._stopMomentum();
+                this._stopWheelSmoothing();
+                this._velocityX = 0;
+                this._offsetX = this._getDirectionalStartOffset();
+                this._syncOffsetToBounds(false);
+            }
+
+            lastDir = currentDir;
         };
 
         sync();
         this._themeObserver = new MutationObserver(sync);
         this._themeObserver.observe(root, {
             attributes: true,
-            attributeFilter: ['class'],
+            attributeFilter: ['class', 'dir'],
         });
+    }
+
+    _getResolvedDirection() {
+        const hostDir = (this.getAttribute('dir') || '').trim().toLowerCase();
+        if (hostDir === 'rtl' || hostDir === 'ltr') return hostDir;
+
+        let current = this;
+        while (current) {
+            const currentDir = (current.getAttribute?.('dir') || '').trim().toLowerCase();
+            if (currentDir === 'rtl' || currentDir === 'ltr') {
+                return currentDir;
+            }
+
+            const root = current.getRootNode?.();
+            if (root?.host) {
+                current = root.host;
+                continue;
+            }
+
+            current = current.parentElement;
+        }
+
+        const rootDir = (this.ownerDocument?.documentElement?.getAttribute('dir') || '').trim().toLowerCase();
+        if (rootDir === 'rtl' || rootDir === 'ltr') return rootDir;
+
+        const styleDirection = (getComputedStyle(this).direction || '').trim().toLowerCase();
+        if (styleDirection === 'rtl' || styleDirection === 'ltr') return styleDirection;
+
+        return 'ltr';
+    }
+
+    _isRtlDirection() {
+        return this._getResolvedDirection() === 'rtl';
+    }
+
+    _getDirectionSign() {
+        return this._isRtlDirection() ? -1 : 1;
+    }
+
+    _getDirectionalStartOffset() {
+        return this._isRtlDirection() ? 0 : 0;
     }
 
     render() {
@@ -312,6 +388,9 @@ export class Gallery extends HTMLElement {
             if (item.hasVideo) galleryItem.setAttribute('has-video', '');
             if (item.hasRepo) galleryItem.setAttribute('has-repo', '');
             if (item.hasLive) galleryItem.setAttribute('has-live', '');
+            if (item.pillVideoLabel) galleryItem.setAttribute('pill-video-label', item.pillVideoLabel);
+            if (item.pillRepoLabel) galleryItem.setAttribute('pill-repo-label', item.pillRepoLabel);
+            if (item.pillLiveLabel) galleryItem.setAttribute('pill-live-label', item.pillLiveLabel);
             if (item.isProtected) galleryItem.setAttribute('is-protected', '');
             if (item.isUnlocked) galleryItem.setAttribute('is-unlocked', '');
 
@@ -319,6 +398,11 @@ export class Gallery extends HTMLElement {
 
             this.track.appendChild(galleryItem);
         });
+
+        if (!this._hasInteracted) {
+            this._offsetX = this._getDirectionalStartOffset();
+            this._wheelTargetOffset = this._offsetX;
+        }
 
         this._focusedItemIndex = Math.min(this._focusedItemIndex, Math.max(0, sourceItems.length - 1));
         this._applyTransform(this._clampOffset(this._offsetX), false);
@@ -357,19 +441,20 @@ export class Gallery extends HTMLElement {
     _handleKeyDown(event) {
         const key = event.key;
         if (!['ArrowLeft', 'ArrowRight', 'Home', 'End', 'Enter', ' '].includes(key)) return;
+        const isRtl = this._isRtlDirection();
 
         const galleryItems = this._getGalleryItems();
         if (!galleryItems.length) return;
 
         const currentIndex = this._getFocusedItemIndex();
 
-        if (key === 'ArrowRight') {
+        if ((key === 'ArrowRight' && !isRtl) || (key === 'ArrowLeft' && isRtl)) {
             event.preventDefault();
             this._focusItem(currentIndex + 1);
             return;
         }
 
-        if (key === 'ArrowLeft') {
+        if ((key === 'ArrowLeft' && !isRtl) || (key === 'ArrowRight' && isRtl)) {
             event.preventDefault();
             this._focusItem(currentIndex - 1);
             return;
@@ -396,14 +481,22 @@ export class Gallery extends HTMLElement {
     }
 
     _handleResize() {
+        if (!this._hasInteracted) {
+            this._offsetX = this._getDirectionalStartOffset();
+            this._wheelTargetOffset = this._offsetX;
+        }
         this._syncOffsetToBounds(true);
     }
 
     _handleWheel(event) {
         if (!this.viewport || !this.track) return;
+        const directionSign = this._getDirectionSign();
 
         const canScroll = this.track.scrollWidth > this.viewport.clientWidth + 1;
         if (!canScroll) return;
+
+        event.preventDefault();
+        this._hasInteracted = true;
 
         const dominantDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY)
             ? event.deltaX
@@ -412,21 +505,37 @@ export class Gallery extends HTMLElement {
         if (!dominantDelta) return;
 
         this._stopMomentum();
-        const nextOffset = this._clampOffset(this._offsetX - dominantDelta);
-        if (nextOffset === this._offsetX) return;
+        const deltaMultiplier = event.deltaMode === 1
+            ? 16
+            : event.deltaMode === 2
+                ? Math.max(this.viewport.clientWidth, 1)
+                : 1;
+        const normalizedDelta = dominantDelta * deltaMultiplier * directionSign;
+        const currentTarget = Number.isFinite(this._wheelTargetOffset) ? this._wheelTargetOffset : this._offsetX;
+        const nextOffset = this._clampOffset(currentTarget - normalizedDelta);
+        if (nextOffset === currentTarget && Math.abs(nextOffset - this._offsetX) < 0.25) return;
 
-        this._applyTransform(nextOffset, true, 180, 'cubic-bezier(0.22, 1, 0.36, 1)');
-        event.preventDefault();
+        this._wheelTargetOffset = nextOffset;
+        this._startWheelSmoothing();
     }
 
     _handlePointerDown(event) {
         if (event.button !== 0 || !this.viewport || !this.track) return;
 
+        if (!this._hasInteracted) {
+            this._offsetX = this._getDirectionalStartOffset();
+            this._wheelTargetOffset = this._offsetX;
+            this._applyTransform(this._offsetX, false);
+        }
+
+        this._hasInteracted = true;
         this._stopMomentum();
+        this._stopWheelSmoothing();
         this._dragPointerId = event.pointerId;
         this._pointerStartX = event.clientX;
         this._pointerStartOffset = this._offsetX;
         this._isDragging = true;
+        this._isTouchDrag = event.pointerType === 'touch';
         this._dragState = { moved: false };
 
         this.viewport.setPointerCapture(event.pointerId);
@@ -454,8 +563,12 @@ export class Gallery extends HTMLElement {
         if (this._dragState.moved) {
             this.viewport.classList.add('is-dragging');
             this.track.classList.add('is-dragging');
-            this.classList.add('is-dragging');
             this.track.style.transition = 'none';
+            if (!this._isDragScaleActive) {
+                this._isDragScaleActive = true;
+                this.classList.add('is-dragging');
+                this._animateDragScale(this._getDragScale(), 1);
+            }
         }
         if (this._lastPointerSample) {
             const deltaTime = Math.max(8, sampleTime - this._lastPointerSample.time);
@@ -477,11 +590,24 @@ export class Gallery extends HTMLElement {
         this.track.classList.remove('is-dragging');
         this.classList.remove('is-dragging');
 
+        if (this._isDragScaleActive) {
+            this._isDragScaleActive = false;
+            this._animateDragScale(1, this._getDragScale());
+        }
+
         const engine = this._getEngineConfig();
         const boundedOffset = this._clampOffset(this._offsetX);
         const isOverscrolled = boundedOffset !== this._offsetX;
-        const shouldAnimateReturn = !this.hasAttribute('a11y-reduce-motion') && isOverscrolled;
-        this._applyTransform(boundedOffset, shouldAnimateReturn, shouldAnimateReturn ? engine.edgeReturnDuration : undefined, shouldAnimateReturn ? engine.edgeReturnEasing : undefined);
+        const reduceMotion = this.hasAttribute('a11y-reduce-motion');
+        const shouldAnimateReturn = !reduceMotion && isOverscrolled;
+
+        if (shouldAnimateReturn) {
+            this._applyTransform(boundedOffset, true, engine.edgeReturnDuration, engine.edgeReturnEasing);
+        } else if (!reduceMotion && Math.abs(this._velocityX) > 0.005) {
+            this._startMomentum();
+        } else {
+            this._applyTransform(boundedOffset, false);
+        }
 
         this._isDragging = false;
         this._dragPointerId = null;
@@ -512,7 +638,7 @@ export class Gallery extends HTMLElement {
 
     _projectDragOffset(offset, engine = this._getEngineConfig()) {
         const minOffset = this._minOffset();
-        const maxOffset = 0;
+        const maxOffset = this._maxOffset();
 
         if (offset > maxOffset) {
             return maxOffset + this._smoothOverscroll(offset - maxOffset, engine);
@@ -536,11 +662,25 @@ export class Gallery extends HTMLElement {
     _minOffset() {
         const viewportWidth = this.viewport ? this.viewport.clientWidth : 0;
         const trackWidth = this.track ? this.track.scrollWidth : 0;
+        if (this._isRtlDirection()) {
+            return 0;
+        }
         return Math.min(0, viewportWidth - trackWidth);
     }
 
+    _maxOffset() {
+        const viewportWidth = this.viewport ? this.viewport.clientWidth : 0;
+        const trackWidth = this.track ? this.track.scrollWidth : 0;
+        if (this._isRtlDirection()) {
+            return Math.max(0, trackWidth - viewportWidth);
+        }
+        return 0;
+    }
+
     _clampOffset(offset) {
-        return Math.min(0, Math.max(this._minOffset(), offset));
+        const minOffset = this._minOffset();
+        const maxOffset = this._maxOffset();
+        return Math.min(maxOffset, Math.max(minOffset, offset));
     }
 
     _applyTransform(offset, animate, duration, easing) {
@@ -557,6 +697,107 @@ export class Gallery extends HTMLElement {
     _syncOffsetToBounds(animate = false) {
         const shouldAnimate = animate && !this.hasAttribute('a11y-reduce-motion');
         this._applyTransform(this._clampOffset(this._offsetX), shouldAnimate);
+    }
+
+    _startWheelSmoothing() {
+        if (this._wheelFrame != null) return;
+
+        // Base lerp rate calibrated at 60 Hz; normalized per frame so it's frame-rate-independent.
+        const BASE_LERP = this.hasAttribute('a11y-reduce-motion') ? 1 : 0.24;
+        let lastTime = -1;
+
+        const tick = (now) => {
+            const delta = this._wheelTargetOffset - this._offsetX;
+            if (Math.abs(delta) <= 0.25) {
+                this._applyTransform(this._wheelTargetOffset, false);
+                this._wheelFrame = null;
+                return;
+            }
+
+            const elapsed = lastTime < 0 ? 16.67 : Math.min(now - lastTime, 64);
+            lastTime = now;
+            const alpha = BASE_LERP === 1 ? 1 : 1 - Math.pow(1 - BASE_LERP, elapsed / 16.67);
+            this._applyTransform(this._offsetX + (delta * alpha), false);
+            this._wheelFrame = requestAnimationFrame(tick);
+        };
+
+        this._wheelFrame = requestAnimationFrame(tick);
+    }
+
+    _stopWheelSmoothing() {
+        if (this._wheelFrame != null) {
+            cancelAnimationFrame(this._wheelFrame);
+            this._wheelFrame = null;
+        }
+
+        this._wheelTargetOffset = this._offsetX;
+    }
+
+    _getDragScale() {
+        if (this._cachedDragScale != null) return this._cachedDragScale;
+        const raw = getComputedStyle(this).getPropertyValue('--gallery-drag-scale').trim();
+        const val = parseFloat(raw);
+        this._cachedDragScale = Number.isFinite(val) ? val : 0.95;
+        return this._cachedDragScale;
+    }
+
+    _animateDragScale(toScale, fromScale) {
+        if (this._scaleAnimation) {
+            this._scaleAnimation.cancel();
+            this._scaleAnimation = null;
+        }
+        if (this.hasAttribute('a11y-reduce-motion')) return;
+
+        const animation = this.animate(
+            [
+                { transform: `translateZ(0) scale(${fromScale})` },
+                { transform: `translateZ(0) scale(${toScale})` }
+            ],
+            {
+                duration: 280,
+                easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+                fill: 'none'
+            }
+        );
+        this._scaleAnimation = animation;
+        animation.addEventListener('finish', () => {
+            if (this._scaleAnimation === animation) this._scaleAnimation = null;
+        }, { once: true });
+    }
+
+    _startMomentum() {
+        const engine = this._getEngineConfig();
+        // Friction of 0.92 per 16.67 ms gives ~400 ms natural deceleration at typical drag speeds.
+        const FRICTION = 0.92;
+        let velocity = this._velocityX; // px/ms
+        let lastTime = -1;
+
+        const tick = (now) => {
+            const elapsed = lastTime < 0 ? 16.67 : Math.min(now - lastTime, 64);
+            lastTime = now;
+
+            velocity *= Math.pow(FRICTION, elapsed / 16.67);
+
+            if (Math.abs(velocity) < 0.005) {
+                this._momentumFrame = null;
+                this._syncOffsetToBounds(true);
+                return;
+            }
+
+            const nextOffset = this._offsetX + velocity * elapsed;
+            const bounded = this._clampOffset(nextOffset);
+
+            if (bounded !== nextOffset) {
+                this._applyTransform(bounded, true, engine.edgeReturnDuration, engine.edgeReturnEasing);
+                this._momentumFrame = null;
+                return;
+            }
+
+            this._applyTransform(nextOffset, false);
+            this._momentumFrame = requestAnimationFrame(tick);
+        };
+
+        this._momentumFrame = requestAnimationFrame(tick);
     }
 
     _stopMomentum() {

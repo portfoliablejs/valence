@@ -34,10 +34,14 @@
   display: flex;
   flex-direction: column;
   gap: var(--ds-article-header-gap, var(--space-md, 12px));
-  width: var(--ds-article-copy-width, 80%);
-  max-width: var(--ds-article-copy-width, 80%);
+  width: min(100%, var(--ds-article-copy-width, 80%));
+  max-width: min(100%, var(--ds-article-copy-width, 80%));
   align-self: center;
   text-align: left;
+}
+
+:host([dir="rtl"]) .article-header {
+  text-align: right;
 }
 
 .title-block {
@@ -80,6 +84,11 @@
   margin-block: calc(var(--ds-button-size, 18px) * 0.5);
 }
 
+:host([dir="rtl"]) .social-actions {
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
 .social-actions ds-button {
   --ds-button-size: var(--ds-article-social-button-size, 18px);
   --ds-button-opacity: var(--ds-article-social-opacity, 0.5);
@@ -95,6 +104,21 @@
   flex-wrap: wrap;
   gap: var(--space-sm, 8px);
   margin-top: var(--space-xs, 4px);
+}
+
+:host([dir="rtl"]) .main-actions {
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.main-actions .tooltip-wrapper {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.main-actions .tooltip-wrapper ds-button {
+  max-width: 100%;
 }
 
 .tooltip-wrapper {
@@ -144,7 +168,8 @@ ds-tooltip {
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  padding: var(--ds-article-cover-padding, calc(var(--space-xxl, 32px) * 2) calc(var(--space-xxl, 32px) * 2));
+  flex-wrap: wrap;
+  padding: var(--ds-article-cover-padding, clamp(16px, 4vw, 48px));
   border-radius: var(--ds-article-cover-radius, var(--ds-summary-radius, var(--radius-md, 8px)));
   background: var(--ds-article-cover-bg, var(--ds-summary-bg, var(--color-surface, #F2F2F7)));
   border: var(--border-width-thin, 1px) var(--border-style-solid, solid) var(--ds-article-cover-border-color, var(--ds-summary-border-color, var(--color-card-border, rgba(0, 0, 0, 0.062))));
@@ -177,9 +202,9 @@ ds-tooltip {
   flex: 0 1 auto;
   align-self: center;
   width: auto;
-  max-width: calc(100% - (var(--space-xxl, 32px) * 8));
+  max-width: min(calc(100% - (var(--space-xxl, 32px) * 2)), var(--ds-article-cover-max-width, clamp(280px, 84vw, 640px)));
   margin-inline: auto;
-  --ds-thumbnail-max-height: var(--ds-article-cover-max-height, min(56vh, 420px));
+  --ds-thumbnail-max-height: min(var(--ds-article-cover-max-height, min(56vh, 460px)), var(--ds-article-cover-max-height-cap, 400px));
 }
 
 .article-cover-container,
@@ -202,6 +227,44 @@ ds-tooltip {
   text-align: left;
 }
 
+:host([dir="rtl"]) .article-body > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, details, hr) {
+  text-align: right;
+}
+
+.article-body ::slotted(h1),
+.article-body ::slotted(h2),
+.article-body ::slotted(h3),
+.article-body ::slotted(h4),
+.article-body ::slotted(h5),
+.article-body ::slotted(h6),
+.article-body ::slotted(p),
+.article-body ::slotted(ul),
+.article-body ::slotted(ol),
+.article-body ::slotted(dl),
+.article-body ::slotted(dt),
+.article-body ::slotted(dd),
+.article-body ::slotted(details),
+.article-body ::slotted(hr) {
+  text-align: left;
+}
+
+:host([dir="rtl"]) .article-body ::slotted(h1),
+:host([dir="rtl"]) .article-body ::slotted(h2),
+:host([dir="rtl"]) .article-body ::slotted(h3),
+:host([dir="rtl"]) .article-body ::slotted(h4),
+:host([dir="rtl"]) .article-body ::slotted(h5),
+:host([dir="rtl"]) .article-body ::slotted(h6),
+:host([dir="rtl"]) .article-body ::slotted(p),
+:host([dir="rtl"]) .article-body ::slotted(ul),
+:host([dir="rtl"]) .article-body ::slotted(ol),
+:host([dir="rtl"]) .article-body ::slotted(dl),
+:host([dir="rtl"]) .article-body ::slotted(dt),
+:host([dir="rtl"]) .article-body ::slotted(dd),
+:host([dir="rtl"]) .article-body ::slotted(details),
+:host([dir="rtl"]) .article-body ::slotted(hr) {
+  text-align: right;
+}
+
 .article-body > :is(pre, figure, table, img, video, blockquote) {
   width: var(--ds-article-media-width, 100%);
   max-width: var(--ds-article-media-width, 100%);
@@ -219,6 +282,138 @@ ds-tooltip {
 
   .main-actions {
     gap: 6px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .article-header {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .main-actions {
+    row-gap: 8px;
+  }
+
+  .social-actions {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+}
+
+@media (max-width: 620px) {
+  .main-actions .tooltip-wrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .ds-article {
+    min-width: 0;
+    overflow-x: clip;
+  }
+
+  .article-body-layout,
+  .content-column,
+  .article-body {
+    min-width: 0;
+    overflow-x: visible;
+  }
+
+  .article-header {
+    width: var(--ds-article-mobile-copy-width, 85%);
+    max-width: var(--ds-article-mobile-copy-width, 85%);
+    align-self: center;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .title-block,
+  .main-actions,
+  .social-actions {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .article-title,
+  .article-subtitle {
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .main-actions {
+    row-gap: 8px;
+  }
+
+  .main-actions .tooltip-wrapper {
+    max-width: 100%;
+  }
+
+  .main-actions .tooltip-wrapper ds-button {
+    max-width: 100%;
+  }
+
+  .article-cover-container,
+  .article-summary-container,
+  .article-player-container {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .article-cover-container {
+    padding-top: clamp(12px, 3.2vw, 16px);
+    padding-bottom: clamp(12px, 3.2vw, 16px);
+  }
+
+  .article-summary-container > ds-summary,
+  .article-summary-container ::slotted(ds-summary),
+  .article-player-container > ds-audio-player,
+  .article-player-container ::slotted(ds-audio-player) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .article-body > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, details, hr),
+  .article-body > :is(pre, figure, table, img, video, blockquote) {
+    width: var(--ds-article-mobile-copy-width, 85%);
+    max-width: var(--ds-article-mobile-copy-width, 85%);
+    margin-inline: auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+    align-self: center;
+  }
+
+  .article-body > :is(h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .article-body {
+    margin-top: var(--ds-article-mobile-body-margin-top, -8px);
+    padding-top: var(--ds-article-mobile-body-padding-top, 0);
+  }
+
+  .article-body > :first-child {
+    margin-top: var(--ds-article-mobile-first-content-margin-top, 0) !important;
+  }
+
+  :host([data-mobile-breakpoint="true"]) .article-cover-container,
+  :host([data-mobile-breakpoint="true"]) .article-summary-container,
+  :host([data-mobile-breakpoint="true"]) .article-player-container {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
   }
 }
 
@@ -240,6 +435,114 @@ ds-tooltip {
   pointer-events: auto;
 }
 
+:host([data-mobile-breakpoint="true"]) .article-toc {
+  display: none !important;
+}
+
+:host([data-mobile-breakpoint="true"]) ds-tooltip {
+  display: none !important;
+}
+
+:host([data-mobile-breakpoint="true"]) .article-header {
+  width: var(--ds-article-mobile-copy-width, 85%);
+  max-width: var(--ds-article-mobile-copy-width, 85%);
+  align-self: center;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:host([data-mobile-breakpoint="true"]) .ds-article {
+  --ds-article-mobile-side-padding: 16px;
+  padding: clamp(16px, 3vw, 20px) 0 clamp(96px, 18dvh, 148px);
+}
+
+:host([data-mobile-breakpoint="true"]) .article-cover-container,
+:host([data-mobile-breakpoint="true"]) .article-summary-container,
+:host([data-mobile-breakpoint="true"]) .article-player-container,
+:host([data-mobile-breakpoint="true"]) .article-body,
+:host([data-mobile-breakpoint="true"]) .article-body > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, details, hr),
+:host([data-mobile-breakpoint="true"]) .article-body > :is(pre, figure, table, img, video, blockquote) {
+  width: 100%;
+  max-width: 100%;
+}
+
+:host([data-mobile-breakpoint="true"]) .article-body > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dt, dd, details, hr),
+:host([data-mobile-breakpoint="true"]) .article-body > :is(pre, figure, table, img, video, blockquote) {
+  width: var(--ds-article-mobile-copy-width, 85%);
+  max-width: var(--ds-article-mobile-copy-width, 85%);
+  margin-inline: auto;
+}
+
+:host([data-mobile-breakpoint="true"]) .article-body {
+  margin-top: var(--ds-article-mobile-body-margin-top, -8px);
+  padding-top: var(--ds-article-mobile-body-padding-top, 0);
+}
+
+:host([data-mobile-breakpoint="true"]) .article-body > :first-child {
+  margin-top: var(--ds-article-mobile-first-content-margin-top, 0) !important;
+}
+
+:host([data-mobile-breakpoint="true"]) .article-cover-container,
+:host([data-mobile-breakpoint="true"]) .article-summary-container,
+:host([data-mobile-breakpoint="true"]) .article-player-container {
+  padding-left: var(--ds-article-mobile-side-padding, 16px);
+  padding-right: var(--ds-article-mobile-side-padding, 16px);
+  box-sizing: border-box;
+}
+
+:host([data-mobile-breakpoint="true"]) .article-cover-container {
+  width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2));
+  margin-inline: var(--ds-article-mobile-side-padding, 16px);
+  border-radius: var(--radius-md, 8px);
+  padding: var(--ds-article-cover-padding, clamp(16px, 4vw, 48px));
+}
+
+:host([data-mobile-breakpoint="true"]) .article-summary-container {
+  padding-top: 0;
+}
+
+:host([data-mobile-breakpoint="true"]) .article-summary-container > ds-summary,
+:host([data-mobile-breakpoint="true"]) .article-summary-container ::slotted(ds-summary) {
+  width: 100%;
+  max-width: 100%;
+}
+
+:host([data-mobile-breakpoint="true"]) .article-cover-container ::slotted(ds-thumbnail) {
+  width: auto;
+  max-width: min(100%, var(--ds-article-cover-max-width-mobile, calc(100vw - var(--ds-article-cover-mobile-viewport-offset, 72px))));
+  --ds-thumbnail-max-height: min(
+    var(--ds-article-cover-max-height-mobile, min(38vh, 280px)),
+    calc((100vw - var(--ds-article-cover-mobile-viewport-offset, 72px)) * var(--ds-article-cover-mobile-height-scale, 0.72)),
+    var(--ds-article-cover-max-height-cap-mobile, 280px)
+  );
+}
+
+/* Keep oversized markdown/media blocks on the same horizontal rhythm as cover/summary/audio. */
+:host([data-mobile-breakpoint="true"]) ::slotted(pre),
+:host([data-mobile-breakpoint="true"]) ::slotted(dl),
+:host([data-mobile-breakpoint="true"]) ::slotted(figure),
+:host([data-mobile-breakpoint="true"]) ::slotted(table),
+:host([data-mobile-breakpoint="true"]) ::slotted(img),
+:host([data-mobile-breakpoint="true"]) ::slotted(video),
+ds-article[data-mobile-breakpoint="true"] pre,
+ds-article[data-mobile-breakpoint="true"] dl,
+ds-article[data-mobile-breakpoint="true"] figure,
+ds-article[data-mobile-breakpoint="true"] table,
+ds-article[data-mobile-breakpoint="true"] img,
+ds-article[data-mobile-breakpoint="true"] video {
+  width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
+  max-width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
+  margin-left: var(--ds-article-mobile-side-padding, 16px) !important;
+  margin-right: var(--ds-article-mobile-side-padding, 16px) !important;
+  box-sizing: border-box;
+}
+
+:host([data-mobile-breakpoint="true"]) ::slotted(dd),
+ds-article[data-mobile-breakpoint="true"] dd {
+  margin-left: var(--ds-article-definition-indent-mobile, 12px) !important;
+  margin-inline-start: var(--ds-article-definition-indent-mobile, 12px) !important;
+}
+
 /* ==========================================================================
    8. MARKDOWN INJECTION (COMPLETE COMMONMARK & GFM SPEC)
    ========================================================================== */
@@ -258,8 +561,8 @@ ds-article h4,
 ds-article h5,
 ds-article h6 {
   font-family: var(--font-family);
-  margin-top: var(--space-xxl, 32px);
-  margin-bottom: var(--space-md, 12px);
+  margin-top: var(--ds-article-heading-margin-top, var(--space-xxl, 32px));
+  margin-bottom: var(--ds-article-heading-margin-bottom, var(--space-sm, 8px));
   scroll-margin-top: 100px;
   width: var(--ds-article-copy-width, 80%);
   max-width: var(--ds-article-copy-width, 80%);
@@ -279,7 +582,7 @@ ds-article h1 {
 ::slotted(h2),
 ds-article h2 {
   font-weight: var(--ds-article-heading-weight, 550) !important;
-  font-size: var(--ds-article-h2-size, 27px) !important;
+  font-size: var(--ds-article-h2-size, 25px) !important;
   letter-spacing: var(--ds-article-h2-letter-spacing, -0.04em) !important;
   line-height: var(--ds-article-h2-line-height, 1.0) !important;
   color: var(--ds-article-heading-color, var(--color-black)) !important;
@@ -288,7 +591,7 @@ ds-article h2 {
 ::slotted(h3),
 ds-article h3 {
   font-weight: var(--ds-article-heading-weight, 550) !important;
-  font-size: var(--ds-article-h3-size, 26px) !important;
+  font-size: var(--ds-article-h3-size, 22px) !important;
   letter-spacing: var(--ds-article-h3-letter-spacing, -0.04em) !important;
   line-height: var(--ds-article-h3-line-height, 1.0) !important;
   color: var(--ds-article-heading-color, var(--color-black)) !important;
@@ -298,7 +601,7 @@ ds-article h3 {
 ::slotted(h4),
 ds-article h4 {
   font-weight: var(--ds-article-heading-weight, 550) !important;
-  font-size: var(--ds-article-h4-size, 25px) !important;
+  font-size: var(--ds-article-h4-size, 20px) !important;
   letter-spacing: var(--ds-article-h4-letter-spacing, -0.04em) !important;
   line-height: var(--ds-article-h4-line-height, 1.0) !important;
   color: var(--ds-article-heading-color, var(--color-black)) !important;
@@ -307,7 +610,7 @@ ds-article h4 {
 ::slotted(h5),
 ds-article h5 {
   font-weight: var(--ds-article-heading-weight, 550) !important;
-  font-size: var(--ds-article-h5-size, 24px) !important;
+  font-size: var(--ds-article-h5-size, 18px) !important;
   letter-spacing: var(--ds-article-h5-letter-spacing, -0.04em) !important;
   line-height: var(--ds-article-h5-line-height, 1.0) !important;
   color: var(--ds-article-heading-muted-color, var(--color-gray-dark)) !important;
@@ -316,7 +619,7 @@ ds-article h5 {
 ::slotted(h6),
 ds-article h6 {
   font-weight: var(--ds-article-h6-weight, 540) !important;
-  font-size: var(--ds-article-h6-size, 23px) !important;
+  font-size: var(--ds-article-h6-size, 16px) !important;
   letter-spacing: var(--ds-article-h6-letter-spacing, -0.04em) !important;
   line-height: var(--ds-article-h6-line-height, 1.0) !important;
   color: var(--ds-article-heading-muted-color, var(--color-gray-dark)) !important;
@@ -331,6 +634,28 @@ ds-article h3:first-child {
   margin-top: 0;
 }
 
+:host([dir="rtl"]) ::slotted(h1),
+:host([dir="rtl"]) ::slotted(h2),
+:host([dir="rtl"]) ::slotted(h3),
+:host([dir="rtl"]) ::slotted(h4),
+:host([dir="rtl"]) ::slotted(h5),
+:host([dir="rtl"]) ::slotted(h6),
+html[dir="rtl"] ds-article h1,
+html[dir="rtl"] ds-article h2,
+html[dir="rtl"] ds-article h3,
+html[dir="rtl"] ds-article h4,
+html[dir="rtl"] ds-article h5,
+html[dir="rtl"] ds-article h6,
+ds-article[dir="rtl"] h1,
+ds-article[dir="rtl"] h2,
+ds-article[dir="rtl"] h3,
+ds-article[dir="rtl"] h4,
+ds-article[dir="rtl"] h5,
+ds-article[dir="rtl"] h6 {
+  text-align: right;
+  direction: rtl;
+}
+
 /* Paragraphs */
 ::slotted(p),
 ds-article p {
@@ -339,8 +664,8 @@ ds-article p {
   letter-spacing: var(--ds-article-paragraph-letter-spacing, -0.02em);
   line-height: var(--ds-article-paragraph-line-height, 1.5);
   color: var(--ds-article-paragraph-color, var(--color-black));
-  margin-top: 0;
-  margin-bottom: var(--space-lg, 16px);
+  margin-top: var(--ds-article-paragraph-margin-top, 0);
+  margin-bottom: var(--ds-article-paragraph-margin-bottom, calc(var(--space-md, 12px) * 0.85));
   width: var(--ds-article-copy-width, 80%);
   max-width: var(--ds-article-copy-width, 80%);
   margin-inline: auto;
@@ -373,6 +698,22 @@ ds-article p.p3 {
   max-width: var(--ds-article-copy-width, 80%);
   margin-inline: auto;
   text-align: left;
+}
+
+:host([dir="rtl"]) ::slotted(p),
+:host([dir="rtl"]) ::slotted(p.p2),
+:host([dir="rtl"]) ::slotted(p.subtext),
+:host([dir="rtl"]) ::slotted(p.p3),
+html[dir="rtl"] ds-article p,
+html[dir="rtl"] ds-article p.p2,
+html[dir="rtl"] ds-article p.subtext,
+html[dir="rtl"] ds-article p.p3,
+ds-article[dir="rtl"] p,
+ds-article[dir="rtl"] p.p2,
+ds-article[dir="rtl"] p.subtext,
+ds-article[dir="rtl"] p.p3 {
+  text-align: right;
+  direction: rtl;
 }
 
 /* Inline Formatting */
@@ -460,10 +801,32 @@ ds-article ol {
   text-align: left;
 }
 
+:host([dir="rtl"]) ::slotted(ul),
+:host([dir="rtl"]) ::slotted(ol),
+html[dir="rtl"] ds-article ul,
+html[dir="rtl"] ds-article ol,
+ds-article[dir="rtl"] ul,
+ds-article[dir="rtl"] ol {
+  text-align: right;
+  direction: rtl;
+  padding-right: var(--ds-article-list-indent-rtl, 1.25em);
+  padding-left: 0;
+}
+
 ds-article ul>li,
 ds-article ol>li {
   margin-top: var(--space-sm, 8px);
   margin-bottom: var(--space-sm, 8px);
+}
+
+ds-article p + ul > li:first-child,
+ds-article p + ol > li:first-child {
+  margin-top: 0;
+}
+
+ds-article p:has(+ ul),
+ds-article p:has(+ ol) {
+  margin-bottom: var(--ds-article-paragraph-before-list-margin-bottom, 4px);
 }
 
 ds-article ul>li::marker {
@@ -479,10 +842,17 @@ ds-article ul.task-list {
 
 ds-article li.task-list-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   margin-top: var(--space-sm, 8px);
   margin-bottom: var(--space-sm, 8px);
+}
+
+ds-article li.task-list-item .task-list-item-label {
+  display: inline;
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
 }
 
 ds-article li.task-list-item input[type="checkbox"] {
@@ -530,6 +900,10 @@ ds-article li.task-list-item input[type="checkbox"]:disabled {
 /* Definition Lists (<dl>, <dt>, <dd>) - Fixed Text Contrast */
 ds-article dl {
   margin: var(--ds-article-definition-margin, var(--space-lg, 16px)) 0;
+  width: var(--ds-article-copy-width, 80%);
+  max-width: var(--ds-article-copy-width, 80%);
+  margin-inline: auto;
+  text-align: left;
 }
 
 ds-article dt {
@@ -540,15 +914,38 @@ ds-article dt {
 
 ds-article dd {
   margin-left: var(--ds-article-definition-indent, var(--space-xl, 24px));
+  margin-inline-start: var(--ds-article-definition-indent, var(--space-xl, 24px));
   color: var(--ds-article-definition-color, var(--color-text-secondary, #323232));
   margin-bottom: var(--ds-article-definition-margin-bottom, var(--space-sm, 8px));
+}
+
+:host([dir="rtl"]) ds-article dl,
+html[dir="rtl"] ds-article dl,
+ds-article[dir="rtl"] dl,
+:host([dir="rtl"]) ds-article dt,
+html[dir="rtl"] ds-article dt,
+ds-article[dir="rtl"] dt,
+:host([dir="rtl"]) ds-article dd,
+html[dir="rtl"] ds-article dd,
+ds-article[dir="rtl"] dd {
+  text-align: right;
+  direction: rtl;
+}
+
+:host([dir="rtl"]) ds-article dd,
+html[dir="rtl"] ds-article dd,
+ds-article[dir="rtl"] dd {
+  margin-left: 0;
+  margin-right: var(--ds-article-definition-indent, var(--space-xl, 24px));
+  margin-inline-start: 0;
+  margin-inline-end: var(--ds-article-definition-indent, var(--space-xl, 24px));
 }
 
 /* Blockquotes & Nested Blockquotes */
 ::slotted(blockquote),
 ds-article blockquote {
   margin: var(--ds-article-blockquote-margin, var(--space-xl, 24px)) 0;
-  padding: var(--ds-article-blockquote-padding, var(--space-md, 12px) var(--space-lg, 16px));
+  padding: var(--ds-article-blockquote-padding, calc(var(--space-md, 12px) * 0.85) calc(var(--space-lg, 16px) * 0.85) calc(var(--space-md, 12px) * 0.85) calc(var(--space-sm, 8px) * 0.85));
   background-color: var(--ds-article-blockquote-bg, var(--color-card-bg));
   border-left: var(--ds-article-blockquote-border-width, 4px) solid var(--ds-article-blockquote-border-color, var(--color-accent));
   border-radius: var(--ds-article-blockquote-radius, 0 var(--radius-md) var(--radius-md) 0);
@@ -609,12 +1006,118 @@ ds-article .footnote-backref {
   padding: var(--ds-article-footnote-link-padding, 0 2px);
 }
 
+ds-article sup.footnote-ref {
+  font-size: var(--ds-article-footnote-sup-size, 0.75em);
+  line-height: 0;
+  vertical-align: super;
+  margin-left: var(--ds-article-footnote-ref-gap, 0.2em);
+}
+
+ds-article sup.footnote-ref a {
+  text-decoration-thickness: 1px;
+}
+
+ds-article hr.footnotes-sep {
+  display: none;
+}
+
 ds-article section.footnotes {
-  margin-top: var(--ds-article-footnote-margin-top, var(--space-xxxl, 40px));
-  padding-top: var(--ds-article-footnote-padding-top, var(--space-lg, 16px));
-  border-top: var(--ds-article-footnote-border-width, 1px) solid var(--ds-article-footnote-border-color, var(--color-card-border, rgba(0, 0, 0, 0.12)));
-  font-size: var(--ds-article-footnote-size, 14px);
+  margin-top: var(--ds-article-footnote-margin-top, var(--space-md, 12px));
+  padding-top: var(--ds-article-footnote-padding-top, 0px);
+  border-top: none;
+  font-size: var(--ds-article-footnote-size, 13px);
   color: var(--ds-article-footnote-color, var(--color-gray-dark));
+  width: var(--ds-article-copy-width, 80%);
+  max-width: var(--ds-article-copy-width, 80%);
+  margin-inline: auto;
+  text-align: left;
+}
+
+:host([dir="rtl"]) ds-article sup.footnote-ref,
+html[dir="rtl"] ds-article sup.footnote-ref,
+ds-article[dir="rtl"] sup.footnote-ref {
+  margin-right: var(--ds-article-footnote-ref-gap, 0.2em);
+  margin-left: 0;
+}
+
+:host([dir="rtl"]) ds-article section.footnotes,
+html[dir="rtl"] ds-article section.footnotes,
+ds-article[dir="rtl"] section.footnotes {
+  text-align: right;
+  direction: rtl;
+}
+
+:host([dir="rtl"]) ds-article .footnotes-list,
+:host([dir="rtl"]) ds-article section.footnotes > ol,
+:host([dir="rtl"]) ds-article section.footnotes ol,
+html[dir="rtl"] ds-article .footnotes-list,
+html[dir="rtl"] ds-article section.footnotes > ol,
+html[dir="rtl"] ds-article section.footnotes ol,
+ds-article[dir="rtl"] .footnotes-list,
+ds-article[dir="rtl"] section.footnotes > ol,
+ds-article[dir="rtl"] section.footnotes ol {
+  padding-right: 0.25rem;
+  padding-left: 0;
+}
+
+:host([dir="rtl"]) ds-article section.footnotes ol > li > p:not(:first-of-type),
+html[dir="rtl"] ds-article section.footnotes ol > li > p:not(:first-of-type),
+ds-article[dir="rtl"] section.footnotes ol > li > p:not(:first-of-type) {
+  margin: 0.35em 1.15em 0 0 !important;
+}
+
+ds-article section.footnotes p,
+ds-article section.footnotes li,
+ds-article section.footnotes .footnotes-list,
+ds-article section.footnotes .footnote-item {
+  font-size: var(--ds-article-footnote-size, 13px) !important;
+  line-height: var(--ds-article-footnote-line-height, 1.45) !important;
+}
+
+ds-article .footnotes-list {
+  margin: 0;
+  padding-left: 0.25rem;
+  list-style: decimal;
+  list-style-position: inside;
+}
+
+ds-article section.footnotes > ol {
+  margin: 0;
+  padding-left: 0;
+  list-style: decimal;
+  list-style-position: inside;
+}
+
+ds-article section.footnotes ol {
+  margin: 0;
+  padding-left: 0;
+  list-style-position: inside;
+}
+
+ds-article section.footnotes ol > li {
+  margin-left: 0;
+  padding-left: 0;
+  text-indent: 0;
+}
+
+ds-article section.footnotes ol > li > p:first-of-type {
+  display: inline !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  margin-inline: 0 !important;
+}
+
+ds-article section.footnotes ol > li > p:not(:first-of-type) {
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0.35em 0 0 1.15em !important;
+}
+
+ds-article .footnote-item {
+  display: list-item;
+  margin: 0 0 var(--space-sm, 8px) 0;
 }
 
 ds-article .footnote-ref,
@@ -623,6 +1126,18 @@ ds-article .footnote-backref {
   text-decoration: var(--ds-article-footnote-link-decoration, underline);
   text-underline-offset: var(--ds-article-footnote-link-offset, 2px);
   font-weight: var(--ds-article-footnote-link-weight, 600);
+}
+
+ds-article del,
+ds-article s {
+  color: var(--ds-article-muted-text-color, var(--color-gray-med, #777777));
+}
+
+ds-article mark {
+  background: var(--ds-article-mark-bg, rgba(255, 216, 102, 0.45));
+  color: var(--ds-article-mark-color, inherit);
+  padding: 0 0.2em;
+  border-radius: 0.2em;
 }
 
 /* Dividers */
@@ -642,7 +1157,7 @@ ds-article hr {
 .article-body pre,
 ds-article pre {
   position: relative !important;
-  margin: var(--ds-article-code-margin, var(--space-xl, 24px) 0) !important;
+  margin: var(--ds-article-code-margin, calc(var(--space-xl, 24px) * 0.85) 0) !important;
   padding: var(--ds-article-code-padding, var(--space-xl, 24px) var(--space-xl, 24px) var(--space-lg, 16px)) !important;
   background-color: var(--ds-article-code-bg, var(--color-surface, #F2F2F7)) !important;
   border: var(--ds-article-code-border-width, var(--border-width-thin, 1px)) var(--border-style-solid, solid) var(--ds-article-code-border-color, var(--color-card-border, rgba(0, 0, 0, 0.12))) !important;
@@ -665,6 +1180,14 @@ ds-article pre {
   user-select: none !important;
   width: 100% !important;
   max-width: 100% !important;
+}
+
+:host([dir="rtl"]) ::slotted(pre),
+html[dir="rtl"] ds-article pre,
+ds-article[dir="rtl"] pre {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  text-align: left !important;
 }
 
 ds-article pre .code-lang-badge {
@@ -722,6 +1245,23 @@ ds-article span code {
   user-select: none !important;
 }
 
+:host([dir="rtl"]) ::slotted(code),
+html[dir="rtl"] ds-article pre code,
+html[dir="rtl"] ds-article p code,
+html[dir="rtl"] ds-article li code,
+html[dir="rtl"] ds-article td code,
+html[dir="rtl"] ds-article th code,
+html[dir="rtl"] ds-article span code,
+ds-article[dir="rtl"] pre code,
+ds-article[dir="rtl"] p code,
+ds-article[dir="rtl"] li code,
+ds-article[dir="rtl"] td code,
+ds-article[dir="rtl"] th code,
+ds-article[dir="rtl"] span code {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+}
+
 ::slotted(kbd),
 .article-body kbd,
 ds-article kbd,
@@ -739,6 +1279,17 @@ ds-article li kbd {
   border: var(--ds-article-kbd-border-width, 1px) solid var(--ds-article-kbd-border-color, rgba(15, 15, 15, 0.15)) !important;
   border-radius: var(--ds-article-kbd-radius, 3px) !important;
   box-shadow: var(--ds-article-kbd-shadow, inset 0 -1px 0 rgba(15, 15, 15, 0.15), 0 1px 1px rgba(0, 0, 0, 0.05)) !important;
+}
+
+:host([dir="rtl"]) ::slotted(kbd),
+html[dir="rtl"] ds-article kbd,
+html[dir="rtl"] ds-article p kbd,
+html[dir="rtl"] ds-article li kbd,
+ds-article[dir="rtl"] kbd,
+ds-article[dir="rtl"] p kbd,
+ds-article[dir="rtl"] li kbd {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
 }
 
 /* ==========================================================================
@@ -1117,6 +1668,25 @@ ds-article[a11y-dark-mode] table tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
+/* Dark Mode Links (Softer than default accent blue) */
+html.a11y-dark-mode ds-article a,
+ds-article[a11y-dark-mode] a,
+html.a11y-dark-mode ds-article .footnote-ref,
+ds-article[a11y-dark-mode] .footnote-ref,
+html.a11y-dark-mode ds-article .footnote-backref,
+ds-article[a11y-dark-mode] .footnote-backref {
+  color: var(--ds-article-link-color-dark, #A8B8CC) !important;
+}
+
+html.a11y-dark-mode ds-article a:hover,
+ds-article[a11y-dark-mode] a:hover,
+html.a11y-dark-mode ds-article .footnote-ref:hover,
+ds-article[a11y-dark-mode] .footnote-ref:hover,
+html.a11y-dark-mode ds-article .footnote-backref:hover,
+ds-article[a11y-dark-mode] .footnote-backref:hover {
+  color: var(--ds-article-link-color-dark-hover, #C6D1DF) !important;
+}
+
 /* KBD dark mode */
 :host([a11y-dark-mode]) ::slotted(kbd),
 html.a11y-dark-mode ds-article kbd,
@@ -1162,6 +1732,25 @@ ds-article[a11y-high-contrast] dd {
   color: #FFFFFF !important;
   background-color: transparent !important;
   border-color: #FFFFFF !important;
+}
+
+/* High Contrast Links (Reduced blue bias while preserving clarity) */
+html.a11y-high-contrast ds-article a,
+ds-article[a11y-high-contrast] a,
+html.a11y-high-contrast ds-article .footnote-ref,
+ds-article[a11y-high-contrast] .footnote-ref,
+html.a11y-high-contrast ds-article .footnote-backref,
+ds-article[a11y-high-contrast] .footnote-backref {
+  color: var(--ds-article-link-color-hc, #E2E8F0) !important;
+}
+
+html.a11y-high-contrast ds-article a:hover,
+ds-article[a11y-high-contrast] a:hover,
+html.a11y-high-contrast ds-article .footnote-ref:hover,
+ds-article[a11y-high-contrast] .footnote-ref:hover,
+html.a11y-high-contrast ds-article .footnote-backref:hover,
+ds-article[a11y-high-contrast] .footnote-backref:hover {
+  color: #FFFFFF !important;
 }
 
 /* All Syntax Tokens Forced Pure White in High Contrast Mode */
@@ -1224,11 +1813,11 @@ ds-article[a11y-high-contrast] li kbd {
 /* Scale markdown typography via token overrides so all existing base selectors inherit correctly. */
 :host([a11y-large-text]) {
   --ds-article-h1-size: 33px;
-  --ds-article-h2-size: 32px;
-  --ds-article-h3-size: 31px;
-  --ds-article-h4-size: 30px;
-  --ds-article-h5-size: 29px;
-  --ds-article-h6-size: 28px;
+  --ds-article-h2-size: 30px;
+  --ds-article-h3-size: 27px;
+  --ds-article-h4-size: 24px;
+  --ds-article-h5-size: 22px;
+  --ds-article-h6-size: 20px;
   --ds-article-paragraph-size: 19px;
   --ds-article-subtext-size: 18px;
   --ds-article-tertiary-size: 18px;

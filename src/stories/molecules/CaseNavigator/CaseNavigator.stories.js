@@ -525,7 +525,7 @@ export const KeyboardInteractionTest = {
   parameters: {
     docs: {
       description: {
-        story: 'Automated interaction test verifying focus management and keydown triggers (`Space` / `Enter`) on navigation controls.',
+        story: 'Automated interaction test verifying focus management and keydown triggers (`Space` / `Enter`) on navigation controls while the host remains the source of truth for `current-index`.',
       },
     },
   },
@@ -536,6 +536,11 @@ export const KeyboardInteractionTest = {
   play: async ({ canvasElement, step }) => {
     const navigator = canvasElement.querySelector('ds-case-navigator');
     const btnNext = navigator.shadowRoot.querySelector('.btn-next-case');
+    const nextEvents = [];
+
+    navigator.addEventListener('ds-case-next', (event) => {
+      nextEvents.push(event.detail?.index);
+    });
 
     await step('Focus next button via Tab and activate via Space/Enter', async () => {
       if (btnNext.shadowRoot && btnNext.shadowRoot.querySelector('button')) {
@@ -544,7 +549,8 @@ export const KeyboardInteractionTest = {
         btnNext.focus();
       }
       await userEvent.keyboard('[Space]');
-      expect(navigator.getAttribute('current-index')).toBe('2');
+      expect(nextEvents).toEqual([2]);
+      expect(navigator.getAttribute('current-index')).toBe('1');
     });
   },
 };

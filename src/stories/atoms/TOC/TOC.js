@@ -8,7 +8,8 @@ export class DsToc extends HTMLElement {
       'target-selector',
       'title-text',
       'aria-label',
-      'max-height'
+      'max-height',
+      'dir'
     ];
   }
 
@@ -101,6 +102,11 @@ export class DsToc extends HTMLElement {
   _observeRootAccessibility() {
     const root = this.ownerDocument.documentElement;
     const sync = () => {
+      const currentDir = this._resolveDirection();
+      this.setAttribute('dir', currentDir);
+      if (this.menuEl) {
+        this.menuEl.setAttribute('dir', currentDir);
+      }
       this.toggleAttribute('a11y-dark-mode', root.classList.contains('a11y-dark-mode'));
       this.toggleAttribute('a11y-high-contrast', root.classList.contains('a11y-high-contrast'));
       this.toggleAttribute('a11y-large-text', root.classList.contains('a11y-large-text'));
@@ -114,20 +120,48 @@ export class DsToc extends HTMLElement {
     this._themeObserver = new MutationObserver(sync);
     this._themeObserver.observe(root, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ['class', 'dir'],
     });
+  }
+
+  _resolveDirection() {
+    let node = this;
+
+    while (node) {
+      if (node instanceof HTMLElement) {
+        const dir = node.getAttribute('dir');
+        if (dir === 'rtl' || dir === 'ltr') return dir;
+      }
+
+      if (node.parentElement) {
+        node = node.parentElement;
+        continue;
+      }
+
+      const rootNode = node.getRootNode?.();
+      if (rootNode && rootNode.host instanceof HTMLElement) {
+        node = rootNode.host;
+        continue;
+      }
+
+      break;
+    }
+
+    return this.ownerDocument.documentElement.getAttribute('dir') || 'ltr';
   }
 
   updateAttributes() {
     const ariaLabel = this.getAttribute('aria-label') || 'Table of Contents';
     const titleText = this.getAttribute('title-text') ?? 'CONTENTS';
     const maxHeight = this.getAttribute('max-height') || 'min(380px, 70vh)';
+    const currentDir = this.getAttribute('dir') || 'ltr';
 
     this.style.setProperty('--ds-toc-max-height', maxHeight);
 
     if (this.menuEl) {
       // Pass max-height attribute down into ds-contextual-menu
       this.menuEl.setAttribute('max-height', maxHeight);
+      this.menuEl.setAttribute('dir', currentDir);
 
       if (titleText) {
         this.menuEl.setAttribute('header-text', titleText);
