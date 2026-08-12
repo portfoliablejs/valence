@@ -1,3 +1,9 @@
+## [1.0.4](https://github.com/portfoliablejs/valence/compare/v1.0.3...v1.0.4) (2026-08-12)
+
+### Bug Fixes
+
+* ci(deployments): split environments into Packages and Website ([c2d4577](https://github.com/portfoliablejs/valence/commit/c2d45771a48834ab56a67d4d7b94e8594d5078e6))
+
 ## [1.0.3](https://github.com/portfoliablejs/valence/compare/v1.0.2...v1.0.3) (2026-08-12)
 
 ### Bug Fixes
@@ -152,6 +158,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
