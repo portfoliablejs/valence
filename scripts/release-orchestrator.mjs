@@ -7,7 +7,7 @@ const shouldSign = process.env.RELEASE_SIGN === "true";
 
 const target = {
   key: "valence",
-  displayName: "@portfoliable/valence",
+  displayName: "@portfoliablejs/valence",
   packageJsonPath: "package.json",
   changelogPath: "CHANGELOG.md",
   tagPrefix: "v",

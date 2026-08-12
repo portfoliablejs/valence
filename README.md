@@ -1,17 +1,17 @@
-# @portfoliable/valence
+# @portfoliablejs/valence
 
 Valence is the web component design system used by Portfoliable.
 
 ## Install
 
 ```bash
-npm install @portfoliable/valence
+npm install @portfoliablejs/valence
 ```
 
 ## Usage
 
 ```js
-import '@portfoliable/valence';
+import '@portfoliablejs/valence';
 ```
 
 ## Local development
@@ -196,10 +196,10 @@ If Portfoliable maintainers are using npm link (instead of valence:local), valid
 - expect `installed: yes (local-link)`
 
 2. Confirm linked dependency includes new assets:
-- inspect `node_modules/@portfoliable/valence/src/stories/assets/mockups` and verify new AVIF files are present
+- inspect `node_modules/@portfoliablejs/valence/src/stories/assets/mockups` and verify new AVIF files are present
 
 3. Confirm linked dependency includes updated manifest:
-- inspect `node_modules/@portfoliable/valence/src/stories/atoms/Thumbnail/thumbnail-manifest.generated.js` and verify the new device entry exists
+- inspect `node_modules/@portfoliablejs/valence/src/stories/atoms/Thumbnail/thumbnail-manifest.generated.js` and verify the new device entry exists
 
 4. Confirm Portfoliable consumes linked assets:
 - run `npm run portfoliable-thumbnail-options -- --json`
@@ -247,7 +247,7 @@ If Portfoliable maintainers are consuming Valence from npm (no local link), veri
 
 1. Confirm published version contains your changes:
 - publish from Valence release workflow
-- run npm view @portfoliable/valence version and confirm expected version is live
+- run npm view @portfoliablejs/valence version and confirm expected version is live
 
 2. Confirm create-portfoliable resolves npm package mode:
 - from create-portfoliable, run npm run valence:status
@@ -255,15 +255,15 @@ If Portfoliable maintainers are consuming Valence from npm (no local link), veri
 - confirm installed version matches the published release
 
 3. If needed, align dependency range before install:
-- check create-portfoliable/package.json dependency range for @portfoliable/valence
+- check create-portfoliable/package.json dependency range for @portfoliablejs/valence
 - if published version is outside range, update range and reinstall
 
 4. Refresh consumer dependency:
 - run npm run valence:npm (or npm install)
 
 5. Confirm new assets and manifest exist in installed package:
-- inspect node_modules/@portfoliable/valence/src/stories/assets/mockups for the new AVIF files
-- inspect node_modules/@portfoliable/valence/src/stories/atoms/Thumbnail/thumbnail-manifest.generated.js for new entries
+- inspect node_modules/@portfoliablejs/valence/src/stories/assets/mockups for the new AVIF files
+- inspect node_modules/@portfoliablejs/valence/src/stories/atoms/Thumbnail/thumbnail-manifest.generated.js for new entries
 
 6. Confirm Portfoliable catalog and runtime:
 - run npm run portfoliable-thumbnail-options -- --json and verify selector presence
