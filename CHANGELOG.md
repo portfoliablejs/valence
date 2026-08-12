@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/portfoliablejs/valence/compare/v1.0.1...v1.0.2) (2026-08-12)
+
+### Bug Fixes
+
+* ci(release): publish valence to npm only ([70bb147](https://github.com/portfoliablejs/valence/commit/70bb147fb417e9429a3d6a69da63de7d80d5aec7))
+
 ## [1.0.1](https://github.com/portfoliablejs/valence/compare/v1.0.0-alpha...v1.0.1) (2026-08-12)
 
 ### Bug Fixes
@@ -140,6 +146,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
