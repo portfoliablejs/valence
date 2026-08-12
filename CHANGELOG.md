@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/portfoliablejs/valence/compare/v1.0.0-alpha...v1.0.1) (2026-08-12)
+
+### Bug Fixes
+
+* chore: rename package to @portfoliable/valence ([6ce7cc8](https://github.com/portfoliablejs/valence/commit/6ce7cc84d2dbdcc27f7eb9e9fc8ed7fee06a3ab1))
+
 ## [0.8.0](https://github.com/portfoliablejs/valence/compare/v0.7.0...v0.8.0) (2026-08-07)
 
 ### Features
@@ -134,6 +140,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
