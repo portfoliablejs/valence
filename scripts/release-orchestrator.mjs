@@ -125,11 +125,15 @@ function readCommits(range, paths) {
 }
 
 function bumpVersion(currentVersion, level) {
-  const [major, minor, patch] = currentVersion.split(".").map((part) => Number(part));
-
-  if ([major, minor, patch].some((part) => Number.isNaN(part))) {
+  // Supports prerelease strings (for example, 1.0.0-alpha) by parsing numeric core semver.
+  const match = String(currentVersion).match(/^(\d+)\.(\d+)\.(\d+)(?:[-+].*)?$/);
+  if (!match) {
     throw new Error(`Invalid semver version: ${currentVersion}`);
   }
+
+  const major = Number(match[1]);
+  const minor = Number(match[2]);
+  const patch = Number(match[3]);
 
   if (level === "major") {
     return `${major + 1}.0.0`;
