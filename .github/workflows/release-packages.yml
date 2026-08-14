@@ -4,12 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      dry_run:
-        description: Preview version bumps without writing commits, tags, or releases
-        type: boolean
-        default: false
 
 permissions:
   contents: write
@@ -110,7 +104,6 @@ jobs:
           echo "package=$PACKAGE_NAME"
           echo "registry=$(npm config get registry)"
           npm ping || true
-          npm whoami || true
           REGISTRY="$(npm config get registry)"
           if [ "$REGISTRY" != "https://registry.npmjs.org/" ] && [ "$REGISTRY" != "https://registry.npmjs.org" ]; then
             echo "Unexpected npm registry: $REGISTRY"
