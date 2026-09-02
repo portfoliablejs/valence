@@ -1,10 +1,13 @@
+import * as mermaidModule from 'mermaid';
+
+const mermaid = mermaidModule.default || mermaidModule;
+
 let mermaidLoaderPromise;
 
 async function getMermaid() {
   if (!mermaidLoaderPromise) {
-    mermaidLoaderPromise = import('mermaid').then((module) => {
-      const mermaidRuntime = module.default || module;
-      mermaidRuntime.initialize({
+    mermaidLoaderPromise = Promise.resolve().then(() => {
+      mermaid.initialize({
         startOnLoad: false,
         theme: 'default',
         fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif',
@@ -14,7 +17,7 @@ async function getMermaid() {
         },
       });
 
-      return mermaidRuntime;
+      return mermaid;
     });
   }
 
