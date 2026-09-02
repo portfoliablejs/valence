@@ -1,3 +1,9 @@
+## [1.0.7](https://github.com/portfoliablejs/valence/compare/v1.0.6...v1.0.7) (2026-09-02)
+
+### Bug Fixes
+
+* fix(mermaid): avoid default export binding ([f593b34](https://github.com/portfoliablejs/valence/commit/f593b34f7bea577eab15666891b3f93f089d525b))
+
 ## [1.0.6](https://github.com/portfoliablejs/valence/compare/v1.0.5...v1.0.6) (2026-09-02)
 
 ### Bug Fixes
@@ -170,6 +176,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
