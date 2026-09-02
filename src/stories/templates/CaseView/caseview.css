@@ -61,7 +61,7 @@
 }
 
 :host([data-mobile-breakpoint="true"]) .article-scroll {
-  overflow-y: auto;
+  overflow-y: visible;
   overflow-x: hidden;
 }
 
