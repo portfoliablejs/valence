@@ -1,3 +1,9 @@
+## [1.0.12](https://github.com/portfoliablejs/valence/compare/v1.0.11...v1.0.12) (2026-09-02)
+
+### Bug Fixes
+
+* fix(docs): clarify thumbnail maintainer guide ([78d9dae](https://github.com/portfoliablejs/valence/commit/78d9daeb98faf09406ddece39178a9383c77565b))
+
 ## [1.0.11](https://github.com/portfoliablejs/valence/compare/v1.0.10...v1.0.11) (2026-09-02)
 
 ### Bug Fixes
@@ -214,6 +220,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
