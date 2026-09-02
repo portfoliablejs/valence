@@ -1,3 +1,15 @@
+## [1.0.6](https://github.com/portfoliablejs/valence/compare/v1.0.5...v1.0.6) (2026-09-02)
+
+### Bug Fixes
+
+* fix(mermaid): use static module import ([2ff7a68](https://github.com/portfoliablejs/valence/commit/2ff7a68106261fbceb8e0305859e23a0a00497d2))
+
+## [1.0.5](https://github.com/portfoliablejs/valence/compare/v1.0.4...v1.0.5) (2026-08-14)
+
+### Bug Fixes
+
+* fix: restore trusted publisher npm flow ([1ce4b45](https://github.com/portfoliablejs/valence/commit/1ce4b45976dd9563035a40f1e150d67a1d8c78b1))
+
 ## [1.0.4](https://github.com/portfoliablejs/valence/compare/v1.0.3...v1.0.4) (2026-08-12)
 
 ### Bug Fixes
@@ -158,6 +170,8 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
+
 
 
 
