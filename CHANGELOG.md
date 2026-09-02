@@ -1,3 +1,10 @@
+## [1.0.10](https://github.com/portfoliablejs/valence/compare/v1.0.9...v1.0.10) (2026-09-02)
+
+### Bug Fixes
+
+* fix(mermaid): center nested label content ([0d6c5de](https://github.com/portfoliablejs/valence/commit/0d6c5deaaf02cecda51d2c4ea1fbdf4e6b6f10ad))
+* fix(mermaid): keep labels aligned in vectors ([0cc878b](https://github.com/portfoliablejs/valence/commit/0cc878b273a058be5c4f2f0502dcc644500b8d00))
+
 ## [1.0.9](https://github.com/portfoliablejs/valence/compare/v1.0.8...v1.0.9) (2026-09-02)
 
 ### Bug Fixes
@@ -201,6 +208,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
