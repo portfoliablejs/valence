@@ -522,35 +522,18 @@ ds-tooltip {
 :host([data-mobile-breakpoint="true"]) ::slotted(dl),
 :host([data-mobile-breakpoint="true"]) ::slotted(figure),
 :host([data-mobile-breakpoint="true"]) ::slotted(table),
+:host([data-mobile-breakpoint="true"]) ::slotted(img),
 :host([data-mobile-breakpoint="true"]) ::slotted(video),
 ds-article[data-mobile-breakpoint="true"] pre,
 ds-article[data-mobile-breakpoint="true"] dl,
 ds-article[data-mobile-breakpoint="true"] figure,
 ds-article[data-mobile-breakpoint="true"] table,
+ds-article[data-mobile-breakpoint="true"] img,
 ds-article[data-mobile-breakpoint="true"] video {
   width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
   max-width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
   margin-left: var(--ds-article-mobile-side-padding, 16px) !important;
   margin-right: var(--ds-article-mobile-side-padding, 16px) !important;
-  box-sizing: border-box;
-}
-
-:host([data-mobile-breakpoint="true"]) ::slotted(img:not([style*="height"])),
-ds-article[data-mobile-breakpoint="true"] img:not([style*="height"]) {
-  width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
-  max-width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
-  margin-left: var(--ds-article-mobile-side-padding, 16px) !important;
-  margin-right: var(--ds-article-mobile-side-padding, 16px) !important;
-  box-sizing: border-box;
-}
-
-:host([data-mobile-breakpoint="true"]) ::slotted(img[style*="height"]),
-ds-article[data-mobile-breakpoint="true"] img[style*="height"] {
-  width: auto !important;
-  max-width: none !important;
-  height: auto;
-  margin-left: auto !important;
-  margin-right: auto !important;
   box-sizing: border-box;
 }
 

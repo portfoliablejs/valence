@@ -25,12 +25,12 @@
 
 .gallery-viewport {
     width: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-x: visible;
+    overflow-y: visible;
     cursor: grab;
     user-select: none;
     -webkit-user-select: none;
-    touch-action: pan-x;
+    touch-action: pan-y;
     box-sizing: border-box;
 }
 
