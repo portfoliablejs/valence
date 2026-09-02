@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/portfoliablejs/valence/compare/v1.0.7...v1.0.8) (2026-09-02)
+
+### Bug Fixes
+
+* fix(mermaid): resolve main import conflict ([77c49c3](https://github.com/portfoliablejs/valence/commit/77c49c32c4d20004f4203f3eb7da051a7a548db9))
+* fix(mermaid): keep runtime import lazy ([f2b3599](https://github.com/portfoliablejs/valence/commit/f2b359993aa71f47c6feb52fa9ba209593a3db8b))
+
 ## Unreleased
 
 ### Bug Fixes
@@ -182,6 +189,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
