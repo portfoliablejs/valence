@@ -1,3 +1,9 @@
+## [1.0.9](https://github.com/portfoliablejs/valence/compare/v1.0.8...v1.0.9) (2026-09-02)
+
+### Bug Fixes
+
+* fix(mermaid): remove static module import ([bb62f22](https://github.com/portfoliablejs/valence/commit/bb62f2296fad8545a224600910d9d10746f4bc13))
+
 ## Unreleased
 
 ### Bug Fixes
@@ -195,6 +201,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
