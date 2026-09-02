@@ -22,6 +22,11 @@ const config = {
     backgrounds: false,
   },
 
+  viteFinal: async (config) => ({
+    ...config,
+    base: process.env.STORYBOOK_BASE_PATH || './',
+  }),
+
   "framework": "@storybook/web-components-vite"
 };
 export default config;
