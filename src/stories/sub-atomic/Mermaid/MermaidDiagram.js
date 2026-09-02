@@ -1,3 +1,5 @@
+import mermaidCss from './mermaid.css?raw';
+
 let mermaidLoaderPromise;
 
 async function getMermaid() {
@@ -30,7 +32,7 @@ export class MermaidDiagram extends HTMLElement {
     try {
       const mermaid = await getMermaid();
       const { svg } = await mermaid.render(id, rawChart);
-      this.innerHTML = svg;
+      this.innerHTML = `<style>${mermaidCss}</style>${svg}`;
     } catch (error) {
       console.error('Mermaid rendering failed:', error);
       const fallbackText = String(this.getAttribute('error-text') || '').trim() || 'Unable to render diagram.';
