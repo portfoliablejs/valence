@@ -24,7 +24,7 @@ npm run preview
 
 ## Thumbnail Mockup Maintainer Guide
 
-This section documents how maintainers add or update device families used by ds-thumbnail.
+This section documents how maintainers add or update device families used by the thumbnail components.
 
 ### Supported file types
 
