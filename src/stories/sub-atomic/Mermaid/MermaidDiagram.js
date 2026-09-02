@@ -1,3 +1,7 @@
+import * as mermaidModule from 'mermaid';
+
+const mermaid = mermaidModule.default || mermaidModule;
+
 let mermaidLoaderPromise;
 
 async function getMermaid() {
