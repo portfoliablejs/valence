@@ -1,3 +1,9 @@
+## Unreleased
+
+### Bug Fixes
+
+* fix Mermaid loading in Vite development consumers by keeping the Mermaid module out of the initial static import graph
+
 ## [1.0.4](https://github.com/portfoliablejs/valence/compare/v1.0.3...v1.0.4) (2026-08-12)
 
 ### Bug Fixes

@@ -3,7 +3,7 @@ let mermaidLoaderPromise;
 async function getMermaid() {
   if (!mermaidLoaderPromise) {
     mermaidLoaderPromise = import('mermaid').then((module) => {
-      const mermaidRuntime = module.default || module;
+      const mermaidRuntime = module.default ?? module;
       mermaidRuntime.initialize({
         startOnLoad: false,
         theme: 'default',
