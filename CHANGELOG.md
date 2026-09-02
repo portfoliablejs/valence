@@ -1,3 +1,9 @@
+## [1.0.11](https://github.com/portfoliablejs/valence/compare/v1.0.10...v1.0.11) (2026-09-02)
+
+### Bug Fixes
+
+* fix: improve mobile layout behavior ([6d486ef](https://github.com/portfoliablejs/valence/commit/6d486efc58b6fc80c935d92246ad808d9a9905af))
+
 ## [1.0.10](https://github.com/portfoliablejs/valence/compare/v1.0.9...v1.0.10) (2026-09-02)
 
 ### Bug Fixes
@@ -208,6 +214,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
