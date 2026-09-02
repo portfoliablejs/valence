@@ -199,9 +199,17 @@
   }
 
   .thumbnail-shell ds-thumbnail {
+    width: 100%;
     max-width: var(--player-view-thumbnail-width, 390px);
+    max-width: 100%;
     max-height: var(--player-view-thumbnail-height, min(72vh, 600px));
   }
+}
+
+:host([data-mobile-breakpoint="true"]) .thumbnail-shell,
+:host([data-mobile-breakpoint="true"]) .thumbnail-shell ds-thumbnail {
+  width: 100%;
+  max-width: 100%;
 }
 
 :host([data-mobile-breakpoint="true"]) .subtitle-layer {
