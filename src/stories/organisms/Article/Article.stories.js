@@ -197,6 +197,15 @@ const mockParsedMarkdown = `
   <figcaption>Figure 1.2: Architecture blueprint showing DOM propagation flow and event listener boundaries.</figcaption>
 </figure>
 
+<figure>
+  <img
+    src="https://picsum.photos/480/900"
+    alt="Portrait layout sizing test"
+    style="width: min(100%, 360px); max-width: 100%; max-height: 520px; height: auto; object-fit: contain;"
+  />
+  <figcaption>Figure 1.3: Portrait image with an author-controlled responsive size.</figcaption>
+</figure>
+
 <hr />
 
 <h2 id="sec-code-execution-samples">Code Execution Samples (10 Languages Test Suite)</h2>
