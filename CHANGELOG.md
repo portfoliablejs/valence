@@ -1,3 +1,10 @@
+## [1.0.13](https://github.com/portfoliablejs/valence/compare/v1.0.12...v1.0.13) (2026-09-03)
+
+### Bug Fixes
+
+* fix(article): contain large cover thumbnails ([2083f02](https://github.com/portfoliablejs/valence/commit/2083f02f4236594d7016f559c74e5576279f89bd))
+* test(article): add portrait image sizing fixture ([66fbdc8](https://github.com/portfoliablejs/valence/commit/66fbdc8cc97e2d2350eea29b741da8e290f03b5b))
+
 ## [1.0.12](https://github.com/portfoliablejs/valence/compare/v1.0.11...v1.0.12) (2026-09-02)
 
 ### Bug Fixes
@@ -220,6 +227,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
