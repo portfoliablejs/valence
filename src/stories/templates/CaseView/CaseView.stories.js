@@ -82,10 +82,10 @@ export default {
         show-navigator=${args.showNavigator ? 'true' : 'false'}>
         <ds-thumbnail
           slot="cover"
-          category="mobile"
+          category="desktop"
           brand="apple"
-          model="Apple iPhone 15"
-          color="Natural Titanium"
+          model="Apple MacBook Air M5"
+          color="Apple iMac 24 Silver"
           screen-image="https://picsum.photos/1000/620">
         </ds-thumbnail>
 
