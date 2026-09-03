@@ -273,7 +273,7 @@ export class PlayerView extends HTMLElement {
 
     return this.getAttribute('data-mobile-breakpoint') === 'true'
       ? 'min(calc(100vw - 32px), 390px)'
-      : 'min(calc(100vw - 32px), 720px)';
+      : 'min(calc(100vw - 32px), 828px)';
   }
 
   get thumbnailHeight() {
@@ -282,7 +282,7 @@ export class PlayerView extends HTMLElement {
 
     return this.getAttribute('data-mobile-breakpoint') === 'true'
       ? 'min(calc((100vw - 32px) * 0.606), 237px)'
-      : 'min(calc((100vw - 32px) * 0.606), 436px)';
+      : 'min(calc((100vw - 32px) * 0.606), 501px)';
   }
 
   get controlsWidth() {
