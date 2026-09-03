@@ -1,3 +1,9 @@
+## [1.0.15](https://github.com/portfoliablejs/valence/compare/v1.0.14...v1.0.15) (2026-09-03)
+
+### Bug Fixes
+
+* fix(playerview): size consumer thumbnails responsively ([7aa418f](https://github.com/portfoliablejs/valence/commit/7aa418f4274da879df9ae2d0a4621b2857891c99))
+
 ## [1.0.14](https://github.com/portfoliablejs/valence/compare/v1.0.13...v1.0.14) (2026-09-03)
 
 ### Bug Fixes
@@ -233,6 +239,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
