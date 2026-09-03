@@ -268,11 +268,21 @@ export class PlayerView extends HTMLElement {
   }
 
   get thumbnailWidth() {
-    return this.getAttribute('thumbnail-width') || '390px';
+    const configuredWidth = this.getAttribute('thumbnail-width');
+    if (configuredWidth) return configuredWidth;
+
+    return this.getAttribute('data-mobile-breakpoint') === 'true'
+      ? 'min(calc(100vw - 32px), 390px)'
+      : 'min(calc(100vw - 32px), 720px)';
   }
 
   get thumbnailHeight() {
-    return this.getAttribute('thumbnail-height') || 'min(72vh, 600px)';
+    const configuredHeight = this.getAttribute('thumbnail-height');
+    if (configuredHeight) return configuredHeight;
+
+    return this.getAttribute('data-mobile-breakpoint') === 'true'
+      ? 'min(calc((100vw - 32px) * 0.606), 237px)'
+      : 'min(calc((100vw - 32px) * 0.606), 436px)';
   }
 
   get controlsWidth() {
