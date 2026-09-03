@@ -66,13 +66,11 @@ button.has-image {
 button:focus {
   outline: var(--a11y-focus-outline, none);
   outline-offset: var(--a11y-focus-offset, 0);
-  border-radius: var(--radius-sm);
 }
 
 button:focus-visible {
   outline: var(--a11y-focus-outline, 3px solid var(--color-accent));
   outline-offset: var(--a11y-focus-offset, 2px);
-  border-radius: var(--radius-sm);
 }
 
 /* Hover Scale Feedback for Interactive Buttons */
