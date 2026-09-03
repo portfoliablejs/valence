@@ -2,8 +2,9 @@ import { html } from 'lit';
 import { expect, fn } from 'storybook/test';
 import './PlayerView.js';
 import { DEVICE_CATALOG } from '../../atoms/Thumbnail/Thumbnail.js';
+import templateVideoUrl from './template-video.mp4';
 
-const DEFAULT_VIDEO_SRC = 'https://cdn.pixabay.com/video/2023/07/12/171274-845168276_tiny.mp4';
+const DEFAULT_VIDEO_SRC = templateVideoUrl;
 const DEFAULT_SUBTITLE_SRC = 'data:text/vtt,WEBVTT%0A%0A00:00.000%20--%3E%2000:04.000%0APlayerView%20demo%20captions%0A%0A00:04.000%20--%3E%2000:08.000%0ASeek%20and%20play%20controls%20stay%20in%20sync';
 const CATEGORY_OPTIONS = Object.keys(DEVICE_CATALOG || {});
 
@@ -78,14 +79,14 @@ export default {
     autoplay: false,
     loop: false,
     stageGap: 'clamp(10px, 1.6vw, 18px)',
-    thumbnailWidth: '390px',
-    thumbnailHeight: 'min(72vh, 600px)',
+    thumbnailWidth: 'min(calc(100vw - 32px), 720px)',
+    thumbnailHeight: 'min(calc((100vw - 32px) * 0.606), 436px)',
     controlsWidth: '220px',
     viewportPadding: 'clamp(64px, 8vh, 96px)',
-    category: 'mobile',
+    category: 'desktop',
     brand: 'apple',
-    model: 'Apple iPhone 13',
-    color: 'Midnight',
+    model: 'Apple MacBook Air M5',
+    color: 'Apple iMac 24 Silver',
     deviceSrc: '',
     customOnly: false,
   },
