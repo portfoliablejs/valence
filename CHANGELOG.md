@@ -1,3 +1,9 @@
+## [1.0.16](https://github.com/portfoliablejs/valence/compare/v1.0.15...v1.0.16) (2026-09-03)
+
+### Bug Fixes
+
+* fix(playerview): enlarge desktop devices and preserve button radius ([dc00502](https://github.com/portfoliablejs/valence/commit/dc005026cb05fe4587c80fd32d82dbe21ef8a7c9))
+
 ## [1.0.15](https://github.com/portfoliablejs/valence/compare/v1.0.14...v1.0.15) (2026-09-03)
 
 ### Bug Fixes
@@ -239,6 +245,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
