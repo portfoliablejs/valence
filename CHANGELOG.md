@@ -1,3 +1,9 @@
+## [1.0.14](https://github.com/portfoliablejs/valence/compare/v1.0.13...v1.0.14) (2026-09-03)
+
+### Bug Fixes
+
+* test(playerview): add responsive desktop video fixture ([6005fe9](https://github.com/portfoliablejs/valence/commit/6005fe9811241f081edcf9bfcece8aa41ef50508))
+
 ## [1.0.13](https://github.com/portfoliablejs/valence/compare/v1.0.12...v1.0.13) (2026-09-03)
 
 ### Bug Fixes
@@ -227,6 +233,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
