@@ -23,7 +23,8 @@
     "node": ">=18"
   },
   "sideEffects": [
-    "**/*.css"
+    "**/*.css",
+    "**/*.js"
   ],
   "main": "src/main.js",
   "exports": {
