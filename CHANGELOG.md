@@ -1,3 +1,9 @@
+## [1.0.17](https://github.com/portfoliablejs/valence/compare/v1.0.16...v1.0.17) (2026-10-27)
+
+### Bug Fixes
+
+* fix: preserve custom element registrations ([dfb6891](https://github.com/portfoliablejs/valence/commit/dfb68912631fea423167e798f91151b6e31baa88))
+
 ## [1.0.16](https://github.com/portfoliablejs/valence/compare/v1.0.15...v1.0.16) (2026-09-03)
 
 ### Bug Fixes
@@ -245,6 +251,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
