@@ -1,3 +1,9 @@
+## [1.0.21](https://github.com/portfoliablejs/valence/compare/v1.0.20...v1.0.21) (2026-10-28)
+
+### Bug Fixes
+
+* fix: prevent Mermaid arrows from rendering oversized fills ([210fc17](https://github.com/portfoliablejs/valence/commit/210fc17ef14d95950d7e5b5534941734017b2208))
+
 ## [1.0.20](https://github.com/portfoliablejs/valence/compare/v1.0.19...v1.0.20) (2026-10-28)
 
 ### Bug Fixes
@@ -269,6 +275,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
