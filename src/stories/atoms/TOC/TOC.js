@@ -271,6 +271,7 @@ export class DsToc extends HTMLElement {
     if (!this.minimapEl || !this.menuEl) return;
 
     // 1. Render Thin Apple-style Minimap Lines
+    const topLabel = this.getAttribute('top-label') ?? 'Top of the page';
     const topIsSelected = this._activeId === 'scroll-top';
     const headingLines = this._items.map((item) => {
       const labelText = item.label || item.text || '';

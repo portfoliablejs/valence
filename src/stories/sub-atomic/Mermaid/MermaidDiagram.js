@@ -80,7 +80,12 @@ export class MermaidDiagram extends HTMLElement {
         themeVariables: this._getThemeVariables()
       });
       const { svg } = await mermaid.render(id, this._rawChart);
-      this.innerHTML = `<style>${mermaidCss}</style>${svg}`;
+      this.replaceChildren();
+      const style = document.createElement('style');
+      style.textContent = mermaidCss;
+      this.append(style);
+      this.insertAdjacentHTML('beforeend', svg);
+      this._applyThemeStyles();
     } catch (error) {
       console.error('Mermaid rendering failed:', error);
       const fallbackText = String(this.getAttribute('error-text') || '').trim() || 'Unable to render diagram.';
@@ -91,6 +96,27 @@ export class MermaidDiagram extends HTMLElement {
         composed: true
       }));
     }
+
+  }
+
+  _applyThemeStyles() {
+      const variables = this._getThemeVariables();
+      this.querySelectorAll('.node rect, .node circle, .node polygon, .node path, .actor').forEach((element) => {
+        element.style.setProperty('fill', variables.primaryColor, 'important');
+        element.style.setProperty('stroke', variables.primaryBorderColor, 'important');
+      });
+      this.querySelectorAll('.cluster rect').forEach((element) => {
+        element.style.setProperty('fill', variables.secondaryColor, 'important');
+        element.style.setProperty('stroke', variables.primaryBorderColor, 'important');
+      });
+      this.querySelectorAll('.label text, .node foreignObject, .actor text, .messageText, .labelText, text').forEach((element) => {
+        element.style.setProperty('fill', variables.primaryTextColor, 'important');
+        element.style.setProperty('color', variables.primaryTextColor, 'important');
+      });
+      this.querySelectorAll('.edgePath .path, .flowchart-link, .marker, marker path').forEach((element) => {
+        element.style.setProperty('stroke', variables.lineColor, 'important');
+        element.style.setProperty('fill', variables.lineColor, 'important');
+      });
   }
 }
 

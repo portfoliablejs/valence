@@ -8,11 +8,12 @@
     --gallery-drag-scale: 0.95;
     transform: translateZ(0) scale(1);
     transform-origin: center center;
-    will-change: transform;
+    will-change: auto;
 }
 
 :host(.is-dragging) {
     transform: translateZ(0) scale(var(--gallery-drag-scale));
+    will-change: transform;
 }
 
 :host([a11y-reduce-motion]) {
@@ -41,7 +42,10 @@
 .gallery-track {
     display: flex;
     align-items: flex-end;
-    gap: var(--gallery-item-gap, clamp(36px, 4.52vw, 81px));
+    gap: var(
+        --gallery-item-gap,
+        var(--gallery-item-gap-desktop, clamp(36px, 4.52vw, 81px))
+    );
     width: max-content;
     will-change: transform;
     transform: translate3d(0, 0, 0);
@@ -56,4 +60,10 @@
 :host([a11y-reduce-motion]) .gallery-viewport,
 :host([a11y-reduce-motion]) .gallery-track.is-dragging {
     transition: none !important;
+}
+
+@media (max-width: 1200px) {
+    .gallery-track {
+        gap: var(--gallery-item-gap, var(--gallery-item-gap-mobile, clamp(23px, 2.94vw, 50px)));
+    }
 }

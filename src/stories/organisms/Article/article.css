@@ -36,6 +36,7 @@
   gap: var(--ds-article-header-gap, var(--space-md, 12px));
   width: min(100%, var(--ds-article-copy-width, 80%));
   max-width: min(100%, var(--ds-article-copy-width, 80%));
+  min-width: 0;
   align-self: center;
   text-align: left;
 }
@@ -48,6 +49,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--ds-article-title-gap, var(--space-sm, 8px));
+  min-width: 0;
 }
 
 .kicker-text {
@@ -65,6 +67,7 @@
   letter-spacing: -0.04em;
   color: var(--ds-article-title-color, var(--color-black, #000000));
   margin: 0;
+  min-width: 0;
 }
 
 .article-subtitle {
@@ -75,6 +78,7 @@
   color: var(--ds-article-subtitle-color, var(--color-gray-dark, #3f3f46));
   margin: 0;
   max-width: var(--ds-article-subtitle-max-width, min(48rem, 100%));
+  min-width: 0;
 }
 
 .social-actions {
@@ -82,6 +86,7 @@
   align-items: center;
   gap: var(--ds-article-social-gap, 24px);
   margin-block: calc(var(--ds-button-size, 18px) * 0.5);
+  min-width: 0;
 }
 
 :host([dir="rtl"]) .social-actions {
@@ -104,6 +109,7 @@
   flex-wrap: wrap;
   gap: var(--space-sm, 8px);
   margin-top: var(--space-xs, 4px);
+  min-width: 0;
 }
 
 :host([dir="rtl"]) .main-actions {
@@ -280,6 +286,12 @@ ds-tooltip {
   align-self: stretch;
 }
 
+.article-body ::slotted(p.media-paragraph) {
+  width: var(--ds-article-media-width, 100%);
+  max-width: var(--ds-article-media-width, 100%);
+  align-self: stretch;
+}
+
 @media (max-width: 860px) {
   .article-title {
     font-size: 32px;
@@ -337,6 +349,27 @@ ds-tooltip {
     box-sizing: border-box;
   }
 
+  ::slotted(.article-table-scroll),
+  .article-body > .article-table-scroll {
+    width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
+    max-width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
+    min-width: 0;
+    align-self: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-left: var(--ds-article-mobile-side-padding, 16px);
+    padding-right: var(--ds-article-mobile-side-padding, 16px);
+    box-sizing: content-box;
+  }
+
+
+
+
+
   .title-block,
   .main-actions,
   .social-actions {
@@ -352,6 +385,13 @@ ds-tooltip {
     word-break: break-word;
   }
 
+  .article-title,
+  .article-subtitle,
+  .main-actions,
+  .social-actions {
+    min-width: 0;
+  }
+
   .main-actions {
     row-gap: 8px;
   }
@@ -362,6 +402,21 @@ ds-tooltip {
 
   .main-actions .tooltip-wrapper ds-button {
     max-width: 100%;
+  }
+
+  .article-body p code,
+  .article-body li code,
+  .article-body td code,
+  .article-body th code,
+  .article-body span code,
+  ds-article p code,
+  ds-article li code,
+  ds-article td code,
+  ds-article th code,
+  ds-article span code {
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
   }
 
   .article-cover-container,
@@ -487,6 +542,29 @@ ds-tooltip {
   max-width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2));
 }
 
+:host([data-mobile-breakpoint="true"]) ::slotted(table),
+:host([data-mobile-breakpoint="true"]) .article-body > table,
+ds-article[data-mobile-breakpoint="true"] table {
+  width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
+  max-width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
+  min-width: 0 !important;
+  margin-left: var(--ds-article-mobile-side-padding, 16px) !important;
+  margin-right: var(--ds-article-mobile-side-padding, 16px) !important;
+  box-sizing: border-box !important;
+}
+
+:host([data-mobile-breakpoint="true"]) ::slotted(.article-table-scroll),
+:host([data-mobile-breakpoint="true"]) .article-body > .article-table-scroll,
+ds-article[data-mobile-breakpoint="true"] .article-table-scroll {
+  width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
+  max-width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: var(--ds-article-mobile-side-padding, 16px);
+  padding-right: var(--ds-article-mobile-side-padding, 16px);
+  box-sizing: content-box;
+}
+
 :host([data-mobile-breakpoint="true"]) .article-body {
   margin-top: var(--ds-article-mobile-body-margin-top, -8px);
   padding-top: var(--ds-article-mobile-body-padding-top, 0);
@@ -535,6 +613,7 @@ ds-tooltip {
 :host([data-mobile-breakpoint="true"]) ::slotted(pre),
 :host([data-mobile-breakpoint="true"]) ::slotted(dl),
 :host([data-mobile-breakpoint="true"]) ::slotted(figure),
+:host([data-mobile-breakpoint="true"]) ::slotted(.article-table-scroll),
 :host([data-mobile-breakpoint="true"]) ::slotted(table),
 :host([data-mobile-breakpoint="true"]) ::slotted(img),
 :host([data-mobile-breakpoint="true"]) ::slotted(p.media-paragraph),
@@ -542,6 +621,7 @@ ds-tooltip {
 ds-article[data-mobile-breakpoint="true"] pre,
 ds-article[data-mobile-breakpoint="true"] dl,
 ds-article[data-mobile-breakpoint="true"] figure,
+ds-article[data-mobile-breakpoint="true"] .article-table-scroll,
 ds-article[data-mobile-breakpoint="true"] table,
 ds-article[data-mobile-breakpoint="true"] img,
 ds-article[data-mobile-breakpoint="true"] p.media-paragraph,
@@ -551,6 +631,20 @@ ds-article[data-mobile-breakpoint="true"] video {
   margin-left: var(--ds-article-mobile-side-padding, 16px) !important;
   margin-right: var(--ds-article-mobile-side-padding, 16px) !important;
   box-sizing: border-box;
+}
+
+/* Let the horizontal table viewport reach the article edges instead of
+   revealing a side strip while its wider content is being scrolled. */
+:host([data-mobile-breakpoint="true"]) ::slotted(.article-table-scroll),
+:host([data-mobile-breakpoint="true"]) .article-body > .article-table-scroll,
+ds-article[data-mobile-breakpoint="true"] .article-table-scroll {
+  width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
+  max-width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: var(--ds-article-mobile-side-padding, 16px);
+  padding-right: var(--ds-article-mobile-side-padding, 16px);
+  box-sizing: content-box;
 }
 
 :host([data-mobile-breakpoint="true"]) ::slotted(dd),
@@ -1323,9 +1417,40 @@ ds-article pre .token.cdata {
 ds-article pre .token.keyword,
 ds-article pre .token.atrule,
 ds-article pre .token.macro,
-ds-article pre .token.directive-hash {
+ds-article pre .token.directive-hash,
+ds-article pre .token.title,
+ds-article pre .token.list-punctuation,
+ds-article pre .token.hr {
   color: #D73A49 !important;
   font-weight: 600 !important;
+}
+
+ds-article pre .token.title,
+ds-article pre .token.bold {
+  color: #D73A49 !important;
+  font-weight: 700 !important;
+}
+
+ds-article pre .token.italic {
+  color: #6F42C1 !important;
+  font-style: italic !important;
+}
+
+ds-article pre .token.url,
+ds-article pre .token.link,
+ds-article pre .token.punctuation {
+  color: #005CC5 !important;
+}
+
+ds-article pre .token.code,
+ds-article pre .token.code-span,
+ds-article pre .token.blockquote {
+  color: #032F62 !important;
+}
+
+ds-article pre .token.list-punctuation,
+ds-article pre .token.hr {
+  color: #D73A49 !important;
 }
 
 ds-article pre .token.function,
@@ -1384,7 +1509,10 @@ ds-article pre .token.punctuation {
 
 ::slotted(table),
 ds-article table {
-  width: var(--ds-article-table-width, 100%) !important;
+  width: var(--ds-article-table-width, var(--ds-article-media-width, 100%)) !important;
+  max-width: var(--ds-article-media-width, 100%) !important;
+  min-width: 0 !important;
+  padding: 0 !important;
   border-collapse: separate !important;
   border-spacing: 0 !important;
   margin: var(--ds-article-table-margin, var(--space-xl, 24px) 0) !important;
@@ -1397,6 +1525,16 @@ ds-article table {
   border: var(--ds-article-table-border-width, var(--border-width-thin, 1px)) var(--border-style-solid, solid) var(--ds-article-table-border-color, var(--color-card-border, rgba(0, 0, 0, 0.15))) !important;
   border-radius: var(--ds-article-table-radius, var(--radius-md, 8px)) !important;
   overflow: hidden !important;
+}
+
+/* Tables belong to the same wide media track as summaries and code blocks. */
+.article-body > table,
+.article-body ::slotted(table),
+.article-body > :is(table) {
+  width: var(--ds-article-table-width, var(--ds-article-media-width, 100%)) !important;
+  max-width: var(--ds-article-media-width, 100%) !important;
+  min-width: 0 !important;
+  align-self: stretch;
 }
 
 ds-article table th,
@@ -1418,7 +1556,7 @@ ds-article table th {
 }
 
 ds-article table tbody tr:hover {
-  background-color: var(--ds-article-table-hover-bg, rgba(0, 0, 0, var(--opacity-faint, 0.04))) !important;
+  background-color: inherit !important;
 }
 
 ds-article table tr:last-child td {
@@ -1688,7 +1826,7 @@ ds-article[a11y-dark-mode] table th {
 
 html.a11y-dark-mode ds-article table tbody tr:hover,
 ds-article[a11y-dark-mode] table tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.05) !important;
+  background-color: inherit !important;
 }
 
 /* Dark Mode Links (Softer than default accent blue) */

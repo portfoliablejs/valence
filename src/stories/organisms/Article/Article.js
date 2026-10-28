@@ -20,6 +20,7 @@ import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-go';
 import 'prismjs/components/prism-ruby';
 import 'prismjs/components/prism-yaml';
+import 'prismjs/components/prism-markdown';
 
 const Prism = globalThis.Prism;
 
@@ -240,11 +241,30 @@ export class Article extends HTMLElement {
   }
 
   _protectContentImages() {
-    this.querySelectorAll('img').forEach((image) => {
+    const assignedElements = [];
+    this.shadowRoot.querySelectorAll('slot').forEach((slot) => {
+      slot.assignedElements({ flatten: true }).forEach((element) => {
+        assignedElements.push(element);
+        element.querySelectorAll?.('*').forEach((child) => assignedElements.push(child));
+      });
+    });
+
+    assignedElements
+      .flatMap((element) => element.tagName === 'IMG' ? [element] : [...element.querySelectorAll?.('img') || []])
+      .forEach((image) => {
       image.setAttribute('draggable', 'false');
+      if (image.parentElement?.classList.contains('media-paragraph')) {
+        image.classList.add('article-media-image');
+        image.parentElement.style.width = 'var(--ds-article-media-width, 100%)';
+        image.parentElement.style.maxWidth = 'var(--ds-article-media-width, 100%)';
+        image.style.width = '100%';
+        image.style.maxWidth = '100%';
+        image.style.height = 'auto';
+        image.style.display = 'block';
+      }
       image.removeEventListener('dragstart', this._preventImageDrag);
       image.addEventListener('dragstart', this._preventImageDrag, { once: false });
-    });
+      });
   }
 
   _preventImageDrag(event) {
@@ -281,7 +301,7 @@ export class Article extends HTMLElement {
         'sh': 'bash',
         'shell': 'bash'
       };
-      return normalize[alias] || alias;
+      return normalize[alias] || (alias === 'md' ? 'markdown' : alias);
     }
 
     const code = codeText.trim();
@@ -317,7 +337,9 @@ export class Article extends HTMLElement {
       java: 'Java',
       go: 'Go',
       ruby: 'Ruby',
-      yaml: 'YAML'
+      yaml: 'YAML',
+      markdown: 'Markdown',
+      md: 'Markdown'
     };
     return map[alias] || alias.toUpperCase();
   }

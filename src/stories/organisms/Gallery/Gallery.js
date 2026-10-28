@@ -412,6 +412,13 @@ export class Gallery extends HTMLElement {
         return Array.from(this.track?.querySelectorAll('ds-gallery-item') || []);
     }
 
+    _refreshGalleryThumbnailComposition() {
+        this._getGalleryItems().forEach((item) => {
+            const thumbnail = item.shadowRoot?.querySelector('ds-thumbnail');
+            thumbnail?.refreshComposition?.();
+        });
+    }
+
     _getItemThumb(item) {
         return item?.shadowRoot?.querySelector('.case-thumb-wrapper') || null;
     }
@@ -592,7 +599,9 @@ export class Gallery extends HTMLElement {
 
         if (this._isDragScaleActive) {
             this._isDragScaleActive = false;
-            this._animateDragScale(1, this._getDragScale());
+            this._animateDragScale(1, this._getDragScale(), () => {
+                this._refreshGalleryThumbnailComposition();
+            });
         }
 
         const engine = this._getEngineConfig();
@@ -741,7 +750,7 @@ export class Gallery extends HTMLElement {
         return this._cachedDragScale;
     }
 
-    _animateDragScale(toScale, fromScale) {
+    _animateDragScale(toScale, fromScale, onFinish = null) {
         if (this._scaleAnimation) {
             this._scaleAnimation.cancel();
             this._scaleAnimation = null;
@@ -762,6 +771,7 @@ export class Gallery extends HTMLElement {
         this._scaleAnimation = animation;
         animation.addEventListener('finish', () => {
             if (this._scaleAnimation === animation) this._scaleAnimation = null;
+            onFinish?.();
         }, { once: true });
     }
 
