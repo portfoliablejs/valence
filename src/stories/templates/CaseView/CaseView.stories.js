@@ -7,7 +7,6 @@ import '../../molecules/Summary/Summary.js';
 import '../../molecules/AudioPlayer/AudioPlayer.js';
 import '../../molecules/CaseNavigator/CaseNavigator.js';
 import '../../atoms/MetricCard/MetricCard.js';
-import coverImageUrl from './cover.png';
 
 const mockBody = `
   <h3 id="overview">Overview</h3>
@@ -87,7 +86,7 @@ export default {
           brand="apple"
           model="Apple MacBook Air M5"
           color="Apple iMac 24 Silver"
-          screen-image=${coverImageUrl}>
+          screen-image="">
         </ds-thumbnail>
 
         <ds-summary slot="summary" title="Case Snapshot" subtitle="Structured metrics projected from parent shell.">
