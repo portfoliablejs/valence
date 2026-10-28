@@ -78,13 +78,13 @@ mermaid-diagram text {
 mermaid-diagram .edgePath .path,
 mermaid-diagram .flowchart-link {
   stroke: var(--color-text-secondary, #323232) !important;
+  fill: none !important;
   stroke-width: 1.5px !important;
 }
 
-mermaid-diagram .marker,
 mermaid-diagram marker path {
-  fill: var(--color-text-secondary, #323232) !important;
   stroke: var(--color-text-secondary, #323232) !important;
+  fill: var(--color-text-secondary, #323232) !important;
 }
 
 html.a11y-large-text mermaid-diagram .nodeLabel,
@@ -132,12 +132,12 @@ html.a11y-dark-mode mermaid-diagram .flowchart-link,
 :host([a11y-dark-mode]) mermaid-diagram .edgePath .path,
 ds-article[a11y-dark-mode] mermaid-diagram .edgePath .path {
   stroke: var(--color-text-muted, #B2B2B2) !important;
+  fill: none !important;
 }
 
-html.a11y-dark-mode mermaid-diagram .marker,
 html.a11y-dark-mode mermaid-diagram marker path,
-:host([a11y-dark-mode]) mermaid-diagram .marker,
-ds-article[a11y-dark-mode] mermaid-diagram .marker {
+:host([a11y-dark-mode]) mermaid-diagram marker path,
+ds-article[a11y-dark-mode] mermaid-diagram marker path {
   fill: var(--color-text-muted, #B2B2B2) !important;
   stroke: var(--color-text-muted, #B2B2B2) !important;
 }
@@ -172,13 +172,13 @@ html.a11y-high-contrast mermaid-diagram .flowchart-link,
 :host([a11y-high-contrast]) mermaid-diagram .edgePath .path,
 ds-article[a11y-high-contrast] mermaid-diagram .edgePath .path {
   stroke: #FFFFFF !important;
+  fill: none !important;
   stroke-width: 2px !important;
 }
 
-html.a11y-high-contrast mermaid-diagram .marker,
 html.a11y-high-contrast mermaid-diagram marker path,
-:host([a11y-high-contrast]) mermaid-diagram .marker,
-ds-article[a11y-high-contrast] mermaid-diagram .marker {
+:host([a11y-high-contrast]) mermaid-diagram marker path,
+ds-article[a11y-high-contrast] mermaid-diagram marker path {
   fill: #FFFFFF !important;
   stroke: #FFFFFF !important;
 }
@@ -227,15 +227,19 @@ ds-article[a11y-forced-colors][a11y-high-contrast] mermaid-diagram text {
 
 html.a11y-forced-colors mermaid-diagram .edgePath .path,
 html.a11y-forced-colors mermaid-diagram .flowchart-link,
-html.a11y-forced-colors mermaid-diagram .marker,
-html.a11y-forced-colors mermaid-diagram marker path,
 :host([a11y-forced-colors]) mermaid-diagram .edgePath .path,
-ds-article[a11y-forced-colors] mermaid-diagram .edgePath .path,
-/* 👈 COMPOUND SPECIFICITY GUARDS FOR EDGES/ARROWS */
-html.a11y-forced-colors.a11y-dark-mode mermaid-diagram .edgePath .path,
-html.a11y-forced-colors.a11y-high-contrast mermaid-diagram .edgePath .path,
-:host([a11y-forced-colors][a11y-dark-mode]) mermaid-diagram .edgePath .path,
-:host([a11y-forced-colors][a11y-high-contrast]) mermaid-diagram .edgePath .path {
+ds-article[a11y-forced-colors] mermaid-diagram .edgePath .path {
+  forced-color-adjust: none !important;
+  stroke: CanvasText !important;
+  fill: none !important;
+}
+
+html.a11y-forced-colors mermaid-diagram marker path,
+html.a11y-forced-colors.a11y-dark-mode mermaid-diagram marker path,
+html.a11y-forced-colors.a11y-high-contrast mermaid-diagram marker path,
+:host([a11y-forced-colors]) mermaid-diagram marker path,
+:host([a11y-forced-colors][a11y-dark-mode]) mermaid-diagram marker path,
+:host([a11y-forced-colors][a11y-high-contrast]) mermaid-diagram marker path {
   forced-color-adjust: none !important;
   stroke: CanvasText !important;
   fill: CanvasText !important;
@@ -263,8 +267,12 @@ html.a11y-forced-colors.a11y-high-contrast mermaid-diagram .edgePath .path,
   }
 
   mermaid-diagram .edgePath .path,
-  mermaid-diagram .flowchart-link,
-  mermaid-diagram .marker,
+  mermaid-diagram .flowchart-link {
+    forced-color-adjust: none !important;
+    stroke: CanvasText !important;
+    fill: none !important;
+  }
+
   mermaid-diagram marker path {
     forced-color-adjust: none !important;
     stroke: CanvasText !important;
