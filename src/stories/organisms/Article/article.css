@@ -271,6 +271,15 @@ ds-tooltip {
   align-self: stretch;
 }
 
+/* Media in the markdown body follows the same wider track as summaries/code blocks. */
+.article-body > :is(figure, img),
+.article-body > p.media-paragraph,
+.article-body > figure > img {
+  width: var(--ds-article-media-width, 100%);
+  max-width: var(--ds-article-media-width, 100%);
+  align-self: stretch;
+}
+
 @media (max-width: 860px) {
   .article-title {
     font-size: 32px;
@@ -473,6 +482,11 @@ ds-tooltip {
   margin-inline: auto;
 }
 
+:host([data-mobile-breakpoint="true"]) .article-body > p.media-paragraph {
+  width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2));
+  max-width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2));
+}
+
 :host([data-mobile-breakpoint="true"]) .article-body {
   margin-top: var(--ds-article-mobile-body-margin-top, -8px);
   padding-top: var(--ds-article-mobile-body-padding-top, 0);
@@ -523,12 +537,14 @@ ds-tooltip {
 :host([data-mobile-breakpoint="true"]) ::slotted(figure),
 :host([data-mobile-breakpoint="true"]) ::slotted(table),
 :host([data-mobile-breakpoint="true"]) ::slotted(img),
+:host([data-mobile-breakpoint="true"]) ::slotted(p.media-paragraph),
 :host([data-mobile-breakpoint="true"]) ::slotted(video),
 ds-article[data-mobile-breakpoint="true"] pre,
 ds-article[data-mobile-breakpoint="true"] dl,
 ds-article[data-mobile-breakpoint="true"] figure,
 ds-article[data-mobile-breakpoint="true"] table,
 ds-article[data-mobile-breakpoint="true"] img,
+ds-article[data-mobile-breakpoint="true"] p.media-paragraph,
 ds-article[data-mobile-breakpoint="true"] video {
   width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
   max-width: calc(100% - (var(--ds-article-mobile-side-padding, 16px) * 2)) !important;
@@ -1422,6 +1438,13 @@ ds-article video {
   width: var(--ds-article-media-width, 100%);
 }
 
+::slotted(img),
+ds-article img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  cursor: default;
+}
+
 ::slotted(figure),
 ds-article figure {
   margin: var(--ds-article-figure-margin, var(--space-xl, 24px) 0);
@@ -1849,6 +1872,10 @@ ds-article[a11y-large-text] h6 {
 :host([a11y-large-text]) ::slotted(p),
 :host([a11y-large-text]) ::slotted(ul),
 :host([a11y-large-text]) ::slotted(ol),
+:host([a11y-large-text]) ::slotted(dl),
+:host([a11y-large-text]) ::slotted(dt),
+:host([a11y-large-text]) ::slotted(dd),
+:host([a11y-large-text]) ::slotted(details),
 :host([a11y-large-text]) ::slotted(blockquote),
 html.a11y-large-text ds-article p,
 ds-article[a11y-large-text] p,
@@ -1856,8 +1883,17 @@ html.a11y-large-text ds-article ul,
 ds-article[a11y-large-text] ul,
 html.a11y-large-text ds-article ol,
 ds-article[a11y-large-text] ol,
+html.a11y-large-text ds-article dl,
+ds-article[a11y-large-text] dl,
+html.a11y-large-text ds-article dt,
+ds-article[a11y-large-text] dt,
+html.a11y-large-text ds-article dd,
+ds-article[a11y-large-text] dd,
+html.a11y-large-text ds-article details,
+ds-article[a11y-large-text] details,
 html.a11y-large-text ds-article blockquote,
 ds-article[a11y-large-text] blockquote {
+  font-size: calc(var(--ds-article-paragraph-size, 17px) * 1.12) !important;
   line-height: 1.65 !important;
 }
 

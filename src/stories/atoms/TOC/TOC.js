@@ -7,6 +7,7 @@ export class DsToc extends HTMLElement {
       'opened',
       'target-selector',
       'title-text',
+      'top-label',
       'aria-label',
       'max-height',
       'dir'
@@ -152,7 +153,8 @@ export class DsToc extends HTMLElement {
 
   updateAttributes() {
     const ariaLabel = this.getAttribute('aria-label') || 'Table of Contents';
-    const titleText = this.getAttribute('title-text') ?? 'CONTENTS';
+    const titleText = this.getAttribute('title-text') ?? 'Contents';
+    const topLabel = this.getAttribute('top-label') ?? 'Top of the page';
     const maxHeight = this.getAttribute('max-height') || 'min(380px, 70vh)';
     const currentDir = this.getAttribute('dir') || 'ltr';
 
@@ -288,7 +290,7 @@ export class DsToc extends HTMLElement {
         class="minimap-line minimap-line-top ${topIsSelected ? 'active' : ''}"
         data-level="top"
         data-id="scroll-top"
-        title="Top of the page">
+        title="${topLabel}">
       </div>
       ${headingLines}
     `;
@@ -297,7 +299,7 @@ export class DsToc extends HTMLElement {
     const menuOptions = [
       {
         id: 'scroll-top',
-        label: 'Top of the page',
+        label: topLabel,
         showIcon: false,
         showKbd: false,
         control: 'none',
