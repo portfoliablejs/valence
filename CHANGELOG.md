@@ -1,3 +1,9 @@
+## [1.0.18](https://github.com/portfoliablejs/valence/compare/v1.0.17...v1.0.18) (2026-10-28)
+
+### Bug Fixes
+
+* fix: align article accessibility and TOC labels ([a9423a5](https://github.com/portfoliablejs/valence/commit/a9423a53ff1a5eb7357bc232dfd7107583a4d33c))
+
 ## [1.0.17](https://github.com/portfoliablejs/valence/compare/v1.0.16...v1.0.17) (2026-10-27)
 
 ### Bug Fixes
@@ -251,6 +257,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
