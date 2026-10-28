@@ -1,3 +1,9 @@
+## [1.0.20](https://github.com/portfoliablejs/valence/compare/v1.0.19...v1.0.20) (2026-10-28)
+
+### Bug Fixes
+
+* fix: remove missing case view story asset ([a14bfda](https://github.com/portfoliablejs/valence/commit/a14bfdaace33f55a87912f5d0e907beb64603567))
+
 ## [1.0.19](https://github.com/portfoliablejs/valence/compare/v1.0.18...v1.0.19) (2026-10-28)
 
 ### Bug Fixes
@@ -263,6 +269,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
