@@ -8,7 +8,7 @@ async function getMermaid() {
       const mermaidRuntime = module.default ?? module;
       mermaidRuntime.initialize({
         startOnLoad: false,
-        theme: 'default',
+        theme: 'base',
         fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif',
         flowchart: {
           htmlLabels: true,
@@ -25,13 +25,61 @@ async function getMermaid() {
 
 export class MermaidDiagram extends HTMLElement {
   async connectedCallback() {
-    const rawChart = this.getAttribute('chart') || this.textContent.trim();
-    if (!rawChart) return;
+    this._rawChart = this.getAttribute('chart') || this.textContent.trim();
+    if (!this._rawChart) return;
+
+    this._themeObserver = new MutationObserver(() => this._render());
+    this._themeObserver.observe(this.ownerDocument.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    await this._render();
+  }
+
+  disconnectedCallback() {
+    this._themeObserver?.disconnect();
+  }
+
+  _getThemeVariables() {
+    const root = this.ownerDocument.documentElement;
+    const styles = getComputedStyle(root);
+    const readToken = (name, fallback) => styles.getPropertyValue(name).trim() || fallback;
+
+    if (root.classList.contains('a11y-forced-colors')) {
+      return {
+        primaryColor: 'Canvas',
+        primaryTextColor: 'CanvasText',
+        primaryBorderColor: 'CanvasText',
+        lineColor: 'CanvasText',
+        secondaryColor: 'Canvas',
+        tertiaryColor: 'Canvas'
+      };
+    }
+
+    const darkMode = root.classList.contains('a11y-dark-mode');
+    const highContrast = root.classList.contains('a11y-high-contrast');
+    return {
+      primaryColor: highContrast ? '#000000' : readToken('--color-surface', darkMode ? '#1C1C1E' : '#F2F2F7'),
+      primaryTextColor: highContrast ? '#FFFFFF' : readToken('--color-text-primary', darkMode ? '#FFFFFF' : '#000000'),
+      primaryBorderColor: highContrast ? '#FFFFFF' : readToken('--color-surface-border', 'rgba(0, 0, 0, 0.15)'),
+      lineColor: highContrast ? '#FFFFFF' : readToken('--color-text-secondary', darkMode ? '#B2B2B2' : '#323232'),
+      secondaryColor: highContrast ? '#000000' : readToken('--color-bg', darkMode ? '#101218' : '#FFFFFF'),
+      tertiaryColor: highContrast ? '#000000' : readToken('--color-surface', darkMode ? '#1C1C1E' : '#F2F2F7')
+    };
+  }
+
+  async _render() {
+    if (!this._rawChart) return;
 
     const id = `mermaid-${Math.random().toString(36).substring(2, 9)}`;
     try {
       const mermaid = await getMermaid();
-      const { svg } = await mermaid.render(id, rawChart);
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        themeVariables: this._getThemeVariables()
+      });
+      const { svg } = await mermaid.render(id, this._rawChart);
       this.innerHTML = `<style>${mermaidCss}</style>${svg}`;
     } catch (error) {
       console.error('Mermaid rendering failed:', error);

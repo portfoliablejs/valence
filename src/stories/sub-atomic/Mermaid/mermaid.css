@@ -87,6 +87,13 @@ mermaid-diagram marker path {
   stroke: var(--color-text-secondary, #323232) !important;
 }
 
+html.a11y-large-text mermaid-diagram .nodeLabel,
+html.a11y-large-text mermaid-diagram text,
+mermaid-diagram[a11y-large-text] .nodeLabel,
+mermaid-diagram[a11y-large-text] text {
+  font-size: 1.2em !important;
+}
+
 /* --------------------------------------------------------------------------
    2. DARK MODE OVERRIDES (.a11y-dark-mode & ds-article[a11y-dark-mode])
    -------------------------------------------------------------------------- */

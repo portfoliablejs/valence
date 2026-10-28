@@ -47,7 +47,9 @@ export class Article extends HTMLElement {
       'show-summary',
       'show-player',
       'show-toc',
-      'show-navigator'
+      'show-navigator',
+      'toc-title-text',
+      'toc-top-label'
     ];
   }
 
@@ -134,6 +136,7 @@ export class Article extends HTMLElement {
     this._setupSlotAndMutationObservers();
     this.render();
     this._highlightCodeBlocks();
+    this._protectContentImages();
 
     // Trigger TOC heading scan once slotted content is attached, but only when
     // the TOC has not already been populated by the host application.
@@ -231,8 +234,21 @@ export class Article extends HTMLElement {
     this._contentObserver = new MutationObserver(() => {
       this._highlightCodeBlocks();
       this._syncTocHeadings();
+      this._protectContentImages();
     });
     this._contentObserver.observe(this, { childList: true, subtree: true });
+  }
+
+  _protectContentImages() {
+    this.querySelectorAll('img').forEach((image) => {
+      image.setAttribute('draggable', 'false');
+      image.removeEventListener('dragstart', this._preventImageDrag);
+      image.addEventListener('dragstart', this._preventImageDrag, { once: false });
+    });
+  }
+
+  _preventImageDrag(event) {
+    event.preventDefault();
   }
 
   _syncTocHeadings() {
@@ -351,6 +367,14 @@ export class Article extends HTMLElement {
   }
 
   render() {
+    if (this.tocEl) {
+      const titleText = this.getAttribute('toc-title-text');
+      const topLabel = this.getAttribute('toc-top-label');
+      if (titleText) this.tocEl.setAttribute('title-text', titleText);
+      else this.tocEl.removeAttribute('title-text');
+      if (topLabel) this.tocEl.setAttribute('top-label', topLabel);
+      else this.tocEl.removeAttribute('top-label');
+    }
     const isRtl = (this.getAttribute('dir') || 'ltr') === 'rtl';
     this._delegateAriaLabel();
 
