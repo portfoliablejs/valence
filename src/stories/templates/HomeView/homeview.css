@@ -123,7 +123,7 @@
 
 @media (max-width: 1200px) {
   .gallery-wrap ds-gallery {
-    --gallery-item-gap: clamp(23px, 2.94vw, 50px);
+    --gallery-item-gap: var(--gallery-item-gap-mobile, clamp(23px, 2.94vw, 50px));
   }
 }
 

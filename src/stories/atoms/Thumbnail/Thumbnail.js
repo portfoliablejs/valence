@@ -489,7 +489,7 @@ export class Thumbnail extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     // Single compressed line Shadow DOM string per design system guidelines
-    this.shadowRoot.innerHTML = `<style>${css}</style><div class="frame-container" tabindex="0"><div class="screen-window"><img class="screen-cover screen-media" alt="Screen Cover Content" loading="eager" /><video class="screen-cover-video screen-media" aria-hidden="true" preload="metadata" playsinline muted></video></div><img class="device-image" alt="Device Frame Mockup" loading="lazy" /></div>`;
+    this.shadowRoot.innerHTML = `<style>${css}</style><div class="frame-container" tabindex="0"><div class="screen-window"><img class="screen-cover screen-media" alt="Screen Cover Content" loading="eager" /><video class="screen-cover-video screen-media" aria-hidden="true" preload="metadata" playsinline muted></video></div><img class="device-image" alt="Device Frame Mockup" loading="eager" /></div>`;
 
     this.container = this.shadowRoot.querySelector('.frame-container');
     this.screenWindowEl = this.shadowRoot.querySelector('.screen-window');
@@ -618,6 +618,16 @@ export class Thumbnail extends HTMLElement {
     this.screenWindowEl?.style.removeProperty('--ds-thumbnail-screen-object-position');
     this.screenWindowEl?.style.removeProperty('-webkit-mask-image');
     this.screenWindowEl?.style.removeProperty('mask-image');
+  }
+
+  refreshComposition() {
+    if (!this.container || !this.imgEl) return;
+
+    this.container.style.setProperty('will-change', 'auto');
+    this.imgEl.style.setProperty('visibility', 'hidden');
+    this.imgEl.getBoundingClientRect();
+    this.imgEl.style.removeProperty('visibility');
+    this.container.getBoundingClientRect();
   }
 
   _applyBounds(bounds, maskUrl, screenRadius, edgeBleed = null, screenFit = null, screenImageAnchor = null, screenRadiusCorners = null) {
