@@ -113,7 +113,11 @@ export class MermaidDiagram extends HTMLElement {
         element.style.setProperty('fill', variables.primaryTextColor, 'important');
         element.style.setProperty('color', variables.primaryTextColor, 'important');
       });
-      this.querySelectorAll('.edgePath .path, .flowchart-link, .marker, marker path').forEach((element) => {
+      this.querySelectorAll('.edgePath .path, .flowchart-link').forEach((element) => {
+        element.style.setProperty('stroke', variables.lineColor, 'important');
+        element.style.setProperty('fill', 'none', 'important');
+      });
+      this.querySelectorAll('marker path').forEach((element) => {
         element.style.setProperty('stroke', variables.lineColor, 'important');
         element.style.setProperty('fill', variables.lineColor, 'important');
       });
