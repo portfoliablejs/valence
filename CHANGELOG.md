@@ -1,3 +1,9 @@
+## [1.0.19](https://github.com/portfoliablejs/valence/compare/v1.0.18...v1.0.19) (2026-10-28)
+
+### Bug Fixes
+
+* fix: align article media and table scrolling ([bcbe46d](https://github.com/portfoliablejs/valence/commit/bcbe46deb27c40614744706e979a0dd2db40699c))
+
 ## [1.0.18](https://github.com/portfoliablejs/valence/compare/v1.0.17...v1.0.18) (2026-10-28)
 
 ### Bug Fixes
@@ -257,6 +263,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
