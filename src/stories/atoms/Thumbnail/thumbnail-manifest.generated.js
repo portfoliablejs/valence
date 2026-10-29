@@ -864,15 +864,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.8129,
-      "depthPct": 1.3245,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro Max/Device/Apple iPhone 11 Pro Max Midnight Green.avif": {
@@ -897,15 +888,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.8129,
-      "depthPct": 1.3245,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro Max/Device/Apple iPhone 11 Pro Max Silver.avif": {
@@ -930,15 +912,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.8129,
-      "depthPct": 1.3245,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro Max/Device/Apple iPhone 11 Pro Max Space Grey.avif": {
@@ -963,15 +936,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.8129,
-      "depthPct": 1.3245,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro/Device/Apple iPhone 11 Pro Gold.avif": {
@@ -996,15 +960,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 81.0219,
-      "depthPct": 1.8519,
-      "centerXPct": 49.8175
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro/Device/Apple iPhone 11 Pro Midnight Green.avif": {
@@ -1029,15 +984,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 81.0219,
-      "depthPct": 1.8519,
-      "centerXPct": 49.8175
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro/Device/Apple iPhone 11 Pro Silver.avif": {
@@ -1062,15 +1008,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 81.0219,
-      "depthPct": 1.8519,
-      "centerXPct": 49.8175
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11 Pro/Device/Apple iPhone 11 Pro Space Grey.avif": {
@@ -1095,15 +1032,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 81.0219,
-      "depthPct": 1.8519,
-      "centerXPct": 49.8175
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 Black.avif": {
@@ -1128,15 +1056,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 Green.avif": {
@@ -1161,15 +1080,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 Purple.avif": {
@@ -1194,15 +1104,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 Red.avif": {
@@ -1227,15 +1128,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 White.avif": {
@@ -1260,15 +1152,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 11/Device/Apple iPhone 11 Yellow.avif": {
@@ -1293,15 +1176,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Mini/Device/Apple iPhone 12 Mini Black.avif": {
@@ -1326,15 +1200,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.2857,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Mini/Device/Apple iPhone 12 Mini Blue.avif": {
@@ -1359,15 +1224,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.2857,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Mini/Device/Apple iPhone 12 Mini Green.avif": {
@@ -1392,15 +1248,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.2857,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Mini/Device/Apple iPhone 12 Mini Red.avif": {
@@ -1425,15 +1272,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.2857,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Mini/Device/Apple iPhone 12 Mini White.avif": {
@@ -1458,15 +1296,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.2857,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro Max/Device/Apple iPhone 12 Pro Max Gold.avif": {
@@ -1491,15 +1320,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 76.5957,
-      "depthPct": 2.1242,
-      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro Max/Device/Apple iPhone 12 Pro Max Graphite.avif": {
@@ -1524,15 +1344,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 76.5957,
-      "depthPct": 2.1242,
-      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro Max/Device/Apple iPhone 12 Pro Max Pacific Blue.avif": {
@@ -1557,15 +1368,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 76.5957,
-      "depthPct": 2.1242,
-      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro Max/Device/Apple iPhone 12 Pro Max Silver.avif": {
@@ -1590,15 +1392,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 76.5957,
-      "depthPct": 2.1242,
-      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro/Device/Apple iPhone 12 Pro Gold.avif": {
@@ -1623,15 +1416,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro/Device/Apple iPhone 12 Pro Graphite.avif": {
@@ -1656,15 +1440,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro/Device/Apple iPhone 12 Pro Pacific Blue.avif": {
@@ -1689,15 +1464,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12 Pro/Device/Apple iPhone 12 Pro Silver.avif": {
@@ -1722,15 +1488,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12/Device/Apple iPhone 12 Black.avif": {
@@ -1755,15 +1512,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12/Device/Apple iPhone 12 Blue.avif": {
@@ -1788,15 +1536,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12/Device/Apple iPhone 12 Green.avif": {
@@ -1821,15 +1560,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12/Device/Apple iPhone 12 Red.avif": {
@@ -1854,15 +1584,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 12/Device/Apple iPhone 12 White.avif": {
@@ -1887,15 +1608,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Mini/Device/iPhone 13 Mini — Blue.avif": {
@@ -1920,15 +1632,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6309,
       "bottom": 0.4938,
       "left": 0.6309
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 78.4946,
-      "depthPct": 2.1452,
-      "centerXPct": 49.8208
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Mini/Device/iPhone 13 Mini — Midnight.avif": {
@@ -1953,15 +1656,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6309,
       "bottom": 0.4938,
       "left": 0.6309
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.5699,
-      "depthPct": 2.1452,
-      "centerXPct": 49.6416
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Mini/Device/iPhone 13 Mini — Pink.avif": {
@@ -1986,15 +1680,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6309,
       "bottom": 0.4938,
       "left": 0.6309
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 78.4946,
-      "depthPct": 2.1452,
-      "centerXPct": 49.8208
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Mini/Device/iPhone 13 Mini — Red.avif": {
@@ -2019,15 +1704,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6309,
       "bottom": 0.4938,
       "left": 0.6309
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 78.4946,
-      "depthPct": 2.1452,
-      "centerXPct": 49.8208
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Mini/Device/iPhone 13 Mini — Starlight.avif": {
@@ -2052,15 +1728,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6309,
       "bottom": 0.4938,
       "left": 0.6309
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 78.4946,
-      "depthPct": 2.1452,
-      "centerXPct": 49.8208
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro Max/Device/Apple iPhone 13 Pro Max — Gold.avif": {
@@ -2085,15 +1752,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6349,
       "bottom": 0.4938,
       "left": 0.6349
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.0036,
-      "depthPct": 1.9672,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro Max/Device/Apple iPhone 13 Pro Max — Graphite.avif": {
@@ -2118,15 +1776,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6349,
       "bottom": 0.4938,
       "left": 0.6349
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80.0712,
-      "depthPct": 1.9672,
-      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro Max/Device/Apple iPhone 13 Pro Max — Sierra Blue.avif": {
@@ -2151,15 +1800,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6349,
       "bottom": 0.4938,
       "left": 0.6349
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80.0712,
-      "depthPct": 1.9672,
-      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro Max/Device/Apple iPhone 13 Pro Max — Silver.avif": {
@@ -2184,15 +1824,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6349,
       "bottom": 0.4938,
       "left": 0.6349
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80.0712,
-      "depthPct": 1.9672,
-      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro/Device/Apple iPhone 13 Pro — Gold.avif": {
@@ -2217,15 +1848,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6309,
       "bottom": 0.4938,
       "left": 0.6309
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.242,
-      "depthPct": 2.1346,
-      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro/Device/Apple iPhone 13 Pro — Graphite.avif": {
@@ -2250,15 +1872,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6309,
       "bottom": 0.4938,
       "left": 0.6309
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.9537,
-      "depthPct": 2.1346,
-      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro/Device/Apple iPhone 13 Pro — Sierra Blue.avif": {
@@ -2283,15 +1896,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6309,
       "bottom": 0.4938,
       "left": 0.6309
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.9537,
-      "depthPct": 2.1346,
-      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13 Pro/Device/Apple iPhone 13 Pro — Silver.avif": {
@@ -2316,15 +1920,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6309,
       "bottom": 0.4938,
       "left": 0.6309
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80.0712,
-      "depthPct": 1.9737,
-      "centerXPct": 49.8221
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13/Device/Apple iPhone 13 — Blue.avif": {
@@ -2349,15 +1944,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.2857,
-      "depthPct": 2.1382,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13/Device/Apple iPhone 13 — Midnight.avif": {
@@ -2382,15 +1968,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.2857,
-      "depthPct": 2.1382,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13/Device/Apple iPhone 13 — Pink.avif": {
@@ -2415,15 +1992,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.2857,
-      "depthPct": 2.1382,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13/Device/Apple iPhone 13 — Red.avif": {
@@ -2448,15 +2016,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.2857,
-      "depthPct": 2.1382,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 13/Device/Apple iPhone 13 — Starlight.avif": {
@@ -2481,15 +2040,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6329,
       "bottom": 0.4938,
       "left": 0.6329
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 79.2857,
-      "depthPct": 2.1382,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Cosmic Orange - Landscape.avif": {
@@ -2514,15 +2064,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0226,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.0968,
-      "depthPct": 3.1579,
-      "centerXPct": 49.9194
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Cosmic Orange - Portrait.avif": {
@@ -2547,15 +2088,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6472,
       "bottom": 0.4938,
       "left": 0.6472
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 67.0175,
-      "depthPct": 2.9032,
-      "centerXPct": 49.8246
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Deep Blue - Landscape.avif": {
@@ -2580,15 +2112,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0226,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.0968,
-      "depthPct": 3.1579,
-      "centerXPct": 49.9194
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Deep Blue - Portrait.avif": {
@@ -2613,15 +2136,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6472,
       "bottom": 0.4938,
       "left": 0.6472
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 67.0175,
-      "depthPct": 2.9032,
-      "centerXPct": 49.8246
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Silver - Landscape.avif": {
@@ -2646,15 +2160,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0226,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.0968,
-      "depthPct": 3.1579,
-      "centerXPct": 49.9194
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro Max/iPhone 17 Pro Max - Silver - Portrait.avif": {
@@ -2679,15 +2184,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6472,
       "bottom": 0.4938,
       "left": 0.6472
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 67.0175,
-      "depthPct": 2.9032,
-      "centerXPct": 49.8246
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Cosmic Orange - Landscape.avif": {
@@ -2712,15 +2208,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.5203,
-      "depthPct": 3.5461,
-      "centerXPct": 49.8379
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Cosmic Orange - Portrait.avif": {
@@ -2745,15 +2232,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 71.9858,
-      "depthPct": 3.0794,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Deep Blue - Landscape.avif": {
@@ -2778,15 +2256,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.5203,
-      "depthPct": 3.5461,
-      "centerXPct": 49.8379
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Deep Blue - Portrait.avif": {
@@ -2811,15 +2280,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 71.9858,
-      "depthPct": 3.0794,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Silver - Landscape.avif": {
@@ -2844,15 +2304,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.5203,
-      "depthPct": 3.5461,
-      "centerXPct": 49.8379
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17 Pro/iPhone 17 Pro - Silver - Portrait.avif": {
@@ -2877,15 +2328,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 71.9858,
-      "depthPct": 3.0794,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Black - Landscape.avif": {
@@ -2910,15 +2352,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.2168,
-      "depthPct": 3.5211,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Black - Portrait.avif": {
@@ -2943,15 +2376,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.5352,
-      "depthPct": 3.0744,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Lavender - Landscape.avif": {
@@ -2976,15 +2400,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.2168,
-      "depthPct": 3.5211,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Lavender - Portrait.avif": {
@@ -3009,15 +2424,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.5352,
-      "depthPct": 3.0744,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Mist Blue - Landscape.avif": {
@@ -3042,15 +2448,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.2168,
-      "depthPct": 3.5211,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Mist Blue - Portrait.avif": {
@@ -3075,15 +2472,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.5352,
-      "depthPct": 3.0744,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Sage - Landscape.avif": {
@@ -3108,15 +2496,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.2168,
-      "depthPct": 3.5211,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - Sage - Portrait.avif": {
@@ -3141,15 +2520,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.5352,
-      "depthPct": 3.0744,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - White - Landscape.avif": {
@@ -3174,15 +2544,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.2168,
-      "depthPct": 3.5211,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 17/iPhone 17 - White - Portrait.avif": {
@@ -3207,15 +2568,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.5352,
-      "depthPct": 3.0744,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone 5c/Device/Apple iPhone 5c Blue.avif": {
@@ -4008,15 +3360,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.3786,
-      "depthPct": 3.169,
-      "centerXPct": 49.9191
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Cloud White - Portrait.avif": {
@@ -4041,15 +3384,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.5352,
-      "depthPct": 2.9126,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Light Gold - Landscape.avif": {
@@ -4074,15 +3408,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.3786,
-      "depthPct": 3.169,
-      "centerXPct": 49.9191
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Light Gold - Portrait.avif": {
@@ -4107,15 +3432,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.5352,
-      "depthPct": 2.9126,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Sky Blue - Landscape.avif": {
@@ -4140,15 +3456,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.3786,
-      "depthPct": 3.169,
-      "centerXPct": 49.9191
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Sky Blue - Portrait.avif": {
@@ -4173,15 +3480,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 72.5352,
-      "depthPct": 2.9126,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Space Black - Landscape.avif": {
@@ -4206,15 +3504,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.3125,
       "bottom": 1.0194,
       "left": 0.3125
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.3786,
-      "depthPct": 3.169,
-      "centerXPct": 49.9191
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone Air/iPhone Air - Space Black - Portrait.avif": {
@@ -4239,15 +3528,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6452,
       "bottom": 0.4938,
       "left": 0.6452
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 70.7746,
-      "depthPct": 2.9126,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone SE/Device/Apple iPhone SE Black.avif": {
@@ -4344,15 +3624,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.625,
       "bottom": 0.4938,
       "left": 0.625
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.4532,
-      "depthPct": 1.8333,
-      "centerXPct": 49.8201
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone X/Device/Apple iPhone X Space Grey.avif": {
@@ -4377,15 +3648,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.625,
       "bottom": 0.4938,
       "left": 0.625
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.4532,
-      "depthPct": 1.8333,
-      "centerXPct": 49.8201
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Blue.avif": {
@@ -4410,15 +3672,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Coral.avif": {
@@ -4443,15 +3696,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Red.avif": {
@@ -4476,15 +3720,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Silver.avif": {
@@ -4509,15 +3744,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Space Grey.avif": {
@@ -4542,15 +3768,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XR/Device/Apple iPhone XR Yellow.avif": {
@@ -4575,15 +3792,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6173,
       "bottom": 0.4938,
       "left": 0.6173
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.7839,
-      "depthPct": 1.5203,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS Max/Device/Apple iPhone XS Max Gold.avif": {
@@ -4608,15 +3816,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.8129,
-      "depthPct": 1.3245,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS Max/Device/Apple iPhone XS Max Silver.avif": {
@@ -4641,15 +3840,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.8129,
-      "depthPct": 1.3245,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS Max/Device/Apple iPhone XS Max Space Grey.avif": {
@@ -4674,15 +3864,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6289,
       "bottom": 0.4938,
       "left": 0.6289
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.8129,
-      "depthPct": 1.3245,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS/Device/Apple iPhone XS Gold.avif": {
@@ -4707,15 +3888,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.625,
       "bottom": 0.4938,
       "left": 0.625
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.4532,
-      "depthPct": 1.8333,
-      "centerXPct": 49.8201
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS/Device/Apple iPhone XS Silver.avif": {
@@ -4740,15 +3912,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.625,
       "bottom": 0.4938,
       "left": 0.625
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.4532,
-      "depthPct": 1.8333,
-      "centerXPct": 49.8201
     }
   },
   "/src/stories/assets/mockups/mobile/apple/Apple iPhone XS/Device/Apple iPhone XS Space Grey.avif": {
@@ -4773,15 +3936,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.625,
       "bottom": 0.4938,
       "left": 0.625
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.4532,
-      "depthPct": 1.8333,
-      "centerXPct": 49.8201
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 2 XL/Device/Google Pixel 2 XL Black and White.avif": {
@@ -4926,15 +4080,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.639,
       "bottom": 0.4938,
       "left": 0.639
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 86.5248,
-      "depthPct": 0.8576,
-      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 3 XL/Device/Google Pixel 3 XL - Just Black.avif": {
@@ -4959,15 +4104,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.639,
       "bottom": 0.4938,
       "left": 0.639
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 86.2191,
-      "depthPct": 0.8576,
-      "centerXPct": 49.6466
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 3 XL/Device/Google Pixel 3 XL - Not Pink.avif": {
@@ -4992,15 +4128,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.639,
       "bottom": 0.4938,
       "left": 0.639
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 86.5248,
-      "depthPct": 0.8576,
-      "centerXPct": 49.8227
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 3/Device/Google Pixel 3 - Clearly White.avif": {
@@ -5097,15 +4224,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6645,
       "bottom": 0.4938,
       "left": 0.6645
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.1449,
-      "depthPct": 1.3675,
-      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4 XL/Device/Google Pixel 4 XL Just Black.avif": {
@@ -5130,15 +4248,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6645,
       "bottom": 0.4938,
       "left": 0.6645
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.1449,
-      "depthPct": 1.3675,
-      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4 XL/Device/Google Pixel 4 XL Oh So Orange.avif": {
@@ -5163,15 +4272,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6645,
       "bottom": 0.4938,
       "left": 0.6645
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.1449,
-      "depthPct": 1.3675,
-      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4/Device/Google Pixel 4 Clearly White.avif": {
@@ -5196,15 +4296,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6623,
       "bottom": 0.4938,
       "left": 0.6623
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.1449,
-      "depthPct": 1.3722,
-      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4/Device/Google Pixel 4 Just Black.avif": {
@@ -5229,15 +4320,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6623,
       "bottom": 0.4938,
       "left": 0.6623
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.1449,
-      "depthPct": 1.3722,
-      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 4/Device/Google Pixel 4 Oh So Orange.avif": {
@@ -5262,15 +4344,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6623,
       "bottom": 0.4938,
       "left": 0.6623
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.1449,
-      "depthPct": 1.3722,
-      "centerXPct": 49.6377
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 5/Device/Google Pixel 5 Just Black.avif": {
@@ -5295,15 +4368,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6369,
       "bottom": 0.4938,
       "left": 0.6369
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 86.4286,
-      "depthPct": 0.9868,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel 5/Device/Google Pixel 5 Sorta Sage.avif": {
@@ -5328,15 +4392,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6369,
       "bottom": 0.4938,
       "left": 0.6369
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 86.4286,
-      "depthPct": 0.9868,
-      "centerXPct": 49.8214
     }
   },
   "/src/stories/assets/mockups/mobile/google/Google Pixel/Device/Google Pixel Quite Black.avif": {
@@ -6225,15 +5280,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6579,
       "bottom": 0.4938,
       "left": 0.6579
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.2113,
-      "depthPct": 0.6601,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Flamingo Pink.avif": {
@@ -6258,15 +5304,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6579,
       "bottom": 0.4938,
       "left": 0.6579
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.2113,
-      "depthPct": 0.6601,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Prism Black.avif": {
@@ -6291,15 +5328,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6579,
       "bottom": 0.4938,
       "left": 0.6579
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.2113,
-      "depthPct": 0.6601,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Prism Blue.avif": {
@@ -6324,15 +5352,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6579,
       "bottom": 0.4938,
       "left": 0.6579
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.2113,
-      "depthPct": 0.6601,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Prism Green.avif": {
@@ -6357,15 +5376,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6579,
       "bottom": 0.4938,
       "left": 0.6579
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.2113,
-      "depthPct": 0.6601,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S10+/Device/Samsung Galaxy S10+ Prism White.avif": {
@@ -6390,15 +5400,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6579,
       "bottom": 0.4938,
       "left": 0.6579
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 85.2113,
-      "depthPct": 0.6601,
-      "centerXPct": 49.8239
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20 Ultra/Device/Samsung Galaxy S20 Utra Cosmic Black.avif": {
@@ -6423,15 +5424,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.678,
       "bottom": 0.4938,
       "left": 0.678
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.0827,
-      "depthPct": 0.8104,
-      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20 Ultra/Device/Samsung Galaxy S20 Utra Cosmic Gray.avif": {
@@ -6456,15 +5448,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.678,
       "bottom": 0.4938,
       "left": 0.678
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 83.0827,
-      "depthPct": 0.8104,
-      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20/Device/Samsung Galaxy S20 Cloud Blue.avif": {
@@ -6489,15 +5472,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.678,
       "bottom": 0.4938,
       "left": 0.678
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80.8271,
-      "depthPct": 0.9772,
-      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20/Device/Samsung Galaxy S20 Cloud Pink.avif": {
@@ -6522,15 +5496,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.678,
       "bottom": 0.4938,
       "left": 0.678
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80.8271,
-      "depthPct": 0.9772,
-      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20/Device/Samsung Galaxy S20 Cosmic Gray.avif": {
@@ -6555,15 +5520,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.678,
       "bottom": 0.4938,
       "left": 0.678
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 80.8271,
-      "depthPct": 0.9772,
-      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20+/Device/Samsung Galaxy S20+ Cloud Blue.avif": {
@@ -6588,15 +5544,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.678,
       "bottom": 0.4938,
       "left": 0.678
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 89.0977,
-      "depthPct": 0.487,
-      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20+/Device/Samsung Galaxy S20+ Cosmic Black.avif": {
@@ -6621,15 +5568,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.678,
       "bottom": 0.4938,
       "left": 0.678
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 89.0977,
-      "depthPct": 0.487,
-      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S20+/Device/Samsung Galaxy S20+ Cosmic Gray.avif": {
@@ -6654,15 +5592,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.678,
       "bottom": 0.4938,
       "left": 0.678
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 89.0977,
-      "depthPct": 0.487,
-      "centerXPct": 49.6241
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 5G/Device/Samsung Galaxy S21 5G — Black.avif": {
@@ -6687,15 +5616,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6623,
       "bottom": 0.4938,
       "left": 0.6623
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.5455,
-      "depthPct": 1.3029,
-      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 5G/Device/Samsung Galaxy S21 5G — Pink.avif": {
@@ -6720,15 +5640,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6623,
       "bottom": 0.4938,
       "left": 0.6623
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.5455,
-      "depthPct": 1.3029,
-      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 5G/Device/Samsung Galaxy S21 5G — Violet.avif": {
@@ -6753,15 +5664,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6623,
       "bottom": 0.4938,
       "left": 0.6623
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.5455,
-      "depthPct": 1.3029,
-      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 5G/Device/Samsung Galaxy S21 5G — White.avif": {
@@ -6786,15 +5688,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6623,
       "bottom": 0.4938,
       "left": 0.6623
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.5455,
-      "depthPct": 1.3029,
-      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 Ultra 5G/Device/Samsung Galaxy S21 Ultra 5G — Black.avif": {
@@ -6819,15 +5712,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6734,
       "bottom": 0.4938,
       "left": 0.6734
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.3646,
-      "depthPct": 0.9756,
-      "centerXPct": 49.639
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21 Ultra 5G/Device/Samsung Galaxy S21 Ultra 5G — Silver.avif": {
@@ -6852,15 +5736,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6734,
       "bottom": 0.4938,
       "left": 0.6734
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.3646,
-      "depthPct": 0.9756,
-      "centerXPct": 49.639
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21+/Device/Samsung Galaxy S21+ 5G — Black.avif": {
@@ -6885,15 +5760,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6623,
       "bottom": 0.4938,
       "left": 0.6623
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.5455,
-      "depthPct": 1.3029,
-      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21+/Device/Samsung Galaxy S21+ 5G — Silver.avif": {
@@ -6918,15 +5784,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6623,
       "bottom": 0.4938,
       "left": 0.6623
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.5455,
-      "depthPct": 1.3029,
-      "centerXPct": 49.8182
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S21+/Device/Samsung Galaxy S21+ 5G — Violet.avif": {
@@ -6951,15 +5808,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6623,
       "bottom": 0.4938,
       "left": 0.6623
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 82.2464,
-      "depthPct": 1.3029,
-      "centerXPct": 50
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S3/Device/Samsung Galaxy S3.avif": {
@@ -7152,15 +6000,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6734,
       "bottom": 0.4938,
       "left": 0.6734
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.7256,
-      "depthPct": 1.2259,
-      "centerXPct": 49.8195
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S8/Device/Samsung Galaxy S8 Coral Blue.avif": {
@@ -7185,15 +6024,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6734,
       "bottom": 0.4938,
       "left": 0.6734
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.7256,
-      "depthPct": 1.2259,
-      "centerXPct": 49.8195
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S8/Device/Samsung Galaxy S8 Maple Gold.avif": {
@@ -7218,15 +6048,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6734,
       "bottom": 0.4938,
       "left": 0.6734
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.7256,
-      "depthPct": 1.2259,
-      "centerXPct": 49.8195
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S8/Device/Samsung Galaxy S8 Midnight Black.avif": {
@@ -7251,15 +6072,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6734,
       "bottom": 0.4938,
       "left": 0.6734
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.7256,
-      "depthPct": 1.2259,
-      "centerXPct": 49.8195
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S8/Device/Samsung Galaxy S8 Orchid Gray.avif": {
@@ -7284,15 +6096,6 @@ const THUMBNAIL_MANIFEST = {
       "right": 0.6734,
       "bottom": 0.4938,
       "left": 0.6734
-    },
-    "screenImageAnchor": {
-      "x": 50,
-      "y": 1.2
-    },
-    "notch": {
-      "widthPct": 87.7256,
-      "depthPct": 1.2259,
-      "centerXPct": 49.8195
     }
   },
   "/src/stories/assets/mockups/mobile/samsung/Samsung Galaxy S9/Device/Samsung Galaxy S9 Burgundy Red.avif": {
