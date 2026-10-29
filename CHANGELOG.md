@@ -1,3 +1,14 @@
+## [1.1.0](https://github.com/portfoliablejs/valence/compare/v1.0.21...v1.1.0) (2026-10-29)
+
+### Features
+
+* feat(gallery): support model sizing in design config ([35ca2d8](https://github.com/portfoliablejs/valence/commit/35ca2d826ebaba9349600cfa16947dcf2596c183))
+
+### Bug Fixes
+
+* fix(thumbnail): keep screen media centered in device frames ([d5f4ea0](https://github.com/portfoliablejs/valence/commit/d5f4ea0311b08a22f26d0ec5a4852d62fdd19897))
+* fix(gallery): preserve thumbnail notches during drag ([1d3e6c0](https://github.com/portfoliablejs/valence/commit/1d3e6c098a55278b27f6df5b581d788666fd0f7e))
+
 ## [1.0.21](https://github.com/portfoliablejs/valence/compare/v1.0.20...v1.0.21) (2026-10-28)
 
 ### Bug Fixes
@@ -275,6 +286,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
