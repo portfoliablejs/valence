@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/portfoliablejs/valence/compare/v1.1.0...v1.1.1) (2026-10-29)
+
+### Bug Fixes
+
+* fix: deviceType sizing in gallery/playerView ([2fe98b8](https://github.com/portfoliablejs/valence/commit/2fe98b844cafeb2c904d52b22412190e18089779))
+
 ## [1.1.0](https://github.com/portfoliablejs/valence/compare/v1.0.21...v1.1.0) (2026-10-29)
 
 ### Features
@@ -286,6 +292,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
