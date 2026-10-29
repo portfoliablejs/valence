@@ -34,8 +34,10 @@
   width: 100%;
   height: 100%;
   min-height: 100%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: var(--player-view-viewport-padding, clamp(64px, 8vh, 96px))
            var(--player-view-viewport-inline-padding, clamp(16px, 3vw, 40px))
            var(--player-view-viewport-bottom-padding, clamp(20px, 3vh, 32px));
@@ -68,19 +70,25 @@
 }
 
 .media-stage {
-  width: min(100%, var(--player-view-stage-width, 828px));
+  width: fit-content;
+  max-width: none;
+  box-sizing: border-box;
   min-height: min(100%, 0px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: var(--player-view-stage-gap, clamp(10px, 1.6vw, 18px));
-  margin: 0 auto;
+  margin: 0;
+  flex: 0 0 auto;
 }
 
 .thumbnail-shell {
   position: relative;
-  width: min(100%, var(--player-view-thumbnail-width, 390px));
+  width: max-content;
+  max-width: none;
+  min-width: 0;
+  box-sizing: border-box;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -91,8 +99,12 @@
 }
 
 .thumbnail-shell ds-thumbnail {
-  width: 100%;
-  max-width: var(--player-view-thumbnail-width, 390px);
+  display: inline-flex;
+  flex: 0 1 auto;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  height: auto;
   max-height: var(--player-view-thumbnail-height, min(72vh, 600px));
 }
 
@@ -194,13 +206,34 @@
 }
 
 @media (max-width: 640px) {
+  :host([ui-hidden]) .thumbnail-shell {
+    transform: none;
+  }
+
+  .media-stage {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
   .thumbnail-shell {
-    width: min(100%, var(--player-view-thumbnail-width, 390px));
+    width: 100%;
+    max-width: 100%;
   }
 
   .thumbnail-shell ds-thumbnail {
-    max-width: var(--player-view-thumbnail-width, 390px);
-    max-height: var(--player-view-thumbnail-height, min(72vh, 600px));
+    max-width: calc(100vw - 32px);
+    box-sizing: border-box;
+    max-height: min(
+      var(--player-view-thumbnail-height, min(72vh, 600px)),
+      calc(
+        100dvh
+        - var(--player-view-viewport-padding, clamp(64px, 8vh, 96px))
+        - var(--player-view-viewport-bottom-padding, clamp(20px, 3vh, 32px))
+        - 56px
+        - var(--player-view-stage-gap, clamp(10px, 1.6vw, 18px))
+      )
+    );
   }
 }
 
