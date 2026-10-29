@@ -8,6 +8,14 @@ import '../../atoms/Subtitle/Subtitle.js';
 import '../../molecules/VideoControls/VideoControls.js';
 
 const DEFAULT_VIDEO_SRC = 'https://cdn.pixabay.com/video/2023/07/12/171274-845168276_tiny.mp4';
+const DEFAULT_THUMBNAIL_SIZES = {
+  wearable: { width: 'min(calc(100vw - 32px), 520px)', height: 'min(calc((100vw - 32px) * 0.606), 315px)' },
+  mobile: { width: 'min(calc(100vw - 32px), 460px)', height: 'min(calc((100vw - 32px) * 0.606), 279px)' },
+  tablet: { width: 'min(calc(100vw - 32px), 760px)', height: 'min(calc((100vw - 32px) * 0.606), 460px)' },
+  desktop: { width: 'min(calc(100vw - 32px), 960px)', height: 'min(calc((100vw - 32px) * 0.606), 582px)' },
+  television: { width: 'min(calc(100vw - 32px), 960px)', height: 'min(calc((100vw - 32px) * 0.606), 582px)' },
+  tv: { width: 'min(calc(100vw - 32px), 960px)', height: 'min(calc((100vw - 32px) * 0.606), 582px)' }
+};
 const THUMBNAIL_FRAME_ATTRIBUTES = [
   'category',
   'brand',
@@ -121,7 +129,7 @@ export class PlayerView extends HTMLElement {
         </div>
         <div class="media-stage">
           <div class="thumbnail-shell">
-            <ds-thumbnail></ds-thumbnail>
+            <ds-thumbnail player-view-sizing></ds-thumbnail>
             <div class="loader-shell">
               <ds-loader visible="true" aria-label="Loading video" size="52"></ds-loader>
             </div>
@@ -271,18 +279,18 @@ export class PlayerView extends HTMLElement {
     const configuredWidth = this.getAttribute('thumbnail-width');
     if (configuredWidth) return configuredWidth;
 
-    return this.getAttribute('data-mobile-breakpoint') === 'true'
-      ? 'min(calc(100vw - 32px), 390px)'
-      : 'min(calc(100vw - 32px), 828px)';
+    const category = String(this.getAttribute('category') || 'mobile').trim().toLowerCase();
+    const categorySize = DEFAULT_THUMBNAIL_SIZES[category] || DEFAULT_THUMBNAIL_SIZES.mobile;
+    return categorySize.width;
   }
 
   get thumbnailHeight() {
     const configuredHeight = this.getAttribute('thumbnail-height');
     if (configuredHeight) return configuredHeight;
 
-    return this.getAttribute('data-mobile-breakpoint') === 'true'
-      ? 'min(calc((100vw - 32px) * 0.606), 237px)'
-      : 'min(calc((100vw - 32px) * 0.606), 501px)';
+    const category = String(this.getAttribute('category') || 'mobile').trim().toLowerCase();
+    const categorySize = DEFAULT_THUMBNAIL_SIZES[category] || DEFAULT_THUMBNAIL_SIZES.mobile;
+    return categorySize.height;
   }
 
   get controlsWidth() {

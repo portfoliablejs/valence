@@ -424,6 +424,14 @@ export class Thumbnail extends HTMLElement {
     this.screenVideoEl = this.shadowRoot.querySelector('.screen-cover-video');
     this.screenMediaEls = [this.screenImageEl, this.screenVideoEl];
     this._renderSeq = 0;
+    this.imgEl.addEventListener('load', () => {
+      if (this.imgEl.naturalWidth && this.imgEl.naturalHeight) {
+        this.style.setProperty(
+          '--ds-thumbnail-aspect-ratio',
+          `${this.imgEl.naturalWidth} / ${this.imgEl.naturalHeight}`,
+        );
+      }
+    });
 
     // Keep gallery interactions clean by preventing native image drag/select behavior.
     this.imgEl.setAttribute('draggable', 'false');
