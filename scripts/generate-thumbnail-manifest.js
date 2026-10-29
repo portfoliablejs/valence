@@ -7,7 +7,7 @@ const MOCKUP_GLOB = 'src/stories/assets/mockups/**/*.avif';
 const OUTPUT_FILE = path.join(process.cwd(), 'src', 'stories', 'atoms', 'Thumbnail', 'thumbnail-manifest.generated.js');
 const CACHE_FILE = path.join(process.cwd(), 'scripts', '.thumbnail-manifest.cache.json');
 const OVERRIDES_FILE = path.join(process.cwd(), 'scripts', 'thumbnail-manifest.overrides.json');
-const CACHE_VERSION = 4;
+const CACHE_VERSION = 5;
 
 const DEFAULT_ALPHA_THRESHOLD = 22;
 const DEFAULT_MAX_ANALYSIS_SIDE = 384;
@@ -215,84 +215,6 @@ function median(values) {
   return sorted.length % 2 === 0
     ? (sorted[mid - 1] + sorted[mid]) / 2
     : sorted[mid];
-}
-
-function detectNotchAnchor(holeMask, width, height, minX, minY, maxX, maxY) {
-  const boxWidth = (maxX - minX) + 1;
-  const boxHeight = (maxY - minY) + 1;
-
-  if (boxWidth < 48 || boxHeight < 96) return null;
-
-  const rowStats = [];
-  for (let y = minY; y <= maxY; y += 1) {
-    let rowMinX = Number.POSITIVE_INFINITY;
-    let rowMaxX = Number.NEGATIVE_INFINITY;
-
-    for (let x = minX; x <= maxX; x += 1) {
-      if (!holeMask[(y * width) + x]) continue;
-      if (x < rowMinX) rowMinX = x;
-      if (x > rowMaxX) rowMaxX = x;
-    }
-
-    if (!Number.isFinite(rowMinX) || !Number.isFinite(rowMaxX)) {
-      rowStats.push(null);
-      continue;
-    }
-
-    rowStats.push({
-      y,
-      rowMinX,
-      rowMaxX,
-      rowWidth: (rowMaxX - rowMinX) + 1,
-      rowCenterX: (rowMinX + rowMaxX) / 2,
-    });
-  }
-
-  const baselineStart = Math.floor(boxHeight * 0.38);
-  const baselineEnd = Math.floor(boxHeight * 0.82);
-  const baselineWidths = rowStats
-    .slice(baselineStart, Math.max(baselineStart + 1, baselineEnd))
-    .filter(Boolean)
-    .map((row) => row.rowWidth);
-
-  if (baselineWidths.length < 8) return null;
-
-  const baselineWidth = median(baselineWidths);
-  const topSampleRows = Math.max(8, Math.floor(boxHeight * 0.24));
-  const topRows = rowStats.slice(0, topSampleRows).filter(Boolean);
-  if (!topRows.length) return null;
-
-  const narrowestTopRow = topRows.reduce((best, row) => (row.rowWidth < best.rowWidth ? row : best), topRows[0]);
-  const reductionRatio = (baselineWidth - narrowestTopRow.rowWidth) / baselineWidth;
-  if (reductionRatio < 0.1) return null;
-
-  const centerX = (minX + maxX) / 2;
-  const centerOffsetRatio = Math.abs(narrowestTopRow.rowCenterX - centerX) / boxWidth;
-  if (centerOffsetRatio > 0.08) return null;
-
-  let notchEndRow = null;
-  for (let i = 0; i < rowStats.length; i += 1) {
-    const row = rowStats[i];
-    if (!row) continue;
-    if (row.rowWidth >= (baselineWidth * 0.95)) {
-      notchEndRow = row;
-      break;
-    }
-  }
-
-  if (!notchEndRow) return null;
-
-  const notchDepthPx = Math.max(1, notchEndRow.y - minY);
-  if (notchDepthPx > Math.floor(boxHeight * 0.22)) return null;
-
-  return {
-    screenImageAnchor: { x: 50, y: 1.2 },
-    notch: {
-      widthPct: Number(clamp((narrowestTopRow.rowWidth / boxWidth) * 100, 0, 100).toFixed(4)),
-      depthPct: Number(clamp((notchDepthPx / boxHeight) * 100, 0, 100).toFixed(4)),
-      centerXPct: Number(clamp(((narrowestTopRow.rowCenterX - minX) / boxWidth) * 100, 0, 100).toFixed(4)),
-    },
-  };
 }
 
 function markOutsideTransparent(transparent, width, height) {
@@ -539,18 +461,6 @@ async function analyzeFile(filePath) {
   const holeMask = new Uint8Array(total);
   for (const idx of hole.bestPixels) holeMask[idx] = 1;
 
-  const notchMeta = category === 'mobile'
-    ? detectNotchAnchor(
-      holeMask,
-      info.width,
-      info.height,
-      hole.bestMinX,
-      hole.bestMinY,
-      hole.bestMaxX,
-      hole.bestMaxY
-    )
-    : null;
-
   const radiusData = estimateCornerRadiusData(
     holeMask,
     info.width,
@@ -588,14 +498,6 @@ async function analyzeFile(filePath) {
       left: baseBleedX,
     },
   };
-
-  if (notchMeta?.screenImageAnchor) {
-    result.screenImageAnchor = notchMeta.screenImageAnchor;
-  }
-
-  if (notchMeta?.notch) {
-    result.notch = notchMeta.notch;
-  }
 
   return result;
 }

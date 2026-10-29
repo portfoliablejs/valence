@@ -101,21 +101,6 @@ function parseManifestRadius(manifestEntry) {
   return null;
 }
 
-function parseManifestScreenImageAnchor(manifestEntry) {
-  if (!manifestEntry?.screenImageAnchor || typeof manifestEntry.screenImageAnchor !== 'object') {
-    return null;
-  }
-
-  const x = Number(manifestEntry.screenImageAnchor.x);
-  const y = Number(manifestEntry.screenImageAnchor.y);
-  if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
-
-  return {
-    x: Math.max(0, Math.min(100, x)),
-    y: Math.max(0, Math.min(100, y)),
-  };
-}
-
 function parseManifestRadiusCorners(manifestEntry) {
   const source = manifestEntry?.screenRadiusCorners;
   if (!source || typeof source !== 'object') return null;
@@ -326,64 +311,6 @@ function inferWindowGeometryFromAlpha(image) {
     ? Math.max(0, Math.min(normalizedInset * 100, 24))
     : 0;
 
-  const detectNotchAnchor = () => {
-    if (boxWidth < 48 || boxHeight < 96) return null;
-
-    const rowStats = [];
-    for (let y = bestMinY; y <= bestMaxY; y += 1) {
-      let rowMinX = Number.POSITIVE_INFINITY;
-      let rowMaxX = Number.NEGATIVE_INFINITY;
-
-      for (let x = bestMinX; x <= bestMaxX; x += 1) {
-        if (!holeMask[(y * width) + x]) continue;
-        if (x < rowMinX) rowMinX = x;
-        if (x > rowMaxX) rowMaxX = x;
-      }
-
-      if (!Number.isFinite(rowMinX) || !Number.isFinite(rowMaxX)) {
-        rowStats.push(null);
-        continue;
-      }
-
-      rowStats.push({
-        y,
-        rowWidth: (rowMaxX - rowMinX) + 1,
-        rowCenterX: (rowMinX + rowMaxX) / 2,
-      });
-    }
-
-    const baselineStart = Math.floor(boxHeight * 0.38);
-    const baselineEnd = Math.floor(boxHeight * 0.82);
-    const baselineWidths = rowStats
-      .slice(baselineStart, Math.max(baselineStart + 1, baselineEnd))
-      .filter(Boolean)
-      .map((row) => row.rowWidth)
-      .sort((a, b) => a - b);
-
-    if (baselineWidths.length < 8) return null;
-
-    const mid = Math.floor(baselineWidths.length / 2);
-    const baselineWidth = baselineWidths.length % 2 === 0
-      ? (baselineWidths[mid - 1] + baselineWidths[mid]) / 2
-      : baselineWidths[mid];
-
-    const topSampleRows = Math.max(8, Math.floor(boxHeight * 0.24));
-    const topRows = rowStats.slice(0, topSampleRows).filter(Boolean);
-    if (!topRows.length) return null;
-
-    const narrowestTopRow = topRows.reduce((best, row) => (row.rowWidth < best.rowWidth ? row : best), topRows[0]);
-    const reductionRatio = (baselineWidth - narrowestTopRow.rowWidth) / baselineWidth;
-    if (reductionRatio < 0.1) return null;
-
-    const centerX = (bestMinX + bestMaxX) / 2;
-    const centerOffsetRatio = Math.abs(narrowestTopRow.rowCenterX - centerX) / boxWidth;
-    if (centerOffsetRatio > 0.08) return null;
-
-    return { x: 50, y: 1.2 };
-  };
-
-  const screenImageAnchor = detectNotchAnchor();
-
   return {
     bounds: {
       top: (bestMinY / height) * 100,
@@ -397,7 +324,6 @@ function inferWindowGeometryFromAlpha(image) {
       y: Math.min(0.65, Math.max(0.08, (100 / height) * 1.6)),
     },
     hasRoundedCorners,
-    screenImageAnchor,
     screenRadiusCorners: {
       topLeft: `${Math.max(0, Math.min((cornerRadiiPx[0] / Math.max(1, minSide)) * 100, 24)).toFixed(3)}%`,
       topRight: `${Math.max(0, Math.min((cornerRadiiPx[1] / Math.max(1, minSide)) * 100, 24)).toFixed(3)}%`,
@@ -628,7 +554,7 @@ export class Thumbnail extends HTMLElement {
     this.container.getBoundingClientRect();
   }
 
-  _applyBounds(bounds, maskUrl, screenRadius, edgeBleed = null, screenFit = null, screenImageAnchor = null, screenRadiusCorners = null) {
+  _applyBounds(bounds, maskUrl, screenRadius, edgeBleed = null, screenFit = null, screenRadiusCorners = null) {
     if (!bounds || !this.screenWindowEl) return;
 
     const bleedX = Number.isFinite(Number(edgeBleed?.x)) ? Number(edgeBleed.x) : 0;
@@ -672,11 +598,7 @@ export class Thumbnail extends HTMLElement {
       this.screenWindowEl.style.removeProperty('--ds-thumbnail-screen-fit');
     }
 
-    if (screenImageAnchor && Number.isFinite(screenImageAnchor.x) && Number.isFinite(screenImageAnchor.y)) {
-      this.screenWindowEl.style.setProperty('--ds-thumbnail-screen-object-position', `${screenImageAnchor.x}% ${screenImageAnchor.y}%`);
-    } else {
-      this.screenWindowEl.style.removeProperty('--ds-thumbnail-screen-object-position');
-    }
+    this.screenWindowEl.style.removeProperty('--ds-thumbnail-screen-object-position');
 
     if (maskUrl) {
       this.screenWindowEl.style.setProperty('-webkit-mask-image', `url("${maskUrl}")`);
@@ -694,7 +616,6 @@ export class Thumbnail extends HTMLElement {
     const bounds = manifestEntry?.bounds || runtimeGeometry?.bounds;
     const maskUrl = manifestEntry?.maskUrl || runtimeGeometry?.maskUrl;
     const screenRadius = parseManifestRadius(manifestEntry) ?? runtimeGeometry?.screenRadius;
-    const screenImageAnchor = parseManifestScreenImageAnchor(manifestEntry) || runtimeGeometry?.screenImageAnchor || null;
     const screenRadiusCorners = parseManifestRadiusCorners(manifestEntry) || runtimeGeometry?.screenRadiusCorners || null;
 
     if (bounds) {
@@ -704,7 +625,6 @@ export class Thumbnail extends HTMLElement {
         screenRadius,
         manifestEntry?.edgeBleed || runtimeGeometry?.edgeBleed || null,
         manifestEntry?.screenFit || runtimeGeometry?.screenFit || null,
-        screenImageAnchor,
         screenRadiusCorners,
       );
     }
@@ -783,7 +703,6 @@ export class Thumbnail extends HTMLElement {
 
         const manifestEntry = this._getManifestEntry(deviceUrl, sourcePath, baseFileName);
         const manifestRadius = parseManifestRadius(manifestEntry);
-        const manifestAnchor = parseManifestScreenImageAnchor(manifestEntry);
         const manifestRadiusCorners = parseManifestRadiusCorners(manifestEntry);
 
         if (manifestEntry?.bounds) {
@@ -793,7 +712,6 @@ export class Thumbnail extends HTMLElement {
             manifestRadius,
             manifestEntry?.edgeBleed || null,
             manifestEntry?.screenFit || null,
-            manifestAnchor,
             manifestRadiusCorners,
           );
         } else {

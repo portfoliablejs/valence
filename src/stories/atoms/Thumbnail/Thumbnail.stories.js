@@ -173,6 +173,28 @@ export const DefaultMobileFrame = {
 };
 
 /**
+ * Notched mobile frames keep screen media centered; the bezel notch is part of
+ * the device frame and must not shift the user's image.
+ */
+export const NotchedMobileMediaAlignment = {
+  args: {
+    category: 'mobile',
+    brand: 'apple',
+    model: 'Apple iPhone 13',
+    color: 'Midnight',
+  },
+  play: async ({ canvasElement, step }) => {
+    const thumbnail = canvasElement.querySelector('ds-thumbnail');
+
+    await step('Keep media centered inside the masked screen window', async () => {
+      const screenWindow = thumbnail.shadowRoot.querySelector('.screen-window');
+      expect(screenWindow.style.getPropertyValue('--ds-thumbnail-screen-object-position')).toBe('');
+      expect(window.getComputedStyle(screenWindow.querySelector('.screen-media')).objectPosition).toBe('50% 50%');
+    });
+  },
+};
+
+/**
  * Desktop MacBook Pro mockup story.
  */
 export const DesktopMacBook = {
