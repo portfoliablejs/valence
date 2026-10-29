@@ -155,9 +155,7 @@ export class Gallery extends HTMLElement {
         this._hasInteracted = false;
         this._isDragging = false;
         this._isTouchDrag = false;
-        this._scaleAnimation = null;
         this._isDragScaleActive = false;
-        this._cachedDragScale = null;
         this._boundPointerDown = this._handlePointerDown.bind(this);
         this._boundPointerMove = this._handlePointerMove.bind(this);
         this._boundPointerUp = this._handlePointerUp.bind(this);
@@ -196,8 +194,6 @@ export class Gallery extends HTMLElement {
         this._stopMomentum();
         this._stopWheelSmoothing();
         this._detachPointerListeners();
-        this._scaleAnimation?.cancel();
-
         if (this._themeObserver) {
             this._themeObserver.disconnect();
             this._themeObserver = null;
@@ -412,13 +408,6 @@ export class Gallery extends HTMLElement {
         return Array.from(this.track?.querySelectorAll('ds-gallery-item') || []);
     }
 
-    _refreshGalleryThumbnailComposition() {
-        this._getGalleryItems().forEach((item) => {
-            const thumbnail = item.shadowRoot?.querySelector('ds-thumbnail');
-            thumbnail?.refreshComposition?.();
-        });
-    }
-
     _getItemThumb(item) {
         return item?.shadowRoot?.querySelector('.case-thumb-wrapper') || null;
     }
@@ -545,7 +534,11 @@ export class Gallery extends HTMLElement {
         this._isTouchDrag = event.pointerType === 'touch';
         this._dragState = { moved: false };
 
-        this.viewport.setPointerCapture(event.pointerId);
+        try {
+            this.viewport.setPointerCapture(event.pointerId);
+        } catch (error) {
+            if (error?.name !== 'NotFoundError') throw error;
+        }
         this._lastPointerSample = {
             x: event.clientX,
             time: event.timeStamp || performance.now(),
@@ -574,7 +567,6 @@ export class Gallery extends HTMLElement {
             if (!this._isDragScaleActive) {
                 this._isDragScaleActive = true;
                 this.classList.add('is-dragging');
-                this._animateDragScale(this._getDragScale(), 1);
             }
         }
         if (this._lastPointerSample) {
@@ -597,12 +589,7 @@ export class Gallery extends HTMLElement {
         this.track.classList.remove('is-dragging');
         this.classList.remove('is-dragging');
 
-        if (this._isDragScaleActive) {
-            this._isDragScaleActive = false;
-            this._animateDragScale(1, this._getDragScale(), () => {
-                this._refreshGalleryThumbnailComposition();
-            });
-        }
+        this._isDragScaleActive = false;
 
         const engine = this._getEngineConfig();
         const boundedOffset = this._clampOffset(this._offsetX);
@@ -740,39 +727,6 @@ export class Gallery extends HTMLElement {
         }
 
         this._wheelTargetOffset = this._offsetX;
-    }
-
-    _getDragScale() {
-        if (this._cachedDragScale != null) return this._cachedDragScale;
-        const raw = getComputedStyle(this).getPropertyValue('--gallery-drag-scale').trim();
-        const val = parseFloat(raw);
-        this._cachedDragScale = Number.isFinite(val) ? val : 0.95;
-        return this._cachedDragScale;
-    }
-
-    _animateDragScale(toScale, fromScale, onFinish = null) {
-        if (this._scaleAnimation) {
-            this._scaleAnimation.cancel();
-            this._scaleAnimation = null;
-        }
-        if (this.hasAttribute('a11y-reduce-motion')) return;
-
-        const animation = this.animate(
-            [
-                { transform: `translateZ(0) scale(${fromScale})` },
-                { transform: `translateZ(0) scale(${toScale})` }
-            ],
-            {
-                duration: 280,
-                easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-                fill: 'none'
-            }
-        );
-        this._scaleAnimation = animation;
-        animation.addEventListener('finish', () => {
-            if (this._scaleAnimation === animation) this._scaleAnimation = null;
-            onFinish?.();
-        }, { once: true });
     }
 
     _startMomentum() {

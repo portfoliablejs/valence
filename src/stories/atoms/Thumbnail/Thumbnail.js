@@ -624,9 +624,7 @@ export class Thumbnail extends HTMLElement {
     if (!this.container || !this.imgEl) return;
 
     this.container.style.setProperty('will-change', 'auto');
-    this.imgEl.style.setProperty('visibility', 'hidden');
     this.imgEl.getBoundingClientRect();
-    this.imgEl.style.removeProperty('visibility');
     this.container.getBoundingClientRect();
   }
 

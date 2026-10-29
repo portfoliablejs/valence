@@ -169,7 +169,22 @@ export const SoftEdgeDrag = {
     });
 
     await step('Snap the gallery back to the resting position', async () => {
-      expect(track.style.transform).toBe('translateX(0px)');
+      expect(track.style.transform).toBe('translate3d(0px, 0px, 0px)');
+    });
+
+    await step('Keep masked thumbnail composition visible after edge animation', async () => {
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+      const firstItem = gallery.shadowRoot.querySelector('ds-gallery-item');
+      const thumbnail = firstItem?.shadowRoot.querySelector('ds-thumbnail');
+      const screenWindow = thumbnail?.shadowRoot.querySelector('.screen-window');
+      const deviceImage = thumbnail?.shadowRoot.querySelector('.device-image');
+
+      expect(screenWindow).toBeTruthy();
+      expect(deviceImage).toBeTruthy();
+      expect(deviceImage.style.visibility).not.toBe('hidden');
+      expect(screenWindow.style.getPropertyValue('--screen-top')).not.toBe('');
+      expect(screenWindow.style.getPropertyValue('--screen-height')).not.toBe('');
     });
   },
 };
