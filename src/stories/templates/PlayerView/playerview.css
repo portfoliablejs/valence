@@ -49,7 +49,7 @@
   inset: 0 0 auto 0;
   width: 100vw;
   margin: 0;
-  z-index: calc(var(--z-fixed, 100) + 7);
+  z-index: calc(var(--z-fixed, 100) + 9);
   transition: opacity var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
               transform var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1));
   will-change: opacity, transform;
@@ -58,7 +58,7 @@
 .top-seek-wrap {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: calc(var(--z-fixed, 100) + 8);
+  z-index: calc(var(--z-fixed, 100) + 10);
   pointer-events: none;
   transition: inset var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
               opacity var(--anim-normal, 0.32s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
