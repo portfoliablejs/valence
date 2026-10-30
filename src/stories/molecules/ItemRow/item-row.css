@@ -38,6 +38,11 @@
   color: var(--color-text-primary, var(--color-black, #000000));
 }
 
+:host(:hover:not([disabled])) .a11y-row:not([aria-disabled="true"]) {
+  background: var(--color-surface, #F2F2F7);
+  color: var(--color-text-primary, var(--color-black, #000000));
+}
+
 /* Accessibility Focus Ring (Keyboard Focus Isolation for Standalone Button Rows) */
 .a11y-row[tabindex="0"]:focus-visible {
   outline: var(--a11y-focus-outline, 3px solid var(--color-accent, #2B71F0));

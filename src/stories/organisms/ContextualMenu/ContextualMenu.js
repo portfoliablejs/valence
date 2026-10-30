@@ -28,6 +28,7 @@ export class DsContextualMenu extends HTMLElement {
 
     this._boundHandleClose = this._handleClose.bind(this);
     this._boundHandleVisibilityChange = this._handleVisibilityChange.bind(this);
+    this._boundHandlePointerMove = this._handlePointerMove.bind(this);
 
     this._items = [];
 
@@ -39,10 +40,27 @@ export class DsContextualMenu extends HTMLElement {
   }
 
   set items(value) {
-    if (Array.isArray(value)) {
+    if (Array.isArray(value) && !this._itemsEqual(this._items, value)) {
       this._items = value;
       this.renderMenu();
     }
+  }
+
+  _itemsEqual(currentItems, nextItems) {
+    if (currentItems.length !== nextItems.length) return false;
+
+    return currentItems.every((currentItem, index) => {
+      const nextItem = nextItems[index];
+      if (!nextItem || typeof currentItem !== 'object' || typeof nextItem !== 'object') {
+        return currentItem === nextItem;
+      }
+
+      const currentKeys = Object.keys(currentItem);
+      const nextKeys = Object.keys(nextItem);
+      if (currentKeys.length !== nextKeys.length) return false;
+
+      return currentKeys.every((key) => currentItem[key] === nextItem[key]);
+    });
   }
 
   get showScrollbar() {
@@ -137,6 +155,7 @@ export class DsContextualMenu extends HTMLElement {
     }
 
     document.addEventListener('visibilitychange', this._boundHandleVisibilityChange);
+    document.addEventListener('pointermove', this._boundHandlePointerMove, true);
 
     this.renderMenu();
     this.updateAttributes();
@@ -151,6 +170,7 @@ export class DsContextualMenu extends HTMLElement {
       this.closeBtn.removeEventListener('click', this._boundHandleClose);
     }
     document.removeEventListener('visibilitychange', this._boundHandleVisibilityChange);
+    document.removeEventListener('pointermove', this._boundHandlePointerMove, true);
   }
 
   /**
@@ -173,6 +193,24 @@ export class DsContextualMenu extends HTMLElement {
   _handleVisibilityChange() {
     if (document.visibilityState === 'visible') {
       this._forceScrollbarRebind();
+    }
+  }
+
+  _handlePointerMove(event) {
+    const rows = this.shadowRoot?.querySelectorAll('ds-item-row[pointer-hover]');
+    if (!this.hasAttribute('open')) {
+      rows?.forEach((row) => row.removeAttribute('pointer-hover'));
+      return;
+    }
+
+    const hoveredRow = event.composedPath().find(
+      (element) => element instanceof HTMLElement && element.matches('ds-item-row')
+    );
+    rows?.forEach((row) => {
+      if (row !== hoveredRow) row.removeAttribute('pointer-hover');
+    });
+    if (hoveredRow && this.shadowRoot.contains(hoveredRow)) {
+      hoveredRow.setAttribute('pointer-hover', '');
     }
   }
 

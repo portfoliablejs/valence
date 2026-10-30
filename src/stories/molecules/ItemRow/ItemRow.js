@@ -77,6 +77,7 @@ export class DsItemRow extends HTMLElement {
       this.rowBtn.removeEventListener('click', this._boundHandleClick);
       this.rowBtn.removeEventListener('keydown', this._boundHandleKeyDown);
     }
+    this.removeAttribute('pointer-hover');
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

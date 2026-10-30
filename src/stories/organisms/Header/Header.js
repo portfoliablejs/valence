@@ -38,7 +38,7 @@ const NAVIGATION_MENU_ATTRIBUTES = [
 
 export class Header extends HTMLElement {
   static get observedAttributes() {
-    return ['aria-label', 'show-breadcrumb', 'show-language-menu', 'show-navigation-region', 'show-about', 'data-mobile-breakpoint', ...NAVIGATION_MENU_ATTRIBUTES];
+    return ['aria-label', 'dir', 'show-breadcrumb', 'show-language-menu', 'show-navigation-region', 'show-about', 'data-mobile-breakpoint', ...NAVIGATION_MENU_ATTRIBUTES];
   }
 
   constructor() {
@@ -226,6 +226,10 @@ export class Header extends HTMLElement {
     if (!this.headerEl) return;
 
     this.headerEl.setAttribute('aria-label', this.getAttribute('aria-label') || 'Header');
+    const direction = this.getAttribute('dir') || this.ownerDocument?.documentElement?.dir || 'ltr';
+    this.headerEl.setAttribute('dir', direction);
+    this.navigationEl.setAttribute('dir', direction);
+    this.breadcrumbEl.setAttribute('dir', direction);
     if (this.getAttribute('data-mobile-breakpoint') === 'true') {
       this.breadcrumbEl.setAttribute('data-mobile-breakpoint', 'true');
       this.navigationEl.setAttribute('data-mobile-breakpoint', 'true');
