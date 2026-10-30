@@ -16,6 +16,9 @@ We use a standard GitHub-based workflow. If you're new to open-source, here's a 
     npm install
     npm run storybook
     ```
+    Before opening a pull request, run `npm run test:storybook:guardrails`, `npm run build`, and
+    `npm run build-storybook`. The focused guardrail story renders in Chromium and
+    enforces the configured axe accessibility checks.
 5.  **Commit Your Changes:** Follow our commit message conventions (see below).
 6.  **Submit a Pull Request (PR):** Push your branch to your fork and open a PR against the `main` branch of the Valence repository. Provide a clear description of the changes you've made.
 

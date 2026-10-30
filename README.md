@@ -22,6 +22,15 @@ npm run build
 npm run preview
 ```
 
+Storybook stories can be tested in a headless Chromium browser with the same
+accessibility checks used in pull requests:
+
+```bash
+npm run test:storybook:guardrails
+npm run build-storybook
+```
+
+
 ## Thumbnail Mockup Maintainer Guide
 
 This section documents how maintainers add or update device families used by the thumbnail components.
