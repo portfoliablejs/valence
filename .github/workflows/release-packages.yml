@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
   packages: write
   id-token: write
 
@@ -77,28 +78,57 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+          HEAD_SUBJECT="$(git log -1 --pretty=%s)"
+          if [[ "$HEAD_SUBJECT" == chore\(release\):* ]]; then
+            VERSION="$(node -p "require('./package.json').version")"
+            echo "release_commit=true" >> "$GITHUB_OUTPUT"
+            echo "dry_run=false" >> "$GITHUB_OUTPUT"
+            echo "released_any=true" >> "$GITHUB_OUTPUT"
+            echo "released_valence=true" >> "$GITHUB_OUTPUT"
+            echo "valence_version=$VERSION" >> "$GITHUB_OUTPUT"
+            echo "valence_tag=v$VERSION" >> "$GITHUB_OUTPUT"
+            echo "Release commit detected for version $VERSION."
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
             echo "dry_run=true" >> $GITHUB_OUTPUT
+            echo "release_commit=false" >> "$GITHUB_OUTPUT"
             node ./scripts/release-orchestrator.mjs --dry-run
           else
             echo "dry_run=false" >> $GITHUB_OUTPUT
+            echo "release_commit=false" >> "$GITHUB_OUTPUT"
             node ./scripts/release-orchestrator.mjs
           fi
 
-      - name: Push release commit and tags
-        if: steps.release-plan.outputs.released_any == 'true' && steps.release-plan.outputs.dry_run != 'true'
+      - name: Open release pull request
+        if: steps.release-plan.outputs.released_any == 'true' && steps.release-plan.outputs.release_commit != 'true' && steps.release-plan.outputs.dry_run != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git push origin main
-          git push origin --tags
+          VERSION="${{ steps.release-plan.outputs.valence_version }}"
+          BRANCH="release/v${VERSION}"
+          git push origin "HEAD:refs/heads/${BRANCH}"
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "chore(release): @portfoliablejs/valence@${VERSION}" \
+            --body "Automated release pull request for @portfoliablejs/valence ${VERSION}."
+
+      - name: Create and push release tag
+        if: steps.release-plan.outputs.release_commit == 'true' && steps.release-plan.outputs.dry_run != 'true'
+        run: |
+          TAG="${{ steps.release-plan.outputs.valence_tag }}"
+          if ! git rev-parse -q --verify "refs/tags/${TAG}" >/dev/null; then
+            git tag -a "$TAG" -m "Release $TAG"
+            git push origin "$TAG"
+          fi
 
       - name: Upgrade npm for OIDC Trusted Publishing
-        if: steps.release-plan.outputs.dry_run != 'true'
+        if: steps.release-plan.outputs.release_commit == 'true' && steps.release-plan.outputs.dry_run != 'true'
         run: |
           npm install -g npm@latest
           hash -r
 
       - name: Diagnostics for npm trusted publishing
-        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
+        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.release_commit == 'true' && steps.release-plan.outputs.dry_run != 'true'
         run: |
           PACKAGE_NAME=$(node -p "require('./package.json').name")
           echo "package=$PACKAGE_NAME"
@@ -111,11 +141,11 @@ jobs:
           fi
 
       - name: Publish @portfoliablejs/valence to npm
-        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
+        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.release_commit == 'true' && steps.release-plan.outputs.dry_run != 'true'
         run: npm publish --provenance --access public
 
       - name: Setup GitHub Packages publishing
-        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
+        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.release_commit == 'true' && steps.release-plan.outputs.dry_run != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -123,13 +153,13 @@ jobs:
           scope: '@portfoliablejs'
 
       - name: Publish @portfoliablejs/valence to GitHub Packages
-        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
+        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.release_commit == 'true' && steps.release-plan.outputs.dry_run != 'true'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub release for @portfoliablejs/valence
-        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.dry_run != 'true'
+        if: steps.release-plan.outputs.released_valence == 'true' && steps.release-plan.outputs.release_commit == 'true' && steps.release-plan.outputs.dry_run != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
