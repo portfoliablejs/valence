@@ -194,13 +194,12 @@ releasable change, it creates an SSH-signed release commit on a temporary
 branch and opens a pull request. Publishing, tagging, and GitHub release
 creation happen only after that pull request is merged.
 
-The repository secret `RELEASE_SSH_PRIVATE_KEY_REPO` must contain the multiline
+The repository secret `RELEASE_SSH_PRIVATE_KEY` must contain the multiline
 private SSH key whose public key is registered on GitHub as a signing key for
-the release bot identity. The `_REPO` suffix is intentional: it prevents the
-environment-level `Packages` secret from overriding this repository secret.
-This uses the same multiline SSH-key format as the Portfoliable release
-workflow. Do not use a personal workstation key or expose the private key
-outside the repository Actions secret.
+the release bot identity. This uses the same multiline SSH-key format as the
+Portfoliable release workflow. Do not define a second secret with the same
+name in the `Packages` environment, use a personal workstation key, or expose
+the private key outside the repository Actions secret.
 
 ### Consumer verification when using npm link
 
