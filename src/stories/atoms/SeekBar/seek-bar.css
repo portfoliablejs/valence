@@ -26,7 +26,10 @@
   width: 100%;
   height: 14px;
   padding: 0;
-  align-items: flex-start;
+  align-items: flex-end;
+  background: transparent;
+  border-bottom: var(--border-width-thin, 1px) var(--border-style-solid, solid)
+    var(--ds-seek-bar-area-border, var(--color-surface-border, rgba(0, 0, 0, 0.12)));
 }
 
 /* Keep top-bar hit area tight to reduce accidental hover/click capture */
@@ -42,6 +45,10 @@
   border-radius: 0 !important;
   transition: height var(--anim-normal, 0.28s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1)),
               background-color var(--anim-normal, 0.28s) var(--ease-fluid, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+:host([variant="top-bar"]) .seek-track {
+  background: transparent;
 }
 
 /* Ensure the Handle Knob remains round on Top-Bar Variant */
@@ -192,6 +199,9 @@
   width: var(--space-lg, 8px);
   height: var(--space-lg, 8px);
   background-color: var(--ds-seek-bar-knob-bg, var(--color-accent, #2B71F0));
+  border: var(--border-width-thin, 1px) var(--border-style-solid, solid)
+    var(--ds-seek-bar-knob-border, var(--color-surface-border, #ffffff));
+  box-sizing: border-box;
   border-radius: var(--radius-circle, 50%);
   box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.2));
   transition: transform var(--anim-fast, 0.2s) var(--ease-fluid, ease),
@@ -236,12 +246,17 @@
   background: var(--ds-seek-bar-track-bg, rgba(255, 255, 255, 0.2));
 }
 
+:host([a11y-dark-mode][variant="top-bar"]) .seek-track {
+  background: transparent;
+}
+
 :host([a11y-dark-mode]) .seek-fill {
   background: var(--ds-seek-bar-fill-bg, var(--color-white, #FFFFFF));
 }
 
 :host([a11y-dark-mode]) .seek-fill::after {
   background-color: var(--ds-seek-bar-knob-bg, var(--color-white, #FFFFFF));
+  border-color: var(--ds-seek-bar-knob-border, var(--color-black, #111111));
 }
 
 /* ==========================================================================
@@ -251,6 +266,14 @@
   /* Change from #FFFFFF to #000000 so the unplayed track is hollow/black */
   background: #000000 !important;
   border: var(--border-width-thin, 1px) var(--border-style-solid) #FFFFFF !important;
+}
+
+:host([a11y-high-contrast][variant="top-bar"]) .seek-track {
+  background: transparent !important;
+}
+
+:host([a11y-high-contrast]) .seek-container {
+  border-bottom-color: CanvasText !important;
 }
 
 :host([a11y-high-contrast]) .seek-fill {
@@ -270,6 +293,14 @@
   border: var(--border-width-thin, 1px) var(--border-style-solid) CanvasText !important;
 }
 
+:host([a11y-forced-colors][variant="top-bar"]) .seek-track {
+  background: transparent !important;
+}
+
+:host([a11y-forced-colors]) .seek-container {
+  border-bottom-color: CanvasText !important;
+}
+
 :host([a11y-forced-colors]) .seek-fill {
   background: Highlight !important;
 }
@@ -280,9 +311,17 @@
 }
 
 @media (forced-colors: active) {
+  :host([variant="top-bar"]) .seek-container {
+    border-bottom-color: CanvasText !important;
+  }
+
   .seek-track {
     background: CanvasText !important;
     border: var(--border-width-thin, 1px) var(--border-style-solid, solid) CanvasText !important;
+  }
+
+  :host([variant="top-bar"]) .seek-track {
+    background: transparent !important;
   }
   .seek-fill {
     background: Highlight !important;
