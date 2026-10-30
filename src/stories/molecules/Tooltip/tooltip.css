@@ -12,6 +12,12 @@
   --tooltip-slide: -6px; 
 }
 
+@media (max-width: 767px) {
+  :host {
+    display: none !important;
+  }
+}
+
 .action-tooltip {
   position: absolute;
   background: var(--ds-tooltip-bg, var(--color-overlay-dark));
@@ -60,7 +66,7 @@
 }
 
 :host([dir="rtl"]) .action-tooltip {
-  flex-direction: row-reverse;
+  flex-direction: row;
   text-align: right;
 }
 
