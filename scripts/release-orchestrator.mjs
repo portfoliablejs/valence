@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 
 const REPO_URL = "https://github.com/portfoliablejs/valence";
 const isDryRun = process.argv.includes("--dry-run");
+const isPreparePr = process.argv.includes("--prepare-pr");
 const shouldSign = process.env.RELEASE_SIGN === "true";
 
 const target = {
@@ -237,6 +238,11 @@ function run() {
     commitArgs.splice(1, 0, "-S");
   }
   git(commitArgs);
+
+  if (isPreparePr) {
+    console.log("Release PR preparation enabled; skipping tag creation until merge.");
+    return;
+  }
 
   const tagExists = git(["rev-parse", "-q", "--verify", `refs/tags/${nextTag}`], {
     allowFailure: true,
