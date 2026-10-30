@@ -1,6 +1,6 @@
 {
   "name": "@portfoliablejs/valence",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Valence web component design system used by Portfoliable",
   "private": false,
   "license": "MIT",

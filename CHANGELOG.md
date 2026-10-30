@@ -1,3 +1,18 @@
+## [1.1.2](https://github.com/portfoliablejs/valence/compare/v1.1.1...v1.1.2) (2026-10-30)
+
+### Bug Fixes
+
+* fix: route automated releases through pull requests ([fe7c71b](https://github.com/portfoliablejs/valence/commit/fe7c71b65bdce000604c86aae6180bba7e1bb0d0))
+* fix: add pull request checks workflow and enhance accessibility testing in Storybook ([99c94e0](https://github.com/portfoliablejs/valence/commit/99c94e0f67b68c0a7a0be50d2d0cfa8668b55e02))
+* fix: improve key formatting in Kbd component for consistent casing per OS ([98bb38e](https://github.com/portfoliablejs/valence/commit/98bb38ea4f5c725f74477c6fd0df3f07555f7ba3))
+* fix: enhance accessibility and RTL support in Header and ContextualMenu components ([7ede06f](https://github.com/portfoliablejs/valence/commit/7ede06f083afcca13942e4a3f394cec9c31e5427))
+* fix: update Kbd component to render alphabetic characters in uppercase and refactor AudioPlayer key handling for improved shortcut management ([76ac700](https://github.com/portfoliablejs/valence/commit/76ac7007de9ee5485677392d4a5be65d671e8e5f))
+* fix: add tooltip format options for SeekBar and update PlayerView to use 'time-total' ([d0c649f](https://github.com/portfoliablejs/valence/commit/d0c649fa3c5e7d952d5dd51064bf64ba0642e776))
+* fix: improve seek handling in PlayerView and SeekBar for better user experience ([d01ae8a](https://github.com/portfoliablejs/valence/commit/d01ae8aef9df7921d88eae04b14a2d2dd0d4d9a1))
+* fix: seekbar tooltip below header in PlayerView ([65cd372](https://github.com/portfoliablejs/valence/commit/65cd37210b2122ac300f8a0cf1022774ec157c78))
+* fix: progress bar color breaking browser color ([601ef54](https://github.com/portfoliablejs/valence/commit/601ef542165aa4ad3577c9a6a078d6a060d5d79f))
+* fix: kbd/tooltip positioning in `rtl` and mobile ([51fdf60](https://github.com/portfoliablejs/valence/commit/51fdf60075f7b065e8166ef4a5bc1781b7e6a82b))
+
 ## [1.1.1](https://github.com/portfoliablejs/valence/compare/v1.1.0...v1.1.1) (2026-10-29)
 
 ### Bug Fixes
@@ -292,6 +307,7 @@
 ### Features
 
 * homeview rollout and release pages deployment workflow ([eeb38b3](https://github.com/portfoliablejs/valence/commit/eeb38b32c25c6dd99a4735635f29161ee206a4b6))
+
 
 
 
