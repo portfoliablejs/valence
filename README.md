@@ -194,10 +194,16 @@ releasable change, it creates an SSH-signed release commit on a temporary
 branch and opens a pull request. Publishing, tagging, and GitHub release
 creation happen only after that pull request is merged.
 
-The repository secret `RELEASE_SSH_PRIVATE_KEY` must contain the private SSH
-key whose public key is registered on GitHub as a signing key for the release
-bot identity. Do not use a personal workstation key or expose the private key
-outside the repository Actions secret.
+The repository secret `RELEASE_SSH_PRIVATE_KEY_B64` must contain the Base64
+encoding of the private SSH key whose public key is registered on GitHub as a
+signing key for the release bot identity. Create it with:
+
+```bash
+base64 -i ~/.ssh/valence-actions-release | tr -d '\n'
+```
+
+Do not paste the multiline private key directly, use a personal workstation
+key, or expose the private key outside the repository Actions secret.
 
 ### Consumer verification when using npm link
 
