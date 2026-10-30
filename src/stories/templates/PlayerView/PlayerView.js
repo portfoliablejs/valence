@@ -116,6 +116,8 @@ export class PlayerView extends HTMLElement {
     this._seekProgressFrame = null;
     this._uiHideTimer = null;
     this._uiHideDelayMs = 1800;
+    this._wasPlayingBeforeSeekDrag = false;
+    this._isSeeking = false;
 
     this.shadowRoot.innerHTML = `
       <style>${typographyCss}</style>
@@ -168,6 +170,8 @@ export class PlayerView extends HTMLElement {
       this._themeObserver.disconnect();
     }
     this._stopSeekProgressLoop();
+    this._wasPlayingBeforeSeekDrag = false;
+    this._isSeeking = false;
     this._subtitleResolutionToken += 1;
     this._playTransitionToken += 1;
     this._isPlayTransitionPending = false;
@@ -1045,6 +1049,8 @@ export class PlayerView extends HTMLElement {
 
     this.controlsEl.addEventListener('ds-video-action', this._onControlActionBound || (this._onControlActionBound = (event) => this._handleControlAction(event)));
     this.seekBarEl.addEventListener('ds-seek', this._onSeekBound || (this._onSeekBound = (event) => this._handleSeek(event)));
+    this.seekBarEl.addEventListener('ds-seek-start', this._onSeekStartBound || (this._onSeekStartBound = () => this._handleSeekStart()));
+    this.seekBarEl.addEventListener('ds-seek-end', this._onSeekEndBound || (this._onSeekEndBound = () => this._handleSeekEnd()));
   }
 
   _unbindVideoEvents() {
@@ -1069,6 +1075,12 @@ export class PlayerView extends HTMLElement {
     if (this.seekBarEl && this._onSeekBound) {
       this.seekBarEl.removeEventListener('ds-seek', this._onSeekBound);
     }
+    if (this.seekBarEl && this._onSeekStartBound) {
+      this.seekBarEl.removeEventListener('ds-seek-start', this._onSeekStartBound);
+    }
+    if (this.seekBarEl && this._onSeekEndBound) {
+      this.seekBarEl.removeEventListener('ds-seek-end', this._onSeekEndBound);
+    }
   }
 
   _syncControlState() {
@@ -1081,7 +1093,7 @@ export class PlayerView extends HTMLElement {
   }
 
   _syncSeekFromVideo() {
-    if (!this.videoEl || !this.seekBarEl) return;
+    if (!this.videoEl || !this.seekBarEl || this._isSeeking) return;
 
     const duration = this.videoEl.duration || 0;
     const currentTime = this.videoEl.currentTime || 0;
@@ -1103,11 +1115,43 @@ export class PlayerView extends HTMLElement {
   _handleSeek(event) {
     if (!this.videoEl) return;
 
+    if (this._isSeeking && !this.videoEl.paused) {
+      this._playTransitionToken += 1;
+      this._isPlayTransitionPending = false;
+      this.videoEl.pause();
+    }
+
     const duration = this.videoEl.duration || 0;
     if (!duration) return;
 
     const percent = Number(event.detail?.percent ?? 0);
     this.videoEl.currentTime = (Math.max(0, Math.min(100, percent)) / 100) * duration;
+  }
+
+  _handleSeekStart() {
+    if (!this.videoEl) return;
+
+    this._isSeeking = true;
+    this._playTransitionToken += 1;
+    this._isPlayTransitionPending = false;
+    this._wasPlayingBeforeSeekDrag = !this.videoEl.paused && !this.videoEl.ended;
+    if (!this.videoEl.paused) {
+      this.videoEl.pause();
+    }
+  }
+
+  _handleSeekEnd() {
+    if (!this.videoEl) return;
+
+    this._isSeeking = false;
+    this._syncSeekFromVideo();
+    const shouldResume = this._wasPlayingBeforeSeekDrag;
+    this._wasPlayingBeforeSeekDrag = false;
+    if (shouldResume) {
+      void this.videoEl.play().catch(() => {
+        this._isPlayTransitionPending = false;
+      });
+    }
   }
 
   _handleControlAction(event) {

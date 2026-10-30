@@ -237,8 +237,7 @@ this.shadowRoot.innerHTML = `
     if (this.hasAttribute('disabled')) return;
 
     const percent = this._calculatePercent(e);
-    this.fill.style.setProperty('--progress-percent', `${percent}%`);
-    this.container.setAttribute('aria-valuenow', Math.round(percent).toString());
+    this.setAttribute('percent', String(percent));
 
     this._updateTooltipPosition(e);
 
@@ -279,6 +278,10 @@ this.shadowRoot.innerHTML = `
     if (this.isDragging) {
       this.isDragging = false;
       this.container.classList.remove('is-dragging');
+      this.dispatchEvent(new CustomEvent('ds-seek-end', {
+        bubbles: true,
+        composed: true,
+      }));
 
       if (this.tooltip) {
         if (e && e.clientX !== undefined) {
@@ -309,6 +312,10 @@ this.shadowRoot.innerHTML = `
     if (this.isDragging) {
       this.isDragging = false;
       this.container.classList.remove('is-dragging');
+      this.dispatchEvent(new CustomEvent('ds-seek-end', {
+        bubbles: true,
+        composed: true,
+      }));
       if (this.tooltip) {
         this.tooltip.removeAttribute('visible');
       }
@@ -324,6 +331,10 @@ this.shadowRoot.innerHTML = `
       if (this.hasAttribute('disabled')) return;
       this.isDragging = true;
       this.container.classList.add('is-dragging');
+      this.dispatchEvent(new CustomEvent('ds-seek-start', {
+        bubbles: true,
+        composed: true,
+      }));
       if (this.tooltip) this.tooltip.setAttribute('visible', '');
       this._handleMove(e);
     });
@@ -334,6 +345,10 @@ this.shadowRoot.innerHTML = `
         if (this.hasAttribute('disabled')) return;
         this.isDragging = true;
         this.container.classList.add('is-dragging');
+        this.dispatchEvent(new CustomEvent('ds-seek-start', {
+          bubbles: true,
+          composed: true,
+        }));
         if (this.tooltip) this.tooltip.setAttribute('visible', '');
         this._handleMove(e);
       },
