@@ -33,7 +33,7 @@ export class DsKbd extends HTMLElement {
     if (!comboContainer) return;
 
     const showPlus = this.hasAttribute('show-plus');
-    const key = String(this.getAttribute('key') || '').trim();
+    const key = String(this.getAttribute('key') || '').trim().toUpperCase();
 
     if (key) {
       const plusMarkup = showPlus

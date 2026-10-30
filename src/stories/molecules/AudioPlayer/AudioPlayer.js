@@ -629,22 +629,44 @@ export class AudioPlayer extends HTMLElement {
     this.dispatchEvent(new CustomEvent('ds-audio-volume-change', { detail: { volume: newVolume }, bubbles: true, composed: true }));
   }
 
-  _onKeyDown(e) {
-    // Legacy Shift Modifiers
+  handleShortcut(e) {
     if (e.shiftKey) {
       const key = e.key.toUpperCase();
-      if (key === 'P') { e.preventDefault(); this.playBtn.click(); }
-      else if (key === 'S') { e.preventDefault(); this.speedBtn.click(); }
-      else if (key === 'H') { e.preventDefault(); this.hideBtn.click(); }
-      else if (key === 'A') { e.preventDefault(); this.autoscrollBtn.click(); }
-      else if (key === 'M') { e.preventDefault(); this.volumeBtn.click(); }
-      return; 
+      const buttonByKey = {
+        P: this.playBtn,
+        S: this.speedBtn,
+        H: this.hideBtn,
+        A: this.autoscrollBtn,
+        M: this.volumeBtn
+      };
+      const button = buttonByKey[key];
+      if (!button) return false;
+      button.click();
+      return true;
     }
 
+    const actionByCode = {
+      ArrowRight: () => this._seekRelative(5),
+      ArrowLeft: () => this._seekRelative(-5),
+      ArrowUp: () => this._volumeRelative(5),
+      ArrowDown: () => this._volumeRelative(-5)
+    };
+    const action = actionByCode[e.code];
+    if (!action) return false;
+    action();
+    return true;
+  }
+
+  _onKeyDown(e) {
     const active = this.shadowRoot.activeElement;
     const playerContainer = this.shadowRoot.querySelector('.case-audio-player');
     const isPlayerFocused = active === playerContainer;
     const isButtonFocused = active && active.tagName.toLowerCase() === 'ds-button';
+
+    if (isPlayerFocused && this.handleShortcut(e)) {
+      e.preventDefault();
+      return;
+    }
     
     // Complete Enter & Space execution
     if (e.key === 'Enter' || e.key === ' ') {
@@ -659,18 +681,8 @@ export class AudioPlayer extends HTMLElement {
 
     // Complete Global Player Arrows Traversal
     if (isPlayerFocused) {
-      if (e.key === 'ArrowRight') {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
         e.preventDefault();
-        this._seekRelative(5);
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        this._seekRelative(-5);
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        this._volumeRelative(5);
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        this._volumeRelative(-5);
       }
     }
   }
