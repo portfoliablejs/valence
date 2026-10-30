@@ -35,14 +35,14 @@ jobs:
       - name: Configure SSH signing key for commits and tags
         if: github.event_name == 'push'
         env:
-          RELEASE_SSH_PRIVATE_KEY_REPO: ${{ secrets.RELEASE_SSH_PRIVATE_KEY_REPO }}
+          RELEASE_SSH_PRIVATE_KEY: ${{ secrets.RELEASE_SSH_PRIVATE_KEY }}
         run: |
-          if [ -z "${RELEASE_SSH_PRIVATE_KEY_REPO:-}" ]; then
-            echo "RELEASE_SSH_PRIVATE_KEY_REPO repository secret is required by the verified-commit repository rule"
+          if [ -z "${RELEASE_SSH_PRIVATE_KEY:-}" ]; then
+            echo "RELEASE_SSH_PRIVATE_KEY is required by the verified-commit repository rule"
             exit 1
           fi
           mkdir -p "$HOME/.ssh"
-          printf '%s\n' "$RELEASE_SSH_PRIVATE_KEY_REPO" > "$HOME/.ssh/release-signing-key"
+          printf '%s\n' "$RELEASE_SSH_PRIVATE_KEY" > "$HOME/.ssh/release-signing-key"
           chmod 600 "$HOME/.ssh/release-signing-key"
           ssh-keygen -y -f "$HOME/.ssh/release-signing-key" > "$HOME/.ssh/release-signing-key.pub"
           chmod 644 "$HOME/.ssh/release-signing-key.pub"
