@@ -127,7 +127,7 @@ export class PlayerView extends HTMLElement {
           <ds-header></ds-header>
         </div>
         <div class="top-seek-wrap">
-          <ds-seek-bar variant="top-bar" percent="0" tooltip-format="time" aria-label="Video timeline"></ds-seek-bar>
+          <ds-seek-bar variant="top-bar" percent="0" tooltip-format="time-total" aria-label="Video timeline"></ds-seek-bar>
         </div>
         <div class="media-stage">
           <div class="thumbnail-shell">
@@ -1309,6 +1309,7 @@ export class PlayerView extends HTMLElement {
     });
     this.seekBarEl.setAttribute('show-tooltip', isMobileBreakpoint ? 'false' : 'true');
     this.seekBarEl.setAttribute('variant', 'top-bar');
+    this.seekBarEl.setAttribute('tooltip-format', 'time-total');
     this.seekBarEl.setAttribute('aria-label', this.getAttribute('seek-aria-label') || 'Video timeline');
 
     if (this.hasAttribute('muted')) {

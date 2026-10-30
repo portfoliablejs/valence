@@ -135,6 +135,8 @@ this.shadowRoot.innerHTML = `
       const customText = this.getAttribute('tooltip-text');
       if (customText) {
         this.tooltip.setAttribute('text', customText);
+      } else if (tooltipFormat === 'time-total' && duration > 0) {
+        this.tooltip.setAttribute('text', `${this._formatTimecode((percent / 100) * duration)} / ${this._formatTimecode(duration)}`);
       } else if (tooltipFormat !== 'time' && !this.tooltip.hasAttribute('text')) {
         this.tooltip.setAttribute('text', `${Math.round(percent)}%`);
       }
@@ -207,9 +209,11 @@ this.shadowRoot.innerHTML = `
     }
 
     const customText = this.getAttribute('tooltip-text');
-    const displayValue = tooltipFormat === 'time' && duration > 0
-      ? this._formatTimecode((hoverPercent / 100) * duration)
-      : `${Math.round(hoverPercent)}%`;
+    const displayValue = tooltipFormat === 'time-total' && duration > 0
+      ? `${this._formatTimecode((hoverPercent / 100) * duration)} / ${this._formatTimecode(duration)}`
+      : tooltipFormat === 'time' && duration > 0
+        ? this._formatTimecode((hoverPercent / 100) * duration)
+        : `${Math.round(hoverPercent)}%`;
 
     this.tooltip.setAttribute('text', customText ? `${customText} ${displayValue}`.trim() : displayValue);
 

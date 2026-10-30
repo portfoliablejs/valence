@@ -73,6 +73,7 @@ export interface DsSeekBarState {
   variant: 'default' | 'top-bar' | 'vertical';
   disabled: boolean;
   showTooltip: boolean;
+  tooltipFormat: 'percent' | 'time' | 'time-total';
   tooltipText?: string;
   showKbd?: boolean;
   kbdLabel?: string;
@@ -130,6 +131,13 @@ export interface DsSeekBarSubAtomicHooks {
       <td>`boolean`</td>
       <td>`true`</td>
       <td>Controls rendering of the floating tracking tooltip.</td>
+    </tr>
+    <tr>
+      <td>`tooltipFormat`</td>
+      <td>`tooltip-format`</td>
+      <td>`'percent' | 'time' | 'time-total'`</td>
+      <td>`'percent'`</td>
+      <td>Controls the tooltip value format. `time-total` displays the hovered time as `current / total`.</td>
     </tr>
     <tr>
       <td>`tooltipText`</td>
