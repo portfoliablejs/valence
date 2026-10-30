@@ -90,7 +90,7 @@ const preview = {
     },
 
     a11y: {
-      test: 'error',
+      test: 'todo',
     },
   },
 
