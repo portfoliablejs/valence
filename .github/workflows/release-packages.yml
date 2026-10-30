@@ -44,6 +44,8 @@ jobs:
           mkdir -p "$HOME/.ssh"
           printf '%s\n' "$RELEASE_SSH_PRIVATE_KEY" > "$HOME/.ssh/release-signing-key"
           chmod 600 "$HOME/.ssh/release-signing-key"
+          ssh-keygen -y -f "$HOME/.ssh/release-signing-key" > "$HOME/.ssh/release-signing-key.pub"
+          chmod 644 "$HOME/.ssh/release-signing-key.pub"
           git config gpg.format ssh
           git config user.signingkey "$HOME/.ssh/release-signing-key"
           git config commit.gpgsign true
