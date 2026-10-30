@@ -36,7 +36,6 @@
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "test:storybook:guardrails": "vitest --run src/stories/Accessibility/AccessibilityGuardrails.stories.js",
     "cleanup:thumbnail-png-leftovers": "node scripts/thumbnail-generation/delete-png-leftovers.js",
     "prepare:thumbnails": "node scripts/thumbnail-generation/convert-mockups.js && node scripts/thumbnail-generation/crop-mockups.js && npm run generate:thumbnail-manifest && npm run cleanup:thumbnail-png-leftovers",
     "generate:thumbnail-manifest": "node scripts/generate-thumbnail-manifest.js",
